@@ -28,15 +28,7 @@ group :doc do
 end
 
 group :development, :test do
-  # RSpec - Testing tool for the Ruby programming language
-  gem 'rspec-rails'
-  gem 'respec', require: false # Allows to rerun failed specs (first do `respec` to run all, then `respec f` or `respec 123` to run failed)
-  gem 'fuubar'
-
-  # Capybara - Headless, JavaScript-executing browser for Selenium
-  gem 'capybara-webkit'
-  gem 'launchy'            # Use `save_and_open_page` in request tests to automatically open a browser
-  gem 'selenium-webdriver' # Selenium webdriver (needed to use Chrome driver)
+  gem 'rspec-rails' # Testing tool for the Ruby programming language
 
   gem 'factory_girl_rails' # Test data generator
 
@@ -54,6 +46,16 @@ group :development do
 end
 
 group :test do
+  gem 'respec', require: false # Allows to rerun failed specs (first do `respec` to run all, then `respec f` or `respec 123` to run failed)
+  gem 'fuubar'
+
+  gem 'database_cleaner' # Resets test database after each test
+
+  # Capybara - Headless, JavaScript-executing browser for Selenium
+  gem 'poltergeist'
+  gem 'launchy'            # Use `save_and_open_page` in request tests to automatically open a browser
+  gem 'selenium-webdriver' # Selenium webdriver (needed to use Chrome driver)
+
   gem 'turnip' # Gherkin extension for RSpec to write acceptance tests
 end
 
