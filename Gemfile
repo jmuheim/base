@@ -48,6 +48,16 @@ group :development, :test do
   gem 'jazz_hands' # Use Pry and its extensions instead of IRB
 end
 
+group :development do
+  gem 'quiet_assets' # Turns off assets pipeline log
+
+  # Better Errors: Replaces the standard Rails error page with a more useful one
+  gem 'better_errors'
+  gem 'binding_of_caller'  # Needed by binding_of_caller to enable html console
+
+  gem 'xray-rails' # Reveals your UI's bones with Cmd-X/Ctrl-X
+end
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 
