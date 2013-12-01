@@ -32,6 +32,22 @@ group :doc do
   gem 'sdoc', require: false
 end
 
+group :development, :test do
+  # RSpec - Testing tool for the Ruby programming language
+  gem 'rspec-rails'
+  gem 'respec', require: false # Allows to rerun failed specs (first do `respec` to run all, then `respec f` or `respec 123` to run failed)
+  gem 'fuubar'
+
+  # Capybara - Headless, JavaScript-executing browser for Selenium
+  gem 'capybara-webkit'
+  gem 'launchy'            # Use `save_and_open_page` in request tests to automatically open a browser
+  gem 'selenium-webdriver' # Selenium webdriver (needed to use Chrome driver)
+
+  gem 'factory_girl_rails' # Test data generator
+
+  gem 'jazz_hands' # Use Pry and its extensions instead of IRB
+end
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 
