@@ -23,6 +23,12 @@ gem 'turbolinks' # Turbolinks makes following links in your web application fast
 
 gem 'jbuilder', '~> 1.2' # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 
+gem 'devise' # Flexible authentication solution for Rails
+
+gem 'cancan' # Authorization library which restricts what resources a given user is allowed to access
+
+gem 'rolify' # Manage roles of users
+
 group :doc do
   gem 'sdoc', require: false # bundle exec rake doc:rails generates the API under doc/api.
 end
