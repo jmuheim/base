@@ -58,6 +58,10 @@ group :development do
   gem 'xray-rails' # Reveals your UI's bones with Cmd-X/Ctrl-X
 end
 
+group :test do
+  gem 'turnip' # Gherkin extension for RSpec to write acceptance tests
+end
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 
