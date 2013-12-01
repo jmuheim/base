@@ -22,6 +22,14 @@ RSpec.configure do |config|
   # instead of true.
   config.use_transactional_fixtures = false
 
+  Capybara.register_driver :chrome do |app|
+    args = []
+    args << "--disable-translate" # Remove the annoying translation suggestion on every page load
+    Capybara::Selenium::Driver.new(app, browser: :chrome, args: args)
+  end
+
+  Capybara.javascript_driver = :poltergeist # use "driver: :chrome" (like "js: true") if you need the dev tools for specific specs
+
   # DatabaseCleaner configuration as described here: http://devblog.avdi.org/2012/08/31/configuring-database_cleaner-with-rails-rspec-capybara-and-selenium/
   config.before(:suite) do
     DatabaseCleaner.clean_with(:truncation)

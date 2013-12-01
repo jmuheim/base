@@ -1,4 +1,3 @@
-@chrome
 Feature: Visiting the dashboard
   Background:
     Given I'm a guest
