@@ -206,6 +206,11 @@ GEM
     slim (2.0.2)
       temple (~> 0.6.6)
       tilt (>= 1.3.3, < 2.1)
+    slim-rails (2.0.3)
+      actionpack (>= 3.0, < 4.1)
+      activesupport (>= 3.0, < 4.1)
+      railties (>= 3.0, < 4.1)
+      slim (~> 2.0)
     slop (3.4.7)
     sprockets (2.10.1)
       hike (~> 1.2)
@@ -264,7 +269,7 @@ DEPENDENCIES
   sass-rails (~> 4.0.0)
   sdoc
   selenium-webdriver
-  slim
+  slim-rails
   sqlite3
   turbolinks
   turnip

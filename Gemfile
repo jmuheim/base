@@ -4,7 +4,7 @@ gem 'rails', '4.0.1'
 
 gem 'sqlite3' # Use sqlite3 as the database for Active Record
 
-gem 'slim' # Awesome template language that replaces ERB
+gem 'slim-rails' # Awesome template language that replaces ERB
 
 gem 'uglifier', '>= 1.3.0' # Use Uglifier as compressor for JavaScript assets
 
