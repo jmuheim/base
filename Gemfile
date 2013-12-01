@@ -6,8 +6,6 @@ gem 'sqlite3' # Use sqlite3 as the database for Active Record
 
 gem 'slim' # Awesome template language that replaces ERB
 
-gem 'sass-rails', '~> 4.0.0' # Use SCSS for stylesheets
-
 gem 'uglifier', '>= 1.3.0' # Use Uglifier as compressor for JavaScript assets
 
 gem 'coffee-rails', '~> 4.0.0' # Use CoffeeScript for .js.coffee assets and views
@@ -53,6 +51,11 @@ end
 
 group :test do
   gem 'turnip' # Gherkin extension for RSpec to write acceptance tests
+end
+
+group :assets do
+  gem 'sass-rails', '~> 4.0.0' # Use SCSS for stylesheets
+  gem 'compass-rails' # Compass framework
 end
 
 # Use ActiveModel has_secure_password
