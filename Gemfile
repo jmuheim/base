@@ -54,6 +54,8 @@ group :development do
   gem 'spring'
   gem 'spring-commands-rspec' # Commands for RSpec
   gem 'listen', '~> 1.0'
+
+  gem 'guard-rspec', require: false # Automatically run tests
 end
 
 group :test do
