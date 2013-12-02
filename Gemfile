@@ -49,6 +49,11 @@ group :development do
   gem 'binding_of_caller'  # Needed by binding_of_caller to enable html console
 
   gem 'xray-rails' # Reveals your UI's bones with Cmd-X/Ctrl-X
+
+  # Rails application preloader
+  gem 'spring'
+  gem 'spring-commands-rspec' # Commands for RSpec
+  gem 'listen', '~> 1.0'
 end
 
 group :test do
