@@ -2,5 +2,9 @@
 # for example lib/tasks/capistrano.rake, and they will automatically be available to Rake.
 
 require File.expand_path('../config/application', __FILE__)
-
 Transition::Application.load_tasks
+
+# http://blog.revathskumar.com/2011/12/run-rspec-as-rake-task.html
+require 'rspec/core/rake_task'
+RSpec::Core::RakeTask.new(:spec)
+task default: :spec
