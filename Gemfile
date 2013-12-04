@@ -51,9 +51,9 @@ group :development do
   gem 'xray-rails' # Reveals your UI's bones with Cmd-X/Ctrl-X
 
   # Rails application preloader
-  gem 'spring'
+  gem 'spring', github: 'guard/spring', branch: 'listen2'
   gem 'spring-commands-rspec' # Commands for RSpec
-  gem 'listen', '~> 1.0'
+  gem 'listen'
 
   gem 'guard-rspec', require: false # Automatically run tests
 end
