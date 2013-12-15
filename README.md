@@ -5,6 +5,7 @@
 - [Mac OS X](http://www.apple.com/osx/)
 - [POW](http://pow.cx/)
 - [Git](http://git-scm.com/)
+- [Google Chrome](https://www.google.com/intl/en/chrome/browser/)
 
 ## How to develop
 
@@ -18,5 +19,5 @@
 
 ### Develop
 
-- `$ powder open`
-- `$ guard`
+- `$ powder open` opens [http://transition.dev/](http://transition.dev/) in the browser
+- `$ guard` starts Guard, which takes care about executing tests, live reloading of the page, etc.
