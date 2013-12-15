@@ -56,6 +56,8 @@ group :development do
   gem 'listen'
 
   gem 'guard-rspec', require: false # Automatically run tests
+
+  gem 'terminal-notifier-guard' # Mac OS X User Notifications for Guard
 end
 
 group :test do
