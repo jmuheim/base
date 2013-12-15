@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.0.1'
+gem 'rails', '4.0.2'
 
 gem 'sqlite3' # Use sqlite3 as the database for Active Record
 
@@ -49,6 +49,15 @@ group :development do
   gem 'binding_of_caller'  # Needed by binding_of_caller to enable html console
 
   gem 'xray-rails' # Reveals your UI's bones with Cmd-X/Ctrl-X
+
+  # Rails application preloader
+  gem 'spring', github: 'guard/spring', branch: 'listen2'
+  gem 'spring-commands-rspec' # Commands for RSpec
+  gem 'listen'
+
+  # Guard: automatically run commands when files are changed
+  gem 'guard-rspec', require: false # Automatically run tests
+  gem 'terminal-notifier-guard' # Mac OS X User Notifications for Guard
 end
 
 group :test do
