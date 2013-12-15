@@ -55,8 +55,8 @@ group :development do
   gem 'spring-commands-rspec' # Commands for RSpec
   gem 'listen'
 
+  # Guard: automatically run commands when files are changed
   gem 'guard-rspec', require: false # Automatically run tests
-
   gem 'terminal-notifier-guard' # Mac OS X User Notifications for Guard
 end
 
