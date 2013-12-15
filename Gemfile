@@ -56,11 +56,14 @@ group :development do
   gem 'listen'
 
   # Guard: automatically run commands when files are changed
-  gem 'guard-rspec', require: false # Automatically run tests
-  gem 'terminal-notifier-guard'     # Mac OS X User Notifications for Guard
+  gem 'guard-rspec', require: false      # Automatically run tests
+  gem 'terminal-notifier-guard'          # Mac OS X User Notifications for Guard
+  gem 'guard-livereload', require: false # Automatically reload your browser when 'view' files are modified
   gem 'guard-pow', require: false   # Automatically manage Pow applications restart
 
   gem 'powder', require: false # Configure POW server easily
+
+  gem 'rack-livereload' # Enable LiveReload in Rails
 end
 
 group :test do
