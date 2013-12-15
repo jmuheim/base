@@ -46,7 +46,7 @@ group :development do
 
   # Better Errors: Replaces the standard Rails error page with a more useful one
   gem 'better_errors'
-  gem 'binding_of_caller'  # Needed by binding_of_caller to enable html console
+  gem 'binding_of_caller' # Needed by better_errors to enable html console
 
   gem 'xray-rails' # Reveals your UI's bones with Cmd-X/Ctrl-X
 
@@ -57,7 +57,10 @@ group :development do
 
   # Guard: automatically run commands when files are changed
   gem 'guard-rspec', require: false # Automatically run tests
-  gem 'terminal-notifier-guard' # Mac OS X User Notifications for Guard
+  gem 'terminal-notifier-guard'     # Mac OS X User Notifications for Guard
+  gem 'guard-pow', require: false   # Automatically manage Pow applications restart
+
+  gem 'powder', require: false # Configure POW server easily
 end
 
 group :test do

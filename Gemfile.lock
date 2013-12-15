@@ -114,6 +114,8 @@ GEM
       lumberjack (~> 1.0)
       pry (>= 0.9.12)
       thor (>= 0.18.1)
+    guard-pow (2.0.0)
+      guard (~> 2.0)
     guard-rspec (4.2.0)
       guard (>= 2.1.1)
       rspec (>= 2.14, < 4.0)
@@ -164,6 +166,8 @@ GEM
       websocket-driver (>= 0.2.0)
     polyglot (0.3.3)
     posix-spawn (0.3.8)
+    powder (0.2.0)
+      thor (>= 0.11.5)
     pry (0.9.12.4)
       coderay (~> 1.0)
       method_source (~> 0.8)
@@ -308,6 +312,7 @@ DEPENDENCIES
   devise
   factory_girl_rails
   fuubar
+  guard-pow
   guard-rspec
   jazz_hands
   jbuilder (~> 1.2)
@@ -315,6 +320,7 @@ DEPENDENCIES
   launchy
   listen
   poltergeist
+  powder
   quiet_assets
   rails (= 4.0.2)
   respec
