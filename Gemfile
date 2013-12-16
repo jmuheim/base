@@ -59,7 +59,8 @@ group :development do
   gem 'guard-rspec', require: false      # Automatically run tests
   gem 'terminal-notifier-guard'          # Mac OS X User Notifications for Guard
   gem 'guard-livereload', require: false # Automatically reload your browser when 'view' files are modified
-  gem 'guard-pow', require: false   # Automatically manage Pow applications restart
+  gem 'guard-pow', require: false        # Automatically manage Pow applications restart
+  gem 'guard-bundler'                    # Automatically install/update gem bundle when needed
 
   gem 'powder', require: false # Configure POW server easily
 
@@ -75,7 +76,7 @@ group :test do
   gem 'database_cleaner' # Resets test database after each test
 
   # Capybara - Headless, JavaScript-executing browser for Selenium
-  gem 'poltergeist'
+  gem 'poltergeist'        # PhantomJS driver for Capybara
   gem 'launchy'            # Use `save_and_open_page` in request tests to automatically open a browser
   gem 'selenium-webdriver' # Selenium webdriver (needed to use Chrome driver)
 
