@@ -64,6 +64,8 @@ group :development do
   gem 'powder', require: false # Configure POW server easily
 
   gem 'rack-livereload' # Enable LiveReload in Rails
+
+  gem 'rubocop', require: false # A robust Ruby code analyzer, based on the community Ruby style guide
 end
 
 group :test do
