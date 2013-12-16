@@ -52,3 +52,14 @@ guard 'migrate' do
   watch('db/seeds.rb')
 end
 
+guard 'annotate', routes: true, show_indexes: true, show_migration: true do
+  watch( 'db/schema.rb' )
+
+  # Uncomment the following line if you also want to run annotate anytime
+  # a model file changes
+  # watch( 'app/models/**/*.rb' )
+
+  # Uncomment the following line if you are running routes annotation
+  # with the ":routes => true" option
+  # watch( 'config/routes.rb' )
+end
