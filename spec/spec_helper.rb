@@ -36,7 +36,12 @@ RSpec.configure do |config|
   end
 
   config.around(:each) do |example|
-    DatabaseCleaner.strategy = example.metadata[:js] ? :truncation : :transaction
+    DatabaseCleaner.strategy = if example.metadata[:js] || example.metadata[:chrome] || example.metadata[:selenium]
+                                 :truncation # Otherwise we get an SQLite3::BusyException because more than one thread try to modify the database, see http://stackoverflow.com/questions/12326096
+                               else
+                                 :transaction
+                               end
+
     DatabaseCleaner.start
     example.run
     DatabaseCleaner.clean
@@ -52,4 +57,6 @@ RSpec.configure do |config|
   # the seed, which is printed after each run.
   #     --seed 1234
   config.order = "random"
+
+  config.include UserSteps, type: :feature
 end
