@@ -19,5 +19,10 @@
 
 ### Develop
 
-- `$ powder open` opens [http://transition.dev/](http://transition.dev/) in the browser
-- `$ guard` starts Guard, which takes care about executing tests, live reloading of the page, etc.
+- `$ powder open` opens [http://transition.dev/](http://transition.dev/) in the browser.
+- `$ guard` starts Guard, which takes care about executing tests (using [Spring application preloader](https://github.com/jonleighton/spring)), live reloading of the page, etc.
+- Use `binding.remote_pry` to set a breakpoint in the code and connect to it using `pry-remote` from the console.
+
+### Testing
+
+- Use `@chrome` or `@selenium` flag to visually run acceptance tests in Chrome or Firefox.

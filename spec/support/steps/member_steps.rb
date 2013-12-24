@@ -5,68 +5,68 @@ def create_visitor
     :password => "changeme", :password_confirmation => "changeme" }
 end
 
-def find_user
-  @user ||= Member.where(:email => @visitor[:email]).first
+def find_member
+  @member ||= Member.where(:email => @visitor[:email]).first
 end
 
-def create_unconfirmed_user
+def create_unconfirmed_member
   create_visitor
-  delete_user
+  delete_member
   sign_up
-  visit '/users/sign_out'
+  visit '/members/sign_out'
 end
 
-def create_user
+def create_member
   create_visitor
-  delete_user
-  @user = FactoryGirl.create(:user, @visitor)
+  delete_member
+  @member = FactoryGirl.create(:member, @visitor)
 end
 
-def delete_user
-  @user ||= Member.where(:email => @visitor[:email]).first
-  @user.destroy unless @user.nil?
+def delete_member
+  @member ||= Member.where(:email => @visitor[:email]).first
+  @member.destroy unless @member.nil?
 end
 
 def sign_up
-  delete_user
-  visit '/users/sign_up'
-  fill_in "user_name", :with => @visitor[:name]
-  fill_in "user_email", :with => @visitor[:email]
-  fill_in "user_password", :with => @visitor[:password]
-  fill_in "user_password_confirmation", :with => @visitor[:password_confirmation]
+  delete_member
+  visit '/members/sign_up'
+  fill_in "member_name", :with => @visitor[:name]
+  fill_in "member_email", :with => @visitor[:email]
+  fill_in "member_password", :with => @visitor[:password]
+  fill_in "member_password_confirmation", :with => @visitor[:password_confirmation]
   binding.pry
   click_button "Sign up"
-  find_user
+  find_member
 end
 
 # def sign_in
-#   visit '/users/sign_in'
-#   fill_in "user_email", :with => @visitor[:email]
-#   fill_in "user_password", :with => @visitor[:password]
+#   visit '/members/sign_in'
+#   fill_in "member_email", :with => @visitor[:email]
+#   fill_in "member_password", :with => @visitor[:password]
 #   click_button "Sign in"
 # end
 
 module MemberSteps
   ### GIVEN ###
   step 'I am not logged in' do
-    visit '/users/sign_out'
+    visit '/members/sign_out'
   end
 
   step 'I am logged in' do
     sign_in
   end
 
-  step 'I exist as a user' do
-    create_user
+  step 'I exist as a member' do
+    create_member
   end
 
-  step 'I do not exist as a user' do
+  step 'I do not exist as a member' do
     create_visitor
-    delete_user
+    delete_member
   end
 
-  step 'I exist as an unconfirmed user' do
-    create_unconfirmed_user
+  step 'I exist as an unconfirmed member' do
+    create_unconfirmed_member
   end
 
   ### WHEN ###
@@ -76,10 +76,10 @@ module MemberSteps
   end
 
   step 'I sign out' do
-    visit '/users/sign_out'
+    visit '/members/sign_out'
   end
 
-  step 'I sign up with valid user data' do
+  step 'I sign up with valid member data' do
     create_visitor
     sign_up
   end
@@ -124,12 +124,12 @@ module MemberSteps
 
   step 'I edit my account details' do
     click_link "Edit account"
-    fill_in "user_name", :with => "newname"
-    fill_in "user_current_password", :with => @visitor[:password]
+    fill_in "member_name", :with => "newname"
+    fill_in "member_current_password", :with => @visitor[:password]
     click_button "Update"
   end
 
-  step 'I look at the list of users' do
+  step 'I look at the list of members' do
     visit '/'
   end
 
@@ -187,7 +187,7 @@ module MemberSteps
   end
 
   step 'I should see my name' do
-    create_user
-    page.should have_content @user[:name]
+    create_member
+    page.should have_content @member[:name]
   end
 end

@@ -3,9 +3,9 @@ module AcceptanceTestsSignInHelper
   Warden.test_mode!
 
   def sign_in
-    user = FactoryGirl.create :user, password: 'asdfasdf', password_confirmation: 'asdfasdf'
-    login_as(user)
-    user
+    member = FactoryGirl.create :member, password: 'asdfasdf', password_confirmation: 'asdfasdf'
+    login_as(member)
+    member
   end
 end
 

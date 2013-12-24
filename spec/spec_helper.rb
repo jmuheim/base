@@ -58,5 +58,5 @@ RSpec.configure do |config|
   #     --seed 1234
   config.order = "random"
 
-  config.include UserSteps, type: :feature
+  config.include MemberSteps, type: :feature
 end

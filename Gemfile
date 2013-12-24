@@ -27,9 +27,9 @@ gem 'jbuilder', '~> 1.2' # Build JSON APIs with ease. Read more: https://github.
 gem 'devise'
 # gem 'devise-i18n' # Translations
 
-gem 'cancan' # Authorization library which restricts what resources a given user is allowed to access
+gem 'cancan' # Authorization library which restricts what resources a given member is allowed to access
 
-gem 'rolify' # Manage roles of users
+gem 'rolify' # Manage roles of members
 
 group :doc do
   gem 'sdoc', require: false # bundle exec rake doc:rails generates the API under doc/api.
