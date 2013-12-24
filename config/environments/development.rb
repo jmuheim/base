@@ -28,4 +28,6 @@ Transition::Application.configure do
   config.assets.debug = true
 
   config.middleware.use Rack::LiveReload, no_swf: true
+
+  config.action_mailer.default_url_options = {host: 'localhost:3000'}
 end

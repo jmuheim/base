@@ -1,4 +1,5 @@
 Transition::Application.routes.draw do
+  devise_for :members
   resource :dashboard
 
   # The priority is based upon order of creation: first created -> highest priority.
