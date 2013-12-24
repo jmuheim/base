@@ -34,17 +34,16 @@ def sign_up
   fill_in "member_email", :with => @visitor[:email]
   fill_in "member_password", :with => @visitor[:password]
   fill_in "member_password_confirmation", :with => @visitor[:password_confirmation]
-  binding.pry
   click_button "Sign up"
   find_member
 end
 
-# def sign_in
-#   visit '/members/sign_in'
-#   fill_in "member_email", :with => @visitor[:email]
-#   fill_in "member_password", :with => @visitor[:password]
-#   click_button "Sign in"
-# end
+def sign_in
+  visit '/members/sign_in'
+  fill_in "member_email", :with => @visitor[:email]
+  fill_in "member_password", :with => @visitor[:password]
+  click_button "Sign in"
+end
 
 module MemberSteps
   ### GIVEN ###
@@ -53,7 +52,9 @@ module MemberSteps
   end
 
   step 'I am logged in' do
-    sign_in
+    create_visitor
+    @member = sign_in!
+    visit root_path
   end
 
   step 'I exist as a member' do
@@ -130,7 +131,7 @@ module MemberSteps
   end
 
   step 'I look at the list of members' do
-    visit '/'
+    visit members_path
   end
 
   ### THEN ###
@@ -152,6 +153,10 @@ module MemberSteps
 
   step 'I see a successful sign in message' do
     page.should have_content "Signed in successfully."
+  end
+
+  step 'I should see a confirmation has been sent message' do
+    page.should have_content "A message with a confirmation link has been sent to your email address. Please open the link to activate your account."
   end
 
   step 'I should see a successful sign up message' do

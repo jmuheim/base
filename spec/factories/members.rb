@@ -2,5 +2,8 @@
 
 FactoryGirl.define do
   factory :member do
+    email Faker::Internet.email
+
+    confirmed_at Time.now
   end
 end

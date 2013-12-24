@@ -2,7 +2,7 @@ module AcceptanceTestsSignInHelper
   include Warden::Test::Helpers
   Warden.test_mode!
 
-  def sign_in
+  def sign_in!
     member = FactoryGirl.create :member, password: 'asdfasdf', password_confirmation: 'asdfasdf'
     login_as(member)
     member

@@ -8,8 +8,8 @@ Feature: Sign up
 
     Scenario: Member signs up with valid data
       When I sign up with valid member data
-      Then I should see a successful sign up message
-      
+      Then I should see a confirmation has been sent message
+
     Scenario: Member signs up with invalid email
       When I sign up with an invalid email
       Then I should see an invalid email message

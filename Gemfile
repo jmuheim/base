@@ -41,6 +41,8 @@ group :development, :test do
   gem 'factory_girl_rails' # Test data generator
 
   gem 'jazz_hands' # Use Pry and its extensions instead of IRB
+
+  gem 'ffaker' # Generates realistic fake data
 end
 
 group :development do
