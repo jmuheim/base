@@ -88,6 +88,8 @@ group :test do
   gem 'turnip' # Gherkin extension for RSpec to write acceptance tests
 
   gem 'guard-migrate' # Automatically run migrations when they are edited
+
+  gem 'capybara-screenshot' # Automatically save screen shots when a scenario fails
 end
 
 # Use ActiveModel has_secure_password
