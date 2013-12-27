@@ -5,6 +5,8 @@ require 'rspec/rails'
 require 'rspec/autorun'
 require 'capybara/poltergeist'
 require 'turnip/capybara'
+require 'capybara-screenshot/rspec'
+require 'email_spec'
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
@@ -30,7 +32,22 @@ RSpec.configure do |config|
 
   Capybara.javascript_driver = :poltergeist # use "driver: :chrome" (like "js: true") if you need the dev tools for specific specs
 
-  # DatabaseCleaner configuration as described here: http://devblog.avdi.org/2012/08/31/configuring-database_cleaner-with-rails-rspec-capybara-and-selenium/
+  # If true, the base class of anonymous controllers will be inferred
+  # automatically. This will be the default behavior in future versions of
+  # rspec-rails.
+  config.infer_base_class_for_anonymous_controllers = false
+
+  # Run specs in random order to surface order dependencies. If you find an
+  # order dependency and want to debug it, you can fix the order by providing
+  # the seed, which is printed after each run.
+  #     --seed 1234
+  config.order = "random"
+
+  config.include MemberSteps, type: :feature
+end
+
+# DatabaseCleaner configuration as described here: http://devblog.avdi.org/2012/08/31/configuring-database_cleaner-with-rails-rspec-capybara-and-selenium/
+RSpec.configure do |config|
   config.before(:suite) do
     DatabaseCleaner.clean_with(:truncation)
   end
@@ -46,17 +63,33 @@ RSpec.configure do |config|
     example.run
     DatabaseCleaner.clean
   end
+end
 
-  # If true, the base class of anonymous controllers will be inferred
-  # automatically. This will be the default behavior in future versions of
-  # rspec-rails.
-  config.infer_base_class_for_anonymous_controllers = false
+# Configuration for email_spec gem
+RSpec.configure do |config|
+  if defined?(ActionMailer)
+    unless [:test, :activerecord, :cache, :file].include?(ActionMailer::Base.delivery_method)
+      ActionMailer::Base.register_observer(EmailSpec::TestObserver)
+    end
+    ActionMailer::Base.perform_deliveries = true
 
-  # Run specs in random order to surface order dependencies. If you find an
-  # order dependency and want to debug it, you can fix the order by providing
-  # the seed, which is printed after each run.
-  #     --seed 1234
-  config.order = "random"
+    config.before(:each) do
+      case ActionMailer::Base.delivery_method
+        when :test then ActionMailer::Base.deliveries.clear
+        when :cache then ActionMailer::Base.clear_cache
+      end
+    end
+  end
 
-  config.include MemberSteps, type: :feature
+  config.after(:each) do
+    EmailSpec::EmailViewer.save_and_open_all_raw_emails if ENV['SHOW_EMAILS']
+    EmailSpec::EmailViewer.save_and_open_all_html_emails if ENV['SHOW_HTML_EMAILS']
+    EmailSpec::EmailViewer.save_and_open_all_text_emails if ENV['SHOW_TEXT_EMAILS']
+  end
+
+  config.include EmailSpec::Helpers
+  config.include EmailSpec::Matchers
+
+  config.include EmailHelpers
+  config.include EmailSteps, type: :feature
 end

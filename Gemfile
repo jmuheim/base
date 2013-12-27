@@ -76,7 +76,10 @@ end
 
 group :test do
   gem 'respec', require: false # Allows to rerun failed specs (first do `respec` to run all, then `respec f` or `respec 123` to run failed)
-  gem 'fuubar'
+
+  gem 'fuubar' # The instafailing RSpec progress bar formatter
+
+  gem 'email_spec' # Collection of RSpec matchers for testing email
 
   gem 'database_cleaner' # Resets test database after each test
 
