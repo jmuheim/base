@@ -7,5 +7,6 @@ Feature: Confirm registration
       Given I exist as an unconfirmed member
 
     Scenario: Member opens confirmation link in email
-      When I open the confirmation link
-      Then I should see a successful sign up message
+      Given I open the email
+      And I follow "Confirm my account" in the email
+      Then I should see a successful confirmed message

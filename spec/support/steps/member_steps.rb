@@ -134,65 +134,74 @@ module MemberSteps
     visit members_path
   end
 
+  step 'I open the confirmation link' do
+    binding.pry if ActionMailer::Base.deliveries.count > 1
+    expect(ActionMailer::Base.deliveries.count).to eq 1
+    email_body = Nokogiri::HTML.parse ActionMailer::Base.deliveries.first.body.raw_source
+
+    expect(email_body).to have_link 'Confirm my account'
+    confirmation_url = email_body.at('a[text()="Confirm my account"]')[:href]
+
+    visit confirmation_url
+  end
+
   ### THEN ###
   step 'I should be signed in' do
-    page.should have_content "Logout"
-    page.should_not have_content "Sign up"
-    page.should_not have_content "Sign in"
+    expect(page).to have_link 'Logout'
+    expect(page).not_to have_link 'Login / register'
   end
 
   step 'I should be signed out' do
-    page.should have_content "Sign up"
-    page.should have_content "Sign in"
-    page.should_not have_content "Logout"
+    expect(page).to have_link 'Login / register'
+    expect(page).not_to have_link 'Logout'
   end
 
   step 'I see an unconfirmed account message' do
-    page.should have_content "You have to confirm your account before continuing."
+    expect(page).to have_content 'You have to confirm your account before continuing.'
   end
 
   step 'I see a successful sign in message' do
-    page.should have_content "Signed in successfully."
+    expect(page).to have_content 'Signed in successfully.'
   end
 
   step 'I should see a confirmation has been sent message' do
-    page.should have_content "A message with a confirmation link has been sent to your email address. Please open the link to activate your account."
+    expect(page).to have_content 'A message with a confirmation link has been sent to your email address. Please open the link to activate your account.'
   end
 
-  step 'I should see a successful sign up message' do
-    page.should have_content "Welcome! You have signed up successfully."
+  step 'I should see a successful confirmed message' do
+    expect(page).to have_content 'Your account was successfully confirmed.'
   end
 
   step 'I should see an invalid email message' do
-    page.should have_content "Email is invalid"
+    expect(page).to have_content 'Email is invalid'
   end
 
   step 'I should see a missing password message' do
-    page.should have_content "Password can't be blank"
+    expect(page).to have_content "Password can't be blank"
   end
 
   step 'I should see a missing password confirmation message' do
-    page.should have_content "Password confirmation doesn't match"
+    expect(page).to have_content "Password confirmation doesn't match"
   end
 
   step 'I should see a mismatched password message' do
-    page.should have_content "Password confirmation doesn't match"
+    expect(page).to have_content "Password confirmation doesn't match"
   end
 
   step 'I should see a signed out message' do
-    page.should have_content "Signed out successfully."
+    expect(page).to have_content 'Signed out successfully.'
   end
 
   step 'I see an invalid login message' do
-    page.should have_content "Invalid email or password."
+    expect(page).to have_content 'Invalid email or password.'
   end
 
   step 'I should see an account edited message' do
-    page.should have_content "You updated your account successfully."
+    expect(page).to have_content 'You updated your account successfully.'
   end
 
   step 'I should see my name' do
     create_member
-    page.should have_content @member[:name]
+    expect(page).to have_content @member[:name]
   end
 end

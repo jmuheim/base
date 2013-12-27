@@ -9,6 +9,7 @@ Feature: Sign up
     Scenario: Member signs up with valid data
       When I sign up with valid member data
       Then I should see a confirmation has been sent message
+      And I should receive 1 email
 
     Scenario: Member signs up with invalid email
       When I sign up with an invalid email
