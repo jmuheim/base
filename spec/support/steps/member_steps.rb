@@ -1,7 +1,7 @@
 ### UTILITY METHODS ###
 
 def create_visitor
-  @visitor ||= { :name => "Testy McMemberton", :email => "example@example.com",
+  @visitor ||= { :username => "Testy McMemberton", :email => "example@example.com",
     :password => "changeme", :password_confirmation => "changeme" }
 end
 
@@ -30,7 +30,7 @@ end
 def sign_up
   delete_member
   visit '/members/sign_up'
-  fill_in "member_name", :with => @visitor[:name]
+  fill_in "member_username", :with => @visitor[:username]
   fill_in "member_email", :with => @visitor[:email]
   fill_in "member_password", :with => @visitor[:password]
   fill_in "member_password_confirmation", :with => @visitor[:password_confirmation]
@@ -125,7 +125,7 @@ module MemberSteps
 
   step 'I edit my account details' do
     click_link "Edit account"
-    fill_in "member_name", :with => "newname"
+    fill_in "member_username", :with => "newname"
     fill_in "member_current_password", :with => @visitor[:password]
     click_button "Update"
   end
