@@ -19,7 +19,7 @@ h2
     i
       | (leave blank if you don't want to change it)
     br
-    = f.password_field :password, :autocomplete => "off"
+    = f.password_field :password, :autocomplete => 'off'
   div
     = f.label :password_confirmation
     br
@@ -31,10 +31,10 @@ h2
     br
     = f.password_field :current_password
   div
-    = f.submit "Update"
+    = f.submit 'Update'
 h3
   | Cancel my account
 p
-  | Unhappy? 
-  = button_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete
-= link_to "Back", :back
+  | Unhappy?
+  = button_to 'Cancel my account', registration_path(resource_name), :data => { :confirm => 'Are you sure?' }, :method => :delete
+= link_to 'Back', :back

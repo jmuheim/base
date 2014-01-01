@@ -1,8 +1,8 @@
 ### UTILITY METHODS ###
 
 def create_visitor
-  @visitor ||= { username: "Testy McMemberton", email: "example@example.com",
-    password: "changeme", password_confirmation: "changeme" }
+  @visitor ||= { username: 'Testy McMemberton', email: 'example@example.com',
+    password: 'changeme', password_confirmation: 'changeme' }
 end
 
 def find_member
@@ -30,26 +30,26 @@ end
 def sign_up
   delete_member
   visit '/members/sign_up'
-  fill_in "member_username", with: @visitor[:username]
-  fill_in "member_email", with: @visitor[:email]
-  fill_in "member_password", with: @visitor[:password]
-  fill_in "member_password_confirmation", with: @visitor[:password_confirmation]
-  click_button "Sign up"
+  fill_in 'member_username', with: @visitor[:username]
+  fill_in 'member_email', with: @visitor[:email]
+  fill_in 'member_password', with: @visitor[:password]
+  fill_in 'member_password_confirmation', with: @visitor[:password_confirmation]
+  click_button 'Sign up'
   find_member
 end
 
 def sign_in_using_email
   visit '/members/sign_in'
-  fill_in "member_login", with: @visitor[:email]
-  fill_in "member_password", with: @visitor[:password]
-  click_button "Sign in"
+  fill_in 'member_login', with: @visitor[:email]
+  fill_in 'member_password', with: @visitor[:password]
+  click_button 'Sign in'
 end
 
 def sign_in_using_username
   visit '/members/sign_in'
-  fill_in "member_login", with: @visitor[:username]
-  fill_in "member_password", with: @visitor[:password]
-  click_button "Sign in"
+  fill_in 'member_login', with: @visitor[:username]
+  fill_in 'member_password', with: @visitor[:password]
+  click_button 'Sign in'
 end
 
 module MemberSteps
@@ -99,25 +99,25 @@ module MemberSteps
 
   step 'I sign up with an invalid email' do
     create_visitor
-    @visitor = @visitor.merge(email: "notanemail")
+    @visitor = @visitor.merge(email: 'notanemail')
     sign_up
   end
 
   step 'I sign up without a password confirmation' do
     create_visitor
-    @visitor = @visitor.merge(password_confirmation: "")
+    @visitor = @visitor.merge(password_confirmation: '')
     sign_up
   end
 
   step 'I sign up without a password' do
     create_visitor
-    @visitor = @visitor.merge(password: "")
+    @visitor = @visitor.merge(password: '')
     sign_up
   end
 
   step 'I sign up with a mismatched password confirmation' do
     create_visitor
-    @visitor = @visitor.merge(password_confirmation: "changeme123")
+    @visitor = @visitor.merge(password_confirmation: 'changeme123')
     sign_up
   end
 
@@ -126,20 +126,20 @@ module MemberSteps
   end
 
   step 'I sign in with a wrong email' do
-    @visitor = @visitor.merge(email: "wrong@example.com")
+    @visitor = @visitor.merge(email: 'wrong@example.com')
     sign_in_using_email
   end
 
   step 'I sign in with a wrong password' do
-    @visitor = @visitor.merge(password: "wrongpass")
+    @visitor = @visitor.merge(password: 'wrongpass')
     sign_in_using_username
   end
 
   step 'I edit my account details' do
-    click_link "Edit account"
-    fill_in "member_username", with: "newname"
-    fill_in "member_current_password", with: @visitor[:password]
-    click_button "Update"
+    click_link 'Edit account'
+    fill_in 'member_username', with: 'newname'
+    fill_in 'member_current_password', with: @visitor[:password]
+    click_button 'Update'
   end
 
   step 'I look at the list of members' do
@@ -152,7 +152,7 @@ module MemberSteps
     email_body = Nokogiri::HTML.parse ActionMailer::Base.deliveries.first.body.raw_source
 
     expect(email_body).to have_link 'Confirm my account'
-    confirmation_url = email_body.at('a[text()="Confirm my account"]')[:href]
+    confirmation_url = email_body.at("a[text()='Confirm my account']")[:href]
 
     visit confirmation_url
   end

@@ -1,6 +1,6 @@
-ENV["RAILS_ENV"] ||= 'test'
+ENV['RAILS_ENV'] ||= 'test'
 
-require File.expand_path("../../config/environment", __FILE__)
+require File.expand_path('../../config/environment', __FILE__)
 require 'rspec/rails'
 require 'rspec/autorun'
 require 'capybara/poltergeist'
@@ -10,7 +10,7 @@ require 'email_spec'
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
-Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
+Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 
 # Checks for pending migrations before tests are run.
 # If you are not using ActiveRecord, you can remove this line.
@@ -26,11 +26,11 @@ RSpec.configure do |config|
 
   Capybara.register_driver :chrome do |app|
     args = []
-    args << "--disable-translate" # Remove the annoying translation suggestion on every page load
+    args << '--disable-translate' # Remove the annoying translation suggestion on every page load
     Capybara::Selenium::Driver.new(app, browser: :chrome, args: args)
   end
 
-  Capybara.javascript_driver = :poltergeist # use "driver: :chrome" (like "js: true") if you need the dev tools for specific specs
+  Capybara.javascript_driver = :poltergeist # use 'driver: :chrome' (like 'js: true') if you need the dev tools for specific specs
 
   # If true, the base class of anonymous controllers will be inferred
   # automatically. This will be the default behavior in future versions of
@@ -41,7 +41,7 @@ RSpec.configure do |config|
   # order dependency and want to debug it, you can fix the order by providing
   # the seed, which is printed after each run.
   #     --seed 1234
-  config.order = "random"
+  config.order = 'random'
 
   config.include MemberSteps, type: :feature
 
