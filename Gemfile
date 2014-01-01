@@ -81,6 +81,8 @@ group :test do
 
   gem 'email_spec' # Collection of RSpec matchers for testing email
 
+  gem 'shoulda-matchers' # Collection of RSpec matchers
+
   gem 'database_cleaner' # Resets test database after each test
 
   # Capybara - Headless, JavaScript-executing browser for Selenium
