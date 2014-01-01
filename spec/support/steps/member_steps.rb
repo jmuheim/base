@@ -38,9 +38,16 @@ def sign_up
   find_member
 end
 
-def sign_in
+def sign_in_using_email
   visit '/members/sign_in'
-  fill_in "member_email", :with => @visitor[:email]
+  fill_in "member_login", :with => @visitor[:email]
+  fill_in "member_password", :with => @visitor[:password]
+  click_button "Sign in"
+end
+
+def sign_in_using_username
+  visit '/members/sign_in'
+  fill_in "member_login", :with => @visitor[:username]
   fill_in "member_password", :with => @visitor[:password]
   click_button "Sign in"
 end
@@ -71,9 +78,14 @@ module MemberSteps
   end
 
   ### WHEN ###
-  step 'I sign in with valid credentials' do
+  step 'I sign in with valid username and password' do
     create_visitor
-    sign_in
+    sign_in_using_username
+  end
+
+  step 'I sign in with valid username and email' do
+    create_visitor
+    sign_in_using_email
   end
 
   step 'I sign out' do
@@ -115,12 +127,12 @@ module MemberSteps
 
   step 'I sign in with a wrong email' do
     @visitor = @visitor.merge(:email => "wrong@example.com")
-    sign_in
+    sign_in_using_email
   end
 
   step 'I sign in with a wrong password' do
     @visitor = @visitor.merge(:password => "wrongpass")
-    sign_in
+    sign_in_using_username
   end
 
   step 'I edit my account details' do

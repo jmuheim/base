@@ -12,7 +12,7 @@ h2
     = f.email_field :email
   - if devise_mapping.confirmable? && resource.pending_reconfirmation?
     div
-      | Currently waiting confirmation for: 
+      | Currently waiting confirmation for:
       = resource.unconfirmed_email
   div
     = f.label :password
