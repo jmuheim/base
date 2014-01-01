@@ -76,7 +76,7 @@ module EmailSteps
   end
 
   step ':address should receive an email with the following body:' do |address, expected_body|
-    open_email(address, :with_text => expected_body)
+    open_email(address, with_text: expected_body)
   end
 
   #
@@ -89,19 +89,19 @@ module EmailSteps
   end
 
   step ':address open(s) the email with subject ":subject"' do |address, subject|
-    open_email(address, :with_subject => subject)
+    open_email(address, with_subject: subject)
   end
 
   step ':address open(s) the email with subject \/:subject\/' do |address, subject|
-    open_email(address, :with_subject => Regexp.new(subject))
+    open_email(address, with_subject: Regexp.new(subject))
   end
 
   step ':address open(s) the email with text ":text"' do |address, text|
-    open_email(address, :with_text => text)
+    open_email(address, with_text: text)
   end
 
   step ':address open(s) the email with text \/:text\/' do |address, text|
-    open_email(address, :with_text => Regexp.new(text))
+    open_email(address, with_text: Regexp.new(text))
   end
 
   #
