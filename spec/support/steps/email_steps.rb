@@ -67,7 +67,7 @@ module EmailSteps
     mailbox_for(address).size.should == parse_email_count(amount)
   end
 
-  step ':address should receive :amount email(s) with subject ":subject"' do |address, amount, subject|
+  step ':address should receive :amount email(s) with subject :subject' do |address, amount, subject|
     unread_emails_for(address).select { |m| m.subject =~ Regexp.new(Regexp.escape(subject)) }.size.should == parse_email_count(amount)
   end
 
@@ -88,7 +88,7 @@ module EmailSteps
     open_email(address)
   end
 
-  step ':address open(s) the email with subject ":subject"' do |address, subject|
+  step ':address open(s) the email with subject :subject' do |address, subject|
     open_email(address, with_subject: subject)
   end
 
@@ -96,7 +96,7 @@ module EmailSteps
     open_email(address, with_subject: Regexp.new(subject))
   end
 
-  step ':address open(s) the email with text ":text"' do |address, text|
+  step ':address open(s) the email with text :text' do |address, text|
     open_email(address, with_text: text)
   end
 
@@ -108,7 +108,7 @@ module EmailSteps
   # Inspect the Email Contents
   #
 
-  step 'I/they should see ":subject" in the email subject' do |text|
+  step 'I/they should see :subject in the email subject' do |text|
     current_email.should have_subject(text)
   end
 
@@ -116,7 +116,7 @@ module EmailSteps
     current_email.should have_subject(Regexp.new(text))
   end
 
-  step 'I/they should see ":text" in the email body' do |text|
+  step 'I/they should see :text in the email body' do |text|
     current_email.default_part_body.to_s.should include(text)
   end
 
@@ -124,15 +124,15 @@ module EmailSteps
     current_email.default_part_body.to_s.should =~ Regexp.new(text)
   end
 
-  step 'I/they should see the email delivered from ":text"' do |text|
+  step 'I/they should see the email delivered from :text' do |text|
     current_email.should be_delivered_from(text)
   end
 
-  step 'I/they should see ":text" in the email ":name" header' do |text, name|
+  step 'I/they should see :text in the email :name header' do |text, name|
     current_email.should have_header(name, text)
   end
 
-  step 'I/they should see \/:text\/ in the email ":name" header' do |text, name|
+  step 'I/they should see \/:text\/ in the email :name header' do |text, name|
     current_email.should have_header(name, Regexp.new(text))
   end
 
@@ -140,11 +140,11 @@ module EmailSteps
       current_email.should be_multipart
   end
 
-  step 'I/they should see ":text" in the email html part body' do |text|
+  step 'I/they should see :text in the email html part body' do |text|
       current_email.html_part.body.to_s.should include(text)
   end
 
-  step 'I/they should see ":text" in the email text part body' do |text|
+  step 'I/they should see :text in the email text part body' do |text|
       current_email.text_part.body.to_s.should include(text)
   end
 
@@ -156,19 +156,19 @@ module EmailSteps
     current_email_attachments.size.should == parse_email_count(amount)
   end
 
-  step '/^there should be :amount attachment(s) named ":filename"' do |amount, filename|
+  step '/^there should be :amount attachment(s) named :filename' do |amount, filename|
     current_email_attachments.select { |a| a.filename == filename }.size.should == parse_email_count(amount)
   end
 
-  step '/^attachment (\d+) should be named ":filename"' do |index, filename|
+  step '/^attachment (\d+) should be named :filename' do |index, filename|
     current_email_attachments[(index.to_i - 1)].filename.should == filename
   end
 
-  step '/^there should be :amount attachment(s) of type ":content_type"' do |amount, content_type|
+  step '/^there should be :amount attachment(s) of type :content_type' do |amount, content_type|
     current_email_attachments.select { |a| a.content_type.include?(content_type) }.size.should == parse_email_count(amount)
   end
 
-  step '/^attachment (\d+) should be of type ":content_type"' do |index, content_type|
+  step '/^attachment (\d+) should be of type :content_type' do |index, content_type|
     current_email_attachments[(index.to_i - 1)].content_type.should include(content_type)
   end
 
