@@ -44,6 +44,8 @@ RSpec.configure do |config|
   config.order = "random"
 
   config.include MemberSteps, type: :feature
+
+  config.include FactoryGirl::Syntax::Methods
 end
 
 # DatabaseCleaner configuration as described here: http://devblog.avdi.org/2012/08/31/configuring-database_cleaner-with-rails-rspec-capybara-and-selenium/
