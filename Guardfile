@@ -47,7 +47,7 @@ guard :bundler do
   # watch(/^.+\.gemspec/)
 end
 
-guard 'migrate' do
+guard 'migrate', run_on_start: false, test_clone: true, reset: true, seed: true do
   watch(%r{^db/migrate/(\d+).+\.rb})
   watch('db/seeds.rb')
 end
