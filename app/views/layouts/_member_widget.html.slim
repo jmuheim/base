@@ -1,0 +1,9 @@
+- if member_signed_in?
+  p Welcome, #{current_member.username}!
+
+  ul
+    li= link_to 'Edit account', edit_member_registration_path
+    li= link_to 'Logout', destroy_member_session_path, method: :delete
+- else
+  p You are not signed in.
+  = link_to 'Login / register', new_member_session_path

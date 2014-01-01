@@ -23,11 +23,13 @@ gem 'turbolinks' # Turbolinks makes following links in your web application fast
 
 gem 'jbuilder', '~> 1.2' # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 
-gem 'devise' # Flexible authentication solution for Rails
+# Flexible authentication solution
+gem 'devise'
+# gem 'devise-i18n' # Translations
 
-gem 'cancan' # Authorization library which restricts what resources a given user is allowed to access
+gem 'cancan' # Authorization library which restricts what resources a given member is allowed to access
 
-gem 'rolify' # Manage roles of users
+gem 'rolify' # Manage roles of members
 
 group :doc do
   gem 'sdoc', require: false # bundle exec rake doc:rails generates the API under doc/api.
@@ -39,6 +41,8 @@ group :development, :test do
   gem 'factory_girl_rails' # Test data generator
 
   gem 'jazz_hands' # Use Pry and its extensions instead of IRB
+
+  gem 'ffaker' # Generates realistic fake data
 end
 
 group :development do
@@ -72,7 +76,12 @@ end
 
 group :test do
   gem 'respec', require: false # Allows to rerun failed specs (first do `respec` to run all, then `respec f` or `respec 123` to run failed)
-  gem 'fuubar'
+
+  gem 'fuubar' # The instafailing RSpec progress bar formatter
+
+  gem 'email_spec' # Collection of RSpec matchers for testing email
+
+  gem 'shoulda-matchers' # Collection of RSpec matchers
 
   gem 'database_cleaner' # Resets test database after each test
 
@@ -84,6 +93,8 @@ group :test do
   gem 'turnip' # Gherkin extension for RSpec to write acceptance tests
 
   gem 'guard-migrate' # Automatically run migrations when they are edited
+
+  gem 'capybara-screenshot' # Automatically save screen shots when a scenario fails
 end
 
 # Use ActiveModel has_secure_password
