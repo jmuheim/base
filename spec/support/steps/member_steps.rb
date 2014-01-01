@@ -1,8 +1,11 @@
 ### UTILITY METHODS ###
 
 def create_visitor
-  @visitor ||= { username: 'Testy McMemberton', email: 'example@example.com',
-    password: 'changeme', password_confirmation: 'changeme' }
+  @visitor ||= { username: 'Testy McMemberton',
+                 email: 'example@example.com',
+                 password: 'changeme',
+                 password_confirmation: 'changeme'
+               }
 end
 
 def find_member
@@ -11,24 +14,16 @@ end
 
 def create_unconfirmed_member
   create_visitor
-  delete_member
   sign_up
   visit '/members/sign_out'
 end
 
 def create_member
   create_visitor
-  delete_member
   @member = FactoryGirl.create(:member, @visitor)
 end
 
-def delete_member
-  @member ||= Member.where(email: @visitor[:email]).first
-  @member.destroy unless @member.nil?
-end
-
 def sign_up
-  delete_member
   visit '/members/sign_up'
   fill_in 'member_username', with: @visitor[:username]
   fill_in 'member_email', with: @visitor[:email]
@@ -70,7 +65,6 @@ module MemberSteps
 
   step 'I do not exist as a member' do
     create_visitor
-    delete_member
   end
 
   step 'I exist as an unconfirmed member' do
@@ -213,7 +207,6 @@ module MemberSteps
   end
 
   step 'I should see my name' do
-    create_member
     expect(page).to have_content @member[:name]
   end
 end
