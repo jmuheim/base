@@ -83,7 +83,7 @@ module MemberSteps
     sign_in_using_username
   end
 
-  step 'I sign in with valid username and email' do
+  step 'I sign in with valid email and password' do
     create_visitor
     sign_in_using_email
   end
@@ -205,7 +205,7 @@ module MemberSteps
   end
 
   step 'I see an invalid login message' do
-    expect(page).to have_content 'Invalid email or password.'
+    expect(page).to have_content 'Invalid login or password.'
   end
 
   step 'I should see an account edited message' do

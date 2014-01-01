@@ -22,7 +22,7 @@
 #  locked_at              :datetime
 #  created_at             :datetime
 #  updated_at             :datetime
-#  username                   :string(255)
+#  username               :string(255)
 #
 
 require 'spec_helper'
@@ -30,7 +30,7 @@ require 'spec_helper'
 describe Member do
   it { should validate_presence_of :username }
   it { should validate_uniqueness_of(:username).case_insensitive }
-  # it { should allow_mass_assignment_of(:username) }
+  # it { should allow_mass_assignment_of(:username) } # See https://github.com/thoughtbot/shoulda-matchers/issues/243
 
   it 'has a valid factory' do
     expect(create(:member)).to be_valid

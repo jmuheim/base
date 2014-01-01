@@ -1,7 +1,7 @@
 Feature: Edit Member
   As a registered member of the website
   I want to edit my member profile
-  so I can change my membername
+  so I can change my details
 
     Scenario: I sign in and edit my account
       Given I am logged in

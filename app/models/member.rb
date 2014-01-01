@@ -34,6 +34,10 @@ class Member < ActiveRecord::Base
 
   attr_accessor :login
 
+  validates :username, presence: true,
+                       uniqueness: {case_sensitive: false}
+
+  # https://github.com/plataformatec/devise/wiki/How-To:-Allow-users-to-sign-in-using-their-username-or-email-address
   def self.find_first_by_auth_conditions(warden_conditions)
     conditions = warden_conditions.dup
     if login = conditions.delete(:login)
@@ -42,7 +46,4 @@ class Member < ActiveRecord::Base
       where(conditions).first
     end
   end
-
-  validates :username, presence: true,
-                       uniqueness: {case_sensitive: false}
 end
