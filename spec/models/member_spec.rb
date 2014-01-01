@@ -28,19 +28,11 @@
 require 'spec_helper'
 
 describe Member do
+  it { should validate_presence_of :username }
+  it { should validate_uniqueness_of :username }
+  # it { should allow_mass_assignment_of(:username) }
+
   it 'has a valid factory' do
     expect(create(:member)).to be_valid
-  end
-
-  it 'is invalid without username' do
-    member = build_stubbed(:member, username: '')
-
-    expect(member.errors_on(:username)).to include("can't be blank")
-  end
-
-  it 'is invalid without username' do
-    member = build_stubbed(:member, username: '')
-
-    expect(member.errors_on(:username)).to include("can't be blank")
   end
 end
