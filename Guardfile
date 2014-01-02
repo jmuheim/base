@@ -30,6 +30,12 @@ guard :rspec, cmd: 'spring rspec' do
   watch(%r{^spec/acceptance/steps/(.+)_steps\.rb$})   { |m| Dir[File.join("**/#{m[1]}.feature")][0] || 'spec/acceptance' }
 end
 
+guard :bundler do
+  watch('Gemfile')
+  # Uncomment next line if your Gemfile contains the `gemspec' command.
+  # watch(/^.+\.gemspec/)
+end
+
 guard :pow do
   watch('.powrc')
   watch('.powenv')
@@ -41,12 +47,6 @@ guard :pow do
   watch('config/environment.rb')
   watch(%r{^config/environments/.*\.rb$})
   watch(%r{^config/initializers/.*\.rb$})
-end
-
-guard :bundler do
-  watch('Gemfile')
-  # Uncomment next line if your Gemfile contains the `gemspec' command.
-  # watch(/^.+\.gemspec/)
 end
 
 guard 'migrate', run_on_start: false, test_clone: true, reset: true, seed: true do
