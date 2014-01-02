@@ -11,6 +11,14 @@ GIT
   specs:
     rip_hashrocket (0.1.2)
 
+PATH
+  remote: ../html5_validator
+  specs:
+    html5_validator (0.0.2)
+      json (>= 1.8.0)
+      rest-client (>= 1.6.7)
+      rspec (>= 2.6.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -268,6 +276,8 @@ GEM
       rspec (>= 2.0.0)
     responders (1.0.0)
       railties (>= 3.2, < 5)
+    rest-client (1.6.7)
+      mime-types (>= 1.16)
     rolify (3.2.0)
     rspec (2.14.1)
       rspec-core (~> 2.14.0)
@@ -385,6 +395,7 @@ DEPENDENCIES
   guard-pow
   guard-rspec
   has_scope
+  html5_validator!
   inherited_resources
   jazz_hands
   jbuilder (~> 1.2)
