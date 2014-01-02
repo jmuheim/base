@@ -110,6 +110,8 @@ group :test do
   gem 'capybara-screenshot' # Automatically save screen shots when a scenario fails
 
   gem 'rspec-cells' # Test cells using RSpec
+
+  gem 'html_validation' # HTML Validation done locally with HTML5 Tidy
 end
 
 # Use ActiveModel has_secure_password

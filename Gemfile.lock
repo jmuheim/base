@@ -160,6 +160,7 @@ GEM
       activesupport (>= 3.2, < 5)
     hike (1.2.3)
     hirb (0.7.1)
+    html_validation (1.0.0)
     http_parser.rb (0.5.3)
     i18n (0.6.9)
     inherited_resources (1.4.1)
@@ -385,6 +386,7 @@ DEPENDENCIES
   guard-pow
   guard-rspec
   has_scope
+  html_validation
   inherited_resources
   jazz_hands
   jbuilder (~> 1.2)
