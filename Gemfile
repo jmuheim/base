@@ -10,7 +10,7 @@ gem 'uglifier', '>= 1.3.0' # Use Uglifier as compressor for JavaScript assets
 
 gem 'coffee-rails', '~> 4.0.0' # Use CoffeeScript for .js.coffee assets and views
 
-gem 'sass-rails', '~> 4.0.0' # Use SCSS for stylesheets
+gem 'sass-rails', '~> 4.0.0' # Use Sass for stylesheets
 
 gem 'compass-rails', '~> 2.0.alpha.0' # Compass framework
 
@@ -36,9 +36,7 @@ gem 'inherited_resources'
 gem 'has_scope' # Maps controller filters to resource scopes
 gem 'responders' # A set of Rails responders
 
-gem 'rip_hashrocket', # Replace hashrockets (=>) automatically
-     git: 'git://github.com/jmuheim/rip_hashrocket',
-     require: false
+gem 'cells' # View components
 
 group :doc do
   gem 'sdoc', require: false # bundle exec rake doc:rails generates the API under doc/api.
@@ -80,7 +78,13 @@ group :development do
 
   gem 'rack-livereload' # Enable LiveReload in Rails
 
+  gem 'rb-fsevent', require: false # FSEvents API with signals handled
+
   gem 'rubocop', require: false # A robust Ruby code analyzer, based on the community Ruby style guide
+
+gem 'rip_hashrocket', # Replace hashrockets (=>) automatically
+     git: 'git://github.com/jmuheim/rip_hashrocket',
+     require: false
 end
 
 group :test do
@@ -104,6 +108,8 @@ group :test do
   gem 'guard-migrate' # Automatically run migrations when they are edited
 
   gem 'capybara-screenshot' # Automatically save screen shots when a scenario fails
+
+  gem 'rspec-cells' # Test cells using RSpec
 end
 
 # Use ActiveModel has_secure_password

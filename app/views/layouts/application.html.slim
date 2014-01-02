@@ -7,11 +7,12 @@ html
     = csrf_meta_tags
 
   body
+    header#header
+      = render_cell :mini_hub, :show, member: current_member
+
     - if notice.present?
       p#notice= notice
     - if alert.present?
       p#alert= alert
 
     = yield
-
-    = render 'layouts/member_widget'
