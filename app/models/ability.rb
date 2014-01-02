@@ -4,12 +4,13 @@
 class Ability
   include CanCan::Ability
 
-  def initialize(user)
-    user ||= User.new # guest user (not logged in)
-    if user.admin?
-      can :manage, :all
-    else
-      can :read, :all
+  def initialize(current_member)
+    can :read, :all
+
+    if current_member.present?
+      can :update, Member do |member|
+        current_member == member
+      end
     end
   end
 end

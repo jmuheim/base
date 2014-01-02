@@ -10,9 +10,9 @@ table
     tr
       td= member.username
       td= member.email
-      td= link_to 'Show', member
-      td= link_to 'Edit', edit_member_path(member)
-      td= link_to 'Destroy', member, data: {confirm: 'Are you sure?'}, method: :delete
+      td= show_link_to member
+      td= edit_link_to member
+      td= destroy_link_to member
 
 ul.actions
-  li= link_to 'New Member', new_member_path
+  li= create_link_to Member
