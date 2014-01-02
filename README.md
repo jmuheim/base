@@ -31,4 +31,4 @@
 
 ## Backlog
 
-You can find the backlog here: [`BACKLOG.md`](./README.md).
+You can find the backlog here: [`BACKLOG.md`](./BACKLOG.md).
