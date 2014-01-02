@@ -80,6 +80,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.6.3)
+    colored (1.2)
     columnize (0.3.6)
     compass (0.12.2)
       chunky_png (~> 1.2)
@@ -88,7 +89,13 @@ GEM
     compass-rails (2.0.alpha.0)
       compass (>= 0.12.2, < 0.14)
     coolline (0.4.2)
+    css_parser (1.2.6)
+      addressable
+      rdoc
     database_cleaner (1.2.0)
+    deadweight (0.2.2)
+      css_parser (~> 1.2.6)
+      nokogiri
     debug_inspector (0.0.2)
     debugger (1.6.3)
       columnize (>= 0.3.1)
@@ -371,8 +378,10 @@ DEPENDENCIES
   capybara-screenshot
   cells
   coffee-rails (~> 4.0.0)
+  colored
   compass-rails (~> 2.0.alpha.0)
   database_cleaner
+  deadweight
   devise
   email_spec
   factory_girl_rails

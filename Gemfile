@@ -110,6 +110,10 @@ group :test do
   gem 'capybara-screenshot' # Automatically save screen shots when a scenario fails
 
   gem 'rspec-cells' # Test cells using RSpec
+
+  # Find unused CSS selectors by scraping the generated HTML in acceptance tests
+  gem 'deadweight', require: 'deadweight/hijack/rails'
+  gem 'colored' # Provides colored output
 end
 
 # Use ActiveModel has_secure_password
