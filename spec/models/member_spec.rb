@@ -29,7 +29,7 @@ require 'spec_helper'
 
 describe Member do
   it { should validate_presence_of(:username).with_message "can't be blank" }
-  it { should validate_uniqueness_of(:username).case_insensitive }
+  it { create(:member); should validate_uniqueness_of(:username).case_insensitive }
   # it { should allow_mass_assignment_of(:username) } # See https://github.com/thoughtbot/shoulda-matchers/issues/243
 
   it 'has a valid factory' do
