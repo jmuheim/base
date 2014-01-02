@@ -54,7 +54,7 @@ RSpec.configure do |config|
     DatabaseCleaner.clean_with(:truncation)
   end
 
-  config.around(:each) do |example|
+  config.before(:each) do
     DatabaseCleaner.strategy = if example.metadata[:js] ||
                                   example.metadata[:chrome] ||
                                   example.metadata[:selenium]
@@ -64,7 +64,9 @@ RSpec.configure do |config|
                                end
 
     DatabaseCleaner.start
-    example.run
+  end
+
+  config.after(:each) do
     DatabaseCleaner.clean
   end
 end
