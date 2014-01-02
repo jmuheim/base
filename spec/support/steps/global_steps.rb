@@ -3,5 +3,5 @@ step 'Pry' do
 end
 
 step 'the page should be valid HTML5' do
-  expect(page).to be_valid_html5
+  expect(page.body).to be_valid_html5
 end

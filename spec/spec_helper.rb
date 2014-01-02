@@ -7,6 +7,7 @@ require 'capybara/poltergeist'
 require 'turnip/capybara'
 require 'capybara-screenshot/rspec'
 require 'email_spec'
+require 'html5_validator/matchers'
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
