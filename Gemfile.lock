@@ -7,7 +7,7 @@ GIT
 
 GIT
   remote: git://github.com/jmuheim/rip_hashrocket
-  revision: e364036e6184ba3dca20f9b3a54d7ec9b377a30f
+  revision: e500703e35598a3a1b680c7ca5d466b68faa2d9c
   specs:
     rip_hashrocket (0.1.2)
 
