@@ -22,7 +22,7 @@
 - `$ powder open` opens [http://transition.dev/](http://transition.dev/) in the browser.
 - `$ guard` starts Guard, which takes care about executing tests (using [Spring application preloader](https://github.com/jonleighton/spring)), live reloading of the page, etc.
 - Use `binding.remote_pry` to set a breakpoint in the code and connect to it using `pry-remote` from the console.
-- Execute `$ rip_hashrockets` from time to time to replace old Ruby hashrockets (`=>`) to the new syntax.
+- Execute `$ rip_hashrockets` from time to time to replace old Ruby hashrockets (`=>`) with the new syntax.
 
 ### Testing
 
