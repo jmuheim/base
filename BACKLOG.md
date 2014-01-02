@@ -8,3 +8,4 @@
 - Add git push hook to automatically execute rip_hashrocket
 - Add git push hook to automatically execute rails_best_practices
 - Add git push hook to automatically execute rubocop
+- validate_uniqueness_of needs an existing record at the moment but should be optimized in future, see https://github.com/thoughtbot/shoulda-matchers/issues/194

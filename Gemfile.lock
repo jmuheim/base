@@ -146,10 +146,16 @@ GEM
     guard-rspec (4.2.0)
       guard (>= 2.1.1)
       rspec (>= 2.14, < 4.0)
+    has_scope (0.6.0.rc)
+      actionpack (>= 3.2, < 5)
+      activesupport (>= 3.2, < 5)
     hike (1.2.3)
     hirb (0.7.1)
     http_parser.rb (0.5.3)
     i18n (0.6.9)
+    inherited_resources (1.4.1)
+      has_scope (~> 0.6.0.rc)
+      responders (~> 1.0.0.rc)
     jazz_hands (0.5.2)
       awesome_print (~> 1.2)
       coolline (>= 0.4.2)
@@ -251,6 +257,8 @@ GEM
       json (~> 1.4)
     respec (0.5.0)
       rspec (>= 2.0.0)
+    responders (1.0.0)
+      railties (>= 3.2, < 5)
     rolify (3.2.0)
     rspec (2.14.1)
       rspec-core (~> 2.14.0)
@@ -362,6 +370,8 @@ DEPENDENCIES
   guard-migrate
   guard-pow
   guard-rspec
+  has_scope
+  inherited_resources
   jazz_hands
   jbuilder (~> 1.2)
   jquery-rails
@@ -373,6 +383,7 @@ DEPENDENCIES
   rack-livereload
   rails (= 4.0.2)
   respec
+  responders
   rolify
   rspec-rails
   rubocop
