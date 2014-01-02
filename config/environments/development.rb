@@ -27,7 +27,10 @@ Transition::Application.configure do
   # number of complex assets.
   config.assets.debug = true
 
-  config.middleware.use Rack::LiveReload, no_swf: true
+  # Insert before BetterErrors::Middleware so LiveReload keeps reloading after
+  # an error, see https://github.com/guard/guard-livereload/issues/94
+  config.middleware.insert_before Rack::Lock, Rack::LiveReload, no_swf: true
+  # config.middleware.use Rack::LiveReload, no_swf: true
 
   config.action_mailer.default_url_options = {host: 'localhost:3000'}
 end
