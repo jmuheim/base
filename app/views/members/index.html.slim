@@ -4,9 +4,7 @@ table
   tr
     th Name
     th Email
-    th
-    th
-    th
+    th colspan=3 Actions
 
   - @members.each do |member|
     tr
@@ -16,6 +14,5 @@ table
       td= link_to 'Edit', edit_member_path(member)
       td= link_to 'Destroy', member, data: {:confirm => 'Are you sure?'}, :method => :delete
 
-br
-
-= link_to 'New Member', new_member_path
+ul.actions
+  li= link_to 'New Member', new_member_path
