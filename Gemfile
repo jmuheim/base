@@ -78,6 +78,8 @@ group :development do
 
   gem 'rack-livereload' # Enable LiveReload in Rails
 
+  gem 'rb-fsevent', require: false # FSEvents API with signals handled
+
   gem 'rubocop', require: false # A robust Ruby code analyzer, based on the community Ruby style guide
 
 gem 'rip_hashrocket', # Replace hashrockets (=>) automatically

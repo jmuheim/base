@@ -396,6 +396,7 @@ DEPENDENCIES
   quiet_assets
   rack-livereload
   rails (= 4.0.2)
+  rb-fsevent
   respec
   responders
   rip_hashrocket!
