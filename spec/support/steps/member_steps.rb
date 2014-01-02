@@ -141,7 +141,6 @@ module MemberSteps
   end
 
   step 'I open the confirmation link' do
-    binding.pry if ActionMailer::Base.deliveries.count > 1
     expect(ActionMailer::Base.deliveries.count).to eq 1
     email_body = Nokogiri::HTML.parse ActionMailer::Base.deliveries.first.body.raw_source
 
