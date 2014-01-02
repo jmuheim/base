@@ -1,0 +1,5 @@
+p Welcome, #{@member.username}!
+
+ul
+  li= link_to 'Edit account', edit_member_registration_path
+  li= link_to 'Log out', destroy_member_session_path, method: :delete

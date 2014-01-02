@@ -14,4 +14,8 @@ html
 
     = yield
 
-    = render 'layouts/member_widget'
+    - if member_signed_in?
+      = render_cell :mini_hub, :show, member: current_member
+    - else
+      p You are not signed in.
+      = link_to 'Login / register', new_member_session_path

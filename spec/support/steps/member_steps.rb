@@ -152,13 +152,13 @@ module MemberSteps
 
   ### THEN ###
   step 'I should be signed in' do
-    expect(page).to have_link 'Logout'
+    expect(page).to have_link 'Log out'
     expect(page).not_to have_link 'Login / register'
   end
 
   step 'I should be signed out' do
     expect(page).to have_link 'Login / register'
-    expect(page).not_to have_link 'Logout'
+    expect(page).not_to have_link 'Log out'
   end
 
   step 'I see an unconfirmed account message' do
