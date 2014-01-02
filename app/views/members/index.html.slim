@@ -12,7 +12,7 @@ table
       td= member.email
       td= link_to 'Show', member
       td= link_to 'Edit', edit_member_path(member)
-      td= link_to 'Destroy', member, data: {:confirm => 'Are you sure?'}, :method => :delete
+      td= link_to 'Destroy', member, data: {confirm: 'Are you sure?'}, method: :delete
 
 ul.actions
   li= link_to 'New Member', new_member_path
