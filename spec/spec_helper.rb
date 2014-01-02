@@ -8,6 +8,11 @@ require 'turnip/capybara'
 require 'capybara-screenshot/rspec'
 require 'email_spec'
 
+# https://github.com/ericbeland/html_validation
+require 'html_validation'
+include PageValidations
+HaveValidHTML.show_html_in_failures = true
+
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
 Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
