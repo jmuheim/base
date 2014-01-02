@@ -31,7 +31,10 @@ gem 'cancan' # Authorization library which restricts what resources a given memb
 
 gem 'rolify' # Manage roles of members
 
-gem 'inherited_resources' # Inherit RESTful actions in controllers
+# Inherit RESTful actions in controllers
+gem 'inherited_resources'
+gem 'has_scope' # Maps controller filters to resource scopes
+gem 'responders' # A set of Rails responders
 
 group :doc do
   gem 'sdoc', require: false # bundle exec rake doc:rails generates the API under doc/api.

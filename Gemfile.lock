@@ -370,6 +370,7 @@ DEPENDENCIES
   guard-migrate
   guard-pow
   guard-rspec
+  has_scope
   inherited_resources
   jazz_hands
   jbuilder (~> 1.2)
@@ -382,6 +383,7 @@ DEPENDENCIES
   rack-livereload
   rails (= 4.0.2)
   respec
+  responders
   rolify
   rspec-rails
   rubocop
