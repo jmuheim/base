@@ -7,7 +7,7 @@ html
     = csrf_meta_tags
 
   body
-    header#header
+    header#header role="asdf" asdf="123"
       = render_cell :mini_hub, :show, member: current_member
 
     - if notice.present?
