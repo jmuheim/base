@@ -1,5 +1,12 @@
-p Welcome, #{@member.username}!
+aside#mini_hub
+  - if @member.present?
+    p Welcome, #{@member.username}!
 
-ul
-  li= link_to 'Edit account', edit_member_registration_path
-  li= link_to 'Log out', destroy_member_session_path, method: :delete
+    ul
+      li= link_to 'Edit account', edit_member_registration_path
+      li= link_to 'Log out', destroy_member_session_path, method: :delete
+  - else
+    p You are not signed in.
+
+    ul
+      li= link_to 'Login / register', new_member_session_path
