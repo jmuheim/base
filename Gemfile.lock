@@ -47,6 +47,8 @@ GEM
     atomic (1.1.14)
     awesome_print (1.2.0)
     bcrypt-ruby (3.1.2)
+    be_valid_asset (1.2.3)
+      rspec
     better_errors (1.0.1)
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
@@ -365,6 +367,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  be_valid_asset
   better_errors
   binding_of_caller
   cancan

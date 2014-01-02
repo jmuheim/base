@@ -110,6 +110,8 @@ group :test do
   gem 'capybara-screenshot' # Automatically save screen shots when a scenario fails
 
   gem 'rspec-cells' # Test cells using RSpec
+
+  gem 'be_valid_asset' # Markup and asset validation for RSpec
 end
 
 # Use ActiveModel has_secure_password
