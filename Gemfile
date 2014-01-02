@@ -36,9 +36,7 @@ gem 'inherited_resources'
 gem 'has_scope' # Maps controller filters to resource scopes
 gem 'responders' # A set of Rails responders
 
-gem 'rip_hashrocket', # Replace hashrockets (=>) automatically
-     git: 'git://github.com/jmuheim/rip_hashrocket',
-     require: false
+gem 'cells' # View components
 
 group :doc do
   gem 'sdoc', require: false # bundle exec rake doc:rails generates the API under doc/api.
@@ -81,6 +79,10 @@ group :development do
   gem 'rack-livereload' # Enable LiveReload in Rails
 
   gem 'rubocop', require: false # A robust Ruby code analyzer, based on the community Ruby style guide
+
+gem 'rip_hashrocket', # Replace hashrockets (=>) automatically
+     git: 'git://github.com/jmuheim/rip_hashrocket',
+     require: false
 end
 
 group :test do
@@ -104,6 +106,8 @@ group :test do
   gem 'guard-migrate' # Automatically run migrations when they are edited
 
   gem 'capybara-screenshot' # Automatically save screen shots when a scenario fails
+
+  gem 'rspec-cells' # Test cells using RSpec
 end
 
 # Use ActiveModel has_secure_password
