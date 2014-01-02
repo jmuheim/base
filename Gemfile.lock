@@ -5,6 +5,12 @@ GIT
   specs:
     spring (1.0.0)
 
+GIT
+  remote: git://github.com/jmuheim/rip_hashrocket
+  revision: e364036e6184ba3dca20f9b3a54d7ec9b377a30f
+  specs:
+    rip_hashrocket (0.1.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -384,6 +390,7 @@ DEPENDENCIES
   rails (= 4.0.2)
   respec
   responders
+  rip_hashrocket!
   rolify
   rspec-rails
   rubocop

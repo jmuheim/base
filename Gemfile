@@ -36,6 +36,10 @@ gem 'inherited_resources'
 gem 'has_scope' # Maps controller filters to resource scopes
 gem 'responders' # A set of Rails responders
 
+gem 'rip_hashrocket', # Replace hashrockets (=>) automatically
+     git: 'git://github.com/jmuheim/rip_hashrocket',
+     require: false
+
 group :doc do
   gem 'sdoc', require: false # bundle exec rake doc:rails generates the API under doc/api.
 end
