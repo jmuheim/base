@@ -6,6 +6,7 @@
 - [POW](http://pow.cx/)
 - [Git](http://git-scm.com/)
 - [Google Chrome](https://www.google.com/intl/en/chrome/browser/)
+- [Tidy HTML5](http://techblog.willshouse.com/2013/10/21/homebrew-tidy-html5/)
 
 ## How to develop
 
