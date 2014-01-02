@@ -1,5 +1,12 @@
 # Commonly used email steps
 #
+# Note: this is a copy of the email_spec gem
+# (https://github.com/bmabey/email-spec) which was created for Cucumber.
+# It was adopted to be used with Turnip.
+# Not all steps were used in production yet, so feel free to send me patches if
+# you find steps that don't work as they are.
+# All credits go to Ben Mabey, the creator of the original gem. Thanks!
+#
 # To add your own steps make a custom_email_steps.rb
 # The provided methods are:
 #
