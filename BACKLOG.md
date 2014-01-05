@@ -13,5 +13,3 @@
 
 - Guard config doesn't properly reload after change (manual restart needed), see https://github.com/guard/guard/issues/540
 - validate_uniqueness_of needs an existing record at the moment but should be optimized in future, see https://github.com/thoughtbot/shoulda-matchers/issues/194
-- Deadweight should find unused Selectors, but doesn't seem to work with Turnip, see https://github.com/aanand/deadweight/issues/21
-- Running `rake spec` executes the specs twice, see https://github.com/rspec/rspec-rails/issues/904
