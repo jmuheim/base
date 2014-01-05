@@ -7,7 +7,7 @@ GIT
 
 GIT
   remote: git://github.com/jmuheim/deadweight
-  revision: 507528e2af93c71f1af08a3534e5b3d9cecfa97f
+  revision: 48f479286dfec39737626d17b642aac788ff99b6
   specs:
     deadweight (0.2.2)
       css_parser (~> 1.2.6)
