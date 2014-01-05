@@ -17,7 +17,7 @@
 - `$ powder install`
 - `$ powder link`
 
-### Develop
+### Developing
 
 - `$ powder open` opens [http://transition.dev/](http://transition.dev/) in the browser.
 - `$ guard` starts Guard, which takes care about executing tests (using [Spring application preloader](https://github.com/jonleighton/spring)), live reloading of the page, etc.
@@ -28,6 +28,10 @@
 ### Testing
 
 - Use `@chrome` or `@selenium` flag to visually run acceptance tests in Chrome or Firefox.
+
+## Deploying
+
+- Run `rake DEADWEIGHT=true` to make sure no unncecessary CSS selectors exist.
 
 ## Backlog
 
