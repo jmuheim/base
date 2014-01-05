@@ -29,8 +29,10 @@ Transition::Application.configure do
 
   # Insert before BetterErrors::Middleware so LiveReload keeps reloading after
   # an error, see https://github.com/guard/guard-livereload/issues/94
+  # Notice: BetterErrors::Middleware is injected as an engine, so it's not
+  # available at this point, so we just insert before Rack::Lock which is nearly
+  # at the top of the stack.
   config.middleware.insert_before Rack::Lock, Rack::LiveReload, no_swf: true
-  # config.middleware.use Rack::LiveReload, no_swf: true
 
   config.action_mailer.default_url_options = {host: 'localhost:3000'}
 end
