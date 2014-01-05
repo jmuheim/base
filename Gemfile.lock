@@ -6,6 +6,14 @@ GIT
     spring (1.0.0)
 
 GIT
+  remote: git://github.com/jmuheim/deadweight
+  revision: d73f3a9682ad74e010b9676101b523b9176033aa
+  specs:
+    deadweight (0.2.2)
+      css_parser (~> 1.2.6)
+      nokogiri
+
+GIT
   remote: git://github.com/jmuheim/rip_hashrocket
   revision: e500703e35598a3a1b680c7ca5d466b68faa2d9c
   specs:
@@ -93,9 +101,6 @@ GEM
       addressable
       rdoc
     database_cleaner (1.2.0)
-    deadweight (0.2.2)
-      css_parser (~> 1.2.6)
-      nokogiri
     debug_inspector (0.0.2)
     debugger (1.6.3)
       columnize (>= 0.3.1)
@@ -381,7 +386,7 @@ DEPENDENCIES
   colored
   compass-rails (~> 2.0.alpha.0)
   database_cleaner
-  deadweight
+  deadweight!
   devise
   email_spec
   factory_girl_rails

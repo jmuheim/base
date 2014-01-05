@@ -112,7 +112,7 @@ group :test do
   gem 'rspec-cells' # Test cells using RSpec
 
   # Find unused CSS selectors by scraping the generated HTML in acceptance tests
-  gem 'deadweight', require: 'deadweight/hijack/rails'
+  gem 'deadweight', require: 'deadweight/hijack/rails', git: 'git://github.com/jmuheim/deadweight'
   gem 'colored' # Provides colored output
 end
 
