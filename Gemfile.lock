@@ -19,6 +19,12 @@ GIT
   specs:
     rip_hashrocket (0.1.2)
 
+PATH
+  remote: ../html_headhunter
+  specs:
+    html_headhunter (0.0.1)
+      nokogiri
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -399,6 +405,7 @@ DEPENDENCIES
   guard-pow
   guard-rspec
   has_scope
+  html_headhunter!
   inherited_resources
   jazz_hands
   jbuilder (~> 1.2)

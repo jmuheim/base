@@ -114,6 +114,8 @@ group :test do
   # Find unused CSS selectors by scraping the generated HTML in acceptance tests
   gem 'deadweight', require: 'deadweight/hijack/rails', git: 'git://github.com/jmuheim/deadweight'
   gem 'colored' # Provides colored output
+
+  gem 'html_headhunter', require: 'deadweight/hijack/rails', path: '../html_headhunter'
 end
 
 # Use ActiveModel has_secure_password
