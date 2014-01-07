@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: members
+# Table name: users
 #
 #  id                     :integer          not null, primary key
 #  email                  :string(255)      default(""), not null
@@ -26,7 +26,7 @@
 #
 
 FactoryGirl.define do
-  factory :member do
+  factory :user do
     username              'john'
     email                 Faker::Internet.email
     password              's3cur3p@ssw0rd'

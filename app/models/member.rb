@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: members
+# Table name: users
 #
 #  id                     :integer          not null, primary key
 #  email                  :string(255)      default(''), not null
@@ -25,7 +25,7 @@
 #  name                   :string(255)
 #
 
-class Member < ActiveRecord::Base
+class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,

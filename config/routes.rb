@@ -1,7 +1,7 @@
 Transition::Application.routes.draw do
-  devise_for :members
+  devise_for :users
   resource :dashboard
-  resources :members
+  resources :users
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -20,7 +20,7 @@ Transition::Application.routes.draw do
 
   # Example resource route with options:
   #   resources :products do
-  #     member do
+  #     user do
   #       get 'short'
   #       post 'toggle'
   #     end

@@ -8,7 +8,7 @@ html
 
   body
     header#header
-      = render_cell :mini_hub, :show, member: current_member
+      = render_cell :mini_hub, :show, user: current_user
 
     - if notice.present?
       p#notice= notice
