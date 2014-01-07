@@ -1,74 +1,74 @@
 ### UTILITY METHODS ###
 
 def create_visitor
-  @visitor ||= { username: 'Testy McMemberton',
+  @visitor ||= { username: 'Testy McUserton',
                  email: 'example@example.com',
                  password: 'changeme',
                  password_confirmation: 'changeme'
                }
 end
 
-def find_member
-  @member ||= Member.where(email: @visitor[:email]).first
+def find_user
+  @user ||= User.where(email: @visitor[:email]).first
 end
 
-def create_unconfirmed_member
+def create_unconfirmed_user
   create_visitor
   sign_up
-  visit '/members/sign_out'
+  visit '/users/sign_out'
 end
 
-def create_member
+def create_user
   create_visitor
-  @member = FactoryGirl.create(:member, @visitor)
+  @user = FactoryGirl.create(:user, @visitor)
 end
 
 def sign_up
-  visit '/members/sign_up'
-  fill_in 'member_username', with: @visitor[:username]
-  fill_in 'member_email', with: @visitor[:email]
-  fill_in 'member_password', with: @visitor[:password]
-  fill_in 'member_password_confirmation', with: @visitor[:password_confirmation]
+  visit '/users/sign_up'
+  fill_in 'user_username', with: @visitor[:username]
+  fill_in 'user_email', with: @visitor[:email]
+  fill_in 'user_password', with: @visitor[:password]
+  fill_in 'user_password_confirmation', with: @visitor[:password_confirmation]
   click_button 'Sign up'
-  find_member
+  find_user
 end
 
 def sign_in_using_email
-  visit '/members/sign_in'
-  fill_in 'member_login', with: @visitor[:email]
-  fill_in 'member_password', with: @visitor[:password]
+  visit '/users/sign_in'
+  fill_in 'user_login', with: @visitor[:email]
+  fill_in 'user_password', with: @visitor[:password]
   click_button 'Sign in'
 end
 
 def sign_in_using_username
-  visit '/members/sign_in'
-  fill_in 'member_login', with: @visitor[:username]
-  fill_in 'member_password', with: @visitor[:password]
+  visit '/users/sign_in'
+  fill_in 'user_login', with: @visitor[:username]
+  fill_in 'user_password', with: @visitor[:password]
   click_button 'Sign in'
 end
 
-module MemberSteps
+module UserSteps
   ### GIVEN ###
   step 'I am not logged in' do
-    visit '/members/sign_out'
+    visit '/users/sign_out'
   end
 
   step 'I am logged in' do
     create_visitor
-    @member = sign_in!
+    @user = sign_in!
     visit root_path
   end
 
-  step 'I exist as a member' do
-    create_member
+  step 'I exist as a user' do
+    create_user
   end
 
-  step 'I do not exist as a member' do
+  step 'I do not exist as a user' do
     create_visitor
   end
 
-  step 'I exist as an unconfirmed member' do
-    create_unconfirmed_member
+  step 'I exist as an unconfirmed user' do
+    create_unconfirmed_user
   end
 
   ### WHEN ###
@@ -83,10 +83,10 @@ module MemberSteps
   end
 
   step 'I sign out' do
-    visit '/members/sign_out'
+    visit '/users/sign_out'
   end
 
-  step 'I sign up with valid member data' do
+  step 'I sign up with valid user data' do
     create_visitor
     sign_up
   end
@@ -131,13 +131,13 @@ module MemberSteps
 
   step 'I edit my account details' do
     click_link 'Edit account'
-    fill_in 'member_username', with: 'newname'
-    fill_in 'member_current_password', with: @visitor[:password]
+    fill_in 'user_username', with: 'newname'
+    fill_in 'user_current_password', with: @visitor[:password]
     click_button 'Update'
   end
 
-  step 'I look at the list of members' do
-    visit members_path
+  step 'I look at the list of users' do
+    visit users_path
   end
 
   step 'I open the confirmation link' do
@@ -206,6 +206,6 @@ module MemberSteps
   end
 
   step 'I should see my name' do
-    expect(page).to have_content @member[:name]
+    expect(page).to have_content @user[:name]
   end
 end

@@ -43,7 +43,7 @@ RSpec.configure do |config|
   #     --seed 1234
   config.order = 'random'
 
-  config.include MemberSteps, type: :feature
+  config.include UserSteps, type: :feature
 
   config.include FactoryGirl::Syntax::Methods
 end

@@ -1,7 +1,7 @@
 class MiniHubCell < Cell::Rails
 
   def show(args)
-    @member = args[:member]
+    @user = args[:user]
     render
   end
 
