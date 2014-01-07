@@ -115,7 +115,7 @@ group :test do
   gem 'deadweight', require: 'deadweight/hijack/rails', git: 'git://github.com/jmuheim/deadweight'
   gem 'colored' # Provides colored output
 
-  gem 'html_headhunter', require: 'deadweight/hijack/rails', path: '../html_headhunter'
+  gem 'headhunter', require: 'headhunter/rails', path: '../headhunter'
 end
 
 # Use ActiveModel has_secure_password

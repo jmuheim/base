@@ -20,10 +20,11 @@ GIT
     rip_hashrocket (0.1.2)
 
 PATH
-  remote: ../html_headhunter
+  remote: ../headhunter
   specs:
-    html_headhunter (0.0.1)
-      nokogiri
+    headhunter (0.0.1)
+      colorize
+      html_validation
 
 GEM
   remote: https://rubygems.org/
@@ -95,6 +96,7 @@ GEM
       execjs
     coffee-script-source (1.6.3)
     colored (1.2)
+    colorize (0.6.0)
     columnize (0.3.6)
     compass (0.12.2)
       chunky_png (~> 1.2)
@@ -178,6 +180,7 @@ GEM
       activesupport (>= 3.2, < 5)
     hike (1.2.3)
     hirb (0.7.1)
+    html_validation (1.0.0)
     http_parser.rb (0.5.3)
     i18n (0.6.9)
     inherited_resources (1.4.1)
@@ -405,7 +408,7 @@ DEPENDENCIES
   guard-pow
   guard-rspec
   has_scope
-  html_headhunter!
+  headhunter!
   inherited_resources
   jazz_hands
   jbuilder (~> 1.2)
