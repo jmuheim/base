@@ -42,7 +42,7 @@ end
 
 placeholder :address do
   match /I/ do |address|
-    'example@example.com' # TODO: Try to use @visitor or @member!
+    'example@example.com' # TODO: Try to use @visitor or @user!
   end
 end
 

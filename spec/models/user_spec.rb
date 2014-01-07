@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table username: members
+# Table username: users
 #
 #  id                     :integer          not null, primary key
 #  email                  :string(255)      default(""), not null
@@ -27,12 +27,12 @@
 
 require 'spec_helper'
 
-describe Member do
+describe User do
   it { should validate_presence_of(:username).with_message "can't be blank" }
-  it { create(:member); should validate_uniqueness_of(:username).case_insensitive }
+  it { create(:user); should validate_uniqueness_of(:username).case_insensitive }
   # it { should allow_mass_assignment_of(:username) } # See https://github.com/thoughtbot/shoulda-matchers/issues/243
 
   it 'has a valid factory' do
-    expect(create(:member)).to be_valid
+    expect(create(:user)).to be_valid
   end
 end

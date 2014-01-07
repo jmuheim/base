@@ -1,6 +1,6 @@
-Feature: Edit Member
-  As a registered member of the website
-  I want to edit my member profile
+Feature: Edit User
+  As a registered user of the website
+  I want to edit my user profile
   so I can change my details
 
     Scenario: I sign in and edit my account
