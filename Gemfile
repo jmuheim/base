@@ -82,9 +82,9 @@ group :development do
 
   gem 'rubocop', require: false # A robust Ruby code analyzer, based on the community Ruby style guide
 
-gem 'rip_hashrocket', # Replace hashrockets (=>) automatically
-     git: 'git://github.com/jmuheim/rip_hashrocket',
-     require: false
+  gem 'rip_hashrocket', # Replace hashrockets (=>) automatically
+       git: 'git://github.com/jmuheim/rip_hashrocket',
+       require: false
 end
 
 group :test do
