@@ -8,6 +8,7 @@
 - Add git hook to automatically execute rip_hashrocket
 - Add git hook to automatically execute rails_best_practices
 - Add git hook to automatically execute rubocop
+- Add source maps for [CoffeeScript](https://github.com/markbates/coffee-rails-source-maps/) and [Sass](https://github.com/vhyza/sass-rails-source-maps) (both gems seem not to work at the moment)
 
 ## Known issues
 
