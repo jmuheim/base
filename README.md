@@ -1,7 +1,7 @@
 # Transition Net
 
-![Travis CI](https://api.travis-ci.org/jmuheim/transition.png)
-![Code Climate](https://codeclimate.com/github/jmuheim/transition.png)
+[![Travis CI](https://api.travis-ci.org/jmuheim/transition.png)](https://travis-ci.org/jmuheim/transition)
+[![Code Climate](https://codeclimate.com/github/jmuheim/transition.png)](https://codeclimate.com/github/jmuheim/transition)
 
 ## Developer Environment
 
