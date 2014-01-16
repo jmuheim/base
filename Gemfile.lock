@@ -384,7 +384,7 @@ DEPENDENCIES
   cells
   coffee-rails (~> 4.0.0)
   colored
-  compass-rails (~> 2.0.alpha.0)
+  compass-rails
   database_cleaner
   deadweight!
   devise

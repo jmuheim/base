@@ -12,7 +12,7 @@ gem 'coffee-rails', '~> 4.0.0' # Use CoffeeScript for .js.coffee assets and view
 
 gem 'sass-rails', '~> 4.0.0' # Use Sass for stylesheets
 
-gem 'compass-rails', '~> 2.0.alpha.0' # Compass framework
+gem 'compass-rails' # Compass framework
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
