@@ -33,6 +33,10 @@
 
 - Run `rake DEADWEIGHT=true` to make sure no unncecessary CSS selectors exist.
 
+### Travis CI
+
+- Project is configured to be continuously integrated using [Travis CI](https://travis-ci.org/jmuheim/transition).
+
 ## Backlog
 
 You can find the backlog here: [`BACKLOG.md`](./BACKLOG.md).
