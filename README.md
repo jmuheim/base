@@ -1,5 +1,7 @@
 # Transition Net
 
+![Travis CI build information](https://api.travis-ci.org/jmuheim/transition.png)
+
 ## Developer Environment
 
 - [Mac OS X](http://www.apple.com/osx/)
