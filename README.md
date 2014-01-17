@@ -1,5 +1,8 @@
 # Transition Net
 
+[![Travis CI](https://api.travis-ci.org/jmuheim/transition.png)](https://travis-ci.org/jmuheim/transition)
+[![Code Climate](https://codeclimate.com/github/jmuheim/transition.png)](https://codeclimate.com/github/jmuheim/transition)
+
 ## Developer Environment
 
 - [Mac OS X](http://www.apple.com/osx/)
@@ -32,6 +35,10 @@
 ## Deploying
 
 - Run `rake DEADWEIGHT=true` to make sure no unncecessary CSS selectors exist.
+
+### Travis CI
+
+- Project is configured to be continuously integrated using [Travis CI](https://travis-ci.org/jmuheim/transition).
 
 ## Backlog
 

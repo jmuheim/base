@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+source 'http://rubygems.org'
 
 gem 'rails', '4.0.2'
 
@@ -12,7 +12,7 @@ gem 'coffee-rails', '~> 4.0.0' # Use CoffeeScript for .js.coffee assets and view
 
 gem 'sass-rails', '~> 4.0.0' # Use Sass for stylesheets
 
-gem 'compass-rails', '~> 2.0.alpha.0' # Compass framework
+gem 'compass-rails' # Compass framework
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
@@ -82,9 +82,9 @@ group :development do
 
   gem 'rubocop', require: false # A robust Ruby code analyzer, based on the community Ruby style guide
 
-gem 'rip_hashrocket', # Replace hashrockets (=>) automatically
-     git: 'git://github.com/jmuheim/rip_hashrocket',
-     require: false
+  gem 'rip_hashrocket', # Replace hashrockets (=>) automatically
+       git: 'git://github.com/jmuheim/rip_hashrocket',
+       require: false
 end
 
 group :test do
@@ -112,7 +112,7 @@ group :test do
   gem 'rspec-cells' # Test cells using RSpec
 
   # Find unused CSS selectors by scraping the generated HTML in acceptance tests
-  gem 'deadweight', require: 'deadweight/hijack/rails', git: 'git://github.com/jmuheim/deadweight'
+  gem 'deadweight', require: 'deadweight/rails', git: 'git://github.com/jmuheim/deadweight'
   gem 'colored' # Provides colored output
 
   gem 'headhunter', require: 'headhunter/rails', path: '../headhunter'
