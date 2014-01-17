@@ -85,6 +85,11 @@ group :development do
   gem 'rip_hashrocket', # Replace hashrockets (=>) automatically
        git: 'git://github.com/jmuheim/rip_hashrocket',
        require: false
+
+  # Source maps for web browser inspector, see
+  # http://blog.vhyza.eu/blog/2013/09/22/debugging-rails-4-coffeescript-and-sass-source-files-in-google-chrome/
+  gem 'coffee-rails-source-maps'
+  gem 'sass-rails-source-maps'
 end
 
 group :test do
