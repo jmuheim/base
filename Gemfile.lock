@@ -19,6 +19,15 @@ GIT
   specs:
     rip_hashrocket (0.1.2)
 
+GIT
+  remote: git@github.com:eagletmt/turnip.git
+  revision: 6eba1e8599eaeff51f265c51b48e0379fe0a2007
+  branch: fix-line-number
+  specs:
+    turnip (1.1.0)
+      gherkin (>= 2.5)
+      rspec (~> 2.0)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -424,6 +433,6 @@ DEPENDENCIES
   sqlite3
   terminal-notifier-guard
   turbolinks
-  turnip
+  turnip!
   uglifier (>= 1.3.0)
   xray-rails

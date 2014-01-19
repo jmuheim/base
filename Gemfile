@@ -103,7 +103,8 @@ group :test do
   gem 'launchy'            # Use `save_and_open_page` in request tests to automatically open a browser
   gem 'selenium-webdriver' # Selenium webdriver (needed to use Chrome driver)
 
-  gem 'turnip' # Gherkin extension for RSpec to write acceptance tests
+  gem 'turnip', # Gherkin extension for RSpec to write acceptance tests
+    git: 'git@github.com:eagletmt/turnip.git', branch: 'fix-line-number'
 
   gem 'guard-migrate' # Automatically run migrations when they are edited
 
