@@ -1,4 +1,4 @@
-source 'http://rubygems.org'
+source 'http://rubygems.org' # FIXME: Use https!
 
 gem 'rails', '4.0.2'
 
@@ -113,7 +113,10 @@ group :test do
   gem 'rspec-cells' # Test cells using RSpec
 
   # Find unused CSS selectors by scraping the generated HTML in acceptance tests
-  gem 'deadweight', require: 'deadweight/rails', git: 'git://github.com/jmuheim/deadweight'
+  gem 'deadweight',
+    require: 'deadweight/rails',
+    # git: 'git://github.com/jmuheim/deadweight'
+    path: '../deadweight'
   gem 'colored' # Provides colored output
 end
 

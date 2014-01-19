@@ -6,14 +6,6 @@ GIT
     spring (1.1.0.beta1)
 
 GIT
-  remote: git://github.com/jmuheim/deadweight
-  revision: fd3fe9cbde1fe8542646375fea4330aef42c52a4
-  specs:
-    deadweight (0.2.2)
-      css_parser (~> 1.2.6)
-      nokogiri
-
-GIT
   remote: git://github.com/jmuheim/rip_hashrocket
   revision: e500703e35598a3a1b680c7ca5d466b68faa2d9c
   specs:
@@ -27,6 +19,13 @@ GIT
     turnip (1.1.0)
       gherkin (>= 2.5)
       rspec (~> 2.0)
+
+PATH
+  remote: ../deadweight
+  specs:
+    deadweight (0.2.2)
+      css_parser (~> 1.2.6)
+      nokogiri
 
 GEM
   remote: http://rubygems.org/
@@ -360,9 +359,6 @@ GEM
       polyglot (>= 0.3.1)
     turbolinks (2.2.0)
       coffee-rails
-    turnip (1.1.0)
-      gherkin (>= 2.5)
-      rspec (~> 2.0)
     tzinfo (0.3.38)
     uglifier (2.4.0)
       execjs (>= 0.3.0)
