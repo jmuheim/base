@@ -113,14 +113,7 @@ group :test do
 
   gem 'rspec-cells' # Test cells using RSpec
 
-  # Find unused CSS selectors by scraping the generated HTML in acceptance tests
-  gem 'deadweight',
-    require: 'deadweight/rails',
-    # git: 'git://github.com/jmuheim/deadweight'
-    path: '../deadweight'
-  gem 'colored' # Provides colored output
-
-  gem 'headhunter', require: 'headhunter/rails', path: '../headhunter'
+  gem 'headhunter'#, path: '../headhunter' # Automagically validates all HTML and CSS during the acceptance tests
 end
 
 # Use ActiveModel has_secure_password
