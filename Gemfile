@@ -85,6 +85,8 @@ group :development do
   gem 'rip_hashrocket', # Replace hashrockets (=>) automatically
        git: 'git://github.com/jmuheim/rip_hashrocket',
        require: false
+
+  gem 'capybara' # Acceptance test framework for web applications
 end
 
 group :test do
