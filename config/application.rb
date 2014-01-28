@@ -30,5 +30,7 @@ module Transition
     config.generators do |g|
       g.template_engine :slim
     end
+
+    I18n.enforce_available_locales = true
   end
 end
