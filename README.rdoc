@@ -4,4 +4,3 @@ This is a basic Rails project with everything configured the way I want. {Fork i
 
 In your fork, rename <code>README_example.md</code> to <code>README.md</code> and complement it with your project specific details.
 
-Then remove this file (<code>README.rdoc</code>).
