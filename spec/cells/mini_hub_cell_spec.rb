@@ -8,7 +8,7 @@ describe MiniHubCell do
       subject { render_cell :mini_hub, :show, user: @user }
 
       it 'displays "Welcome, <username>"' do
-        should have_selector 'p', text: "Welcome, #{@user.username}!"
+        should have_content "Welcome, #{@user.username}!"
       end
 
       it "displays a link to edit the user's account" do
@@ -25,7 +25,7 @@ describe MiniHubCell do
     subject { render_cell :mini_hub, :show, user: nil }
 
     it 'displays "Welcome, <username>"' do
-      should have_selector 'p', text: 'You are not signed in.'
+      should have_content 'You are not signed in.'
     end
 
     it 'displays a link to login / register' do
