@@ -2,6 +2,6 @@
 
 This is a basic Rails project with everything configured the way I want. {Fork it}[http://bitdrift.com/post/4534738938/fork-your-own-project-on-github] to create a new project out of it.
 
-In your fork, rename {README_example.md}[./README_example.md] to <code>README.md</code> and complement it with your project specific details.
+In your fork, rename <code>README_example.md</code> to <code>README.md</code> and complement it with your project specific details.
 
-Then remove this file to make <code>README.md</code> the main readme file.
+Then remove this file (<code>README.rdoc</code>).
