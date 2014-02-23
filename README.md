@@ -34,7 +34,7 @@
 
 ## Deploying
 
-- Run `rake DEADWEIGHT=true` to make sure no unncecessary CSS selectors exist.
+- Run `rake HEADHUNTER=true` to make sure all HTML and CSS is valid.
 
 ### Travis CI
 
