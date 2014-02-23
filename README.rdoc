@@ -2,4 +2,4 @@
 
 This is a basic Rails project with everything configured the way I want. {Fork it}[http://bitdrift.com/post/4534738938/fork-your-own-project-on-github] to create a new project out of it.
 
-In your fork, rename <code>README_example.md</code> to <code>README.md</code> and complement it with your project specific details.
+In your fork, create a <code>README.md</code> file with the contents of <code>README_example.md</code>, then complement it with your project specific details.
