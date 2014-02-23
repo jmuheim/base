@@ -7,12 +7,36 @@ html
     = csrf_meta_tags
 
   body
-    header#header
-      = render_cell :mini_hub, :show, user: current_user
+    header#top.navbar.navbar-static-top role="banner"
+      .container
+        .navbar-header
+          button.navbar-toggle data-target='.bs-navbar-collapse' data-toggle='collapse' type='button'
+            span.sr-only Toggle navigation
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
 
-    - if notice.present?
-      p#notice= notice
-    - if alert.present?
-      p#alert= alert
+          a.navbar-brand href='../' Synaesthesia
 
-    = yield
+        nav.collapse.navbar-collapse.bs-navbar-collapse role="navigation"
+          ul.nav.navbar-nav
+            li.active= link_to 'Vocabulary'
+            li= link_to 'About'
+            li= link_to 'Contact'
+
+          ul.nav.navbar-nav.navbar-right
+            li
+              = link_to 'Help'
+
+    .container
+      .row
+        .col-md-9
+          - if notice.present?
+            p#notice= notice
+          - if alert.present?
+            p#alert= alert
+
+          = yield
+
+        .col-md-3
+          = render_cell :mini_hub, :show, user: current_user
