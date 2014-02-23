@@ -40,6 +40,8 @@ gem 'responders' # A set of Rails responders
 
 gem 'cells' # View components
 
+gem 'simple_form' # Forms made easy for Rails
+
 group :doc do
   gem 'sdoc', require: false # bundle exec rake doc:rails generates the API under doc/api.
 end
