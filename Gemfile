@@ -113,7 +113,7 @@ group :test do
 
   gem 'rspec-cells' # Test cells using RSpec
 
-  gem 'headhunter'#, path: '../headhunter' # Automagically validates all HTML and CSS during the acceptance tests
+  gem 'headhunter' # Automagically validates all HTML and CSS during the acceptance tests
 end
 
 # Use ActiveModel has_secure_password
