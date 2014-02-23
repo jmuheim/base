@@ -1,9 +1,11 @@
-# Transition Net
+# Base Project
 
 [![Code Climate](https://codeclimate.com/github/jmuheim/base.png)](https://codeclimate.com/github/jmuheim/base)
 [![Travis CI](https://api.travis-ci.org/jmuheim/base.png)](https://travis-ci.org/jmuheim/base)
 [![Dependency Status](https://gemnasium.com/jmuheim/base.png)](https://gemnasium.com/jmuheim/base)
 [![Coverage Status](https://coveralls.io/repos/jmuheim/base/badge.png)](https://coveralls.io/r/jmuheim/base)
+
+This is a basic Rails project with everything configured the way I want. Fork it to create new projects out of it.
 
 ## Developer Environment
 
@@ -16,15 +18,15 @@
 
 ### Checkout and configure
 
-- `$ git clone git@github.com:jmuheim/transition.git`
-- `$ cd transition`
+- `$ git clone git@github.com:jmuheim/base.git`
+- `$ cd base`
 - `$ bundle install`
 - `$ powder install`
 - `$ powder link`
 
 ### Developing
 
-- `$ powder open` opens [http://transition.dev/](http://transition.dev/) in the browser.
+- `$ powder open` opens [http://base.dev/](http://base.dev/) in the browser.
 - `$ guard` starts Guard, which takes care about executing tests (using [Spring application preloader](https://github.com/jonleighton/spring)), live reloading of the page, etc.
 - Use `binding.remote_pry` to set a breakpoint in code that is executed by the `POW` service and connect to it using `pry-remote` from the console.
 - Use `binding.pry` to set a breakpoint in code that is run through an active console (e.g. `guard` or `rails s`)
@@ -40,7 +42,7 @@
 
 ### Travis CI
 
-- Project is configured to be continuously integrated using [Travis CI](https://travis-ci.org/jmuheim/transition).
+- Project is configured to be continuously integrated using [Travis CI](https://travis-ci.org/jmuheim/base).
 
 ## Backlog
 

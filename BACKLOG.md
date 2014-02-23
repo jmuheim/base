@@ -1,4 +1,4 @@
-# Backlog Transition Net
+# Backlog Base Project
 
 ## Do not forget to...
 
@@ -29,7 +29,7 @@
 - Permakultur
 - Eigene Währung (Minuto)
 - Newsletter => automatisch generieren für jeden Benutzer aus den Themen, welche dieser angekreuzt hat
-- Transition Town => verschiedene Städte vernetzen?
+- Base Town => verschiedene Städte vernetzen?
 - Gemeinschaften
 - Sinnvolle Inserate & Werbung mit Mehrwert für Benutzer
 - Partnerbörse

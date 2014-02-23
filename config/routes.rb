@@ -1,4 +1,4 @@
-Transition::Application.routes.draw do
+Base::Application.routes.draw do
   devise_for :users
   resource :dashboard
   resources :users

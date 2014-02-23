@@ -2,4 +2,4 @@
 # for example lib/tasks/capistrano.rake, and they will automatically be available to Rake.
 
 require File.expand_path('../config/application', __FILE__)
-Transition::Application.load_tasks
+Base::Application.load_tasks
