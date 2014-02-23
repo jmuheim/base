@@ -1,7 +1,9 @@
 # Transition Net
 
-[![Travis CI](https://api.travis-ci.org/jmuheim/transition.png)](https://travis-ci.org/jmuheim/transition)
-[![Code Climate](https://codeclimate.com/github/jmuheim/transition.png)](https://codeclimate.com/github/jmuheim/transition)
+[![Code Climate](https://codeclimate.com/github/jmuheim/base.png)](https://codeclimate.com/github/jmuheim/base)
+[![Travis CI](https://api.travis-ci.org/jmuheim/base.png)](https://travis-ci.org/jmuheim/base)
+[![Dependency Status](https://gemnasium.com/jmuheim/base.png)](https://gemnasium.com/jmuheim/base)
+[![Coverage Status](https://coveralls.io/repos/jmuheim/base/badge.png)](https://coveralls.io/r/jmuheim/base)
 
 ## Developer Environment
 
