@@ -14,6 +14,8 @@ gem 'sass-rails', '~> 4.0.0' # Use Sass for stylesheets
 
 gem 'compass-rails' # Compass framework
 
+gem 'bootstrap-sass' # Sleek, intuitive, and powerful front-end framework for faster and easier web development
+
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
