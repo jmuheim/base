@@ -16,3 +16,25 @@
 
 - Guard config doesn't properly reload after change (manual restart needed), see https://github.com/guard/guard/issues/540
 - validate_uniqueness_of needs an existing record at the moment but should be optimized in future, see https://github.com/thoughtbot/shoulda-matchers/issues/194
+
+## Ideas/Brainstorming (with Markus)
+
+- Gemüse-Abo
+- Arbeitsgruppen/Workshops
+- Artikel zu verschiedensten Themen
+- Spiritualität / Schamanismus / Sexualität
+- Urban Gardening
+- Food-Coop.
+- Leserbeiträge (Blogs?)
+- Permakultur
+- Eigene Währung (Minuto)
+- Newsletter => automatisch generieren für jeden Benutzer aus den Themen, welche dieser angekreuzt hat
+- Transition Town => verschiedene Städte vernetzen?
+- Gemeinschaften
+- Sinnvolle Inserate & Werbung mit Mehrwert für Benutzer
+- Partnerbörse
+- Strohballenbau
+- Kleininserate aller Art
+- WG-/Wohnungs-/Hausbörse
+- Events Kalender (bspw. mit Filme für die Erde)
+- Liste: lokal einkaufen (bei Bauern, etc.)
