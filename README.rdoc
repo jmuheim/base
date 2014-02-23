@@ -1,5 +1,10 @@
 == Base Project
 
+{<img src="https://codeclimate.com/github/jmuheim/base.png" />}[https://codeclimate.com/github/jmuheim/base]
+{<img src="https://travis-ci.org/jmuheim/base.png?branch=master" alt="Build Status" />}[https://travis-ci.org/jmuheim/base]
+{<img src="https://gemnasium.com/jmuheim/base.png" alt="Dependency Status" />}[https://gemnasium.com/jmuheim/base]
+{<img src="https://coveralls.io/repos/jmuheim/base/badge.png" alt="Coverage Status" />}[https://coveralls.io/r/jmuheim/base]
+
 This is a basic Rails project with everything configured the way I want. {Fork it}[http://bitdrift.com/post/4534738938/fork-your-own-project-on-github] to create a new project out of it.
 
 In your fork, create a <code>README.md</code> file with the contents of <code>README_example.md</code>, then complement it with your project specific details.
