@@ -5,8 +5,6 @@
 [![Dependency Status](https://gemnasium.com/jmuheim/base.png)](https://gemnasium.com/jmuheim/base)
 [![Coverage Status](https://coveralls.io/repos/jmuheim/base/badge.png)](https://coveralls.io/r/jmuheim/base)
 
-This is a basic Rails project with everything configured the way I want. Fork it to create new projects out of it.
-
 ## Developer Environment
 
 - [Mac OS X](http://www.apple.com/osx/)
