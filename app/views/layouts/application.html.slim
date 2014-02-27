@@ -1,42 +1,26 @@
 doctype html
 html
   head
-    title Base
+    title= content_for?(:title) ? yield(:title) : 'Base'
+
+    meta[name="viewport" content="width=device-width, initial-scale=1.0"]
+    meta name="description" content="#{content_for?(:description) ? yield(:description) : 'Myapp'}"
+
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
 
   body
-    header#top.navbar.navbar-static-top role="banner"
-      .container
-        .navbar-header
-          button.navbar-toggle data-target='.bs-navbar-collapse' data-toggle='collapse' type='button'
-            span.sr-only Toggle navigation
-            span.icon-bar
-            span.icon-bar
-            span.icon-bar
+    header
+      == render 'layouts/navigation'
 
-          a.navbar-brand href='../' Synaesthesia
-
-        nav.collapse.navbar-collapse.bs-navbar-collapse role="navigation"
-          ul.nav.navbar-nav
-            li.active= link_to 'Vocabulary'
-            li= link_to 'About'
-            li= link_to 'Contact'
-
-          ul.nav.navbar-nav.navbar-right
-            li
-              = link_to 'Help'
-
-    .container
+    main.container[role="main"]
       .row
         .col-md-9
-          - if notice.present?
-            p#notice= notice
-          - if alert.present?
-            p#alert= alert
+          h1= content_for?(:headline) ? yield(:headline) : 'Base'
 
-          = yield
+          == render 'layouts/messages'
+          == yield
 
         .col-md-3
           = render_cell :mini_hub, :show, user: current_user

@@ -1,11 +1,8 @@
-h2
-  | Resend confirmation instructions
+- content_for :headline do
+  |Resend confirmation instructions
+
 = simple_form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f|
-  = devise_error_messages!
-  div
-    = f.label :email
-    br
-    = f.email_field :email, autofocus: true
-  div
-    = f.submit 'Resend confirmation instructions'
+  = f.input :email, autofocus: true
+  = f.button :submit, 'Resend confirmation instructions'
+
 = render 'devise/shared/links'
