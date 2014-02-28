@@ -29,7 +29,7 @@ gem 'jbuilder', '~> 1.2' # Build JSON APIs with ease. Read more: https://github.
 gem 'devise'
 # gem 'devise-i18n' # Translations
 
-gem 'cancan' # Authorization library which restricts what resources a given user is allowed to access
+gem 'cancancan' # Authorization library which restricts what resources a given user is allowed to access
 
 gem 'rolify' # Manage roles of users
 
