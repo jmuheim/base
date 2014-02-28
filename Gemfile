@@ -77,6 +77,7 @@ group :development do
   gem 'guard-pow', require: false        # Automatically manage Pow applications restart
   gem 'guard-bundler'                    # Automatically install/update gem bundle when needed
   gem 'guard-annotate'                   # Automatically run the annotate gem when needed
+  gem 'guard-rails'                      # Automatically watching on development server
 
   gem 'powder', require: false # Configure POW server easily
 

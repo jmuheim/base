@@ -168,6 +168,8 @@ GEM
       guard (>= 2.3.0)
     guard-pow (2.0.0)
       guard (~> 2.0)
+    guard-rails (0.4.7)
+      guard (>= 0.2.2)
     guard-rspec (4.2.7)
       guard (~> 2.1)
       rspec (>= 2.14, < 4.0)
@@ -420,6 +422,7 @@ DEPENDENCIES
   guard-livereload
   guard-migrate
   guard-pow
+  guard-rails
   guard-rspec
   has_scope
   headhunter
