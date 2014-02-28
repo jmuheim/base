@@ -11,6 +11,7 @@
 - Add source maps for [CoffeeScript](https://github.com/markbates/coffee-rails-source-maps/) and [Sass](https://github.com/vhyza/sass-rails-source-maps) (both gems seem not to work at the moment)
 - Spring should be integrated into Rails 4.1?! Do we have to un-integrate our version?
 - Do a `bundle outdated` from time to time and update the gems!
+- Check back from time to time if SimpleForm officially supports Bootstrap3 now, and then refactor `simple_form.rb.` See [official PR](https://github.com/rafaelfranca/simple_form-bootstrap/pull/28).
 
 ## Known issues
 
