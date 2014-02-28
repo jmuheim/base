@@ -11,3 +11,6 @@ In your fork:
 
 - Create a <code>README.md</code> file with the contents of <code>README_example.md</code>, then complement it with your project specific details.
 - Change the content of <code>.ruby-gemset</code> file to the name of your fork's repository
+- Execute the following:
+  - `$ rvm use .` (activates the RVM gemset)
+  - `$ rake db:setup` (sets up the database with seed data)
