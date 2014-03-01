@@ -28,6 +28,9 @@ guard :rspec, cmd: 'spring rspec' do
   # Turnip features and steps
   watch(%r{^spec/acceptance/(.+)\.feature$})
   watch(%r{^spec/acceptance/steps/(.+)_steps\.rb$})   { |m| Dir[File.join("**/#{m[1]}.feature")][0] || 'spec/acceptance' }
+
+  # Reload factory girl, see http://urgetopunt.com/2011/10/01/guard-factory-girl.html
+  watch(%r{^spec/factories/(.+)\.rb$}) # This shouldn't be necessary, because Spring should take care of this?
 end
 
 guard :bundler do
