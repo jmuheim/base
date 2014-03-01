@@ -16,6 +16,10 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_or_guest_user
 
+  def current_ability
+    @current_ability ||= Ability.new(current_or_guest_user)
+  end
+
   def current_or_guest_user
     if current_user
       if session[:guest_user_id]
