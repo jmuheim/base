@@ -41,7 +41,7 @@ describe User do
       @guest.valid?
     end
 
-    fit 'validates presence of username' do
+    it 'validates presence of username' do
       @guest.username = nil
       expect(@guest).to have(1).error_on(:username)
     end
@@ -90,6 +90,16 @@ describe User do
     it 'validates presence of password' do
       @guest.password = nil
       expect(@guest).to have(1).error_on(:password)
+    end
+  end
+
+  describe '.create_guest!' do
+    it 'creates a guest' do
+      expect {
+        User.create_guest!
+      }.to change(User, :count).by 1
+
+      expect(User.last.guest?).to be_true
     end
   end
 
