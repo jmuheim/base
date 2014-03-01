@@ -9,6 +9,34 @@ class ApplicationController < ActionController::Base
 
   before_filter :configure_permitted_parameters, if: :devise_controller?
 
+  # Guest accounts: in order to fix the problem with ajax requests you have to turn off protect_from_forgery for the
+  # controller action with the ajax request.
+  # See https://github.com/plataformatec/devise/wiki/How-To:-Create-a-guest-user)
+  # skip_before_filter :verify_authenticity_token, only: [:name_of_your_action]
+
+  helper_method :current_or_guest_user
+
+  def current_or_guest_user
+    if current_user
+      if session[:guest_user_id]
+        logging_in
+        guest_user.destroy
+        session[:guest_user_id] = nil
+      end
+      current_user
+    else
+      guest_user
+    end
+  end
+
+  def guest_user
+    @cached_guest_user ||= User.find(session[:guest_user_id] ||= create_guest_user.id)
+
+  rescue ActiveRecord::RecordNotFound # If session[:guest_user_id] is invalid
+     session[:guest_user_id] = nil
+     guest_user
+  end
+
   protected
 
   # https://github.com/plataformatec/devise/wiki/How-To:-Allow-users-to-sign-in-using-their-username-or-email-address
@@ -24,5 +52,23 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.for :account_update do |u|
       u.permit :username, :email, :password, :password_confirmation, :current_password
     end
+  end
+
+  private
+
+  def logging_in
+    # For example:
+    # guest_comments = guest_user.comments.all
+    # guest_comments.each do |comment|
+      # comment.user_id = current_user.id
+      # comment.save!
+    # end
+  end
+
+  def create_guest_user
+    user = User.create(name: 'guest', email: "guest_#{Time.now.to_i}#{rand(99)}@example.com")
+    user.save!(validate: false)
+    session[:guest_user_id] = user.id
+    user
   end
 end
