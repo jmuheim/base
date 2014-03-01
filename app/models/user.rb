@@ -60,7 +60,7 @@ class User < ActiveRecord::Base
   private
 
   def password_required?
-    !guest?
+    guest? ? false : super
   end
 
   def email_required?
