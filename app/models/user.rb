@@ -1,10 +1,12 @@
 # == Schema Information
+# Schema version: 20140301093233
 #
 # Table name: users
 #
 #  id                     :integer          not null, primary key
-#  email                  :string(255)      default(''), not null
-#  encrypted_password     :string(255)      default(''), not null
+#  username               :string(255)
+#  email                  :string(255)
+#  encrypted_password     :string(255)
 #  reset_password_token   :string(255)
 #  reset_password_sent_at :datetime
 #  remember_created_at    :datetime
@@ -22,10 +24,20 @@
 #  locked_at              :datetime
 #  created_at             :datetime
 #  updated_at             :datetime
-#  name                   :string(255)
+#  guest                  :boolean          default(FALSE)
+#
+# Indexes
+#
+#  index_users_on_confirmation_token    (confirmation_token) UNIQUE
+#  index_users_on_email                 (email) UNIQUE
+#  index_users_on_reset_password_token  (reset_password_token) UNIQUE
+#  index_users_on_unlock_token          (unlock_token) UNIQUE
+#  index_users_on_username              (username)
 #
 
 class User < ActiveRecord::Base
+  rolify
+
   # Include default devise modules. Others available are:
   # :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -34,8 +46,16 @@ class User < ActiveRecord::Base
 
   attr_accessor :login
 
-  validates :username, presence: true,
-                       uniqueness: {case_sensitive: false}
+  validates :username, presence: true
+  validates :username, uniqueness: {case_sensitive: false},
+                       unless: -> { guest? }
+
+  def self.create_guest!
+    create! do |user|
+      user.username  = 'guest'
+      user.guest     = true
+    end
+  end
 
   # https://github.com/plataformatec/devise/wiki/How-To:-Allow-users-to-sign-in-using-their-username-or-email-address
   def self.find_first_by_auth_conditions(warden_conditions)
@@ -45,5 +65,15 @@ class User < ActiveRecord::Base
     else
       where(conditions).first
     end
+  end
+
+  private
+
+  def password_required?
+    guest? ? false : super
+  end
+
+  def email_required?
+    !guest?
   end
 end

@@ -23,4 +23,4 @@ html
           == yield
 
         .col-md-3
-          = render_cell :mini_hub, :show, user: current_user
+          = render_cell :mini_hub, :show, user: current_or_guest_user

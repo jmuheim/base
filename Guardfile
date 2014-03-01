@@ -1,6 +1,8 @@
 # A sample Guardfile
 # More info at https://github.com/guard/guard#readme
 
+require 'active_support/inflector'
+
 guard :livereload do
   watch(%r{app/(cells|views)/.+\.(erb|haml|slim)$})
   watch(%r{app/helpers/.+\.rb})
@@ -24,10 +26,22 @@ guard :rspec, cmd: 'spring rspec' do
   watch(%r{^spec/support/(.+)\.rb$})                  { "spec" }
   watch('config/routes.rb')                           { "spec/routing" }
   watch('app/controllers/application_controller.rb')  { "spec/controllers" }
+  watch('app/models/ability.rb')  { "spec/models/user_spec.rb" }
 
   # Turnip features and steps
   watch(%r{^spec/acceptance/(.+)\.feature$})
   watch(%r{^spec/acceptance/steps/(.+)_steps\.rb$})   { |m| Dir[File.join("**/#{m[1]}.feature")][0] || 'spec/acceptance' }
+
+  # Reload factory girl, see http://urgetopunt.com/2011/10/01/guard-factory-girl.html
+  watch(%r{^spec/factories/(.+)\.rb$}) do |m|
+    [
+      "spec/models/#{m[1].singularize}_spec.rb",
+      "spec/controllers/#{m[1]}_controller_spec.rb",
+
+      # This is too slow
+      # "spec/acceptance/#{m[1]}"
+    ]
+  end
 end
 
 guard :bundler do
@@ -49,12 +63,17 @@ guard :pow do
   watch(%r{^config/initializers/.*\.rb$})
 end
 
-guard 'migrate', run_on_start: false, test_clone: true, reset: true, seed: true do
+guard 'migrate', cmd: 'spring rake',
+                 run_on_start: false,
+                 test_clone: true,
+                 reset: true,
+                 seed: true do
   watch(%r{^db/migrate/(\d+).+\.rb})
   watch('db/seeds.rb')
 end
 
-guard 'annotate', show_indexes: true, show_migration: true do
+guard 'annotate', show_indexes: true,
+                  show_migration: true do
   watch( 'db/schema.rb' )
 
   # Uncomment the following line if you also want to run annotate anytime

@@ -5,11 +5,16 @@ class Ability
   include CanCan::Ability
 
   def initialize(current_user)
-    can :read, :all
+    can :read, User
 
-    if current_user.present?
-      can :update, User do |user|
-        current_user == user
+    # Update himself
+    can :update, User do |user|
+      current_user == user
+    end
+
+    unless current_user.guest?
+      if current_user.has_role?(:admin)
+        can :manage, User
       end
     end
   end

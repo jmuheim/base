@@ -20,7 +20,7 @@ describe UsersController do
     end
 
     it 'routes to #create' do
-      post('/users').should route_to('devise/registrations#create')
+      post('/users').should route_to('registrations#create')
     end
 
     it 'routes to #update' do
