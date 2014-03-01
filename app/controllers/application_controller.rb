@@ -66,8 +66,8 @@ class ApplicationController < ActionController::Base
   end
 
   def create_guest_user
-    user = User.create(name: 'guest', email: "guest_#{Time.now.to_i}#{rand(99)}@example.com")
-    user.save!(validate: false)
+    user = User.create_guest!
+
     session[:guest_user_id] = user.id
     user
   end

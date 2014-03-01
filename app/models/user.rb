@@ -42,8 +42,8 @@ class User < ActiveRecord::Base
 
   def self.create_guest!
     create! do |user|
-      user.name  = 'Guest'
-      user.guest = true
+      user.username  = 'Guest'
+      user.guest     = true
     end
   end
 
