@@ -63,12 +63,17 @@ guard :pow do
   watch(%r{^config/initializers/.*\.rb$})
 end
 
-guard 'migrate', run_on_start: false, test_clone: true, reset: true, seed: true do
+guard 'migrate', cmd: 'spring rake',
+                 run_on_start: false,
+                 test_clone: true,
+                 reset: true,
+                 seed: true do
   watch(%r{^db/migrate/(\d+).+\.rb})
   watch('db/seeds.rb')
 end
 
-guard 'annotate', show_indexes: true, show_migration: true do
+guard 'annotate', show_indexes: true,
+                  show_migration: true do
   watch( 'db/schema.rb' )
 
   # Uncomment the following line if you also want to run annotate anytime
