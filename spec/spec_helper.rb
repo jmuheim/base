@@ -1,8 +1,8 @@
 # Enable only on Travis, to prevent slowing down local specs.
 # See https://github.com/hamstergem/hamster/pull/79/files
 if ENV['TRAVIS']
-require 'coveralls'
-Coveralls.wear!
+  require 'coveralls'
+  Coveralls.wear!
 end
 
 ENV['RAILS_ENV'] ||= 'test'
@@ -106,4 +106,17 @@ RSpec.configure do |config|
 
   config.include EmailHelpers
   config.include EmailSteps, type: :feature
+end
+
+# Spring doesn't seem to reload FactoryGirl correctly
+RSpec.configure do |config|
+  config.before(:all) do
+    FactoryGirl.reload
+  end
+end
+
+RSpec.configure do |config|
+  config.filter_run focus: true # Use fit/xit to focus/filter specs!
+  config.run_all_when_everything_filtered = true
+  config.treat_symbols_as_metadata_keys_with_true_values = true
 end
