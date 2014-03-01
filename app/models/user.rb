@@ -27,6 +27,7 @@
 
 class User < ActiveRecord::Base
   rolify
+
   # Include default devise modules. Others available are:
   # :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -35,8 +36,16 @@ class User < ActiveRecord::Base
 
   attr_accessor :login
 
-  validates :username, presence: true,
-                       uniqueness: {case_sensitive: false}
+  validates :username, presence: true
+  validates :username, uniqueness: {case_sensitive: false},
+                       unless: -> { guest? }
+
+  def self.create_guest!
+    create! do |user|
+      user.name  = 'Guest'
+      user.guest = true
+    end
+  end
 
   # https://github.com/plataformatec/devise/wiki/How-To:-Allow-users-to-sign-in-using-their-username-or-email-address
   def self.find_first_by_auth_conditions(warden_conditions)
@@ -46,5 +55,15 @@ class User < ActiveRecord::Base
     else
       where(conditions).first
     end
+  end
+
+  private
+
+  def password_required?
+    !guest?
+  end
+
+  def email_required?
+    !guest?
   end
 end

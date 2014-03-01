@@ -26,11 +26,25 @@
 #
 
 FactoryGirl.define do
+  factory :guest, class: User do
+    username 'guest'
+    guest    true
+  end
+
   factory :user do
-    username              'john'
-    email                 Faker::Internet.email
+    username              'user'
+    email                 'user@example.com'
     password              's3cur3p@ssw0rd'
     password_confirmation 's3cur3p@ssw0rd'
     confirmed_at          Time.now
+
+    factory :admin do
+      username              'admin'
+      email                 'admin@example.com'
+
+      after(:create) do |user|
+        user.roles << create(:role, name: 'admin')
+      end
+    end
   end
 end
