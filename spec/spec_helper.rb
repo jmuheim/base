@@ -1,5 +1,9 @@
+# Enable only on Travis, to prevent slowing down local specs.
+# See https://github.com/hamstergem/hamster/pull/79/files
+if ENV['TRAVIS']
 require 'coveralls'
 Coveralls.wear!
+end
 
 ENV['RAILS_ENV'] ||= 'test'
 
