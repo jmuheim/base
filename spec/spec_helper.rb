@@ -108,13 +108,6 @@ RSpec.configure do |config|
   config.include EmailSteps, type: :feature
 end
 
-# Spring doesn't seem to reload FactoryGirl correctly
-RSpec.configure do |config|
-  config.before(:all) do
-    FactoryGirl.reload
-  end
-end
-
 RSpec.configure do |config|
   config.filter_run focus: true # Use fit/xit to focus/filter specs!
   config.run_all_when_everything_filtered = true
