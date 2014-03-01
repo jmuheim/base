@@ -1,17 +1,15 @@
 aside#mini_hub.panel.panel-default
-  - if @user.present?
-    .panel-heading Welcome, #{@user.username}!
+  .panel-heading Welcome, #{@user.username}!
 
+  - if @user.guest?
+    ul.list-group
+      li.list-group-item 
+        = link_to 'Login / register', new_user_session_path
+
+  - else
     ul.list-group
       li.list-group-item 
         = link_to 'Edit account', edit_user_registration_path
       li.list-group-item
         = link_to 'Log out', destroy_user_session_path, method: :delete
 
-  - else
-    .panel-heading
-      |You are not signed in.
-
-    ul.list-group
-      li.list-group-item 
-        = link_to 'Login / register', new_user_session_path

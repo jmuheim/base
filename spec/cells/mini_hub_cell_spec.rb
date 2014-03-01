@@ -3,7 +3,7 @@ require 'spec_helper'
 describe MiniHubCell do
 
   describe '#show' do
-    context 'user available' do
+    context 'user logged in' do
       before { @user = build_stubbed(:user) }
       subject { render_cell :mini_hub, :show, user: @user }
 
@@ -21,11 +21,12 @@ describe MiniHubCell do
     end
   end
 
-  context 'user not available' do
-    subject { render_cell :mini_hub, :show, user: nil }
+  context 'user not logged in (guest)' do
+    before { @guest = build_stubbed(:guest) }
+    subject { render_cell :mini_hub, :show, user: @guest }
 
-    it 'displays "Welcome, <username>"' do
-      should have_content 'You are not signed in.'
+    it 'displays "Welcome, guest"' do
+      should have_content 'Welcome, guest!'
     end
 
     it 'displays a link to login / register' do
