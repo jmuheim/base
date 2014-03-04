@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails', '4.0.3'
+gem 'i18n', github: 'svenfuchs/i18n'
 
 gem 'sqlite3' # Use sqlite3 as the database for Active Record
 
@@ -27,7 +28,7 @@ gem 'jbuilder', '~> 1.2' # Build JSON APIs with ease. Read more: https://github.
 
 # Flexible authentication solution
 gem 'devise'
-# gem 'devise-i18n' # Translations
+gem 'devise-i18n' # Translations
 
 gem 'cancancan' # Authorization library which restricts what resources a given user is allowed to access
 
