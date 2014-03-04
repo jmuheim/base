@@ -104,6 +104,26 @@ describe User do
     end
   end
 
+  describe 'scopes' do
+    describe '.default' do
+      it 'excludes guests' do
+        user = create :user
+        guest = create :guest
+
+        expect(User.all).to eq [user]
+      end
+    end
+
+    describe '.guests' do
+      it 'excludes guests' do
+        user = create :user
+        guest = create :guest
+
+        expect(User.guests).to eq [guest]
+      end
+    end
+  end
+
   describe 'abilities' do
     context 'when is an admin' do
       before  { @admin = create(:admin) }

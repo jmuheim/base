@@ -1,5 +1,4 @@
 # == Schema Information
-# Schema version: 20140301093233
 #
 # Table name: users
 #
@@ -26,14 +25,6 @@
 #  updated_at             :datetime
 #  guest                  :boolean          default(FALSE)
 #
-# Indexes
-#
-#  index_users_on_confirmation_token    (confirmation_token) UNIQUE
-#  index_users_on_email                 (email) UNIQUE
-#  index_users_on_reset_password_token  (reset_password_token) UNIQUE
-#  index_users_on_unlock_token          (unlock_token) UNIQUE
-#  index_users_on_username              (username)
-#
 
 class User < ActiveRecord::Base
   rolify
@@ -45,6 +36,8 @@ class User < ActiveRecord::Base
          :confirmable, :lockable, authentication_keys: [:login]
 
   default_scope { where(guest: false) }
+
+  scope :guests, unscoped.where(guest: true)
 
   attr_accessor :login
 
