@@ -1,5 +1,5 @@
 tr
-  td= user.username
+  td= user.name
   td= user.email
   td= user.roles.map(&:name).join ', '
   td
@@ -10,4 +10,3 @@ tr
       - if can? :destroy, user
         = link_to 'Destroy', user_path(user), method: :delete,
                                               data:   {confirm: 'Are you sure?'},
-                                              class:  'btn btn-default btn-xs'

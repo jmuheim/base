@@ -1,4 +1,5 @@
 - content_for :headline do
   | Listing users
 
+/ Would be nice to do something like `= render @users, wrapper: true`, see http://stackoverflow.com/questions/22120292
 = render 'users', users: @users
