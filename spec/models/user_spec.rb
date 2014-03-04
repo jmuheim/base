@@ -98,9 +98,9 @@ describe User do
     it 'creates a guest' do
       expect {
         User.create_guest!
-      }.to change(User, :count).by 1
+      }.to change { User.unscoped.count }.by 1
 
-      expect(User.last.guest?).to be_true
+      expect(User.unscoped.last.guest?).to be_true
     end
   end
 

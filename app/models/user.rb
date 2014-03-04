@@ -44,6 +44,8 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :confirmable, :lockable, authentication_keys: [:login]
 
+  default_scope { where(guest: false) }
+
   attr_accessor :login
 
   validates :username, presence: true
