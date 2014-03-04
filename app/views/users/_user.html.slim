@@ -9,4 +9,4 @@ tr
         = link_to 'Edit', edit_user_path(user), class: 'btn btn-default btn-xs'
       - if can? :destroy, user
         = link_to 'Destroy', user_path(user), method: :delete,
-                                              data:   {confirm: 'Are you sure?'},
+                                              data:   {confirm: 'Are you sure?'}
