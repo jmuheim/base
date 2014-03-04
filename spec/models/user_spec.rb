@@ -154,6 +154,15 @@ describe User do
 
       it { should_not be_able_to(:manage,  User.new) }
       it { should     be_able_to(:read,    User.new) }
+      it { should     be_able_to(:read,    User.new) }
+    end
+
+    context 'when is a normal user' do
+      before  { @user = create(:user) }
+      subject { Ability.new(@user) }
+
+      it { should_not be_able_to(:manage,  User.new) }
+      it { should     be_able_to(:read,    User.new) }
       it { should     be_able_to(:update,  @user) }
       it { should_not be_able_to(:destroy, @user) }
     end
