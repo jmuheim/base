@@ -7,14 +7,18 @@ class Ability
   def initialize(current_user)
     can :read, User
 
-    # Update himself
-    can :update, User do |user|
-      current_user == user
-    end
-
     unless current_user.guest?
+      # Update himself
+      can :update, User do |user|
+        current_user == user
+      end
+
       if current_user.has_role?(:admin)
         can :manage, User
+      end
+
+      cannot :destroy, User do |user|
+        user == current_user
       end
     end
   end
