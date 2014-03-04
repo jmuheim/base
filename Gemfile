@@ -1,6 +1,6 @@
 source 'http://rubygems.org' # FIXME: Use https!
 
-gem 'rails', '4.0.2'
+gem 'rails', '4.0.3'
 
 gem 'sqlite3' # Use sqlite3 as the database for Active Record
 
