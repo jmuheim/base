@@ -1,6 +1,12 @@
 tr
   td= user.username
   td= user.email
-  td= show_link_to user
-  td= edit_link_to user
-  td= destroy_link_to user
+  td
+    .btn-group
+      = link_to 'Show', user, class: 'btn btn-default btn-xs'
+      button.btn.btn-default.btn-xs.dropdown-toggle data-toggle="dropdown" type="button"
+        span.caret
+        span.sr-only Toggle Dropdown
+      ul.dropdown-menu role="menu"
+        li= link_to 'Edit', edit_user_path(user)
+        li= link_to 'Destroy', user_path(user), method: :delete, confirm: 'Are you sure?'

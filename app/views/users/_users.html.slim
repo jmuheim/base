@@ -2,9 +2,9 @@ table.table.table-striped
   tr
     th Name
     th Email
-    th colspan=3 Actions
+    th Actions
 
   = render users
 
 ul.actions
-  li= create_link_to User
+  li= link_to 'Create', new_user_path

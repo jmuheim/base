@@ -1,3 +1,6 @@
+- content_for :headline do
+  = @user.username
+
 ul.actions
-  li= edit_link_to @user
+  li= link_to 'Edit', edit_user_path(@user)
   li= link_to 'Back', users_path
