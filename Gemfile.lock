@@ -12,7 +12,7 @@ GIT
     rip_hashrocket (0.1.2)
 
 GEM
-  remote: http://rubygems.org/
+  remote: https://rubygems.org/
   specs:
     actionmailer (4.0.3)
       actionpack (= 4.0.3)
