@@ -8,8 +8,9 @@ Feature: Sign up
 
     Scenario: User signs up with valid data
       When I sign up with valid user data
-      Then I should see a confirmation has been sent message
-      And I should receive 1 email
+      Then I should see a welcome message
+      And  I should receive 1 email
+      And  I should be signed in
 
     Scenario: User signs up with invalid email
       When I sign up with an invalid email

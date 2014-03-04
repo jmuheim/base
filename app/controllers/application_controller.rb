@@ -9,6 +9,9 @@ class ApplicationController < ActionController::Base
 
   before_filter :configure_permitted_parameters, if: :devise_controller?
 
+  before_filter :init_guest_user, unless: -> { user_signed_in? }
+  attr_reader :guest_user
+
   # Guest accounts: in order to fix the problem with ajax requests you have to turn off protect_from_forgery for the
   # controller action with the ajax request.
   # See https://github.com/plataformatec/devise/wiki/How-To:-Create-a-guest-user)
@@ -21,24 +24,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_or_guest_user
-    if current_user
-      if session[:guest_user_id]
-        logging_in
-        guest_user.destroy
-        session[:guest_user_id] = nil
-      end
-      current_user
-    else
-      guest_user
-    end
-  end
-
-  def guest_user
-    @cached_guest_user ||= User.find(session[:guest_user_id] ||= create_guest_user.id)
-
-  rescue ActiveRecord::RecordNotFound # If session[:guest_user_id] is invalid
-     session[:guest_user_id] = nil
-     guest_user
+    current_user.presence || guest_user
   end
 
   protected
@@ -60,13 +46,12 @@ class ApplicationController < ActionController::Base
 
   private
 
-  def logging_in
-    # For example:
-    # guest_comments = guest_user.comments.all
-    # guest_comments.each do |comment|
-      # comment.user_id = current_user.id
-      # comment.save!
-    # end
+  def init_guest_user
+    @guest_user ||= User.find(session[:guest_user_id] ||= create_guest_user.id)
+
+  rescue ActiveRecord::RecordNotFound # If session[:guest_user_id] is invalid
+    session[:guest_user_id] = nil
+    init_guest_user
   end
 
   def create_guest_user

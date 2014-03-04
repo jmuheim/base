@@ -153,11 +153,13 @@ module UserSteps
   ### THEN ###
   step 'I should be signed in' do
     expect(page).to have_link 'Log out'
-    expect(page).not_to have_link 'Login / register'
+    expect(page).not_to have_link 'Login'
+    expect(page).not_to have_link 'Register'
   end
 
   step 'I should be signed out' do
-    expect(page).to have_link 'Login / register'
+    expect(page).not_to have_link 'Login'
+    expect(page).not_to have_link 'Register'
     expect(page).not_to have_link 'Log out'
   end
 
@@ -169,8 +171,8 @@ module UserSteps
     expect(page).to have_content 'Signed in successfully.'
   end
 
-  step 'I should see a confirmation has been sent message' do
-    expect(page).to have_content 'A message with a confirmation link has been sent to your email address. Please open the link to activate your account.'
+  step 'I should see a welcome message' do
+    expect(page).to have_content 'You have signed up successfully.'
   end
 
   step 'I should see a successful confirmed message' do

@@ -29,8 +29,12 @@ describe MiniHubCell do
       should have_content 'Welcome, guest!'
     end
 
-    it 'displays a link to login / register' do
-      should have_link 'Login / register', href: new_user_session_path
+    it 'displays a link to login' do
+      should have_link 'Sign in', href: new_user_session_path
+    end
+
+    it 'displays a link to register' do
+      should have_link 'Sign up', href: new_user_registration_path
     end
   end
 

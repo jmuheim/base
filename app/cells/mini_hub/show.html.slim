@@ -3,8 +3,10 @@ aside#mini_hub.panel.panel-default
 
   - if @user.guest?
     ul.list-group
-      li.list-group-item 
-        = link_to 'Login / register', new_user_session_path
+      li.list-group-item
+        = link_to 'Sign in', new_user_session_path
+      li.list-group-item
+        = link_to 'Sign up', new_user_registration_path
 
   - else
     ul.list-group
