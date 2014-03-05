@@ -6,4 +6,14 @@
         - @user.errors.full_messages.each do |message|
           li = message
 
-  .actions = f.submit 'Save'
+  = f.input :username, autofocus: true
+  = f.input :email, as: :email
+
+  / (leave blank if you don't want to change it)
+  = f.input :password, autocomplete: 'off'
+  = f.input :password_confirmation
+
+  / (we need your current password to confirm your changes)
+  = f.input :current_password
+
+  .actions = f.button :submit, 'Save'
