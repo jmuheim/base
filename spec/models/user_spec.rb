@@ -3,7 +3,7 @@
 # Table name: users
 #
 #  id                     :integer          not null, primary key
-#  username               :string(255)
+#  name               :string(255)
 #  email                  :string(255)
 #  encrypted_password     :string(255)
 #  reset_password_token   :string(255)
@@ -29,8 +29,8 @@
 require 'spec_helper'
 
 describe User do
-  it { should validate_presence_of(:username).with_message "can't be blank" }
-  it { create(:user); should validate_uniqueness_of(:username).case_insensitive }
+  it { should validate_presence_of(:name).with_message "can't be blank" }
+  it { create(:user); should validate_uniqueness_of(:name).case_insensitive }
 
   it 'has a valid factory' do
     expect(create(:user)).to be_valid
@@ -42,16 +42,16 @@ describe User do
       @guest.valid?
     end
 
-    it 'validates presence of username' do
-      @guest.username = nil
-      expect(@guest).to have(1).error_on(:username)
+    it 'validates presence of name' do
+      @guest.name = nil
+      expect(@guest).to have(1).error_on(:name)
     end
 
-    it 'does not validate uniqueness of username' do
-      create :guest, username: 'guest'
-      @guest.username = 'guest'
+    it 'does not validate uniqueness of name' do
+      create :guest, name: 'guest'
+      @guest.name = 'guest'
 
-      expect(@guest).to have(0).error_on(:username)
+      expect(@guest).to have(0).error_on(:name)
     end
 
     it 'does not validate presence of email' do
@@ -71,16 +71,16 @@ describe User do
       @guest.valid?
     end
 
-    it 'validates presence of username' do
-      @guest.username = nil
-      expect(@guest).to have(1).error_on(:username)
+    it 'validates presence of name' do
+      @guest.name = nil
+      expect(@guest).to have(1).error_on(:name)
     end
 
-    it 'validates uniqueness of username' do
-      create :user, username: 'josh'
-      @guest.username = 'josh'
+    it 'validates uniqueness of name' do
+      create :user, name: 'josh'
+      @guest.name = 'josh'
 
-      expect(@guest).to have(1).error_on(:username)
+      expect(@guest).to have(1).error_on(:name)
     end
 
     it 'validates presence of email' do

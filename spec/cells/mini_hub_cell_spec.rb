@@ -7,8 +7,8 @@ describe MiniHubCell do
       before { @user = build_stubbed(:user) }
       subject { render_cell :mini_hub, :show, user: @user }
 
-      it 'displays "Welcome, <username>"' do
-        should have_content "Welcome, #{@user.username}!"
+      it 'displays "Welcome, <name>"' do
+        should have_content "Welcome, #{@user.name}!"
       end
 
       it "displays a link to edit the user's account" do

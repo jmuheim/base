@@ -4,7 +4,7 @@
 # Table name: users
 #
 #  id                     :integer          not null, primary key
-#  username               :string(255)
+#  name               :string(255)
 #  email                  :string(255)
 #  encrypted_password     :string(255)
 #  reset_password_token   :string(255)
@@ -32,7 +32,7 @@
 #  index_users_on_email                 (email) UNIQUE
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #  index_users_on_unlock_token          (unlock_token) UNIQUE
-#  index_users_on_username              (username)
+#  index_users_on_name              (name)
 #
 
 class User < ActiveRecord::Base
@@ -46,13 +46,13 @@ class User < ActiveRecord::Base
 
   attr_accessor :login
 
-  validates :username, presence: true
-  validates :username, uniqueness: {case_sensitive: false},
-                       unless: -> { guest? }
+  validates :name, presence: true
+  validates :name, uniqueness: {case_sensitive: false},
+                   unless: -> { guest? }
 
   def self.create_guest!
     create! do |user|
-      user.username  = 'guest'
+      user.name  = 'guest'
       user.guest     = true
     end
   end
@@ -61,7 +61,7 @@ class User < ActiveRecord::Base
   def self.find_first_by_auth_conditions(warden_conditions)
     conditions = warden_conditions.dup
     if login = conditions.delete(:login)
-      where(conditions).where(['lower(username) = :value OR lower(email) = :value', { value: login.downcase }]).first
+      where(conditions).where(['lower(name) = :value OR lower(email) = :value', { value: login.downcase }]).first
     else
       where(conditions).first
     end
