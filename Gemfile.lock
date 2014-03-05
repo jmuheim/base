@@ -260,6 +260,8 @@ GEM
     pry-remote (0.1.8)
       pry (~> 0.9)
       slop (~> 3.0)
+    pry-remote-auto (1.2.0)
+      pry-remote
     pry-stack_explorer (0.4.9.1)
       binding_of_caller (>= 0.7)
       pry (>= 0.9.11)
@@ -436,6 +438,7 @@ DEPENDENCIES
   listen
   poltergeist
   powder
+  pry-remote-auto
   quiet_assets
   rack-livereload
   rails (= 4.0.3)

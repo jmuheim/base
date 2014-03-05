@@ -51,7 +51,9 @@ group :development, :test do
 
   gem 'factory_girl_rails' # Test data generator
 
-  gem 'jazz_hands' # Use Pry and its extensions instead of IRB
+  # Use Pry and its extensions instead of IRB
+  gem 'jazz_hands'
+  gem 'pry-remote-auto' # Automatically opens a remote pry session in a terminal
 
   gem 'ffaker' # Generates realistic fake data
 end
