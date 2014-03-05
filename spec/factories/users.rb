@@ -3,7 +3,7 @@
 # Table name: users
 #
 #  id                     :integer          not null, primary key
-#  name               :string(255)
+#  name                   :string(255)
 #  email                  :string(255)
 #  encrypted_password     :string(255)
 #  reset_password_token   :string(255)
@@ -29,9 +29,9 @@
 #
 #  index_users_on_confirmation_token    (confirmation_token) UNIQUE
 #  index_users_on_email                 (email) UNIQUE
+#  index_users_on_name                  (name) UNIQUE
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #  index_users_on_unlock_token          (unlock_token) UNIQUE
-#  index_users_on_name              (name)
 #
 
 FactoryGirl.define do

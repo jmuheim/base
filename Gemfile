@@ -111,7 +111,7 @@ group :test do
 
   gem 'turnip'
 
-  gem 'guard-migrate' # Automatically run migrations when they are edited
+  gem 'guard-migrate', git: 'git://github.com/glanotte/guard-migrate' # Automatically run migrations when they are edited
 
   gem 'capybara-screenshot' # Automatically save screen shots when a scenario fails
 

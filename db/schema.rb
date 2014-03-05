@@ -50,9 +50,9 @@ ActiveRecord::Schema.define(version: 20140301093233) do
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
   add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["name"], name: "index_users_on_name", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", unique: true
-  add_index "users", ["name"], name: "index_users_on_name"
 
   create_table "users_roles", id: false, force: true do |t|
     t.integer "user_id"
