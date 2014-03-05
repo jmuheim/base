@@ -5,7 +5,7 @@ Feature: Sign in
 
     Scenario: User is not signed up
       Given I do not exist as a user
-      When I sign in with valid username and password
+      When I sign in with valid name and password
       Then I see an invalid login message
       And I should be signed out
 
@@ -17,10 +17,10 @@ Feature: Sign in
       When I return to the site
       Then I should be signed in
 
-    Scenario: User signs in successfully using username
+    Scenario: User signs in successfully using name
       Given I exist as a user
       And I am not logged in
-      When I sign in with valid username and password
+      When I sign in with valid name and password
       Then I see a successful sign in message
       When I return to the site
       Then I should be signed in

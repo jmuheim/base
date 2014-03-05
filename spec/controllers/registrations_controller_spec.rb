@@ -8,7 +8,7 @@ describe RegistrationsController do
     context 'valid input' do
       it 'creates a user and deletes the guest user' do
         expect {
-          post 'create', user: { username:              'josh',
+          post 'create', user: { name:                  'josh',
                                  email:                 'josh@example.com',
                                  password:              'joshjosh',
                                  password_confirmation: 'joshjosh'

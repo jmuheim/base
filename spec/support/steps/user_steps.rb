@@ -1,7 +1,7 @@
 ### UTILITY METHODS ###
 
 def create_visitor
-  @visitor ||= { username: 'Testy McUserton',
+  @visitor ||= { name: 'Testy McUserton',
                  email: 'example@example.com',
                  password: 'changeme',
                  password_confirmation: 'changeme'
@@ -25,7 +25,7 @@ end
 
 def sign_up
   visit '/users/sign_up'
-  fill_in 'user_username', with: @visitor[:username]
+  fill_in 'user_name', with: @visitor[:name]
   fill_in 'user_email', with: @visitor[:email]
   fill_in 'user_password', with: @visitor[:password]
   fill_in 'user_password_confirmation', with: @visitor[:password_confirmation]
@@ -40,9 +40,9 @@ def sign_in_using_email
   click_button 'Sign in'
 end
 
-def sign_in_using_username
+def sign_in_using_name
   visit '/users/sign_in'
-  fill_in 'user_login', with: @visitor[:username]
+  fill_in 'user_login', with: @visitor[:name]
   fill_in 'user_password', with: @visitor[:password]
   click_button 'Sign in'
 end
@@ -72,9 +72,9 @@ module UserSteps
   end
 
   ### WHEN ###
-  step 'I sign in with valid username and password' do
+  step 'I sign in with valid name and password' do
     create_visitor
-    sign_in_using_username
+    sign_in_using_name
   end
 
   step 'I sign in with valid email and password' do
@@ -126,12 +126,12 @@ module UserSteps
 
   step 'I sign in with a wrong password' do
     @visitor = @visitor.merge(password: 'wrongpass')
-    sign_in_using_username
+    sign_in_using_name
   end
 
   step 'I edit my account details' do
     click_link 'Edit account'
-    fill_in 'user_username', with: 'newname'
+    fill_in 'user_name', with: 'newname'
     fill_in 'user_current_password', with: @visitor[:password]
     click_button 'Update'
   end
