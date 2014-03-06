@@ -39,28 +39,44 @@ describe User do
   describe 'creating a guest' do
     before do
       @guest = build :guest
-      @guest.valid?
     end
 
     it 'validates presence of name' do
-      @guest.name = nil
+      pending 'Stubbing does not work, see http://stackoverflow.com/questions/22218538'
+      @guest.stub(:set_guest_name) # Disable auto-setting name so validation kicks in
       expect(@guest).to have(1).error_on(:name)
+    end
+
+    it 'sets the name to "guest-123"' do
+      @guest.valid?
+      expect(@guest.name).to eq 'guest-1'
+
+      create :user, guest: true
+      @guest.valid?
+      expect(@guest.name).to eq 'guest-2'
+
+      create :user
+      @guest.valid?
+      expect(@guest.name).to eq 'guest-2'
     end
 
     it 'does not validate uniqueness of name' do
       create :guest, name: 'guest'
       @guest.name = 'guest'
+      @guest.valid?
 
       expect(@guest).to have(0).error_on(:name)
     end
 
     it 'does not validate presence of email' do
       @guest.email = nil
+      @guest.valid?
       expect(@guest).to have(0).errors_on(:email)
     end
 
     it 'does not validate presence of password' do
       @guest.password = nil
+      @guest.valid?
       expect(@guest).to have(0).errors_on(:password)
     end
   end
@@ -94,26 +110,19 @@ describe User do
     end
   end
 
-  describe '.create_guest!' do
-    it 'creates a guest' do
-      expect {
-        User.create_guest!
-      }.to change { User.unscoped.count }.by 1
-
-      expect(User.unscoped.last.guest?).to be_true
+  describe '#display_name' do
+    describe 'when is a guest' do
+      it 'returns "guest"' do
+        guest = create :guest
+        expect(guest.display_name).to eq 'guest'
+      end
     end
 
-    it 'sets the name to "guest-123"' do
-      first_guest = User.create_guest!
-      expect(first_guest.name).to eq 'guest-1'
-
-      second_guest = User.create_guest!
-      expect(second_guest.name).to eq 'guest-2'
-
-      create :user
-
-      third_guest = User.create_guest!
-      expect(third_guest.name).to eq 'guest-3'
+    describe 'when is a registered user' do
+      it "returns the user's name" do
+        user = create :user
+        expect(user.display_name).to eq user.name
+      end
     end
   end
 
@@ -146,16 +155,7 @@ describe User do
       it { should     be_able_to(:read,    User.new) }
     end
 
-    context 'when is a normal user' do
-      before  { @user = create(:user) }
-      subject { Ability.new(@user) }
-
-      it { should_not be_able_to(:manage,  User.new) }
-      it { should     be_able_to(:read,    User.new) }
-      it { should     be_able_to(:read,    User.new) }
-    end
-
-    context 'when is a normal user' do
+    context 'when is a registered user' do
       before  { @user = create(:user) }
       subject { Ability.new(@user) }
 

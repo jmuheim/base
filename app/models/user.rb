@@ -50,16 +50,11 @@ class User < ActiveRecord::Base
 
   attr_accessor :login
 
+  before_validation :set_guest_name, if: -> { guest? }
+
   validates :name, presence: true
   validates :name, uniqueness: {case_sensitive: false},
                    unless: -> { guest? }
-
-  def self.create_guest!
-    create! do |user|
-      user.name  = "guest-#{guests.maximum(:id).next rescue 1}"
-      user.guest = true
-    end
-  end
 
   # https://github.com/plataformatec/devise/wiki/How-To:-Allow-users-to-sign-in-using-their-username-or-email-address
   def self.find_first_by_auth_conditions(warden_conditions)
@@ -71,6 +66,10 @@ class User < ActiveRecord::Base
     end
   end
 
+  def display_name
+    guest? ? 'guest' : name
+  end
+
   private
 
   def password_required?
@@ -79,5 +78,9 @@ class User < ActiveRecord::Base
 
   def email_required?
     !guest?
+  end
+
+  def set_guest_name
+    self.name = "guest-#{self.class.guests.maximum(:id).next rescue 1}"
   end
 end

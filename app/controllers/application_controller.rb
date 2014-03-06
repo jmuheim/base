@@ -55,7 +55,7 @@ class ApplicationController < ActionController::Base
   end
 
   def create_guest_user
-    user = User.create_guest!
+    user = User.create! guest: true
 
     session[:guest_user_id] = user.id
     user

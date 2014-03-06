@@ -42,8 +42,9 @@ FactoryGirl.define do
   end
 
   factory :user do
-    name                  'user'
-    email                 'user@example.com'
+    # Ffaker calls need to be in block?! See https://github.com/EmmanuelOga/ffaker/issues/121
+    name                  { Faker::Name.name }
+    email                 { Faker::Internet.email }
     password              's3cur3p@ssw0rd'
     password_confirmation 's3cur3p@ssw0rd'
     confirmed_at          Time.now

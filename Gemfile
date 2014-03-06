@@ -49,7 +49,9 @@ end
 group :development, :test do
   gem 'rspec-rails' # Testing tool for the Ruby programming language
 
+  # Data generation
   gem 'factory_girl_rails' # Test data generator
+  gem 'ffaker'             # Easily generate fake data
 
   # Use Pry and its extensions instead of IRB
   gem 'jazz_hands'
