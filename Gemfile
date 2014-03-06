@@ -56,7 +56,8 @@ group :development, :test do
   gem 'ffaker'             # Easily generate fake data
 
   # Use Pry and its extensions instead of IRB
-  gem 'jazz_hands'
+  gem 'jazz_hands', github: 'nixme/jazz_hands', branch: 'bring-your-own-debugger'
+  gem 'pry-byebug'      # Pry navigation commands via debugger (formerly ruby-debug)
   gem 'pry-remote-auto' # Automatically opens a remote pry session in a terminal
 
   gem 'ffaker' # Generates realistic fake data
