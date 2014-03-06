@@ -1,4 +1,5 @@
 # == Schema Information
+# Schema version: 20140301093233
 #
 # Table name: users
 #
@@ -24,6 +25,14 @@
 #  created_at             :datetime
 #  updated_at             :datetime
 #  guest                  :boolean          default(FALSE)
+#
+# Indexes
+#
+#  index_users_on_confirmation_token    (confirmation_token) UNIQUE
+#  index_users_on_email                 (email) UNIQUE
+#  index_users_on_name                  (name) UNIQUE
+#  index_users_on_reset_password_token  (reset_password_token) UNIQUE
+#  index_users_on_unlock_token          (unlock_token) UNIQUE
 #
 
 class User < ActiveRecord::Base
