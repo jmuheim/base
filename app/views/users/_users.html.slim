@@ -8,4 +8,5 @@ table.table.table-striped
   = render users
 
 ul.actions
-  li= link_to 'Create', new_user_path
+  - if can? :create, User
+    li= link_to 'Create', new_user_path
