@@ -37,7 +37,7 @@ class User < ActiveRecord::Base
 
   default_scope { where(guest: false) }
 
-  scope :guests, unscoped.where(guest: true)
+  scope :guests, -> { unscoped.where(guest: true) }
 
   attr_accessor :login
 
