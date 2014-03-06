@@ -220,7 +220,7 @@ module UserSteps
     FactoryGirl.create :user, name: name
   end
 
-  step 'I try to visit the form for the user details of :name' do |name|
+  step 'I try to request the edit page for the user :name' do |name|
     visit edit_user_path User.find_by(name: name)
   end
 
@@ -231,5 +231,26 @@ module UserSteps
   step 'access should be denied' do
     expect(page).to have_content '403 - Forbidden'
     expect(page.driver.status_code).to eq 403
+  end
+
+  step 'I try to request the deletion of user :name' do |name|
+    user = User.find_by(name: name)
+
+    # Send delete request using capybara, see http://makandracards.com/makandra/18023-trigger-a-delete-request-with-capybara
+    case page.driver
+    when Capybara::RackTest::Driver
+      page.driver.submit :delete, send('user_path', user), {}
+    else # e.g. Capybara::Selenium::Driver
+      visit send('user_path', user, { method: :delete })
+    end
+  end
+
+  step 'I cancel my account' do
+    click_link 'Edit account'
+    click_button 'Cancel my account'
+  end
+
+  step 'I should see a good bye message' do
+    expect(page).to have_content 'Bye! Your account was successfully cancelled. We hope to see you again soon.'
   end
 end
