@@ -42,6 +42,8 @@ gem 'cells' # View components
 
 gem 'simple_form' # Forms made easy for Rails
 
+gem 'gaffe' # Handles Rails error pages in a clean, simple way
+
 group :doc do
   gem 'sdoc', require: false # bundle exec rake doc:rails generates the API under doc/api.
 end
@@ -49,10 +51,13 @@ end
 group :development, :test do
   gem 'rspec-rails' # Testing tool for the Ruby programming language
 
+  # Data generation
   gem 'factory_girl_rails' # Test data generator
+  gem 'ffaker'             # Easily generate fake data
 
   # Use Pry and its extensions instead of IRB
-  gem 'jazz_hands'
+  gem 'jazz_hands', github: 'nixme/jazz_hands', branch: 'bring-your-own-debugger'
+  gem 'pry-byebug'      # Pry navigation commands via debugger (formerly ruby-debug)
   gem 'pry-remote-auto' # Automatically opens a remote pry session in a terminal
 
   gem 'ffaker' # Generates realistic fake data
@@ -68,9 +73,9 @@ group :development do
   gem 'xray-rails' # Reveals your UI's bones with Cmd-X/Ctrl-X
 
   # Rails application preloader
-  gem 'spring', github: 'guard/spring', branch: 'listen2'
+  gem 'spring', github: 'guard/spring', branch: 'listen2' # https://github.com/rails/spring/pull/194
   gem 'spring-commands-rspec' # Commands for RSpec
-  gem 'listen'
+  gem 'listen'                # Event based file system listening (instead of polling)
 
   # Guard: automatically run commands when files are changed
   gem 'guard-rspec', require: false      # Automatically run tests
@@ -79,6 +84,7 @@ group :development do
   gem 'guard-pow', require: false        # Automatically manage Pow applications restart
   gem 'guard-bundler'                    # Automatically install/update gem bundle when needed
   gem 'guard-annotate'                   # Automatically run the annotate gem when needed
+  gem 'guard-migrate'                    # Automatically run migrations when they are edited
 
   gem 'powder', require: false # Configure POW server easily
 
@@ -112,8 +118,6 @@ group :test do
   gem 'selenium-webdriver' # Selenium webdriver (needed to use Chrome driver)
 
   gem 'turnip'
-
-  gem 'guard-migrate', git: 'git://github.com/glanotte/guard-migrate' # Automatically run migrations when they are edited
 
   gem 'capybara-screenshot' # Automatically save screen shots when a scenario fails
 

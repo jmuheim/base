@@ -11,14 +11,16 @@ describe ApplicationController do
     it 'creates a guest user for a first request' do
       expect {
         get :index
-      }.to change(User, :count).from(0).to 1
+      }.to change { User.unscoped.count }.from(0).to 1
+
+      expect(User.unscoped.last).to be_guest
     end
 
     it 'finds the guest user for a subsequent request' do
       get :index
       expect {
         get :index
-      }.not_to change(User, :count)
+      }.not_to change { User.unscoped.count }
     end
 
     it 'creates a new guest user if the previously existing one vanished' do
@@ -29,7 +31,9 @@ describe ApplicationController do
 
       expect {
         get :index
-      }.to change(User, :count).from(1).to 2
+      }.to change { User.unscoped.count }.from(1).to 2
+
+      expect(User.unscoped.last).to be_guest
     end
   end
 end

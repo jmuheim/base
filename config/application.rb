@@ -32,5 +32,7 @@ module Base
     end
 
     I18n.enforce_available_locales = true
+
+    config.action_dispatch.rescue_responses.merge! 'CanCan::AccessDenied' => :forbidden
   end
 end

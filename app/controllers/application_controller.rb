@@ -17,16 +17,6 @@ class ApplicationController < ActionController::Base
   # See https://github.com/plataformatec/devise/wiki/How-To:-Create-a-guest-user)
   # skip_before_filter :verify_authenticity_token, only: [:name_of_your_action]
 
-  helper_method :current_or_guest_user
-
-  def current_ability
-    @current_ability ||= Ability.new(current_or_guest_user)
-  end
-
-  def current_or_guest_user
-    current_user.presence || guest_user
-  end
-
   protected
 
   # https://github.com/plataformatec/devise/wiki/How-To:-Allow-users-to-sign-in-using-their-username-or-email-address
@@ -46,17 +36,19 @@ class ApplicationController < ActionController::Base
 
   private
 
-  def init_guest_user
-    @guest_user ||= User.find(session[:guest_user_id] ||= create_guest_user.id)
+  def user_signed_in?
+    current_user.present? ? !current_user.guest? : super
+  end
 
+  def init_guest_user
+    @guest_user = @current_user = User.guests.find(session[:guest_user_id] ||= create_guest_user.id)
   rescue ActiveRecord::RecordNotFound # If session[:guest_user_id] is invalid
     session[:guest_user_id] = nil
     init_guest_user
   end
 
   def create_guest_user
-    user = User.create_guest!
-
+    user = User.create! guest: true
     session[:guest_user_id] = user.id
     user
   end
