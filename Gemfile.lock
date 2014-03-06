@@ -1,11 +1,4 @@
 GIT
-  remote: git://github.com/glanotte/guard-migrate
-  revision: b48f730412475b67df3c168a8d5e62a142ace580
-  specs:
-    guard-migrate (1.0.1)
-      guard (>= 2.3.0)
-
-GIT
   remote: git://github.com/guard/spring.git
   revision: 85c4e5db03bf10ee515e8bd72652bd1ac280f548
   branch: listen2
@@ -188,6 +181,8 @@ GEM
       em-websocket (~> 0.5)
       guard (~> 2.0)
       multi_json (~> 1.8)
+    guard-migrate (1.0.2)
+      guard (>= 2.3.0)
     guard-pow (2.0.0)
       guard (~> 2.0)
     guard-rspec (4.2.7)
@@ -431,7 +426,7 @@ DEPENDENCIES
   guard-annotate
   guard-bundler
   guard-livereload
-  guard-migrate!
+  guard-migrate
   guard-pow
   guard-rspec
   has_scope

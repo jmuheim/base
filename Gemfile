@@ -84,6 +84,7 @@ group :development do
   gem 'guard-pow', require: false        # Automatically manage Pow applications restart
   gem 'guard-bundler'                    # Automatically install/update gem bundle when needed
   gem 'guard-annotate'                   # Automatically run the annotate gem when needed
+  gem 'guard-migrate'                    # Automatically run migrations when they are edited
 
   gem 'powder', require: false # Configure POW server easily
 
@@ -117,8 +118,6 @@ group :test do
   gem 'selenium-webdriver' # Selenium webdriver (needed to use Chrome driver)
 
   gem 'turnip'
-
-  gem 'guard-migrate', git: 'git://github.com/glanotte/guard-migrate' # Automatically run migrations when they are edited
 
   gem 'capybara-screenshot' # Automatically save screen shots when a scenario fails
 
