@@ -37,8 +37,7 @@
 
 FactoryGirl.define do
   factory :guest, class: User do
-    name 'guest'
-    guest    true
+    guest true
   end
 
   factory :user do

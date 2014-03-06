@@ -37,76 +37,67 @@ describe User do
   end
 
   describe 'creating a guest' do
-    before do
-      @guest = build :guest
-    end
-
     it 'validates presence of name' do
-      pending 'Stubbing does not work, see http://stackoverflow.com/questions/22218538'
+      @guest = build :guest, name: nil
       @guest.stub(:set_guest_name) # Disable auto-setting name so validation kicks in
       expect(@guest).to have(1).error_on(:name)
     end
 
     it 'sets the name to "guest-123"' do
-      @guest.valid?
-      expect(@guest.name).to eq 'guest-1'
+      @guest = build :guest
 
-      create :user, guest: true
-      @guest.valid?
-      expect(@guest.name).to eq 'guest-2'
+      expect { @guest.valid? }.to change { @guest.name }.from(nil).to 'guest-1'
 
-      create :user
-      @guest.valid?
-      expect(@guest.name).to eq 'guest-2'
+      expect {
+        create :user, guest: true
+        @guest.valid?
+      }.to change { @guest.name }.from('guest-1').to 'guest-2'
+
+      expect {
+        @guest.valid?
+        create :user
+      }.not_to change { @guest.name }
     end
 
     it 'does not validate uniqueness of name' do
       create :guest, name: 'guest'
-      @guest.name = 'guest'
-      @guest.valid?
+      @guest = build :guest, name: 'guest'
 
       expect(@guest).to have(0).error_on(:name)
     end
 
     it 'does not validate presence of email' do
-      @guest.email = nil
-      @guest.valid?
+      @guest = build :guest, email: nil
       expect(@guest).to have(0).errors_on(:email)
     end
 
     it 'does not validate presence of password' do
-      @guest.password = nil
-      @guest.valid?
+      @guest = build :guest, password: nil
       expect(@guest).to have(0).errors_on(:password)
     end
   end
 
   describe 'creating a user' do
-    before do
-      @guest = build :user
-      @guest.valid?
-    end
-
     it 'validates presence of name' do
-      @guest.name = nil
-      expect(@guest).to have(1).error_on(:name)
+      @user = build :user, name: nil
+      expect(@user).to have(1).error_on(:name)
     end
 
     it 'validates uniqueness of name' do
       create :user, name: 'josh'
-      @guest.name = 'josh'
+      @user = build :user, name: 'josh'
 
-      expect(@guest).to have(1).error_on(:name)
+      expect(@user).to have(1).error_on(:name)
     end
 
     it 'validates presence of email' do
-      @guest.email = nil
-      expect(@guest).to have(1).error_on(:email)
+      @user = build :user, email: nil
+      expect(@user).to have(1).error_on(:email)
     end
 
     it 'validates presence of password' do
-      @guest.password = nil
-      expect(@guest).to have(1).error_on(:password)
+      @user = build :user, password: nil
+      expect(@user).to have(1).error_on(:password)
     end
   end
 
