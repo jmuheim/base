@@ -22,6 +22,8 @@
 - `$ powder install`
 - `$ powder link`
 
+You can use [direnv](https://github.com/zimbatm/direnv) to automatically add `bin` to your `$PATH`. Otherwise you should always use `bundle exec` to run commands.
+
 ### Developing
 
 - `$ powder open` opens [http://base.dev/](http://base.dev/) in the browser.
