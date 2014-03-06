@@ -32,5 +32,7 @@ module Base
     end
 
     I18n.enforce_available_locales = true
+
+    config.exceptions_app = self.routes
   end
 end

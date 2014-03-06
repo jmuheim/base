@@ -50,7 +50,7 @@ module UserSteps
     visit '/users/sign_out' # TODO: Use sign_out(current_user)?
   end
 
-  step 'I am logged in' do
+  step 'I am logged in as user' do
     create_user
     login_as(@user)
     visit root_path
@@ -193,5 +193,17 @@ module UserSteps
 
   step 'I should see my name' do
     expect(page).to have_content @user.name
+  end
+
+  step 'a user :name exists' do |name|
+    FactoryGirl.create :user, name: name
+  end
+
+  step 'I try to edit the account details of :name' do |name|
+    visit edit_user_path User.find_by(name: name)
+  end
+
+  step 'I should see an access denied message' do
+    expect(page).to have_content '403 - Forbidden'
   end
 end

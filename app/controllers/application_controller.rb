@@ -21,6 +21,10 @@ class ApplicationController < ActionController::Base
     @current_ability ||= Ability.new(current_user)
   end
 
+  rescue_from CanCan::AccessDenied do |exception|
+    render file: "#{Rails.root}/public/403", formats: [:html], status: 403
+  end
+
   protected
 
   # https://github.com/plataformatec/devise/wiki/How-To:-Allow-users-to-sign-in-using-their-username-or-email-address
