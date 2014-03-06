@@ -42,6 +42,8 @@ gem 'cells' # View components
 
 gem 'simple_form' # Forms made easy for Rails
 
+gem 'gaffe' # Handles Rails error pages in a clean, simple way
+
 group :doc do
   gem 'sdoc', require: false # bundle exec rake doc:rails generates the API under doc/api.
 end

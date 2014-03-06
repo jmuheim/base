@@ -33,6 +33,6 @@ module Base
 
     I18n.enforce_available_locales = true
 
-    config.exceptions_app = self.routes
+    config.action_dispatch.rescue_responses.merge! 'CanCan::AccessDenied' => :forbidden
   end
 end
