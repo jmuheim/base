@@ -3,3 +3,7 @@
 
 / Would be nice to do something like `= render @users, wrapper: true`, see http://stackoverflow.com/questions/22120292
 = render 'users', users: @users
+
+ul.actions
+  - if can? :create, User
+    li= link_to new_user_path
