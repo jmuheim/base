@@ -210,7 +210,7 @@ GEM
     json (1.8.1)
     launchy (2.4.2)
       addressable (~> 2.3)
-    listen (2.6.2)
+    listen (2.7.0)
       celluloid (>= 0.15.2)
       celluloid-io (>= 0.15.0)
       rb-fsevent (>= 0.9.3)
