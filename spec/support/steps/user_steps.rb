@@ -1,61 +1,58 @@
-### UTILITY METHODS ###
-
-def create_visitor
-  @visitor ||= { name: 'Testy McUserton',
-                 email: 'example@example.com',
-                 password: 'changeme',
-                 password_confirmation: 'changeme'
-               }
-end
-
-def find_user
-  @user ||= User.where(email: @visitor[:email]).first
-end
-
 def create_unconfirmed_user
-  create_visitor
   sign_up
   visit '/users/sign_out'
 end
 
 def create_user
-  create_visitor
-  @user = FactoryGirl.create(:user, @visitor)
+  @user ||= FactoryGirl.create :user, name: 'Testy McUserton',
+                                      email: 'example@example.com',
+                                      password: 'changeme',
+                                      password_confirmation: 'changeme'
 end
 
-def sign_up
+def sign_up(options = {})
+  options.reverse_merge! name:                  'Testy McUserton',
+                 email:                 'example@example.com',
+                 password:              'changeme',
+                 password_confirmation: 'changeme'
+
   visit '/users/sign_up'
-  fill_in 'user_name', with: @visitor[:name]
-  fill_in 'user_email', with: @visitor[:email]
-  fill_in 'user_password', with: @visitor[:password]
-  fill_in 'user_password_confirmation', with: @visitor[:password_confirmation]
+  fill_in 'user_name',                  with: options[:name]
+  fill_in 'user_email',                 with: options[:email]
+  fill_in 'user_password',              with: options[:password]
+  fill_in 'user_password_confirmation', with: options[:password_confirmation]
   click_button 'Sign up'
-  find_user
 end
 
-def sign_in_using_email
+def sign_in_using_email(options = {})
+  options.reverse_merge! email: 'example@example.com',
+                 password: 'changeme'
+
   visit '/users/sign_in'
-  fill_in 'user_login', with: @visitor[:email]
-  fill_in 'user_password', with: @visitor[:password]
+  fill_in 'user_login',    with: options[:email]
+  fill_in 'user_password', with: options[:password]
   click_button 'Sign in'
 end
 
-def sign_in_using_name
+def sign_in_using_name(options = {})
+  options.reverse_merge! name: 'Testy McUserton',
+                 password: 'changeme'
+
   visit '/users/sign_in'
-  fill_in 'user_login', with: @visitor[:name]
-  fill_in 'user_password', with: @visitor[:password]
+  fill_in 'user_login',    with: options[:name]
+  fill_in 'user_password', with: options[:password]
   click_button 'Sign in'
 end
 
 module UserSteps
   ### GIVEN ###
   step 'I am not logged in' do
-    visit '/users/sign_out'
+    visit '/users/sign_out' # TODO: Use sign_out(current_user)?
   end
 
   step 'I am logged in' do
-    create_visitor
-    @user = sign_in!
+    create_user
+    login_as(@user)
     visit root_path
   end
 
@@ -64,7 +61,7 @@ module UserSteps
   end
 
   step 'I do not exist as a user' do
-    create_visitor
+    # Guest user is automatically created during the first request
   end
 
   step 'I exist as an unconfirmed user' do
@@ -73,12 +70,10 @@ module UserSteps
 
   ### WHEN ###
   step 'I sign in with valid name and password' do
-    create_visitor
     sign_in_using_name
   end
 
   step 'I sign in with valid email and password' do
-    create_visitor
     sign_in_using_email
   end
 
@@ -87,32 +82,23 @@ module UserSteps
   end
 
   step 'I sign up with valid user data' do
-    create_visitor
     sign_up
   end
 
   step 'I sign up with an invalid email' do
-    create_visitor
-    @visitor = @visitor.merge(email: 'notanemail')
-    sign_up
+    sign_up(email: 'notanemail')
   end
 
   step 'I sign up without a password confirmation' do
-    create_visitor
-    @visitor = @visitor.merge(password_confirmation: '')
-    sign_up
+    sign_up(password_confirmation: '')
   end
 
   step 'I sign up without a password' do
-    create_visitor
-    @visitor = @visitor.merge(password: '')
-    sign_up
+    sign_up(password: '')
   end
 
   step 'I sign up with a mismatched password confirmation' do
-    create_visitor
-    @visitor = @visitor.merge(password_confirmation: 'changeme123')
-    sign_up
+    sign_up(password_confirmation: 'changeme123')
   end
 
   step 'I return to the site' do
@@ -120,19 +106,17 @@ module UserSteps
   end
 
   step 'I sign in with a wrong email' do
-    @visitor = @visitor.merge(email: 'wrong@example.com')
-    sign_in_using_email
+    sign_in_using_email(email: 'wrong@example.com')
   end
 
   step 'I sign in with a wrong password' do
-    @visitor = @visitor.merge(password: 'wrongpass')
-    sign_in_using_name
+    sign_in_using_name(password: 'wrongpass')
   end
 
   step 'I edit my account details' do
     click_link 'Edit account'
-    fill_in 'user_name', with: 'newname'
-    fill_in 'user_current_password', with: @visitor[:password]
+    fill_in 'user_name',             with: 'newname'
+    fill_in 'user_current_password', with: @user.password
     click_button 'Update'
   end
 
@@ -208,6 +192,6 @@ module UserSteps
   end
 
   step 'I should see my name' do
-    expect(page).to have_content @user[:name]
+    expect(page).to have_content @user.name
   end
 end
