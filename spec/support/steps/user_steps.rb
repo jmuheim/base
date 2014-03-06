@@ -1,20 +1,33 @@
+# include FactoryGirl::Syntax::Methods
+
+def valid_user_attributes
+  { name:                  'Testy McUserton',
+    email:                 'example@example.com',
+    password:              'changeme',
+    password_confirmation: 'changeme'
+  }
+end
+
+def create_admin(options = {})
+  options.reverse_merge! valid_user_attributes
+
+  @user ||= FactoryGirl.create :user, options
+  @user.add_role :admin
+end
+
+def create_user(options = {})
+  options.reverse_merge! valid_user_attributes
+
+  @user ||= FactoryGirl.create :user, options
+end
+
 def create_unconfirmed_user
   sign_up
   visit '/users/sign_out'
 end
 
-def create_user
-  @user ||= FactoryGirl.create :user, name: 'Testy McUserton',
-                                      email: 'example@example.com',
-                                      password: 'changeme',
-                                      password_confirmation: 'changeme'
-end
-
 def sign_up(options = {})
-  options.reverse_merge! name:                  'Testy McUserton',
-                 email:                 'example@example.com',
-                 password:              'changeme',
-                 password_confirmation: 'changeme'
+  options.reverse_merge! valid_user_attributes
 
   visit '/users/sign_up'
   fill_in 'user_name',                  with: options[:name]
@@ -25,8 +38,8 @@ def sign_up(options = {})
 end
 
 def sign_in_using_email(options = {})
-  options.reverse_merge! email: 'example@example.com',
-                 password: 'changeme'
+  options.reverse_merge! email:    'example@example.com',
+                         password: 'changeme'
 
   visit '/users/sign_in'
   fill_in 'user_login',    with: options[:email]
@@ -35,8 +48,8 @@ def sign_in_using_email(options = {})
 end
 
 def sign_in_using_name(options = {})
-  options.reverse_merge! name: 'Testy McUserton',
-                 password: 'changeme'
+  options.reverse_merge! name:     'Testy McUserton',
+                         password: 'changeme'
 
   visit '/users/sign_in'
   fill_in 'user_login',    with: options[:name]
@@ -50,8 +63,16 @@ module UserSteps
     visit '/users/sign_out' # TODO: Use sign_out(current_user)?
   end
 
-  step 'I am logged in as user' do
-    create_user
+  step 'I am logged in as :user' do |user|
+    case user
+    when 'user'
+      create_user
+    when 'admin'
+      create_admin
+    else
+      raise "Unknown user type #{user}"
+    end
+
     login_as(@user)
     visit root_path
   end
@@ -199,11 +220,16 @@ module UserSteps
     FactoryGirl.create :user, name: name
   end
 
-  step 'I try to edit the account details of :name' do |name|
+  step 'I try to visit the form for the user details of :name' do |name|
     visit edit_user_path User.find_by(name: name)
   end
 
-  step 'I should see an access denied message' do
+  step 'access should be granted' do
+    expect(page.driver.status_code).to eq 200
+  end
+
+  step 'access should be denied' do
     expect(page).to have_content '403 - Forbidden'
+    expect(page.driver.status_code).to eq 403
   end
 end
