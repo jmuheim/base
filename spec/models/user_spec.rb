@@ -102,6 +102,19 @@ describe User do
 
       expect(User.unscoped.last.guest?).to be_true
     end
+
+    it 'sets the name to "guest-123"' do
+      first_guest = User.create_guest!
+      expect(first_guest.name).to eq 'guest-1'
+
+      second_guest = User.create_guest!
+      expect(second_guest.name).to eq 'guest-2'
+
+      create :user
+
+      third_guest = User.create_guest!
+      expect(third_guest.name).to eq 'guest-3'
+    end
   end
 
   describe 'scopes' do
@@ -115,22 +128,7 @@ describe User do
     end
 
     describe '.guests' do
-      it 'excludes guests' do
-        user = create :user
-        guest = create :guest
-
-        expect(User.guests).to eq [guest]
-      end
-    end
-  end
-
-  describe 'abilities' do
-    context 'when is an admin' do
-      before  { @admin = create(:admin) }
-      subject { Ability.new(@admin) }
-
-    describe '.guests' do
-      it 'excludes guests' do
+      it 'excludes registered users' do
         user = create :user
         guest = create :guest
 

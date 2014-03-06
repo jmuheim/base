@@ -47,8 +47,8 @@ class User < ActiveRecord::Base
 
   def self.create_guest!
     create! do |user|
-      user.name  = 'guest'
-      user.guest     = true
+      user.name  = "guest-#{guests.maximum(:id).next rescue 1}"
+      user.guest = true
     end
   end
 
