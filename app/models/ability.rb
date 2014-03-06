@@ -5,16 +5,19 @@ class Ability
   include CanCan::Ability
 
   def initialize(current_user)
+    alias_action :create, :read, :update, :destroy, to: :crud
+
     can :read, User
 
-    unless current_user.guest?
-      # Update himself
+    if current_user.guest?
+      can :create, User
+    else
       can :update, User do |user|
-        current_user == user
+        current_user == user # Update himself
       end
 
       if current_user.has_role?(:admin)
-        can :manage, User
+        can :crud, User
       end
 
       cannot :destroy, User do |user|
