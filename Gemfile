@@ -59,8 +59,6 @@ group :development, :test do
   gem 'jazz_hands', github: 'nixme/jazz_hands', branch: 'bring-your-own-debugger'
   gem 'pry-byebug'      # Pry navigation commands via debugger (formerly ruby-debug)
   gem 'pry-remote-auto' # Automatically opens a remote pry session in a terminal
-
-  gem 'ffaker' # Generates realistic fake data
 end
 
 group :development do
@@ -73,11 +71,14 @@ group :development do
   gem 'xray-rails' # Reveals your UI's bones with Cmd-X/Ctrl-X
 
   # Rails application preloader
-  gem 'spring', github: 'guard/spring', branch: 'listen2' # https://github.com/rails/spring/pull/194
+  gem 'spring', github: 'guard/spring',
+                branch: 'listen2' # https://github.com/rails/spring/pull/194
   gem 'spring-commands-rspec' # Commands for RSpec
   gem 'listen'                # Event based file system listening (instead of polling)
 
   # Guard: automatically run commands when files are changed
+  gem 'guard', github: 'guard/guard',
+               branch: 'fix-540' # https://github.com/guard/guard/issues/540
   gem 'guard-rspec', require: false      # Automatically run tests
   gem 'terminal-notifier-guard'          # Mac OS X User Notifications for Guard
   gem 'guard-livereload', require: false # Automatically reload your browser when 'view' files are modified
@@ -95,7 +96,7 @@ group :development do
   gem 'rubocop', require: false # A robust Ruby code analyzer, based on the community Ruby style guide
 
   gem 'rip_hashrocket', # Replace hashrockets (=>) automatically
-       git: 'git://github.com/jmuheim/rip_hashrocket',
+       github:  'jmuheim/rip_hashrocket',
        require: false
 
   gem 'capybara' # Acceptance test framework for web applications
