@@ -14,3 +14,5 @@ In your fork:
 - Execute the following:
   - `$ rvm use .` (activates the RVM gemset)
   - `$ rake db:setup` (sets up the database with seed data)
+- Replace all occurrences of `Base` and `base` in the code with your project's name (TODO: write executable scripts)
+- Change the Rack Livereload port in `Guardfile` and `config/development.rb`
