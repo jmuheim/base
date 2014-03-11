@@ -49,14 +49,17 @@ group :doc do
 end
 
 group :development, :test do
-  gem 'rspec-rails' # Testing tool for the Ruby programming language
+  # Testing tool for the Ruby programming language
+  gem 'rspec'
+  gem 'rspec-rails'      # RSpec for Rails
 
   # Data generation
   gem 'factory_girl_rails' # Test data generator
   gem 'ffaker'             # Easily generate fake data
 
   # Use Pry and its extensions instead of IRB
-  gem 'jazz_hands', github: 'nixme/jazz_hands', branch: 'bring-your-own-debugger'
+  gem 'jazz_hands', github: 'nixme/jazz_hands',
+                    branch: 'bring-your-own-debugger'
   gem 'pry-byebug'      # Pry navigation commands via debugger (formerly ruby-debug)
   gem 'pry-remote-auto' # Automatically opens a remote pry session in a terminal
 end
@@ -100,6 +103,8 @@ group :development do
        require: false
 
   gem 'capybara' # Acceptance test framework for web applications
+
+  gem 'rails-footnotes'
 end
 
 group :test do
