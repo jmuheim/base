@@ -13,7 +13,7 @@ class Ability
       can :create, User
     else
       can :update, User do |user|
-        current_user == user # Update himself
+        user == current_user # Update himself
       end
 
       if current_user.has_role?(:admin)

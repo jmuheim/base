@@ -1,3 +1,15 @@
+def visit_delete_path_for(resource, resource_path = nil)
+  resource_path ||= "#{resource.class.to_s.underscore}_path"
+
+  # Send delete request using capybara, see http://makandracards.com/makandra/18023-trigger-a-delete-request-with-capybara
+  case page.driver
+  when Capybara::RackTest::Driver
+    page.driver.submit :delete, send(resource_path, resource), {}
+  else # e.g. Capybara::Selenium::Driver
+    visit send(resource_path, resource, { method: :delete })
+  end
+end
+
 step 'Pry' do
   binding.pry
 end

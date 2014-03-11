@@ -11,14 +11,14 @@ end
 def create_admin(options = {})
   options.reverse_merge! valid_user_attributes
 
-  @user ||= FactoryGirl.create :user, options
+  @user ||= create :user, options
   @user.add_role :admin
 end
 
 def create_user(options = {})
   options.reverse_merge! valid_user_attributes
 
-  @user ||= FactoryGirl.create :user, options
+  @user ||= create :user, options
 end
 
 def create_unconfirmed_user
@@ -217,7 +217,7 @@ module UserSteps
   end
 
   step 'a user :name exists' do |name|
-    FactoryGirl.create :user, name: name
+    create :user, name: name
   end
 
   step 'I try to request the edit page for the user :name' do |name|
@@ -236,13 +236,7 @@ module UserSteps
   step 'I try to request the deletion of user :name' do |name|
     user = User.find_by(name: name)
 
-    # Send delete request using capybara, see http://makandracards.com/makandra/18023-trigger-a-delete-request-with-capybara
-    case page.driver
-    when Capybara::RackTest::Driver
-      page.driver.submit :delete, send('user_path', user), {}
-    else # e.g. Capybara::Selenium::Driver
-      visit send('user_path', user, { method: :delete })
-    end
+    visit_delete_path_for(user)
   end
 
   step 'I cancel my account' do
