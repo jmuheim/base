@@ -34,7 +34,7 @@ gem 'cancancan' # Authorization library which restricts what resources a given u
 gem 'rolify' # Manage roles of users
 
 # Inherit RESTful actions in controllers
-gem 'inherited_resources'
+gem 'inherited_resources', '>= 1.4.1'
 gem 'has_scope' # Maps controller filters to resource scopes
 gem 'responders' # A set of Rails responders
 
@@ -80,8 +80,7 @@ group :development do
   gem 'listen'                # Event based file system listening (instead of polling)
 
   # Guard: automatically run commands when files are changed
-  gem 'guard', github: 'guard/guard',
-               branch: 'fix-540' # https://github.com/guard/guard/issues/540
+  gem 'guard'
   gem 'guard-rspec', require: false      # Automatically run tests
   gem 'terminal-notifier-guard'          # Mac OS X User Notifications for Guard
   gem 'guard-livereload', require: false # Automatically reload your browser when 'view' files are modified
