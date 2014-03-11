@@ -1,6 +1,8 @@
 Base::Application.routes.draw do
   devise_for :users, controllers: { registrations: 'registrations' }
+
   resource :dashboard
+
   resources :users
 
   [403, 404, 422, 500].each do |code|
