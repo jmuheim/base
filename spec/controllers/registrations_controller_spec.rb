@@ -13,9 +13,9 @@ describe RegistrationsController do
                                  password:              'joshjosh',
                                  password_confirmation: 'joshjosh'
                                }
-        }.to change { User.unscoped.count }.from(0).to 1 # A guest is created first, then the "real" user, then the guest is deleted.
+        }.to change { User.count }.from(0).to 1 # A guest is created first, then the "real" user, then the guest is deleted.
 
-        expect(User.unscoped.last).not_to be_guest
+        expect(User.last).not_to be_guest
       end
 
       it "assigns the guest's preferrably keepable data to the new user" do
@@ -27,9 +27,9 @@ describe RegistrationsController do
       it 'does not create a user and does not delete the guest user' do
         expect {
           post 'create', user: {}
-        }.to change { User.unscoped.count }.from(0).to 1 # A guest is created first, but the "real" user was invalid and couldn't be created
+        }.to change { User.guests.count }.from(0).to 1 # A guest is created first, but the "real" user was invalid and couldn't be created
 
-        expect(User.unscoped.last).to be_guest
+        expect(User.last).to be_guest
       end
     end
   end
