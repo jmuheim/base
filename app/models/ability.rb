@@ -7,7 +7,7 @@ class Ability
   def initialize(current_user)
     alias_action :create, :read, :update, :destroy, to: :crud
 
-    can :read, User
+    can :read, User, guest: false
 
     if current_user.guest?
       can :create, User

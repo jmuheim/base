@@ -119,16 +119,25 @@ describe User do
 
   describe 'scopes' do
     describe '.default' do
-      it 'excludes guests' do
+      it 'includes all users' do
         user = create :user
         guest = create :guest
 
-        expect(User.all).to eq [user]
+        expect(User.all).to eq [user, guest]
+      end
+    end
+
+    describe '.registered' do
+      it 'only includes registered users' do
+        user = create :user
+        guest = create :guest
+
+        expect(User.registered).to eq [user]
       end
     end
 
     describe '.guests' do
-      it 'excludes registered users' do
+      it 'only includes guests' do
         user = create :user
         guest = create :guest
 
