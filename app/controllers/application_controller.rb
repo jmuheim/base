@@ -42,7 +42,7 @@ class ApplicationController < ActionController::Base
 
   def init_guest_user
     @guest_user = @current_user = User.guests.find(session[:guest_user_id] ||= create_guest_user.id)
-  rescue ActiveRecord::RecordNotFound # If session[:guest_user_id] is invalid
+  rescue ActiveRecord::RecordNotFound
     session[:guest_user_id] = nil
     init_guest_user
   end
