@@ -23,13 +23,13 @@ end
 
 def create_unconfirmed_user
   sign_up
-  visit '/users/sign_out'
+  visit destroy_user_session_path
 end
 
 def sign_up(options = {})
   options.reverse_merge! valid_user_attributes
 
-  visit '/users/sign_up'
+  visit new_user_registration_path
   fill_in 'user_name',                  with: options[:name]
   fill_in 'user_email',                 with: options[:email]
   fill_in 'user_password',              with: options[:password]
@@ -41,7 +41,7 @@ def sign_in_using_email(options = {})
   options.reverse_merge! email:    'example@example.com',
                          password: 'changeme'
 
-  visit '/users/sign_in'
+  visit new_user_session_path
   fill_in 'user_login',    with: options[:email]
   fill_in 'user_password', with: options[:password]
   click_button 'Sign in'
@@ -51,7 +51,7 @@ def sign_in_using_name(options = {})
   options.reverse_merge! name:     'Testy McUserton',
                          password: 'changeme'
 
-  visit '/users/sign_in'
+  visit new_user_session_path
   fill_in 'user_login',    with: options[:name]
   fill_in 'user_password', with: options[:password]
   click_button 'Sign in'
@@ -60,7 +60,7 @@ end
 module UserSteps
   ### GIVEN ###
   step 'I am not logged in' do
-    visit '/users/sign_out' # TODO: Use sign_out(current_user)?
+    visit destroy_user_session_path # TODO: Use sign_out(current_user)?
   end
 
   step 'I am logged in as :user' do |user|
@@ -99,7 +99,7 @@ module UserSteps
   end
 
   step 'I sign out' do
-    visit '/users/sign_out'
+    visit destroy_user_session_path
   end
 
   step 'I sign up with valid user data' do
@@ -123,7 +123,7 @@ module UserSteps
   end
 
   step 'I return to the site' do
-    visit '/'
+    visit root_path
   end
 
   step 'I sign in with a wrong email' do
