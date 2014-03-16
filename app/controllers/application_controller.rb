@@ -41,15 +41,25 @@ class ApplicationController < ActionController::Base
   end
 
   def init_guest_user
-    @guest_user = @current_user = User.guests.find(session[:guest_user_id] ||= create_guest_user.id)
+    @current_user = User.guests.find(session[:guest_user_id] ||= create_guest_user.id)
   rescue ActiveRecord::RecordNotFound
-    session[:guest_user_id] = nil
+    remove_guest_user
     init_guest_user
   end
 
   def create_guest_user
-    user = User.create! guest: true
+    user = User.create do |user|
+      user.guest = true
+      user.skip_confirmation!
+    end
+
     session[:guest_user_id] = user.id
     user
+  end
+
+  def remove_guest_user
+    User.find(session[:guest_user_id]).delete rescue ActiveRecord::RecordNotFound
+  ensure
+    session[:guest_user_id] = nil
   end
 end

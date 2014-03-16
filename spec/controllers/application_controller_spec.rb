@@ -16,6 +16,12 @@ describe ApplicationController do
       expect(User.guests.last).to be_guest
     end
 
+    it 'skips confirmation for the created guest user' do
+      get :index
+
+      expect(User.guests.last.confirmation_token).to be nil
+    end
+
     it 'finds the guest user for a subsequent request' do
       get :index
       expect {
@@ -25,15 +31,11 @@ describe ApplicationController do
 
     it 'creates a new guest user if the previously existing one vanished' do
       get :index
-
-      controller.instance_variable_set('@guest_user', nil) # Instance vars seem to persist between multiple requests in controller tests, so we have to reset some stuff here, see http://stackoverflow.com/questions/22118096
-      controller.session[:guest_user_id] = 666 # We can't simply destroy the user, as the ActiveRecord relation isn't reloaded, too.
+      User.delete_all # The session now has an ID pointing to an inexistent user
 
       expect {
         get :index
-      }.to change { User.guests.count }.from(1).to 2
-
-      expect(User.last).to be_guest
+      }.to change { session[:guest_user_id] }.from(1).to 2
     end
   end
 end
