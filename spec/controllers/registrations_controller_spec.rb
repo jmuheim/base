@@ -6,8 +6,8 @@ describe RegistrationsController do
 
   describe "POST 'create'" do
     context 'valid input' do
-      it 'creates a guest user and converts it to a registered user' do
-        # expect(controller).to receive(:consolidate_user_with_guest)
+      it 'creates a guest user and converts it to a registered one' do
+        # expect(controller).to receive(:consolidate_registered_user_with_guest)
 
         expect {
           post 'create', user: { name:                  'josh',
@@ -19,14 +19,12 @@ describe RegistrationsController do
 
         expect(User.last).not_to be_guest
       end
-
-      it "assigns the guest's preferrably keepable data to the new user" do
-        # Nothing here yet
-      end
     end
 
     context 'invalid input' do
-      it 'does not create a user and does not delete the guest user' do
+      it 'creates a guest user and does not convert it to a registered one' do
+        expect(controller).not_to receive(:consolidate_registered_user_with_guest)
+
         expect {
           post 'create', user: {}
         }.to change { User.guests.count }.from(0).to 1 # A guest is created first, but the "real" user was invalid and couldn't be created
