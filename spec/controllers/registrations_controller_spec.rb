@@ -6,14 +6,16 @@ describe RegistrationsController do
 
   describe "POST 'create'" do
     context 'valid input' do
-      it 'creates a user and deletes the guest user' do
+      it 'creates a guest user and converts it to a registered user' do
+        # expect(controller).to receive(:consolidate_user_with_guest)
+
         expect {
           post 'create', user: { name:                  'josh',
                                  email:                 'josh@example.com',
                                  password:              'joshjosh',
                                  password_confirmation: 'joshjosh'
                                }
-        }.to change { User.count }.from(0).to 1 # A guest is created first, then the "real" user, then the guest is deleted.
+        }.to change { User.count }.from(0).to 1
 
         expect(User.last).not_to be_guest
       end

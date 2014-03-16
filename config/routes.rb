@@ -1,9 +1,10 @@
 Base::Application.routes.draw do
-  devise_for :users, controllers: { registrations: 'registrations' }
-
-  resource :dashboard
+  devise_for :user, controllers: { registrations: :registrations,
+                                   sessions:      :sessions }
 
   resources :users
+
+  resource :dashboard
 
   [403, 404, 422, 500].each do |code|
     get code, to: 'errors#show', code: code
