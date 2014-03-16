@@ -145,4 +145,42 @@ describe User do
       end
     end
   end
+
+  describe '#annex_and_destroy!' do
+    before do
+      @user          = create :user
+      @user_to_annex = create :user
+    end
+
+    it "annexes the given object's attributes" do
+      attributes_before = @user.attributes
+      attributes_after  = @user_to_annex.attributes.with_indifferent_access.merge(id: @user.id)
+
+      expect {
+        @user.annex_and_destroy!(@user_to_annex)
+      }.to change(@user, :attributes).from(attributes_before).to attributes_after
+    end
+
+    it "doesn't annex id'" do
+      expect {
+        @user.annex_and_destroy!(@user_to_annex)
+      }.not_to change(@user, :id)
+    end
+
+    it 'removes the annected object' do
+      expect {
+        @user.annex_and_destroy!(@user_to_annex)
+      }.to change(@user_to_annex, :destroyed?).from(false).to true
+    end
+
+    it "doesn't annex associated objects" do
+      # This spec has only documentary value. Since we couldn't find a way to convert a guest user to a registered one during registration process, we had to cheat and simply consolidate the registered user with the guest user (hence the whole annex stuff). This works so far, but associated elements will not be annected at the time being. Should we ever need to create associated elements for the registered user (and are not able to associate them with the guest user ), we may have to implement this functionality, too.
+
+      @user_to_annex.add_role :some_nice_role
+
+      expect {
+        @user.annex_and_destroy!(@user_to_annex)
+      }.not_to change { @user.has_role? :some_nice_role }
+    end
+  end
 end

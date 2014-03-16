@@ -69,6 +69,21 @@ class User < ActiveRecord::Base
     guest? ? 'guest' : name
   end
 
+  def annex_and_destroy!(other)
+    transaction do
+      skip_confirmation_notification!
+
+      other.delete
+      other.attributes.except("id").each do |attribute, value|
+        update_column attribute, value
+      end
+
+      self.save!
+    end
+
+    self
+  end
+
   private
 
   def password_required?
