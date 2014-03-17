@@ -9,7 +9,7 @@
 
 - [Mac OS X](http://www.apple.com/osx/)
 - [Git](http://git-scm.com/)
-- [Google Chrome](https://www.google.com/intl/en/chrome/browser/)
+- [Google Chrome](https://www.google.com/intl/en/chrome/browser/) (has the best developer tools)
 
 ## How to develop
 
@@ -23,10 +23,15 @@ You can use [direnv](https://github.com/zimbatm/direnv) to automatically add `bi
 
 ### Developing
 
-- `$ guard` starts Guard, which takes care about executing tests (using [Spring application preloader](https://github.com/jonleighton/spring)), live reloading of the page, etc.
-- Use `binding.remote_pry` to set a breakpoint in code that is executed by the `POW` service and connect to it using `pry-remote` from the console.
-- Use `binding.pry` to set a breakpoint in code that is run through an active console (e.g. `guard` or `rails s`)
-- Execute `$ rip_hashrockets` from time to time to replace old Ruby hashrockets (`=>`) with the new syntax.
+- In one terminal, enter `$ rails s -p 3001` to start the development server on port 3001
+- In a second terminal, enter `$ guard` to start Guard, which automatically takes care of:
+  - executing tests using [Guard-RSpec](https://github.com/guard/guard-rspec)
+  - live reloading the page (HTML, JS and CSS) using [Guard-LiveReload](https://github.com/guard/guard-livereload)
+  - bundling using [Guard-Bundler](https://github.com/guard/guard-bundler)
+  - annotating models using [Guard-Annotate](https://github.com/cpjolicoeur/guard-annotate)
+  - migrating the DB using [Guard-Migrate](https://github.com/glanotte/guard-migrate)
+  - restarting development server using [Guard-Shell](https://github.com/hawx/guard-shell)
+- Execute `$ rip_hashrockets` from time to time to replace old Ruby hashrockets (`=>`) with the new syntax
 
 ### Testing
 
@@ -34,7 +39,7 @@ You can use [direnv](https://github.com/zimbatm/direnv) to automatically add `bi
 
 ## Deploying
 
-- Run `rake HEADHUNTER=true` to make sure all HTML and CSS is valid.
+- **Before deploying**, run `rake HEADHUNTER=true` to make sure all HTML and CSS is in good shape.
 
 ### Travis CI
 

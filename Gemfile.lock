@@ -12,17 +12,6 @@ GIT
     rip_hashrocket (0.1.2)
 
 GIT
-  remote: git://github.com/mikemcquaid/guard-webrick.git
-  revision: 84d116bc2894bcc17645cb23f04aa0642fd1191e
-  branch: support-newer-guard
-  specs:
-    guard-webrick (0.1.5.dev)
-      ffi
-      guard (>= 1.0)
-      launchy (~> 2.1.0)
-      spoon (~> 0.0.1)
-
-GIT
   remote: git://github.com/nixme/jazz_hands.git
   revision: 5e4b48f145883ecb14b55bf04eacc28ac9662676
   branch: bring-your-own-debugger
@@ -196,6 +185,8 @@ GEM
     guard-rspec (4.2.8)
       guard (~> 2.1)
       rspec (>= 2.14, < 4.0)
+    guard-shell (0.6.1)
+      guard (>= 1.1.0)
     has_scope (0.6.0.rc)
       actionpack (>= 3.2, < 5)
       activesupport (>= 3.2, < 5)
@@ -370,8 +361,6 @@ GEM
       railties (>= 3.0, < 4.1)
       slim (~> 2.0)
     slop (3.5.0)
-    spoon (0.0.4)
-      ffi
     spring-commands-rspec (1.0.1)
       spring (>= 0.9.1)
     sprockets (2.11.0)
@@ -445,13 +434,14 @@ DEPENDENCIES
   guard-livereload
   guard-migrate
   guard-rspec
-  guard-webrick!
+  guard-shell
   has_scope
   headhunter
   inherited_resources (>= 1.4.1)
   jazz_hands!
   jbuilder (~> 1.2)
   jquery-rails
+  launchy
   listen
   poltergeist
   pry-byebug
