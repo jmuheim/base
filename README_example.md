@@ -18,6 +18,8 @@
 - `$ git clone git@github.com:jmuheim/base.git`
 - `$ cd base`
 - `$ bundle install`
+- Change the value of `Port:` in `config/boot.rb` to e.g. `3002`
+- Change the value of `port:` in `Guardfile` and the value of `live_reload_port:` in `config/environments/development.rb` to e.g. `357230`.
 
 You can use [direnv](https://github.com/zimbatm/direnv) to automatically add `bin` to your `$PATH`. Otherwise you should always use `bundle exec` to run commands.
 
