@@ -9,7 +9,7 @@
 
 - [Mac OS X](http://www.apple.com/osx/)
 - [Git](http://git-scm.com/)
-- [Google Chrome](https://www.google.com/intl/en/chrome/browser/) (has the best developer tools)
+- [Google Chrome](https://www.google.com/intl/en/chrome/browser/)
 
 ## How to develop
 
