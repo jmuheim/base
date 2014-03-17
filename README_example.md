@@ -8,7 +8,6 @@
 ## Developer Environment
 
 - [Mac OS X](http://www.apple.com/osx/)
-- [POW](http://pow.cx/)
 - [Git](http://git-scm.com/)
 - [Google Chrome](https://www.google.com/intl/en/chrome/browser/)
 
@@ -19,14 +18,11 @@
 - `$ git clone git@github.com:jmuheim/base.git`
 - `$ cd base`
 - `$ bundle install`
-- `$ powder install`
-- `$ powder link`
 
 You can use [direnv](https://github.com/zimbatm/direnv) to automatically add `bin` to your `$PATH`. Otherwise you should always use `bundle exec` to run commands.
 
 ### Developing
 
-- `$ powder open` opens [http://base.dev/](http://base.dev/) in the browser.
 - `$ guard` starts Guard, which takes care about executing tests (using [Spring application preloader](https://github.com/jonleighton/spring)), live reloading of the page, etc.
 - Use `binding.remote_pry` to set a breakpoint in code that is executed by the `POW` service and connect to it using `pry-remote` from the console.
 - Use `binding.pry` to set a breakpoint in code that is run through an active console (e.g. `guard` or `rails s`)
