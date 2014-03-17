@@ -50,19 +50,6 @@ guard :bundler do
   # watch(/^.+\.gemspec/)
 end
 
-guard :pow do
-  watch('.powrc')
-  watch('.powenv')
-  watch('.rvmrc')
-  watch('.ruby-version')
-  watch('Gemfile')
-  watch('Gemfile.lock')
-  watch('config/application.rb')
-  watch('config/environment.rb')
-  watch(%r{^config/environments/.*\.rb$})
-  watch(%r{^config/initializers/.*\.rb$})
-end
-
 guard 'migrate', cmd:          'spring rake',
                  run_on_start: false,
                  test_clone:   true,
@@ -83,4 +70,11 @@ guard 'annotate', show_indexes:   true,
   # Uncomment the following line if you are running routes annotation
   # with the ":routes => true" option
   # watch( 'config/routes.rb' )
+end
+
+guard :shell do
+  watch %r{\.ruby-version|Gemfile|Gemfile\.lock|config/(application|environment)\.rb|config/environments/.*\.rb|config/initializers/.*\.rb} do |m|
+    `lsof -i tcp:3000 | awk 'NR!=1 {print $2}' | xargs kill -9`
+    n "#{m[0]} saved, restart of development server needed", 'Webrick restart'
+  end
 end

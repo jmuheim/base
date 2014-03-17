@@ -84,12 +84,10 @@ group :development do
   gem 'guard-rspec', require: false      # Automatically run tests
   gem 'terminal-notifier-guard'          # Mac OS X User Notifications for Guard
   gem 'guard-livereload', require: false # Automatically reload your browser when 'view' files are modified
-  gem 'guard-pow', require: false        # Automatically manage Pow applications restart
   gem 'guard-bundler'                    # Automatically install/update gem bundle when needed
   gem 'guard-annotate'                   # Automatically run the annotate gem when needed
   gem 'guard-migrate'                    # Automatically run migrations when they are edited
-
-  gem 'powder', require: false # Configure POW server easily
+  gem 'guard-shell'                      # Automatically runs shell commands
 
   gem 'rack-livereload' # Enable LiveReload in Rails
 
