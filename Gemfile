@@ -61,7 +61,6 @@ group :development, :test do
   gem 'jazz_hands', github: 'nixme/jazz_hands',
                     branch: 'bring-your-own-debugger'
   gem 'pry-byebug'      # Pry navigation commands via debugger (formerly ruby-debug)
-  gem 'pry-remote-auto' # Automatically opens a remote pry session in a terminal
 end
 
 group :development do
