@@ -12,7 +12,6 @@ require 'rspec/rails'
 require 'rspec/autorun'
 require 'capybara/poltergeist'
 require 'turnip/capybara'
-require 'capybara-screenshot/rspec'
 require 'email_spec'
 require 'cancan/matchers'
 
