@@ -25,14 +25,13 @@ You can use [direnv](https://github.com/zimbatm/direnv) to automatically add `bi
 
 ### Developing
 
-- In one terminal, enter `$ rails s -p 3001` to start the development server on port 3001
+- In one terminal, enter `$ rake server` to start the development server using [rerun](https://github.com/alexch/rerun) (which will take care of restarting the server upon changes of important config files)
 - In a second terminal, enter `$ guard` to start Guard, which automatically takes care of:
   - executing tests using [Guard-RSpec](https://github.com/guard/guard-rspec)
   - live reloading the page (HTML, JS and CSS) using [Guard-LiveReload](https://github.com/guard/guard-livereload)
   - bundling using [Guard-Bundler](https://github.com/guard/guard-bundler)
   - annotating models using [Guard-Annotate](https://github.com/cpjolicoeur/guard-annotate)
   - migrating the DB using [Guard-Migrate](https://github.com/glanotte/guard-migrate)
-  - restarting development server using [Guard-Shell](https://github.com/hawx/guard-shell)
 - Execute `$ rip_hashrockets` from time to time to replace old Ruby hashrockets (`=>`) with the new syntax
 
 ### Testing
