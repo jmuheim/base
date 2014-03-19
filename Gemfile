@@ -87,6 +87,8 @@ group :development do
   gem 'guard-annotate'                   # Automatically run the annotate gem when needed
   gem 'guard-migrate'                    # Automatically run migrations when they are edited
 
+  gem 'rerun', require: false # Restarts an app when the filesystem changes
+
   gem 'rack-livereload' # Enable LiveReload in Rails
 
   gem 'rb-fsevent', require: false # FSEvents API with signals handled
