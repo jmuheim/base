@@ -82,9 +82,6 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
-    capybara-screenshot (0.3.17)
-      capybara (>= 1.0, < 3)
-      launchy
     cells (3.10.0)
       actionpack (>= 3.0)
       railties (>= 3.0)
@@ -414,7 +411,6 @@ DEPENDENCIES
   bootstrap-sass
   cancancan
   capybara
-  capybara-screenshot
   cells
   coffee-rails (~> 4.0.0)
   compass-rails
