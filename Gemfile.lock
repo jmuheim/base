@@ -182,8 +182,6 @@ GEM
     guard-rspec (4.2.8)
       guard (~> 2.1)
       rspec (>= 2.14, < 4.0)
-    guard-shell (0.6.1)
-      guard (>= 1.1.0)
     has_scope (0.6.0.rc)
       actionpack (>= 3.2, < 5)
       activesupport (>= 3.2, < 5)
@@ -428,7 +426,6 @@ DEPENDENCIES
   guard-livereload
   guard-migrate
   guard-rspec
-  guard-shell
   has_scope
   headhunter
   inherited_resources (>= 1.4.1)

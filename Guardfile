@@ -71,10 +71,3 @@ guard 'annotate', show_indexes:   true,
   # with the ":routes => true" option
   # watch( 'config/routes.rb' )
 end
-
-guard :shell do
-  watch %r{\.ruby-version|Gemfile|Gemfile\.lock|config/(application|environment)\.rb|config/environments/.*\.rb|config/initializers/.*\.rb} do |m|
-    `lsof -i tcp:3000 | awk 'NR!=1 {print $2}' | xargs kill -9`
-    n "#{m[0]} saved, restart of development server needed", 'Webrick restart'
-  end
-end
