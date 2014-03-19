@@ -119,7 +119,7 @@ group :test do
   gem 'launchy'            # Use `save_and_open_page` in request tests to automatically open a browser
   gem 'selenium-webdriver' # Selenium webdriver (needed to use Chrome driver)
 
-  gem 'turnip'
+  gem 'turnip' # Gherkin extension for RSpec
 
   gem 'rspec-cells' # Test cells using RSpec
 
