@@ -1,11 +1,13 @@
 table.table.table-striped
-  tr
-    th Name
-    th Email
-    th Roles
-    th colspan=3 Actions
+  thead
+    tr
+      th Name
+      th Email
+      th Roles
+      th colspan=3 Actions
 
-  = render users
+  tbody
+    = render users
 
 ul.actions
   - if can? :create, User
