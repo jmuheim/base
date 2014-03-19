@@ -122,6 +122,8 @@ group :test do
 
   gem 'turnip' # Gherkin extension for RSpec
 
+  gem 'capybara-screenshot' # Automatically save screen shots when a scenario fails
+
   gem 'rspec-cells' # Test cells using RSpec
 
   gem 'headhunter' # Automagically validates all HTML and CSS during the acceptance tests
