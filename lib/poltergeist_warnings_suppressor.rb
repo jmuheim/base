@@ -1,4 +1,6 @@
 # Poltergeist hack to silence CoreText performance notes from phantomjs.
+# May become obsolete when this is merged: https://github.com/boxen/puppet-phantomjs/pull/14
+#
 # See https://gist.github.com/ericboehs/7125105
 module Capybara::Poltergeist
   class Client
