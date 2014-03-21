@@ -15,7 +15,7 @@ guard :livereload, port: 35729 do
 end
 
 # TODO: Why is bundle exec needed? More infos here: http://stackoverflow.com/questions/22555324 and https://github.com/rails/spring/issues/277
-guard :rspec do
+guard :rspec, cmd: 'bundle exec spring rspec' do
   watch(%r{^spec/.+_spec\.rb$})
   watch(%r{^lib/(.+)\.rb$})     { |m| "spec/lib/#{m[1]}_spec.rb" }
   watch('spec/spec_helper.rb')  { "spec" }
