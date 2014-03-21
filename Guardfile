@@ -14,7 +14,7 @@ guard :livereload, port: 35729 do
   watch(%r{(app/assets/stylesheets/globals)/.+\.css\.(sass|scss)}) { |m| "#{m[1]}/application.css.#{m[2]}" } # It's strange that this rule is needed, it should work without it, see http://blog.55minutes.com/2013/01/lightning-fast-sass-reloading-in-rails-32/#comment-1184644401
 end
 
-# At the moment, we can't use spring for guard-rspec. We have to wait until this PR is merged: https://github.com/rails/spring/pull/194. Afterwards add `cmd: 'spring rspec'`.
+# TODO: Why is bundle exec needed? More infos here: http://stackoverflow.com/questions/22555324 and https://github.com/rails/spring/issues/277
 guard :rspec do
   watch(%r{^spec/.+_spec\.rb$})
   watch(%r{^lib/(.+)\.rb$})     { |m| "spec/lib/#{m[1]}_spec.rb" }
