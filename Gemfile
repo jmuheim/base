@@ -44,6 +44,8 @@ gem 'simple_form' # Forms made easy for Rails
 
 gem 'gaffe' # Handles Rails error pages in a clean, simple way
 
+gem 'cocoon' # Dynamic nested forms made easy
+
 group :doc do
   gem 'sdoc', require: false # bundle exec rake doc:rails generates the API under doc/api.
 end
