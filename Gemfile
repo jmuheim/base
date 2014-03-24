@@ -104,6 +104,8 @@ group :development do
   gem 'capybara' # Acceptance test framework for web applications
 
   gem 'rails-footnotes'
+
+  gem 'mina', require: false
 end
 
 group :test do
