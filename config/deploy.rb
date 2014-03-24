@@ -10,10 +10,10 @@ require 'mina/git'
 #   repository   - Git repo to clone from. (needed by mina/git)
 #   branch       - Branch name to deploy. (needed by mina/git)
 
-set :domain, 'josh.ch'
-set :user, 'base'
-set :deploy_to, "/var/www/base.josh.ch"
-set :repository, 'git://jmuheim/base'
+set :domain, 'achernar.uberspace.de'
+set :user, 'jmuheim'
+set :deploy_to, '/home/jmuheim/base'
+set :repository, 'https://github.com/jmuheim/base.git'
 set :branch, 'master'
 
 # Manually create these paths in shared/ (eg: shared/config/database.yml) in your server.
