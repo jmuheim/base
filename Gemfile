@@ -136,6 +136,7 @@ group :test do
 end
 
 group :production do
+  gem 'fcgi' # FastCGI library for Ruby
   gem 'mysql2' # Use MySQL as the database for Active Record
 end
 
