@@ -7,16 +7,16 @@
 
 ## Uberspace
 
+Public SSH Key installieren:
+
+```
+cat ~/.ssh/id_rsa.pub | ssh base@sirius.uberspace.de 'cat >> ~/.ssh/authorized_keys'
+```
+
 Zu Uberspace verbinden:
 
 ```
 $ ssh base@sirius.uberspace.de
-```
-
-Public SSH Key installieren:
-
-```
-cat "MY-PUBLIC-SSH-KEY" >> ~/.ssh/authorized_keys
 ```
 
 Ruby 2.1 aktivieren:
