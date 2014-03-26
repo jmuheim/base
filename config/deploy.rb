@@ -14,7 +14,7 @@ set :domain, 'achernar.uberspace.de'
 set :user, 'jmuheim'
 set :deploy_to, '/home/jmuheim/base'
 set :repository, 'https://github.com/jmuheim/base.git'
-set :branch, 'master'
+set :branch, 'features/deployment_mina'
 
 # Manually create these paths in shared/ (eg: shared/config/database.yml) in your server.
 # They will be linked in the 'deploy:link_shared_paths' step.
