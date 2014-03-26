@@ -43,7 +43,7 @@ ActionMailer::Base.smtp_settings = {
   address:              'sirius.uberspace.de',
   port:                 587,
   domain:               'base.sirius.uberspace.de',
-  user_name:            'mailer',
+  user_name:            'base-mailer',
   password:             'l3tm3s3nd3m41lS!',
   authentication:       'plain',
   enable_starttls_auto: true
