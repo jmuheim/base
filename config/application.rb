@@ -45,6 +45,6 @@ ActionMailer::Base.smtp_settings = {
   domain:               'base.sirius.uberspace.de',
   user_name:            'base-mailer',
   password:             'l3tm3s3nd3m41lS!',
-  authentication:       'plain',
+  authentication:       'login',
   enable_starttls_auto: true
 }
