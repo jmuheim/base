@@ -10,9 +10,9 @@ require 'mina/git'
 #   repository   - Git repo to clone from. (needed by mina/git)
 #   branch       - Branch name to deploy. (needed by mina/git)
 
-set :domain, 'achernar.uberspace.de'
-set :user, 'jmuheim'
-set :deploy_to, '/home/jmuheim/base'
+set :domain, 'sirius.uberspace.de'
+set :user, 'base'
+set :deploy_to, '/home/base/rails'
 set :repository, 'https://github.com/jmuheim/base.git'
 set :branch, 'features/deployment_mina'
 
@@ -33,6 +33,9 @@ task :environment do
 
   # For those using RVM, use this to load an RVM version@gemset.
   # invoke :'rvm:use[ruby-1.9.3-p125@default]'
+
+  queue %[echo '-----> Loading environment']
+  queue %[source ~/.bash_profile]
 end
 
 # Put any custom mkdir's in here for when `mina setup` is ran.
