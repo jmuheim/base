@@ -46,5 +46,5 @@ ActionMailer::Base.smtp_settings = {
   user_name:            'inquisiv.test@sientia.ch',
   password:             '1nfo@inquisiv',
   authentication:       'plain',
-  enable_starttls_auto: true
+  enable_starttls_auto: false
 }
