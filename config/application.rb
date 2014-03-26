@@ -39,8 +39,6 @@ end
 
 ActionMailer::Base.delivery_method = :smtp
 ActionMailer::Base.smtp_settings = {
-  # TODO: Use other mail account!
-  address:              'sirius.uberspace.de',
   port:                 587,
   domain:               'sirius.uberspace.de',
   user_name:            'base-mailer@sirius.uberspace.de',
