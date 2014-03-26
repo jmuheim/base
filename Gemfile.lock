@@ -228,6 +228,7 @@ GEM
     mini_portile (0.5.2)
     minitest (4.7.5)
     multi_json (1.9.2)
+    mysql2 (0.3.15)
     nio4r (1.0.0)
     nokogiri (1.6.1)
       mini_portile (~> 0.5.0)
@@ -448,6 +449,7 @@ DEPENDENCIES
   launchy
   listen
   mina
+  mysql2
   poltergeist
   pry-byebug
   quiet_assets

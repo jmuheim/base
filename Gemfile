@@ -2,8 +2,6 @@ source 'https://rubygems.org'
 
 gem 'rails', '4.0.4'
 
-gem 'sqlite3' # Use sqlite3 as the database for Active Record
-
 gem 'slim-rails' # Awesome template language that replaces ERB
 
 gem 'uglifier', '>= 1.3.0' # Use Uglifier as compressor for JavaScript assets
@@ -51,6 +49,8 @@ group :doc do
 end
 
 group :development, :test do
+  gem 'sqlite3' # Use SQLite as the database for Active Record
+
   # Testing tool for the Ruby programming language
   gem 'rspec'
   gem 'rspec-rails'      # RSpec for Rails
@@ -133,6 +133,10 @@ group :test do
   gem 'headhunter' # Automagically validates all HTML and CSS during the acceptance tests
 
   gem 'coveralls', require: false
+end
+
+group :production do
+  gem 'mysql2' # Use MySQL as the database for Active Record
 end
 
 # Use ActiveModel has_secure_password
