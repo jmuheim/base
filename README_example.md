@@ -5,6 +5,94 @@
 [![Dependency Status](https://gemnasium.com/jmuheim/base.png)](https://gemnasium.com/jmuheim/base)
 [![Coverage Status](https://coveralls.io/repos/jmuheim/base/badge.png)](https://coveralls.io/r/jmuheim/base)
 
+## Uberspace
+
+Zu Uberspace verbinden:
+
+```
+$ ssh base@sirius.uberspace.de
+```
+
+Public SSH Key installieren:
+
+```
+cat "MY-PUBLIC-SSH-KEY" >> ~/.ssh/authorized_keys
+```
+
+Ruby 2.1 aktivieren:
+
+```
+$ cat <<'__EOF__' >> ~/.bash_profile
+export PATH=/package/host/localhost/ruby-2.1.1/bin:$PATH
+export PATH=$HOME/.gem/ruby/2.1.0/bin:$PATH
+__EOF__
+$ . ~/.bash_profile
+```
+
+Gems immer lokal installieren:
+
+```
+echo "gem: --user-install --no-rdoc --no-ri" > ~/.gemrc
+```
+
+Bundler installieren:
+
+```
+$ gem install bundler
+```
+
+Bundler veranlassen, Gems ebenfalls lokal zu installieren:
+
+```
+$ bundle config path ~/.gem
+```
+
+FCGI Weiterleitung einrichten:
+
+```
+$ cat <<__EOF__ > ~/fcgi-bin/rails
+#!/bin/sh
+
+# This is needed to find gems installed with --user-install
+export HOME=$HOME
+
+# Include our profile to get Ruby 1.9.2 included in our PATH
+. \$HOME/.bash_profile
+
+# This makes Rails/Rack think we're running under FastCGI. WTF?!
+# See ~/.gem/ruby/1.9.1/gems/rack-1.2.1/lib/rack/handler.rb
+export PHP_FCGI_CHILDREN=1
+
+# Get into the project directory and start the Rails server
+cd \$HOME/rails/current
+exec bundle exec rails server
+__EOF__
+```
+
+Dann noch ausführbar machen:
+
+```
+$ chmod 755 ~/fcgi-bin/rails
+```
+
+HTACCESS Regel erstellen für Weiterleitung:
+
+```
+$ cat <<__EOF__ >> ~/html/.htaccess
+RewriteEngine on
+RewriteRule ^(.*)$ /fcgi-bin/rails/\$1 [QSA,L]
+__EOF__
+```
+
+Email Account einrichten:
+
+```
+$ vsetup
+$ vadduser mailer
+l3tm3s3nd3m41lS!
+l3tm3s3nd3m41lS!
+```
+
 ## Developer Environment
 
 - [Mac OS X](http://www.apple.com/osx/)
