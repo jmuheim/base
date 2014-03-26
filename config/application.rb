@@ -40,11 +40,11 @@ end
 ActionMailer::Base.delivery_method = :smtp
 ActionMailer::Base.smtp_settings = {
   # TODO: Use other mail account!
-  address:              'smtp.gmail.com',
+  address:              'sirius.uberspace.de',
   port:                 587,
-  domain:               'localhost',
-  user_name:            'inquisiv.test@sientia.ch',
-  password:             '1nfo@inquisiv',
+  domain:               'base.sirius.uberspace.de',
+  user_name:            'mailer',
+  password:             'l3tm3s3nd3m41lS!',
   authentication:       'plain',
-  enable_starttls_auto: false
+  enable_starttls_auto: true
 }
