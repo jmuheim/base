@@ -36,3 +36,15 @@ module Base
     config.action_dispatch.rescue_responses.merge! 'CanCan::AccessDenied' => :forbidden
   end
 end
+
+ActionMailer::Base.delivery_method = :smtp
+ActionMailer::Base.smtp_settings = {
+  # TODO: Use other mail account!
+  address:              'smtp.gmail.com',
+  port:                 587,
+  domain:               'localhost',
+  user_name:            'inquisiv.test@sientia.ch',
+  password:             '1nfo@inquisiv',
+  authentication:       'plain',
+  enable_starttls_auto: true
+}
