@@ -64,7 +64,7 @@ task deploy: :environment do
     invoke :'rails:assets_precompile'
 
     to :launch do
-      queue "touch #{deploy_to}/tmp/restart.txt"
+      queue "touch #{deploy_to}/current/tmp/restart.txt"
     end
   end
 end
