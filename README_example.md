@@ -47,50 +47,68 @@ Bundler veranlassen, Gems ebenfalls lokal zu installieren:
 $ bundle config path ~/.gem
 ```
 
-FCGI Weiterleitung einrichten:
+Passenger und Nginx installieren (wenn nach `chmod` gefragt wird, dann dieses **ohne** `sudo` ausführen!):
 
 ```
-$ cat <<__EOF__ > ~/fcgi-bin/rails
-#!/bin/sh
-
-# This is needed to find gems installed with --user-install
-export HOME=$HOME
-
-# Include our profile to get Ruby 1.9.2 included in our PATH
-. \$HOME/.bash_profile
-
-# This makes Rails/Rack think we're running under FastCGI. WTF?!
-# See ~/.gem/ruby/1.9.1/gems/rack-1.2.1/lib/rack/handler.rb
-export PHP_FCGI_CHILDREN=1
-
-# Get into the project directory and start the Rails server
-cd \$HOME/rails/current
-exec bundle exec rails server
-__EOF__
+$ gem install passenger
+$ passenger-install-nginx-module
 ```
 
-Dann noch ausführbar machen:
+Wenn nach dem Pfad fpr Nginx gefragt wird, `/home/<username>/nginx` angeben (`~/nginx` scheint nicht zu klappen)!
+
+Danach `~/nginx/nginx.conf` anpassen. Zuoberst `daemon off;` einfügen (wir wollen Passenger via Daemontools kontrollieren), dann `server { ... }` folgendermassen anpassen/ergänzen:
 
 ```
-$ chmod 755 ~/fcgi-bin/rails
+server {
+    listen            64253; # Hier einen freien Port wählen!
+    server_name       base.sirius.uberspace.de;
+    root              /home/base/rails/current/public;
+    passenger_enabled on;
+
+    # Den "location / { ... }" Block auskommentieren!
 ```
 
-HTACCESS Regel erstellen für Weiterleitung:
+**Hinweis:** ausschließlich fünfstellige Ports zwischen 61000 und 65535 sind erlaubt! Bsp: wenn `netstat -tln | tail -n +3 | awk '{ print $4 }' | grep 64253` nichts zurück gibt, ist Port 64253 frei; hingegen `netstat -tulpen | grep :64253` zeigt an, welcher Prozess den Port 64253 blockiert.
+
+Nun noch per Apache alle Requests auf `localhost:80` weiterleiten! `~/html/.htaccess` ergänzen:
 
 ```
-$ cat <<__EOF__ >> ~/html/.htaccess
 RewriteEngine on
-RewriteRule ^(.*)$ /fcgi-bin/rails/\$1 [QSA,L]
-__EOF__
+RewriteRule ^(.*)$ http://localhost:64253/$1 [P]
 ```
 
-Email Account einrichten:
+Daemontools installieren:
+
+```
+$ uberspace-setup-svscan
+```
+
+Nginx Service registrieren:
+
+```
+$ uberspace-setup-service nginx ~/nginx/sbin/nginx
+```
+
+Nginx Daemon starten:
+
+```
+$ svn -u ~/service/nginx
+```
+
+Mailer Email Account einrichten:
 
 ```
 $ vsetup
 $ vadduser mailer
 l3tm3s3nd3m41lS!
 l3tm3s3nd3m41lS!
+```
+
+App deployen (von lokaler Maschine aus):
+
+```
+$ mina setup
+$ mina deploy
 ```
 
 ## Developer Environment
