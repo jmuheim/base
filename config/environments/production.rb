@@ -79,7 +79,4 @@ Base::Application.configure do
   config.log_formatter = ::Logger::Formatter.new
 
   config.action_mailer.default_url_options = {host: 'http://base.sirius.uberspace.de'}
-
-  # Use memcached to reduce CPU load, see http://bitboxer.de/2012/06/24/rails-on-an-uberspace/
-  config.cache_store = :dalli_store, '/home/base/memcached.sock'
 end
