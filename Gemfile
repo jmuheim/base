@@ -137,6 +137,8 @@ end
 
 group :production do
   gem 'mysql2' # Use MySQL as the database for Active Record
+
+  gem 'dalli' # High performance memcached client for Ruby
 end
 
 # Use ActiveModel has_secure_password
