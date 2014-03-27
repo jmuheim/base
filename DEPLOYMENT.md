@@ -81,3 +81,19 @@ To send Mails using SMTP, we need a mailer email account.
 - `l3tm3s3nd3m41lS!`
 
 To see how to config `ActionMailer`, go to [`./config/application.rb`](config/application.rb).
+
+## Database
+
+**Locally**, execute `$ mina setup`. Use the `--verbose` and `--trace` switch for debugging if something goes wrong.
+
+Then, on the server, edit `~/rails/shared/config/database.yml` and add the following:
+
+```
+production:
+  adapter: mysql2
+  encoding: utf8
+  username: base
+  password: (find me in ~/.my.cnf)
+  database: ACCOUNT
+  socket: /var/lib/mysql/mysql.sock
+```

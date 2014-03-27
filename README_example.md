@@ -37,13 +37,13 @@ You can use [direnv](https://github.com/zimbatm/direnv) to automatically add `bi
 
 To learn more about setting up deployment on a server, see [Deployment](./DEPLOYMENT.md).
 
-After setting things up correctly, execute `$ mina setup`. Use the `--verbose` and `--trace` switch for debugging if something goes wrong.
-
 ### Deploying
 
 **Before deploying**, run `rake HEADHUNTER=true` to make sure all HTML and CSS is in good shape!
 
 Be sure you have committed and pushed all wanted changes, then execute `$ mina deploy`! Use the `--verbose` and `--trace` switch for debugging if something goes wrong.
+
+That's all, folks!
 
 ## Continuous Integration
 
