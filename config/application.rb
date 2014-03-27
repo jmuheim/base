@@ -36,3 +36,14 @@ module Base
     config.action_dispatch.rescue_responses.merge! 'CanCan::AccessDenied' => :forbidden
   end
 end
+
+ActionMailer::Base.delivery_method = :smtp
+ActionMailer::Base.smtp_settings = {
+  address:              'sirius.uberspace.de',
+  port:                 587,
+  domain:               'sirius.uberspace.de',
+  user_name:            'base-mailer@sirius.uberspace.de',
+  password:             'l3tm3s3nd3m41lS!',
+  authentication:       'login',
+  enable_starttls_auto: true
+}
