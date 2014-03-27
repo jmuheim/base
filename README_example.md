@@ -5,112 +5,6 @@
 [![Dependency Status](https://gemnasium.com/jmuheim/base.png)](https://gemnasium.com/jmuheim/base)
 [![Coverage Status](https://coveralls.io/repos/jmuheim/base/badge.png)](https://coveralls.io/r/jmuheim/base)
 
-## Uberspace
-
-Public SSH Key installieren:
-
-```
-cat ~/.ssh/id_rsa.pub | ssh base@sirius.uberspace.de 'cat >> ~/.ssh/authorized_keys'
-```
-
-Zu Uberspace verbinden:
-
-```
-$ ssh base@sirius.uberspace.de
-```
-
-Ruby 2.1 aktivieren:
-
-```
-$ cat <<'__EOF__' >> ~/.bash_profile
-export PATH=/package/host/localhost/ruby-2.1.1/bin:$PATH
-export PATH=$HOME/.gem/ruby/2.1.0/bin:$PATH
-__EOF__
-$ . ~/.bash_profile
-```
-
-Gems immer lokal installieren:
-
-```
-echo "gem: --user-install --no-rdoc --no-ri" > ~/.gemrc
-```
-
-Bundler installieren:
-
-```
-$ gem install bundler
-```
-
-Bundler veranlassen, Gems ebenfalls lokal zu installieren:
-
-```
-$ bundle config path ~/.gem
-```
-
-Passenger und Nginx installieren (wenn nach `chmod` gefragt wird, dann dieses **ohne** `sudo` ausführen!):
-
-```
-$ gem install passenger
-$ passenger-install-nginx-module
-```
-
-Wenn nach dem Pfad fpr Nginx gefragt wird, `/home/<username>/nginx` angeben (`~/nginx` scheint nicht zu klappen)!
-
-Danach `~/nginx/nginx.conf` anpassen. Zuoberst `daemon off;` einfügen (wir wollen Passenger via Daemontools kontrollieren), dann `server { ... }` folgendermassen anpassen/ergänzen:
-
-```
-server {
-    listen            64253; # Hier einen freien Port wählen!
-    server_name       base.sirius.uberspace.de;
-    root              /home/base/rails/current/public;
-    passenger_enabled on;
-
-    # Den "location / { ... }" Block auskommentieren!
-```
-
-**Hinweis:** ausschließlich fünfstellige Ports zwischen 61000 und 65535 sind erlaubt! Bsp: wenn `netstat -tln | tail -n +3 | awk '{ print $4 }' | grep 64253` nichts zurück gibt, ist Port 64253 frei; hingegen `netstat -tulpen | grep :64253` zeigt an, welcher Prozess den Port 64253 blockiert.
-
-Nun noch per Apache alle Requests auf `localhost:80` weiterleiten! `~/html/.htaccess` ergänzen:
-
-```
-RewriteEngine on
-RewriteRule ^(.*)$ http://localhost:64253/$1 [P]
-```
-
-Daemontools installieren:
-
-```
-$ uberspace-setup-svscan
-```
-
-Nginx Service registrieren:
-
-```
-$ uberspace-setup-service nginx ~/nginx/sbin/nginx
-```
-
-Nginx Daemon starten:
-
-```
-$ svn -u ~/service/nginx
-```
-
-Mailer Email Account einrichten:
-
-```
-$ vsetup
-$ vadduser mailer
-l3tm3s3nd3m41lS!
-l3tm3s3nd3m41lS!
-```
-
-App deployen (von lokaler Maschine aus):
-
-```
-$ mina setup
-$ mina deploy
-```
-
 ## Developer Environment
 
 - [Mac OS X](http://www.apple.com/osx/)
@@ -144,9 +38,19 @@ You can use [direnv](https://github.com/zimbatm/direnv) to automatically add `bi
 
 - Use `@chrome` or `@selenium` flag to visually run acceptance tests in Chrome or Firefox.
 
-## Deploying
+## Deployment
 
-- **Before deploying**, run `rake HEADHUNTER=true` to make sure all HTML and CSS is in good shape.
+### Setup
+
+To learn more about setting up deployment on a server, see [Deployment](./DEPLOYMENT.md).
+
+After setting things up correctly, execute `$ mina setup`. Use the `--verbose` and `--trace` switch for debugging if something goes wrong.
+
+### Deploying
+
+**Before deploying**, run `rake HEADHUNTER=true` to make sure all HTML and CSS is in good shape!
+
+Be sure you have committed and pushed all wanted changes, then execute `$ mina deploy`! Use the `--verbose` and `--trace` switch for debugging if something goes wrong.
 
 ### Travis CI
 
