@@ -12,7 +12,7 @@ In the following document, always replace `ACCOUNT` with your account name (e.g.
 
 ## Setup Ruby
 
-To activate Ruby 2.1, execute the following:
+To [activate Ruby 2.1](http://uberspace.de/dokuwiki/cool:rails#ruby_aktivieren), execute the following:
 
 ```
 $ cat <<'__EOF__' >> ~/.bash_profile
@@ -23,6 +23,8 @@ $ . ~/.bash_profile
 ```
 
 ## Setup Bundler
+
+Gems need to be installed always [in our user's directory](https://uberspace.de/dokuwiki/cool:rails).
 
 - `$ echo "gem: --user-install --no-rdoc --no-ri" > ~/.gemrc`
 - `$ gem install bundler`
@@ -54,7 +56,7 @@ server {
 
 - To check whether a port is open, execute `netstat -tln | tail -n +3 | awk '{ print $4 }' | grep 64253`: empty output means the port is open.
 - To find out which process is blocking a port, execute `netstat -tulpen | grep :64253`.
-- **Notice:** only ports within 61000 and 65535 are allowed!
+- **Notice:** [only ports within 61000 and 65535 are allowed!](http://uberspace.de/dokuwiki/system:ports)
 
 ### Forward web requests to Passenger
 
@@ -67,7 +69,7 @@ RewriteRule ^(.*)$ http://localhost:64253/$1 [P]
 
 ## Daemontools
 
-- `$ uberspace-setup-svscan` activates daemontools
+- `$ uberspace-setup-svscan` activates [daemontools](http://uberspace.de/dokuwiki/system:daemontools)
 - `$ uberspace-setup-service nginx ~/nginx/sbin/nginx` registers nginx as daemon
 - `$ svc -u ~/service/nginx` starts the service (use `-d` to stop it and `-h` to reload it)
 
@@ -75,7 +77,7 @@ RewriteRule ^(.*)$ http://localhost:64253/$1 [P]
 
 To send Mails using SMTP, we need a mailer email account.
 
-- `$ vsetup` activates email account management
+- `$ vsetup` activates [email account management](http://uberspace.de/dokuwiki/start:mail)
 - `$ vadduser mailer`
 - `l3tm3s3nd3m41lS!`
 - `l3tm3s3nd3m41lS!`
@@ -93,7 +95,7 @@ production:
   adapter: mysql2
   encoding: utf8
   username: base
-  password: (find me in ~/.my.cnf)
+  password: [(find me in ~/.my.cnf)](http://uberspace.de/dokuwiki/database:mysql)
   database: ACCOUNT
   socket: /var/lib/mysql/mysql.sock
 ```
