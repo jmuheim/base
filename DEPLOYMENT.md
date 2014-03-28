@@ -2,13 +2,17 @@
 
 We chose [Uberspace](http://www.uberspace.de) as our hosting provider.
 
-In the following document, always replace `ACCOUNT` with your account name (e.g. `base`) and `SERVER` with the used Uberspace server (e.g. `sirius`)!
+In the following document, always replace `ACCOUNT` with your Uberspace account name (e.g. `base`), `SERVER` with the Uberspace server (e.g. `sirius`), and `PROJECT` with your GitHub repository name (e.g. `base`)!
 
 ## Register new account
 
 - Go to the [register](https://uberspace.de/register) page and create a new Uberspace account.
 - Then add your public SSH key on the [authentication](https://uberspace.de/dashboard/authentication) page (**notice:** [Mina](http://nadarei.co/mina/) seems to have [problems with password authentication](http://stackoverflow.com/questions/22606771)!)
 - Now you can connect to your account: `$ ssh ACCOUNT@SERVER.uberspace.de`
+
+## Setup Mina
+
+- Copy `config/deploy_example.rb` to `config/deploy.rb` and replace `ACCOUNT`, `PROJECT`, and `SERVER` with project specific configuration data.
 
 ## Setup Ruby
 
