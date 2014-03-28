@@ -14,7 +14,7 @@ In the following document, always replace `ACCOUNT` with your Uberspace account 
 
 ## Setup Mina <sup>(local)</sup>
 
-- Copy [`config/deploy_example.rb`](./config/deploy.rb) to `config/deploy.rb` and replace `ACCOUNT`, `PROJECT`, and `SERVER` with project specific configuration data.
+- Copy [`config/deploy_example.rb`](config/deploy.rb) to `config/deploy.rb` and replace `ACCOUNT`, `PROJECT`, and `SERVER` with project specific configuration data.
 - Commit and push the changes.
 
 ## Setup Ruby <sup>(remote)</sup>
@@ -106,7 +106,7 @@ To send Mails using SMTP, we need a mailer email account.
 - `$ vadduser mailer`
 - `l3tm3s3nd3m41lS!` (2 times)
 
-To see how to config `ActionMailer`, go to [`./config/application.rb`](config/application.rb) (if you choose the password from the example above, you don't have to config anything manually).
+To see how to config `ActionMailer`, go to [`config/application.rb`](config/application.rb) (if you choose the password from the example above, you don't have to config anything manually).
 
 ## Setup Mina <sup>(local)</sup>
 
