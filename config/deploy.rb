@@ -10,10 +10,13 @@ require 'mina/git'
 #   repository   - Git repo to clone from. (needed by mina/git)
 #   branch       - Branch name to deploy. (needed by mina/git)
 
-set :domain, 'SERVER.uberspace.de'
-set :user, 'ACCOUNT'
-set :deploy_to, '/home/ACCOUNT/rails'
-set :repository, 'https://github.com/jmuheim/PROJECT.git'
+set :server_name, 'sirius'
+set :user, 'base'
+set :repository_name, 'base'
+
+set :domain, "#{server_name}.uberspace.de"
+set :deploy_to, "/home/#{user}/rails"
+set :repository, "https://github.com/jmuheim/#{repository_name}.git"
 set :branch, 'master'
 
 # Manually create these paths in shared/ (eg: shared/config/database.yml) in your server.
