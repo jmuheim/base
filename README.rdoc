@@ -20,3 +20,4 @@ In your fork:
 - Replace all occurrences of <code>Base</code> and <code>base</code> in the code with your project's equivalents (TODO: write executable script?)
 - Change the Rack Livereload port in <code>Guardfile</code> and `config/development.rb`
 - Change the default URL options' <code>:host</code> in <code>config/environments/production.rb</code> to <code>http://ACCOUNT.SERVER.uberspace.de</code>
+- Copy <code>config/deploy_example.rb</code> to <code>config/deploy.rb</code> and replace <code>ACCOUNT</code>, <code>PROJECT</code> and <code>SERVER</code> with your project specific data.
