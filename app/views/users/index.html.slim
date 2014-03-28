@@ -1,19 +1,9 @@
 - content_for :headline do
   | Listing users
 
-table.table.table-striped
-  tr
-    th Name
-    th Email
-    th colspan=3 Actions
-
-  - @users.each do |user|
-    tr
-      td= user.username
-      td= user.email
-      td= show_link_to user
-      td= edit_link_to user
-      td= destroy_link_to user
+/ Would be nice to do something like `= render @users, wrapper: true`, see http://stackoverflow.com/questions/22120292
+= render 'users', users: @users
 
 ul.actions
-  li= create_link_to User
+  - if can? :create, User
+    li= link_to 'New', new_user_path

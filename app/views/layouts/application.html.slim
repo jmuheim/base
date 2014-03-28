@@ -1,10 +1,10 @@
 doctype html
 html
   head
-    title= content_for?(:title) ? yield(:title) : 'Base'
+    title= yield(:title)
 
     meta[name="viewport" content="width=device-width, initial-scale=1.0"]
-    meta name="description" content="#{content_for?(:description) ? yield(:description) : 'Myapp'}"
+    meta name="description" content="#{yield(:description)}"
 
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
@@ -17,10 +17,10 @@ html
     main.container[role="main"]
       .row
         .col-md-9
-          h1= content_for?(:headline) ? yield(:headline) : 'Base'
+          h1= yield(:headline)
 
           == render 'layouts/messages'
           == yield
 
         .col-md-3
-          = render_cell :mini_hub, :show, user: current_or_guest_user
+          = render_cell :mini_hub, :show, user: current_user

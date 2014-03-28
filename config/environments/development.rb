@@ -32,7 +32,8 @@ Base::Application.configure do
   # Notice: BetterErrors::Middleware is injected as an engine, so it's not
   # available at this point, so we just insert before Rack::Lock which is nearly
   # at the top of the stack.
-  config.middleware.insert_before Rack::Lock, Rack::LiveReload, no_swf: true
+  config.middleware.insert_before Rack::Lock, Rack::LiveReload, no_swf:           true,
+                                                                live_reload_port: 35729
 
   config.action_mailer.default_url_options = {host: 'localhost:3000'}
 end

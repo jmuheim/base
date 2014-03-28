@@ -3,7 +3,7 @@
 
 require 'active_support/inflector'
 
-guard :livereload do
+guard :livereload, port: 35729 do
   watch(%r{app/(cells|views)/.+\.(erb|haml|slim)$})
   watch(%r{app/helpers/.+\.rb})
   watch(%r{public/.+\.(css|js|html)})
@@ -14,7 +14,8 @@ guard :livereload do
   watch(%r{(app/assets/stylesheets/globals)/.+\.css\.(sass|scss)}) { |m| "#{m[1]}/application.css.#{m[2]}" } # It's strange that this rule is needed, it should work without it, see http://blog.55minutes.com/2013/01/lightning-fast-sass-reloading-in-rails-32/#comment-1184644401
 end
 
-guard :rspec, cmd: 'spring rspec' do
+# TODO: Why is bundle exec needed? More infos here: http://stackoverflow.com/questions/22555324 and https://github.com/rails/spring/issues/277
+guard :rspec, cmd: 'bundle exec spring rspec' do
   watch(%r{^spec/.+_spec\.rb$})
   watch(%r{^lib/(.+)\.rb$})     { |m| "spec/lib/#{m[1]}_spec.rb" }
   watch('spec/spec_helper.rb')  { "spec" }
@@ -49,30 +50,16 @@ guard :bundler do
   # watch(/^.+\.gemspec/)
 end
 
-guard :pow do
-  watch('.powrc')
-  watch('.powenv')
-  watch('.rvmrc')
-  watch('.ruby-version')
-  watch('Gemfile')
-  watch('Gemfile.lock')
-  watch('config/application.rb')
-  watch('config/environment.rb')
-  watch(%r{config/locales/.+\.yml})
-  watch(%r{^config/environments/.*\.rb$})
-  watch(%r{^config/initializers/.*\.rb$})
-end
-
-guard 'migrate', cmd: 'spring rake',
+guard 'migrate', cmd:          'spring rake',
                  run_on_start: false,
-                 test_clone: true,
-                 reset: true,
-                 seed: true do
+                 test_clone:   true,
+                 reset:        true,
+                 seed:         true do
   watch(%r{^db/migrate/(\d+).+\.rb})
   watch('db/seeds.rb')
 end
 
-guard 'annotate', show_indexes: true,
+guard 'annotate', show_indexes:   true,
                   show_migration: true do
   watch( 'db/schema.rb' )
 

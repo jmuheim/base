@@ -51,7 +51,7 @@ SimpleForm.setup do |config|
 
 
 
-  config.wrappers :bootstrap, tag: 'div', class: 'form-group', error_class: 'error' do |b|
+  config.wrappers :bootstrap, tag: 'div', class: 'form-group', error_class: 'has-error' do |b|
     b.use :html5
     b.use :placeholder
     b.use :label
@@ -64,7 +64,7 @@ SimpleForm.setup do |config|
     # b.wrapper_for [:check_boxes, :boolean], :vertical_check_box
   end
 
-  config.wrappers :vertical_check_box, tag: 'div', class: 'form-group', error_class: 'error' do |b|
+  config.wrappers :vertical_check_box, tag: 'div', class: 'form-group', error_class: 'has-error' do |b|
     b.use :html5
     b.use :placeholder
     b.wrapper tag: 'div', class: 'checkbox' do |ba|
@@ -76,7 +76,7 @@ SimpleForm.setup do |config|
 
 
 
-  config.wrappers :bootstrap_horizontal, tag: 'div', class: 'form-group', error_class: 'error' do |b|
+  config.wrappers :bootstrap_horizontal, tag: 'div', class: 'form-group', error_class: 'has-error' do |b|
     b.use :html5
     b.use :placeholder
     b.use :label, class: 'col-sm-3'
@@ -89,7 +89,7 @@ SimpleForm.setup do |config|
     end
   end
 
-  config.wrappers :horizontal_check_box, tag: 'div', class: 'form-group', error_class: 'error' do |b|
+  config.wrappers :horizontal_check_box, tag: 'div', class: 'form-group', error_class: 'has-error' do |b|
     b.use :html5
     b.use :placeholder
 
@@ -105,7 +105,7 @@ SimpleForm.setup do |config|
 
 
 
-  config.wrappers :prepend, tag: 'div', class: "form-group", error_class: 'error' do |b|
+  config.wrappers :prepend, tag: 'div', class: "form-group", error_class: 'has-error' do |b|
     b.use :html5
     b.use :placeholder
     b.use :label
@@ -118,7 +118,7 @@ SimpleForm.setup do |config|
     end
   end
 
-  config.wrappers :append, tag: 'div', class: "form-group", error_class: 'error' do |b|
+  config.wrappers :append, tag: 'div', class: "form-group", error_class: 'has-error' do |b|
     b.use :html5
     b.use :placeholder
     b.use :label
@@ -144,7 +144,7 @@ SimpleForm.setup do |config|
   config.boolean_style = :nested
 
   # Default class for buttons
-  config.button_class = 'btn btn-default'
+  config.button_class = 'btn'
 
   # Method used to tidy up errors.
   # config.error_method = :first

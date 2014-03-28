@@ -4,7 +4,7 @@
 # Table name: users
 #
 #  id                     :integer          not null, primary key
-#  username               :string(255)
+#  name                   :string(255)
 #  email                  :string(255)
 #  encrypted_password     :string(255)
 #  reset_password_token   :string(255)
@@ -30,9 +30,9 @@
 #
 #  index_users_on_confirmation_token    (confirmation_token) UNIQUE
 #  index_users_on_email                 (email) UNIQUE
+#  index_users_on_name                  (name) UNIQUE
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #  index_users_on_unlock_token          (unlock_token) UNIQUE
-#  index_users_on_username              (username)
 #
 
 class User < ActiveRecord::Base
@@ -44,27 +44,44 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :confirmable, :lockable, authentication_keys: [:login]
 
+  scope :guests,     -> { where(guest: true) }
+  scope :registered, -> { where(guest: false) }
+
   attr_accessor :login
 
-  validates :username, presence: true
-  validates :username, uniqueness: {case_sensitive: false},
-                       unless: -> { guest? }
+  before_validation :set_guest_name, if: -> { guest? }
 
-  def self.create_guest!
-    create! do |user|
-      user.username  = 'guest'
-      user.guest     = true
-    end
-  end
+  validates :name, presence: true
+  validates :name, uniqueness: {case_sensitive: false},
+                   unless: -> { guest? }
 
   # https://github.com/plataformatec/devise/wiki/How-To:-Allow-users-to-sign-in-using-their-username-or-email-address
   def self.find_first_by_auth_conditions(warden_conditions)
     conditions = warden_conditions.dup
     if login = conditions.delete(:login)
-      where(conditions).where(['lower(username) = :value OR lower(email) = :value', { value: login.downcase }]).first
+      where(conditions).where(['lower(name) = :value OR lower(email) = :value', { value: login.downcase }]).first
     else
       where(conditions).first
     end
+  end
+
+  def display_name
+    guest? ? 'guest' : name
+  end
+
+  def annex_and_destroy!(other)
+    transaction do
+      skip_confirmation_notification!
+
+      other.delete
+      other.attributes.except("id").each do |attribute, value|
+        update_column attribute, value
+      end
+
+      self.save!
+    end
+
+    self
   end
 
   private
@@ -75,5 +92,9 @@ class User < ActiveRecord::Base
 
   def email_required?
     !guest?
+  end
+
+  def set_guest_name
+    self.name = "guest-#{self.class.guests.maximum(:id).next rescue 1}"
   end
 end

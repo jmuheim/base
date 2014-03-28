@@ -24,45 +24,41 @@ class ApplicationController < ActionController::Base
   # See https://github.com/plataformatec/devise/wiki/How-To:-Create-a-guest-user)
   # skip_before_action :verify_authenticity_token, only: [:name_of_your_action]
 
-  helper_method :current_or_guest_user
-
-  def current_ability
-    @current_ability ||= Ability.new(current_or_guest_user)
-  end
-
-  def current_or_guest_user
-    current_user.presence || guest_user
-  end
-
   protected
 
   # https://github.com/plataformatec/devise/wiki/How-To:-Allow-users-to-sign-in-using-their-username-or-email-address
   def configure_permitted_parameters
     devise_parameter_sanitizer.for :sign_up do |u|
-      u.permit :username, :email, :password, :password_confirmation, :remember_me
+      u.permit :name, :email, :password, :password_confirmation, :remember_me
     end
 
     devise_parameter_sanitizer.for :sign_in do |u|
-      u.permit :username, :email, :password, :remember_me
+      u.permit :name, :email, :password, :remember_me
     end
 
     devise_parameter_sanitizer.for :account_update do |u|
-      u.permit :username, :email, :password, :password_confirmation, :current_password
+      u.permit :name, :email, :password, :password_confirmation, :current_password
     end
   end
 
   private
 
-  def init_guest_user
-    @guest_user ||= User.find(session[:guest_user_id] ||= create_guest_user.id)
+  def user_signed_in?
+    current_user.present? ? !current_user.guest? : super
+  end
 
-  rescue ActiveRecord::RecordNotFound # If session[:guest_user_id] is invalid
-    session[:guest_user_id] = nil
+  def init_guest_user
+    @current_user = User.guests.find(session[:guest_user_id] ||= create_guest_user.id)
+  rescue ActiveRecord::RecordNotFound
+    remove_guest_user
     init_guest_user
   end
 
   def create_guest_user
-    user = User.create_guest!
+    user = User.create do |user|
+      user.guest = true
+      user.skip_confirmation!
+    end
 
     session[:guest_user_id] = user.id
     user
@@ -70,5 +66,11 @@ class ApplicationController < ActionController::Base
 
   def set_locale
     I18n.locale = params[:locale] || I18n.default_locale
+  end
+
+  def remove_guest_user
+    User.find(session[:guest_user_id]).delete rescue ActiveRecord::RecordNotFound
+  ensure
+    session[:guest_user_id] = nil
   end
 end

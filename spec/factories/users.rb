@@ -4,7 +4,7 @@
 # Table name: users
 #
 #  id                     :integer          not null, primary key
-#  username               :string(255)
+#  name                   :string(255)
 #  email                  :string(255)
 #  encrypted_password     :string(255)
 #  reset_password_token   :string(255)
@@ -30,26 +30,26 @@
 #
 #  index_users_on_confirmation_token    (confirmation_token) UNIQUE
 #  index_users_on_email                 (email) UNIQUE
+#  index_users_on_name                  (name) UNIQUE
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #  index_users_on_unlock_token          (unlock_token) UNIQUE
-#  index_users_on_username              (username)
 #
 
 FactoryGirl.define do
   factory :guest, class: User do
-    username 'guest'
-    guest    true
+    guest true
   end
 
   factory :user do
-    username              'user'
-    email                 'user@example.com'
+    # Ffaker calls need to be in block?! See https://github.com/EmmanuelOga/ffaker/issues/121
+    name                  { Faker::Name.name }
+    email                 { Faker::Internet.email }
     password              's3cur3p@ssw0rd'
     password_confirmation 's3cur3p@ssw0rd'
     confirmed_at          Time.now
 
     factory :admin do
-      username              'admin'
+      name                  'admin'
       email                 'admin@example.com'
 
       after(:create) do |user|

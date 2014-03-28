@@ -1,9 +1,7 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.0.3'
-gem 'i18n', github: 'svenfuchs/i18n'
-
-gem 'sqlite3' # Use sqlite3 as the database for Active Record
+gem 'rails', '4.0.4'
+# gem 'i18n', github: 'svenfuchs/i18n'
 
 gem 'slim-rails' # Awesome template language that replaces ERB
 
@@ -20,7 +18,9 @@ gem 'bootstrap-sass' # Sleek, intuitive, and powerful front-end framework for fa
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
-gem 'jquery-rails' # Use jquery as the JavaScript library
+# Use jquery as the JavaScript library
+gem 'jquery-rails'
+gem 'jquery-ui-rails'
 
 gem 'turbolinks' # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 
@@ -35,7 +35,7 @@ gem 'cancancan' # Authorization library which restricts what resources a given u
 gem 'rolify' # Manage roles of users
 
 # Inherit RESTful actions in controllers
-gem 'inherited_resources'
+gem 'inherited_resources', '>= 1.4.1'
 gem 'has_scope' # Maps controller filters to resource scopes
 gem 'responders' # A set of Rails responders
 
@@ -43,18 +43,29 @@ gem 'cells' # View components
 
 gem 'simple_form' # Forms made easy for Rails
 
+gem 'gaffe' # Handles Rails error pages in a clean, simple way
+
+gem 'cocoon' # Dynamic nested forms made easy
+
 group :doc do
   gem 'sdoc', require: false # bundle exec rake doc:rails generates the API under doc/api.
 end
 
 group :development, :test do
-  gem 'rspec-rails' # Testing tool for the Ruby programming language
+  gem 'sqlite3' # Use SQLite as the database for Active Record
 
+  # Testing tool for the Ruby programming language
+  gem 'rspec'
+  gem 'rspec-rails'      # RSpec for Rails
+
+  # Data generation
   gem 'factory_girl_rails' # Test data generator
+  gem 'ffaker'             # Easily generate fake data
 
-  gem 'jazz_hands' # Use Pry and its extensions instead of IRB
-
-  gem 'ffaker' # Generates realistic fake data
+  # Use Pry and its extensions instead of IRB
+  gem 'jazz_hands', github: 'nixme/jazz_hands',
+                    branch: 'bring-your-own-debugger'
+  gem 'pry-byebug'      # Pry navigation commands via debugger (formerly ruby-debug)
 end
 
 group :development do
@@ -67,19 +78,21 @@ group :development do
   gem 'xray-rails' # Reveals your UI's bones with Cmd-X/Ctrl-X
 
   # Rails application preloader
-  gem 'spring', github: 'guard/spring', branch: 'listen2'
+  gem 'spring', github: 'guard/spring',
+                branch: 'listen2' # https://github.com/rails/spring/pull/194
   gem 'spring-commands-rspec' # Commands for RSpec
-  gem 'listen'
+  gem 'listen'                # Event based file system listening (instead of polling)
 
   # Guard: automatically run commands when files are changed
+  gem 'guard'
   gem 'guard-rspec', require: false      # Automatically run tests
   gem 'terminal-notifier-guard'          # Mac OS X User Notifications for Guard
   gem 'guard-livereload', require: false # Automatically reload your browser when 'view' files are modified
-  gem 'guard-pow', require: false        # Automatically manage Pow applications restart
   gem 'guard-bundler'                    # Automatically install/update gem bundle when needed
   gem 'guard-annotate'                   # Automatically run the annotate gem when needed
+  gem 'guard-migrate'                    # Automatically run migrations when they are edited
 
-  gem 'powder', require: false # Configure POW server easily
+  gem 'rerun', require: false # Restarts an app when the filesystem changes
 
   gem 'rack-livereload' # Enable LiveReload in Rails
 
@@ -88,10 +101,14 @@ group :development do
   gem 'rubocop', require: false # A robust Ruby code analyzer, based on the community Ruby style guide
 
   gem 'rip_hashrocket', # Replace hashrockets (=>) automatically
-       git: 'git://github.com/jmuheim/rip_hashrocket',
+       github:  'jmuheim/rip_hashrocket',
        require: false
 
   gem 'capybara' # Acceptance test framework for web applications
+
+  gem 'rails-footnotes'
+
+  gem 'mina', require: false
 end
 
 group :test do
@@ -110,9 +127,7 @@ group :test do
   gem 'launchy'            # Use `save_and_open_page` in request tests to automatically open a browser
   gem 'selenium-webdriver' # Selenium webdriver (needed to use Chrome driver)
 
-  gem 'turnip'
-
-  gem 'guard-migrate' # Automatically run migrations when they are edited
+  gem 'turnip' # Gherkin extension for RSpec
 
   gem 'capybara-screenshot' # Automatically save screen shots when a scenario fails
 
@@ -121,6 +136,10 @@ group :test do
   gem 'headhunter' # Automagically validates all HTML and CSS during the acceptance tests
 
   gem 'coveralls', require: false
+end
+
+group :production do
+  gem 'mysql2' # Use MySQL as the database for Active Record
 end
 
 # Use ActiveModel has_secure_password

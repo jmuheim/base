@@ -1,14 +1,20 @@
 Base::Application.routes.draw do
   scope '(/:locale)' do
-    devise_for :users, controllers: { registrations: 'registrations' }
-    resource :dashboard
+    devise_for :user, controllers: { registrations: :registrations,
+                                     sessions:      :sessions }
+
     resources :users
+
+    resource :dashboard
+
+    [403, 404, 422, 500].each do |code|
+      get code, to: 'errors#show', code: code
+    end
+
+    root 'dashboards#show'
 
     # The priority is based upon order of creation: first created -> highest priority.
     # See how all your routes lay out with "rake routes".
-
-    # You can have the root of your site routed with "root"
-    root 'dashboards#show'
 
     # Example of regular route:
     #   get 'products/:id' => 'catalog#view'

@@ -9,8 +9,14 @@ This is a basic Rails project with everything configured the way I want. {Fork i
 
 In your fork:
 
-- Create a <code>README.md</code> file with the contents of <code>README_example.md</code>, then complement it with your project specific details.
+- Create a <code>README.md</code> file with the contents of <code>README_example.md</code>, then...
+  - Replace <code>TITLE</code> with a meaningful title, e.g. <code>Pretty Calc - A pretty calculator</code>
+  - Replace all occurrences of PROJECT to your project's downcased name, e.g. <code>pretty_calc</code> for <code>Pretty Calc</code>
+  - Complement it with your project specific details
 - Change the content of <code>.ruby-gemset</code> file to the name of your fork's repository
 - Execute the following:
-  - `$ rvm use .` (activates the RVM gemset)
-  - `$ rake db:setup` (sets up the database with seed data)
+  - <code>$ rvm use .</code> (activates the RVM gemset)
+  - <code>$ rake db:setup</code> (sets up the database with seed data)
+- Replace all occurrences of <code>Base</code> and <code>base</code> in the code with your project's equivalents (TODO: write executable script?)
+- Change the Rack Livereload port in <code>Guardfile</code> and `config/development.rb`
+- Change the default URL options' <code>:host</code> in <code>config/environments/production.rb</code> to <code>http://ACCOUNT.SERVER.uberspace.de</code>
