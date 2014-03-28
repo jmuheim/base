@@ -14,7 +14,7 @@ In the following document, always replace `ACCOUNT` with your Uberspace account 
 
 ## Setup Mina <sup>(local)</sup>
 
-- Copy [`config/deploy_example.rb`](config/deploy.rb) to `config/deploy.rb` and replace `ACCOUNT`, `PROJECT`, and `SERVER` with project specific configuration data.
+- Copy [`config/deploy_example.rb`](config/deploy_example.rb) to `config/deploy.rb` and replace `ACCOUNT`, `PROJECT`, and `SERVER` with project specific configuration data.
 - Commit and push the changes.
 
 ## Setup Ruby <sup>(remote)</sup>
