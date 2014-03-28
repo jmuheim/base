@@ -119,10 +119,16 @@ Then, on the server, edit `~/rails/shared/config/database.yml` and add the follo
 production:
   adapter: mysql2
   encoding: utf8
-  username: base
+  username: ACCOUNT
   password: ???
   database: ACCOUNT
   socket: /var/lib/mysql/mysql.sock
 ```
 
 The password for [MySQL](http://uberspace.de/dokuwiki/database:mysql) can be found in the file `.my.cnf`.
+
+## First run <sup>(local)</sup>
+
+It's time for the first deployment: execute `$ mina deploy`! Use the `--verbose` and `--trace` switch for debugging if something goes wrong.
+
+Now go to [http://ACCOUNT.SERVER.uberspace.de](http://ACCOUNT.SERVER.uberspace.de) and enjoy your site!
