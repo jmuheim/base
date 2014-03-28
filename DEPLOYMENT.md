@@ -8,13 +8,15 @@ In the following document, always replace `ACCOUNT` with your Uberspace account 
 
 - Go to the [register](https://uberspace.de/register) page and create a new Uberspace account.
 - Then add your public SSH key on the [authentication](https://uberspace.de/dashboard/authentication) page (**notice:** [Mina](http://nadarei.co/mina/) seems to have [problems with password authentication](http://stackoverflow.com/questions/22606771)!)
+- Choose a password for your account (for webpanel access)
+- You can see the chosen Uberspace's name in the [datasheet](https://uberspace.de/dashboard/datasheet)
 - Now you can connect to your account: `$ ssh ACCOUNT@SERVER.uberspace.de`
 
-## Setup Mina
+## Setup Mina <sup>(local)</sup>
 
 - Copy `config/deploy_example.rb` to `config/deploy.rb` and replace `ACCOUNT`, `PROJECT`, and `SERVER` with project specific configuration data.
 
-## Setup Ruby
+## Setup Ruby <sup>(remote)</sup>
 
 To [activate Ruby 2.1](http://uberspace.de/dokuwiki/cool:rails#ruby_aktivieren), execute the following:
 
@@ -26,7 +28,7 @@ __EOF__
 $ . ~/.bash_profile
 ```
 
-## Setup gems management
+## Setup gems management <sup>(remote)</sup>
 
 [Rails, bundler and other gems](https://uberspace.de/dokuwiki/cool:rails) need to be installed always in our user's directory.
 
@@ -34,7 +36,7 @@ $ . ~/.bash_profile
 - `$ gem install bundler`
 - `$ bundle config path ~/.gem`
 
-## Setup Passenger with Nginx
+## Setup Passenger with Nginx <sup>(remote)</sup>
 
 - `$ gem install passenger` (if you're told to execute a `$ chmod ...`, then run it **without** `sudo`!)
 - `$ passenger-install-nginx-module` (when told to enter path, enter `/home/ACCOUNT/nginx`)
@@ -71,13 +73,13 @@ RewriteEngine on
 RewriteRule ^(.*)$ http://localhost:64253/$1 [P]
 ```
 
-## Daemontools
+## Daemontools <sup>(remote)</sup>
 
 - `$ uberspace-setup-svscan` activates [daemontools](http://uberspace.de/dokuwiki/system:daemontools)
 - `$ uberspace-setup-service nginx ~/nginx/sbin/nginx` registers nginx as daemon
 - `$ svc -u ~/service/nginx` starts the service (use `-d` to stop it and `-h` to reload it)
 
-## Mailer email account
+## Mailer email account <sup>(remote)</sup>
 
 To send Mails using SMTP, we need a mailer email account.
 
@@ -86,11 +88,13 @@ To send Mails using SMTP, we need a mailer email account.
 - `l3tm3s3nd3m41lS!`
 - `l3tm3s3nd3m41lS!`
 
-To see how to config `ActionMailer`, go to [`./config/application.rb`](config/application.rb).
+To see how to config `ActionMailer`, go to [`./config/application.rb`](config/application.rb) (if you choose the password from the example above, you don't have to config anything manually).
 
-## Database
+## Setup Mina <sup>(remote)</sup>
 
 **Locally**, execute `$ mina setup`. Use the `--verbose` and `--trace` switch for debugging if something goes wrong.
+
+## Database <sup>(remote)</sup>
 
 Then, on the server, edit `~/rails/shared/config/database.yml` and add the following:
 
