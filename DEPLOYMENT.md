@@ -2,7 +2,7 @@
 
 We chose [Uberspace](http://www.uberspace.de) as our hosting provider.
 
-In the following document, always replace `ACCOUNT` with your Uberspace account name (e.g. `base`), `SERVER` with the Uberspace server (e.g. `sirius`), and `PROJECT` with your GitHub repository name (e.g. `base`)!
+In the following document, always replace `ACCOUNT` with your Uberspace account name (e.g. `base`), `SERVER` with the Uberspace server (e.g. `sirius`), `PROJECT` with your GitHub repository name (e.g. `base`), and `PORT` with an open port on the server!
 
 ## Register new account
 
@@ -14,9 +14,12 @@ In the following document, always replace `ACCOUNT` with your Uberspace account 
 
 ## Setup Mina <sup>(local)</sup>
 
-- Copy `config/deploy_example.rb` to `config/deploy.rb` and replace `ACCOUNT`, `PROJECT`, and `SERVER` with project specific configuration data.
+- Copy [`config/deploy_example.rb`](./config/deploy.rb) to `config/deploy.rb` and replace `ACCOUNT`, `PROJECT`, and `SERVER` with project specific configuration data.
+- Commit and push the changes.
 
 ## Setup Ruby <sup>(remote)</sup>
+
+**Notice:** the `$` sign in code examples indicates a shell prompt! If you copy&pase, don't copy the `$` sign!
 
 To [activate Ruby 2.1](http://uberspace.de/dokuwiki/cool:rails#ruby_aktivieren), execute the following:
 
@@ -25,7 +28,19 @@ $ cat <<'__EOF__' >> ~/.bash_profile
 export PATH=/package/host/localhost/ruby-2.1.1/bin:$PATH
 export PATH=$HOME/.gem/ruby/2.1.0/bin:$PATH
 __EOF__
+```
+
+Load your new configuration:
+
+```
 $ . ~/.bash_profile
+```
+
+`ruby -v` should now output something like this:
+
+```
+$ ruby -v
+ruby 2.1.1p76 (2014-02-24 revision 45161) [x86_64-linux]
 ```
 
 ## Setup gems management <sup>(remote)</sup>
@@ -38,12 +53,16 @@ $ . ~/.bash_profile
 
 ## Setup Passenger with Nginx <sup>(remote)</sup>
 
-- `$ gem install passenger` (if you're told to execute a `$ chmod ...`, then run it **without** `sudo`!)
-- `$ passenger-install-nginx-module` (when told to enter path, enter `/home/ACCOUNT/nginx`)
+- `$ gem install passenger`
+- `$ passenger-install-nginx-module`
+    - select `Ruby` when prompted
+    - if you're told to execute a `$ chmod ...`, then simply press `Enter`
+    - select `Yes: download, compile and install Nginx for me.` when prompted
+    - when told to enter path, enter `/home/ACCOUNT/nginx`
 
 ### Configuration
 
-Edit `~/nginx/nginx.conf` like so: ` einfügen (wir wollen Passenger via Daemontools kontrollieren), dann `server { ... }` folgendermassen anpassen/ergänzen:
+Edit `~/nginx/conf/nginx.conf` like so:
 
 ```
 daemon off; # We execute Nginx using Daemontools
@@ -51,7 +70,7 @@ daemon off; # We execute Nginx using Daemontools
 ...
 
 server {
-    listen            64253; # Choose an open port (see instuctions below)!
+    listen            PORT; # Choose an open port (see instuctions below)!
     server_name       ACCOUNT.SERVER.uberspace.de;
     root              /home/ACCOUNT/rails/current/public;
     passenger_enabled on;
@@ -60,8 +79,7 @@ server {
 }
 ```
 
-- To check whether a port is open, execute `netstat -tln | tail -n +3 | awk '{ print $4 }' | grep 64253`: empty output means the port is open.
-- To find out which process is blocking a port, execute `netstat -tulpen | grep :64253`.
+- To check whether a port is open, execute `netstat -tulpen | grep :PORT`: empty output means the port is open, otherwise the blocking process is displayed.
 - **Notice:** only [ports](http://uberspace.de/dokuwiki/system:ports) within 61000 and 65535 are allowed!
 
 ### Forward web requests to Passenger
@@ -70,14 +88,15 @@ Add to `~/html/.htaccess`:
 
 ```
 RewriteEngine on
-RewriteRule ^(.*)$ http://localhost:64253/$1 [P]
+RewriteRule ^(.*)$ http://localhost:PORT/$1 [P]
 ```
 
 ## Daemontools <sup>(remote)</sup>
 
 - `$ uberspace-setup-svscan` activates [daemontools](http://uberspace.de/dokuwiki/system:daemontools)
 - `$ uberspace-setup-service nginx ~/nginx/sbin/nginx` registers nginx as daemon
-- `$ svc -u ~/service/nginx` starts the service (use `-d` to stop it and `-h` to reload it)
+
+The daemon is started automatically. You can execute `$ svc -u ~/service/nginx` to manually start it (use `-d` to stop and `-h` to reload it).
 
 ## Mailer email account <sup>(remote)</sup>
 
@@ -85,14 +104,13 @@ To send Mails using SMTP, we need a mailer email account.
 
 - `$ vsetup` activates [email account management](http://uberspace.de/dokuwiki/start:mail)
 - `$ vadduser mailer`
-- `l3tm3s3nd3m41lS!`
-- `l3tm3s3nd3m41lS!`
+- `l3tm3s3nd3m41lS!` (2 times)
 
 To see how to config `ActionMailer`, go to [`./config/application.rb`](config/application.rb) (if you choose the password from the example above, you don't have to config anything manually).
 
-## Setup Mina <sup>(remote)</sup>
+## Setup Mina <sup>(local)</sup>
 
-**Locally**, execute `$ mina setup`. Use the `--verbose` and `--trace` switch for debugging if something goes wrong.
+Execute `$ mina setup`. Use the `--verbose` and `--trace` switch for debugging if something goes wrong.
 
 ## Database <sup>(remote)</sup>
 
