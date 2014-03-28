@@ -22,9 +22,9 @@ __EOF__
 $ . ~/.bash_profile
 ```
 
-## Setup Bundler
+## Setup gems management
 
-Gems need to be installed always [in our user's directory](https://uberspace.de/dokuwiki/cool:rails).
+[Rails, bundler and other gems](https://uberspace.de/dokuwiki/cool:rails) need to be installed always in our user's directory.
 
 - `$ echo "gem: --user-install --no-rdoc --no-ri" > ~/.gemrc`
 - `$ gem install bundler`
@@ -56,7 +56,7 @@ server {
 
 - To check whether a port is open, execute `netstat -tln | tail -n +3 | awk '{ print $4 }' | grep 64253`: empty output means the port is open.
 - To find out which process is blocking a port, execute `netstat -tulpen | grep :64253`.
-- **Notice:** [only ports within 61000 and 65535 are allowed!](http://uberspace.de/dokuwiki/system:ports)
+- **Notice:** only [ports](http://uberspace.de/dokuwiki/system:ports) within 61000 and 65535 are allowed!
 
 ### Forward web requests to Passenger
 
@@ -73,7 +73,7 @@ RewriteRule ^(.*)$ http://localhost:64253/$1 [P]
 - `$ uberspace-setup-service nginx ~/nginx/sbin/nginx` registers nginx as daemon
 - `$ svc -u ~/service/nginx` starts the service (use `-d` to stop it and `-h` to reload it)
 
-## Mailer Email Account
+## Mailer email account
 
 To send Mails using SMTP, we need a mailer email account.
 
@@ -95,7 +95,9 @@ production:
   adapter: mysql2
   encoding: utf8
   username: base
-  password: [(find me in ~/.my.cnf)](http://uberspace.de/dokuwiki/database:mysql)
+  password: ???
   database: ACCOUNT
   socket: /var/lib/mysql/mysql.sock
 ```
+
+The password for [MySQL](http://uberspace.de/dokuwiki/database:mysql) can be found in the file `.my.cnf`.
