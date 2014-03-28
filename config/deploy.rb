@@ -14,7 +14,7 @@ set :domain, 'sirius.uberspace.de'
 set :user, 'base'
 set :deploy_to, '/home/base/rails'
 set :repository, 'https://github.com/jmuheim/base.git'
-set :branch, 'features/deployment_mina'
+set :branch, 'master'
 
 # Manually create these paths in shared/ (eg: shared/config/database.yml) in your server.
 # They will be linked in the 'deploy:link_shared_paths' step.
