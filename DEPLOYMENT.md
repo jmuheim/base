@@ -14,7 +14,7 @@ In the following document, always replace `ACCOUNT` with your Uberspace account 
 
 ## Setup Mina <sup>(local)</sup>
 
-- Edit [`config/example.rb`](config/deploy.rb) and set the correct `:server_name`, `:user`, and `:repository_name`.
+- Edit [`config/example.rb`](config/deploy.rb) and set the correct `:server_name`, `:user`, and `:repository_name`. Commit everything int `master` branch (or also set the `:branch` option to your branch name).
 
 ## Setup Ruby <sup>(remote)</sup>
 
