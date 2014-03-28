@@ -16,3 +16,4 @@
 /tmp
 .powenv
 coverage
+config/deploy.rb
