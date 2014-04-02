@@ -5,9 +5,9 @@
 {<img src="https://gemnasium.com/jmuheim/base.png" alt="Dependency Status" />}[https://gemnasium.com/jmuheim/base]
 {<img src="https://coveralls.io/repos/jmuheim/base/badge.png" alt="Coverage Status" />}[https://coveralls.io/r/jmuheim/base]
 
-This is a basic Rails project with everything configured the way I want. {Fork it}[http://bitdrift.com/post/4534738938/fork-your-own-project-on-github] to create a new project out of it.
+This is a basic Rails project with everything configured the way I want. To fork it, create a new repository on GitHub, clone it to your computer, and execute <code>git remote add upstream git@github.com:jmuheim/base.git</code> to add Base's original repository as upstream. Now you can always merge Base's code into your project using <code>git pull upstream master</code>.
 
-In your fork:
+= Additional TODOs in your fork:
 
 - Create a <code>README.md</code> file with the contents of <code>README_example.md</code>, then...
   - Replace <code>TITLE</code> with a meaningful title, e.g. <code>Pretty Calc - A pretty calculator</code>
