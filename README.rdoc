@@ -16,6 +16,7 @@ This is a basic Rails project with everything configured the way I want. To fork
 - Change the content of <code>.ruby-gemset</code> file to the name of your fork's repository
 - Execute the following:
   - <code>$ rvm use .</code> (activates the RVM gemset)
+  - <code>$ bundle</code> (installs the gems)
   - <code>$ rake db:setup</code> (sets up the database with seed data)
 - Replace all occurrences of <code>Base</code> and <code>base</code> in the code with your project's equivalents (TODO: write executable script?)
 - Change the Rack Livereload port in <code>Guardfile</code> and `config/development.rb`
