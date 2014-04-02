@@ -7,18 +7,18 @@ In the following document, always replace `ACCOUNT` with your Uberspace account 
 ## Register new account
 
 - Go to the [register](https://uberspace.de/register) page and create a new Uberspace account.
-- Then add your public SSH key on the [authentication](https://uberspace.de/dashboard/authentication) page (**notice:** [Mina](http://nadarei.co/mina/) seems to have [problems with password authentication](http://stackoverflow.com/questions/22606771)!)
 - Choose a password for your account (for webpanel access)
+- Then add your public SSH key on the [authentication](https://uberspace.de/dashboard/authentication) page (**notice:** [Mina](http://nadarei.co/mina/) seems to have [problems with password authentication](http://stackoverflow.com/questions/22606771)!)
 - You can see the chosen Uberspace's name in the [datasheet](https://uberspace.de/dashboard/datasheet)
 - Now you can connect to your account: `$ ssh ACCOUNT@SERVER.uberspace.de`
 
-## Update default URL options
+## Update default URL options <sup>(local)</sup>
 
 Change the default URL options' `:host` in `config/environments/production.rb` to `http://ACCOUNT.SERVER.uberspace.de`.
 
 ## Setup Mina <sup>(local)</sup>
 
-- Edit [`config/example.rb`](config/deploy.rb) and set the correct `:server_name`, `:user`, and `:repository_name`. Commit everything int `master` branch (or also set the `:branch` option to your branch name).
+- Edit [`config/deploy.rb`](config/deploy.rb) and set the correct `:server_name`, `:user`, and `:repository_name`. Commit everything int `master` branch (or also set the `:branch` option to your branch name).
 
 ## Setup Ruby <sup>(remote)</sup>
 
@@ -59,7 +59,7 @@ ruby 2.1.1p76 (2014-02-24 revision 45161) [x86_64-linux]
 - `$ gem install passenger`
 - `$ passenger-install-nginx-module`
     - select `Ruby` when prompted
-    - if you're told to execute a `$ chmod ...`, then simply press `Enter`
+    - if you're told to cancel and execute a `$ chmod ...`, then simply press `Enter` to continue
     - select `Yes: download, compile and install Nginx for me.` when prompted
     - when told to enter path, enter `/home/ACCOUNT/nginx`
 
@@ -109,7 +109,20 @@ To send Mails using SMTP, we need a mailer email account.
 - `$ vadduser mailer`
 - `l3tm3s3nd3m41lS!` (2 times)
 
-To see how to config `ActionMailer`, go to [`config/application.rb`](config/application.rb) (if you choose the password from the example above, you don't have to config anything manually).
+To config `ActionMailer`, edit [`config/application.rb`](config/application.rb):
+
+```
+ActionMailer::Base.delivery_method = :smtp
+ActionMailer::Base.smtp_settings = {
+  address:              'SERVER.uberspace.de',
+  port:                 587,
+  domain:               'SERVER.uberspace.de',
+  user_name:            'ACCOUNT-mailer',
+  password:             'l3tm3s3nd3m41lS!',
+  authentication:       'login',
+  enable_starttls_auto: true
+}
+```
 
 ## Setup Mina <sup>(local)</sup>
 
