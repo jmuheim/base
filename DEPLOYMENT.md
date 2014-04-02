@@ -12,6 +12,10 @@ In the following document, always replace `ACCOUNT` with your Uberspace account 
 - You can see the chosen Uberspace's name in the [datasheet](https://uberspace.de/dashboard/datasheet)
 - Now you can connect to your account: `$ ssh ACCOUNT@SERVER.uberspace.de`
 
+## Update default URL options
+
+Change the default URL options' `:host` in `config/environments/production.rb` to `http://ACCOUNT.SERVER.uberspace.de`.
+
 ## Setup Mina <sup>(local)</sup>
 
 - Edit [`config/example.rb`](config/deploy.rb) and set the correct `:server_name`, `:user`, and `:repository_name`. Commit everything int `master` branch (or also set the `:branch` option to your branch name).

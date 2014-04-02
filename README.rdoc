@@ -20,4 +20,3 @@ This is a basic Rails project with everything configured the way I want. To fork
   - <code>$ rake db:setup</code> (sets up the database with seed data)
 - Replace all occurrences of <code>Base</code> and <code>base</code> in the code with your project's equivalents (TODO: write executable script?)
 - Change the Rack Livereload port in <code>Guardfile</code> and <code>config/development.rb</code>
-- Change the default URL options' <code>:host</code> in <code>config/environments/production.rb</code> to <code>http://ACCOUNT.SERVER.uberspace.de</code>
