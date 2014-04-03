@@ -1,7 +1,6 @@
 source 'https://rubygems.org'
 
 gem 'rails', '4.0.4'
-# gem 'i18n', github: 'svenfuchs/i18n'
 
 gem 'slim-rails' # Awesome template language that replaces ERB
 
