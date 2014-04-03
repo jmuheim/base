@@ -1,0 +1,9 @@
+de:
+  activerecord:
+    models:
+      user:
+        one: Benutzer
+        other: Benutzer
+    attributes:
+      user:
+        guest_name: Gast
