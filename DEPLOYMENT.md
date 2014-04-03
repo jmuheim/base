@@ -142,7 +142,7 @@ production:
   socket: /var/lib/mysql/mysql.sock
 ```
 
-The password for [MySQL](http://uberspace.de/dokuwiki/database:mysql) can be found in the file `.my.cnf`.
+The password for [MySQL](http://uberspace.de/dokuwiki/database:mysql) can be found in the file `~/.my.cnf`.
 
 ## First run <sup>(local)</sup>
 
