@@ -1,0 +1,4 @@
+de:
+  mini_hub:
+    show:
+      welcome: Willkommen, %{name}

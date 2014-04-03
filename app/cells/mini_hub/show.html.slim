@@ -1,5 +1,5 @@
 aside#mini_hub.panel.panel-default
-  .panel-heading Welcome, #{@user.display_name}!
+  .panel-heading= t '.welcome', name: @user.display_name
 
   - if @user.guest?
     ul.list-group
