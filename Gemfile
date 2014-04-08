@@ -137,6 +137,8 @@ group :test do
   gem 'headhunter' # Automagically validates all HTML and CSS during the acceptance tests
 
   gem 'coveralls', require: false
+
+  gem 'i18n-tasks'
 end
 
 group :production do
