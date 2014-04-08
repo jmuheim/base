@@ -1,5 +1,4 @@
 # Additional translations at https://github.com/plataformatec/devise/wiki/I18n
-
 en:
   devise:
     confirmations:
@@ -12,8 +11,8 @@ en:
       already_authenticated: You are already signed in.
       inactive: Your account is not activated yet.
       invalid: Invalid login or password.
-      locked: Your account is locked.
       last_attempt: You have one more attempt before your account will be locked.
+      locked: Your account is locked.
       not_found_in_database: Invalid login or password.
       timeout: Your session expired. Please sign in again to continue.
       unauthenticated: You need to sign in or sign up before continuing.
@@ -49,15 +48,15 @@ en:
       updated: You updated your account successfully.
     sessions:
       new:
-        username_or_email: Username or email
         sign_in: Sign in
+        username_or_email: Username or email
       signed_in: Signed in successfully.
       signed_out: Signed out successfully.
     shared:
       links:
-        forgot_your_password: Forgot your password?
         didnt_receive_confirmation_instructions: Didn't receive confirmation instructions?
         didnt_receive_unlock_instructions: Didn't receive unlock instructions?
+        forgot_your_password: Forgot your password?
         title: Additional links
     unlocks:
       new:

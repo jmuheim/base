@@ -3,11 +3,11 @@ en:
     form:
       save: Save
     new:
+      back: Back
       title: New user
-      back: Back
     show:
-      edit: Edit
       back: Back
+      edit: Edit
     user:
       show: Show
     users:

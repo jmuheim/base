@@ -1,5 +1,4 @@
 # Additional translations at https://github.com/plataformatec/devise/wiki/I18n
-
 de:
   devise:
     confirmations:
@@ -18,9 +17,9 @@ de:
         username_or_email: Benutzername oder Email
     shared:
       links:
-        forgot_your_password: Passwort vergessen?
         didnt_receive_confirmation_instructions: Keinen Bestätigungsauftrag erhalten?
         didnt_receive_unlock_instructions: Keinen Freischaltauftrag erhalten?
+        forgot_your_password: Passwort vergessen?
         title: Weiterführende Links
     unlocks:
       new:

@@ -3,11 +3,11 @@ de:
     form:
       save: Speichern
     new:
+      back: Zurück
       title: Benutzer erstellen
-      back: Zurück
     show:
-      edit: Bearbeiten
       back: Zurück
+      edit: Bearbeiten
     user:
       show: Anzeigen
     users:

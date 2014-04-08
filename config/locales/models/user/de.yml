@@ -1,17 +1,17 @@
 de:
   activerecord:
+    attributes:
+      user:
+        current_password: Aktuelles Passwort
+        email: Email
+        guest_name: Gast
+        login: Login
+        name: Name
+        password: Passwort
+        password_confirmation: Passwortbestätigung
+        remember_me: Eingeloggt bleiben
+        roles: Rollen
     models:
       user:
         one: Benutzer
         other: Benutzer
-    attributes:
-      user:
-        guest_name: Gast
-        name: Name
-        current_password: Aktuelles Passwort
-        email: Email
-        roles: Rollen
-        login: Login
-        password: Passwort
-        password_confirmation: Passwortbestätigung
-        remember_me: Eingeloggt bleiben
