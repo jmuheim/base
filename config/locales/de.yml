@@ -1,1 +1,20 @@
 de:
+  mini_hub:
+    show:
+      sign_in: Anmelden
+      sign_up: Registrieren
+      welcome: Willkommen, %{name}!
+  users:
+    form:
+      save: Speichern
+    new:
+      back: Zurück
+      title: Benutzer erstellen
+    show:
+      back: Zurück
+      edit: Bearbeiten
+    user:
+      show: Anzeigen
+    users:
+      actions: Aktionen
+      new: Erstellen

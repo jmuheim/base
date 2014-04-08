@@ -1,1 +1,20 @@
 en:
+  mini_hub:
+    show:
+      sign_in: Sign in
+      sign_up: Sign up
+      welcome: Welcome, %{name}!
+  users:
+    form:
+      save: Save
+    new:
+      back: Back
+      title: New user
+    show:
+      back: Back
+      edit: Edit
+    user:
+      show: Show
+    users:
+      actions: Actions
+      new: Create
