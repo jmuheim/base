@@ -1,13 +1,13 @@
 - content_for :headline do
-  |Sign in
+  = t '.sign_in'
 
 = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-  = f.input :login, autofocus: true, placeholder: 'Username or email'
+  = f.input :login, autofocus: true, placeholder: t('.username_or_email')
 
   = f.input :password
 
   - if devise_mapping.rememberable?
     = f.input :remember_me, as: :boolean
 
-  = f.button :submit, 'Sign in'
+  = f.button :submit, t('.sign_in')
 = render 'devise/shared/links'

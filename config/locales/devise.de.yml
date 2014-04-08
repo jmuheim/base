@@ -1,0 +1,27 @@
+# Additional translations at https://github.com/plataformatec/devise/wiki/I18n
+
+de:
+  devise:
+    confirmations:
+      new:
+        resend_confirmation_instructions: Bestätigungsauftrag anfordern
+    passwords:
+      new:
+        forgot_your_password: Passwort vergessen?
+        send_me_reset_password_instructions: Rücksetzungsauftrag für Passwort anfordern
+    registrations:
+      new:
+        sign_up: Registrieren
+    sessions:
+      new:
+        sign_in: Anmelden
+        username_or_email: Benutzername oder Email
+    shared:
+      links:
+        forgot_your_password: Passwort vergessen?
+        didnt_receive_confirmation_instructions: Keinen Bestätigungsauftrag erhalten?
+        didnt_receive_unlock_instructions: Keinen Freischaltauftrag erhalten?
+        title: Weiterführende Links
+    unlocks:
+      new:
+        resend_unlock_instructions: Entsperrauftrag anfordern

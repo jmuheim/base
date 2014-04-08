@@ -1,0 +1,15 @@
+en:
+  users:
+    form:
+      save: Save
+    new:
+      title: New user
+      back: Back
+    show:
+      edit: Edit
+      back: Back
+    user:
+      show: Show
+    users:
+      actions: Actions
+      new: Create

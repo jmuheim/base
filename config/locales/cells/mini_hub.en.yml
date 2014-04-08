@@ -2,3 +2,5 @@ en:
   mini_hub:
     show:
       welcome: Welcome, %{name}
+      sign_in: Sign in
+      sign_up: Sign up

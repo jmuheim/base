@@ -4,6 +4,8 @@ en:
   devise:
     confirmations:
       confirmed: Your account was successfully confirmed.
+      new:
+        resend_confirmation_instructions: Resend confirmation instructions
       send_instructions: You will receive an email with instructions about how to confirm your account in a few minutes.
       send_paranoid_instructions: If your email address exists in our database, you will receive an email with instructions about how to confirm your account in a few minutes.
     failure:
@@ -27,6 +29,9 @@ en:
       failure: Could not authenticate you from %{kind} because %{reason}.
       success: Successfully authenticated from %{kind} account.
     passwords:
+      new:
+        forgot_your_password: Forgot your password?
+        send_me_reset_password_instructions: Send me reset password instructions
       no_token: You can't access this page without coming from a password reset email. If you do come from a password reset email, please make sure you used the full URL provided.
       send_instructions: You will receive an email with instructions about how to reset your password in a few minutes.
       send_paranoid_instructions: If your email address exists in our database, you will receive a password recovery link at your email address in a few minutes.
@@ -34,6 +39,8 @@ en:
       updated_not_active: Your password was changed successfully.
     registrations:
       destroyed: Bye! Your account was successfully cancelled. We hope to see you again soon.
+      new:
+        sign_up: Sign up
       signed_up: Welcome! You have signed up successfully.
       signed_up_but_inactive: You have signed up successfully. However, we could not sign you in because your account is not yet activated.
       signed_up_but_locked: You have signed up successfully. However, we could not sign you in because your account is locked.
@@ -41,9 +48,19 @@ en:
       update_needs_confirmation: You updated your account successfully, but we need to verify your new email address. Please check your email and click on the confirm link to finalize confirming your new email address.
       updated: You updated your account successfully.
     sessions:
+      new:
+        username_or_email: Username or email
       signed_in: Signed in successfully.
       signed_out: Signed out successfully.
+    shared:
+      links:
+        forgot_your_password: Forgot your password?
+        didnt_receive_confirmation_instructions: Didn't receive confirmation instructions?
+        didnt_receive_unlock_instructions: Didn't receive unlock instructions?
+        title: Additional links
     unlocks:
+      new:
+        resend_unlock_instructions: Resend unlock instructions
       send_instructions: You will receive an email with instructions about how to unlock your account in a few minutes.
       send_paranoid_instructions: If your account exists, you will receive an email with instructions about how to unlock it in a few minutes.
       unlocked: Your account has been unlocked successfully. Please sign in to continue.

@@ -1,0 +1,15 @@
+de:
+  users:
+    form:
+      save: Speichern
+    new:
+      title: Benutzer erstellen
+      back: Zurück
+    show:
+      edit: Bearbeiten
+      back: Zurück
+    user:
+      show: Anzeigen
+    users:
+      actions: Aktionen
+      new: Erstellen
