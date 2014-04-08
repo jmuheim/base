@@ -46,6 +46,8 @@ gem 'gaffe' # Handles Rails error pages in a clean, simple way
 
 gem 'cocoon' # Dynamic nested forms made easy
 
+gem 'validates_timeliness' # Date and time validation plugin for ActiveModel and Rails
+
 group :doc do
   gem 'sdoc', require: false # bundle exec rake doc:rails generates the API under doc/api.
 end
