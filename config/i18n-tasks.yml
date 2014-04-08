@@ -1,3 +1,21 @@
 relative_roots:
   - app/views
   - app/cells
+data:
+  # file_system is the default adapter, you can provide a custom class name here:
+  adapter: file_system
+  # a list of file globs to read from per-locale
+  read:
+    # default:
+    - 'config/locales/%{locale}.yml'
+    # to also read from namespaced files, e.g. simple_form.en.yml:
+    - 'config/locales/*.%{locale}.yml'
+    - 'config/locales/cells/*/%{locale}.yml'
+    - 'config/locales/models/*/%{locale}.yml'
+    - 'config/locales/views/*/%{locale}.yml'
+  # a list of {key pattern => file} routes, matched top to bottom
+  write:
+    # save all devise keys in it's own file (per locale):
+    - ['{devise,simple_form,cells,models,views}.*', 'config/locales/\1.%{locale}.yml']
+    # default catch-all:
+    - 'config/locales/%{locale}.yml' # path is short for ['*', path]
