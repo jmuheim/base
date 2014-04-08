@@ -105,9 +105,11 @@ group :development do
 
   gem 'capybara' # Acceptance test framework for web applications
 
-  gem 'rails-footnotes'
+  gem 'rails-footnotes' # Every Rails page has footnotes that gives information about your application
 
-  gem 'mina', require: false
+  gem 'mina', require: false # Really fast deployer and server automation tool
+
+  gem 'i18n_yaml_sorter' # A I18n YAML deep sorter that will keep your locales organized
 end
 
 group :test do
