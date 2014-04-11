@@ -10,12 +10,10 @@ data:
     - 'config/locales/%{locale}.yml'
     # to also read from namespaced files, e.g. simple_form.en.yml:
     - 'config/locales/*.%{locale}.yml'
-    - 'config/locales/cells/*/%{locale}.yml'
-    - 'config/locales/models/*/%{locale}.yml'
-    - 'config/locales/views/*/%{locale}.yml'
+    - 'config/locales/*/%{locale}.yml'
   # a list of {key pattern => file} routes, matched top to bottom
   write:
     # save all devise keys in it's own file (per locale):
-    - ['{devise,simple_form,activerecord,errors,flash}.*', 'config/locales/\1.%{locale}.yml']
+    - ['{devise,simple_form,activerecord,errors,flash}.*', 'config/locales/\1/%{locale}.yml']
     # default catch-all:
     - 'config/locales/%{locale}.yml' # path is short for ['*', path]
