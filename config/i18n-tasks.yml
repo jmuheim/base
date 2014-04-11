@@ -17,3 +17,9 @@ data:
     - ['{devise,simple_form,activerecord,errors,flash}.*', 'config/locales/\1/%{locale}.yml']
     # default catch-all:
     - 'config/locales/%{locale}.yml' # path is short for ['*', path]
+ignore_unused:
+  - devise.*
+  - errors.messages.*
+  - flash.*
+  - activerecord.*
+  - simple_form.*
