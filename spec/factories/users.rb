@@ -48,12 +48,19 @@ FactoryGirl.define do
     password_confirmation 's3cur3p@ssw0rd'
     confirmed_at          Time.now
 
-    factory :admin do
-      name                  'admin'
-      email                 'admin@example.com'
+    trait :donald do
+      name 'donald'
+      email 'donald@example.com'
+    end
 
+    factory :admin do
       after(:create) do |user|
         user.roles << create(:role, name: 'admin')
+      end
+
+      trait :scrooge do
+        name  'admin'
+        email 'admin@example.com'
       end
     end
   end
