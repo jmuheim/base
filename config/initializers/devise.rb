@@ -222,7 +222,7 @@ Devise.setup do |config|
   # config.navigational_formats = ['*/*', :html]
 
   # The default HTTP method used to sign out a resource. Default is :delete.
-  # Make turnip steps work (which require GET), see
+  # Make signing out work (which require GET) in specs, see
   # https://github.com/plataformatec/devise/wiki/How-To:-Test-with-Cucumber
   config.sign_out_via = Rails.env.test? ? :get : :delete
 
