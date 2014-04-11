@@ -45,7 +45,7 @@ Be sure you have committed and pushed all wanted changes, then execute `$ mina d
 
 That's all, folks!
 
-## Continuous Integration
+## Continuous integration
 
 - The project is configured to be continuously integrated using [Travis CI](https://travis-ci.org/jmuheim/PROJECT) (`master` branch only).
 
