@@ -9,7 +9,6 @@ describe 'Deleting user' do
     it 'does not grant permission to delete own user' do
       visit_delete_path_for(@user)
 
-      expect(page).to have_content '403 - Forbidden'
       expect(page.driver.status_code).to eq 403
     end
   end
