@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Editing own user' do
+describe 'Editing user' do
   before do
     @user = create :user, :donald
     login_as(@user)
