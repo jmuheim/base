@@ -1,4 +1,3 @@
----
 de:
   validates_timeliness:
     error_value_formats:

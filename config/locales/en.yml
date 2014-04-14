@@ -13,6 +13,9 @@ en:
     show:
       edit: Edit
     user:
+      confirmation_question: 'Really delete user?'
+      destroy: 'Delete'
+      edit: 'Edit'
       show: Show
     users:
       actions: Actions
