@@ -1,9 +1,10 @@
+---
 de:
   simple_form:
     error_notification:
       default_message: 'Bitte überprüfe die nachfolgenden Probleme:'
     'no': Nein
     required:
-      mark: '*'
+      mark: "*"
       text: Pflichtfeld
     'yes': Ja

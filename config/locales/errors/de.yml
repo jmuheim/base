@@ -1,19 +1,21 @@
+---
 de:
   errors:
     messages:
       after: muss nach %{restriction} sein
-      already_confirmed: "wurde bereits bestätigt"
+      already_confirmed: wurde bereits bestätigt
       before: muss vor %{restriction} sein
-      confirmation_period_expired: "muss innerhalb %{period} bestätigt werden, bitte fordere einen neuen Link an"
-      expired: "ist abgelaufen, bitte neu anfordern"
+      confirmation_period_expired: muss innerhalb %{period} bestätigt werden, bitte
+        fordere einen neuen Link an
+      expired: ist abgelaufen, bitte neu anfordern
       invalid_date: ist kein valides Datum
       invalid_datetime: ist keine valide Zeit
       invalid_time: ist keine valide Zeit
       is_at: muss an %{restriction} sein
-      not_found: "nicht gefunden"
-      not_locked: "ist nicht gesperrt"
+      not_found: nicht gefunden
+      not_locked: ist nicht gesperrt
       not_saved:
-        one: "Konnte %{resource} nicht speichern: ein Fehler."
-        other: "Konnte %{resource} nicht speichern: %{count} Fehler."
+        one: 'Konnte %{resource} nicht speichern: ein Fehler.'
+        other: 'Konnte %{resource} nicht speichern: %{count} Fehler.'
       on_or_after: muss nach oder gleich %{restriction} sein
       on_or_before: muss vor oder gleich %{restriction} sein
