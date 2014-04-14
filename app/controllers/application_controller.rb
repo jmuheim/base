@@ -14,9 +14,9 @@ class ApplicationController < ActionController::Base
 
   before_action :set_locale
 
-  def default_url_options(options={})
+  def default_url_options(options = {})
     logger.debug "default_url_options is passed options: #{options.inspect}\n"
-    {locale: I18n.locale}
+    { locale: I18n.locale }
   end
 
   # Guest accounts: in order to fix the problem with ajax requests you have to turn off protect_from_forgery for the
