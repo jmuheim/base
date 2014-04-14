@@ -76,7 +76,8 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller' # Needed by better_errors to enable html console
 
-  gem 'xray-rails' # Reveals your UI's bones with Cmd-X/Ctrl-X
+  # https://github.com/brentd/xray-rails/issues/32
+  # gem 'xray-rails' # Reveals your UI's bones with Cmd-X/Ctrl-X
 
   # Rails application preloader
   gem 'spring', github: 'guard/spring',
