@@ -6,4 +6,8 @@ module ApplicationHelper
       end
     end
   end
+
+  def active_class_for(language)
+    'active' if language == I18n.locale
+  end
 end

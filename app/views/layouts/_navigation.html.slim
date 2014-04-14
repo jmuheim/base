@@ -11,3 +11,9 @@ nav.navbar.navbar-inverse.navbar-fixed-top
     .collapse.navbar-collapse
       ul.nav.navbar-nav
         == render 'layouts/navigation_links'
+
+      ul#language_selector.nav.navbar-nav.navbar-right
+        li.en class=active_class_for(:en)
+          = link_to 'English', locale: :en
+        li.de class=active_class_for(:de)
+          = link_to 'Deutsch', locale: :de

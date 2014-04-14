@@ -1,5 +1,8 @@
 ---
 en:
+  dashboards:
+    show:
+      headline: Welcome to Base!
   mini_hub:
     show:
       sign_in: Sign in
