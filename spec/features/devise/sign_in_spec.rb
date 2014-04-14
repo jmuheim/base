@@ -62,5 +62,3 @@ describe 'Signing in' do
     end
   end
 end
-
-      
