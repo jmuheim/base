@@ -5,8 +5,7 @@ de:
       after: muss nach %{restriction} sein
       already_confirmed: wurde bereits bestätigt
       before: muss vor %{restriction} sein
-      confirmation_period_expired: muss innerhalb %{period} bestätigt werden, bitte
-        fordere einen neuen Link an
+      confirmation_period_expired: muss innerhalb %{period} bestätigt werden, bitte fordere einen neuen Link an
       expired: ist abgelaufen, bitte neu anfordern
       invalid_date: ist kein valides Datum
       invalid_datetime: ist keine valide Zeit
