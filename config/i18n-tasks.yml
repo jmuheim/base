@@ -14,7 +14,7 @@ data:
   # a list of {key pattern => file} routes, matched top to bottom
   write:
     # save all devise keys in it's own file (per locale):
-    - ['{devise,simple_form,activerecord,errors,flash}.*', 'config/locales/\1/%{locale}.yml']
+    - ['{devise,simple_form,activerecord,errors,flash,validates_timeliness}.*', 'config/locales/\1/%{locale}.yml']
     # default catch-all:
     - 'config/locales/%{locale}.yml' # path is short for ['*', path]
 ignore_unused:
