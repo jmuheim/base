@@ -39,7 +39,9 @@ To learn more about setting up deployment on a server, see [Deployment](./DEPLOY
 
 ### Deploying
 
-**Before deploying**, run `rake HEADHUNTER=true` to make sure all HTML and CSS is in good shape!
+**Before deploying**, run `$ rake HEADHUNTER=true` to make sure all HTML and CSS is in good shape!
+
+**Before deploying**, run `$ i18-tasks add-missing` and translate the added I18n keys!
 
 Be sure you have committed and pushed all wanted changes, then execute `$ mina deploy`! Use the `--verbose` and `--trace` switch for debugging if something goes wrong.
 

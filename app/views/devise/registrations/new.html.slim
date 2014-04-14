@@ -1,5 +1,5 @@
 - content_for :headline do
-  | Sign up
+  = t '.sign_up'
 
 = simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
   = devise_error_messages!
@@ -9,6 +9,6 @@
   = f.input :password
   = f.input :password_confirmation
 
-  = f.button :submit, 'Sign up'
+  = f.button :submit, t('.sign_up')
 
 = render 'devise/shared/links'

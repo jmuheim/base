@@ -66,7 +66,7 @@ class User < ActiveRecord::Base
   end
 
   def display_name
-    guest? ? 'guest' : name
+    guest? ? self.class.human_attribute_name(:guest_name) : name
   end
 
   def annex_and_destroy!(other)

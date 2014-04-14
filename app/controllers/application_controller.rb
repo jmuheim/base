@@ -7,15 +7,22 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  before_filter :configure_permitted_parameters, if: :devise_controller?
+  before_action :configure_permitted_parameters, if: :devise_controller?
 
-  before_filter :init_guest_user, unless: -> { user_signed_in? }
+  before_action :init_guest_user, unless: -> { user_signed_in? }
   attr_reader :guest_user
+
+  before_action :set_locale
+
+  def default_url_options(options = {})
+    logger.debug "default_url_options is passed options: #{options.inspect}\n"
+    { locale: I18n.locale }
+  end
 
   # Guest accounts: in order to fix the problem with ajax requests you have to turn off protect_from_forgery for the
   # controller action with the ajax request.
   # See https://github.com/plataformatec/devise/wiki/How-To:-Create-a-guest-user)
-  # skip_before_filter :verify_authenticity_token, only: [:name_of_your_action]
+  # skip_before_action :verify_authenticity_token, only: [:name_of_your_action]
 
   protected
 
@@ -55,6 +62,10 @@ class ApplicationController < ActionController::Base
 
     session[:guest_user_id] = user.id
     user
+  end
+
+  def set_locale
+    I18n.locale = params[:locale] || I18n.default_locale
   end
 
   def remove_guest_user

@@ -1,0 +1,26 @@
+---
+de:
+  dashboards:
+    show:
+      headline: Willkommen auf Base!
+  mini_hub:
+    show:
+      sign_in: Anmelden
+      sign_up: Registrieren
+      welcome: Willkommen, %{name}!
+  users:
+    form:
+      save: Speichern
+    new:
+      back: Zurück
+      title: Benutzer erstellen
+    show:
+      edit: Bearbeiten
+    user:
+      confirmation_question: Benutzer wirklich löschen?
+      destroy: Löschen
+      edit: Bearbeiten
+      show: Anzeigen
+    users:
+      actions: Aktionen
+      new: Erstellen

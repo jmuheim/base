@@ -1,0 +1,7 @@
+---
+de:
+  validates_timeliness:
+    error_value_formats:
+      date: "%d.%m.%Y"
+      datetime: "%d.%m.%Y %H:%M:%S"
+      time: "%H:%M:%S"

@@ -36,8 +36,7 @@ guard :rspec, cmd: 'bundle exec spring rspec',
 
   # Reload factory girl, see http://urgetopunt.com/2011/10/01/guard-factory-girl.html
   watch(%r{^spec/factories/(.+)\.rb$}) do |m|
-    [
-      "spec/models/#{m[1].singularize}_spec.rb",
+    [ "spec/models/#{m[1].singularize}_spec.rb",
       "spec/controllers/#{m[1]}_controller_spec.rb",
 
       # This is too slow

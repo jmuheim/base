@@ -27,7 +27,7 @@ gem 'jbuilder', '~> 1.2' # Build JSON APIs with ease. Read more: https://github.
 
 # Flexible authentication solution
 gem 'devise'
-# gem 'devise-i18n' # Translations
+gem 'devise-i18n' # Translations
 
 gem 'cancancan' # Authorization library which restricts what resources a given user is allowed to access
 
@@ -76,7 +76,8 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller' # Needed by better_errors to enable html console
 
-  gem 'xray-rails' # Reveals your UI's bones with Cmd-X/Ctrl-X
+  # https://github.com/brentd/xray-rails/issues/32
+  # gem 'xray-rails' # Reveals your UI's bones with Cmd-X/Ctrl-X
 
   # Rails application preloader
   gem 'spring', github: 'guard/spring',
@@ -107,9 +108,11 @@ group :development do
 
   gem 'capybara' # Acceptance test framework for web applications
 
-  gem 'rails-footnotes'
+  gem 'rails-footnotes' # Every Rails page has footnotes that gives information about your application
 
-  gem 'mina', require: false
+  gem 'mina', require: false # Really fast deployer and server automation tool
+
+  gem 'i18n_yaml_sorter' # A I18n YAML deep sorter that will keep your locales organized
 end
 
 group :test do
@@ -135,6 +138,8 @@ group :test do
   gem 'headhunter' # Automagically validates all HTML and CSS during feature tests
 
   gem 'coveralls', require: false
+
+  gem 'i18n-tasks'
 end
 
 group :production do

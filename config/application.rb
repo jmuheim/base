@@ -23,6 +23,7 @@ module Base
 
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
+    config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}')]
     config.i18n.default_locale = :en
 
     config.sass.preferred_syntax = :sass
@@ -30,8 +31,6 @@ module Base
     config.generators do |g|
       g.template_engine :slim
     end
-
-    I18n.enforce_available_locales = true
 
     config.action_dispatch.rescue_responses.merge! 'CanCan::AccessDenied' => :forbidden
   end
@@ -42,7 +41,7 @@ ActionMailer::Base.smtp_settings = {
   address:              'sirius.uberspace.de',
   port:                 587,
   domain:               'sirius.uberspace.de',
-  user_name:            'base-mailer@sirius.uberspace.de',
+  user_name:            'base-mailer',
   password:             'l3tm3s3nd3m41lS!',
   authentication:       'login',
   enable_starttls_auto: true
