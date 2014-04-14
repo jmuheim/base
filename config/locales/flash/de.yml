@@ -2,11 +2,11 @@ de:
   flash:
     actions:
       create:
-        alert: %{resource_name} konnte nicht erstellt werden.
-        notice: %{resource_name} wurde erfolgreich erstellt.
+        alert: "%{resource_name} konnte nicht erstellt werden."
+        notice: "%{resource_name} wurde erfolgreich erstellt."
       destroy:
-        alert: %{resource_name} konnte nicht gelöscht werden.
-        notice: %{resource_name} wurde erfolgreich gelöscht.
+        alert: "%{resource_name} konnte nicht gelöscht werden."
+        notice: "%{resource_name} wurde erfolgreich gelöscht."
       update:
-        alert: %{resource_name} konnte nicht bearbeitet werden.
-        notice: %{resource_name} wurde erfolgreich bearbeitet.
+        alert: "%{resource_name} konnte nicht bearbeitet werden."
+        notice: "%{resource_name} wurde erfolgreich bearbeitet."
