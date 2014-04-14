@@ -11,7 +11,6 @@ require File.expand_path('../../config/environment', __FILE__)
 require 'rspec/rails'
 require 'rspec/autorun'
 require 'capybara/poltergeist'
-require 'turnip/capybara'
 require 'email_spec'
 require 'cancan/matchers'
 require 'poltergeist_warnings_suppressor'
@@ -52,9 +51,6 @@ RSpec.configure do |config|
   # the seed, which is printed after each run.
   #     --seed 1234
   config.order = 'random'
-
-  # TODO: Auto-include steps matching the current feature file's folder name!
-  config.include UserSteps, type: :feature
 
   config.include FactoryGirl::Syntax::Methods
 end
@@ -106,9 +102,6 @@ RSpec.configure do |config|
 
   config.include EmailSpec::Helpers
   config.include EmailSpec::Matchers
-
-  config.include EmailHelpers
-  config.include EmailSteps, type: :feature
 end
 
 RSpec.configure do |config|

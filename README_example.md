@@ -29,7 +29,7 @@ You can use [direnv](https://github.com/zimbatm/direnv) to automatically add `bi
 
 ## Testing
 
-- Use `@chrome` or `@selenium` flag to visually run acceptance tests in Chrome or Firefox.
+- Use `@chrome` or `@selenium` flag to visually run feature tests in Chrome or Firefox.
 
 ## Deployment
 
