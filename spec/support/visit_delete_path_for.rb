@@ -7,7 +7,7 @@ module FeatureSpecVisitDeletePathHelper
     when Capybara::RackTest::Driver
       page.driver.submit :delete, send(resource_path, resource), {}
     else # e.g. Capybara::Selenium::Driver
-      visit send(resource_path, resource, { method: :delete })
+      visit send(resource_path, resource, method: :delete)
     end
   end
 end
