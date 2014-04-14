@@ -20,3 +20,11 @@ This is a basic Rails project with everything configured the way I want. To fork
   - <code>$ rake db:setup</code> (sets up the database with seed data)
 - Replace all occurrences of <code>Base</code> and <code>base</code> in the code with your project's equivalents (TODO: write executable script?)
 - Change the Rack Livereload port in <code>Guardfile</code> and <code>config/development.rb</code>
+
+= Activate external services
+
+- {Code Climate}[https://codeclimate.com/github/signup]
+- {Travis CI}[https://travis-ci.org/profile/jmuheim]
+- {Gemnasium}[https://gemnasium.com/projects/new_from_github]
+- {Coveralls}[https://coveralls.io/repos/new]
+- {Hound}[https://houndci.com/]

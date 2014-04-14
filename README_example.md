@@ -29,7 +29,7 @@ You can use [direnv](https://github.com/zimbatm/direnv) to automatically add `bi
 
 ## Testing
 
-- Use `@chrome` or `@selenium` flag to visually run acceptance tests in Chrome or Firefox.
+- Use `@chrome` or `@selenium` flag to visually run feature tests in Chrome or Firefox.
 
 ## Deployment
 
@@ -47,7 +47,7 @@ Be sure you have committed and pushed all wanted changes, then execute `$ mina d
 
 That's all, folks!
 
-## Continuous Integration
+## Continuous integration
 
 - The project is configured to be continuously integrated using [Travis CI](https://travis-ci.org/jmuheim/PROJECT) (`master` branch only).
 

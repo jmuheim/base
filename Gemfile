@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.0.4'
+gem 'rails', '4.1'
 
 gem 'slim-rails' # Awesome template language that replaces ERB
 
@@ -42,9 +42,11 @@ gem 'cells' # View components
 
 gem 'simple_form' # Forms made easy for Rails
 
-gem 'gaffe' # Handles Rails error pages in a clean, simple way
+gem 'gaffe', github: 'jmuheim/gaffe' # Handles Rails error pages in a clean, simple way
 
 gem 'cocoon' # Dynamic nested forms made easy
+
+gem 'validates_timeliness' # Date and time validation plugin for ActiveModel and Rails
 
 group :doc do
   gem 'sdoc', require: false # bundle exec rake doc:rails generates the API under doc/api.
@@ -83,7 +85,7 @@ group :development do
   gem 'listen'                # Event based file system listening (instead of polling)
 
   # Guard: automatically run commands when files are changed
-  gem 'guard'
+  gem 'guard', github: 'jmuheim/guard'
   gem 'guard-rspec', require: false      # Automatically run tests
   gem 'terminal-notifier-guard'          # Mac OS X User Notifications for Guard
   gem 'guard-livereload', require: false # Automatically reload your browser when 'view' files are modified
@@ -128,13 +130,11 @@ group :test do
   gem 'launchy'            # Use `save_and_open_page` in request tests to automatically open a browser
   gem 'selenium-webdriver' # Selenium webdriver (needed to use Chrome driver)
 
-  gem 'turnip' # Gherkin extension for RSpec
-
   gem 'capybara-screenshot' # Automatically save screen shots when a scenario fails
 
   gem 'rspec-cells' # Test cells using RSpec
 
-  gem 'headhunter' # Automagically validates all HTML and CSS during the acceptance tests
+  gem 'headhunter' # Automagically validates all HTML and CSS during feature tests
 
   gem 'coveralls', require: false
 

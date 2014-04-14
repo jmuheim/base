@@ -1,6 +1,11 @@
 - content_for :headline do
   = @user.name
 
-ul.actions
-  li= link_to t('.edit'), edit_user_path(@user)
-  li= link_to t('.back'), users_path
+article id=dom_id(@user)
+  dl.dl-horizontal
+    dt Email
+    dd = @user.email
+
+  - if can? :edit, @user
+    ul.actions
+      li= link_to t('.edit'), edit_user_path(@user)
