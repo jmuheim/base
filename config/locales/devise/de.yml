@@ -17,7 +17,8 @@ de:
       inactive: Dein Account ist nicht aktiv.
       invalid: Ungültige Anmeldedaten.
       invalid_token: Der Anmelde-Token ist ungültig.
-      last_attempt: Du hast einen letzten Versuch offen, bevor dein Konto gesperrt wird.
+      last_attempt: Du hast einen letzten Versuch offen, bevor dein Konto gesperrt
+        wird.
       locked: Dein Account ist gesperrt.
       not_found_in_database: E-Mail-Adresse oder Passwort ungültig.
       timeout: Deine Sitzung ist abgelaufen, bitte melde Dich erneut an.
@@ -37,7 +38,8 @@ de:
     passwords:
       new:
         forgot_your_password: Passwort vergessen?
-        send_me_reset_password_instructions: Zurücksetzungsinstruktion für Passwort zuschicken
+        send_me_reset_password_instructions: Zurücksetzungsinstruktion für Passwort
+          zuschicken
       no_token: Du kannst diese Seite nur von dem Link aus einer E-Mail zum Passwort-Zurücksetzen
         aufrufen. Wenn du einen solchen Link aufgerufen hast stelle bitte sicher,
         dass du die vollständige Adresse aufrufst.
@@ -73,8 +75,10 @@ de:
       signed_out: Erfolgreich abgemeldet.
     shared:
       links:
-        didnt_receive_confirmation_instructions: Hast du keine Anweisungen zum Bestätigen deines Kontos erhalten?
-        didnt_receive_unlock_instructions: Hast du keine Anweisungen zum Entsperren deines Kontos erhalten?
+        didnt_receive_confirmation_instructions: Hast du keine Anweisungen zum Bestätigen
+          deines Kontos erhalten?
+        didnt_receive_unlock_instructions: Hast du keine Anweisungen zum Entsperren
+          deines Kontos erhalten?
         forgot_your_password: Passwort vergessen?
         title: Weitere Links
     unlocks:
