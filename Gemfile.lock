@@ -6,6 +6,17 @@ GIT
     spring (1.1.2)
 
 GIT
+  remote: git://github.com/jmuheim/guard.git
+  revision: f44bface765f6cec5f583f20a7a2afc107c1b8b7
+  specs:
+    guard (2.6.0)
+      formatador (>= 0.2.4)
+      listen (~> 2.7)
+      lumberjack (~> 1.0)
+      pry (>= 0.9.12)
+      thor (>= 0.18.1)
+
+GIT
   remote: git://github.com/jmuheim/rip_hashrocket.git
   revision: e500703e35598a3a1b680c7ca5d466b68faa2d9c
   specs:
@@ -27,16 +38,6 @@ GIT
       pry-remote (>= 0.1.7)
       pry-stack_explorer (~> 0.4.9)
       railties (>= 3.0, < 5.0)
-
-PATH
-  remote: ../forks/guard
-  specs:
-    guard (2.6.0)
-      formatador (>= 0.2.4)
-      listen (~> 2.7)
-      lumberjack (~> 1.0)
-      pry (>= 0.9.12)
-      thor (>= 0.18.1)
 
 GEM
   remote: https://rubygems.org/
