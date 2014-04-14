@@ -13,6 +13,9 @@ de:
     show:
       edit: Bearbeiten
     user:
+      confirmation_question: Benutzer wirklich löschen?
+      destroy: Löschen
+      edit: Bearbeiten
       show: Anzeigen
     users:
       actions: Aktionen
