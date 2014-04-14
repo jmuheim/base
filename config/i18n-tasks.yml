@@ -24,3 +24,6 @@ ignore_unused:
   - activerecord.*
   - simple_form.*
   - validates_timeliness.*
+yaml:
+  write:
+    line_width: -1
