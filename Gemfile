@@ -42,7 +42,7 @@ gem 'cells' # View components
 
 gem 'simple_form' # Forms made easy for Rails
 
-gem 'gaffe' # Handles Rails error pages in a clean, simple way
+gem 'gaffe', github: 'jmuheim/gaffe' # Handles Rails error pages in a clean, simple way
 
 gem 'cocoon' # Dynamic nested forms made easy
 
