@@ -21,6 +21,10 @@ data:
     # default catch-all:
     - 'config/locales/%{locale}.yml' # path is short for ['*', path]
 
+  yaml:
+    write:
+      line_width: -1
+
 ignore_unused:
   - activerecord.*
   - devise.*
@@ -37,7 +41,3 @@ ignore_eq_base:
 
 ignore:
   - kaminari.*
-
-yaml:
-  write:
-    line_width: -1
