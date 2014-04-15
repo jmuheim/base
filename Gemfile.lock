@@ -6,13 +6,6 @@ GIT
     spring (1.1.2)
 
 GIT
-  remote: git://github.com/jmuheim/gaffe.git
-  revision: 6bd576d2acb14786d6017acc054c782f74b7e89c
-  specs:
-    gaffe (1.0.1)
-      rails (>= 3.2.0)
-
-GIT
   remote: git://github.com/jmuheim/guard.git
   revision: f44bface765f6cec5f583f20a7a2afc107c1b8b7
   specs:
@@ -182,6 +175,8 @@ GEM
     fuubar (1.3.2)
       rspec (>= 2.14.0, < 3.1.0)
       ruby-progressbar (~> 1.3)
+    gaffe (1.0.2)
+      rails (>= 3.2.0)
     grit (2.5.0)
       diff-lcs (~> 1.1)
       mime-types (~> 1.15)
@@ -461,7 +456,7 @@ DEPENDENCIES
   factory_girl_rails
   ffaker
   fuubar
-  gaffe!
+  gaffe
   guard!
   guard-annotate
   guard-bundler
