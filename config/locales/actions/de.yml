@@ -1,0 +1,9 @@
+---
+de:
+  actions:
+    new: Erstellen
+    new_resource: "%{resource} erstellen"
+    show: Anzeigen
+    edit: Bearbeiten
+    destroy: Löschen
+    destroy_resource_confirmation_question: "%{resource} wirklich löschen?"
