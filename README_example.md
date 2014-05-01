@@ -2,11 +2,15 @@
 
 ## Setting up project locally
 
+Live project: [ACCOUNT.SERVER.uberspace.de](http://ACCOUNT.SERVER.uberspace.de)
+
 Recommended environment:
 
 - [Mac OS X](http://www.apple.com/osx/)
 - [Git](http://git-scm.com/)
 - [Google Chrome](https://www.google.com/intl/en/chrome/browser/)
+
+Setup:
 
 - `$ git clone git@github.com:jmuheim/PROJECT.git`
 - `$ cd PROJECT`
