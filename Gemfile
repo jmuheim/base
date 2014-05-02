@@ -40,7 +40,7 @@ gem 'responders' # A set of Rails responders
 
 gem 'cells' # View components
 
-gem 'simple_form' # Forms made easy for Rails
+gem 'simple_form', github: 'plataformatec/simple_form' # Forms made easy for Rails
 
 gem 'gaffe' # Handles Rails error pages in a clean, simple way
 
@@ -76,8 +76,7 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller' # Needed by better_errors to enable html console
 
-  # https://github.com/brentd/xray-rails/issues/32
-  # gem 'xray-rails' # Reveals your UI's bones with Cmd-X/Ctrl-X
+  gem 'xray-rails' # Reveals your UI's bones with Cmd-X/Ctrl-X
 
   # Rails application preloader
   gem 'spring', github: 'guard/spring',
