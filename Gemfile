@@ -48,6 +48,8 @@ gem 'cocoon' # Dynamic nested forms made easy
 
 gem 'validates_timeliness' # Date and time validation plugin for ActiveModel and Rails
 
+gem 'bootstrap-datepicker-rails' # A Datepicker for Twitter Bootstrap, integrated with Rails assets pipeline
+
 group :doc do
   gem 'sdoc', require: false # bundle exec rake doc:rails generates the API under doc/api.
 end
