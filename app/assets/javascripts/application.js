@@ -15,5 +15,8 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require bootstrap
+//= require bootstrap-datepicker
 //= require cocoon
-//= require_tree .
+//= require dashboards
+//= require init
+

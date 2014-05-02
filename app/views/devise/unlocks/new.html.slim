@@ -1,7 +1,10 @@
 - content_for :headline do
   = t '.resend_unlock_instructions'
 
-= simple_form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post }) do |f|
+= simple_form_for resource, as:      resource_name,
+                            url:     unlock_path(resource_name),
+                            html:    {method: :post, class: 'form-horizontal'},
+                            wrapper: :horizontal_form do |f|
   = devise_error_messages!
 
   = f.input :email, autofocus: true

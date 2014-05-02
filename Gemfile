@@ -40,13 +40,15 @@ gem 'responders' # A set of Rails responders
 
 gem 'cells' # View components
 
-gem 'simple_form' # Forms made easy for Rails
+gem 'simple_form', github: 'plataformatec/simple_form' # Forms made easy for Rails
 
 gem 'gaffe' # Handles Rails error pages in a clean, simple way
 
 gem 'cocoon' # Dynamic nested forms made easy
 
 gem 'validates_timeliness' # Date and time validation plugin for ActiveModel and Rails
+
+gem 'bootstrap-datepicker-rails' # A Datepicker for Twitter Bootstrap, integrated with Rails assets pipeline
 
 group :doc do
   gem 'sdoc', require: false # bundle exec rake doc:rails generates the API under doc/api.
@@ -76,8 +78,7 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller' # Needed by better_errors to enable html console
 
-  # https://github.com/brentd/xray-rails/issues/32
-  # gem 'xray-rails' # Reveals your UI's bones with Cmd-X/Ctrl-X
+  gem 'xray-rails' # Reveals your UI's bones with Cmd-X/Ctrl-X
 
   # Rails application preloader
   gem 'spring', github: 'guard/spring',

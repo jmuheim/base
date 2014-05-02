@@ -1,7 +1,10 @@
 - content_for :headline do
   = t '.sign_in'
 
-= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+= simple_form_for resource, as:      resource_name,
+                            url:     session_path(resource_name),
+                            html:    {class: 'form-horizontal'},
+                            wrapper: :horizontal_form do |f|
   = f.input :login, autofocus: true, placeholder: t('.username_or_email')
 
   = f.input :password
