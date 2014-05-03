@@ -42,3 +42,20 @@ ignore_eq_base:
 
 ignore:
   - kaminari.*
+
+ignore_untranslated:
+  model_names:
+    - role
+  model_attributes:
+    user:
+      - encrypted_password
+      - reset_password_token
+      - reset_password_sent_at
+      - remember_created_at
+      - current_sign_in_at
+      - last_sign_in_at
+      - current_sign_in_ip
+      - last_sign_in_ip
+      - confirmed_at
+      - unconfirmed_email
+      - locked_at
