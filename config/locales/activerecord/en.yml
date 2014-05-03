@@ -2,8 +2,28 @@
 en:
   activerecord:
     attributes:
+      defaults:
+        created_at: Created at
+        updated_at: Updated at
+      role:
+        created_at: Created at
+        name: Name
+        resource_type: Resource
+        updated_at: Updated at
       user:
+        confirmed_at: Confirmed at
+        created_at: Created at
+        current_sign_in_at: Signed in since
+        current_sign_in_ip: Current IP
+        email: Email
+        failed_attempts: Failed attempts
+        guest: Guest?
         guest_name: guest
+        last_sign_in_at: Last sign in at
+        last_sign_in_ip: Last IP
+        locked_at: Locked at
+        name: Name
+        updated_at: Updated at
     models:
       user:
         one: User

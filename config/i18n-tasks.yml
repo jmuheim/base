@@ -37,6 +37,7 @@ ignore_unused:
 ignore_eq_base:
   all:
     - simple_form.required.mark
+    - activerecord.attributes.*
   de:
     - validates_timeliness.error_value_formats.time
 
@@ -52,10 +53,8 @@ ignore_untranslated:
       - reset_password_token
       - reset_password_sent_at
       - remember_created_at
-      - current_sign_in_at
-      - last_sign_in_at
-      - current_sign_in_ip
-      - last_sign_in_ip
-      - confirmed_at
       - unconfirmed_email
-      - locked_at
+      - confirmation_token
+      - confirmation_sent_at
+      - unlock_token
+      - sign_in_count
