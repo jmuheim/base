@@ -1,0 +1,7 @@
+# Check out https://github.com/42dev/bower-rails#ruby-dsl-configuration for more options
+
+asset 'jquery'
+asset 'jquery-ui'
+asset 'jquery-ujs'
+asset 'bootstrap'
+asset 'bootstrap-formhelpers'

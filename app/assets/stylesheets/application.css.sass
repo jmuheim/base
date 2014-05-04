@@ -1,13 +1,26 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require bootstrap
+ *= require bootstrap-formhelpers
+ */
+
 @import "globals/all"
 
 // All variables: http://getbootstrap.com/customize/#less-variables
 // $color: red
-@import "bootstrap"
-@import "bootstrap/theme"
-@import "bootstrap-datepicker3"
+//@import "bootstrap"
 
 // TODO: only import needed modules (CSS and JS)!
-@import "jquery.ui.all"
+// @import "jquery.ui.all"
 
 @import "screen"
 

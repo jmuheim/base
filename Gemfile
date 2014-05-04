@@ -12,14 +12,10 @@ gem 'sass-rails', '~> 4.0.0' # Use Sass for stylesheets
 
 gem 'compass-rails' # Compass framework
 
-gem 'bootstrap-sass' # Sleek, intuitive, and powerful front-end framework for faster and easier web development
+gem 'bower-rails'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
-
-# Use jquery as the JavaScript library
-gem 'jquery-rails'
-gem 'jquery-ui-rails'
 
 gem 'turbolinks' # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 
@@ -47,8 +43,6 @@ gem 'gaffe' # Handles Rails error pages in a clean, simple way
 gem 'cocoon' # Dynamic nested forms made easy
 
 gem 'validates_timeliness' # Date and time validation plugin for ActiveModel and Rails
-
-gem 'bootstrap-datepicker-rails' # A Datepicker for Twitter Bootstrap, integrated with Rails assets pipeline
 
 group :doc do
   gem 'sdoc', require: false # bundle exec rake doc:rails generates the API under doc/api.
