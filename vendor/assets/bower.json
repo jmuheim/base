@@ -4,8 +4,6 @@
     "jquery": "latest",
     "jquery-ui": "latest",
     "jquery-ujs": "latest",
-    "bootstrap": "latest",
-    "bootstrap-formhelpers": "latest",
-    "angular": "latest"
+    "bootstrap": "latest"
   }
 }
