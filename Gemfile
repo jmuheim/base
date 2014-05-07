@@ -75,7 +75,8 @@ group :development do
   gem 'xray-rails' # Reveals your UI's bones with Cmd-X/Ctrl-X
 
   # Rails application preloader
-  gem 'spring'
+  gem 'spring', github: 'guard/spring',
+                branch: 'listen2' # https://github.com/rails/spring/pull/194
   gem 'spring-commands-rspec' # Commands for RSpec
   gem 'listen'                # Event based file system listening (polling is still used, see https://github.com/rails/spring/pull/194#issuecomment-42396462)
 

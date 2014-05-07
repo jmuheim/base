@@ -1,4 +1,11 @@
 GIT
+  remote: git://github.com/guard/spring.git
+  revision: 4d6ccb125deb74544f82a28d3f1e2b55a9eb692d
+  branch: listen2
+  specs:
+    spring (1.1.2)
+
+GIT
   remote: git://github.com/jmuheim/rip_hashrocket.git
   revision: e500703e35598a3a1b680c7ca5d466b68faa2d9c
   specs:
@@ -377,7 +384,6 @@ GEM
       railties (>= 3.0, < 4.2)
       slim (~> 2.0)
     slop (3.5.0)
-    spring (1.1.2)
     spring-commands-rspec (1.0.2)
       spring (>= 0.9.1)
     sprockets (2.11.0)
@@ -488,7 +494,7 @@ DEPENDENCIES
   shoulda-matchers
   simple_form!
   slim-rails
-  spring
+  spring!
   spring-commands-rspec
   sqlite3
   terminal-notifier-guard
