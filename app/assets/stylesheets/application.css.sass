@@ -8,18 +8,22 @@
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
  *
- *= require bootstrap-formhelpers
  *= require_self
+ *= require bootstrap-formhelpers
  */
 
+
+// Global stuff (provides all variables and imports)
 @import "globals/all"
 
-// All variables: http://getbootstrap.com/customize/#less-variables
-// $color: red
-@import "bootstrap-sass/lib/bootstrap"
 
-// TODO: only import needed modules (CSS and JS)!
-// @import "jquery.ui.all"
+// Bower assets
+//
+// Be sure to provide the full path to the wanted file (under vendor/assets/bower_components)!
+// TODO: only import needed jQuery UI modules (CSS and JS)!
+
+@import "bootstrap-sass/lib/bootstrap"
+@import "jquery-ui/themes/base/jquery.ui.all"
 
 @import "screen"
 

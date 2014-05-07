@@ -12,11 +12,10 @@
 //
 //= require jquery
 //= require jquery-ui
-// require jquery-ujs
+//= require jquery-ujs
 //= require turbolinks
 //= require bootstrap-sass
 //= require bootstrap-formhelpers
 //= require cocoon
 //= require dashboards
 //= require init
-
