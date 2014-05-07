@@ -81,7 +81,7 @@ group :development do
   gem 'listen'                # Event based file system listening (instead of polling)
 
   # Guard: automatically run commands when files are changed
-  gem 'guard', github: 'jmuheim/guard'
+  gem 'guard'
   gem 'guard-rspec', require: false      # Automatically run tests
   gem 'terminal-notifier-guard'          # Mac OS X User Notifications for Guard
   gem 'guard-livereload', require: false # Automatically reload your browser when 'view' files are modified
