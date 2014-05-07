@@ -15,6 +15,7 @@
 // require jquery-ujs
 //= require turbolinks
 //= require bootstrap
+//= require bootstrap-formhelpers
 //= require cocoon
 //= require dashboards
 //= require init

@@ -1,6 +1,12 @@
 # Check out https://github.com/42dev/bower-rails#ruby-dsl-configuration for more options
 
+# jQuery: fast, small, and feature-rich JavaScript library
 asset 'jquery'
-asset 'jquery-ui'
-asset 'jquery-ujs'
+asset 'jquery-ui' # UI components of jQuery
+asset 'jquery-ujs' # Ruby on Rails unobtrusive scripting adapter for jQuery
+
+# Twitter Bootstrap: mobile first front-end framework for faster and easier web development
 asset 'bootstrap'
+asset 'bootstrap-formhelpers', # A set of JavaScript to help create user friendly forms
+      'b69c70158c077449ae2a83f8ac13024944278356',
+      github: 'jmuheim/BootstrapFormHelpers' # Use this until https://github.com/winmarkltd/BootstrapFormHelpers/pull/219 is merged

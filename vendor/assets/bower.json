@@ -4,6 +4,7 @@
     "jquery": "latest",
     "jquery-ui": "latest",
     "jquery-ujs": "latest",
-    "bootstrap": "latest"
+    "bootstrap": "latest",
+    "bootstrap-formhelpers": "git://github.com/jmuheim/BootstrapFormHelpers#b69c70158c077449ae2a83f8ac13024944278356"
   }
 }
