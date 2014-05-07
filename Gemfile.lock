@@ -1,11 +1,4 @@
 GIT
-  remote: git://github.com/guard/spring.git
-  revision: 4d6ccb125deb74544f82a28d3f1e2b55a9eb692d
-  branch: listen2
-  specs:
-    spring (1.1.2)
-
-GIT
   remote: git://github.com/jmuheim/rip_hashrocket.git
   revision: e500703e35598a3a1b680c7ca5d466b68faa2d9c
   specs:
@@ -227,6 +220,9 @@ GEM
     jbuilder (1.5.3)
       activesupport (>= 3.0.0)
       multi_json (>= 1.2.0)
+    jquery-turbolinks (2.0.2)
+      railties (>= 3.1.0)
+      turbolinks
     json (1.8.1)
     launchy (2.4.2)
       addressable (~> 2.3)
@@ -384,6 +380,7 @@ GEM
       railties (>= 3.0, < 4.2)
       slim (~> 2.0)
     slop (3.5.0)
+    spring (1.1.2)
     spring-commands-rspec (1.0.2)
       spring (>= 0.9.1)
     sprockets (2.11.0)
@@ -468,8 +465,8 @@ DEPENDENCIES
   inherited_resources (>= 1.4.1)
   jazz_hands!
   jbuilder (~> 1.2)
+  jquery-turbolinks
   launchy
-  listen
   mina
   mysql2
   poltergeist
@@ -494,7 +491,7 @@ DEPENDENCIES
   shoulda-matchers
   simple_form!
   slim-rails
-  spring!
+  spring
   spring-commands-rspec
   sqlite3
   terminal-notifier-guard

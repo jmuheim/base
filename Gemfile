@@ -17,7 +17,9 @@ gem 'bower-rails'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
-gem 'turbolinks' # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
+# Turbolinks: makes following links in your web application faster
+gem 'turbolinks'
+gem 'jquery-turbolinks' # jQuery plugin for drop-in fix binded events problem caused by Turbolinks
 
 gem 'jbuilder', '~> 1.2' # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 
@@ -75,10 +77,8 @@ group :development do
   gem 'xray-rails' # Reveals your UI's bones with Cmd-X/Ctrl-X
 
   # Rails application preloader
-  gem 'spring', github: 'guard/spring',
-                branch: 'listen2' # https://github.com/rails/spring/pull/194
+  gem 'spring'
   gem 'spring-commands-rspec' # Commands for RSpec
-  gem 'listen'                # Event based file system listening (polling is still used, see https://github.com/rails/spring/pull/194#issuecomment-42396462)
 
   # Guard: automatically run commands when files are changed
   gem 'guard'
