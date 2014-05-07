@@ -9,6 +9,7 @@ Recommended environment:
 - [Mac OS X](http://www.apple.com/osx/)
 - [Git](http://git-scm.com/)
 - [Google Chrome](https://www.google.com/intl/en/chrome/browser/)
+- [Bower](http://bower.io/)
 
 Setup:
 
@@ -17,6 +18,7 @@ Setup:
 - `$ bundle install`
 - Change the value of `Port:` in `config/boot.rb` to e.g. `3002`
 - Change the value of `port:` in `Guardfile` and the value of `live_reload_port:` in `config/environments/development.rb` to e.g. `357230`.
+- `$ npm install -g bower` installs Bower
 
 You can use [direnv](https://github.com/zimbatm/direnv) to automatically add `bin` to your `$PATH`. Otherwise you should always use `bundle exec` to run commands.
 
@@ -30,6 +32,12 @@ You can use [direnv](https://github.com/zimbatm/direnv) to automatically add `bi
   - annotating models using [Guard-Annotate](https://github.com/cpjolicoeur/guard-annotate)
   - migrating the DB using [Guard-Migrate](https://github.com/glanotte/guard-migrate)
 - Execute `$ rip_hashrockets` from time to time to replace old Ruby hashrockets (`=>`) with the new syntax
+
+### Add external assets (libraries)
+
+Edit [`Bowerfile`](./Bowerfile), then run `$ rake bower:install`. Add them to `application.css` and `application.js` as usual.
+
+More infos at [bower-rails](https://github.com/42dev/bower-rails).
 
 ## Testing
 
