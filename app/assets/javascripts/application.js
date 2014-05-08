@@ -3,7 +3,7 @@
 //
 //= require jquery
 //= require jquery.turbolinks
-//= require jquery-ujs
+//= require jquery-ujs-standalone
 //
 //= require bootstrap-sass
 //= require bootstrap-formhelpers
