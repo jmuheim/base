@@ -17,6 +17,5 @@
 .powenv
 coverage
 .rspec
-vendor/assets/bower_components
 public/assets
 bower.json
