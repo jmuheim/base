@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+source 'https://rails-assets.org'
 
 gem 'rails', '4.1'
 
@@ -9,17 +10,21 @@ gem 'uglifier', '>= 1.3.0' # Use Uglifier as compressor for JavaScript assets
 gem 'coffee-rails', '~> 4.0.0' # Use CoffeeScript for .js.coffee assets and views
 
 gem 'sass-rails', '~> 4.0.0' # Use Sass for stylesheets
+gem 'less-rails'
 
 gem 'compass-rails' # Compass framework
 
-gem 'bower-rails'
-
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-# gem 'therubyracer', platforms: :ruby
+gem 'therubyracer', platforms: :ruby
 
 # Turbolinks: makes following links in your web application faster
 gem 'turbolinks'
 gem 'jquery-turbolinks' # jQuery plugin for drop-in fix binded events problem caused by Turbolinks
+
+gem 'rails-assets-bootstrap-sass'
+gem 'rails-assets-bootstrap-formhelpers'
+gem 'rails-assets-jquery-ui'
+gem 'rails-assets-jquery-ujs-standalone'
 
 gem 'jbuilder', '~> 1.2' # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 
