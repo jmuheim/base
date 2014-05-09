@@ -79,7 +79,7 @@ class ApplicationController < ActionController::Base
   # We always want an explicit locale to be available.
   def ensure_locale
     unless Rails.env.test? # In controller specs, the default locale isn't available. As we don't want to manually specify a locale for every request in controller specs, we don't enforce a locale in test environment. This isn't optimal, as we it prevents us from actually testing this before filter, but it has to be okay for the moment. More infos here: https://github.com/rspec/rspec-rails/issues/255
-      redirect_to url_for(locale: I18n.default_locale) if params[:locale].blank?
+      redirect_to root_path if params[:locale].blank?
     end
   end
 end
