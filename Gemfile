@@ -20,10 +20,10 @@ gem 'compass-rails' # Compass framework
 gem 'turbolinks'
 gem 'jquery-turbolinks' # jQuery plugin for drop-in fix binded events problem caused by Turbolinks
 
-gem 'rails-assets-bootstrap-sass'
-# gem 'rails-assets-bootstrap-formhelpers' # Assets are manually added for this moment, until this is fixed: https://github.com/rails-assets/rails-assets/issues/148
-gem 'rails-assets-jquery-ui'
-gem 'rails-assets-jquery-ujs-standalone'
+gem 'rails-assets-bootstrap-sass' # Sleek, intuitive, and powerful front-end framework
+# gem 'rails-assets-bootstrap-formhelpers' # Assets are manually added at this moment, until this is fixed: https://github.com/rails-assets/rails-assets/issues/148
+gem 'rails-assets-jquery-ui' # jQuery UI components
+gem 'rails-assets-jquery-ujs-standalone' # Unobtrusive JS for Rails (standalone is optimised for rails-assets)
 
 gem 'jbuilder', '~> 1.2' # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 
