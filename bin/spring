@@ -7,10 +7,7 @@ unless defined?(Spring)
   require "rubygems"
   require "bundler"
 
-  # Had to modify this regex, see https://github.com/rails/spring/issues/277
-  modified_regex = /^GEM|GIT$.*?^    spring \((.*?)\)$.*?^$/m
-
-  if match = Bundler.default_lockfile.read.match(modified_regex)
+  if match = Bundler.default_lockfile.read.match(/^GEM$.*?^    spring \((.*?)\)$.*?^$/m)
     ENV["GEM_PATH"] = ([Bundler.bundle_path.to_s] + Gem.path).join(File::PATH_SEPARATOR)
     ENV["GEM_HOME"] = ""
     Gem.paths = ENV
