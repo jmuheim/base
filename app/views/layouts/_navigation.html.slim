@@ -1,7 +1,7 @@
 nav.navbar.navbar-inverse.navbar-fixed-top
   .container
     .navbar-header
-      button.navbar-toggle[type="button" data-toggle="collapse" data-target=".navbar-collapse"]
+      button.navbar-toggle type="button" data-toggle="collapse" data-target=".navbar-collapse"
         span.sr-only Toggle navigation
         span.icon-bar
         span.icon-bar
@@ -12,8 +12,6 @@ nav.navbar.navbar-inverse.navbar-fixed-top
       ul.nav.navbar-nav
         == render 'layouts/navigation_links'
 
-      ul#language_selector.nav.navbar-nav.navbar-right
-        li.en class=active_class_for(:en)
-          = link_to 'English', locale: :en
-        li.de class=active_class_for(:de)
-          = link_to 'Deutsch', locale: :de
+      ul.nav.navbar-nav.navbar-right
+        li
+          #language_chooser.bfh-selectbox.bfh-languages data-available=language_selector_locales.join(',') data-blank='false' data-flags='true' data-language=current_language_selector_locale

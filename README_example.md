@@ -31,6 +31,12 @@ You can use [direnv](https://github.com/zimbatm/direnv) to automatically add `bi
   - migrating the DB using [Guard-Migrate](https://github.com/glanotte/guard-migrate)
 - Execute `$ rip_hashrockets` from time to time to replace old Ruby hashrockets (`=>`) with the new syntax
 
+### Add external assets (libraries)
+
+Add them to [`Gemfile`](./Gemfile) like so: `gem 'rails-assets-xxx'` where `xxx` is the asset's name.
+
+More infos at [rails-assets.org](https://rails-assets.org/).
+
 ## Testing
 
 - Use `@chrome` or `@selenium` flag to visually run feature tests in Chrome or Firefox.

@@ -1,4 +1,4 @@
 #!/bin/bash
 
 # This starts webrick using rerun which automatically restarts it after critical config files are changed
-rerun --pattern '{Gemfile.lock,config/environment.rb,config/environments/development.rb,config/initializers/*.rb,lib/**/*.rb}' --no-growl --signal INT --background --clear -- bundle exec rails s
+rerun --pattern '{Gemfile.lock,config/application.rb,config/environment.rb,config/environments/development.rb,config/initializers/*.rb,lib/**/*.rb,config/database.yml}' --no-growl --signal INT --background --clear -- rails s

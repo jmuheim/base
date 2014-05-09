@@ -14,6 +14,8 @@ class ApplicationController < ActionController::Base
 
   before_action :set_locale
 
+  before_filter :ensure_locale
+
   def default_url_options(options = {})
     logger.debug "default_url_options is passed options: #{options.inspect}\n"
     { locale: I18n.locale }
@@ -72,5 +74,12 @@ class ApplicationController < ActionController::Base
     User.find(session[:guest_user_id]).delete rescue ActiveRecord::RecordNotFound
   ensure
     session[:guest_user_id] = nil
+  end
+
+  # We always want an explicit locale to be available.
+  def ensure_locale
+    unless Rails.env.test? # In controller specs, the default locale isn't available. As we don't want to manually specify a locale for every request in controller specs, we don't enforce a locale in test environment. This isn't optimal, as we it prevents us from actually testing this before filter, but it has to be okay for the moment. More infos here: https://github.com/rspec/rspec-rails/issues/255
+      redirect_to root_path if params[:locale].blank?
+    end
   end
 end

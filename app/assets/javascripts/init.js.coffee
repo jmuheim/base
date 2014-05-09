@@ -1,2 +1,3 @@
 $(document).ready ->
-  $("[data-behaviour~=datepicker]").closest('.input-group').datepicker()
+  $('#language_chooser').each ->
+    new App.LanguageChooser @

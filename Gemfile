@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+source 'https://rails-assets.org'
 
 gem 'rails', '4.1'
 
@@ -12,16 +13,17 @@ gem 'sass-rails', '~> 4.0.0' # Use Sass for stylesheets
 
 gem 'compass-rails' # Compass framework
 
-gem 'bootstrap-sass' # Sleek, intuitive, and powerful front-end framework for faster and easier web development
-
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
-# Use jquery as the JavaScript library
-gem 'jquery-rails'
-gem 'jquery-ui-rails'
+# Turbolinks: makes following links in your web application faster
+gem 'turbolinks'
+gem 'jquery-turbolinks' # jQuery plugin for drop-in fix binded events problem caused by Turbolinks
 
-gem 'turbolinks' # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
+gem 'rails-assets-bootstrap-sass'
+# gem 'rails-assets-bootstrap-formhelpers' # Assets are manually added for this moment, until this is fixed: https://github.com/rails-assets/rails-assets/issues/148
+gem 'rails-assets-jquery-ui'
+gem 'rails-assets-jquery-ujs-standalone'
 
 gem 'jbuilder', '~> 1.2' # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 
@@ -47,8 +49,6 @@ gem 'gaffe' # Handles Rails error pages in a clean, simple way
 gem 'cocoon' # Dynamic nested forms made easy
 
 gem 'validates_timeliness' # Date and time validation plugin for ActiveModel and Rails
-
-gem 'bootstrap-datepicker-rails' # A Datepicker for Twitter Bootstrap, integrated with Rails assets pipeline
 
 group :doc do
   gem 'sdoc', require: false # bundle exec rake doc:rails generates the API under doc/api.
@@ -81,13 +81,11 @@ group :development do
   gem 'xray-rails' # Reveals your UI's bones with Cmd-X/Ctrl-X
 
   # Rails application preloader
-  gem 'spring', github: 'guard/spring',
-                branch: 'listen2' # https://github.com/rails/spring/pull/194
+  gem 'spring'
   gem 'spring-commands-rspec' # Commands for RSpec
-  gem 'listen'                # Event based file system listening (instead of polling)
 
   # Guard: automatically run commands when files are changed
-  gem 'guard', github: 'jmuheim/guard'
+  gem 'guard'
   gem 'guard-rspec', require: false      # Automatically run tests
   gem 'terminal-notifier-guard'          # Mac OS X User Notifications for Guard
   gem 'guard-livereload', require: false # Automatically reload your browser when 'view' files are modified
