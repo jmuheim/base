@@ -3,6 +3,8 @@ source 'https://rails-assets.org'
 
 gem 'rails', '4.1'
 
+gem 'rails-i18n' # Locale data
+
 gem 'slim-rails' # Awesome template language that replaces ERB
 
 gem 'uglifier', '>= 1.3.0' # Use Uglifier as compressor for JavaScript assets
