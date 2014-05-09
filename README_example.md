@@ -9,7 +9,6 @@ Recommended environment:
 - [Mac OS X](http://www.apple.com/osx/)
 - [Git](http://git-scm.com/)
 - [Google Chrome](https://www.google.com/intl/en/chrome/browser/)
-- [Bower](http://bower.io/)
 
 Setup:
 
@@ -18,8 +17,6 @@ Setup:
 - `$ bundle install`
 - Change the value of `Port:` in `config/boot.rb` to e.g. `3002`
 - Change the value of `port:` in `Guardfile` and the value of `live_reload_port:` in `config/environments/development.rb` to e.g. `357230`.
-- `$ npm install -g bower` installs Bower
-- `$ rake bower:install` installs the assets specified in [`Bowerfile`](./Bowerfile).
 
 You can use [direnv](https://github.com/zimbatm/direnv) to automatically add `bin` to your `$PATH`. Otherwise you should always use `bundle exec` to run commands.
 
@@ -36,9 +33,9 @@ You can use [direnv](https://github.com/zimbatm/direnv) to automatically add `bi
 
 ### Add external assets (libraries)
 
-Edit [`Bowerfile`](./Bowerfile), then run `$ rake bower:install`. Add them to `application.css` and `application.js` as usual.
+Add them to [`Gemfile`](./Gemfile) like so: `gem 'rails-assets-xxx'` where `xxx` is the asset's name.
 
-More infos at [bower-rails](https://github.com/42dev/bower-rails).
+More infos at [rails-assets.org](https://rails-assets.org/).
 
 ## Testing
 

@@ -54,19 +54,6 @@ ruby 2.1.1p76 (2014-02-24 revision 45161) [x86_64-linux]
 - `$ gem install bundler`
 - `$ bundle config path ~/.gem`
 
-## Setup assets management <sup>(remote)</sup>
-
-To [activate NPM](https://uberspace.de/dokuwiki/development:nodejs), execute the following:
-
-```
-$ cat > ~/.npmrc <<__EOF__
-prefix = $HOME
-umask = 077
-__EOF__
-```
-
-Now install Bower like this: `$ npm install -g bower`
-
 ## Setup Passenger with Nginx <sup>(remote)</sup>
 
 - `$ gem install passenger`
