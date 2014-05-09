@@ -1,3 +1,3 @@
 $(document).ready ->
-  $('#language_selector').each ->
+  $('#language_chooser').each ->
     new App.LanguageChooser @

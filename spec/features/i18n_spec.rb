@@ -22,12 +22,12 @@ describe 'I18n' do
   it 'offers the possibility to switch languages using the language chooser', js: true do
     visit root_path
 
-    within '#language_selector' do
+    within '#language_chooser' do
       expect(page).to have_css '.bfh-selectbox-toggle', text: 'English'
     end
     expect(page).to have_content 'Welcome'
 
-    within '#language_selector' do
+    within '#language_chooser' do
       click_link 'English' # Open dropdown
       click_link 'Deutsch' # Choose option
       expect(page).to have_css '.bfh-selectbox-toggle', text: 'Deutsch'
