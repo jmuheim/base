@@ -5,9 +5,3 @@ de:
       date: "%d.%m.%Y"
       datetime: "%d.%m.%Y %H:%M:%S"
       time: "%H:%M:%S"
-  date:
-    formats:
-      input: '%d.%m.%Y'
-  time:
-    formats:
-      input: '%H:%i'
