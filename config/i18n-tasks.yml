@@ -18,6 +18,7 @@ data:
   write:
     # save all devise keys in it's own file (per locale):
     - ['{activerecord,actions,devise,errors,flash,simple_form,validates_timeliness}.*', 'config/locales/\1/%{locale}.yml']
+    - ['{validates_timeliness,date,time}.*', 'config/locales/date_time/%{locale}.yml']
     # default catch-all:
     - 'config/locales/%{locale}.yml' # path is short for ['*', path]
 

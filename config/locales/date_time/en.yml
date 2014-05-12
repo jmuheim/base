@@ -5,3 +5,9 @@ en:
       date: "%Y-%m-%d"
       datetime: "%Y-%m-%d %H:%M:%S"
       time: "%H:%M:%S"
+  date:
+    formats:
+      input: '%Y-%m-%d'
+  time:
+    formats:
+      input: 'h:i A'
