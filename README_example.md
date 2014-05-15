@@ -1,5 +1,7 @@
 # TITLE
 
+TODO: Add badges!
+
 ## Setting up project locally
 
 Live project: [ACCOUNT.SERVER.uberspace.de](http://ACCOUNT.SERVER.uberspace.de)

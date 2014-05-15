@@ -18,7 +18,9 @@ This is a basic Rails project with everything configured the way I want. To fork
   - <code>$ rvm use .</code> (activates the RVM gemset)
   - <code>$ bundle</code> (installs the gems)
   - <code>$ rake db:setup</code> (sets up the database with seed data)
+  - <code>$ bin/rake db:migrate RAILS_ENV=test</code> (prepare test database)
 - Replace all occurrences of <code>Base</code> and <code>base</code> in the code with your project's equivalents (TODO: write executable script?)
+- Change the value of <code>secret_key_base</code> in <code>config/initializers/secret_token.rb</code> (run <code>$ rake secret</code> to create a new secret key)
 - Change the Rack Livereload port in <code>Guardfile</code> and <code>config/development.rb</code>
 
 = Activate external services
