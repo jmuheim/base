@@ -242,7 +242,7 @@
 .bfh-flag-ZW {
   width: 16px;
   height: 14px;
-  background: url(/assets/bootstrap-formhelpers-countries.flags.png) no-repeat;
+  background: image-url('bootstrap-formhelpers-countries.flags.png') no-repeat;
 }
 
 .bfh-flag-AD:empty,
@@ -1646,11 +1646,11 @@
 }
 
 .bfh-flag-EUR {
-  background: url(/assets/eu.png) no-repeat;
+//  background: image-url('eu.png') no-repeat;
 }
 
 .bfh-flag-XCD {
-  background: url(/assets/xcd.png) no-repeat;
+//  background: image-url('xcd.png') no-repeat;
 }
 
 .bfh-flag-AUD,
@@ -1664,7 +1664,7 @@
 .bfh-flag-ZAR {
   width: 16px;
   height: 14px;
-  background: url(/assets/bootstrap-formhelpers-currencies.flags.png) no-repeat;
+  background: image-url('bootstrap-formhelpers-currencies.flags.png') no-repeat;
 }
 
 .bfh-flag-AUD:empty,
@@ -1773,7 +1773,7 @@
   border: 1px solid rgba(0, 0, 0, 0.15);
   border-radius: 4px;
   -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
-          box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
   background-clip: padding-box;
 }
 
@@ -1885,7 +1885,7 @@
   width: 230px;
   height: 30px;
   text-indent: -9999px;
-  background-image: url(/assets/bootstrap-formhelpers-googlefonts.png);
+  background-image: image-url('bootstrap-formhelpers-googlefonts.png');
 }
 
 .bfh-googlefonts .bfh-selectbox-options a:focus {
@@ -1898,7 +1898,7 @@
 .bfh-googlefonts .bfh-selectbox-options .active > a,
 .bfh-googlefonts .bfh-selectbox-options .active > a:hover {
   background-color: transparent;
-  background-image: url(/assets/bootstrap-formhelpers-googlefonts.png);
+  background-image: image-url('bootstrap-formhelpers-googlefonts.png');
   background-repeat: no-repeat;
   outline: none;
   filter: none;
@@ -1993,7 +1993,7 @@
   border: 1px solid rgba(0, 0, 0, 0.15);
   border-radius: 4px;
   -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
-          box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
   background-clip: padding-box;
 }
 
@@ -2044,9 +2044,9 @@
   border: 1px solid rgba(0, 0, 0, 0.15);
   border-radius: 4px;
   -webkit-user-select: none;
-   -khtml-user-select: none;
-     -moz-user-select: none;
-       -o-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -o-user-select: none;
 }
 
 .bfh-slider > .bfh-slider-handle {
@@ -2099,7 +2099,7 @@
   border: 1px solid rgba(0, 0, 0, 0.15);
   border-radius: 4px;
   -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
-          box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
   background-clip: padding-box;
 }
 
