@@ -9,7 +9,7 @@ In the following document, always replace `ACCOUNT` with your Uberspace account 
 - Go to the [register](https://uberspace.de/register) page and create a new Uberspace account.
 - Choose a password for your account (for webpanel access)
 - Then add your public SSH key on the [authentication](https://uberspace.de/dashboard/authentication) page (**notice:** [Mina](http://nadarei.co/mina/) seems to have [problems with password authentication](http://stackoverflow.com/questions/22606771)!)
-- You can see the chosen Uberspace's name in the [datasheet](https://uberspace.de/dashboard/datasheet)
+- You can see the chosen Uberspace server's name in the [datasheet](https://uberspace.de/dashboard/datasheet)
 - Now you can connect to your account: `$ ssh ACCOUNT@SERVER.uberspace.de`
 
 ## Update default URL options <sup>(local)</sup>
@@ -18,7 +18,7 @@ Change the default URL options' `:host` in `config/environments/production.rb` t
 
 ## Setup Mina <sup>(local)</sup>
 
-- Edit [`config/deploy.rb`](config/deploy.rb) and set the correct `:server_name`, `:user`, and `:repository_name`. Commit everything int `master` branch (or also set the `:branch` option to your branch name).
+- Edit [`config/deploy.rb`](config/deploy.rb) and set the correct `:server_name`, `:user`, and `:repository_name`. Commit everything into `master` branch (or also set the `:branch` option to your branch name).
 
 ## Setup Ruby <sup>(remote)</sup>
 
@@ -125,6 +125,8 @@ ActionMailer::Base.smtp_settings = {
 ```
 
 ## Setup Mina <sup>(local)</sup>
+
+Be sure you have commited and pushed all changes.
 
 Execute `$ mina setup`. Use the `--verbose` and `--trace` switch for debugging if something goes wrong.
 
