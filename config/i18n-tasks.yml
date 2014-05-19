@@ -38,6 +38,7 @@ ignore_eq_base:
   all:
     - simple_form.required.mark
     - activerecord.attributes.*
+    - layouts.navigation.home
   de:
     - validates_timeliness.error_value_formats.time
 

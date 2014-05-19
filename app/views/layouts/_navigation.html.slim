@@ -6,11 +6,12 @@ nav.navbar.navbar-inverse.navbar-fixed-top
         span.icon-bar
         span.icon-bar
         span.icon-bar
-      = link_to t('.home'), root_path, class: 'navbar-brand'
+      = link_to t('.home'), root_path, class: home_link_class
 
     .collapse.navbar-collapse
-      ul.nav.navbar-nav
-        == render 'layouts/navigation_links'
+      = semantic_navigation :primary, config: :bootstrap do |navigation|
+        - navigation.item User.model_name.human(count: 2), users_path
+        - navigation.item t('.about'), page_path('about')
 
       ul.nav.navbar-nav.navbar-right
         li

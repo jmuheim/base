@@ -7,6 +7,12 @@ module ApplicationHelper
     end
   end
 
+  def home_link_class
+    classes = ['navbar-brand']
+    classes << 'active' if request.path == root_path
+    classes
+  end
+
   def active_class_for(language)
     'active' if language == I18n.locale
   end
