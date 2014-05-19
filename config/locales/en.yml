@@ -1,8 +1,10 @@
 ---
 en:
   pages:
-    welcome:
+    home:
       headline: Welcome to Base!
+    about:
+      headline: About Base
   mini_hub:
     show:
       sign_in: Sign in
