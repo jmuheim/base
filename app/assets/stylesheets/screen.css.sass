@@ -11,12 +11,15 @@ main
   margin-top: 8px
 
 .translation_missing::after
+  +single-text-shadow
   display: block
   content: 'translation missing'
-  background-color: red
+  color: red
   position: absolute
   z-index: 1000
-  font-size: 9px
+  font-size: 11px
+  line-height: 1
+  white-space: nowrap
 
 select.datetime
   display: inline-block
