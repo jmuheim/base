@@ -5,13 +5,13 @@ Base::Application.routes.draw do
 
     resources :users
 
-    resource :dashboard
-
     [403, 404, 422, 500].each do |code|
       get code, to: 'errors#show', code: code
     end
 
-    root 'dashboards#show'
+    get 'about', to: 'pages#about', as: 'about'
+
+    root 'pages#welcome'
 
     # The priority is based upon order of creation: first created -> highest priority.
     # See how all your routes lay out with "rake routes".

@@ -6,6 +6,7 @@ require 'active_support/inflector'
 guard :livereload, port: 35729 do
   watch(%r{app/(cells|views)/.+\.(erb|haml|slim)$})
   watch(%r{app/(helpers|inputs)/.+\.rb})
+  watch('config/routes.rb')
   watch(%r{public/.+\.(css|js|html)})
   watch(%r{config/locales/.+\.yml})
 

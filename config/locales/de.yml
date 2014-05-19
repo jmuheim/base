@@ -1,7 +1,7 @@
 ---
 de:
-  dashboards:
-    show:
+  pages:
+    welcome:
       headline: Willkommen auf Base!
   mini_hub:
     show:

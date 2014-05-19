@@ -13,7 +13,7 @@
 #
 # --- Add custom requires under here! ---
 #= require cocoon
-#= require dashboards
+#= require pages
 #= require jquery-ui
 #= require language_chooser
 # --- Add custom requires above here! ---
