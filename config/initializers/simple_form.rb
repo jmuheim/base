@@ -129,7 +129,11 @@ SimpleForm.setup do |config|
 
   # Custom wrappers for input types. This should be a hash containing an input
   # type as key and the wrapper that will be used for all inputs with specified type.
-  # config.wrapper_mappings = { string: :prepend }
+  config.wrapper_mappings = { check_boxes:   :horizontal_radio_and_checkboxes,
+                              radio_buttons: :horizontal_radio_and_checkboxes,
+                              file:          :horizontal_file_input,
+                              boolean:       :horizontal_boolean
+                            }
 
   # Default priority for time_zone inputs.
   # config.time_zone_priority = nil
