@@ -23,7 +23,7 @@ GIT
 
 GIT
   remote: git://github.com/plataformatec/simple_form.git
-  revision: 609e1578179f0c64873510731cddb3716c557e53
+  revision: e8660478f924fc7fd685b6600f05e4626c7f9583
   specs:
     simple_form (3.1.0.rc1)
       actionpack (~> 4.0)
@@ -243,7 +243,7 @@ GEM
       open4
       rake
     mini_portile (0.5.3)
-    minitest (5.3.3)
+    minitest (5.3.4)
     multi_json (1.10.0)
     mysql2 (0.3.15)
     navigasmic (1.1.0)
@@ -416,7 +416,7 @@ GEM
     terminal-table (1.4.5)
     thor (0.19.1)
     thread (0.1.4)
-    thread_safe (0.3.3)
+    thread_safe (0.3.4)
     tilt (1.4.1)
     timeliness (0.3.7)
     timers (1.1.0)
@@ -426,7 +426,7 @@ GEM
       polyglot (>= 0.3.1)
     turbolinks (2.2.2)
       coffee-rails
-    tzinfo (1.1.0)
+    tzinfo (1.2.1)
       thread_safe (~> 0.1)
     uber (0.0.4)
     uglifier (2.5.0)
