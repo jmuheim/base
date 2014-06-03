@@ -17,7 +17,10 @@ class Ability
       end
 
       if current_user.has_role?(:admin)
-        can :crud, User
+        can :access, :rails_admin
+        can :dashboard
+
+        can :crud, :all
       end
 
       cannot :destroy, User do |user|
