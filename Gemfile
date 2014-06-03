@@ -54,6 +54,8 @@ gem 'validates_timeliness' # Date and time validation plugin for ActiveModel and
 
 gem 'navigasmic' # Semantic navigation
 
+gem 'nilify_blanks' # Save NULLs instead of empty strings into the database
+
 group :doc do
   gem 'sdoc', require: false # bundle exec rake doc:rails generates the API under doc/api.
 end
