@@ -10,6 +10,8 @@ en:
       sign_in: Sign in
       sign_up: Sign up
       welcome: Welcome, %{name}!
+      edit_account: Edit account
+      log_out: Log out
   users:
     form:
       save: Save

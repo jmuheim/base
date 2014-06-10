@@ -1,6 +1,7 @@
 relative_roots:
-  - app/views
   - app/cells
+  - app/helpers
+  - app/views
 
 data:
   # file_system is the default adapter, you can provide a custom class name here:
@@ -41,6 +42,7 @@ ignore_eq_base:
     - activerecord.attributes.*
   de:
     - validates_timeliness.error_value_formats.time
+    - layouts.navigation.home
 
 ignore:
   - kaminari.*

@@ -10,6 +10,8 @@ de:
       sign_in: Anmelden
       sign_up: Registrieren
       welcome: Willkommen, %{name}!
+      edit_account: Konto bearbeiten
+      log_out: Abmelden
   users:
     form:
       save: Speichern
