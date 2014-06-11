@@ -4,8 +4,6 @@ en:
     navigation:
       about: About
       choose_language: Choose language
-      english_flag: Flag of Enland
-      german_flag: Flag of Germany
       home: Base
   mini_hub:
     show:

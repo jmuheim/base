@@ -4,8 +4,6 @@ de:
     navigation:
       about: "Über"
       choose_language: Sprache wählen
-      english_flag: Flagge von England
-      german_flag: Flagge von Deutschland
       home: Base
   mini_hub:
     show:

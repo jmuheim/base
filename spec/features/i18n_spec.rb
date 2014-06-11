@@ -19,19 +19,21 @@ describe 'I18n' do
     expect(page).to have_content 'Willkommen'
   end
 
-  it 'offers the possibility to switch languages using the language chooser', js: true do
+  it 'offers the possibility to switch languages' do
     visit root_path
 
     within '#language_chooser' do
-      expect(page).to have_css '.bfh-selectbox-toggle', text: 'English'
+      expect(page).to have_content 'Choose language' # Default language is english
+      click_link 'Seite auf Deutsch anzeigen'
     end
-    expect(page).to have_content 'Welcome'
 
     within '#language_chooser' do
-      click_link 'English' # Open dropdown
-      click_link 'Deutsch' # Choose option
-      expect(page).to have_css '.bfh-selectbox-toggle', text: 'Deutsch'
+      expect(page).to have_content 'Sprache wählen'
+      click_link 'Show page in english'
     end
-    expect(page).to have_content 'Willkommen'
+
+    within '#language_chooser' do
+      expect(page).to have_content 'Choose language'
+    end
   end
 end
