@@ -39,6 +39,14 @@ Add them to [`Gemfile`](./Gemfile) like so: `gem 'rails-assets-xxx'` where `xxx`
 
 More infos at [rails-assets.org](https://rails-assets.org/).
 
+### I18n
+
+The [i18n-tasks](https://github.com/glebm/i18n-tasks) gem makes handling translations easily. It helps finding unused and not yet translated keys, and normalizes (e.g. sorts) the translation files.
+
+- `$ i18n-tasks normalize`, then commit
+- `$ i18n-tasks unused`, then remove unused keys and commit
+- `$ i18n-tasks add-missing -p 'TRANSLATE: %{base_value}'`, then translate everything (do a project search for `TRANSLATE:`) and commit
+
 ## Testing
 
 - Use `@chrome` or `@selenium` flag to visually run feature tests in Chrome or Firefox.
