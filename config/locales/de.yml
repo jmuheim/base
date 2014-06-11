@@ -1,17 +1,24 @@
 ---
 de:
-  pages:
-    home:
-      headline: Willkommen auf Base!
-    about:
-      headline: Über Base
+  layouts:
+    navigation:
+      about: "Über"
+      choose_language: Sprache wählen
+      english_flag: Flagge von England
+      german_flag: Flagge von Deutschland
+      home: Base
   mini_hub:
     show:
+      edit_account: Konto bearbeiten
+      log_out: Abmelden
       sign_in: Anmelden
       sign_up: Registrieren
       welcome: Willkommen, %{name}!
-      edit_account: Konto bearbeiten
-      log_out: Abmelden
+  pages:
+    about:
+      headline: "Über Base"
+    home:
+      headline: Willkommen auf Base!
   users:
     form:
       save: Speichern

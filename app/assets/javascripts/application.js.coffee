@@ -13,9 +13,8 @@
 #
 # --- Add custom requires under here! ---
 #= require cocoon
-#= require pages
 #= require jquery-ui
-#= require language_chooser
+#= require example_script
 # --- Add custom requires above here! ---
 #
 #= require init

@@ -14,5 +14,15 @@ nav.navbar.navbar-inverse.navbar-fixed-top
         - navigation.item t('.about'), page_path('about')
 
       ul.nav.navbar-nav.navbar-right
-        li
-          #language_chooser.bfh-selectbox.bfh-languages data-available=language_selector_locales.join(',') data-blank='false' data-flags='true' data-language=current_language_selector_locale
+        li.dropdown
+          a.dropdown-toggle data-toggle='dropdown' href='#'
+            = flag current_locale_flag, t('.choose_language')
+            b.caret
+
+          ul.dropdown-menu
+            li = link_to root_path(locale: 'en') do
+              = flag :gb, t('.english_flag')
+              | English
+            li = link_to root_path(locale: 'de') do
+              = flag :de, t('.german_flag')
+              | Deutsch

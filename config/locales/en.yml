@@ -1,17 +1,24 @@
 ---
 en:
-  pages:
-    home:
-      headline: Welcome to Base!
-    about:
-      headline: About Base
+  layouts:
+    navigation:
+      about: About
+      choose_language: Choose language
+      english_flag: Flag of Enland
+      german_flag: Flag of Germany
+      home: Base
   mini_hub:
     show:
+      edit_account: Edit account
+      log_out: Log out
       sign_in: Sign in
       sign_up: Sign up
       welcome: Welcome, %{name}!
-      edit_account: Edit account
-      log_out: Log out
+  pages:
+    about:
+      headline: About Base
+    home:
+      headline: Welcome to Base!
   users:
     form:
       save: Save
