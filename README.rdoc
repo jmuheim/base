@@ -9,7 +9,7 @@ This is a basic Rails project with everything configured the way I want. To fork
 
 = Additional TODOs in your fork:
 
-- Create a <code>README.md</code> file with the contents of <code>README_example.md</code>, then...
+- Rename <code>README_example.md</code> to <code>README.md</code> and commit. Then...
   - Replace <code>TITLE</code> with a meaningful title, e.g. <code>Pretty Calc - A pretty calculator</code>
   - Replace all occurrences of PROJECT to your project's downcased name, e.g. <code>pretty_calc</code> for <code>Pretty Calc</code>
   - Complement it with your project specific details
@@ -21,12 +21,19 @@ This is a basic Rails project with everything configured the way I want. To fork
   - <code>$ bin/rake db:migrate RAILS_ENV=test</code> (prepare test database)
 - Replace all occurrences of <code>Base</code> and <code>base</code> in the code with your project's equivalents (TODO: write executable script?)
 - Change the value of <code>secret_key_base</code> in <code>config/initializers/secret_token.rb</code> (run <code>$ rake secret</code> to create a new secret key)
-- Change the Rack Livereload port in <code>Guardfile</code> and <code>config/development.rb</code>
+- Change the Rack Livereload port in <code>Guardfile</code> and <code>config/development.rb</code> to e.g. `35730`
+- Change the value of `Port:` in `config/boot.rb` to e.g. `3002`
 
 = Activate external services
+
+...and add the badges to `README.md`.
 
 - {Code Climate}[https://codeclimate.com/github/signup]
 - {Travis CI}[https://travis-ci.org/profile/jmuheim]
 - {Gemnasium}[https://gemnasium.com/projects/new_from_github]
 - {Coveralls}[https://coveralls.io/repos/new]
 - {Hound}[https://houndci.com/]
+
+= Done! :-)
+
+Last but not least: commit all your changes.
