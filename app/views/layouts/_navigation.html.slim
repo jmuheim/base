@@ -20,9 +20,9 @@ nav.navbar.navbar-inverse.navbar-fixed-top
             b.caret
 
           ul.dropdown-menu
-            li = link_to root_path(locale: 'en') do
+            li = link_to locale: 'en' do
               = flag :gb, 'Flag of England'
               | Show page in english
-            li = link_to root_path(locale: 'de') do
+            li = link_to locale: 'de' do
               = flag :de, 'Flagge von Deutschland'
               | Seite auf Deutsch anzeigen
