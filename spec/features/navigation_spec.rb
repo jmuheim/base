@@ -4,7 +4,7 @@ describe 'Navigation' do
   it 'offers a link to the home page' do
     visit root_path
 
-    expect(page).to have_link 'Gemeinschaften'
+    expect(page).to have_link 'Base'
   end
 
   it 'offers a link to the about page' do
