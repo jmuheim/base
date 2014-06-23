@@ -40,8 +40,9 @@ ignore_eq_base:
   all: # TODO: Maybe we should simply use "*"?
     - simple_form.required.mark
     - activerecord.attributes.*
+    - enumerize.*
     - layouts.navigation.home
-    - enumerize
+    - validates_timeliness.error_value_formats.time
 
 ignore:
   - kaminari.*
