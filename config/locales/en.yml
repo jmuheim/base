@@ -1,5 +1,7 @@
 ---
 en:
+  'true': 'Yes'
+  'false': 'No'
   layouts:
     navigation:
       about: About

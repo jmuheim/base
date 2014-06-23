@@ -1,5 +1,7 @@
 ---
 de:
+  'true': Ja
+  'false': Nein
   layouts:
     navigation:
       about: "Über"
