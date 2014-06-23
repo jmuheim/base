@@ -1,15 +1,25 @@
 ---
 de:
-  pages:
-    home:
-      headline: Willkommen auf Base!
-    about:
-      headline: Über Base
+  enumerize: 
+  'false': Nein
+  layouts:
+    navigation:
+      about: "Über"
+      choose_language: Sprache wählen
+      home: Base
   mini_hub:
     show:
+      edit_account: Konto bearbeiten
+      log_out: Abmelden
       sign_in: Anmelden
       sign_up: Registrieren
       welcome: Willkommen, %{name}!
+  pages:
+    about:
+      headline: "Über Base"
+    home:
+      headline: Willkommen auf Base!
+  'true': Ja
   users:
     form:
       save: Speichern

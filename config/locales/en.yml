@@ -1,15 +1,25 @@
 ---
 en:
-  pages:
-    home:
-      headline: Welcome to Base!
-    about:
-      headline: About Base
+  enumerize: 
+  'false': 'No'
+  layouts:
+    navigation:
+      about: About
+      choose_language: Choose language
+      home: Base
   mini_hub:
     show:
+      edit_account: Edit account
+      log_out: Log out
       sign_in: Sign in
       sign_up: Sign up
       welcome: Welcome, %{name}!
+  pages:
+    about:
+      headline: About Base
+    home:
+      headline: Welcome to Base!
+  'true': 'Yes'
   users:
     form:
       save: Save

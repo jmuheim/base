@@ -53,6 +53,8 @@ RSpec.configure do |config|
   config.order = 'random'
 
   config.include FactoryGirl::Syntax::Methods
+
+  config.include SelectDateAndTime, type: :feature
 end
 
 # DatabaseCleaner configuration as described here: http://devblog.avdi.org/2012/08/31/configuring-database_cleaner-with-rails-rspec-capybara-and-selenium/

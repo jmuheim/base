@@ -9,7 +9,7 @@ describe 'Creating user' do
   it 'creates a user' do
     visit new_user_path
 
-    fill_in 'user_name',                  with: 'newname' # TODO: Don't use input's ID, use label text everywhere!
+    fill_in 'user_name',                  with: 'newname' # TODO: Don't use input's ID, use label text everywhere! Addendum: really?? Shouldn't we just rely on SimpleForm displaying labels anyways?
     fill_in 'user_email',                 with: 'somemail@example.com'
     fill_in 'user_password',              with: 'somegreatpassword'
     fill_in 'user_password_confirmation', with: 'somegreatpassword'

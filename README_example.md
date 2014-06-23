@@ -17,8 +17,6 @@ Setup:
 - `$ git clone git@github.com:jmuheim/PROJECT.git`
 - `$ cd PROJECT`
 - `$ bundle install`
-- Change the value of `Port:` in `config/boot.rb` to e.g. `3002`
-- Change the value of `port:` in `Guardfile` and the value of `live_reload_port:` in `config/environments/development.rb` to e.g. `35730`.
 
 You can use [direnv](https://github.com/zimbatm/direnv) to automatically add `bin` to your `$PATH`. Otherwise you should always use `bundle exec` to run commands.
 
@@ -31,6 +29,7 @@ You can use [direnv](https://github.com/zimbatm/direnv) to automatically add `bi
   - bundling using [Guard-Bundler](https://github.com/guard/guard-bundler)
   - annotating models using [Guard-Annotate](https://github.com/cpjolicoeur/guard-annotate)
   - migrating the DB using [Guard-Migrate](https://github.com/glanotte/guard-migrate)
+- Open [http://localhost:PORT](http://localhost:PORT) in your browser (use whatever port you specified in `config/boot.rb`)
 - Execute `$ rip_hashrockets` from time to time to replace old Ruby hashrockets (`=>`) with the new syntax
 
 ### Add external assets (libraries)
@@ -38,6 +37,14 @@ You can use [direnv](https://github.com/zimbatm/direnv) to automatically add `bi
 Add them to [`Gemfile`](./Gemfile) like so: `gem 'rails-assets-xxx'` where `xxx` is the asset's name.
 
 More infos at [rails-assets.org](https://rails-assets.org/).
+
+### I18n
+
+The [i18n-tasks](https://github.com/glebm/i18n-tasks) gem makes handling translations easily. It helps finding unused and not yet translated keys, and normalizes (e.g. sorts) the translation files.
+
+- `$ i18n-tasks normalize`, then commit
+- `$ i18n-tasks unused`, then remove unused keys and commit
+- `$ i18n-tasks add-missing -p 'TRANSLATE: %{base_value}'`, then translate everything (do a project search for `TRANSLATE:`) and commit
 
 ## Testing
 

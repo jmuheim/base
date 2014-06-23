@@ -1,3 +1,7 @@
 $(document).ready ->
-  $('#language_chooser').each ->
-    new App.LanguageChooser @
+  # Init your scripts here!
+  #
+  # Example:
+  #
+  # $('#some_selector').each ->
+  #   new App.ExampleScript @

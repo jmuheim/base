@@ -4,16 +4,18 @@ html
 main
   margin-top: 51px // accommodate the navbar
 
+h2
+  font-style: italic // Make h2 more distinguishable from h1
+
+.navbar-inverse
+  .navbar-brand.active:hover,
+  .navbar-brand.active
+    background-color: #000
+    color: #fff
+
 .hide-text
   +hide-text
-
-#language_chooser
-  margin-top: 8px
-
-.navbar-brand.active,
-.navbar-brand.active:hover
-  color: white
-  background-color: #090909
+  display: inline-block
 
 .translation_missing::after
   +single-text-shadow

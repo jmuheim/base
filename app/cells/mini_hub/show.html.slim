@@ -11,7 +11,7 @@ aside#mini_hub.panel.panel-default
   - else
     ul.list-group
       li.list-group-item 
-        = link_to 'Edit account', edit_user_registration_path
+        = link_to t('.edit_account'), edit_user_registration_path
       li.list-group-item
-        = link_to 'Log out', destroy_user_session_path, method: :delete
+        = link_to t('.log_out'), destroy_user_session_path, method: :delete
 
