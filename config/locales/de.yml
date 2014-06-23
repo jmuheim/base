@@ -1,6 +1,6 @@
 ---
 de:
-  'true': Ja
+  enumerize: 
   'false': Nein
   layouts:
     navigation:
@@ -19,6 +19,7 @@ de:
       headline: "Über Base"
     home:
       headline: Willkommen auf Base!
+  'true': Ja
   users:
     form:
       save: Speichern

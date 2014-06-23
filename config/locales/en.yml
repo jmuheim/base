@@ -1,6 +1,6 @@
 ---
 en:
-  'true': 'Yes'
+  enumerize: 
   'false': 'No'
   layouts:
     navigation:
@@ -19,6 +19,7 @@ en:
       headline: About Base
     home:
       headline: Welcome to Base!
+  'true': 'Yes'
   users:
     form:
       save: Save
