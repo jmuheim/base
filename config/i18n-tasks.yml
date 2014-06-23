@@ -32,8 +32,10 @@ ignore_unused:
   - devise.*
   - enumerize.*
   - errors.*
+  - 'false'
   - flash.*
   - simple_form.*
+  - 'true'
   - validates_timeliness.*
 
 ignore_eq_base:
