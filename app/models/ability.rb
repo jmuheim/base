@@ -1,5 +1,8 @@
 # See the CanCan wiki for details:
 # https://github.com/ryanb/cancan/wiki/Defining-Abilities
+#
+# The ability is built upon the "everything disallowed first" principle:
+# Nothing is allowed if not explicitly allowed somewhere.
 
 class Ability
   include CanCan::Ability

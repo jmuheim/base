@@ -1,3 +1,6 @@
+# The ability is built upon the "everything disallowed first" principle:
+# Nothing is allowed if not explicitly allowed somewhere. This means we have to test every explicit rule.
+
 require 'spec_helper'
 
 describe Ability do
@@ -39,6 +42,18 @@ describe Ability do
     before  { @admin = create(:admin) }
     subject { Ability.new(@admin) }
 
+    it { should be_able_to(:access, :rails_admin) }
+
+    describe 'managing roles' do
+      it { should     be_able_to(:create,  Role) }
+
+      it { should     be_able_to(:read,    Role.new) }
+
+      it { should     be_able_to(:update,  Role.new) }
+
+      it { should     be_able_to(:destroy, Role.new) }
+    end
+
     describe 'managing users' do
       it { should     be_able_to(:create,  User) }
 
@@ -48,7 +63,7 @@ describe Ability do
       it { should     be_able_to(:update,  User.new) }
 
       it { should     be_able_to(:destroy, User.new) }
-      it { should_not be_able_to(:destroy, @user) }
+      it { should_not be_able_to(:destroy, @admin) }
     end
   end
 end
