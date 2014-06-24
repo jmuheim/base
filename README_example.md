@@ -32,6 +32,18 @@ You can use [direnv](https://github.com/zimbatm/direnv) to automatically add `bi
 - Open [http://localhost:PORT](http://localhost:PORT) in your browser (use whatever port you specified in `config/boot.rb`)
 - Execute `$ rip_hashrockets` from time to time to replace old Ruby hashrockets (`=>`) with the new syntax
 
+### Before merging a pull request
+
+Make sure that:
+
+- All CRUD functionality is covered (as far as possible) by [inherited_resources](https://github.com/josevalim/inherited_resources)
+- All authorization is done through [cancancan](https://github.com/CanCanCommunity/cancancan)
+- The [ability.rb](./app/models/ability.rb) file is thoroughly tested
+- Every action has a correlating feature spec file (nest them in folders similar to the nested routes' structure)
+- Every navigation item has a correlating spec in [navigation_spec.rb](./spec/features/navigation_spec.rb)
+- Run `$ i18n-tasks normalize`
+- Run `$ rake` and make sure, no specs are pending/failing
+
 ### Add external assets (libraries)
 
 Add them to [`Gemfile`](./Gemfile) like so: `gem 'rails-assets-xxx'` where `xxx` is the asset's name.

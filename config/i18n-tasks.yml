@@ -39,12 +39,8 @@ ignore_unused:
   - validates_timeliness.*
 
 ignore_eq_base:
-  all: # TODO: Maybe we should simply use "*"?
-    - simple_form.required.mark
-    - activerecord.attributes.*
-    - enumerize.*
-    - layouts.navigation.home
-    - validates_timeliness.error_value_formats.time
+  all:
+    - '*'
 
 ignore:
   - kaminari.*

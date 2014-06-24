@@ -5,3 +5,6 @@ $(document).ready ->
   #
   # $('#some_selector').each ->
   #   new App.ExampleScript @
+
+  # Bootstrap tooltips
+  $('[title]').tooltip()

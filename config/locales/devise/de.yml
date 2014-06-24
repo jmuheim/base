@@ -12,6 +12,11 @@ de:
         forgot_your_password: Passwort vergessen?
         send_me_reset_password_instructions: Zurücksetzungsinstruktion für Passwort zuschicken
     registrations:
+      edit:
+        are_you_sure: Bist du sicher?
+        cancel_my_account: Benutzerkonto löschen
+        currently_awaiting_confirmation_for: Warte zur Zeit auf Bestätigung
+        unhappy: Unglücklich?
       new:
         sign_up: Registrieren
     sessions:

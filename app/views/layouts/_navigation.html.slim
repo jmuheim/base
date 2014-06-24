@@ -1,4 +1,4 @@
-nav.navbar.navbar-inverse.navbar-fixed-top
+nav#navigation.navbar.navbar-inverse.navbar-fixed-top
   .container
     .navbar-header
       button.navbar-toggle type="button" data-toggle="collapse" data-target=".navbar-collapse"
@@ -14,9 +14,12 @@ nav.navbar.navbar-inverse.navbar-fixed-top
         - navigation.item t('.about'), page_path('about')
 
       ul.nav.navbar-nav.navbar-right
+        - if can? :access, :rails_admin
+          li = link_to icon(:cog), rails_admin_path(locale: nil), title: t('.admin'), data: {placement: 'bottom'}
+
         li#language_chooser.dropdown
-          a.dropdown-toggle data-toggle='dropdown' href='#'
-            = flag current_locale_flag, t('.choose_language')
+          a.dropdown-toggle data-toggle='dropdown' href='#' title=t('.choose_language') data-placement='bottom'
+            = flag current_locale_flag
             b.caret
 
           ul.dropdown-menu

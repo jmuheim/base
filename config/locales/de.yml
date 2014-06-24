@@ -1,10 +1,12 @@
 ---
 de:
-  enumerize: 
+  buttons:
+    save: Speichern
   'false': Nein
   layouts:
     navigation:
       about: "Über"
+      admin: Admin
       choose_language: Sprache wählen
       home: Base
   mini_hub:
@@ -21,8 +23,6 @@ de:
       headline: Willkommen auf Base!
   'true': Ja
   users:
-    form:
-      save: Speichern
     new:
       back: Zurück
       title: Benutzer erstellen
