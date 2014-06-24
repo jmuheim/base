@@ -9,12 +9,12 @@ describe Ability do
     subject { Ability.new(@guest) }
 
     describe 'managing users' do
-      it { should     be_able_to(:create,  User) }
+      it { should be_able_to(:create, User) }
 
-      it { should     be_able_to(:read,    User.new) }
-      it { should_not be_able_to(:read,    User.new(guest: true)) }
+      it { should     be_able_to(:read, User.new) }
+      it { should_not be_able_to(:read, User.new(guest: true)) }
 
-      it { should_not be_able_to(:update,  User.new) }
+      it { should_not be_able_to(:update, User.new) }
 
       it { should_not be_able_to(:destroy, User.new) }
     end
@@ -25,13 +25,13 @@ describe Ability do
     subject { Ability.new(@user) }
 
     describe 'managing users' do
-      it { should_not be_able_to(:create,  User) }
+      it { should_not be_able_to(:create, User) }
 
-      it { should     be_able_to(:read,    User.new) }
-      it { should_not be_able_to(:read,    User.new(guest: true)) }
+      it { should     be_able_to(:read, User.new) }
+      it { should_not be_able_to(:read, User.new(guest: true)) }
 
-      it { should_not be_able_to(:update,  User.new) }
-      it { should     be_able_to(:update,  @user) }
+      it { should_not be_able_to(:update, User.new) }
+      it { should     be_able_to(:update, @user) }
 
       it { should_not be_able_to(:destroy, User.new) }
       it { should_not be_able_to(:destroy, @user) }
@@ -45,24 +45,24 @@ describe Ability do
     it { should be_able_to(:access, :rails_admin) }
 
     describe 'managing roles' do
-      it { should     be_able_to(:create,  Role) }
+      it { should be_able_to(:create, Role) }
 
-      it { should     be_able_to(:read,    Role.new) }
+      it { should be_able_to(:read, Role.new) }
 
-      it { should     be_able_to(:update,  Role.new) }
+      it { should be_able_to(:update, Role.new) }
 
-      it { should     be_able_to(:destroy, Role.new) }
+      it { should be_able_to(:destroy, Role.new) }
     end
 
     describe 'managing users' do
-      it { should     be_able_to(:create,  User) }
+      it { should be_able_to(:create, User) }
 
-      it { should     be_able_to(:read,    User.new) }
-      it { should     be_able_to(:read,    User.new(guest: true)) }
+      it { should be_able_to(:read, User.new) }
+      it { should be_able_to(:read, User.new(guest: true)) }
 
-      it { should     be_able_to(:update,  User.new) }
+      it { should be_able_to(:update, User.new) }
 
-      it { should     be_able_to(:destroy, User.new) }
+      it { should be_able_to(:destroy, User.new) }
       it { should_not be_able_to(:destroy, @admin) }
     end
   end
