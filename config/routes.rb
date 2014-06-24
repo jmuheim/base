@@ -1,7 +1,7 @@
 Base::Application.routes.draw do
-  scope '(:locale)', locale: /en|de/ do
-    mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
+  scope '(:locale)', locale: /en|de/ do
     devise_for :user, controllers: { registrations: :registrations,
                                      sessions:      :sessions }
 
