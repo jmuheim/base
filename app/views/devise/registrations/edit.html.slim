@@ -11,7 +11,7 @@
   = f.input :email, as: :email
 
   - if devise_mapping.confirmable? && resource.pending_reconfirmation?
-      = t('.currently_waiting_confirmation_for')
+      = t('.currently_awaiting_confirmation_for')
       = resource.unconfirmed_email
 
   / (leave blank if you don't want to change it)

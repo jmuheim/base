@@ -1,4 +1,8 @@
 ---
 en:
-  # Uncomment as soon as you have your first enum in a form!
-  # enumerize:
+  enumerize:
+    # Replace this with your first enum field in a form (we need this dummy so i18n-task doesn't mess up)
+    model:
+      field:
+        value_1: Value 1
+        value_2: Value 2

@@ -15,6 +15,7 @@ en:
       edit:
         are_you_sure: Are you sure?
         cancel_my_account: Cancel my account
+        currently_awaiting_confirmation_for: Currently awaiting confirmation for
         unhappy: Unhappy?
       new:
         sign_up: Sign up

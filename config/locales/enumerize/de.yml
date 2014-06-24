@@ -1,4 +1,7 @@
 ---
 de:
-  # Uncomment as soon as you have your first enum in a form!
-  # enumerize:
+  enumerize:
+    model:
+      field:
+        value_1: Wert 1
+        value_2: Wert 2
