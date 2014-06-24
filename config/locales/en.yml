@@ -23,8 +23,6 @@ en:
       headline: Welcome to Base!
   'true': 'Yes'
   users:
-    form:
-      save: Save
     new:
       back: Back
       title: New user

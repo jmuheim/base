@@ -23,8 +23,6 @@ de:
       headline: Willkommen auf Base!
   'true': Ja
   users:
-    form:
-      save: Speichern
     new:
       back: Zurück
       title: Benutzer erstellen

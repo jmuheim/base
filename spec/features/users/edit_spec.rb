@@ -11,7 +11,7 @@ describe 'Editing user' do
 
     fill_in 'user_name',             with: 'newname'
     fill_in 'user_current_password', with: @user.password
-    click_button 'Update'
+    click_button 'Save'
 
     expect(page).to have_content 'You updated your account successfully.'
   end
