@@ -40,6 +40,7 @@ Make sure that:
 - All authorization is done through [cancancan](https://github.com/CanCanCommunity/cancancan)
 - The [ability.rb](./app/models/ability.rb) file is thoroughly tested
 - Every action has a correlating feature spec file (nest them in folders similar to the nested routes' structure)
+- Every navigation item has a correlating spec in [navigation_spec.rb](./spec/features/navigation_spec.rb)
 - Run `$ i18n-tasks normalize`
 - Run `$ rake` and make sure, no specs are pending/failing
 
