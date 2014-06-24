@@ -5,6 +5,9 @@
 #= require jquery
 #= require jquery.turbolinks
 #= require jquery-ujs-standalone
+#= require jquery-ui
+#
+#= require jquery-ui-bootstrap-bridge
 #
 #= require bootstrap-sass
 #= require bootstrap-formhelpers
@@ -13,7 +16,6 @@
 #
 # --- Add custom requires under here! ---
 #= require cocoon
-#= require jquery-ui
 #= require example_script
 # --- Add custom requires above here! ---
 #
