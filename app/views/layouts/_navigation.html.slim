@@ -15,7 +15,7 @@ nav#navigation.navbar.navbar-inverse.navbar-fixed-top
 
       ul.nav.navbar-nav.navbar-right
         - if can? :access, :rails_admin
-          li = link_to icon(:cog), rails_admin_path(locale: nil), title: t('.admin'), data: {placement: 'bottom'}
+          li = link_to icon(:cog), rails_admin_path(locale: :en), title: t('.admin'), data: {placement: 'bottom'}
 
         li#language_chooser.dropdown
           a.dropdown-toggle data-toggle='dropdown' href='#' title=t('.choose_language') data-placement='bottom'
