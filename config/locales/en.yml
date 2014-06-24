@@ -1,6 +1,7 @@
 ---
 en:
-  enumerize: 
+  buttons:
+    save: Save
   'false': 'No'
   layouts:
     navigation:

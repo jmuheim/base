@@ -12,6 +12,10 @@ en:
         forgot_your_password: Forgot your password?
         send_me_reset_password_instructions: Send me reset password instructions
     registrations:
+      edit:
+        are_you_sure: Are you sure?
+        cancel_my_account: Cancel my account
+        unhappy: Unhappy?
       new:
         sign_up: Sign up
     sessions:

@@ -11,7 +11,7 @@
   = f.input :email, as: :email
 
   - if devise_mapping.confirmable? && resource.pending_reconfirmation?
-      | Currently waiting confirmation for:
+      = t('.currently_waiting_confirmation_for')
       = resource.unconfirmed_email
 
   / (leave blank if you don't want to change it)
@@ -21,12 +21,10 @@
   / (we need your current password to confirm your changes)
   = f.input :current_password
 
-  = f.button :submit, 'Update'
+  = f.button :submit, t('buttons.save')
 
 h2 Cancel my account
 
 p
-  | Unhappy?
-  = button_to 'Cancel my account', registration_path(resource_name), data: {confirm: 'Are you sure?'}, method: :delete, class: 'btn btn-danger'
-
-= link_to 'Back', :back
+  = t '.unhappy'
+  = button_to t('.cancel_my_account'), registration_path(resource_name), data: {confirm: t('.are_you_sure')}, method: :delete, class: 'btn btn-danger'
