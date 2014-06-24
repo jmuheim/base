@@ -1,3 +1,4 @@
 ---
 en:
-  enumerize:
+  # Uncomment as soon as you have your first enum in a form!
+  # enumerize:
