@@ -14,6 +14,9 @@ nav.navbar.navbar-inverse.navbar-fixed-top
         - navigation.item t('.about'), page_path('about')
 
       ul.nav.navbar-nav.navbar-right
+        - if can? :access, :rails_admin
+          li = link_to t('.admin'), rails_admin_path
+
         li#language_chooser.dropdown
           a.dropdown-toggle data-toggle='dropdown' href='#'
             = flag current_locale_flag, t('.choose_language')
