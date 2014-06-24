@@ -58,9 +58,7 @@ gem 'nilify_blanks' # Save NULLs instead of empty strings into the database
 
 gem 'enumerize' # Enumerated attributes with I18n
 
-# Rails Admin: engine that provides an easy-to-use interface for managing data
-gem 'rails_admin'
-gem 'rails_admin-i18n'
+gem 'rails_admin' # Rails Admin: engine that provides an easy-to-use interface for managing data
 
 group :doc do
   gem 'sdoc', require: false # bundle exec rake doc:rails generates the API under doc/api.
