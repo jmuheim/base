@@ -1,8 +1,6 @@
 ---
 en:
   enumerize:
-    # Replace this with your first enum field in a form (we need this dummy so i18n-task doesn't mess up)
     model:
       field:
-        value_1: Value 1
-        value_2: Value 2
+        value_1: REPLACE THIS WITH YOUR FIRST ENUM FIELD IN A FORM (WE NEED THIS DUMMY SO I18N-TASK DOESN'T MESS UP)
