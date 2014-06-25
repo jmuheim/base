@@ -4,12 +4,12 @@
 #
 #= require jquery
 #= require jquery.turbolinks
-#= require jquery-ujs-standalone
-#= require jquery-ui
+#= require jquery_ujs
+#= require jquery.ui.all
 #
 #= require jquery-ui-bootstrap-bridge
 #
-#= require bootstrap-sass
+#= require bootstrap
 #= require bootstrap-formhelpers
 #
 #= require_self

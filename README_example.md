@@ -46,9 +46,7 @@ Make sure that:
 
 ### Add external assets (libraries)
 
-Add them to [`Gemfile`](./Gemfile) like so: `gem 'rails-assets-xxx'` where `xxx` is the asset's name.
-
-More infos at [rails-assets.org](https://rails-assets.org/).
+At the time being, [Bower](http://bower.io/) integration strategies for Rails are prone to problems. We stick to the traditional gems and hope, that some time soon, there's an official Bower integration strategy.
 
 ### I18n
 

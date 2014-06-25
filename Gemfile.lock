@@ -31,7 +31,6 @@ GIT
 
 GEM
   remote: https://rubygems.org/
-  remote: https://rails-assets.org/
   specs:
     actionmailer (4.1.0)
       actionpack (= 4.1.0)
@@ -72,6 +71,8 @@ GEM
       erubis (>= 2.6.6)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
+    bootstrap-sass (3.1.1.0)
+      sass (~> 3.2)
     builder (3.2.2)
     byebug (2.7.0)
       columnize (~> 0.3)
@@ -324,13 +325,6 @@ GEM
       bundler (>= 1.3.0, < 2.0)
       railties (= 4.1.0)
       sprockets-rails (~> 2.0)
-    rails-assets-bootstrap-sass (3.0.2)
-      rails-assets-jquery (>= 1.9.0)
-    rails-assets-jquery (2.1.1)
-    rails-assets-jquery-ui (1.10.4)
-      rails-assets-jquery (>= 1.6)
-    rails-assets-jquery-ujs-standalone (1.0.0)
-      rails-assets-jquery (> 1.7.0)
     rails-footnotes (4.0.0)
       rails (>= 3.2)
     rails-i18n (4.0.2)
@@ -486,6 +480,7 @@ PLATFORMS
 DEPENDENCIES
   better_errors
   binding_of_caller
+  bootstrap-sass
   cancancan
   capybara
   capybara-screenshot
@@ -516,7 +511,9 @@ DEPENDENCIES
   inherited_resources (>= 1.4.1)
   jazz_hands!
   jbuilder (~> 1.2)
+  jquery-rails
   jquery-turbolinks
+  jquery-ui-rails
   launchy
   mina
   mysql2
@@ -528,9 +525,6 @@ DEPENDENCIES
   quiet_assets
   rack-livereload
   rails (= 4.1)
-  rails-assets-bootstrap-sass
-  rails-assets-jquery-ui
-  rails-assets-jquery-ujs-standalone
   rails-footnotes
   rails-i18n
   rails_admin
