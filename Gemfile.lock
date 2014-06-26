@@ -496,6 +496,7 @@ DEPENDENCIES
   enumerize
   factory_girl_rails
   ffaker
+  font-awesome-rails
   fuubar
   gaffe
   guard

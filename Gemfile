@@ -23,6 +23,8 @@ gem 'jquery-turbolinks' # jQuery plugin for drop-in fix binded events problem ca
 
 gem 'bootstrap-sass' # Sleek, intuitive, and powerful front-end framework
 
+gem 'font-awesome-rails' # The iconic font and CSS toolkit
+
 # jQuery
 gem 'jquery-rails'
 gem 'jquery-ui-rails' # jQuery UI components
