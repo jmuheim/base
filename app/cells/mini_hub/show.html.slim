@@ -1,7 +1,7 @@
 aside#mini_hub.panel.panel-default
   .panel-heading
     = t '.welcome', name: @user.display_name
-    = image_tag @user.avatar.url(:thumb) if @user.avatar?
+    = image_tag @user.avatar.url(:thumb), title: User.human_attribute_name(:avatar) if @user.avatar?
 
   - if @user.guest?
     ul.list-group
