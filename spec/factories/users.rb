@@ -54,6 +54,10 @@ FactoryGirl.define do
       email 'donald@example.com'
     end
 
+    trait :with_avatar do
+      avatar { File.open dummy_file_path('image.jpg') }
+    end
+
     factory :admin do
       after(:create) do |user|
         user.roles << create(:role, name: 'admin')
