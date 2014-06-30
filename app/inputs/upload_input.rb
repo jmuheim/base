@@ -29,9 +29,9 @@ class UploadInput < SimpleForm::Inputs::FileInput
 
   def fileinput_new
     # FIXME: This tooltip doesn't work yet!
-    template.content_tag :div, class: ['fileinput-new', 'thumbnail'], data: {trigger: 'fileinput'}, title: I18n.t('simple_form.remove_file') do
+    template.content_tag :div, class: ['fileinput-new', 'thumbnail'], data: {trigger: 'fileinput'}, title: I18n.t('simple_form.select_file') do
       if file_available?
-        template.image_tag object.send(attribute_name)
+        template.image_tag object.send(attribute_name, :thumb)
       else
         template.fa_icon(:user)
       end
