@@ -3,10 +3,13 @@
 
 = simple_form_for resource, as:      resource_name,
                             url:     registration_path(resource_name),
-                            html:    {method: :put, class: 'form-horizontal'},
+                            html:    {method: :put, class: 'form-horizontal', multipart: true},
                             wrapper: :horizontal_form do |f|
   = devise_error_messages!
 
+  / = f.file_field :avatar
+  / = f.hidden_field :avatar_cache
+  = f.input :avatar, as: :upload
   = f.input :name, autofocus: true
   = f.input :email, as: :email
 
