@@ -23,7 +23,7 @@ class UploadInput < SimpleForm::Inputs::FileInput
 
   def fileinput
     template.content_tag :div, class: ['fileinput', 'fileinput-new'], data: {provides: 'fileinput'} do
-      fileinput_new + fileinput_preview + btn_file
+      fileinput_new + fileinput_preview + btn_remove + btn_file
     end
   end
 
@@ -43,19 +43,17 @@ class UploadInput < SimpleForm::Inputs::FileInput
 
   def btn_file
     template.content_tag :div do
-      btn_select + btn_remove
-    end
-  end
-
-  def btn_select
-    template.content_tag :span, class: ['btn', 'btn-default', 'btn-file'] do
-      template.content_tag(:span, I18n.t('simple_form.select_file'), class: 'fileinput-new') +
-        template.content_tag(:span, I18n.t('simple_form.change_file'), class: 'fileinput-exists') +
-        @builder.input_field(attribute_name, as: :file)
+      template.content_tag :span, class: ['btn', 'btn-default', 'btn-file'] do
+        template.content_tag(:span, I18n.t('simple_form.select_file'), class: 'fileinput-new') +
+          template.content_tag(:span, I18n.t('simple_form.change_file'), class: 'fileinput-exists') +
+          @builder.input_field(attribute_name, as: :file)
+      end
     end
   end
 
   def btn_remove
-    template.content_tag(:a, I18n.t('simple_form.reset_selection'), href: '#', class: ['btn', 'btn-default', 'fileinput-exists'], data: {dismiss: 'fileinput'})
+    template.content_tag :a, href: '#', class: ['btn', 'btn-default', 'fileinput-exists'], data: {dismiss: 'fileinput'} do
+      template.icon 'remove-circle', I18n.t('simple_form.reset_selection')
+    end
   end
 end
