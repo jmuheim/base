@@ -7,3 +7,5 @@ end
 RSpec.configure do |config|
   config.include DummyFilePathHelper, type: :feature
 end
+
+FactoryGirl::SyntaxRunner.send(:include, DummyFilePathHelper)
