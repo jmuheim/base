@@ -28,21 +28,18 @@ class UploadInput < SimpleForm::Inputs::FileInput
   end
 
   def fileinput_new
-    template.content_tag :div, title: I18n.t('simple_form.select_file'), data: {placement: 'right'} do # We need another div around the whole thing, otherwise Bootstrap tooltip doesn't seem to work! See http://stackoverflow.com/questions/24497353/bootstrap-tooltip-isnt-shown-on-a-specific-element-but-it-seems-to-be-applied
-      template.content_tag :div, class: ['fileinput-new', 'thumbnail'], data: {trigger: 'fileinput'} do
-        if file_available?
-          template.image_tag object.send(attribute_name, :thumb)
-        else
-          template.fa_icon(:user)
-        end
+    # FIXME: This tooltip doesn't work yet!
+    template.content_tag :div, class: ['fileinput-new', 'thumbnail'], data: {trigger: 'fileinput'}, title: I18n.t('simple_form.select_file') do
+      if file_available?
+        template.image_tag object.send(attribute_name, :thumb)
+      else
+        template.fa_icon(:user)
       end
     end
   end
 
   def fileinput_preview
-    template.content_tag :div, title: I18n.t('simple_form.select_another_file'), data: {placement: 'right'} do # We need another div around the whole thing, otherwise Bootstrap tooltip doesn't seem to work! See http://stackoverflow.com/questions/24497353/bootstrap-tooltip-isnt-shown-on-a-specific-element-but-it-seems-to-be-applied
-      template.content_tag :div, nil, class: ['fileinput-preview', 'fileinput-exists', 'thumbnail'], data: {trigger: 'fileinput'}
-    end
+    template.content_tag :div, nil, class: ['fileinput-preview', 'fileinput-exists', 'thumbnail'], data: {trigger: 'fileinput'}
   end
 
   def btn_file
