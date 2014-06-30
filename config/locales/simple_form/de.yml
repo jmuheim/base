@@ -8,3 +8,7 @@ de:
       mark: "*"
       text: Pflichtfeld
     'yes': Ja
+    select_file: Datei auswählen
+    change_file: Andere Datei wählen
+    reset_selection: Zurücksetzen
+    remove_file: Existierende Datei entfernen
