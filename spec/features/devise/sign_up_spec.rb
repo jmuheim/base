@@ -4,10 +4,13 @@ describe 'Signing up' do
   it 'signs up a new user' do
     visit new_user_registration_path
 
+    attach_file 'user_avatar', dummy_file_path('image.jpg')
+
     fill_in 'user_name',                  with: 'newuser'
     fill_in 'user_email',                 with: 'newuser@example.com'
     fill_in 'user_password',              with: 'somegreatpassword'
     fill_in 'user_password_confirmation', with: 'somegreatpassword'
+
     click_button 'Sign up'
 
     expect(page).to have_content 'You have signed up successfully.'
