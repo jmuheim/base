@@ -18,3 +18,4 @@
 coverage
 .rspec
 public/assets
+public/uploads
