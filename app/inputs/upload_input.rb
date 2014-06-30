@@ -28,7 +28,8 @@ class UploadInput < SimpleForm::Inputs::FileInput
   end
 
   def fileinput_new
-    template.content_tag :div, class: ['fileinput-new', 'thumbnail'], data: {trigger: 'fileinput'} do
+    # FIXME: This tooltip doesn't work yet!
+    template.content_tag :div, class: ['fileinput-new', 'thumbnail'], data: {trigger: 'fileinput'}, title: I18n.t('simple_form.remove_file') do
       if file_available?
         template.image_tag object.send(attribute_name)
       else
@@ -42,18 +43,14 @@ class UploadInput < SimpleForm::Inputs::FileInput
   end
 
   def btn_file
-    template.content_tag :div do
-      template.content_tag :span, class: ['btn', 'btn-default', 'btn-file'] do
-        template.content_tag(:span, I18n.t('simple_form.select_file'), class: 'fileinput-new') +
-          template.content_tag(:span, I18n.t('simple_form.change_file'), class: 'fileinput-exists') +
-          @builder.input_field(attribute_name, as: :file)
-      end
+    template.content_tag :div, class: 'btn-file' do
+      @builder.input_field(attribute_name, as: :file)
     end
   end
 
   def btn_remove
-    template.content_tag :a, href: '#', class: ['btn', 'btn-default', 'fileinput-exists'], data: {dismiss: 'fileinput'} do
-      template.icon 'remove-circle', I18n.t('simple_form.reset_selection')
+    template.content_tag :a, href: '#', class: ['btn', 'btn-default', 'fileinput-exists'], data: {dismiss: 'fileinput', placement: 'right'}, title: I18n.t('simple_form.reset_selection') do
+      template.icon 'remove-circle'
     end
   end
 end
