@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20140301093233
+# Schema version: 20140626201417
 #
 # Table name: users
 #
@@ -25,6 +25,7 @@
 #  created_at             :datetime
 #  updated_at             :datetime
 #  guest                  :boolean          default(FALSE)
+#  avatar                 :string(255)
 #
 # Indexes
 #
