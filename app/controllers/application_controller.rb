@@ -30,7 +30,7 @@ class ApplicationController < ActionController::Base
   # https://github.com/plataformatec/devise/wiki/How-To:-Allow-users-to-sign-in-using-their-username-or-email-address
   def configure_permitted_parameters
     devise_parameter_sanitizer.for :sign_up do |u|
-      u.permit :name, :email, :password, :password_confirmation, :remember_me
+      u.permit :name, :email, :password, :password_confirmation, :remember_me, :avatar, :remove_avatar
     end
 
     devise_parameter_sanitizer.for :sign_in do |u|
@@ -38,7 +38,7 @@ class ApplicationController < ActionController::Base
     end
 
     devise_parameter_sanitizer.for :account_update do |u|
-      u.permit :name, :email, :password, :password_confirmation, :current_password
+      u.permit :name, :email, :password, :password_confirmation, :current_password, :avatar, :remove_avatar
     end
   end
 
