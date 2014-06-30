@@ -9,5 +9,6 @@ de:
       text: Pflichtfeld
     'yes': Ja
     select_file: Datei auswählen
+    select_another_file: Andere Datei auswählen
     reset_selection: Zurücksetzen
     remove_file: Existierende Datei entfernen
