@@ -1,5 +1,5 @@
 class UploadInput < SimpleForm::Inputs::FileInput
-  def input
+  def input(wrapper_options)
     input_cache + fileinput + remove_checkbox
   end
 
