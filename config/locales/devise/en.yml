@@ -13,9 +13,12 @@ en:
         send_me_reset_password_instructions: Send me reset password instructions
     registrations:
       edit:
+        account_information: Account information
         are_you_sure: Are you sure?
         cancel_my_account: Cancel my account
+        current_password: Current password (we need this to confirm your changes)
         currently_awaiting_confirmation_for: Currently awaiting confirmation for
+        new_password: New password (leave blank if you don't want to change it)
         unhappy: Unhappy?
       new:
         sign_up: Sign up

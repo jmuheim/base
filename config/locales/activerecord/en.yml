@@ -11,6 +11,7 @@ en:
         resource_type: Resource
         updated_at: Updated at
       user:
+        avatar: Profile picture
         confirmed_at: Confirmed at
         created_at: Created at
         current_sign_in_at: Signed in since

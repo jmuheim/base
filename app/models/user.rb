@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20140301093233
+# Schema version: 20140626201417
 #
 # Table name: users
 #
@@ -25,6 +25,7 @@
 #  created_at             :datetime
 #  updated_at             :datetime
 #  guest                  :boolean          default(FALSE)
+#  avatar                 :string(255)
 #
 # Indexes
 #
@@ -54,6 +55,8 @@ class User < ActiveRecord::Base
   validates :name, presence: true
   validates :name, uniqueness: {case_sensitive: false},
                    unless: -> { guest? }
+
+  mount_uploader :avatar, AvatarUploader
 
   # https://github.com/plataformatec/devise/wiki/How-To:-Allow-users-to-sign-in-using-their-username-or-email-address
   def self.find_first_by_auth_conditions(warden_conditions)

@@ -11,6 +11,7 @@
 #
 #= require bootstrap
 #= require bootstrap-formhelpers
+#= require jasny-bootstrap
 #
 #= require_self
 #

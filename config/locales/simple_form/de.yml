@@ -4,7 +4,11 @@ de:
     error_notification:
       default_message: 'Bitte überprüfe die nachfolgenden Probleme:'
     'no': Nein
+    remove_file: Existierende Datei entfernen
     required:
       mark: "*"
       text: Pflichtfeld
+    reset_selection: Zurücksetzen
+    select_another_file: Andere Datei auswählen
+    select_file: Datei auswählen
     'yes': Ja
