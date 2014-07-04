@@ -31,7 +31,7 @@ class UploadInput < SimpleForm::Inputs::FileInput
     template.content_tag :div, title: I18n.t('simple_form.select_file'), data: {placement: 'right'} do # We need another div around the whole thing, otherwise Bootstrap tooltip doesn't seem to work! See http://stackoverflow.com/questions/24497353/bootstrap-tooltip-isnt-shown-on-a-specific-element-but-it-seems-to-be-applied
       template.content_tag :div, class: ['fileinput-new', 'thumbnail'], data: {trigger: 'fileinput'} do
         if file_available?
-          template.image_tag object.send(attribute_name, :thumb)
+          template.image_tag object.send(attribute_name)
         else
           template.fa_icon(:user)
         end
