@@ -39,7 +39,7 @@ describe User do
   describe 'creating a guest' do
     it 'validates presence of name' do
       @guest = build :guest, name: nil
-      @guest.stub(:set_guest_name) # Disable auto-setting name so validation kicks in
+      allow(@guest).to receive(:set_guest_name) # Disable auto-setting name so validation kicks in
       expect(@guest).to have(1).error_on(:name)
     end
 
