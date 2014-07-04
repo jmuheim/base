@@ -48,7 +48,14 @@ ignore:
 ignore_untranslated:
   model_names:
     - role
+    - paper_trail/version
   model_attributes:
+    paper_trail/version:
+      - item_type
+      - event
+      - whodunnit
+      - object
+      - created_at
     user:
       - encrypted_password
       - reset_password_token
