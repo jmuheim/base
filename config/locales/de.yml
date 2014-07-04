@@ -5,10 +5,7 @@ de:
   'false': Nein
   layouts:
     navigation:
-      about: "Über"
-      admin: Admin
       choose_language: Sprache wählen
-      home: Base
   mini_hub:
     show:
       edit_account: Konto bearbeiten

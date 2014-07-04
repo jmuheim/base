@@ -26,7 +26,7 @@ en:
         name: Name
         updated_at: Updated at
         current_password: Current password
-        login: Login 
+        login: Login
         password: Password
         password_confirmation: Password confirmation
         remember_me: Remember me

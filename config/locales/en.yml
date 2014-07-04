@@ -5,10 +5,7 @@ en:
   'false': 'No'
   layouts:
     navigation:
-      about: About
-      admin: Admin
       choose_language: Choose language
-      home: Base
   mini_hub:
     show:
       edit_account: Edit account

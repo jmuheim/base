@@ -2,6 +2,6 @@
 en:
   layouts:
     navigation:
+      about: About
       admin: Admin
       home: Base
-      about: About
