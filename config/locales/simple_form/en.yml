@@ -9,5 +9,6 @@ en:
       text: required
     'yes': 'Yes'
     select_file: Select file
+    select_another_file: Select other file
     reset_selection: Reset selection
     remove_file: Remove existing file
