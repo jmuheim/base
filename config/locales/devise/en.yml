@@ -7,6 +7,10 @@ en:
     mailer:
       confirmation_instructions:
         confirm_my_account: Confirm my account!
+      reset_password_instructions:
+        change_my_password: Change my password!
+      unlock_instructions:
+        unlock_my_account: Unlock my account!
     failure:
       invalid: Invalid login or password.
       not_found_in_database: Invalid login or password.

@@ -7,6 +7,10 @@ de:
     mailer:
       confirmation_instructions:
         confirm_my_account: Mein Benutzerkonto bestätigen!
+      reset_password_instructions:
+        change_my_password: Mein Passwort ändern!
+      unlock_instructions:
+        unlock_my_account: Mein Benutzerkonto entsperren!
     failure:
       invalid: Ungültige Anmeldedaten.
       not_found_in_database: Ungültige Anmeldedaten.
