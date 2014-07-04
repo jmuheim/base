@@ -25,6 +25,12 @@ en:
         locked_at: Locked at
         name: Name
         updated_at: Updated at
+        current_password: Current password
+        login: Login 
+        password: Password
+        password_confirmation: Password confirmation
+        remember_me: Remember me
+        roles: Roles
     models:
       user:
         one: User
