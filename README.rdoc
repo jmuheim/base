@@ -22,6 +22,7 @@ This is a basic Rails project with everything configured the way I want. To fork
 - Replace all occurrences of <code>Base</code> and <code>base</code> in the code with your project's equivalents (TODO: write executable script?)
 - Change the value of <code>secret_key_base</code> in <code>config/initializers/secret_token.rb</code> (run <code>$ rake secret</code> to create a new secret key)
 - Change the value of <code>session_store</code> in <code>config/initializers/session_store.rb</code> to <code>_PROJECT_session</code> (while <code>PROJECT</code> is your project's downcased and underscored name)
+- Change the value of <code>config.mailer_sender</code> in <code>config/initializers/devise.rb</code> to some useful email address (e.g. <code>info@PROJECT.com</code>)
 - Change the Rack Livereload port in <code>Guardfile</code> and <code>config/development.rb</code> to e.g. `35730`
 - Change the value of `Port:` in `config/boot.rb` to e.g. `3002`
 

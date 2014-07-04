@@ -1,0 +1,8 @@
+p
+  | Willkommen,
+  = @email
+  | !
+p
+  | Du kannst deine Benutzerkonto Email bestätigen, indem du auf den folgenden Link klickst:
+p
+  = link_to t('.confirm_my_account'), confirmation_url(@resource, confirmation_token: @token, locale: 'de')
