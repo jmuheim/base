@@ -162,6 +162,8 @@ GEM
     factory_girl_rails (4.4.1)
       factory_girl (~> 4.4.0)
       railties (>= 3.0.0)
+    fancybox2-rails (0.2.8)
+      railties (>= 3.1.0, < 5.0)
     ffaker (1.24.0)
     ffi (1.9.3)
     font-awesome-rails (4.1.0.0)
@@ -505,6 +507,7 @@ DEPENDENCIES
   email_spec
   enumerize
   factory_girl_rails
+  fancybox2-rails
   ffaker
   font-awesome-rails
   fuubar
