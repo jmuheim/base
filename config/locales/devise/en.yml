@@ -22,6 +22,8 @@ en:
         unhappy: Unhappy?
       new:
         sign_up: Sign up
+        account_information: Account information
+        choose_and_confirm_password: Choose a password (and confirm it to avoid typos)
     sessions:
       new:
         sign_in: Sign in

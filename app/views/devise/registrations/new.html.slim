@@ -7,12 +7,19 @@
                             wrapper: :horizontal_form do |f|
   = devise_error_messages!
 
-  = f.input :name, autofocus: true
-  = f.input :avatar, as: :upload
-  = f.input :email
-  = f.input :password
-  = f.input :password_confirmation
+  .panel.panel-default
+    .panel-heading = t('.account_information')
+    .panel-body
+      = f.input :name, autofocus: true
+      = f.input :email
+      = f.input :avatar, as: :upload
 
-  = f.button :submit, t('.sign_up')
+  .panel.panel-default
+    .panel-heading = t('.choose_and_confirm_password')
+    .panel-body
+      = f.input :password
+      = f.input :password_confirmation
+
+  = f.button :submit, t('.sign_up'), class: 'btn-success'
 
 = render 'devise/shared/links'

@@ -21,6 +21,8 @@ de:
         new_password: Neues Passwort (leer lassen, um es ungeändert zu lassen)
         unhappy: Unglücklich?
       new:
+        account_information: Benutzerkonto Informationen
+        choose_and_confirm_password: Wähle ein Passwort (und bestätige es, um Tippfehler zu vermeiden)
         sign_up: Registrieren
     sessions:
       new:
