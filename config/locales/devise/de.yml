@@ -13,9 +13,12 @@ de:
         send_me_reset_password_instructions: Zurücksetzungsinstruktion für Passwort zuschicken
     registrations:
       edit:
+        account_information: Benutzerkonto Information
         are_you_sure: Bist du sicher?
         cancel_my_account: Benutzerkonto löschen
+        current_password: Aktuelles Passwort (wir benötigen dies um dein Benutzerkonto zu ändern)
         currently_awaiting_confirmation_for: Warte zur Zeit auf Bestätigung
+        new_password: Neues Passwort (leer lassen, um es ungeändert zu lassen)
         unhappy: Unglücklich?
       new:
         sign_up: Registrieren

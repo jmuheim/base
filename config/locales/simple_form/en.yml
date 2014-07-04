@@ -4,11 +4,11 @@ en:
     error_notification:
       default_message: 'Please review the problems below:'
     'no': 'No'
+    remove_file: Remove existing file
     required:
       mark: "*"
       text: required
-    'yes': 'Yes'
-    select_file: Select file
-    select_another_file: Select other file
     reset_selection: Reset selection
-    remove_file: Remove existing file
+    select_another_file: Select other file
+    select_file: Select file
+    'yes': 'Yes'

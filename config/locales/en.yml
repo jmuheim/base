@@ -21,12 +21,6 @@ en:
       headline: About Base
     home:
       headline: Welcome to Base!
-  devise:
-    registrations:
-      edit:
-        account_information: Account information
-        new_password: New password (leave blank if you don't want to change it)
-        current_password: Current password (we need this to confirm your changes)
   'true': 'Yes'
   users:
     new:
