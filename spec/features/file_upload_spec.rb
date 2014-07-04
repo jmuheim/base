@@ -48,10 +48,9 @@ describe 'File upload' do
 
     attach_file 'user_avatar', dummy_file_path('other_image.jpg')
 
-    # --- Uncomment the following lines to see test fail! ---
-    # fill_in 'user_current_password', with: '' # Empty password triggers validation error and form re-display
-    # click_button 'Save'
-    # expect(page).to have_css '.user_avatar .thumbnail img[src^="/uploads/tmp/"]'
+    fill_in 'user_current_password', with: '' # Empty password triggers validation error and form re-display
+    click_button 'Save'
+    expect(page).to have_css '.user_avatar .thumbnail img[src^="/uploads/tmp/"]'
 
     fill_in 'user_current_password', with: 's3cur3p@ssw0rd'
 

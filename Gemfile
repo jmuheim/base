@@ -77,7 +77,8 @@ group :development, :test do
 
   # Testing tool for the Ruby programming language
   gem 'rspec'
-  gem 'rspec-rails'      # RSpec for Rails
+  gem 'rspec-rails'               # RSpec for Rails
+  gem 'rspec-collection_matchers' # Collection cardinality matchers
 
   # Data generation
   gem 'factory_girl_rails' # Test data generator
@@ -123,7 +124,7 @@ group :development do
        github:  'jmuheim/rip_hashrocket',
        require: false
 
-  gem 'capybara' # Acceptance test framework for web applications
+  gem 'capybara', '>=2.2.0.beta' # Acceptance test framework for web applications
 
   gem 'rails-footnotes' # Every Rails page has footnotes that gives information about your application
 

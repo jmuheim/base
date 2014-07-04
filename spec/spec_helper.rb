@@ -63,7 +63,7 @@ RSpec.configure do |config|
     DatabaseCleaner.clean_with(:truncation)
   end
 
-  config.before(:each) do
+  config.before(:each) do |example|
     DatabaseCleaner.strategy = if example.metadata[:js] ||
                                   example.metadata[:chrome] ||
                                   example.metadata[:selenium]
@@ -117,4 +117,9 @@ RSpec.configure do |config|
   config.before(:each, type: :feature) do
     default_url_options[:locale] = I18n.default_locale
   end
+end
+
+# RSpec 3 doesn't infer spec type automatically anymore, see https://github.com/rspec/rspec-core/issues/1540
+RSpec.configure do |config|
+  config.infer_spec_type_from_file_location!
 end
