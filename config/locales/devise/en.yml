@@ -4,6 +4,9 @@ en:
     confirmations:
       new:
         resend_confirmation_instructions: Resend confirmation instructions
+    mailer:
+      confirmation_instructions:
+        confirm_my_account: Confirm my account!
     failure:
       invalid: Invalid login or password.
       not_found_in_database: Invalid login or password.
@@ -18,6 +21,7 @@ en:
         cancel_my_account: Cancel my account
         current_password: Current password (we need this to confirm your changes)
         currently_awaiting_confirmation_for: Currently awaiting confirmation for
+        headline: Edit your account
         new_password: New password (leave blank if you don't want to change it)
         unhappy: Unhappy?
       new:

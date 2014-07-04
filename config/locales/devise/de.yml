@@ -4,6 +4,9 @@ de:
     confirmations:
       new:
         resend_confirmation_instructions: Bestätigungsinstruktionen erneut zusenden.
+    mailer:
+      confirmation_instructions:
+        confirm_my_account: Mein Benutzerkonto bestätigen!
     failure:
       invalid: Ungültige Anmeldedaten.
       not_found_in_database: Ungültige Anmeldedaten.
@@ -20,6 +23,7 @@ de:
         currently_awaiting_confirmation_for: Warte zur Zeit auf Bestätigung
         new_password: Neues Passwort (leer lassen, um es ungeändert zu lassen)
         unhappy: Unglücklich?
+        headline: Bearbeite dein Benutzerkonto
       new:
         account_information: Benutzerkonto Informationen
         choose_and_confirm_password: Wähle ein Passwort (und bestätige es, um Tippfehler zu vermeiden)

@@ -1,5 +1,5 @@
 - content_for :headline do
-  | Edit #{resource_name.to_s.humanize}
+  = t '.headline'
 
 = simple_form_for resource, as:      resource_name,
                             url:     registration_path(resource_name),
