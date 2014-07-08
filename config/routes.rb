@@ -7,6 +7,8 @@ Base::Application.routes.draw do
 
     resources :users
 
+    resource :user # Must be below `resources :users`!
+
     [403, 404, 422, 500].each do |code|
       get code, to: 'errors#show', code: code
     end
