@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   inherit_resources
   respond_to :html
 
-  before_filter :set_user, only: :show
+  before_action :set_user, only: :show
 
   private
 
