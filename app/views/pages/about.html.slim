@@ -2,3 +2,19 @@
   = t '.headline'
 
 p TODO
+
+h2 Example for image gallery
+
+- if current_user.avatar?
+  = image_gallery do |gallery|
+    = gallery.zoomable_image(current_user.avatar)
+    = gallery.zoomable_image(current_user.avatar)
+- else
+  | Select an avatar for your user account!
+
+h2 Example for single zoomable image
+
+- if current_user.avatar?
+  = zoomable_image(current_user.avatar)
+- else
+  | Select an avatar for your user account!
