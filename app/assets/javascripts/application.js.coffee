@@ -12,6 +12,7 @@
 #= require bootstrap
 #= require bootstrap-formhelpers
 #= require jasny-bootstrap
+#= require fancybox
 #
 #= require_self
 #

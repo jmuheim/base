@@ -12,7 +12,7 @@ en:
       log_out: Log out
       sign_in: Sign in
       sign_up: Sign up
-      welcome: Welcome, %{name}!
+      welcome_html: Welcome, %{link}!
   pages:
     about:
       headline: About Base

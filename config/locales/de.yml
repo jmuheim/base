@@ -12,7 +12,7 @@ de:
       log_out: Abmelden
       sign_in: Anmelden
       sign_up: Registrieren
-      welcome: Willkommen, %{name}!
+      welcome_html: Willkommen, %{link}!
   pages:
     about:
       headline: "Über Base"

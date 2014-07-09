@@ -5,6 +5,9 @@ article id=dom_id(@user)
   dl.dl-horizontal
     dt Email
     dd = @user.email
+    - if @user.avatar?
+      dt Avatar
+      dd = zoomable_image @user.avatar
 
   .btn-group
     - if can? :edit, @user
