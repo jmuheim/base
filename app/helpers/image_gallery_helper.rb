@@ -1,31 +1,16 @@
 module ImageGalleryHelper
-  def zoomable_image(image, options = {})
-    image_gallery do |gallery|
-      gallery.image(image, options)
-    end
-  end
+  def image_gallery(name = nil, &block)
+    name ||= 'gallery_' + SecureRandom.hex(6)
 
-  def image_gallery(name = '', &block)
-    if name.empty?
-      yield ImageGallery.new(name)
-    else
-      content_tag :div, class: name do
-        yield ImageGallery.new(name)
+    content_tag :div, class: name do
+      with_options gallery_name: name do |gallery|
+        yield gallery
       end
     end
   end
-end
 
-class ImageGallery
-  include ActionView::Helpers::AssetTagHelper
-  attr_accessor :output_buffer
-
-  def initialize(name)
-    @name = name
-  end
-
-  def image(image, options = {})
-    content_tag :a, href: image.url, class: 'fancybox', rel: @name do
+  def zoomable_image(image, options = {})
+    content_tag :a, href: image.url, class: 'fancybox', rel: options.delete(:gallery_name) do
       image_tag image.url(:thumb), options
     end
   end
