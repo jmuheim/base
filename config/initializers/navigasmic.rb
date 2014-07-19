@@ -90,7 +90,7 @@ Navigasmic.setup do |config|
   # Naming Builder Configurations:
   #
   # If you want to define a named configuration for a builder, just provide a hash with the name and the builder to
-  # configure.  The named configurations can then be used during rendering by specifying a `:config => :bootstrap`
+  # configure.  The named configurations can then be used during rendering by specifying a `config: :bootstrap`
   # option.
   #
   # A Twitter Bootstrap configuration:
