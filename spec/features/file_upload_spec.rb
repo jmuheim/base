@@ -82,12 +82,12 @@ describe 'File upload' do
 
     visit edit_user_registration_path
 
-    attach_file 'user_avatar', dummy_file_path('image.jpg')
+    attach_file 'user_avatar', dummy_file_path('big_image.jpg')
 
     fill_in 'user_current_password', with: 's3cur3p@ssw0rd'
 
     click_button 'Save'
 
-    expect(page).to have_content 'is too big (should be at most 5 KB)'
+    expect(page).to have_content 'is too big (should be at most 15 KB)'
   end
 end
