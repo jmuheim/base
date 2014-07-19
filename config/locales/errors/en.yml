@@ -18,3 +18,6 @@ en:
       on_or_before: must be on or before %{restriction}
       after: must be after %{restriction}
       on_or_after: must be on or after %{restriction}
+      wrong_size: is the wrong size (should be %{file_size})
+      size_too_small: is too small (should be at least %{file_size})
+      size_too_big: is too big (should be at most %{file_size})

@@ -45,6 +45,8 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :confirmable, :lockable, authentication_keys: [:login]
 
+  mount_uploader :avatar, AvatarUploader
+
   scope :guests,     -> { where(guest: true) }
   scope :registered, -> { where(guest: false) }
 
@@ -55,8 +57,7 @@ class User < ActiveRecord::Base
   validates :name, presence: true
   validates :name, uniqueness: {case_sensitive: false},
                    unless: -> { guest? }
-
-  mount_uploader :avatar, AvatarUploader
+  validates :avatar, file_size: {maximum: (Rails.env.test? ? 5 : 100).kilobytes.to_i} # TODO: It would be nice to stub the maximum within the spec itself. See https://gist.github.com/chrisbloom7/1009861#comment-1220820
 
   # https://github.com/plataformatec/devise/wiki/How-To:-Allow-users-to-sign-in-using-their-username-or-email-address
   def self.find_first_by_auth_conditions(warden_conditions)

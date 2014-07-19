@@ -75,4 +75,19 @@ describe 'File upload' do
     # Notice: it would be nice to check upon change of @user.avatar or something like that, but didn't succeed with this...
     expect(page).not_to have_css 'img.avatar'
   end
+
+  it 'limits the size of an uploaded image' do
+    @user = create :user
+    login_as(@user)
+
+    visit edit_user_registration_path
+
+    attach_file 'user_avatar', dummy_file_path('image.jpg')
+
+    fill_in 'user_current_password', with: 's3cur3p@ssw0rd'
+
+    click_button 'Save'
+
+    expect(page).to have_content 'is too big (should be at most 5 KB)'
+  end
 end
