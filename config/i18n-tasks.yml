@@ -1,7 +1,11 @@
-relative_roots:
-  - app/cells
-  - app/helpers
-  - app/views
+search:
+  paths:
+    - 'app/'
+    - 'vendor/'
+
+  relative_roots:
+    - app/cells
+    - app/views
 
 data:
   # file_system is the default adapter, you can provide a custom class name here:
