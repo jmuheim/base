@@ -35,6 +35,8 @@ en:
     sessions:
       new:
         sign_in: Sign in
+      form:
+        sign_in: Sign in
         username_or_email: Username or email
     shared:
       links:

@@ -5,14 +5,8 @@ de:
   'false': Nein
   layouts:
     navigation:
-      choose_language: Sprache wählen
-  mini_hub:
-    show:
-      edit_account: Konto bearbeiten
-      log_out: Abmelden
-      sign_in: Anmelden
       sign_up: Registrieren
-      welcome_html: Willkommen, %{link}!
+      choose_language: Sprache wählen
   pages:
     about:
       headline: "Über Base"

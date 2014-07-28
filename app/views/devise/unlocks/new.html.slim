@@ -1,14 +1,17 @@
 - content_for :headline do
   = t '.resend_unlock_instructions'
 
-= simple_form_for resource, as:      resource_name,
-                            url:     unlock_path(resource_name),
-                            html:    {method: :post, class: 'form-horizontal'},
-                            wrapper: :horizontal_form do |f|
-  = devise_error_messages!
+.row
+  .col-sm-8
+    = simple_form_for resource, as:      resource_name,
+                                url:     unlock_path(resource_name),
+                                html:    {method: :post, class: 'form-horizontal'},
+                                wrapper: :horizontal_form do |f|
+      = devise_error_messages!
 
-  = f.input :email, autofocus: true
+      = f.input :email, autofocus: true
 
-  = f.button :submit, t('.resend_unlock_instructions')
+      = f.button :submit, t('.resend_unlock_instructions')
 
-= render 'devise/shared/links'
+  .col-sm-4
+    = render 'devise/shared/links'

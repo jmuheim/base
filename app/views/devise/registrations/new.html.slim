@@ -1,25 +1,28 @@
 - content_for :headline do
   = t '.sign_up'
 
-= simple_form_for resource, as:      resource_name,
-                            url:     registration_path(resource_name),
-                            html:    {class: 'form-horizontal'},
-                            wrapper: :horizontal_form do |f|
-  = devise_error_messages!
+.row
+  .col-sm-8
+    = simple_form_for resource, as:      resource_name,
+                                url:     registration_path(resource_name),
+                                html:    {class: 'form-horizontal'},
+                                wrapper: :horizontal_form do |f|
+      = devise_error_messages!
 
-  .panel.panel-default
-    .panel-heading = t('.account_information')
-    .panel-body
-      = f.input :name, autofocus: true
-      = f.input :email
-      = f.input :avatar, as: :upload
+      .panel.panel-default
+        .panel-heading = t('.account_information')
+        .panel-body
+          = f.input :name, autofocus: true
+          = f.input :email
+          = f.input :avatar, as: :upload
 
-  .panel.panel-default
-    .panel-heading = t('.choose_and_confirm_password')
-    .panel-body
-      = f.input :password
-      = f.input :password_confirmation
+      .panel.panel-default
+        .panel-heading = t('.choose_and_confirm_password')
+        .panel-body
+          = f.input :password
+          = f.input :password_confirmation
 
-  = f.button :submit, t('.sign_up'), class: 'btn-success'
+      = f.button :submit, t('.sign_up'), class: 'btn-success'
 
-= render 'devise/shared/links'
+  .col-sm-4
+    = render 'devise/shared/links'

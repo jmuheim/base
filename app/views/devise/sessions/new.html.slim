@@ -1,16 +1,9 @@
 - content_for :headline do
   = t '.sign_in'
 
-= simple_form_for resource, as:      resource_name,
-                            url:     session_path(resource_name),
-                            html:    {class: 'form-horizontal'},
-                            wrapper: :horizontal_form do |f|
-  = f.input :login, autofocus: true, placeholder: t('.username_or_email')
+.row
+  .col-sm-8
+    = render 'form', display: :full
 
-  = f.input :password
-
-  - if devise_mapping.rememberable?
-    = f.input :remember_me, as: :boolean
-
-  = f.button :submit, t('.sign_in')
-= render 'devise/shared/links'
+  .col-sm-4
+    = render 'devise/shared/links'

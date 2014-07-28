@@ -16,11 +16,8 @@ html
 
     main.container[role="main"]
       .row
-        .col-md-9
+        .col-md-12
           h1= yield(:headline)
 
           == render 'layouts/messages'
           == yield
-
-        .col-md-3
-          = render_cell :mini_hub, :show, user: current_user

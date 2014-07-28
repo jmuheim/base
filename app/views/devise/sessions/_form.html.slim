@@ -1,0 +1,22 @@
+= simple_form_for resource, as:      resource_name,
+                            url:     session_path(resource_name),
+                            html:    {class: "form-#{display == :full ? :horizontal : :inline}"},
+                            wrapper: "#{display == :full ? :horizontal : :inline}_form",
+                            wrapper_mappings: {boolean: "#{display == :full ? :horizontal : :vertical }_boolean"} do |f|
+  .login_and_password
+    = f.input :login, autofocus: true, placeholder: t('.username_or_email')
+    = f.input :password, placeholder: User.human_attribute_name(:password)
+
+  .remember_me_and_submit
+    - if devise_mapping.rememberable?
+      = f.input :remember_me, as: :boolean
+
+    = f.button :submit, t('.sign_in'), class: 'btn-success'
+
+  - if display == :small
+    .visit_full_sign_in_page
+      hr
+
+      small
+        =' t('.having_a_problem?')
+        = link_to t('.visit_full_sign_in_page!'), new_user_session_path

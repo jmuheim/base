@@ -1,11 +1,14 @@
 - content_for :headline do
   = t '.resend_confirmation_instructions'
 
-= simple_form_for resource, as:      resource_name,
-                            url:     confirmation_path(resource_name),
-                            html:    {method: :post, class: 'form-horizontal'},
-                            wrapper: :horizontal_form do |f|
-  = f.input :email, autofocus: true
-  = f.button :submit, t('.resend_confirmation_instructions')
+.row
+  .col-sm-8
+    = simple_form_for resource, as:      resource_name,
+                                url:     confirmation_path(resource_name),
+                                html:    {method: :post, class: 'form-horizontal'},
+                                wrapper: :horizontal_form do |f|
+      = f.input :email, autofocus: true
+      = f.button :submit, t('.resend_confirmation_instructions')
 
-= render 'devise/shared/links'
+  .col-sm-4
+    = render 'devise/shared/links'

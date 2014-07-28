@@ -1,4 +1,4 @@
-nav#navigation.navbar.navbar-inverse.navbar-fixed-top
+nav#navigation.navbar.yamm.navbar-inverse.navbar-fixed-top
   .container
     .navbar-header
       button.navbar-toggle type="button" data-toggle="collapse" data-target=".navbar-collapse"
@@ -14,8 +14,42 @@ nav#navigation.navbar.navbar-inverse.navbar-fixed-top
         - navigation.item t('.about'), page_path('about')
 
       ul.nav.navbar-nav.navbar-right
-        - if can? :access, :rails_admin
-          li = link_to fa_icon(:gears), rails_admin_path(locale: :en), title: t('.admin'), data: {placement: 'bottom'}
+        - if current_user.guest?
+          li = link_to t('.sign_up'), new_user_registration_path
+          li.dropdown
+            = link_to '#', class: 'dropdown-toggle', data: {toggle: 'dropdown'} do
+              | Anmelden
+              b.caret
+
+            ul.dropdown-menu
+              li
+                .yamm-content
+                  .row = render 'devise/sessions/form', resource: User.new, display: :small
+
+        - else
+          li#user_menu.dropdown
+            a.dropdown-toggle href="#" data-toggle="dropdown" title=t('.user_menu') data-placement='bottom'
+              = image_tag current_user.avatar.url(:thumb)
+              b.caret
+
+            ul.dropdown-menu
+              - if current_user.guest?
+                li = link_to t('.sign_in'), new_user_session_path
+                li = link_to t('.sign_up'), new_user_registration_path
+
+              - else
+                li = link_to edit_user_registration_path
+                  =' fa_icon(:edit)
+                  = t('.edit_account')
+                li = link_to destroy_user_session_path, method: :delete
+                  =' fa_icon('sign-out')
+                  = t('.log_out')
+
+                - if can? :access, :rails_admin
+                  li.divider
+                  li = link_to rails_admin_path(locale: :en), data: {placement: 'bottom'} do
+                    =' fa_icon(:gears)
+                    = t('.admin')
 
         li#language_chooser.dropdown
           a.dropdown-toggle data-toggle='dropdown' href='#' title=t('.choose_language') data-placement='bottom'
@@ -24,8 +58,8 @@ nav#navigation.navbar.navbar-inverse.navbar-fixed-top
 
           ul.dropdown-menu
             li = link_to locale: 'en' do
-              = flag :gb, 'Flag of England'
+              =' flag :gb, 'Flag of England'
               | Show page in english
             li = link_to locale: 'de' do
-              = flag :de, 'Flagge von Deutschland'
+              =' flag :de, 'Flagge von Deutschland'
               | Seite auf Deutsch anzeigen
