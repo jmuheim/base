@@ -45,4 +45,12 @@ module ApplicationHelper
   def resource_class
     devise_mapping.to
   end
+
+  def user_avatar
+    if current_user.avatar?
+      image_tag(current_user.avatar.url(:thumb), class: 'avatar')
+    else
+      icon :user
+    end
+  end
 end

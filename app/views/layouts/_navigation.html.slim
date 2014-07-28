@@ -9,57 +9,36 @@ nav#navigation.navbar.yamm.navbar-inverse.navbar-fixed-top
       = link_to t('.home'), root_path, class: home_link_class
 
     .collapse.navbar-collapse
-      = semantic_navigation :primary, config: :bootstrap do |navigation|
+      = semantic_navigation :primary_navigation, config: :bootstrap do |navigation|
         - navigation.item User.model_name.human(count: 2), users_path
         - navigation.item t('.about'), page_path('about')
 
-      ul.nav.navbar-nav.navbar-right
+      = semantic_navigation :meta_navigation, config: :bootstrap, class: 'navbar-right' do |navigation|
         - if current_user.guest?
-          li = link_to t('.sign_up'), new_user_registration_path
-          li.dropdown
-            = link_to '#', class: 'dropdown-toggle', data: {toggle: 'dropdown'} do
-              = t('.sign_in')
-              b.caret
+          - navigation.item t('.sign_up'), new_user_registration_path
 
-            ul.dropdown-menu
+          - if current_page?(new_user_session_path)
+            - navigation.item t('.sign_in'), new_user_session_path
+
+          - else
+            - navigation.group t('.sign_in') do
               li
                 .yamm-content
                   .row = render 'devise/sessions/form', resource: User.new, display: :small
 
         - else
-          li#user_menu.dropdown
-            a.dropdown-toggle href="#" data-toggle="dropdown" title=t('.user_menu') data-placement='bottom'
-              = image_tag current_user.avatar.url(:thumb), class: 'avatar'
-              b.caret
+          - navigation.group user_avatar, title: t('.user_menu'), data: {placement: 'bottom'} do
+            - navigation.item fa_icon(:edit) + t('.edit_account'), edit_user_registration_path
+            li
+              = link_to destroy_user_session_path, method: :delete do
+                =' fa_icon('sign-out')
+                = t('.log_out')
 
-            ul.dropdown-menu
-              - if current_user.guest?
-                li = link_to t('.sign_in'), new_user_session_path
-                li = link_to t('.sign_up'), new_user_registration_path
+        - navigation.group flag(current_locale_flag), id: :language_chooser, title: t('.choose_language'), data: {placement: 'bottom'} do
+          li = link_to locale: 'en' do
+            =' flag(:gb, 'Flag of England')
+            | Show page in english
 
-              - else
-                li = link_to edit_user_registration_path
-                  =' fa_icon(:edit)
-                  = t('.edit_account')
-                li = link_to destroy_user_session_path, method: :delete
-                  =' fa_icon('sign-out')
-                  = t('.log_out')
-
-                - if can? :access, :rails_admin
-                  li.divider
-                  li = link_to rails_admin_path(locale: :en), data: {placement: 'bottom'} do
-                    =' fa_icon(:gears)
-                    = t('.admin')
-
-        li#language_chooser.dropdown
-          a.dropdown-toggle data-toggle='dropdown' href='#' title=t('.choose_language') data-placement='bottom'
-            = flag current_locale_flag
-            b.caret
-
-          ul.dropdown-menu
-            li = link_to locale: 'en' do
-              =' flag :gb, 'Flag of England'
-              | Show page in english
-            li = link_to locale: 'de' do
-              =' flag :de, 'Flagge von Deutschland'
-              | Seite auf Deutsch anzeigen
+          li = link_to locale: 'de' do
+            =' flag(:de, 'Flagge von Deutschland')
+            | Seite auf Deutsch anzeigen
