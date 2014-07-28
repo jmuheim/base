@@ -38,6 +38,8 @@ en:
       form:
         sign_in: Sign in
         username_or_email: Username or email
+        having_a_problem: Having a problem?
+        visit_full_sign_in_page: Visit the full sign in page!
     shared:
       links:
         didnt_receive_confirmation_instructions: Didn't receive confirmation instructions?

@@ -38,6 +38,8 @@ de:
       form:
         sign_in: Anmelden
         username_or_email: Benutzername oder Email
+        having_a_problem: Hast du ein Problem?
+        visit_full_sign_in_page: Besuche die komplette Anmelde-Seite!
     shared:
       links:
         didnt_receive_confirmation_instructions: Hast du keine Anweisungen zum Bestätigen deines Kontos erhalten?
