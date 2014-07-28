@@ -44,6 +44,7 @@ de:
         didnt_receive_unlock_instructions: Hast du keine Anweisungen zum Entsperren deines Kontos erhalten?
         forgot_your_password: Passwort vergessen?
         title: Weitere Links
+        frequently_occuring_sign_in_problems: Häufig auftretende Probleme beim Anmelden
     unlocks:
       new:
         resend_unlock_instructions: Anweisungen zum Entsperren erneut zusenden

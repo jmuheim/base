@@ -7,12 +7,6 @@ en:
     navigation:
       sign_up: Sign up
       choose_language: Choose language
-  mini_hub:
-    show:
-      edit_account: Edit account
-      log_out: Log out
-      sign_in: Sign in
-      welcome_html: Welcome, %{link}!
   pages:
     about:
       headline: About Base

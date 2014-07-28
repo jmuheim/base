@@ -44,6 +44,7 @@ en:
         didnt_receive_unlock_instructions: Didn't receive unlock instructions?
         forgot_your_password: Forgot your password?
         title: Additional links
+        frequently_occuring_sign_in_problems: Frequently occurring sign in problems
     unlocks:
       new:
         resend_unlock_instructions: Resend unlock instructions

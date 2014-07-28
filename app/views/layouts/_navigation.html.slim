@@ -18,7 +18,7 @@ nav#navigation.navbar.yamm.navbar-inverse.navbar-fixed-top
           li = link_to t('.sign_up'), new_user_registration_path
           li.dropdown
             = link_to '#', class: 'dropdown-toggle', data: {toggle: 'dropdown'} do
-              | Anmelden
+              = t('.sign_in')
               b.caret
 
             ul.dropdown-menu

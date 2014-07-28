@@ -5,3 +5,7 @@ en:
       about: About
       admin: Admin
       home: Base
+      user_menu: User menu
+      sign_in: Sign in
+      edit_account: Edit account
+      log_out: Log out
