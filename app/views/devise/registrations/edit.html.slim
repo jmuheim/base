@@ -5,7 +5,6 @@
                             url:     registration_path(resource_name),
                             html:    {method: :put, class: 'form-horizontal', multipart: true},
                             wrapper: :horizontal_form do |f|
-  = devise_error_messages!
 
   .panel.panel-default
     .panel-heading = t('.account_information')
