@@ -29,7 +29,7 @@ nav#navigation.navbar.yamm.navbar-inverse.navbar-fixed-top
         - else
           li#user_menu.dropdown
             a.dropdown-toggle href="#" data-toggle="dropdown" title=t('.user_menu') data-placement='bottom'
-              = image_tag current_user.avatar.url(:thumb)
+              = image_tag current_user.avatar.url(:thumb), class: 'avatar'
               b.caret
 
             ul.dropdown-menu
