@@ -13,19 +13,13 @@ describe 'Navigation' do
     end
 
     it 'offers the possibility to switch languages' do
-      within '#language_chooser' do
-        expect(page).to have_link 'Choose language' # Default language is english
-        click_link 'Seite auf Deutsch anzeigen'
-      end
+      expect(page).to have_css '#language_chooser[title="Choose language"]' # Default language is english
+      click_link 'Seite auf Deutsch anzeigen'
 
-      within '#language_chooser' do
-        expect(page).to have_link 'Sprache wählen'
-        click_link 'Show page in english'
-      end
+      expect(page).to have_css '#language_chooser[title="Sprache wählen"]'
+      click_link 'Show page in english'
 
-      within '#language_chooser' do
-        expect(page).to have_link 'Choose language'
-      end
+      expect(page).to have_css '#language_chooser[title="Choose language"]'
     end
   end
 

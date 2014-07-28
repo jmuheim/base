@@ -1,7 +1,8 @@
-= simple_form_for resource, as:      resource_name,
-                            url:     session_path(resource_name),
-                            html:    {class: "form-#{display == :full ? :horizontal : :inline}"},
-                            wrapper: "#{display == :full ? :horizontal : :inline}_form",
+= simple_form_for resource, as:               resource_name,
+                            url:              session_path(resource_name),
+                            html:             {class: "form-#{display == :full ? :horizontal : :inline}"},
+                            namespace:        (display == :small ? 'dropdown' : nil),
+                            wrapper:          "#{display == :full ? :horizontal : :inline}_form",
                             wrapper_mappings: {boolean: "#{display == :full ? :horizontal : :vertical }_boolean"} do |f|
   .login_and_password
     = f.input :login, autofocus: true, placeholder: t('.username_or_email')

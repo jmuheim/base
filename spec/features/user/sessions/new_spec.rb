@@ -5,9 +5,11 @@ describe 'Signing in' do
     it 'is not possible to sign in' do
       visit new_user_session_path
 
-      fill_in 'user_login',    with: ''
-      fill_in 'user_password', with: ''
-      click_button 'Sign in'
+      within '#new_user' do
+        fill_in 'user_login',    with: ''
+        fill_in 'user_password', with: ''
+        click_button 'Sign in'
+      end
 
       expect(page).to have_content 'Invalid login or password.'
       expect(page).not_to have_link 'Log out'
@@ -20,9 +22,11 @@ describe 'Signing in' do
     it 'is possible to sign in using email' do
       visit new_user_session_path
 
-      fill_in 'user_login',    with: 'donald'
-      fill_in 'user_password', with: 's3cur3p@ssw0rd'
-      click_button 'Sign in'
+      within '#new_user' do
+        fill_in 'user_login',    with: 'donald'
+        fill_in 'user_password', with: 's3cur3p@ssw0rd'
+        click_button 'Sign in'
+      end
 
       expect(page).to have_content 'Signed in successfully.'
       expect(page).to have_link 'Log out'
@@ -31,9 +35,11 @@ describe 'Signing in' do
     it 'is possible to sign in using name' do
       visit new_user_session_path
 
-      fill_in 'user_login',    with: 'donald@example.com'
-      fill_in 'user_password', with: 's3cur3p@ssw0rd'
-      click_button 'Sign in'
+      within '#new_user' do
+        fill_in 'user_login',    with: 'donald@example.com'
+        fill_in 'user_password', with: 's3cur3p@ssw0rd'
+        click_button 'Sign in'
+      end
 
       expect(page).to have_content 'Signed in successfully.'
       expect(page).to have_link 'Log out'
@@ -42,9 +48,11 @@ describe 'Signing in' do
     it 'is not possible to sign in with wrong login' do
       visit new_user_session_path
 
-      fill_in 'user_login',    with: 'unknown'
-      fill_in 'user_password', with: 's3cur3p@ssw0rd'
-      click_button 'Sign in'
+      within '#new_user' do
+        fill_in 'user_login',    with: 'unknown'
+        fill_in 'user_password', with: 's3cur3p@ssw0rd'
+        click_button 'Sign in'
+      end
 
       expect(page).to have_content 'Invalid login or password.'
       expect(page).not_to have_link 'Log out'
@@ -53,9 +61,11 @@ describe 'Signing in' do
     it 'is not possible to sign in with wrong password' do
       visit new_user_session_path
 
-      fill_in 'user_login',    with: 'donald'
-      fill_in 'user_password', with: 'wrong'
-      click_button 'Sign in'
+      within '#new_user' do
+        fill_in 'user_login',    with: 'donald'
+        fill_in 'user_password', with: 'wrong'
+        click_button 'Sign in'
+      end
 
       expect(page).to have_content 'Invalid login or password.'
       expect(page).not_to have_link 'Log out'
