@@ -44,8 +44,6 @@ gem 'inherited_resources', '>= 1.4.1'
 gem 'has_scope' # Maps controller filters to resource scopes
 gem 'responders' # A set of Rails responders
 
-gem 'cells' # View components
-
 gem 'simple_form', github: 'plataformatec/simple_form' # Forms made easy for Rails
 
 gem 'gaffe' # Handles Rails error pages in a clean, simple way
@@ -152,8 +150,6 @@ group :test do
   gem 'selenium-webdriver' # Selenium webdriver (needed to use Chrome driver)
 
   gem 'capybara-screenshot' # Automatically save screen shots when a scenario fails
-
-  gem 'rspec-cells' # Test cells using RSpec
 
   gem 'headhunter' # Automagically validates all HTML and CSS during feature tests
 

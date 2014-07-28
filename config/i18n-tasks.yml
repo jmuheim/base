@@ -4,7 +4,6 @@ search:
     - 'vendor/'
 
   relative_roots:
-    - app/cells
     - app/views
 
 data:

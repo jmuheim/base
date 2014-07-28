@@ -92,10 +92,6 @@ GEM
       activesupport (>= 3.2.0)
       json (>= 1.7)
       mime-types (>= 1.16)
-    cells (3.11.1)
-      actionpack (>= 3.0)
-      railties (>= 3.0)
-      uber (~> 0.0.6)
     celluloid (0.15.2)
       timers (~> 1.1.0)
     childprocess (0.5.3)
@@ -375,10 +371,6 @@ GEM
       rspec-core (~> 3.0.0)
       rspec-expectations (~> 3.0.0)
       rspec-mocks (~> 3.0.0)
-    rspec-cells (0.2.1)
-      cells (>= 3.4.0)
-      railties (>= 3.0)
-      rspec-rails (>= 2.14)
     rspec-collection_matchers (1.0.0)
       rspec-expectations (>= 2.99.0.beta1)
     rspec-core (3.0.2)
@@ -469,7 +461,6 @@ GEM
       coffee-rails
     tzinfo (1.2.1)
       thread_safe (~> 0.1)
-    uber (0.0.7)
     uglifier (2.5.3)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
@@ -497,7 +488,6 @@ DEPENDENCIES
   capybara (>= 2.2.0.beta)
   capybara-screenshot
   carrierwave
-  cells
   cocoon
   coffee-rails (~> 4.0.0)
   compass-rails
@@ -551,7 +541,6 @@ DEPENDENCIES
   rip_hashrocket!
   rolify
   rspec
-  rspec-cells
   rspec-collection_matchers
   rspec-rails
   rubocop
