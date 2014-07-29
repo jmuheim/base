@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
   def show
-    render params[:id]
+    render params[:view]
   end
 end
