@@ -2,4 +2,4 @@
 
 class App.ExampleScript
   constructor: (el) ->
-    @el = $(el) # Always pass an element to the constructor and make it available as a jQuery selector!
+    @$el = $(el) # Always pass an element to the constructor and make it available as a jQuery selector!
