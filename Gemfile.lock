@@ -212,11 +212,12 @@ GEM
     hirb (0.7.2)
     http_parser.rb (0.6.0)
     i18n (0.6.11)
-    i18n-tasks (0.6.3)
+    i18n-tasks (0.7.1)
       activesupport
       easy_translate (>= 0.5.0)
       erubis
       highline
+      i18n
       slop (>= 3.5.0)
       term-ansicolor
       terminal-table
