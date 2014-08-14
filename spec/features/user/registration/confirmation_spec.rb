@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe 'Confirming registration' do
   before { @user = create :user, :donald, confirmed_at: nil }

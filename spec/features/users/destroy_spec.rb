@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe 'Deleting user' do
   before { @user = create :user, :donald }

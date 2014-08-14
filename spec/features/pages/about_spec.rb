@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe 'Showing about page' do
   it 'displays a welcome message' do

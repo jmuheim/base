@@ -1,7 +1,7 @@
 # The ability is built upon the "everything disallowed first" principle:
 # Nothing is allowed if not explicitly allowed somewhere. This means we have to test every explicit rule.
 
-require 'spec_helper'
+require 'rails_helper'
 
 describe Ability do
   context 'when is a guest' do

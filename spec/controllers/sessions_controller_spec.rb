@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe SessionsController do
   # Tell devise the correct mapping because we bypass routes

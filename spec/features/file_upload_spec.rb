@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe 'File upload' do
   it 'allows to upload a file' do

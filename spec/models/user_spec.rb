@@ -26,7 +26,7 @@
 #  guest                  :boolean          default(FALSE)
 #
 
-require 'spec_helper'
+require 'rails_helper'
 
 describe User do
   it { should validate_presence_of(:name).with_message "can't be blank" }

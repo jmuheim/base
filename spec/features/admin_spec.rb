@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe 'Admin' do
   it 'allows access to the admin area (to an admin user)' do

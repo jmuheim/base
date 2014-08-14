@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe 'Authorization' do
   it 'displays a "403 - Forbidden" message on permission denied' do

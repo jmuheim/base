@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe 'Showing the home page' do
   it 'displays a welcome message' do
