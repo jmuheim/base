@@ -4,10 +4,10 @@
 require File.expand_path('../config/application', __FILE__)
 Base::Application.load_tasks
 
-task(:default).clear
-task default: :'spec:fuubar'
-
 if defined? RSpec
+  task(:default).clear
+  task default: :'spec:fuubar'
+
   namespace :spec do
     desc 'Run all specs in spec directory (with Fuubar formatter)'
     RSpec::Core::RakeTask.new(:fuubar) do |task|
