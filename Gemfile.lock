@@ -255,6 +255,8 @@ GEM
     mina (0.3.0)
       open4
       rake
+    mina-rollbar (0.1.2)
+      mina (~> 0.3)
     mini_magick (3.8.0)
       subexec (~> 0.2.1)
     mini_portile (0.6.0)
@@ -523,6 +525,7 @@ DEPENDENCIES
   jquery-ui-rails
   launchy
   mina
+  mina-rollbar
   mini_magick
   mysql2
   navigasmic

@@ -43,6 +43,7 @@ Make sure that:
 - Every navigation item has a correlating spec in [navigation_spec.rb](./spec/features/navigation_spec.rb)
 - Run `$ i18n-tasks normalize`
 - Run `$ rake` and make sure, no specs are pending/failing
+- Run `$ smusher app/assets/images` ...
 
 ### Add external assets (libraries)
 
