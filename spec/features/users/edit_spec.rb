@@ -13,6 +13,6 @@ describe 'Editing user' do
     fill_in 'user_current_password', with: @user.password
     click_button 'Save'
 
-    expect(page).to have_content 'You updated your account successfully.'
+    expect(page).to have_content 'Your account has been updated successfully.'
   end
 end
