@@ -3,6 +3,8 @@ require 'application_responder'
 class ApplicationController < ActionController::Base
   helper :image_gallery
 
+  helper_method :body_css_classes
+
   self.responder = ApplicationResponder
 
   # Prevent CSRF attacks by raising an exception.
@@ -84,5 +86,10 @@ class ApplicationController < ActionController::Base
     unless Rails.env.test? # In controller specs, the default locale isn't available. As we don't want to manually specify a locale for every request in controller specs, we don't enforce a locale in test environment. This isn't optimal, as we it prevents us from actually testing this before filter, but it has to be okay for the moment. More infos here: https://github.com/rspec/rspec-rails/issues/255
       redirect_to root_path if params[:locale].blank?
     end
+  end
+
+  # TODO: Add spec!
+  def body_css_classes
+    [controller_name, action_name]
   end
 end
