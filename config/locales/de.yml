@@ -5,8 +5,8 @@ de:
   'false': Nein
   layouts:
     navigation:
-      sign_up: Registrieren
       choose_language: Sprache wählen
+      sign_up: Registrieren
   pages:
     about:
       headline: "Über Base"

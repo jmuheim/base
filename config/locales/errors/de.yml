@@ -18,6 +18,6 @@ de:
         other: 'Konnte %{resource} nicht speichern: %{count} Fehler.'
       on_or_after: muss nach oder gleich %{restriction} sein
       on_or_before: muss vor oder gleich %{restriction} sein
-      wrong_size: hat die falsche Dateigrösse (gefordert ist %{file_size})
-      size_too_small: hat eine zu kleine Dateigrösse (gefordert ist mindestens %{file_size})
       size_too_big: hat eine zu grosse Dateigrösse (gefordert ist höchstens %{file_size})
+      size_too_small: hat eine zu kleine Dateigrösse (gefordert ist mindestens %{file_size})
+      wrong_size: hat die falsche Dateigrösse (gefordert ist %{file_size})

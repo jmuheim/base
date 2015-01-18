@@ -4,6 +4,9 @@ de:
     confirmations:
       new:
         resend_confirmation_instructions: Bestätigungsinstruktionen erneut zusenden.
+    failure:
+      invalid: Ungültige Anmeldedaten.
+      not_found_in_database: Ungültige Anmeldedaten.
     mailer:
       confirmation_instructions:
         confirm_my_account: Mein Benutzerkonto bestätigen!
@@ -11,9 +14,6 @@ de:
         change_my_password: Mein Passwort ändern!
       unlock_instructions:
         unlock_my_account: Mein Benutzerkonto entsperren!
-    failure:
-      invalid: Ungültige Anmeldedaten.
-      not_found_in_database: Ungültige Anmeldedaten.
     passwords:
       new:
         forgot_your_password: Passwort vergessen?
@@ -25,28 +25,28 @@ de:
         cancel_my_account: Benutzerkonto löschen
         current_password: Aktuelles Passwort (wir benötigen dies um dein Benutzerkonto zu ändern)
         currently_awaiting_confirmation_for: Warte zur Zeit auf Bestätigung
+        headline: Bearbeite dein Benutzerkonto
         new_password: Neues Passwort (leer lassen, um es ungeändert zu lassen)
         unhappy: Unglücklich?
-        headline: Bearbeite dein Benutzerkonto
       new:
         account_information: Benutzerkonto Informationen
         choose_and_confirm_password: Wähle ein Passwort (und bestätige es, um Tippfehler zu vermeiden)
         sign_up: Registrieren
     sessions:
-      new:
-        sign_in: Anmelden
       form:
+        having_a_problem: Hast du ein Problem?
         sign_in: Anmelden
         username_or_email: Benutzername oder Email
-        having_a_problem: Hast du ein Problem?
         visit_full_sign_in_page: Besuche die komplette Anmelde-Seite!
+      new:
+        sign_in: Anmelden
     shared:
       links:
         didnt_receive_confirmation_instructions: Hast du keine Anweisungen zum Bestätigen deines Kontos erhalten?
         didnt_receive_unlock_instructions: Hast du keine Anweisungen zum Entsperren deines Kontos erhalten?
         forgot_your_password: Passwort vergessen?
-        title: Weitere Links
         frequently_occuring_sign_in_problems: Häufig auftretende Probleme beim Anmelden
+        title: Weitere Links
     unlocks:
       new:
         resend_unlock_instructions: Anweisungen zum Entsperren erneut zusenden

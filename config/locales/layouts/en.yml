@@ -4,8 +4,8 @@ en:
     navigation:
       about: About
       admin: Admin
-      home: Base
-      user_menu: User menu
-      sign_in: Sign in
       edit_account: Edit account
+      home: Base
       log_out: Log out
+      sign_in: Sign in
+      user_menu: User menu

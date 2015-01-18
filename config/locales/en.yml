@@ -5,8 +5,8 @@ en:
   'false': 'No'
   layouts:
     navigation:
-      sign_up: Sign up
       choose_language: Choose language
+      sign_up: Sign up
   pages:
     about:
       headline: About Base

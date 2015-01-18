@@ -4,6 +4,9 @@ en:
     confirmations:
       new:
         resend_confirmation_instructions: Resend confirmation instructions
+    failure:
+      invalid: Invalid login or password.
+      not_found_in_database: Invalid login or password.
     mailer:
       confirmation_instructions:
         confirm_my_account: Confirm my account!
@@ -11,9 +14,6 @@ en:
         change_my_password: Change my password!
       unlock_instructions:
         unlock_my_account: Unlock my account!
-    failure:
-      invalid: Invalid login or password.
-      not_found_in_database: Invalid login or password.
     passwords:
       new:
         forgot_your_password: Forgot your password?
@@ -29,24 +29,24 @@ en:
         new_password: New password (leave blank if you don't want to change it)
         unhappy: Unhappy?
       new:
-        sign_up: Sign up
         account_information: Account information
         choose_and_confirm_password: Choose a password (and confirm it to avoid typos)
+        sign_up: Sign up
     sessions:
-      new:
-        sign_in: Sign in
       form:
+        having_a_problem: Having a problem?
         sign_in: Sign in
         username_or_email: Username or email
-        having_a_problem: Having a problem?
         visit_full_sign_in_page: Visit the full sign in page!
+      new:
+        sign_in: Sign in
     shared:
       links:
         didnt_receive_confirmation_instructions: Didn't receive confirmation instructions?
         didnt_receive_unlock_instructions: Didn't receive unlock instructions?
         forgot_your_password: Forgot your password?
-        title: Additional links
         frequently_occuring_sign_in_problems: Frequently occurring sign in problems
+        title: Additional links
     unlocks:
       new:
         resend_unlock_instructions: Resend unlock instructions

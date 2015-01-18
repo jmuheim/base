@@ -2,22 +2,22 @@
 en:
   errors:
     messages:
+      after: must be after %{restriction}
       already_confirmed: was already confirmed, please try signing in
+      before: must be before %{restriction}
       confirmation_period_expired: needs to be confirmed within %{period}, please request a new one
       expired: has expired, please request a new one
+      invalid_date: is not a valid date
+      invalid_datetime: is not a valid datetime
+      invalid_time: is not a valid time
+      is_at: must be at %{restriction}
       not_found: not found
       not_locked: was not locked
       not_saved:
         one: '1 error prohibited this %{resource} from being saved:'
         other: "%{count} errors prohibited this %{resource} from being saved:"
-      invalid_date: is not a valid date
-      invalid_time: is not a valid time
-      invalid_datetime: is not a valid datetime
-      is_at: must be at %{restriction}
-      before: must be before %{restriction}
-      on_or_before: must be on or before %{restriction}
-      after: must be after %{restriction}
       on_or_after: must be on or after %{restriction}
-      wrong_size: is the wrong size (should be %{file_size})
-      size_too_small: is too small (should be at least %{file_size})
+      on_or_before: must be on or before %{restriction}
       size_too_big: is too big (should be at most %{file_size})
+      size_too_small: is too small (should be at least %{file_size})
+      wrong_size: is the wrong size (should be %{file_size})
