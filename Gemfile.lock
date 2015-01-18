@@ -1,4 +1,10 @@
 GIT
+  remote: git://github.com/jmuheim/navigasmic.git
+  revision: 644aabc5ea354407d344c5a95de6a354a93db079
+  specs:
+    navigasmic (1.1.0)
+
+GIT
   remote: git://github.com/jmuheim/rip_hashrocket.git
   revision: e500703e35598a3a1b680c7ca5d466b68faa2d9c
   specs:
@@ -45,6 +51,8 @@ GEM
       activesupport (= 4.1.0)
       builder (~> 3.1)
       erubis (~> 2.7.0)
+    actionview-encoded_mail_to (1.0.5)
+      rails
     activemodel (4.1.0)
       activesupport (= 4.1.0)
       builder (~> 3.1)
@@ -269,7 +277,6 @@ GEM
     minitest (5.4.3)
     multi_json (1.10.1)
     mysql2 (0.3.17)
-    navigasmic (1.1.0)
     nested_form (0.3.2)
     netrc (0.9.0)
     nilify_blanks (1.1.0)
@@ -366,6 +373,7 @@ GEM
       ffi (>= 0.5.0)
     rdoc (4.1.2)
       json (~> 1.4)
+    redcarpet (3.2.2)
     remotipart (1.2.1)
     rerun (0.10.0)
       listen (~> 2.7, >= 2.7.3)
@@ -493,6 +501,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  actionview-encoded_mail_to
   better_errors
   binding_of_caller
   bootstrap-sass
@@ -535,7 +544,7 @@ DEPENDENCIES
   mina
   mini_magick
   mysql2
-  navigasmic
+  navigasmic!
   nilify_blanks
   paper_trail
   poltergeist
@@ -547,6 +556,7 @@ DEPENDENCIES
   rails-i18n
   rails_admin
   rb-fsevent
+  redcarpet
   rerun
   respec
   responders

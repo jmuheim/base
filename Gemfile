@@ -52,7 +52,7 @@ gem 'cocoon' # Dynamic nested forms made easy
 
 gem 'validates_timeliness' # Date and time validation plugin for ActiveModel and Rails
 
-gem 'navigasmic' # Semantic navigation
+gem 'navigasmic', github: 'jmuheim/navigasmic' # Semantic navigation
 
 gem 'nilify_blanks' # Save NULLs instead of empty strings into the database
 
@@ -69,6 +69,10 @@ gem 'mini_magick' # Mini replacement for RMagick
 gem 'fancybox2-rails' # Fancybox (lightbox clone)
 
 gem 'slugify' # Turn a string into its alphanumerical dashed equivalent
+
+gem 'redcarpet' # Markdown parser
+
+gem 'actionview-encoded_mail_to' # Rails mail_to helper with obfuscation
 
 group :doc do
   gem 'sdoc', require: false # bundle exec rake doc:rails generates the API under doc/api.
