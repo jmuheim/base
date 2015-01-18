@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe 'Showing the home page' do
-  before { visit page_path('home') }
+  before { visit root_path }
 
   it 'displays a welcome message' do
     within 'main' do
