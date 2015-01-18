@@ -1,9 +1,11 @@
 require 'rails_helper'
 
 describe 'Showing about page' do
-  it 'displays a welcome message' do
-    visit page_path('about')
+  before { visit page_path('about') }
 
-    expect(page).to have_content 'About Base'
+  it 'displays a welcome message' do
+    within 'main' do
+      expect(page).to have_content 'About Base'
+    end
   end
 end

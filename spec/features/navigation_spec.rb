@@ -5,21 +5,31 @@ describe 'Navigation' do
     before { visit root_path }
 
     it 'offers a link to the home page' do
-      expect(page).to have_link 'Base'
+      within 'nav' do
+        expect(page).to have_link 'Base'
+      end
     end
 
     it 'offers a link to the about page' do
-      expect(page).to have_link 'About'
+      within 'nav' do
+        expect(page).to have_link 'About'
+      end
     end
 
     it 'offers the possibility to switch languages' do
-      expect(page).to have_css '#language_chooser[title="Choose language"]' # Default language is english
-      click_link 'Seite auf Deutsch anzeigen'
+      within 'nav' do
+        expect(page).to have_css '#language_chooser[title="Choose language"]' # Default language is english
+        click_link 'Seite auf Deutsch anzeigen'
+      end
 
-      expect(page).to have_css '#language_chooser[title="Sprache wählen"]'
-      click_link 'Show page in english'
+      within 'nav' do
+        expect(page).to have_css '#language_chooser[title="Sprache wählen"]'
+        click_link 'Show page in english'
+      end
 
-      expect(page).to have_css '#language_chooser[title="Choose language"]'
+      within 'nav' do
+        expect(page).to have_css '#language_chooser[title="Choose language"]'
+      end
     end
   end
 
@@ -41,7 +51,9 @@ describe 'Navigation' do
     end
 
     it 'offers a link to the admin area' do
-      expect(page).to have_link 'Admin'
+      within 'nav' do
+        expect(page).to have_link 'Admin'
+      end
     end
   end
 end
