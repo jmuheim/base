@@ -27,7 +27,7 @@ nav#navigation.navbar.yamm.navbar-inverse.navbar-fixed-top
             - navigation.item fa_icon(:edit) + t('.edit_account'), edit_user_registration_path
             li
               = link_to destroy_user_session_path, method: :delete do
-                =' fa_icon('sign-out')
+                => fa_icon('sign-out')
                 = t('.log_out')
 
             - if can? :access, :rails_admin
@@ -36,9 +36,9 @@ nav#navigation.navbar.yamm.navbar-inverse.navbar-fixed-top
 
         - navigation.group flag(current_locale_flag), id: :language_chooser, title: t('.choose_language'), data: {placement: 'bottom'} do
           li = link_to locale: 'en' do
-            =' flag(:gb, 'Flag of England')
+            => flag(:gb, 'Flag of England')
             | Show page in english
 
           li = link_to locale: 'de' do
-            =' flag(:de, 'Flagge von Deutschland')
+            => flag(:de, 'Flagge von Deutschland')
             | Seite auf Deutsch anzeigen
