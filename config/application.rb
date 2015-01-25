@@ -34,6 +34,9 @@ module Base
     end
 
     config.action_dispatch.rescue_responses.merge! 'CanCan::AccessDenied' => :forbidden
+
+    # Don't supress errors in after_rollback and after_commit callbacks
+    config.active_record.raise_in_transactional_callbacks = true
   end
 end
 
