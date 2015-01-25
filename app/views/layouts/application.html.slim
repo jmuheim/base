@@ -19,3 +19,13 @@ html
         .col-md-12
           == render 'layouts/messages'
           == yield
+
+
+    footer#footer
+      div.container
+        .row
+          .col-md-8
+            p #{link_to 'Base', 'https://github.com/jmuheim/base/'} - Pre-configured basic Rails project. Fork me!
+
+          .col-md-4
+            p &copy; 2015 by #{link_to 'MuheimWebdesign.ch', 'http://www.muheimwebdesign.ch/'}
