@@ -119,6 +119,7 @@ group :development do
   gem 'guard-bundler'                    # Automatically install/update gem bundle when needed
   gem 'guard-annotate'                   # Automatically run the annotate gem when needed
   gem 'guard-migrate'                    # Automatically run migrations when they are edited
+  gem 'guard-shell'                      # Automatically run shell commands
 
   gem 'rerun', require: false # Restarts an app when the filesystem changes
 

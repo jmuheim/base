@@ -218,6 +218,9 @@ GEM
       guard (~> 2.1)
       guard-compat (~> 1.1)
       rspec (>= 2.99.0, < 4.0)
+    guard-shell (0.7.1)
+      guard (>= 2.0.0)
+      guard-compat (~> 1.0)
     haml (4.0.6)
       tilt
     has_scope (0.6.0.rc)
@@ -544,6 +547,7 @@ DEPENDENCIES
   guard-livereload
   guard-migrate
   guard-rspec
+  guard-shell
   has_scope
   headhunter
   i18n-tasks

@@ -75,3 +75,18 @@ guard :annotate, show_indexes:   true,
   # with the ":routes => true" option
   # watch( 'config/routes.rb' )
 end
+
+guard :shell do
+  # Some problems with this approach:
+  # - https://github.com/glebm/i18n-tasks/issues/125
+  # - http://stackoverflow.com/questions/28136107/guard-gem-pause-file-modification-within-guardfile-for-execution-of-a-block
+  # - http://stackoverflow.com/questions/28136122/guard-gem-run-some-code-at-startup-or-shutdown
+  # watch %r{app/\w+/(.+\.(html|rb)).*} do |m|
+  #   n m[0], 'Changed'
+  #   `i18n-tasks add-missing -v 'TRANSLATE: %{value}'`
+  # end
+
+  # watch 'Gemfile.lock' do |m|
+  #   `spring reload`
+  # end
+end
