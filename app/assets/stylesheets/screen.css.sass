@@ -3,7 +3,9 @@ html
   overflow-y: scroll // Always display vertical scrollbar to prevent "flickering" between pages that need it and pages that don't
 
 main
-  margin-top: 51px // accommodate the navbar
+  margin:
+    top: 51px    // Accommodate the navbar
+    bottom: 60px // Accommodate the footer
 
 h2
   font-style: italic // Make h2 more distinguishable from h1
@@ -91,6 +93,9 @@ select.datetime
   width: 100%
   background-color: $navbar-inverse-bg
   color: $navbar-inverse-color
+
+  .container
+    background-color: $navbar-inverse-bg
 
   a
     color: $navbar-inverse-link-active-color
