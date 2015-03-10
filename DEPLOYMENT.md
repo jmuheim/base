@@ -1,6 +1,6 @@
 # Deployment
 
-We chose [Uberspace](http://www.uberspace.de) as our hosting provider.
+We chose [Uberspace](http://www.uberspace.de) as our hosting provider and [InternetWorx](http://www.inwx.ch) as our domain registrar.
 
 In the following document, always replace `ACCOUNT` with your Uberspace account name (e.g. `base`), `SERVER` with the Uberspace server (e.g. `sirius`), `PROJECT` with your GitHub repository name (e.g. `base`), and `PORT` with an open port on the server!
 
@@ -11,6 +11,15 @@ In the following document, always replace `ACCOUNT` with your Uberspace account 
 - Then add your public SSH key on the [authentication](https://uberspace.de/dashboard/authentication) page (**notice:** [Mina](http://nadarei.co/mina/) seems to have [problems with password authentication](http://stackoverflow.com/questions/22606771)!)
 - You can see the chosen Uberspace server's name in the [datasheet](https://uberspace.de/dashboard/datasheet)
 - Now you can connect to your account: `$ ssh ACCOUNT@SERVER.uberspace.de`
+
+**Notice:** In the following document, execute commands of sections with a superscripted "local" on your local shell, and commands of sections with a superscripted "remote" on your server's shell.
+
+## Forward system mail to your account <sup>(remote)</sup>
+
+In the following code snippet, replace `email@example.com` with your own email address. Remember: it makes sense here to use an email address that's completely independent from Uberspace or any domain that you're intending to use with Uberspace.
+
+- `$ echo email@example.com > ~/.qmail`
+- `$ echo ./Maildir/ >> ~/.qmail` (optional, to keep a copy of the mail)
 
 ## Update default URL options <sup>(local)</sup>
 
@@ -91,6 +100,12 @@ Add to `~/html/.htaccess`:
 
 ```
 RewriteEngine on
+
+# Redirect browser from non-www to www address
+RewriteCond %{HTTP_HOST} !^www\.
+RewriteRule ^(.*)$ http://www.%{HTTP_HOST}/$1 [R=301,L]
+
+# Redirect everything to Passenger
 RewriteRule ^(.*)$ http://localhost:PORT/$1 [P]
 ```
 
@@ -151,3 +166,45 @@ The password for [MySQL](http://uberspace.de/dokuwiki/database:mysql) can be fou
 It's time for the first deployment: execute `$ mina deploy`! Use the `--verbose` and `--trace` switch for debugging if something goes wrong.
 
 Now go to [http://ACCOUNT.SERVER.uberspace.de](http://ACCOUNT.SERVER.uberspace.de) and enjoy your site!
+
+## Add domain(s) <sup>(remote)</sup>
+
+For website use:
+
+- `$ uberspace-add-domain -d example.com -w` adds domain `example.com`
+- `$ uberspace-add-domain -d www.example.com -w` adds subdomain `www.example.com`
+
+For mail use:
+
+- `$ uberspace-add-domain -d example.com -m -e example` adds domain `example.com` with namespace `example`
+
+### DNS
+
+Add the following records to the DNS for the domain:
+
+- IPv4: `dig <server>.uberspace.de A +short`
+- IPv6: `dig <server>.uberspace.de AAAA +short`
+- Aliases (CNAME):
+  - `www`
+  - `autoconfig` and `autodiscover` (for [automx](https://wiki.uberspace.de/mail:automx) support)
+- Email (MX):
+  - `SERVER.uberspace.de` with priority `5`
+
+## Create email account(s)<sup>(remote)</sup>
+
+Create account `user` in namespace `example`:
+
+- `$ vadduser example-user`
+
+Mail sent to `user@example.com` will be received by this account.
+
+## Configure mail client <sup>local</sup>
+
+OSX Mail:
+
+- Go to [http://automx.SERVER.uberspace.de](http://automx.SERVER.uberspace.de) and create and download a `.mobileconfig` file
+- Execute the file
+
+Thunderbird:
+
+- Just add the account in the account settings using user name and password - Thunberbird will automatically detect the correct settings!
