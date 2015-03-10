@@ -1,7 +1,20 @@
-# A sample Guardfile
 # More info at https://github.com/guard/guard#readme
 
 require 'active_support/inflector'
+
+guard :shell do
+  # Some problems with this approach (double reloading of livereload):
+  # - http://stackoverflow.com/questions/28136107/guard-gem-pause-file-modification-within-guardfile-for-execution-of-a-block
+  # - http://stackoverflow.com/questions/28136122/guard-gem-run-some-code-at-startup-or-shutdown
+  # watch %r{app/\w+/(.+\.(html|rb)).*} do |m|
+  #   n m[0], 'Changed'
+  #   `i18n-tasks add-missing -v 'TRANSLATE: %{value}'`
+  # end
+
+  # watch 'Gemfile.lock' do |m|
+  #   `spring reload`
+  # end
+end
 
 guard :livereload, port: 35729 do
   watch(%r{app/views/.+\.(erb|haml|slim)$})
@@ -74,19 +87,4 @@ guard :annotate, show_indexes:   true,
   # Uncomment the following line if you are running routes annotation
   # with the ":routes => true" option
   # watch( 'config/routes.rb' )
-end
-
-guard :shell do
-  # Some problems with this approach:
-  # - https://github.com/glebm/i18n-tasks/issues/125
-  # - http://stackoverflow.com/questions/28136107/guard-gem-pause-file-modification-within-guardfile-for-execution-of-a-block
-  # - http://stackoverflow.com/questions/28136122/guard-gem-run-some-code-at-startup-or-shutdown
-  # watch %r{app/\w+/(.+\.(html|rb)).*} do |m|
-  #   n m[0], 'Changed'
-  #   `i18n-tasks add-missing -v 'TRANSLATE: %{value}'`
-  # end
-
-  # watch 'Gemfile.lock' do |m|
-  #   `spring reload`
-  # end
 end
