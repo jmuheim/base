@@ -9,7 +9,7 @@ This is a basic Rails project with everything configured the way I want. To fork
 
 = Additional TODOs in your fork:
 
-- Rename <code>README_example.md</code> to <code>README.md</code> and commit. Then...
+- Rename <code>README_example.md</code> to <code>README.md</code> and commit. Then open <code>README.md</code> and...
   - Replace <code>TITLE</code> with a meaningful title, e.g. <code>Pretty Calc - A pretty calculator</code>
   - Replace all occurrences of PROJECT to your project's downcased name, e.g. <code>pretty_calc</code> for <code>Pretty Calc</code>
   - Complement it with your project specific details
@@ -39,4 +39,4 @@ This is a basic Rails project with everything configured the way I want. To fork
 
 = Done! :-)
 
-Last but not least: commit all your changes.
+Last but not least: run `$ rake` to see if everything's working, then commit all your changes.
