@@ -2,7 +2,9 @@
 
 We chose [Uberspace](http://www.uberspace.de) as our hosting provider and [InternetWorx](http://www.inwx.ch) as our domain registrar.
 
-In the following document, always replace `ACCOUNT` with your Uberspace account name (e.g. `base`), `SERVER` with the Uberspace server (e.g. `sirius`), `PROJECT` with your GitHub repository name (e.g. `base`), and `PORT` with an open port on the server!
+In the following document, replace `ACCOUNT` with your Uberspace account name (e.g. `base`), `SERVER` with the Uberspace server (e.g. `sirius`), `PROJECT` with your GitHub repository name (e.g. `base`), and `PORT` with an open port on the server! **When you worked through this document, remove this paragraph here, then commit the document.**
+
+**Notice:** the `$` sign in code examples indicates a shell prompt! If you copy&pase, don't copy the `$` sign!
 
 ## Register new account
 
@@ -31,22 +33,9 @@ Change the default URL options' `:host` in `config/environments/production.rb` t
 
 ## Setup Ruby <sup>(remote)</sup>
 
-**Notice:** the `$` sign in code examples indicates a shell prompt! If you copy&pase, don't copy the `$` sign!
+To [activate Ruby 2.1](http://uberspace.de/dokuwiki/cool:rails#ruby_aktivieren), execute the script for the newest Ruby path on [Uberspace's Ruby configuration page](https://wiki.uberspace.de/development:ruby#section22).
 
-To [activate Ruby 2.1](http://uberspace.de/dokuwiki/cool:rails#ruby_aktivieren), execute the following:
-
-```
-$ cat <<'__EOF__' >> ~/.bash_profile
-export PATH=/package/host/localhost/ruby-2.1.1/bin:$PATH
-export PATH=$HOME/.gem/ruby/2.1.0/bin:$PATH
-__EOF__
-```
-
-Load your new configuration:
-
-```
-$ . ~/.bash_profile
-```
+Load your new configuration by executing `$ . ~/.bash_profile`.
 
 `ruby -v` should now output something like this:
 
@@ -77,7 +66,7 @@ ruby 2.1.1p76 (2014-02-24 revision 45161) [x86_64-linux]
 Edit `~/nginx/conf/nginx.conf` like so:
 
 ```
-daemon off; # We execute Nginx using Daemontools
+daemon off; # We execute Nginx using Daemontools # <-- Do we still need this??
 
 ...
 
@@ -147,7 +136,7 @@ Execute `$ mina setup`. Use the `--verbose` and `--trace` switch for debugging i
 
 ## Database <sup>(remote)</sup>
 
-Then, on the server, edit `~/rails/shared/config/database.yml` and add the following:
+Then edit `~/rails/shared/config/database.yml` and add the following:
 
 ```
 production:
@@ -166,6 +155,8 @@ The password for [MySQL](http://uberspace.de/dokuwiki/database:mysql) can be fou
 It's time for the first deployment: execute `$ mina deploy`! Use the `--verbose` and `--trace` switch for debugging if something goes wrong.
 
 Now go to [http://ACCOUNT.SERVER.uberspace.de](http://ACCOUNT.SERVER.uberspace.de) and enjoy your site!
+
+You may now want to update the link to the live project in `README.md`. :-)
 
 ## Add domain(s) <sup>(remote)</sup>
 

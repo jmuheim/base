@@ -14,7 +14,7 @@ Recommended environment:
 
 Setup:
 
-- `$ git clone git@github.com:jmuheim/PROJECT.git`
+- `$ git clone git@github.com:GITHUB/PROJECT.git`
 - `$ cd PROJECT`
 - `$ bundle install`
 
@@ -76,10 +76,6 @@ To learn more about setting up deployment on a server, see [Deployment](./DEPLOY
 Be sure you have committed and pushed all wanted changes, then execute `$ mina deploy`! Use the `--verbose` and `--trace` switch for debugging if something goes wrong.
 
 That's all, folks!
-
-## Continuous integration
-
-- The project is configured to be continuously integrated using [Travis CI](https://travis-ci.org/jmuheim/PROJECT) (`master` branch only).
 
 ## Backlog
 

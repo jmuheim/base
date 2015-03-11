@@ -11,6 +11,7 @@ This is a basic Rails project with everything configured the way I want. To fork
 
 - Rename <code>README_example.md</code> to <code>README.md</code> and commit. Then open <code>README.md</code> and...
   - Replace <code>TITLE</code> with a meaningful title, e.g. <code>Pretty Calc - A pretty calculator</code>
+  - Replace all occurrences of GITHUB to the name of the GitHub account where your repository lies, e.g. <code>jmuheim</code>
   - Replace all occurrences of PROJECT to your project's downcased name, e.g. <code>pretty_calc</code> for <code>Pretty Calc</code>
   - Complement it with your project specific details
 - Change the content of <code>.ruby-gemset</code> file to the name of your fork's repository
