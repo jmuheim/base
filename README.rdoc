@@ -5,6 +5,8 @@
 {<img src="https://gemnasium.com/jmuheim/base.png" alt="Dependency Status" />}[https://gemnasium.com/jmuheim/base]
 {<img src="https://codeclimate.com/github/jmuheim/base/badges/coverage.svg" alt="Coverage Status" />}[https://codeclimate.com/github/jmuheim/base]
 
+Test
+
 This is a basic Rails project with everything configured the way I want. To fork it, create a new repository on GitHub, clone it to your computer, and execute <code>git remote add upstream git@github.com:jmuheim/base.git</code> to add Base's original repository as upstream. Now you can always merge Base's code into your project using <code>git pull upstream master</code>.
 
 = Additional TODOs in your fork:
