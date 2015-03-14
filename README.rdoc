@@ -1,9 +1,9 @@
 == Base Project
 
-{<img src="https://codeclimate.com/github/jmuheim/base.png" />}[https://codeclimate.com/github/jmuheim/base]
+{<img src="https://codeclimate.com/github/jmuheim/base/badges/gpa.svg" alt="Code Climate Status" />}[https://codeclimate.com/github/jmuheim/base]
 {<img src="https://travis-ci.org/jmuheim/base.png?branch=master" alt="Build Status" />}[https://travis-ci.org/jmuheim/base]
 {<img src="https://gemnasium.com/jmuheim/base.png" alt="Dependency Status" />}[https://gemnasium.com/jmuheim/base]
-{<img src="https://coveralls.io/repos/jmuheim/base/badge.png" alt="Coverage Status" />}[https://coveralls.io/r/jmuheim/base]
+{<img src="https://codeclimate.com/github/jmuheim/base/badges/coverage.svg" alt="Coverage Status" />}[https://codeclimate.com/github/jmuheim/base]
 
 This is a basic Rails project with everything configured the way I want. To fork it, create a new repository on GitHub, clone it to your computer, and execute <code>git remote add upstream git@github.com:jmuheim/base.git</code> to add Base's original repository as upstream. Now you can always merge Base's code into your project using <code>git pull upstream master</code>.
 
@@ -34,7 +34,6 @@ This is a basic Rails project with everything configured the way I want. To fork
 - {Code Climate}[https://codeclimate.com/github/signup]
 - {Travis CI}[https://travis-ci.org/profile/jmuheim]
 - {Gemnasium}[https://gemnasium.com/projects/new_from_github]
-- {Coveralls}[https://coveralls.io/repos/new]
 - {Hound}[https://houndci.com/]
 - {Rollbar}[https://rollbar.com/]
 

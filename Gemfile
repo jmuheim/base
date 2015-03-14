@@ -162,9 +162,9 @@ group :test do
 
   gem 'headhunter' # Automagically validates all HTML and CSS during feature tests
 
-  gem 'coveralls', require: false
-
   gem 'i18n-tasks'
+
+  gem 'codeclimate-test-reporter', require: nil
 end
 
 group :production do
