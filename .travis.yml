@@ -7,4 +7,4 @@ script:
 bundler_args: --without development
 addons:
   code_climate:
-    repo_token: <% Rails.application.secrets.code_climate_repo_token %>
+    repo_token: <%= Rails.application.secrets.code_climate_repo_token %>
