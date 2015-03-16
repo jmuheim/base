@@ -19,3 +19,4 @@ coverage
 .rspec
 public/assets
 public/uploads
+config/secrets.yml
