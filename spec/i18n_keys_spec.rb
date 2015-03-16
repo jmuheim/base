@@ -5,7 +5,7 @@ describe 'I18n' do
   let(:i18n) { I18n::Tasks::BaseTask.new }
 
   it 'does not have keys in locales that do not exist in base' do
-    # This produces ugly output, but for the moment it's enough. Lateon, there hopefully will be an i18n-task for this, see https://github.com/glebm/i18n-tasks/issues/71#issuecomment-48030057.
+    # This produces ugly output, but for the moment it's enough. Lateron, there hopefully will be an i18n-task for this, see https://github.com/glebm/i18n-tasks/issues/71#issuecomment-48030057.
     translated_missing_from_base = (i18n.locales - [i18n.base_locale]).map do |locale|
        i18n.missing_tree i18n.base_locale, locale
     end.reduce(:merge!)
@@ -78,12 +78,7 @@ describe 'I18n' do
     fail "Missing model name translations:\n#{fail_message}" unless fail_message.empty?
   end
 
-  # Inspired by https://gist.github.com/equivalent/1347687
   def project_models
-    Dir[Rails.root.to_s + '/app/models/**/*.rb'].each do |file|
-      require file rescue nil
-    end
-
-    ActiveRecord::Base.descendants.reject { |descendant| descendant.name =~ /^HABTM_|ActiveRecord::/ }
+    @project_models ||= ::ActiveRecord::Base.subclasses.collect { |type| type.name }.reject { |descendant| descendant =~ /^HABTM_|ActiveRecord|PaperTrail/ }.sort.map { |descendant| descendant.constantize }
   end
 end
