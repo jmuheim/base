@@ -12,11 +12,12 @@ require 'mina/git'
 
 set :server_name, 'sirius'
 set :user, 'base'
-set :repository_name, 'base'
+set :repository_name, 'jmuheim/base'
+set :forward_agent, true
 
 set :domain, "#{server_name}.uberspace.de"
 set :deploy_to, "/home/#{user}/rails"
-set :repository, "https://github.com/jmuheim/#{repository_name}.git"
+set :repository, "git@github.com:#{repository_name}.git"
 set :branch, 'master'
 
 # Manually create these paths in shared/ (eg: shared/config/database.yml) in your server.

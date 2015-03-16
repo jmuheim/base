@@ -27,10 +27,6 @@ In the following code snippet, replace `email@example.com` with your own email a
 
 Change the default URL options' `:host` in `config/environments/production.rb` to `http://ACCOUNT.SERVER.uberspace.de`.
 
-## Setup Mina <sup>(local)</sup>
-
-- Edit [`config/deploy.rb`](config/deploy.rb) and set the correct `:server_name`, `:user`, and `:repository_name`. Commit everything into `master` branch (or also set the `:branch` option to your branch name).
-
 ## Setup Ruby <sup>(remote)</sup>
 
 To [activate Ruby 2.1](http://uberspace.de/dokuwiki/cool:rails#ruby_aktivieren), execute the script for the newest Ruby path on [Uberspace's Ruby configuration page](https://wiki.uberspace.de/development:ruby#section22).
@@ -128,7 +124,13 @@ ActionMailer::Base.smtp_settings = {
 }
 ```
 
+## Add GitHub to known hosts <sup>(remote)</sup>
+
+Execute `ssh -T git@github.com` and confirm.
+
 ## Setup Mina <sup>(local)</sup>
+
+- Edit [`config/deploy.rb`](config/deploy.rb) and set the correct `:server_name`, `:user`, and `:repository_name`. Commit everything into `master` branch (or also set the `:branch` option to your branch name).
 
 Be sure you have commited and pushed all changes.
 
