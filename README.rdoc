@@ -29,6 +29,7 @@ This is a basic Rails project with everything configured the way I want. To fork
 - Change the value of <code>config.mailer_sender</code> in <code>config/initializers/devise.rb</code> to some useful email address (e.g. <code>info@PROJECT.com</code>)
 - Change the Rack Livereload port in <code>Guardfile</code> and <code>config/development.rb</code> to e.g. <code>35730</code>
 - Change the value of <code>Port:</code> in <code>config/boot.rb</code> to e.g. <code>3002</code>
+- Create an `.rspec` file with your specific RSpec config, e.g. `--color` and `--require spec_helper`
 
 = Activate external services
 
