@@ -80,3 +80,7 @@ That's all, folks!
 ## Backlog
 
 You can find the backlog here: [`BACKLOG.md`](./BACKLOG.md).
+
+## Services
+
+You can find informations about external services in use here: [`SERVICES.md`](./SERVICES.md).
