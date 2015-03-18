@@ -7,7 +7,7 @@
         - @user.errors.full_messages.each do |message|
           li = message
 
-  = f.input :name, autofocus: true
+  = f.input :name
   = f.input :email, as: :email
 
   / (leave blank if you don't want to change it)

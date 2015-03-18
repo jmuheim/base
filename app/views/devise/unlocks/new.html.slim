@@ -7,7 +7,7 @@ section.headline
                                 url:     unlock_path(resource_name),
                                 html:    {method: :post, class: 'form-horizontal'},
                                 wrapper: :horizontal_form do |f|
-      = f.input :email, autofocus: true
+      = f.input :email
 
       = f.button :submit, t('.resend_unlock_instructions')
 
