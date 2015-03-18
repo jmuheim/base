@@ -7,6 +7,7 @@ en:
     navigation:
       choose_language: Choose language
       sign_up: Sign up
+      toggle_navigation: Toggle navigation
   pages:
     about:
       headline: About Base

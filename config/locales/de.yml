@@ -7,6 +7,7 @@ de:
     navigation:
       choose_language: Sprache wählen
       sign_up: Registrieren
+      toggle_navigation: Navigation anzeigen oder ausblenden
   pages:
     about:
       headline: "Über Base"
