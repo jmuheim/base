@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe 'Navigation' do
-  context 'as a guest' do
+  context 'as a guest' do # TODO: This context doesn't really reflect reality. Is it really needed? Maybe a different name (e.g. 'always') would fit better?
     before { visit root_path }
 
     it 'offers a link to the home page' do
@@ -25,12 +25,44 @@ describe 'Navigation' do
 
       expect(page).to have_css '#language_chooser[title="Choose language"]'
     end
+    
+    it 'shows the "Toggle navigation" button on small, medium, and large screens (and collapses it on extra small ones)', js: true do
+      within 'nav' do
+        screen_width :xs do
+          expect(page).to have_button 'Toggle navigation'
+        end
+
+        screen_width :sm do
+          expect(page).not_to have_button 'Toggle navigation'
+        end
+
+        screen_width :md do
+          expect(page).not_to have_button 'Toggle navigation'
+        end
+
+        screen_width :lg do
+          expect(page).not_to have_button 'Toggle navigation'
+        end
+      end
+    end
 
     it 'reports the status of dropdowns (expanded/collapsed) to non-visual agents', js: true do
       within '#sign_in_panel' do
         expect {
           click_link 'Sign in'
-        }.to change { find('a.dropdown-toggle')['aria-expanded'].to_b }.from(false).to true
+        }.to change { find('.dropdown-toggle')['aria-expanded'].to_b }.from(false).to true
+      end
+    end
+
+    it 'reports the responsiveness status (expanded/collapsed) to non-visual agents', js: true do
+      pending "Bootstrap doesn't support this yet, see https://github.com/twbs/bootstrap/issues/16099"
+
+      within 'nav' do
+        screen_width :xs do
+          expect {
+            click_button 'Toggle navigation'
+          }.to change { find('#toggle_navigation')['aria-expanded'].to_b }.from(false).to true
+        end
       end
     end
   end
