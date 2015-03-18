@@ -123,7 +123,7 @@ Navigasmic.setup do |config|
       if !has_nested || has_link
         "<span>#{label}</span>"
       else
-        link_to("#{label}<b class='caret'></b>".html_safe, '#', class: 'dropdown-toggle', data: {toggle: 'dropdown'})
+        link_to("#{label}<b class='caret'></b>".html_safe, '#', class: 'dropdown-toggle', data: {toggle: 'dropdown'}, aria: {expanded: false})
       end
     end
 

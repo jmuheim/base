@@ -510,6 +510,7 @@ GEM
     unicode_utils (1.4.0)
     validates_timeliness (3.0.14)
       timeliness (~> 0.3.6)
+    wannabe_bool (0.1.0)
     warden (1.2.3)
       rack (>= 1.0)
     websocket (1.2.1)
@@ -606,4 +607,5 @@ DEPENDENCIES
   tzinfo-data
   uglifier (>= 1.3.0)
   validates_timeliness
+  wannabe_bool
   xray-rails

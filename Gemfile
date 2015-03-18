@@ -72,6 +72,8 @@ gem 'actionview-encoded_mail_to' # Rails mail_to helper with obfuscation
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw] # Timezone Data for TZInfo (needed when run on Microsoft Windows, see https://github.com/tzinfo/tzinfo/wiki/Resolving-TZInfo::DataSourceNotFound-Errors)
 
+gem 'wannabe_bool' # Converts strings, integers, etc. intuitively to boolean values
+
 group :doc do
   gem 'sdoc', require: false # bundle exec rake doc:rails generates the API under doc/api.
 end

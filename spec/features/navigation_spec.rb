@@ -17,18 +17,20 @@ describe 'Navigation' do
     end
 
     it 'offers the possibility to switch languages' do
-      within 'nav' do
-        expect(page).to have_css '#language_chooser[title="Choose language"]' # Default language is english
-        click_link 'Seite auf Deutsch anzeigen'
-      end
+      expect(page).to have_css '#language_chooser[title="Choose language"]' # Default language is english
+      click_link 'Seite auf Deutsch anzeigen'
 
-      within 'nav' do
-        expect(page).to have_css '#language_chooser[title="Sprache wählen"]'
-        click_link 'Show page in english'
-      end
+      expect(page).to have_css '#language_chooser[title="Sprache wählen"]'
+      click_link 'Show page in english'
 
-      within 'nav' do
-        expect(page).to have_css '#language_chooser[title="Choose language"]'
+      expect(page).to have_css '#language_chooser[title="Choose language"]'
+    end
+
+    it 'reports the status of dropdowns (expanded/collapsed) to non-visual agents', js: true do
+      within '#sign_in_panel' do
+        expect {
+          click_link 'Sign in'
+        }.to change { find('a.dropdown-toggle')['aria-expanded'].to_b }.from(false).to true
       end
     end
   end

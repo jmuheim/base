@@ -19,7 +19,7 @@ nav#navigation.navbar.yamm.navbar-inverse.navbar-fixed-top
         - if current_user.guest?
           - navigation.item t('.sign_up'), new_user_registration_path
 
-          - navigation.group t('.sign_in') do
+          - navigation.group t('.sign_in'), id: :sign_in_panel do
             li
               .yamm-content
                 .row = render 'devise/sessions/form', resource: User.new, display: :small
