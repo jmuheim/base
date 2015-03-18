@@ -1,12 +1,14 @@
 nav#navigation.navbar.yamm.navbar-inverse.navbar-fixed-top
   .container
     .navbar-header
+      // Place brand before the "Toggle navigation" button to have an intuitive the focus order (on the Bootstrap examples page it's after the button which seems unintuitive)
+      = link_to t('.home'), root_path, class: home_link_class
+
       button.navbar-toggle type="button" data-toggle="collapse" data-target=".navbar-collapse"
         span.sr-only = t '.toggle_navigation'
         span.icon-bar
         span.icon-bar
         span.icon-bar
-      = link_to t('.home'), root_path, class: home_link_class
 
     .collapse.navbar-collapse
       = semantic_navigation :primary_navigation, config: :bootstrap do |navigation|
