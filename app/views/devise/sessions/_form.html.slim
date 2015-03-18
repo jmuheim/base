@@ -5,7 +5,7 @@
                             wrapper:          "#{display == :full ? :horizontal : :inline}_form",
                             wrapper_mappings: {boolean: "#{display == :full ? :horizontal : :vertical }_boolean"} do |f|
   .login_and_password
-    = f.input :login, autofocus: true, placeholder: t('.username_or_email')
+    = f.input :login, placeholder: t('.username_or_email')
     = f.input :password, placeholder: User.human_attribute_name(:password)
 
   .remember_me_and_submit
