@@ -17,10 +17,6 @@ gem 'compass-rails' # Compass framework
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
-# Turbolinks: makes following links in your web application faster
-gem 'turbolinks'
-gem 'jquery-turbolinks' # jQuery plugin for drop-in fix binded events problem caused by Turbolinks
-
 gem 'bootstrap-sass' # Sleek, intuitive, and powerful front-end framework
 
 gem 'font-awesome-rails' # The iconic font and CSS toolkit
