@@ -4,10 +4,16 @@ en:
     save: Save
   'false': 'No'
   layouts:
+    application:
+      footer: Footer
+      header: Header
     navigation:
       choose_language: Choose language
+      content_navigation: Content navigation
+      navigation: Navigation
       sign_up: Sign up
       toggle_navigation: Toggle navigation
+      user_navigation: User navigation
   pages:
     about:
       headline: About Base

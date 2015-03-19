@@ -4,10 +4,16 @@ de:
     save: Speichern
   'false': Nein
   layouts:
+    application:
+      footer: Fussbereich
+      header: Kopfbereich
     navigation:
       choose_language: Sprache wählen
+      content_navigation: Inhaltsnavigation
+      navigation: Navigation
       sign_up: Registrieren
       toggle_navigation: Navigation anzeigen oder ausblenden
+      user_navigation: Benutzernavigation
   pages:
     about:
       headline: "Über Base"

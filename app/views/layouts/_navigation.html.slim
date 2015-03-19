@@ -1,7 +1,10 @@
 nav#navigation.navbar.yamm.navbar-inverse.navbar-fixed-top
+  h2.sr-only = t '.navigation'
+
   .container
     .navbar-header
       // Place brand before the "Toggle navigation" button to have an intuitive the focus order (on the Bootstrap examples page it's after the button which seems unintuitive)
+      // TODO: Replace with logo! Or add some sr-only text like "(back to home page)"!
       = link_to t('.home'), root_path, class: home_link_class
 
       button#toggle_navigation.navbar-toggle type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false"
@@ -11,9 +14,13 @@ nav#navigation.navbar.yamm.navbar-inverse.navbar-fixed-top
         span.icon-bar
 
     .collapse.navbar-collapse
+      h3.sr-only = t '.content_navigation'
+
       = semantic_navigation :primary_navigation, config: :bootstrap do |navigation|
         - navigation.item User.model_name.human(count: 2), users_path
         - navigation.item t('.about'), page_path('about')
+
+      h3.sr-only = t '.user_navigation'
 
       = semantic_navigation :meta_navigation, config: :bootstrap, class: 'navbar-right' do |navigation|
         - if current_user.guest?

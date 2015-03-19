@@ -1,7 +1,6 @@
-section.headline
+= container_for @user do
   h1 = @user.name
 
-article id=dom_id(@user)
   dl.dl-horizontal
     dt Email
     dd = @user.email
@@ -16,4 +15,3 @@ article id=dom_id(@user)
       = link_to t('actions.destroy'), user_path(@user), method: :delete,
                 data:  {confirm: t('actions.destroy_resource_confirmation_question', resource: User.model_name.human)},
                 class: 'btn btn-default btn-sm'
-  

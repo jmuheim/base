@@ -12,6 +12,7 @@ html
 
   body class=body_css_classes
     header
+      h1.sr-only = t '.header'
       == render 'layouts/navigation'
 
     main.container[role="main"]
@@ -22,6 +23,7 @@ html
 
 
     footer#footer
+      h1.sr-only = t '.footer'
       .container
         .row
           .col-md-8

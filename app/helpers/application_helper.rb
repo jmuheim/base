@@ -7,6 +7,7 @@ module ApplicationHelper
     end
   end
 
+  # TODO: Add spec!
   def flag(name, content = nil)
     content_tag :span, class: ['glyphicon', "bfh-flag-#{name.upcase}"] do
       content_tag :span, class: 'hide-text' do
@@ -15,6 +16,7 @@ module ApplicationHelper
     end
   end
 
+  # TODO: Add spec!
   def current_locale_flag
     case I18n.locale
     when :en
@@ -24,12 +26,14 @@ module ApplicationHelper
     end
   end
 
+  # TODO: Add spec!
   def home_link_class
     classes = ['navbar-brand']
     classes << 'active' if request.path == root_path
     classes
   end
 
+  # TODO: Add spec!
   def active_class_for(language)
     'active' if language == I18n.locale
   end
@@ -46,11 +50,20 @@ module ApplicationHelper
     devise_mapping.to
   end
 
+  # TODO: Add spec!
   def user_avatar
     if current_user.avatar?
       image_tag(current_user.avatar.url(:thumb), class: 'avatar')
     else
       icon :user
+    end
+  end
+
+  def container_for(object, options = {})
+    tag = options[:tag] || 'div'
+
+    content_tag tag, id: dom_id(@user), class: dom_class(@user) do
+      yield
     end
   end
 end
