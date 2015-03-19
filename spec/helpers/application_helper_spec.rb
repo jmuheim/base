@@ -24,7 +24,7 @@ describe ApplicationHelper do
 
   describe '#container_for(object, :tag)' do
     # Why do I need to assign the user to an @variable? See http://stackoverflow.com/questions/29142310/rspec-when-using-subject-i-have-to-assign-an-object-to-an-variable-to-make
-    subject { container_for(@user = create(:user), tag: 'article') { 'Some content' } }
+    subject { container_for(create(:user), tag: 'article') { 'Some content' } }
 
     it { should have_css 'article#user_1.user' }
   end

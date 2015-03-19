@@ -62,7 +62,7 @@ module ApplicationHelper
   def container_for(object, options = {})
     tag = options[:tag] || 'div'
 
-    content_tag tag, id: dom_id(@user), class: dom_class(@user) do
+    content_tag tag, id: dom_id(object), class: dom_class(object) do
       yield
     end
   end
