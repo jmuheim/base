@@ -7,13 +7,18 @@ de:
     application:
       footer: Fussbereich
       header: Kopfbereich
+    jump_links:
+      jump_to_content: Zum Inhalt springen
+      jump_to_home_page: Zur startseite springen
+      jump_to_navigation: Zur Navigation springen
     navigation:
       choose_language: Sprache wählen
       content_navigation: Inhaltsnavigation
       navigation: Navigation
+      navigation_access_keys: 'TRANSLATE: TRANSLATE: '
       sign_up: Registrieren
       toggle_navigation: Navigation anzeigen oder ausblenden
-      user_navigation: Benutzernavigation
+      meta_navigation: Benutzernavigation
   pages:
     about:
       headline: "Über Base"

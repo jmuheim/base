@@ -7,13 +7,18 @@ en:
     application:
       footer: Footer
       header: Header
+    jump_links:
+      jump_to_content: Jump to content
+      jump_to_home_page: Jump to home page
+      jump_to_navigation: Jump to navigation
     navigation:
       choose_language: Choose language
       content_navigation: Content navigation
       navigation: Navigation
+      navigation_access_keys: 'TRANSLATE: '
       sign_up: Sign up
       toggle_navigation: Toggle navigation
-      user_navigation: User navigation
+      meta_navigation: User navigation
   pages:
     about:
       headline: About Base

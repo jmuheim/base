@@ -65,6 +65,25 @@ describe 'Navigation' do
         end
       end
     end
+
+    context 'jump links' do
+      # See http://stackoverflow.com/questions/29209518/rspec-and-capybara-how-to-get-the-horizontal-and-vertical-position-of-an-elemen
+      it 'visually displays them only on focus', js: true
+
+      it 'moves the focus to the navigation when activating the corresponding link', js: true, only: true do
+        pending "Doesn't seem to focus the link, so it's not clickable by Capybara"
+        expect(page).not_to have_css '#main:focus'
+        page.evaluate_script "$('#jump_to_content > a').focus()"
+        click_link 'Jump to content'
+        expect(page).to have_css '#main:focus'
+      end
+
+      it 'displays the link to the home page only on other pages' do
+        expect(page).not_to have_link 'Jump to home page'
+        visit page_path('about')
+        expect(page).to have_link 'Jump to home page'
+      end
+    end
   end
 
   context 'as a user' do

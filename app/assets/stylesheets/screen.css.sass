@@ -2,10 +2,24 @@ html
   height: 100%
   overflow-y: scroll // Always display vertical scrollbar to prevent "flickering" between pages that need it and pages that don't
 
+body
+  padding-top: 100000px
+
 main
   margin:
     top: 51px    // Accommodate the navbar
     bottom: 60px // Accommodate the footer
+
+#jump_links
+  a
+    position: fixed
+    z-index: 1040
+    left: 50%
+    top: 0
+    +transform(translate(-50%, 0))
+
+    &:not(:focus)
+      @extend .sr-only
 
 h2
   font-style: italic // Make h2 more distinguishable from h1

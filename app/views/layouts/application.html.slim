@@ -11,11 +11,13 @@ html
     = csrf_meta_tags
 
   body class=body_css_classes
+    == render 'layouts/jump_links'
+
     header
       h1.sr-only = t '.header'
       == render 'layouts/navigation'
 
-    main.container
+    main#main.container
       .row
         .col-md-12
           == render 'layouts/messages'
