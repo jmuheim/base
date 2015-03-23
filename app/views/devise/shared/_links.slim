@@ -1,5 +1,5 @@
 .alert.alert-info
-  .title = t('.frequently_occuring_sign_in_problems') + ':'
+  h2.title = t('.frequently_occuring_sign_in_problems') + ':'
 
   ul
     - if devise_mapping.recoverable? && controller_name != 'passwords'
