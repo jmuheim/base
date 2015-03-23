@@ -78,13 +78,12 @@ group :doc do
   gem 'sdoc', require: false # bundle exec rake doc:rails generates the API under doc/api.
 end
 
-group :development, :test do
-  gem 'sqlite3' # Use SQLite as the database for Active Record
-
+group :development, :test do  
   # Testing tool for the Ruby programming language
   gem 'rspec'
-  gem 'rspec-rails'               # RSpec for Rails
-  gem 'rspec-collection_matchers' # Collection cardinality matchers
+  gem 'rspec-rails' # RSpec for Rails
+
+  gem 'sqlite3' # Use SQLite as the database for Active Record
 
   # Data generation
   gem 'factory_girl_rails' # Test data generator
@@ -141,6 +140,8 @@ group :development do
 end
 
 group :test do
+  gem 'rspec-collection_matchers' # Collection cardinality matchers
+
   gem 'respec', require: false # Allows to rerun failed specs (first do `respec` to run all, then `respec f` or `respec 123` to run failed)
 
   gem 'fuubar', '~> 2.0.0rc1' # The instafailing RSpec progress bar formatter
