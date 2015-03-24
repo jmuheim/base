@@ -70,6 +70,9 @@ describe 'Navigation' do
       # See http://stackoverflow.com/questions/29209518/rspec-and-capybara-how-to-get-the-horizontal-and-vertical-position-of-an-elemen
       it 'visually displays them only on focus', js: true
 
+      # See https://github.com/jejacks0n/navigasmic/issues/50
+      it 'offers access keys'
+
       it 'moves the focus to the navigation when activating the corresponding link', js: true, only: true do
         pending "Doesn't seem to focus the link, so it's not clickable by Capybara" # See http://stackoverflow.com/questions/29211158/rspec-capybara-setting-focus-to-an-element
         expect(page).not_to have_css '#main:focus'
