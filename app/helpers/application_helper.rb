@@ -78,7 +78,7 @@ module ApplicationHelper
     parts = []
     parts += flash.map { |key, value| "#{t "flash.#{key}"}: #{value}" } if flash.any?
     parts << (@page_heading or raise 'No page heading provided! Be sure to call #page_heading first.')
-    parts.join
+    parts.join ' '
   end
 
   def default_page_heading(options = {})

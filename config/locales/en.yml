@@ -1,5 +1,7 @@
 ---
 en:
+  app:
+    name: Base
   buttons:
     save: Save
   'false': 'No'
@@ -7,6 +9,7 @@ en:
     application:
       footer: Footer
       header: Header
+      title: Base
     jump_links:
       jump_to_content: Jump to content
       jump_to_home_page: Jump to home page
@@ -14,18 +17,30 @@ en:
     navigation:
       choose_language: Choose language
       content_navigation: Content navigation
-      navigation: Navigation
-      navigation_access_keys: 'TRANSLATE: '
-      sign_up: Sign up
-      toggle_navigation: Toggle navigation
       meta_navigation: User navigation
+      navigation: Navigation
+      sign_up: Sign up
+      title: Sign up
+      toggle_navigation: Toggle navigation
   pages:
     about:
-      headline: About Base
+      title: About Base
     home:
-      headline: Welcome to Base!
+      title: Welcome to Base!
   'true': 'Yes'
+  registrations:
+    new:
+      title: Sign up
+  sessions:
+    new:
+      title: Sign in
   users:
+    show:
+      title: User %{user}
+    edit:
+      title: Edit user %{user}
+    update:
+      title: Update user %{user}
     new:
       back: Back
       title: New user

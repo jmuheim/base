@@ -1,5 +1,7 @@
 ---
 de:
+  app:
+    name: Base
   buttons:
     save: Speichern
   'false': Nein
@@ -7,6 +9,7 @@ de:
     application:
       footer: Fussbereich
       header: Kopfbereich
+      title: Base
     jump_links:
       jump_to_content: Zum Inhalt springen
       jump_to_home_page: Zur startseite springen
@@ -14,17 +17,23 @@ de:
     navigation:
       choose_language: Sprache wählen
       content_navigation: Inhaltsnavigation
-      navigation: Navigation
-      navigation_access_keys: 'TRANSLATE: TRANSLATE: '
-      sign_up: Registrieren
-      toggle_navigation: Navigation anzeigen oder ausblenden
       meta_navigation: Benutzernavigation
+      navigation: Navigation
+      sign_up: Registrieren
+      title: Registrieren
+      toggle_navigation: Navigation anzeigen oder ausblenden
   pages:
     about:
-      headline: "Über Base"
+      title: "Über Base"
     home:
-      headline: Willkommen auf Base!
+      title: Willkommen auf Base!
   'true': Ja
+  registrations:
+    new:
+      title: Registrieren
+  sessions:
+    new:
+      title: Anmelden
   users:
     new:
       back: Zurück

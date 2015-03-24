@@ -15,4 +15,8 @@ class PagesController < ApplicationController
   def body_css_classes
     super << @view
   end
+
+  def default_page_heading
+    t "pages.#{@view}.title"
+  end
 end

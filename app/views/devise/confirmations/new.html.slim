@@ -1,4 +1,4 @@
-h1.headline = t '.resend_confirmation_instructions'
+h1.headline = page_heading
 
 .row
   .col-sm-8
@@ -6,8 +6,11 @@ h1.headline = t '.resend_confirmation_instructions'
                                 url:     confirmation_path(resource_name),
                                 html:    {method: :post, class: 'form-horizontal'},
                                 wrapper: :horizontal_form do |f|
+      // TODO: Error message "User could not be created." is misleading!
+      == render 'layouts/messages'
+
       = f.input :email
-      = f.button :submit, t('.resend_confirmation_instructions')
+      = f.button :submit, page_heading
 
   .col-sm-4
     = render 'devise/shared/links'

@@ -1,4 +1,4 @@
-h1.headline = t '.sign_up'
+h1.headline = page_heading
 
 .row
   .col-sm-8
@@ -6,6 +6,8 @@ h1.headline = t '.sign_up'
                                 url:     registration_path(resource_name),
                                 html:    {class: 'form-horizontal'},
                                 wrapper: :horizontal_form do |f|
+      == render 'layouts/messages'
+
       .panel.panel-default
         .panel-heading = t('.account_information')
         .panel-body
@@ -19,7 +21,7 @@ h1.headline = t '.sign_up'
           = f.input :password
           = f.input :password_confirmation
 
-      = f.button :submit, t('.sign_up'), class: 'btn-success'
+      = f.button :submit, page_heading, class: 'btn-success'
 
   .col-sm-4
     = render 'devise/shared/links'

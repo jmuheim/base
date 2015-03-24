@@ -88,7 +88,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  # TODO: Add spec!
+  # TODO: Move to helpers and add spec!
   def body_css_classes
     [controller_name, action_name]
   end

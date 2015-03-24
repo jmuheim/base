@@ -1,11 +1,6 @@
 = simple_form_for @user, html:    {class: 'form-horizontal'},
                          wrapper: :horizontal_form do |f|
-  - if @user.errors.any?
-    #error_explanation
-      h2 = "#{pluralize(@user.errors.count, 'error')} prohibited this user from being saved:"
-      ul
-        - @user.errors.full_messages.each do |message|
-          li = message
+  == render 'layouts/messages'
 
   = f.input :name
   = f.input :email, as: :email

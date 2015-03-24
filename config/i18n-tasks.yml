@@ -6,6 +6,14 @@ search:
   relative_roots:
     - app/views
 
+  include:
+    - '*.rb'
+    - '*.html.*'
+    - '*.text.*'
+
+  exclude:
+    - '*/application_helper.rb'
+
 data:
   # file_system is the default adapter, you can provide a custom class name here:
   adapter: file_system
@@ -40,6 +48,7 @@ ignore_unused:
   - simple_form.*
   - 'true'
   - validates_timeliness.*
+  - '*.title'
 
 ignore_eq_base:
   all:

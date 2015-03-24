@@ -1,7 +1,7 @@
 doctype html
 html
   head
-    title= yield(:title)
+    title = "#{page_title}#{' - ' + t('app.name') unless current_page?(root_path)}"
 
     meta[name="viewport" content="width=device-width, initial-scale=1.0"]
     meta name="description" content="#{yield(:description)}"
@@ -20,7 +20,6 @@ html
     main#main.container
       .row
         .col-md-12
-          == render 'layouts/messages'
           == yield
 
 
