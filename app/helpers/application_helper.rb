@@ -66,4 +66,22 @@ module ApplicationHelper
       yield
     end
   end
+
+  def page_title(*args)
+    options = args.extract_options!
+    raise "You can't provide both a title and options!" if args[0] && options.any?
+    @page_title = args[0].nil? ? page_title_default(options) : args[0]
+  end
+
+  def page_title_or_flashes
+    if flash.any?
+      flash.map { |key, value| "#{t "flash.#{key}"}: #{value}" }.join
+    else
+      @page_title or raise 'No page title provided! Be sure to place a call to page_title somewhere in your view.'
+    end
+  end
+
+  def page_title_default(options = {})
+    t '.title', options
+  end
 end
