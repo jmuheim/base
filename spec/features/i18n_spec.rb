@@ -18,4 +18,10 @@ describe 'I18n' do
 
     expect(page).to have_content 'Willkommen'
   end
+
+  it 'sets the html language' do
+    visit root_path
+
+    expect(page).to have_css 'html[lang="en"]'
+  end
 end
