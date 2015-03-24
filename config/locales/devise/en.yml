@@ -25,7 +25,7 @@ en:
         cancel_my_account: Cancel my account
         current_password: Current password (we need this to confirm your changes)
         currently_awaiting_confirmation_for: Currently awaiting confirmation for
-        headline: Edit your account
+        headline_with_flash: Edit your account
         new_password: New password (leave blank if you don't want to change it)
         unhappy: Unhappy?
       new:

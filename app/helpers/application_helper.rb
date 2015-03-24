@@ -66,22 +66,4 @@ module ApplicationHelper
       yield
     end
   end
-
-  def page_heading(*args)
-    options = args.extract_options!
-    heading = args[0]
-    raise "You can't provide both a heading and options!" if heading && options.any?
-    @page_heading = heading.nil? ? default_page_heading(options) : heading
-  end
-
-  def page_title
-    parts = []
-    parts += flash.map { |key, value| "#{t "flash.#{key}"}: #{value}" } if flash.any?
-    parts << (@page_heading or raise 'No page heading provided! Be sure to call #page_heading first.')
-    parts.join ' '
-  end
-
-  def default_page_heading(options = {})
-    t '.title', options
-  end
 end

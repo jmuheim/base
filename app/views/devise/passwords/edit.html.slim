@@ -1,16 +1,13 @@
-h1.headline = page_heading
+= headline_with_flash
 
 .row
   .col-sm-8
     = simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f|
-      // TODO: Error message "User could not be created." is misleading!
-      == render 'layouts/messages'
-
       = f.hidden_field :reset_password_token
       = f.input :password
       = f.input :password_confirmation
 
-      = f.button :submit, page_heading
+      = f.button :submit, headline
 
   .col-sm-4
     = render 'devise/shared/links'

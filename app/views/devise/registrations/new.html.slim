@@ -1,4 +1,4 @@
-h1.headline = page_heading
+= headline_with_flash
 
 .row
   .col-sm-8
@@ -6,8 +6,6 @@ h1.headline = page_heading
                                 url:     registration_path(resource_name),
                                 html:    {class: 'form-horizontal'},
                                 wrapper: :horizontal_form do |f|
-      == render 'layouts/messages'
-
       .panel.panel-default
         .panel-heading = t('.account_information')
         .panel-body
@@ -21,7 +19,7 @@ h1.headline = page_heading
           = f.input :password
           = f.input :password_confirmation
 
-      = f.button :submit, page_heading, class: 'btn-success'
+      = f.button :submit, headline, class: 'btn-success'
 
   .col-sm-4
     = render 'devise/shared/links'

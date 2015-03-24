@@ -25,7 +25,7 @@ de:
         cancel_my_account: Benutzerkonto löschen
         current_password: Aktuelles Passwort (wir benötigen dies um dein Benutzerkonto zu ändern)
         currently_awaiting_confirmation_for: Warte zur Zeit auf Bestätigung
-        headline: Bearbeite dein Benutzerkonto
+        headline_with_flash: Bearbeite dein Benutzerkonto
         new_password: Neues Passwort (leer lassen, um es ungeändert zu lassen)
         unhappy: Unglücklich?
       new:

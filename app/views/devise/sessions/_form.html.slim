@@ -4,9 +4,6 @@
                             namespace:        (display == :small ? 'dropdown' : nil),
                             wrapper:          "#{display == :full ? :horizontal : :inline}_form",
                             wrapper_mappings: {boolean: "#{display == :full ? :horizontal : :vertical }_boolean"} do |f|
-  // TODO: Error message "User could not be created." is misleading!
-  == render 'layouts/messages' unless display == :small
-
   .login_and_password
     = f.input :login, placeholder: t('.username_or_email'), required: true
     = f.input :password, placeholder: User.human_attribute_name(:password), required: true

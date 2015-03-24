@@ -16,7 +16,7 @@ class PagesController < ApplicationController
     super << @view
   end
 
-  def default_page_heading
+  def default_headline
     t "pages.#{@view}.title"
   end
 end

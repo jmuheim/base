@@ -1,7 +1,5 @@
 = simple_form_for @user, html:    {class: 'form-horizontal'},
                          wrapper: :horizontal_form do |f|
-  == render 'layouts/messages'
-
   = f.input :name
   = f.input :email, as: :email
 
