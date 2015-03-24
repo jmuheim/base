@@ -1,6 +1,8 @@
 ---
 de:
   flash:
+    alert: Alarm
+    notice: Hinweis
     actions:
       create:
         alert: "%{resource_name} konnte nicht erstellt werden."

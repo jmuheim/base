@@ -1,6 +1,8 @@
 ---
 en:
   flash:
+    alert: Alert
+    notice: Notice
     actions:
       create:
         alert: "%{resource_name} could not be created."
