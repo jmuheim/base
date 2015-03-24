@@ -13,7 +13,7 @@ Base::Application.routes.draw do
       get code, to: 'errors#show', code: code
     end
 
-    root 'pages#home'
+    root 'pages#show', view: 'home'
 
     get '/pages/:view', to: 'pages#show', # Keep this below root path definition (otherwise we have an infinite loop)!
                         as: 'page'
