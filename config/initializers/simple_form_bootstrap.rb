@@ -42,13 +42,19 @@ SimpleForm.setup do |config|
     b.use :hint,  wrap_with: { tag: 'p', class: 'help-block' }
   end
 
-  config.wrappers :vertical_radio_and_checkboxes, tag: 'div', class: 'form-group', error_class: 'has-error' do |b|
+  config.wrappers :vertical_radio_and_checkboxes, tag: 'fieldset', class: 'form-group', error_class: 'has-error' do |b|
     b.use :html5
     b.optional :readonly
-    b.use :label, class: 'control-label'
-    b.use :input
-    b.use :error, wrap_with: { tag: 'span', class: 'help-block' }
-    b.use :hint,  wrap_with: { tag: 'p', class: 'help-block' }
+
+    b.wrapper tag: 'legend', class: 'col-sm-3 control-label' do |ba|
+      ba.use :label # TODO: Doesn't need to be a label tag, see http://stackoverflow.com/questions/29261556/simple-form-use-fieldset-legend-for-radio-buttons-checkboxes
+    end
+
+    b.wrapper tag: 'div', class: 'col-sm-9' do |ba|
+      ba.use :input
+      ba.use :error, wrap_with: { tag: 'span', class: 'help-block' }
+      ba.use :hint,  wrap_with: { tag: 'p', class: 'help-block' }
+    end
   end
 
   config.wrappers :horizontal_form, tag: 'div', class: 'form-group', error_class: 'has-error' do |b|
@@ -95,11 +101,13 @@ SimpleForm.setup do |config|
     end
   end
 
-  config.wrappers :horizontal_radio_and_checkboxes, tag: 'div', class: 'form-group', error_class: 'has-error' do |b|
+  config.wrappers :horizontal_radio_and_checkboxes, tag: 'fieldset', class: 'form-group', error_class: 'has-error' do |b|
     b.use :html5
     b.optional :readonly
 
-    b.use :label, class: 'col-sm-3 control-label'
+    b.wrapper tag: 'legend', class: 'col-sm-3 control-label' do |ba|
+      ba.use :label # TODO: Doesn't need to be a label tag, see http://stackoverflow.com/questions/29261556/simple-form-use-fieldset-legend-for-radio-buttons-checkboxes
+    end
 
     b.wrapper tag: 'div', class: 'col-sm-9' do |ba|
       ba.use :input

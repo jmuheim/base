@@ -6,15 +6,15 @@
                                 url:     registration_path(resource_name),
                                 html:    {class: 'form-horizontal'},
                                 wrapper: :horizontal_form do |f|
-      .panel.panel-default
-        .panel-heading = t('.account_information')
+      fieldset.panel.panel-default
+        legend.panel-heading = t('.account_information')
         .panel-body
           = f.input :name
           = f.input :email
           = f.input :avatar, as: :upload
 
-      .panel.panel-default
-        .panel-heading = t('.choose_and_confirm_password')
+      fieldset.panel.panel-default
+        legend.panel-heading = t('.choose_and_confirm_password')
         .panel-body
           = f.input :password
           = f.input :password_confirmation
