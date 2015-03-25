@@ -72,7 +72,7 @@ end
 RSpec.configure do |config|
   config.after(:suite) do
     if I18n.exception_handler.missing_translations?
-      puts "\n\nFound #{I18n.exception_handler.missing_translations.size} missing translations! See config/missing_translations.yml.\n".yellow
+      puts "\n\nFound missing translations! See config/missing_translations.yml.\n".yellow
       I18n.exception_handler.store_missing_translations
     end
   end

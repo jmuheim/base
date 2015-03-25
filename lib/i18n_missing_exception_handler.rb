@@ -10,7 +10,7 @@ module I18n
     def call(exception, locale, key, options)
       if exception.is_a?(I18n::MissingTranslation)
         keys = I18n.normalize_keys(locale, key, options[:scope])
-        missing_translations << keys unless missing_translations.contains?(keys)
+        missing_translations << keys
         super
       end
     end
