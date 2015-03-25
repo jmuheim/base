@@ -18,6 +18,7 @@
 # --- Add custom requires under here! ---
 #= require cocoon
 #= require example_script
+#= require form_errors_accessibilizer
 # --- Add custom requires above here! ---
 #
 #= require init

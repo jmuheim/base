@@ -6,6 +6,9 @@ $(document).ready ->
   # $('#some_selector').each ->
   #   new App.ExampleScript @
 
+  $('form.simple_form').each ->
+    new App.FormErrorsAccessibilizer @
+
   # Bootstrap tooltips
   $('[title]').tooltip()
 
