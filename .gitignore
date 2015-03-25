@@ -20,3 +20,4 @@ coverage
 public/assets
 public/uploads
 config/secrets.yml
+config/missing_translations.yml

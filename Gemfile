@@ -92,7 +92,9 @@ group :development, :test do
   # Use Pry and its extensions instead of IRB
   gem 'jazz_hands', github: 'nixme/jazz_hands',
                     branch: 'bring-your-own-debugger'
-  gem 'pry-byebug'      # Pry navigation commands via debugger (formerly ruby-debug)
+  gem 'pry-byebug'  # Pry navigation commands via debugger (formerly ruby-debug)
+
+  gem 'ya2yaml'
 end
 
 group :development do
