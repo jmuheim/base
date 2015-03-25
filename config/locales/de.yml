@@ -9,7 +9,6 @@ de:
     application:
       footer: Fussbereich
       header: Kopfbereich
-      title: Base
     jump_links:
       jump_to_content: Zum Inhalt springen
       jump_to_home_page: Zur startseite springen
@@ -20,7 +19,6 @@ de:
       meta_navigation: Benutzernavigation
       navigation: Navigation
       sign_up: Registrieren
-      title: Registrieren
       toggle_navigation: Navigation anzeigen oder ausblenden
   pages:
     about:
@@ -28,15 +26,8 @@ de:
     home:
       title: Willkommen auf Base!
   'true': Ja
-  registrations:
-    new:
-      title: Registrieren
-  sessions:
-    new:
-      title: Anmelden
   users:
     new:
       back: Zurück
-      title: Benutzer erstellen
     users:
       actions: Aktionen

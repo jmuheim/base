@@ -9,7 +9,6 @@ en:
     application:
       footer: Footer
       header: Header
-      title: Base
     jump_links:
       jump_to_content: Jump to content
       jump_to_home_page: Jump to home page
@@ -20,7 +19,6 @@ en:
       meta_navigation: User navigation
       navigation: Navigation
       sign_up: Sign up
-      title: Sign up
       toggle_navigation: Toggle navigation
   pages:
     about:
@@ -28,9 +26,6 @@ en:
     home:
       title: Welcome to Base!
   'true': 'Yes'
-  registrations:
-    new:
-      title: Sign up
   sessions:
     new:
       title: Sign in
