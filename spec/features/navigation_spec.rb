@@ -71,12 +71,15 @@ describe 'Navigation' do
       it 'visually displays them only on focus', js: true
 
       # See https://github.com/jejacks0n/navigasmic/issues/50
-      it 'offers access keys'
+      it 'offers access keys' do
+        expect(page).to have_css '#navigation_jump_link_content a[accesskey="2"]'
+        expect(page).to have_css '#navigation_jump_link_navigation a[accesskey="1"]'
+      end
 
       it 'moves the focus to the navigation when activating the corresponding link', js: true, only: true do
         pending "Doesn't seem to focus the link, so it's not clickable by Capybara" # See http://stackoverflow.com/questions/29211158/rspec-capybara-setting-focus-to-an-element
         expect(page).not_to have_css '#main:focus'
-        page.evaluate_script "$('#jump_to_content > a').focus()"
+        page.evaluate_script "$('#navigation_jump_link_content > a').focus()"
         click_link 'Jump to content'
         expect(page).to have_css '#main:focus'
       end
