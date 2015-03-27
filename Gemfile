@@ -74,6 +74,8 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw] # Timezone Data for T
 
 gem 'wannabe_bool' # Converts strings, integers, etc. intuitively to boolean values
 
+gem 'ya2yaml' # Yet another YAML library
+
 group :doc do
   gem 'sdoc', require: false # bundle exec rake doc:rails generates the API under doc/api.
 end
@@ -93,8 +95,6 @@ group :development, :test do
   gem 'jazz_hands', github: 'nixme/jazz_hands',
                     branch: 'bring-your-own-debugger'
   gem 'pry-byebug'  # Pry navigation commands via debugger (formerly ruby-debug)
-
-  gem 'ya2yaml'
 end
 
 group :development do
