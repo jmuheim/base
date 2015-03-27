@@ -15,7 +15,7 @@ de:
       navigation: Zur Navigation springen
     navigation:
       current_group: aktuelle Menügruppe
-      current_item: aktueller Menüeintrag
+      current_item: aktueller Menüpunkt
       choose_language: Sprache wählen
       content_navigation: Inhaltsnavigation
       meta_navigation: Benutzernavigation
