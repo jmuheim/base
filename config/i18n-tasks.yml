@@ -48,7 +48,7 @@ ignore_unused:
   - simple_form.*
   - 'true'
   - validates_timeliness.*
-  - '*.title'
+  - app.name
 
 ignore_eq_base:
   all:
