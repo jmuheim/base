@@ -10,10 +10,12 @@ en:
       footer: Footer
       header: Header
     jump_links:
-      jump_to_content: Jump to content
-      jump_to_home_page: Jump to home page
-      jump_to_navigation: Jump to navigation
+      content: Jump to content
+      home_page: Jump to home page
+      navigation: Jump to navigation
     navigation:
+      current_group: current menu group
+      current_item: current menu item
       choose_language: Choose language
       content_navigation: Content navigation
       meta_navigation: User navigation
@@ -26,9 +28,6 @@ en:
     home:
       title: Welcome to Base!
   'true': 'Yes'
-  sessions:
-    new:
-      title: Sign in
   users:
     show:
       title: User %{user}
@@ -41,3 +40,6 @@ en:
       title: New user
     users:
       actions: Actions
+  resources:
+    list: List %{resource}
+    create: Create %{resource}

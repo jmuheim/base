@@ -10,10 +10,12 @@ de:
       footer: Fussbereich
       header: Kopfbereich
     jump_links:
-      jump_to_content: Zum Inhalt springen
-      jump_to_home_page: Zur startseite springen
-      jump_to_navigation: Zur Navigation springen
+      content: Zum Inhalt springen
+      home_page: Zur Startseite springen
+      navigation: Zur Navigation springen
     navigation:
+      current_group: aktuelle Menügruppe
+      current_item: aktueller Menüeintrag
       choose_language: Sprache wählen
       content_navigation: Inhaltsnavigation
       meta_navigation: Benutzernavigation

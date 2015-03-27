@@ -48,7 +48,7 @@ gem 'cocoon' # Dynamic nested forms made easy
 
 gem 'validates_timeliness' # Date and time validation plugin for ActiveModel and Rails
 
-gem 'navigasmic', github: 'jmuheim/navigasmic' # Semantic navigation
+gem 'navigasmic' # Semantic navigation
 
 gem 'nilify_blanks' # Save NULLs instead of empty strings into the database
 

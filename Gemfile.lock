@@ -1,10 +1,4 @@
 GIT
-  remote: git://github.com/jmuheim/navigasmic.git
-  revision: 644aabc5ea354407d344c5a95de6a354a93db079
-  specs:
-    navigasmic (1.1.0)
-
-GIT
   remote: git://github.com/jmuheim/rip_hashrocket.git
   revision: e500703e35598a3a1b680c7ca5d466b68faa2d9c
   specs:
@@ -295,6 +289,7 @@ GEM
     minitest (5.5.1)
     multi_json (1.11.0)
     mysql2 (0.3.18)
+    navigasmic (1.1.0)
     nenv (0.2.0)
     nested_form (0.3.2)
     nilify_blanks (1.2.0)
@@ -571,7 +566,7 @@ DEPENDENCIES
   mina
   mini_magick
   mysql2
-  navigasmic!
+  navigasmic
   nilify_blanks
   paper_trail
   poltergeist

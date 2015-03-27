@@ -1,3 +1,24 @@
+class AccessibleListBuilder < Navigasmic::Builder::ListBuilder
+  def structure_for(label, link = false, options = {}, &block)
+    content = ''
+
+    if block_given?
+      merge_classes!(options, @config.has_nested_class)
+      content = content_tag(@config.group_tag, capture(&block), {class: @config.is_nested_class})
+    end
+
+    merge_classes!(options, 'active') if has_active_child?(content)
+    label = label_for(label, link, block_given?, options)
+    content_tag(@config.item_tag, "#{label}#{content}".html_safe, options)
+  end
+
+  # FIXME: This is a very dirty, error-prone hack, because the groups and items are rendered directly to HTML!
+  # We should maintain something like a tree structure of groups and items that can really check upon active children.
+  def has_active_child?(content)
+    content =~ /<li class="active">/
+  end
+end
+
 Navigasmic.setup do |config|
 
   # Defining Navigation Structures:
@@ -73,7 +94,7 @@ Navigasmic.setup do |config|
   # By default the Navigasmic::Builder::ListBuilder is used unless otherwise specified.
   #
   # You can change this here:
-  #config.default_builder = MyCustomBuilder
+  config.default_builder = AccessibleListBuilder
 
 
   # Configuring Builders:
@@ -107,8 +128,8 @@ Navigasmic.setup do |config|
   #     <%= semantic_navigation :primary, config: :bootstrap %>
   #   </div>
   # </div>
-  config.builder bootstrap: Navigasmic::Builder::ListBuilder do |builder|
 
+  config.builder bootstrap: AccessibleListBuilder do |builder|
     # Set the nav and nav-pills css (you can also use 'nav nav-tabs') -- or remove them if you're using this inside a
     # navbar.
     builder.wrapper_class = 'nav navbar-nav'
@@ -120,9 +141,13 @@ Navigasmic.setup do |config|
     # For dropdowns to work you'll need to include the bootstrap dropdown js
     # For groups, we adjust the markup so they'll be clickable and be picked up by the javascript.
     builder.label_generator = proc do |label, options, has_link, has_nested|
+      is_active = options[:class] =~ /\bactive\b/ # TODO: Use @highlighted_class!
+
       if !has_nested || has_link
-        "<span>#{label}</span>"
+        label << "<span class='sr-only'> (#{t('layouts.navigation.current_item')})</span>" if is_active
+        label
       else
+        label << "<span class='sr-only'> (#{t('layouts.navigation.current_group')})</span>" if is_active
         link_to("#{label}<b class='caret'></b>".html_safe, '#', class: 'dropdown-toggle', data: {toggle: 'dropdown'}, aria: {expanded: false})
       end
     end
