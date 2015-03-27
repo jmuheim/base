@@ -1,4 +1,4 @@
 = semantic_navigation :jump_links, config: :bootstrap do |navigation|
-  - navigation.item t('.jump_to_home_page'), root_path, id: 'jump_to_home_page', link_options: {accesskey: 0} unless current_page?(root_path)
-  - navigation.item t('.jump_to_navigation'), '#navigation', id: 'jump_to_navigation'
-  - navigation.item t('.jump_to_content'), '#main', id: 'jump_to_content'
+  - navigation.item t('.home_page'), root_path, id: 'jump_to_home_page', link_html: {accesskey: 0} unless current_page?(root_path)
+  - navigation.item t('.navigation'), '#navigation', id: 'jump_to_navigation', link_html: {accesskey: 1}
+  - navigation.item t('.content'), '#main', id: 'jump_to_content', link_html: {accesskey: 2}
