@@ -34,6 +34,7 @@ nav#navigation.navbar.yamm.navbar-inverse.navbar-fixed-top
         - else
           - navigation.group user_avatar(t('.user_menu')) do
             - navigation.item fa_icon(:edit) + ' ' + t('.edit_account'), edit_user_registration_path
+
             li
               = link_to destroy_user_session_path, method: :delete do
                 = fa_icon('sign-out')
