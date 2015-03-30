@@ -21,13 +21,13 @@ describe 'Navigation' do
     it 'offers the possibility to switch languages' do
       visit root_path
 
-      expect(page).to have_css '#language_chooser[title="Choose language"]' # Default language is english
+      expect(page).to have_css '#language_chooser .dropdown-toggle', text: 'Choose language' # Default language is english
       click_link 'Seite auf Deutsch anzeigen'
 
-      expect(page).to have_css '#language_chooser[title="Sprache wählen"]'
+      expect(page).to have_css '#language_chooser .dropdown-toggle', text: 'Sprache wählen'
       click_link 'Show page in english'
 
-      expect(page).to have_css '#language_chooser[title="Choose language"]'
+      expect(page).to have_css '#language_chooser .dropdown-toggle', text: 'Choose language'
     end
     
     it 'shows the "Toggle navigation" button on small, medium, and large screens (and collapses it on extra small ones)', js: true do
