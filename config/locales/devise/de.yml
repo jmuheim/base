@@ -15,6 +15,8 @@ de:
       unlock_instructions:
         unlock_my_account: Mein Benutzerkonto entsperren!
     passwords:
+      edit:
+        title: Passwort bearbeiten
       new:
         send_me_reset_password_instructions: Zurücksetzungsinstruktion für Passwort zuschicken
         title: Passwort vergessen?
@@ -27,16 +29,20 @@ de:
         currently_awaiting_confirmation_for: Warte zur Zeit auf Bestätigung
         headline_with_flash: Bearbeite dein Benutzerkonto
         new_password: Neues Passwort (leer lassen, um es ungeändert zu lassen)
+        title: Benutzerkonto bearbeiten
         unhappy: Unglücklich?
       new:
         account_information: Benutzerkonto Informationen
         choose_and_confirm_password: Wähle ein Passwort (und bestätige es, um Tippfehler zu vermeiden)
+        title: Registrieren
     sessions:
       form:
         having_a_problem: Hast du ein Problem?
         sign_in: Anmelden
         username_or_email: Benutzername oder Email
         visit_full_sign_in_page: Besuche die komplette Anmelde-Seite!
+      new:
+        title: Anmelden
     shared:
       links:
         didnt_receive_confirmation_instructions: Hast du keine Anweisungen zum Bestätigen deines Kontos erhalten?

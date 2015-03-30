@@ -1,8 +1,6 @@
 ---
 en:
   flash:
-    alert: Alert
-    notice: Notice
     actions:
       create:
         alert: "%{resource_name} could not be created."
@@ -13,3 +11,5 @@ en:
       update:
         alert: "%{resource_name} could not be updated."
         notice: "%{resource_name} was successfully updated."
+    alert: Alert
+    notice: Notice

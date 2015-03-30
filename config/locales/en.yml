@@ -14,10 +14,10 @@ en:
       home_page: Jump to home page
       navigation: Jump to navigation
     navigation:
-      current_group: current menu group
-      current_item: current menu item
       choose_language: Choose language
       content_navigation: Content navigation
+      current_group: current menu group
+      current_item: current menu item
       meta_navigation: User navigation
       navigation: Navigation
       sign_up: Sign up
@@ -27,19 +27,19 @@ en:
       title: About Base
     home:
       title: Welcome to Base!
+  resources:
+    create: Create %{resource}
+    list: List %{resource}
   'true': 'Yes'
   users:
-    show:
-      title: User %{user}
     edit:
       title: Edit user %{user}
-    update:
-      title: Update user %{user}
+    index:
+      title: List users
     new:
       back: Back
       title: New user
+    show:
+      title: User %{user}
     users:
       actions: Actions
-  resources:
-    list: List %{resource}
-    create: Create %{resource}

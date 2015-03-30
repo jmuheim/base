@@ -14,10 +14,10 @@ de:
       home_page: Zur Startseite springen
       navigation: Zur Navigation springen
     navigation:
-      current_group: aktuelle Menügruppe
-      current_item: aktueller Menüpunkt
       choose_language: Sprache wählen
       content_navigation: Inhaltsnavigation
+      current_group: aktuelle Menügruppe
+      current_item: aktueller Menüpunkt
       meta_navigation: Benutzernavigation
       navigation: Navigation
       sign_up: Registrieren
@@ -27,9 +27,19 @@ de:
       title: "Über Base"
     home:
       title: Willkommen auf Base!
+  resources:
+    create: "%{resource} erstellen"
+    list: "%{resource} auflisten"
   'true': Ja
   users:
+    edit:
+      title: Benutzer %{user} bearbeiten
+    index:
+      title: Benutzer auflisten
     new:
       back: Zurück
+      title: Neuer Benutzer
+    show:
+      title: Benutzer %{user} anzeigen
     users:
       actions: Aktionen

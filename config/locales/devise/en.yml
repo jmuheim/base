@@ -15,6 +15,8 @@ en:
       unlock_instructions:
         unlock_my_account: Unlock my account!
     passwords:
+      edit:
+        title: Edit password
       new:
         send_me_reset_password_instructions: Send me reset password instructions
         title: Forgot your password?
@@ -27,17 +29,20 @@ en:
         currently_awaiting_confirmation_for: Currently awaiting confirmation for
         headline_with_flash: Edit your account
         new_password: New password (leave blank if you don't want to change it)
+        title: Edit account
         unhappy: Unhappy?
       new:
-        title: Sign up
         account_information: Account information
         choose_and_confirm_password: Choose a password (and confirm it to avoid typos)
+        title: Sign up
     sessions:
       form:
         having_a_problem: Having a problem?
         sign_in: Sign in
         username_or_email: Username or email
         visit_full_sign_in_page: Visit the full sign in page!
+      new:
+        title: Sign in
     shared:
       links:
         didnt_receive_confirmation_instructions: Didn't receive confirmation instructions?
