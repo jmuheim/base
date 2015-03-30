@@ -122,10 +122,10 @@ Navigasmic.setup do |config|
       is_active = options[:class] =~ /\bactive\b/ # TODO: Use @highlighted_class!
 
       if !has_nested || has_link
-        label << "<span class='sr-only'> (#{t('layouts.navigation.current_item')})</span>" if is_active
+        label << "<span class='sr-only'> (#{t('layouts.navigation.current_item')})</span>".html_safe if is_active
         label
       else
-        label << "<span class='sr-only'> (#{t('layouts.navigation.current_group')})</span>" if is_active
+        label << "<span class='sr-only'> (#{t('layouts.navigation.current_group')})</span>".html_safe if is_active
         link_to("#{label}<b class='caret'></b>".html_safe, '#', class: 'dropdown-toggle', data: {toggle: 'dropdown'}, aria: {expanded: false})
       end
     end
