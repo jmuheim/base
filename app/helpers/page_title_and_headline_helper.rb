@@ -4,7 +4,7 @@
 #
 # It furthermore assumes that flash messages are always related to the main content and therefore are displayed right after the headline.
 #
-# The `title` tag should consist of the following:
+# For accessibility reasons, the `title` tag should consist of the following:
 #
 # - Flash messages (if there are any)
 # - The headline
