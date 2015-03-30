@@ -33,15 +33,17 @@ nav#navigation.navbar.yamm.navbar-inverse.navbar-fixed-top
 
         - else
           - navigation.group user_avatar, title: t('.user_menu'), data: {placement: 'bottom'} do
-            - navigation.item fa_icon(:edit) + t('.edit_account'), edit_user_registration_path
+            - navigation.item fa_icon(:edit) + ' ' + t('.edit_account'), edit_user_registration_path
             li
               = link_to destroy_user_session_path, method: :delete do
-                => fa_icon('sign-out')
-                = t('.log_out')
+                = fa_icon('sign-out')
+                =< t('.log_out')
 
             - if can? :access, :rails_admin
               li.divider
-              li = link_to fa_icon(:gears) + t('.admin'), rails_admin_path(locale: :en)
+              li = link_to rails_admin_path(locale: :en) do
+                = fa_icon(:gears)
+                =< t('.admin')
 
         - navigation.group flag(current_locale_flag, t('.choose_language')), id: :language_chooser, data: {placement: 'bottom'} do
           li lang="en" = link_to locale: 'en' do
