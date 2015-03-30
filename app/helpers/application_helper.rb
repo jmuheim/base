@@ -1,18 +1,14 @@
 module ApplicationHelper
   def icon(name, content = nil)
     content_tag :span, class: ['glyphicon', "glyphicon-#{name}"] do
-      content_tag :span, class: 'hide-text' do
-        content || name.to_s.titleize
-      end
+      content_tag :span, content, class: 'sr-only' if content
     end
   end
 
   # TODO: Add spec!
   def flag(name, content = nil)
     content_tag :span, class: ['glyphicon', "bfh-flag-#{name.upcase}"] do
-      content_tag :span, class: 'hide-text' do
-        content || name.to_s.titleize
-      end
+      content_tag :span, content, class: 'sr-only' if content
     end
   end
 
