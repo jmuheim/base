@@ -1,4 +1,14 @@
 # Helps managing uniform page title, headline, and flash messages.
+#
+# It assumes that there's always a main `h1` tag (the headline) which identifies the main content of the page (typically this would be the first `h1` tag within the `main` tag), and that this headline should reflect the content of the `title` tag.
+#
+# It furthermore assumes that flash messages are always related to the main content and therefore are displayed right after the headline.
+#
+# The `title` tag should consist of the following:
+#
+# - Flash messages (if there are any)
+# - The headline
+# - The app's name (except on the home page, which's headline typically already contains the app's name)
 module PageTitleAndHeadlineHelper
   # Displays the current headline, followed by flash messages.
   #
