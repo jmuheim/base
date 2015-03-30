@@ -1,5 +1,7 @@
 require 'rails_helper'
 
+# TODO: Add specs for pw reset, unlock, etc.!
+
 describe 'Confirming registration' do
   before { @user = create :user, :donald, confirmed_at: nil }
 
