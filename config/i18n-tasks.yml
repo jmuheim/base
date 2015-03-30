@@ -1,7 +1,8 @@
 search:
   paths:
-    - 'app/'
-    - 'vendor/'
+    - app/
+    - vendor/
+    - config/
 
   relative_roots:
     - app/views
@@ -12,7 +13,17 @@ search:
     - '*.text.*'
 
   exclude:
-    - '*/application_helper.rb'
+    - '*.jpg'
+    - '*.png'
+    - '*.gif'
+    - '*.svg'
+    - '*.ico'
+    - '*.eot'
+    - '*.ttf'
+    - '*.woff'
+    - '*.woff2'
+    - '*.pdf'
+    - '*/page_title_and_headline_helper.rb'
 
 data:
   # file_system is the default adapter, you can provide a custom class name here:
