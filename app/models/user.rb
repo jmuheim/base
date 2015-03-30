@@ -58,6 +58,7 @@ class User < ActiveRecord::Base
   validates :name, uniqueness: {case_sensitive: false},
                    unless: -> { guest? }
   validates :avatar, file_size: {maximum: (Rails.env.test? ? 15 : 500).kilobytes.to_i} # TODO: It would be nice to stub the maximum within the spec itself. See https://gist.github.com/chrisbloom7/1009861#comment-1220820
+  # TODO: Should we add more presence validations for email, etc.? See http://stackoverflow.com/questions/29350132/rails-simple-form-devise-mark-email-field-of-user-model-as-required-in-forms
 
   # https://github.com/plataformatec/devise/wiki/How-To:-Allow-users-to-sign-in-using-their-username-or-email-address
   def self.find_first_by_auth_conditions(warden_conditions)
