@@ -11,14 +11,14 @@ section.headline
         .panel-heading = t('.account_information')
         .panel-body
           = f.input :name, autofocus: true
-          = f.input :email
+          = f.input :email, required: true
           = f.input :avatar, as: :upload
 
       .panel.panel-default
         .panel-heading = t('.choose_and_confirm_password')
         .panel-body
-          = f.input :password
-          = f.input :password_confirmation
+          = f.input :password, required: true
+          = f.input :password_confirmation, required: true
 
       = f.button :submit, t('.sign_up'), class: 'btn-success'
 
