@@ -19,8 +19,6 @@ de:
         current_sign_in_ip: Momentane IP
         email: Email
         failed_attempts: Fehlgeschlagene Versuche
-        guest: Gast?
-        guest_name: Gast
         last_sign_in_at: Letztes Login am
         last_sign_in_ip: Letzte IP
         locked_at: Gesperrt am
