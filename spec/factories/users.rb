@@ -44,6 +44,10 @@ FactoryGirl.define do
     password_confirmation 's3cur3p@ssw0rd'
     confirmed_at          Time.now
 
+    after(:build) do |user|
+      user.skip_confirmation_notification!
+    end
+
     trait :donald do
       name 'donald'
       email 'donald@example.com'
