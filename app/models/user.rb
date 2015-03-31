@@ -61,19 +61,4 @@ class User < ActiveRecord::Base
       where(conditions).first
     end
   end
-
-  def annex_and_destroy!(other)
-    transaction do
-      skip_confirmation_notification!
-
-      other.delete
-      other.attributes.except("id").each do |attribute, value|
-        update_column attribute, value
-      end
-
-      self.save!
-    end
-
-    self
-  end
 end
