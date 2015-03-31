@@ -19,8 +19,6 @@ en:
         current_sign_in_ip: Current IP
         email: Email
         failed_attempts: Failed attempts
-        guest: Guest?
-        guest_name: guest
         last_sign_in_at: Last sign in at
         last_sign_in_ip: Last IP
         locked_at: Locked at

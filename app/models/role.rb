@@ -1,12 +1,12 @@
 # == Schema Information
-# Schema version: 20140301093233
+# Schema version: 20140626201417
 #
 # Table name: roles
 #
 #  id            :integer          not null, primary key
-#  name          :string(255)
+#  name          :string
 #  resource_id   :integer
-#  resource_type :string(255)
+#  resource_type :string
 #  created_at    :datetime
 #  updated_at    :datetime
 #

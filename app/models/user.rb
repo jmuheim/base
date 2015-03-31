@@ -4,28 +4,27 @@
 # Table name: users
 #
 #  id                     :integer          not null, primary key
-#  name                   :string(255)
-#  email                  :string(255)
-#  encrypted_password     :string(255)
-#  reset_password_token   :string(255)
+#  name                   :string
+#  email                  :string
+#  encrypted_password     :string
+#  reset_password_token   :string
 #  reset_password_sent_at :datetime
 #  remember_created_at    :datetime
-#  sign_in_count          :integer          default(0), not null
+#  sign_in_count          :integer          default("0"), not null
 #  current_sign_in_at     :datetime
 #  last_sign_in_at        :datetime
-#  current_sign_in_ip     :string(255)
-#  last_sign_in_ip        :string(255)
-#  confirmation_token     :string(255)
+#  current_sign_in_ip     :string
+#  last_sign_in_ip        :string
+#  confirmation_token     :string
 #  confirmed_at           :datetime
 #  confirmation_sent_at   :datetime
-#  unconfirmed_email      :string(255)
-#  failed_attempts        :integer          default(0), not null
-#  unlock_token           :string(255)
+#  unconfirmed_email      :string
+#  failed_attempts        :integer          default("0"), not null
+#  unlock_token           :string
 #  locked_at              :datetime
 #  created_at             :datetime
 #  updated_at             :datetime
-#  guest                  :boolean          default(FALSE)
-#  avatar                 :string(255)
+#  avatar                 :string
 #
 # Indexes
 #
@@ -47,16 +46,10 @@ class User < ActiveRecord::Base
 
   mount_uploader :avatar, AvatarUploader
 
-  scope :guests,     -> { where(guest: true) }
-  scope :registered, -> { where(guest: false) }
-
   attr_accessor :login
 
-  before_validation :set_guest_name, if: -> { guest? }
-
   validates :name, presence: true
-  validates :name, uniqueness: {case_sensitive: false},
-                   unless: -> { guest? }
+  validates :name, uniqueness: {case_sensitive: false}
   validates :avatar, file_size: {maximum: (Rails.env.test? ? 15 : 500).kilobytes.to_i} # TODO: It would be nice to stub the maximum within the spec itself. See https://gist.github.com/chrisbloom7/1009861#comment-1220820
 
   # https://github.com/plataformatec/devise/wiki/How-To:-Allow-users-to-sign-in-using-their-username-or-email-address
@@ -67,10 +60,6 @@ class User < ActiveRecord::Base
     else
       where(conditions).first
     end
-  end
-
-  def display_name
-    guest? ? self.class.human_attribute_name(:guest_name) : name
   end
 
   def annex_and_destroy!(other)
@@ -86,19 +75,5 @@ class User < ActiveRecord::Base
     end
 
     self
-  end
-
-  private
-
-  def password_required?
-    guest? ? false : super
-  end
-
-  def email_required?
-    !guest?
-  end
-
-  def set_guest_name
-    self.name = "guest-#{self.class.guests.maximum(:id).next rescue 1}"
   end
 end

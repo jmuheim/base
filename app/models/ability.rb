@@ -10,9 +10,9 @@ class Ability
   def initialize(current_user)
     alias_action :create, :read, :update, :destroy, to: :crud
 
-    can :read, User, guest: false
+    can :read, User
 
-    if current_user.guest?
+    if current_user.nil?
       can :create, User
     else
       can :update, User do |user|
