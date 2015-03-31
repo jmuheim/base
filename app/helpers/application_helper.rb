@@ -48,7 +48,7 @@ module ApplicationHelper
 
   # TODO: Add spec!
   def user_avatar(content)
-    if current_user.avatar?
+    if user_signed_in? && current_user.avatar?
       image_tag(current_user.avatar.url(:thumb), class: 'avatar', alt: content)
     else
       icon :user, content

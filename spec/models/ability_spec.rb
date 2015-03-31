@@ -5,14 +5,12 @@ require 'rails_helper'
 
 describe Ability do
   context 'when is a guest' do
-    before  { @guest = create(:guest) }
-    subject { Ability.new(@guest) }
+    subject { Ability.new nil }
 
     describe 'managing users' do
       it { should be_able_to(:create, User) }
 
       it { should     be_able_to(:read, User.new) }
-      it { should_not be_able_to(:read, User.new(guest: true)) }
 
       it { should_not be_able_to(:update, User.new) }
 
@@ -28,7 +26,6 @@ describe Ability do
       it { should_not be_able_to(:create, User) }
 
       it { should     be_able_to(:read, User.new) }
-      it { should_not be_able_to(:read, User.new(guest: true)) }
 
       it { should_not be_able_to(:update, User.new) }
       it { should     be_able_to(:update, @user) }
@@ -58,7 +55,6 @@ describe Ability do
       it { should be_able_to(:create, User) }
 
       it { should be_able_to(:read, User.new) }
-      it { should be_able_to(:read, User.new(guest: true)) }
 
       it { should be_able_to(:update, User.new) }
 

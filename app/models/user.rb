@@ -10,7 +10,7 @@
 #  reset_password_token   :string
 #  reset_password_sent_at :datetime
 #  remember_created_at    :datetime
-#  sign_in_count          :integer          default(0), not null
+#  sign_in_count          :integer          default("0"), not null
 #  current_sign_in_at     :datetime
 #  last_sign_in_at        :datetime
 #  current_sign_in_ip     :string
@@ -19,7 +19,7 @@
 #  confirmed_at           :datetime
 #  confirmation_sent_at   :datetime
 #  unconfirmed_email      :string
-#  failed_attempts        :integer          default(0), not null
+#  failed_attempts        :integer          default("0"), not null
 #  unlock_token           :string
 #  locked_at              :datetime
 #  created_at             :datetime
@@ -46,18 +46,11 @@ class User < ActiveRecord::Base
 
   mount_uploader :avatar, AvatarUploader
 
-  scope :guests,     -> { where(guest: true) }
-  scope :registered, -> { where(guest: false) }
-
   attr_accessor :login
 
-  before_validation :set_guest_name, if: -> { guest? }
-
   validates :name, presence: true
-  validates :name, uniqueness: {case_sensitive: false},
-                   unless: -> { guest? }
+  validates :name, uniqueness: {case_sensitive: false}
   validates :avatar, file_size: {maximum: (Rails.env.test? ? 15 : 500).kilobytes.to_i} # TODO: It would be nice to stub the maximum within the spec itself. See https://gist.github.com/chrisbloom7/1009861#comment-1220820
-  # TODO: Should we add more presence validations for email, etc.? See http://stackoverflow.com/questions/29350132/rails-simple-form-devise-mark-email-field-of-user-model-as-required-in-forms
 
   # https://github.com/plataformatec/devise/wiki/How-To:-Allow-users-to-sign-in-using-their-username-or-email-address
   def self.find_first_by_auth_conditions(warden_conditions)
@@ -67,10 +60,6 @@ class User < ActiveRecord::Base
     else
       where(conditions).first
     end
-  end
-
-  def display_name
-    guest? ? self.class.human_attribute_name(:guest_name) : name
   end
 
   def annex_and_destroy!(other)
@@ -86,19 +75,5 @@ class User < ActiveRecord::Base
     end
 
     self
-  end
-
-  private
-
-  def password_required?
-    guest? ? false : super
-  end
-
-  def email_required?
-    !guest?
-  end
-
-  def set_guest_name
-    self.name = "guest-#{self.class.guests.maximum(:id).next rescue 1}"
   end
 end
