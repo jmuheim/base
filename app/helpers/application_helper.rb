@@ -5,31 +5,27 @@ module ApplicationHelper
     end
   end
 
-  # TODO: Add spec!
   def flag(name, content = nil)
     content_tag :span, class: ['glyphicon', "bfh-flag-#{name.upcase}"] do
       content_tag :span, content, class: 'sr-only' if content
     end
   end
 
-  # TODO: Add spec!
   def current_locale_flag
     case I18n.locale
     when :en
       :gb
-    when :de
-      :de
+    else
+      I18n.locale
     end
   end
 
-  # TODO: Add spec!
   def home_link_class
     classes = ['navbar-brand']
     classes << 'active' if request.path == root_path
     classes
   end
 
-  # TODO: Add spec!
   def active_class_for(language)
     'active' if language == I18n.locale
   end
