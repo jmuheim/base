@@ -22,12 +22,12 @@ RSpec.configure do |config|
 end
 
 # To make chrome driver work, we need to monkey patch active record, otherwise we get an "SQLite3::BusyException: database is locked". See http://stackoverflow.com/questions/29387097.
-class ActiveRecord::Base
-  mattr_accessor :shared_connection
-  @@shared_connection = nil
-
-  def self.connection
-    @@shared_connection || retrieve_connection
-  end
-end
-ActiveRecord::Base.shared_connection = ActiveRecord::Base.connection
+# class ActiveRecord::Base
+#   mattr_accessor :shared_connection
+#   @@shared_connection = nil
+#
+#   def self.connection
+#     @@shared_connection || retrieve_connection
+#   end
+# end
+# ActiveRecord::Base.shared_connection = ActiveRecord::Base.connection
