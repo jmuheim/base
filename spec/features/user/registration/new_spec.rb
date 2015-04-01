@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe 'Signing up' do
-  it 'signs up a new user' do
+  it 'signs up a new user and lets him confirm his email' do
     visit new_user_registration_path
 
     attach_file 'user_avatar', dummy_file_path('image.jpg')
@@ -16,5 +16,8 @@ describe 'Signing up' do
     expect(page).to have_content 'You have signed up successfully.'
     expect(unread_emails_for('newuser@example.com').size).to eq 1
     expect(page).to have_link 'Log out'
+
+    visit_in_email('Confirm my account', 'newuser@example.com')
+    expect(page).to have_content 'Your email address has been successfully confirmed.'
   end
 end

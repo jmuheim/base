@@ -1,18 +1,46 @@
 require 'rails_helper'
 
 describe 'Editing user' do
-  before do
-    @user = create :user, :donald
-    login_as(@user)
+  before { @user = create :user, :donald }
+
+  context 'as a guest' do
+    it 'does not grant permission to edit a user' do
+      visit edit_user_path(@user)
+
+      expect(page.driver.status_code).to eq 403
+    end
   end
 
-  it 'edits the user' do
-    visit edit_user_registration_path
+  context 'signed in as user' do
+    before { login_as(@user) }
 
-    fill_in 'user_name',             with: 'newname'
-    fill_in 'user_current_password', with: @user.password
-    click_button 'Save'
+    it 'grants permission to edit own user' do
+      visit edit_user_path(@user)
 
-    expect(page).to have_content 'Your account has been updated successfully.'
+      expect(page.driver.status_code).to eq 200
+    end
+  end
+
+  context 'signed in as admin' do
+    before do
+      admin = create :admin, :scrooge
+      login_as(admin)
+    end
+
+    it 'grants permission to edit other user' do
+      visit edit_user_path(@user)
+
+      fill_in 'user_name',  with: 'gustav'
+      fill_in 'user_email', with: 'new-gustav@example.com'
+
+      attach_file 'user_avatar', dummy_file_path('other_image.jpg')
+
+      expect {
+        click_button 'Save'
+        @user.reload
+      } .to  change { @user.name }.to('gustav')
+        .and change { @user.avatar.to_s }
+        .and change { @user.unconfirmed_email }.to('new-gustav@example.com')
+    end
   end
 end

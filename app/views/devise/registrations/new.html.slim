@@ -7,18 +7,20 @@
                                 url:     registration_path(resource_name),
                                 html:    {class: 'form-horizontal'},
                                 wrapper: :horizontal_form do |f|
+
+      / TODO: We should think about consolidating the forms/views of registrations and users!
       fieldset.panel.panel-default
         legend.panel-heading = t('.account_information')
         .panel-body
           = f.input :name
-          = f.input :email
+          = f.input :email, required: true
           = f.input :avatar, as: :upload
 
       fieldset.panel.panel-default
         legend.panel-heading = t('.choose_and_confirm_password')
         .panel-body
-          = f.input :password
-          = f.input :password_confirmation
+          = f.input :password, required: true
+          = f.input :password_confirmation, required: true
 
       = f.button :submit, headline, class: 'btn-success'
 

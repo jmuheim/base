@@ -34,5 +34,6 @@ Base::Application.configure do
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
 
-  config.action_mailer.default_url_options = {host: 'localhost:3000'}
+  # TODO: What do I need to specify this for? See http://stackoverflow.com/questions/29373253.
+  config.action_mailer.default_url_options = {host: 'localhost:3001'}
 end

@@ -25,7 +25,8 @@ nav#navigation.navbar.yamm.navbar-inverse.navbar-fixed-top
       = semantic_navigation :meta_navigation, class: 'navbar-right' do |navigation|
         - if user_signed_in?
           - navigation.group user_avatar(t('.user_menu')) do
-            - navigation.item fa_icon(:edit) + ' ' + t('.edit_account'), edit_user_registration_path
+            - navigation.item "#{fa_icon :user} #{t '.show_account'}", user_registration_path
+            - navigation.item "#{fa_icon :edit} #{t '.edit_account'}", edit_user_registration_path
 
             li
               = link_to destroy_user_session_path, method: :delete do

@@ -14,21 +14,15 @@ de:
       home_page: Zur Startseite springen
       navigation: Zur Navigation springen
     navigation:
-      about: "Über"
-      admin: Admin
       choose_language: Sprache wählen
       content_navigation: Inhaltsnavigation
       current_group: aktuelle Menügruppe
       current_item: aktueller Menüpunkt
-      edit_account: Konto bearbeiten
-      home: Base
-      log_out: Abmelden
       meta_navigation: Benutzernavigation
       navigation: Navigation
-      sign_in: Anmelden
+      show_account: Konto anzeigen
       sign_up: Registrieren
       toggle_navigation: Navigation anzeigen oder ausblenden
-      user_menu: Benutzer Menü
   pages:
     about:
       title: "Über Base"
@@ -41,6 +35,8 @@ de:
   users:
     edit:
       title: Benutzer %{user} bearbeiten
+    form:
+      details: Details
     index:
       title: Benutzer auflisten
     new:

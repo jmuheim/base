@@ -35,6 +35,8 @@ en:
         account_information: Account information
         choose_and_confirm_password: Choose a password (and confirm it to avoid typos)
         title: Sign up
+      show:
+        title: Welcome, %{user}!
     sessions:
       form:
         having_a_problem: Having a problem?

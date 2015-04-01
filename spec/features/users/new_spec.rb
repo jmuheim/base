@@ -13,6 +13,7 @@ describe 'Creating user' do
     fill_in 'user_email',                 with: 'somemail@example.com'
     fill_in 'user_password',              with: 'somegreatpassword'
     fill_in 'user_password_confirmation', with: 'somegreatpassword'
+    attach_file 'user_avatar', dummy_file_path('other_image.jpg')
     click_button 'Save'
 
     expect(page).to have_content 'User was successfully created.'
