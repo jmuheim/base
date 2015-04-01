@@ -30,11 +30,17 @@ describe 'Editing user' do
     it 'grants permission to edit other user' do
       visit edit_user_path(@user)
 
-      fill_in 'user_name', with: 'gustav'
+      fill_in 'user_name',  with: 'gustav'
+      fill_in 'user_email', with: 'new-gustav@example.com'
+
+      attach_file 'user_avatar', dummy_file_path('other_image.jpg')
 
       expect {
         click_button 'Save'
-      }.to change { @user.reload.name }.from('donald').to 'gustav'
+        @user.reload
+      } .to  change { @user.name }.to('gustav')
+        .and change { @user.avatar.to_s }
+        .and change { @user.unconfirmed_email }.to('new-gustav@example.com')
     end
   end
 end

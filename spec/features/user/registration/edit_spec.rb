@@ -19,26 +19,18 @@ describe 'Editing account' do
 
     expect {
       click_button 'Save'
-    }.to change { @user.reload.name }.from('donald').to 'gustav'
+      @user.reload
+    } .to  change { @user.name }.to('gustav')
+      .and change { @user.avatar.to_s }
+      .and change { @user.encrypted_password }
+      .and change { @user.unconfirmed_email }.to('new-gustav@example.com')
   end
 
-  context 'new password' do
-    it "doesn't change the password if left empty" do
-      fill_in 'user_current_password', with: 's3cur3p@ssw0rd'
+  it "doesn't change the password if left empty" do
+    fill_in 'user_current_password', with: 's3cur3p@ssw0rd'
 
-      expect {
-        click_button 'Save'
-      }.not_to change { @user.reload.encrypted_password }
-    end
-
-    it "changes the password if provided" do
-      fill_in 'user_password',              with: 'n3wp4ssw0rd'
-      fill_in 'user_password_confirmation', with: 'n3wp4ssw0rd'
-      fill_in 'user_current_password',      with: 's3cur3p@ssw0rd'
-
-      expect {
-        click_button 'Save'
-      }.to change { @user.reload.encrypted_password }
-    end
+    expect {
+      click_button 'Save'
+    }.not_to change { @user.reload.encrypted_password }
   end
 end
