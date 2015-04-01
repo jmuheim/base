@@ -1,0 +1,6 @@
+dl.dl-horizontal
+  dt Email
+  dd = user.email
+  - if user.avatar?
+    dt = User.human_attribute_name :avatar
+    dd = zoomable_image user.avatar, alt: user.name

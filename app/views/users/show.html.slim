@@ -1,13 +1,8 @@
 section.headline
-  h1 = @user.name
+  h1 = t '.welcome', user: @user.name
 
 article id=dom_id(@user)
-  dl.dl-horizontal
-    dt Email
-    dd = @user.email
-    - if @user.avatar?
-      dt Avatar
-      dd = zoomable_image @user.avatar
+  == render partial: 'details', locals: {user: @user}
 
   .btn-group
     - if can? :edit, @user

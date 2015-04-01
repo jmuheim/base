@@ -1,13 +1,16 @@
 = simple_form_for @user, html:    {class: 'form-horizontal'},
                          wrapper: :horizontal_form do |f|
-  = f.input :name, autofocus: true
-  = f.input :email, as: :email, required: true
 
-  / (leave blank if you don't want to change it)
-  = f.input :password, autocomplete: 'off'
-  = f.input :password_confirmation
+  .panel.panel-default
+    .panel-heading = t('.details')
+    .panel-body
+      = f.input :name, autofocus: true
+      = f.input :email, as: :email, required: true
+      = f.input :avatar, as: :upload
 
-  / (we need your current password to confirm your changes)
-  = f.input :current_password, required: true
+      / At the moment, changing passwords of existing users is not implemented. How to: https://github.com/plataformatec/devise/wiki/How-To:-Allow-users-to-edit-their-account-without-providing-a-password
+      - if @user.new_record?
+        = f.input :password, autocomplete: 'off'
+        = f.input :password_confirmation
 
   .actions = f.button :submit, t('buttons.save'), class: 'btn-success'
