@@ -516,7 +516,6 @@ GEM
     xray-rails (0.1.15)
       coffee-rails
       rails (>= 3.1.0)
-    ya2yaml (0.31)
     yard (0.8.7.6)
 
 PLATFORMS
@@ -604,4 +603,3 @@ DEPENDENCIES
   validates_timeliness
   wannabe_bool
   xray-rails
-  ya2yaml
