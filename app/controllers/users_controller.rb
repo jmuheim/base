@@ -3,13 +3,7 @@ class UsersController < ApplicationController
   inherit_resources
   respond_to :html
 
-  before_action :set_user, only: :show
-
   private
-
-  def set_user
-    @user ||= current_user
-  end
 
   def permitted_params
     params.permit(user: [:name, :email, :password, :password_confirmation])
