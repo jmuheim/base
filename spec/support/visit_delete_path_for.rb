@@ -1,5 +1,6 @@
 module FeatureSpecVisitDeletePathHelper
   def visit_delete_path_for(resource, resource_path = nil)
+    raise "Resource must not be nil" if resource.nil?
     resource_path ||= "#{resource.class.to_s.underscore}_path"
 
     # Send delete request using capybara, see http://makandracards.com/makandra/18023-trigger-a-delete-request-with-capybara

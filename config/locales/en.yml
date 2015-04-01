@@ -6,6 +6,7 @@ en:
   layouts:
     navigation:
       choose_language: Choose language
+      show_account: Show account
       sign_up: Sign up
   pages:
     about:
@@ -14,8 +15,12 @@ en:
       headline: Welcome to Base!
   'true': 'Yes'
   users:
+    form:
+      details: Details
     new:
       back: Back
       title: New user
+    show:
+      welcome: Welcome, %{user}!
     users:
       actions: Actions

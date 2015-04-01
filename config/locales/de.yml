@@ -6,6 +6,7 @@ de:
   layouts:
     navigation:
       choose_language: Sprache wählen
+      show_account: Konto anzeigen
       sign_up: Registrieren
   pages:
     about:
@@ -14,8 +15,12 @@ de:
       headline: Willkommen auf Base!
   'true': Ja
   users:
+    form:
+      details: Details
     new:
       back: Zurück
       title: Benutzer erstellen
+    show:
+      welcome: Willkommen, %{user}!
     users:
       actions: Aktionen
