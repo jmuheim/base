@@ -240,13 +240,12 @@ GEM
     hitimes (1.2.2)
     http_parser.rb (0.6.0)
     i18n (0.7.0)
-    i18n-tasks (0.7.13)
+    i18n-tasks (0.8.0)
       activesupport
       easy_translate (>= 0.5.0)
       erubis
       highline
       i18n
-      slop (~> 3.5)
       term-ansicolor
       terminal-table
     i18n_yaml_sorter (0.2.0)
