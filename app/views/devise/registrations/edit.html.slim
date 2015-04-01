@@ -9,7 +9,7 @@
     .panel-heading = t('.account_information')
     .panel-body
       = f.input :name
-      = f.input :email, as: :email
+      = f.input :email, as: :email, required: true
       = f.input :avatar, as: :upload
 
   - if devise_mapping.confirmable? && resource.pending_reconfirmation?
@@ -25,7 +25,7 @@
   .panel.panel-warning
     .panel-heading = t('.current_password')
     .panel-body
-      = f.input :current_password
+      = f.input :current_password, required: true
 
   = f.button :submit, t('buttons.save'), class: 'btn-success'
 
