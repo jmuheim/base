@@ -1,24 +1,32 @@
+# Form errors accessibilizer.
+#
+# Searches for Twitter Bootstrap form groups (`.form-group`) with errors (`.has-error`) and describes the invalid inputs with their individual help blocks (`.help-block`) using `aria-describedby`.
+#
+# Also sets the focus to the first invalid input.
 class App.FormErrorsAccessibilizer
-  constructor: (el) ->
-    @$el = $(el) # Always pass an element to the constructor and make it available as a jQuery selector!
-    @formGroups = @$el.find('.form-group.has-error')
-
-    if @formGroups.size() > 0
-      @describe_inputs_with_help_blocks()
-      @focus_first_input_with_help_block()
-
-  describe_inputs_with_help_blocks: ->
-    for formGroup in @formGroups
+  class FormGroup
+    constructor: (formGroup) ->
       $formGroup = $(formGroup)
 
-      $help  = $formGroup.find('.help-block')
-      $input = $formGroup.find(':input')
+      @input = $formGroup.find(':input')
+      @help  = $formGroup.find('.help-block')
 
-      input_id = $input.attr('id')
+  constructor: (el) ->
+    @$el = $(el)
+    formGroups = @prepareFormGroups(@$el)
+    
+    if formGroups.length > 0
+      @describeInputsWithHelpBlocks(formGroups)
+      formGroups[0].input.focus() # Set focus to first input
+
+  prepareFormGroups: ($el) ->
+    $el.find('.form-group.has-error').map (key, formGroup) ->
+      new FormGroup(formGroup)
+
+  describeInputsWithHelpBlocks: (formGroups) ->
+    for formGroup in formGroups
+      input_id = formGroup.input.attr('id')
       help_id  = "#{input_id}_help"
 
-      $help.attr('id', help_id)
-      $input.attr('aria-describedby', help_id)
-
-  focus_first_input_with_help_block: ->
-    @formGroups.first().find(':input').focus()
+      formGroup.help.attr('id', "#{input_id}_help")
+      formGroup.input.attr('aria-describedby', help_id)
