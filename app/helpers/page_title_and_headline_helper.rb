@@ -27,8 +27,26 @@ module PageTitleAndHeadlineHelper
     @headline = heading.nil? ? default_headline(options) : heading
 
     content_tag :div, class: 'headline' do
-      content_tag(:h1, @headline) + render(partial: 'layouts/flash')
+      content_tag(:h1, @headline) + flash_messages(flash)
     end
+  end
+
+  # Generates the flash messages HTML structure.
+  def flash_messages(flash)
+    flash.map do |name, message|
+      classes = ['alert', "alert-#{name == 'notice' ? 'success' : 'danger'}"]
+      translated_flash_name = t "flash.#{name}"
+
+      content_tag :div, class: classes do
+        message = content_tag :div, "#{translated_flash_name}: #{message}", id: "flash_#{name}"
+
+        button = content_tag :button, class: 'close', type: 'button', data: {dismiss: 'alert'} do
+                   icon :remove, t('flash.close', name: translated_flash_name)
+                 end
+
+        message + button
+      end
+    end.join.html_safe
   end
 
   # Generates a title tag, consisting of potential flash messages, the page's headline, and the app's name (except when on root path).

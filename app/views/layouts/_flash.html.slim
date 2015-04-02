@@ -1,8 +1,0 @@
-/ Rails flash messages styled for Bootstrap 3.0
-- flash.each do |name, msg|
-  - if msg.is_a?(String)
-    div class="alert alert-#{name == 'notice' ? 'success' : 'danger'}"
-      = content_tag :div, "#{t "flash.#{name}"}: #{msg}", id: "flash_#{name}"
-
-      button.close type="button" data-dismiss="alert"
-        = icon :remove, t('.close', name: t("flash.#{name}"))

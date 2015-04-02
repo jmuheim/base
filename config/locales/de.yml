@@ -5,12 +5,12 @@ de:
   buttons:
     save: Speichern
   'false': Nein
+  flash:
+    close: Schliessen %{name}
   layouts:
     application:
       footer: Fussbereich
       header: Kopfbereich
-    flash:
-      close: Schliessen %{name}
     jump_links:
       content: Zum Inhalt springen
       home_page: Zur Startseite springen
