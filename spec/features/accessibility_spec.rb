@@ -1,6 +1,15 @@
 require 'rails_helper'
 
 describe 'Accessibility' do
+  describe 'required form fields' do
+    it 'displays a visually hidden text "(required)" at the end of the label' do
+      visit new_user_registration_path
+
+      expect(page).to have_css 'label[for="user_name"]', text: 'Name (required)'
+      expect(page).to have_css 'label[for="user_name"] .sr-only', text: '(required)'
+    end
+  end
+
   describe 'form validations' do
     it 'assigns the help blocks with the inputs through aria-describedby', js: true do
       visit new_user_registration_path

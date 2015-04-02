@@ -103,8 +103,7 @@ SimpleForm.setup do |config|
       label
     else
       required_text = I18n.t('simple_form.required.text')
-      required_mark = I18n.t('simple_form.required.mark')
-      "<span aria-hidden='true' title='#{required_text}'>#{required_mark} </span>#{label}<span class='sr-only'> (#{required_text})</span>"
+      "<span class='fa fa-asterisk' title='#{required_text}'></span>#{label}<span class='sr-only'> (#{required_text})"
     end
   end
 
