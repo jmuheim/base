@@ -141,6 +141,5 @@ Navigasmic.setup do |config|
       end
       link_to(label, link, link_options)
     end
-
   end
 end
