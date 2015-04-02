@@ -2,5 +2,6 @@
 - flash.each do |name, msg|
   - if msg.is_a?(String)
     div class="alert alert-#{name == 'notice' ? 'success' : 'danger'}"
-      button.close[type="button" data-dismiss="alert" aria-hidden="true"] ×
+      button.close type="button" data-dismiss="alert"
+        = icon :remove, t('.close', name: t("flash.#{name}"))
       = content_tag :div, "#{t "flash.#{name}"}: #{msg}", id: "flash_#{name}"

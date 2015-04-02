@@ -9,6 +9,8 @@ en:
     application:
       footer: Footer
       header: Header
+    flash:
+      close: Close %{name}
     jump_links:
       content: Jump to content
       home_page: Jump to home page
