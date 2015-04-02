@@ -137,12 +137,30 @@ describe 'Navigation' do
     before do
       @admin = create :admin
       sign_in_as @admin
+      visit root_path
     end
 
     it 'offers a link to the admin area' do
-      visit root_path
       within 'nav' do
         expect(page).to have_link 'Admin'
+      end
+
+      visit destroy_user_session_path
+
+      within 'nav' do
+        expect(page).not_to have_link 'Admin'
+      end
+    end
+
+    it 'offers a link to the create user page' do
+      within 'nav' do
+        expect(page).to have_link 'Create User'
+      end
+
+      visit destroy_user_session_path
+
+      within 'nav' do
+        expect(page).not_to have_link 'Create User'
       end
     end
   end
