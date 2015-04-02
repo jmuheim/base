@@ -143,26 +143,4 @@ Navigasmic.setup do |config|
     end
 
   end
-
-  # Naming Builder Configurations:
-  #
-  # If you want to define a named configuration for a builder, just provide a hash with the name and the builder to
-  # configure.  The named configurations can then be used during rendering by specifying a `config: :bootstrap`
-  # option.
-  #
-  # A Twitter Bootstrap configuration:
-  #
-  # Example usage:
-  #
-  # <%= semantic_navigation :primary, config: :bootstrap, class: 'nav-pills' %>
-  #
-  # Or to create a full navigation bar using twitter bootstrap you could use the following in your view:
-  #
-  # <div class="navbar">
-  #   <div class="navbar-inner">
-  #     <a class="brand" href="/">Title</a>
-  #     <%= semantic_navigation :primary, config: :bootstrap %>
-  #   </div>
-  # </div>
-
 end
