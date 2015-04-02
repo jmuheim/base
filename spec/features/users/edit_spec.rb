@@ -7,7 +7,7 @@ describe 'Editing user' do
     it 'does not grant permission to edit a user' do
       visit edit_user_path(@user)
 
-      expect(page.driver.status_code).to eq 403
+      expect(page).to have_content 'You need to sign in or sign up before continuing.'
     end
   end
 
