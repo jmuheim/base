@@ -96,7 +96,6 @@ describe 'Navigation' do
       # See http://stackoverflow.com/questions/29209518/rspec-and-capybara-how-to-get-the-horizontal-and-vertical-position-of-an-elemen
       it 'visually displays them only on focus', js: true
 
-      # See https://github.com/jejacks0n/navigasmic/issues/50
       it 'offers access keys', js: true do
         visit page_path('about')
 
@@ -105,15 +104,14 @@ describe 'Navigation' do
         expect(page).to have_css '#jump_to_content a[accesskey="2"]'
       end
 
-      it 'moves the focus to the navigation when activating the corresponding link', js: true do
-        pending "Doesn't seem to focus the link, so it's not clickable by Capybara" # See http://stackoverflow.com/questions/29211158/rspec-capybara-setting-focus-to-an-element
+      it 'exists an HTML ID for every same-page jump link' do
+        visit page_path('about')
 
-        visit root_path
+        expect(page).to have_css '#jump_to_navigation a[href="#navigation"]'
+        expect(page).to have_css '#navigation'
 
-        expect(page).not_to have_css '#main:focus'
-        page.evaluate_script "$('#navigation_jump_link_content > a').focus()"
-        click_link 'Jump to content'
-        expect(page).to have_css '#main:focus'
+        expect(page).to have_css '#jump_to_content a[href="#main"]'
+        expect(page).to have_css '#main'
       end
 
       it 'displays the link to the home page only on other pages' do
