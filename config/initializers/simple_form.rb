@@ -102,6 +102,7 @@ SimpleForm.setup do |config|
     if required.empty?
       label
     else
+      # Instead of the default asterisk "*", we show a visually hidden text and an icon
       required_text = I18n.t('simple_form.required.text')
       "<span class='fa fa-asterisk' title='#{required_text}'></span>#{label}<span class='sr-only'> (#{required_text})"
     end
