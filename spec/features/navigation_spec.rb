@@ -76,19 +76,27 @@ describe 'Navigation' do
       end
     end
 
-    it 'reports the activity status ("current menu group" or "current menu item") of menu groups and items' do
+    it 'reports the activity status of menu groups and items visually and aurally' do
       visit root_path
 
+      active_menu_group_css  = '.dropdown.active > a.dropdown-toggle'
+      active_menu_group_text = 'Users (current menu group)'
+      active_menu_item_css   = '.dropdown.active > ul.dropdown-menu > li.active > a'
+      active_menu_item_text  = 'List Users (current menu item)'
+
       within 'nav' do
-        expect(page).not_to have_text 'Users (current menu group)'
-        expect(page).not_to have_text 'List Users (current menu item)'
+        expect(page).not_to have_css active_menu_group_css
+        expect(page).not_to have_text active_menu_group_text
+
+        expect(page).not_to have_css active_menu_item_css
+        expect(page).not_to have_text active_menu_item_text
       end
 
       click_link 'List Users'
 
       within 'nav' do
-        expect(page).to have_text 'Users (current menu group)'
-        expect(page).to have_text 'List Users (current menu item)'
+        expect(page).to have_css active_menu_group_css, text: active_menu_group_text
+        expect(page).to have_css active_menu_item_css, text: active_menu_item_text
       end
     end
 

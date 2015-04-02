@@ -1,3 +1,4 @@
+# Dirty hack. See https://github.com/jejacks0n/navigasmic/issues/47 and https://github.com/jejacks0n/navigasmic/pull/49.
 class AccessibleListBuilder < Navigasmic::Builder::ListBuilder
   def structure_for(label, link = false, options = {}, &block)
     content = ''
@@ -7,7 +8,7 @@ class AccessibleListBuilder < Navigasmic::Builder::ListBuilder
       content = content_tag(@config.group_tag, capture(&block), {class: @config.is_nested_class})
     end
 
-    merge_classes!(options, 'active') if has_active_child?(content)
+    merge_classes!(options, @config.highlighted_class) if has_active_child?(content)
     label = label_for(label, link, block_given?, options)
     content_tag(@config.item_tag, "#{label}#{content}".html_safe, options)
   end
@@ -15,7 +16,7 @@ class AccessibleListBuilder < Navigasmic::Builder::ListBuilder
   # FIXME: This is a very dirty, error-prone hack, because the groups and items are rendered directly to HTML!
   # We should maintain something like a tree structure of groups and items that can really check upon active children.
   def has_active_child?(content)
-    content =~ /<li class="active">/
+    content =~ /<li class=".*\b#{@config.highlighted_class}\b.*">/
   end
 end
 
@@ -119,7 +120,7 @@ Navigasmic.setup do |config|
     # For dropdowns to work you'll need to include the bootstrap dropdown js
     # For groups, we adjust the markup so they'll be clickable and be picked up by the javascript.
     builder.label_generator = proc do |label, options, has_link, has_nested|
-      is_active = options[:class] =~ /\bactive\b/ # TODO: Use @highlighted_class!
+      is_active = options[:class] =~ /\b#{builder.highlighted_class}\b/
 
       if !has_nested || has_link
         label << "<span class='sr-only'> (#{t('layouts.navigation.current_item')})</span>".html_safe if is_active
