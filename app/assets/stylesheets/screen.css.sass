@@ -94,6 +94,15 @@ select.datetime
   .panel-body
     padding-bottom: 0 // The .form-groups already add some spacing at the bottom
 
+// The close button has to come after the information in the flow.
+.alert
+  position: relative
+
+  .close
+    position: absolute
+    top: $alert-padding
+    right: $alert-padding
+
 #footer
   position: fixed
   padding-top: $line-height-computed / 2
