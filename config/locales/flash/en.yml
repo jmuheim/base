@@ -12,4 +12,5 @@ en:
         alert: "%{resource_name} could not be updated."
         notice: "%{resource_name} was successfully updated."
     alert: Alert
+    close: Close %{name}
     notice: Notice
