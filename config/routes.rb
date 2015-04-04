@@ -13,10 +13,10 @@ Base::Application.routes.draw do
       get code, to: 'errors#show', code: code
     end
 
-    root 'pages#home'
-
-    get '/pages/:view', to: 'pages#show', # Keep this below root path definition (otherwise we have an infinite loop)!
+    get '/pages/:view', to: 'pages#show',
                         as: 'page'
+
+    root 'pages#show', view: 'home'
 
     # The priority is based upon order of creation: first created -> highest priority.
     # See how all your routes lay out with "rake routes".

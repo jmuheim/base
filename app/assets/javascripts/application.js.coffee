@@ -3,7 +3,6 @@
 # Add more scripts to the block between `require_self` and `require init`!
 #
 #= require jquery
-#= require jquery.turbolinks
 #= require jquery_ujs
 #= require jquery-ui
 #
@@ -19,9 +18,9 @@
 # --- Add custom requires under here! ---
 #= require cocoon
 #= require example_script
+#= require form_errors_accessibilizer
 # --- Add custom requires above here! ---
 #
 #= require init
-#= require turbolinks
 
 @App = {}

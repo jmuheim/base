@@ -18,7 +18,7 @@ describe 'Requesting new password' do
     within '#new_user' do
       fill_in 'user_password',              with: 'thenewpassword'
       fill_in 'user_password_confirmation', with: 'thenewpassword'
-      click_button 'Change my password'
+      click_button 'Edit password'
     end
 
     expect(page).to have_content 'Your password has been changed successfully. You are now signed in.'

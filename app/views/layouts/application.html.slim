@@ -1,27 +1,30 @@
 doctype html
-html
+html lang=I18n.locale
   head
-    title= yield(:title)
+    = title_tag
 
     meta[name="viewport" content="width=device-width, initial-scale=1.0"]
     meta name="description" content="#{yield(:description)}"
 
-    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
-    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = stylesheet_link_tag    'application', media: 'all'
+    = javascript_include_tag 'application'
     = csrf_meta_tags
 
   body class=body_css_classes
+    == render 'layouts/jump_links'
+
     header
+      h1.sr-only = t '.header'
       == render 'layouts/navigation'
 
-    main.container[role="main"]
+    main#main.container
       .row
         .col-md-12
-          == render 'layouts/messages'
           == yield
 
 
     footer#footer
+      h1.sr-only = t '.footer'
       .container
         .row
           .col-md-8

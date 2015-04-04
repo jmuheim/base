@@ -3,7 +3,7 @@ de:
   devise:
     confirmations:
       new:
-        resend_confirmation_instructions: Bestätigungsinstruktionen erneut zusenden.
+        title: Bestätigungsinstruktionen erneut zusenden.
     failure:
       invalid: Ungültige Anmeldedaten.
       not_found_in_database: Ungültige Anmeldedaten.
@@ -15,9 +15,11 @@ de:
       unlock_instructions:
         unlock_my_account: Mein Benutzerkonto entsperren!
     passwords:
+      edit:
+        title: Passwort bearbeiten
       new:
-        forgot_your_password: Passwort vergessen?
         send_me_reset_password_instructions: Zurücksetzungsinstruktion für Passwort zuschicken
+        title: Passwort vergessen?
     registrations:
       edit:
         account_information: Benutzerkonto Information
@@ -25,13 +27,16 @@ de:
         cancel_my_account: Benutzerkonto löschen
         current_password: Aktuelles Passwort (wir benötigen dies um dein Benutzerkonto zu ändern)
         currently_awaiting_confirmation_for: Warte zur Zeit auf Bestätigung
-        headline: Bearbeite dein Benutzerkonto
+        headline_with_flash: Bearbeite dein Benutzerkonto
         new_password: Neues Passwort (leer lassen, um es ungeändert zu lassen)
+        title: Benutzerkonto bearbeiten
         unhappy: Unglücklich?
       new:
         account_information: Benutzerkonto Informationen
         choose_and_confirm_password: Wähle ein Passwort (und bestätige es, um Tippfehler zu vermeiden)
-        sign_up: Registrieren
+        title: Registrieren
+      show:
+        title: Willkommen, %{user}!
     sessions:
       form:
         having_a_problem: Hast du ein Problem?
@@ -39,7 +44,7 @@ de:
         username_or_email: Benutzername oder Email
         visit_full_sign_in_page: Besuche die komplette Anmelde-Seite!
       new:
-        sign_in: Anmelden
+        title: Anmelden
     shared:
       links:
         didnt_receive_confirmation_instructions: Hast du keine Anweisungen zum Bestätigen deines Kontos erhalten?
@@ -49,4 +54,4 @@ de:
         title: Weitere Links
     unlocks:
       new:
-        resend_unlock_instructions: Anweisungen zum Entsperren erneut zusenden
+        title: Anweisungen zum Entsperren erneut zusenden

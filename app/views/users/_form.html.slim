@@ -10,7 +10,7 @@
 
       / At the moment, changing passwords of existing users is not implemented. How to: https://github.com/plataformatec/devise/wiki/How-To:-Allow-users-to-edit-their-account-without-providing-a-password
       - if @user.new_record?
-        = f.input :password, autocomplete: 'off'
-        = f.input :password_confirmation
+        = f.input :password, autocomplete: 'off', required: true
+        = f.input :password_confirmation, required: true
 
   .actions = f.button :submit, t('buttons.save'), class: 'btn-success'

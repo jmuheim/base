@@ -98,7 +98,15 @@ SimpleForm.setup do |config|
   # config.item_wrapper_class = nil
 
   # How the label text should be generated altogether with the required text.
-  # config.label_text = lambda { |label, required, explicit_label| "#{required} #{label}" }
+  config.label_text = lambda do |label, required, explicit_label|
+    if required.empty?
+      label
+    else
+      # Instead of the default asterisk "*", we show a visually hidden text and an icon
+      required_text = I18n.t('simple_form.required.text')
+      "<span class='fa fa-asterisk' title='#{required_text}'></span>#{label}<span class='sr-only'> (#{required_text})"
+    end
+  end
 
   # You can define the class to use on all labels. Default is nil.
   # config.label_class = nil

@@ -1,5 +1,5 @@
-section.headline
-  h1 = t '.sign_up'
+/ i18n-tasks-use t('.title')
+= headline_with_flash
 
 .row
   .col-sm-8
@@ -9,20 +9,20 @@ section.headline
                                 wrapper: :horizontal_form do |f|
 
       / TODO: We should think about consolidating the forms/views of registrations and users!
-      .panel.panel-default
-        .panel-heading = t('.account_information')
+      fieldset.panel.panel-default
+        legend.panel-heading = t('.account_information')
         .panel-body
-          = f.input :name, autofocus: true
+          = f.input :name
           = f.input :email, required: true
           = f.input :avatar, as: :upload
 
-      .panel.panel-default
-        .panel-heading = t('.choose_and_confirm_password')
+      fieldset.panel.panel-default
+        legend.panel-heading = t('.choose_and_confirm_password')
         .panel-body
           = f.input :password, required: true
           = f.input :password_confirmation, required: true
 
-      = f.button :submit, t('.sign_up'), class: 'btn-success'
+      = f.button :submit, headline, class: 'btn-success'
 
   .col-sm-4
     = render 'devise/shared/links'

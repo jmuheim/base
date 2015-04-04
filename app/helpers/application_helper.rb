@@ -1,17 +1,13 @@
 module ApplicationHelper
   def icon(name, content = nil)
     content_tag :span, class: ['glyphicon', "glyphicon-#{name}"] do
-      content_tag :span, class: 'hide-text' do
-        content || name.to_s.titleize
-      end
+      content_tag :span, content, class: 'sr-only' if content
     end
   end
 
   def flag(name, content = nil)
     content_tag :span, class: ['glyphicon', "bfh-flag-#{name.upcase}"] do
-      content_tag :span, class: 'hide-text' do
-        content || name.to_s.titleize
-      end
+      content_tag :span, content, class: 'sr-only' if content
     end
   end
 
@@ -19,8 +15,8 @@ module ApplicationHelper
     case I18n.locale
     when :en
       :gb
-    when :de
-      :de
+    else
+      I18n.locale
     end
   end
 
@@ -46,11 +42,20 @@ module ApplicationHelper
     devise_mapping.to
   end
 
-  def user_avatar
-    if current_user.avatar?
-      image_tag(current_user.avatar.url(:thumb), class: 'avatar')
+  # TODO: Add spec!
+  def user_avatar(content)
+    if user_signed_in? && current_user.avatar?
+      image_tag(current_user.avatar.url(:thumb), class: 'avatar', alt: content)
     else
-      icon :user
+      icon :user, content
+    end
+  end
+
+  def container_for(object, options = {})
+    tag = options[:tag] || 'div'
+
+    content_tag tag, id: dom_id(object), class: dom_class(object) do
+      yield
     end
   end
 end

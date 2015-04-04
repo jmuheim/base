@@ -17,10 +17,6 @@ gem 'compass-rails' # Compass framework
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
-# Turbolinks: makes following links in your web application faster
-gem 'turbolinks'
-gem 'jquery-turbolinks' # jQuery plugin for drop-in fix binded events problem caused by Turbolinks
-
 gem 'bootstrap-sass' # Sleek, intuitive, and powerful front-end framework
 
 gem 'font-awesome-rails' # The iconic font and CSS toolkit
@@ -52,7 +48,7 @@ gem 'cocoon' # Dynamic nested forms made easy
 
 gem 'validates_timeliness' # Date and time validation plugin for ActiveModel and Rails
 
-gem 'navigasmic', github: 'jmuheim/navigasmic' # Semantic navigation
+gem 'navigasmic' # Semantic navigation
 
 gem 'nilify_blanks' # Save NULLs instead of empty strings into the database
 
@@ -76,17 +72,18 @@ gem 'actionview-encoded_mail_to' # Rails mail_to helper with obfuscation
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw] # Timezone Data for TZInfo (needed when run on Microsoft Windows, see https://github.com/tzinfo/tzinfo/wiki/Resolving-TZInfo::DataSourceNotFound-Errors)
 
+gem 'wannabe_bool' # Converts strings, integers, etc. intuitively to boolean values
+
 group :doc do
   gem 'sdoc', require: false # bundle exec rake doc:rails generates the API under doc/api.
 end
 
-group :development, :test do
-  gem 'sqlite3' # Use SQLite as the database for Active Record
-
+group :development, :test do  
   # Testing tool for the Ruby programming language
   gem 'rspec'
-  gem 'rspec-rails'               # RSpec for Rails
-  gem 'rspec-collection_matchers' # Collection cardinality matchers
+  gem 'rspec-rails' # RSpec for Rails
+
+  gem 'sqlite3' # Use SQLite as the database for Active Record
 
   # Data generation
   gem 'factory_girl_rails' # Test data generator
@@ -95,7 +92,7 @@ group :development, :test do
   # Use Pry and its extensions instead of IRB
   gem 'jazz_hands', github: 'nixme/jazz_hands',
                     branch: 'bring-your-own-debugger'
-  gem 'pry-byebug'      # Pry navigation commands via debugger (formerly ruby-debug)
+  gem 'pry-byebug'  # Pry navigation commands via debugger (formerly ruby-debug)
 end
 
 group :development do
@@ -143,6 +140,8 @@ group :development do
 end
 
 group :test do
+  gem 'rspec-collection_matchers' # Collection cardinality matchers
+
   gem 'respec', require: false # Allows to rerun failed specs (first do `respec` to run all, then `respec f` or `respec 123` to run failed)
 
   gem 'fuubar', '~> 2.0.0rc1' # The instafailing RSpec progress bar formatter

@@ -1,12 +1,22 @@
 class PagesController < ApplicationController
+  before_filter :set_view
+
   def show
-    render params[:view]
+    render @view
   end
 
   protected
 
+  def set_view
+    @view = params[:view]
+  end
+
   # TODO: Add spec!
   def body_css_classes
-    super << params[:view]
+    super << @view
+  end
+
+  def default_headline
+    t "pages.#{@view}.title"
   end
 end

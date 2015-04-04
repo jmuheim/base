@@ -1,5 +1,5 @@
-section.headline
-  h1 = t '.forgot_your_password'
+/ i18n-tasks-use t('.title')
+= headline_with_flash
 
 .row
   .col-sm-8
@@ -7,7 +7,8 @@ section.headline
                                 url:     password_path(resource_name),
                                 html:    {method: :post, class: 'form-horizontal'},
                                 wrapper: :horizontal_form do |f|
-      = f.input :email, autofocus: true, required: true
+
+      = f.input :email, required: true
 
       = f.button :submit, t('.send_me_reset_password_instructions')
 

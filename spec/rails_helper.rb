@@ -61,3 +61,9 @@ RSpec.configure do |config|
   end
 end
 
+# Set screen width to large by default
+RSpec.configure do |config|
+  config.before(:each, js: :true) do
+    screen_width(:lg)
+  end
+end

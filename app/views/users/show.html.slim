@@ -1,7 +1,7 @@
-section.headline
-  h1 = t '.welcome', user: @user.name
+= container_for @user do
+  / i18n-tasks-use t('.title')
+  = headline_with_flash user: @user.name
 
-article id=dom_id(@user)
   == render partial: 'details', locals: {user: @user}
 
   .btn-group
@@ -11,4 +11,3 @@ article id=dom_id(@user)
       = link_to t('actions.destroy'), user_path(@user), method: :delete,
                 data:  {confirm: t('actions.destroy_resource_confirmation_question', resource: User.model_name.human)},
                 class: 'btn btn-default btn-sm'
-  

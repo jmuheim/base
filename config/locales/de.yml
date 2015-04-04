@@ -1,26 +1,55 @@
 ---
 de:
+  app:
+    name: Base
   buttons:
     save: Speichern
   'false': Nein
   layouts:
+    application:
+      footer: Fussbereich
+      header: Kopfbereich
+    jump_links:
+      content: Zum Inhalt springen
+      home_page: Zur Startseite springen
+      navigation: Zur Navigation springen
     navigation:
+      about: "Über"
+      admin: Admin
       choose_language: Sprache wählen
+      content_navigation: Inhaltsnavigation
+      current_group: aktuelle Menügruppe
+      current_item: aktueller Menüpunkt
+      edit_account: Konto bearbeiten
+      home: Base
+      log_out: Abmelden
+      meta_navigation: Benutzernavigation
+      navigation: Navigation
       show_account: Konto anzeigen
+      sign_in: Anmelden
       sign_up: Registrieren
+      toggle_navigation: Navigation anzeigen oder ausblenden
+      user_menu: Benutzer Menü
   pages:
     about:
-      headline: "Über Base"
+      title: "Über Base"
     home:
-      headline: Willkommen auf Base!
+      title: Willkommen auf Base!
+  resources:
+    create: "%{resource} erstellen"
+    list: "%{resource} auflisten"
   'true': Ja
   users:
+    edit:
+      title: Benutzer %{user} bearbeiten
     form:
       details: Details
+    index:
+      title: Benutzer auflisten
     new:
       back: Zurück
-      title: Benutzer erstellen
+      title: Neuer Benutzer
     show:
-      welcome: Willkommen, %{user}!
+      title: Benutzer %{user} anzeigen
     users:
       actions: Aktionen

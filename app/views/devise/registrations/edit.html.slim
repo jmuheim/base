@@ -1,16 +1,15 @@
-section.headline
-  h1 = t '.headline'
+/ i18n-tasks-use t('.title')
+= headline_with_flash
 
 = simple_form_for resource, as:      resource_name,
                             url:     registration_path(resource_name),
                             html:    {method: :put, class: 'form-horizontal', multipart: true},
                             wrapper: :horizontal_form do |f|
-
   .panel.panel-default
     .panel-heading = t('.account_information')
     .panel-body
-      = f.input :name, autofocus: true
-      = f.input :email, as: :email
+      = f.input :name
+      = f.input :email, as: :email, required: true
       = f.input :avatar, as: :upload
 
   - if devise_mapping.confirmable? && resource.pending_reconfirmation?
@@ -26,7 +25,7 @@ section.headline
   .panel.panel-warning
     .panel-heading = t('.current_password')
     .panel-body
-      = f.input :current_password
+      = f.input :current_password, required: true
 
   = f.button :submit, t('buttons.save'), class: 'btn-success'
 

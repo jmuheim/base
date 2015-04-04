@@ -11,3 +11,6 @@ de:
       update:
         alert: "%{resource_name} konnte nicht bearbeitet werden."
         notice: "%{resource_name} wurde erfolgreich bearbeitet."
+    alert: Alarm
+    close: Schliessen %{name}
+    notice: Hinweis

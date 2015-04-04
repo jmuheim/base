@@ -1,45 +1,57 @@
 nav#navigation.navbar.yamm.navbar-inverse.navbar-fixed-top
+  h2.sr-only = t '.navigation'
+
   .container
     .navbar-header
-      button.navbar-toggle type="button" data-toggle="collapse" data-target=".navbar-collapse"
-        span.sr-only Toggle navigation
-        span.icon-bar
-        span.icon-bar
-        span.icon-bar
+      // Place brand before the "Toggle navigation" button to have an intuitive the focus order (on the Bootstrap examples page it's after the button which seems unintuitive)
+      // TODO: Replace with logo! Or add some sr-only text like "(back to home page)"!
       = link_to t('.home'), root_path, class: home_link_class
 
+      button#toggle_navigation.navbar-toggle type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false"
+        span.sr-only = t '.toggle_navigation'
+        span.icon-bar
+        span.icon-bar
+        span.icon-bar
+
     .collapse.navbar-collapse
-      = semantic_navigation :primary_navigation, config: :bootstrap do |navigation|
-        - navigation.item User.model_name.human(count: 2), users_path
+      h3.sr-only = t '.content_navigation'
+      = semantic_navigation :content_navigation do |navigation|
+        - navigation.group User.model_name.human(count: 2) do
+          - navigation.item t('resources.list', resource: User.model_name.human(count: 2)), users_path
+          - navigation.item t('resources.create', resource: User.model_name.human), new_user_path if user_signed_in? && can?(:create, User)
         - navigation.item t('.about'), page_path('about')
 
-      = semantic_navigation :meta_navigation, config: :bootstrap, class: 'navbar-right' do |navigation|
+      h3.sr-only = t '.meta_navigation'
+      = semantic_navigation :meta_navigation, class: 'navbar-right' do |navigation|
         - if user_signed_in?
-          - navigation.group user_avatar, title: t('.user_menu'), data: {placement: 'bottom'} do
-            - navigation.item fa_icon(:user) + t('.show_account'), user_registration_path
-            - navigation.item fa_icon(:edit) + t('.edit_account'), edit_user_registration_path
+          - navigation.group user_avatar(t('.user_menu')) do
+            - navigation.item "#{fa_icon :user} #{t '.show_account'}", user_registration_path
+            - navigation.item "#{fa_icon :edit} #{t '.edit_account'}", edit_user_registration_path
+
             li
               = link_to destroy_user_session_path, method: :delete do
-                => fa_icon('sign-out')
-                = t('.log_out')
+                = fa_icon('sign-out')
+                =< t('.log_out')
 
             - if can? :access, :rails_admin
               li.divider
-              li = link_to fa_icon(:gears) + t('.admin'), rails_admin_path(locale: :en)
+              li = link_to rails_admin_path(locale: :en) do
+                = fa_icon(:gears)
+                =< t('.admin')
 
         - else
           - navigation.item t('.sign_up'), new_user_registration_path
 
-          - navigation.group t('.sign_in') do
+          - navigation.group t('.sign_in'), id: :sign_in_panel do
             li
               .yamm-content
                 .row = render 'devise/sessions/form', resource: User.new, display: :small
 
-        - navigation.group flag(current_locale_flag), id: :language_chooser, title: t('.choose_language'), data: {placement: 'bottom'} do
-          li = link_to locale: 'en' do
-            => flag(:gb, 'Flag of England')
+        - navigation.group flag(current_locale_flag, t('.choose_language')), id: :language_chooser do
+          li lang="en" = link_to locale: 'en' do
+            => flag(:gb)
             | Show page in english
 
-          li = link_to locale: 'de' do
-            => flag(:de, 'Flagge von Deutschland')
+          li lang="de" = link_to locale: 'de' do
+            => flag(:de)
             | Seite auf Deutsch anzeigen

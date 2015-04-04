@@ -1,10 +1,14 @@
 search:
   paths:
-    - 'app/'
-    - 'vendor/'
+    - app/
+    - vendor/
+    - config/
 
   relative_roots:
     - app/views
+
+  exclude:
+    - '*/page_title_and_headline_helper.rb'
 
 data:
   # file_system is the default adapter, you can provide a custom class name here:
@@ -40,6 +44,7 @@ ignore_unused:
   - simple_form.*
   - 'true'
   - validates_timeliness.*
+  - app.name
 
 ignore_eq_base:
   all:

@@ -3,7 +3,7 @@ en:
   devise:
     confirmations:
       new:
-        resend_confirmation_instructions: Resend confirmation instructions
+        title: Resend confirmation instructions
     failure:
       invalid: Invalid login or password.
       not_found_in_database: Invalid login or password.
@@ -15,9 +15,11 @@ en:
       unlock_instructions:
         unlock_my_account: Unlock my account!
     passwords:
+      edit:
+        title: Edit password
       new:
-        forgot_your_password: Forgot your password?
         send_me_reset_password_instructions: Send me reset password instructions
+        title: Forgot your password?
     registrations:
       edit:
         account_information: Account information
@@ -25,13 +27,16 @@ en:
         cancel_my_account: Cancel my account
         current_password: Current password (we need this to confirm your changes)
         currently_awaiting_confirmation_for: Currently awaiting confirmation for
-        headline: Edit your account
+        headline_with_flash: Edit your account
         new_password: New password (leave blank if you don't want to change it)
+        title: Edit account
         unhappy: Unhappy?
       new:
         account_information: Account information
         choose_and_confirm_password: Choose a password (and confirm it to avoid typos)
-        sign_up: Sign up
+        title: Sign up
+      show:
+        title: Welcome, %{user}!
     sessions:
       form:
         having_a_problem: Having a problem?
@@ -39,7 +44,7 @@ en:
         username_or_email: Username or email
         visit_full_sign_in_page: Visit the full sign in page!
       new:
-        sign_in: Sign in
+        title: Sign in
     shared:
       links:
         didnt_receive_confirmation_instructions: Didn't receive confirmation instructions?
@@ -49,4 +54,4 @@ en:
         title: Additional links
     unlocks:
       new:
-        resend_unlock_instructions: Resend unlock instructions
+        title: Resend unlock instructions

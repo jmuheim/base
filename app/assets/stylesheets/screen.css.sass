@@ -3,9 +3,20 @@ html
   overflow-y: scroll // Always display vertical scrollbar to prevent "flickering" between pages that need it and pages that don't
 
 main
-  margin:
+  padding:
     top: 51px    // Accommodate the navbar
     bottom: 60px // Accommodate the footer
+
+#jump_links
+  a
+    position: fixed
+    z-index: 1040
+    left: 50%
+    top: 0
+    +transform(translate(-50%, 0))
+
+    &:not(:focus)
+      @extend .sr-only
 
 h2
   font-style: italic // Make h2 more distinguishable from h1
@@ -55,17 +66,14 @@ h2
         margin-bottom: 5px
 
 .alert
-  .title
-    font-weight: bold
-    margin-bottom: 0.5em
+  h2.title
+    margin-top: 0
+    font-style: normal
+    font-size: $font-size-base
 
 .yamm
   .yamm-content
     padding: 8px 32px
-
-.hide-text
-  +hide-text
-  display: inline-block
 
 .translation_missing::after
   +single-text-shadow
@@ -85,6 +93,15 @@ select.datetime
 .simple_form
   .panel-body
     padding-bottom: 0 // The .form-groups already add some spacing at the bottom
+
+// The close button has to come after the information in the flow.
+.alert
+  position: relative
+
+  .close
+    position: absolute
+    top: $alert-padding
+    right: $alert-padding
 
 #footer
   position: fixed
