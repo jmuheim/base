@@ -1,5 +1,5 @@
 tr id=dom_id(user)
-  td = link_to user.name, user
+  th = user.name
   td = user.email
   td = user.roles.map(&:name).join ', '
   td
