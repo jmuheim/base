@@ -34,6 +34,9 @@ h2
   .glyphicon
     margin-right: 0
 
+.navbar-fixed-top
+  border-bottom-width: 0
+
 #meta_navigation
   img.avatar
     +border-radius(5px)
@@ -93,6 +96,31 @@ select.datetime
 .simple_form
   .panel-body
     padding-bottom: 0 // The .form-groups already add some spacing at the bottom
+
+a,
+a.dropdown-toggle
+  &:focus
+    +box-shadow($input-border-focus 0 0 5px)
+    outline: 1px solid rgba($input-border-focus, 0.75)
+    outline-offset: 0
+
+a.navbar-brand:focus
+  outline-offset: -1px
+
+ul.nav > li
+  > a:focus,
+  > a.dropdown-toggle:focus
+    outline-offset: -1px
+  
+.btn:focus,
+  outline: 0
+  border-color: $input-border-focus
+  
+.btn:focus,
+input[type="file"]:focus,
+input[type="radio"]:focus,
+input[type="checkbox"]:focus
+  +box-shadow($input-border-focus 0 0 10px)
 
 // The close button has to come after the information in the flow.
 .alert
