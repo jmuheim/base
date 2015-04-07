@@ -11,7 +11,7 @@ h2 Example for image gallery
       = gallery.zoomable_image(current_user.avatar)
       = gallery.zoomable_image(current_user.avatar)
 - else
-  | Select an avatar for your user account!
+  p Select an avatar for your user account!
 
 h2 Example for single zoomable image
 
@@ -19,4 +19,4 @@ h2 Example for single zoomable image
   - if current_user.avatar?
     = zoomable_image(current_user.avatar)
 - else
-  | Select an avatar for your user account!
+  p Select an avatar for your user account!
