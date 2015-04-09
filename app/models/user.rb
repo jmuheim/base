@@ -36,7 +36,7 @@
 #
 
 class User < ActiveRecord::Base
-  has_paper_trail
+  has_paper_trail # TODO: Limit tracked attributes!?
   rolify
 
   # Include default devise modules. Others available are:
