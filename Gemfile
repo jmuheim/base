@@ -56,8 +56,6 @@ gem 'enumerize' # Enumerated attributes with I18n
 
 gem 'rails_admin' # Rails Admin: engine that provides an easy-to-use interface for managing data
 
-gem 'paper_trail' # Track changes to your models' data. Good for auditing or versioning.
-
 gem 'carrierwave' # Classier solution for file uploads for Rails
 
 gem 'mini_magick' # Mini replacement for RMagick
@@ -73,6 +71,8 @@ gem 'actionview-encoded_mail_to' # Rails mail_to helper with obfuscation
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw] # Timezone Data for TZInfo (needed when run on Microsoft Windows, see https://github.com/tzinfo/tzinfo/wiki/Resolving-TZInfo::DataSourceNotFound-Errors)
 
 gem 'wannabe_bool' # Converts strings, integers, etc. intuitively to boolean values
+
+gem 'paper_trail', '~> 4.0.0.beta' # Track changes to your models' data. Good for auditing or versioning
 
 group :doc do
   gem 'sdoc', require: false # bundle exec rake doc:rails generates the API under doc/api.
