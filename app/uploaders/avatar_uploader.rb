@@ -51,7 +51,10 @@ class AvatarUploader < CarrierWave::Uploader::Base
 
   # Override the filename of the uploaded files:
   # Avoid using model.id or version_name here, see uploader/store.rb for details.
-  # def filename
-  #   "something.jpg" if original_filename
-  # end
+  def filename
+    # A timestamp as prefix prevents overwriting existing files with the same name
+    prefix = Rails.env.test? ? nil : "#{Time.now.to_i}-"
+
+    "#{prefix}#{original_filename}"
+  end
 end
