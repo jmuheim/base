@@ -35,6 +35,25 @@ describe User do
     expect(create(:user)).to be_valid
   end
 
+  it 'is versioned' do
+    is_expected.to be_versioned
+  end
+
+  it 'versions name, email, and avatar', versioning: true do
+    user = create :user, :donald, :with_avatar
+    avatar_filename = user.avatar_filename
+
+    expect {
+      user.update_attributes! name:  'new-name',
+                              email: 'new-email@example.com',
+                              avatar: dummy_file('other_image.jpg')
+    }.to change { PaperTrail::Version.count(item_type: 'User') }.by 1
+
+    expect(user).to have_a_version_with name: 'donald',
+                                        email: 'donald@example.com',
+                                        avatar_filename: avatar_filename
+  end
+
   describe 'creating a user' do
     it 'validates presence of name' do
       @user = build :user, name: nil
