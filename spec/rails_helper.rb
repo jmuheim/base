@@ -68,3 +68,10 @@ RSpec.configure do |config|
     screen_width(:lg)
   end
 end
+
+# Use different folder for carrierwave uploads during specs https://github.com/carrierwaveuploader/carrierwave/wiki/How-to:-Cleanup-after-your-Rspec-tests
+# RSpec.configure do |config|
+#   config.after(:all) do
+#     FileUtils.rm_rf(Dir["#{Rails.root}/tmp/uploads"])
+#   end
+# end
