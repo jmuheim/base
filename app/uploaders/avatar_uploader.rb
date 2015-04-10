@@ -9,14 +9,21 @@ class AvatarUploader < CarrierWave::Uploader::Base
   storage :file
   # storage :fog
 
-  configure do |config|
-    config.remove_previously_stored_files_after_update = false # We are versioning them using paper_trail
-  end
+  # configure do |config|
+  #   config.remove_previously_stored_files_after_update = false # We are versioning them using paper_trail
+  # end
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
-    "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+    "#{self.class.store_dir_prefix}#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+  end
+
+  def self.store_dir_prefix
+    prefix = 'uploads/'
+    prefix = "#{Rails.root}/tmp/#{prefix}" if Rails.env.test?
+
+    prefix
   end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:

@@ -70,8 +70,8 @@ RSpec.configure do |config|
 end
 
 # Use different folder for carrierwave uploads during specs https://github.com/carrierwaveuploader/carrierwave/wiki/How-to:-Cleanup-after-your-Rspec-tests
-# RSpec.configure do |config|
-#   config.after(:all) do
-#     FileUtils.rm_rf(Dir["#{Rails.root}/tmp/uploads"])
-#   end
-# end
+RSpec.configure do |config|
+  config.after(:each) do
+    FileUtils.rm_rf(Dir[AvatarUploader.store_dir_prefix])
+  end
+end
