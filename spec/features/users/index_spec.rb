@@ -11,7 +11,7 @@ describe 'Listing users' do
 
     expect(page).to have_content 'Users'
     within dom_id_selector(@user) do
-      expect(page).to have_link 'donald'
+      expect(page).to have_content 'donald'
       expect(page).to have_content 'donald@example.com'
       expect(page).to have_link 'Show'
       expect(page).to have_link 'Edit'
