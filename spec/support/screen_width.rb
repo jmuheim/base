@@ -26,11 +26,19 @@ module ScreenWidth
     original_width = page.driver.evaluate_script('window.innerWidth')
     original_height = page.driver.evaluate_script('window.innerHeight')
 
-    page.driver.resize_window desired_width(screen), 500
+    resize_window desired_width(screen), 500
 
     if block_given?
       yield
-      page.driver.resize_window original_width, original_height
+      resize_window original_width, original_height
+    end
+  end
+
+  def resize_window(width, height)
+    if page.driver.browser.respond_to? :manage # Selenium needs this...!?
+      page.driver.browser.manage.window.resize_to(width, height)
+    else
+      page.driver.resize_window(width, height)
     end
   end
 end
