@@ -35,23 +35,42 @@ describe User do
     expect(create(:user)).to be_valid
   end
 
-  it 'is versioned' do
-    is_expected.to be_versioned
-  end
+  describe 'versioning', versioning: true do
+    it 'is versioned' do
+      is_expected.to be_versioned
+    end
 
-  it 'versions name, email, and avatar', versioning: true do
-    user = create :user, :donald, :with_avatar
-    avatar_filename = user.avatar_filename
+    it 'versions name, email, and avatar' do
+      user = create :user, :donald, :with_avatar
+      avatar_filename = user.avatar_filename
 
-    expect {
-      user.update_attributes! name:  'new-name',
-                              email: 'new-email@example.com',
-                              avatar: dummy_file('other_image.jpg')
-    }.to change { PaperTrail::Version.count(item_type: 'User') }.by 1
+      expect {
+        user.update_attributes! name:  'new-name',
+                                email: 'new-email@example.com',
+                                avatar: dummy_file('other_image.jpg')
+      }.to change { PaperTrail::Version.count(item_type: 'User') }.by 1
 
-    expect(user).to have_a_version_with name: 'donald',
-                                        email: 'donald@example.com',
-                                        avatar_filename: avatar_filename
+      expect(user).to have_a_version_with name: 'donald',
+                                          email: 'donald@example.com',
+                                          avatar_filename: avatar_filename
+    end
+
+    # See http://stackoverflow.com/questions/29564354/carrierwave-setting-remove-previously-stored-files-after-update-to-true-breaks
+    it 'keeps old avatar file when assigning a new file' do
+      user = create :user, :donald, :with_avatar
+      avatar_filename = user.avatar_filename
+
+      user.update_attributes! avatar: dummy_file('other_image.jpg')
+      original = user.versions.last.reify
+
+      current_file  = user.avatar.file.file
+      original_file = original.avatar.file.file
+
+      expect(current_file).not_to eq original_file
+
+      expect(File.exists?(current_file)).to eq true
+      expect(File.exists?(original_file)).to eq true
+    end
   end
 
   describe 'creating a user' do

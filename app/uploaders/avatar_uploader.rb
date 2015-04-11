@@ -9,9 +9,10 @@ class AvatarUploader < CarrierWave::Uploader::Base
   storage :file
   # storage :fog
 
-  # configure do |config|
-  #   config.remove_previously_stored_files_after_update = false # We are versioning them using paper_trail
-  # end
+  # This seems problematic, see http://stackoverflow.com/questions/29564354/carrierwave-setting-remove-previously-stored-files-after-update-to-true-breaks
+  configure do |config|
+    config.remove_previously_stored_files_after_update = false # We are versioning them using paper_trail
+  end
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
