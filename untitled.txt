@@ -1,0 +1,359 @@
+--- avatar
+- !ruby/object:AvatarUploader model
+!ruby/object:User raw_attributes
+unconfirmed_email
+encrypted_password
+"$2a$10$3WBETqJm16AZy.5.blRxvuIQkYv51wjyVy34B0KP1JkEu/i1nt.Rm" id
+1 name
+josh email
+josh@example.com reset_password_token
+reset_password_sent_at
+remember_created_at
+sign_in_count
+1 current_sign_in_at
+'2015-04-11 07:09:20.220432' last_sign_in_at
+'2015-04-11 07:09:20.220432' current_sign_in_ip
+127.0.0.1 last_sign_in_ip
+127.0.0.1 confirmation_token
+confirmed_at
+'2015-04-10 14:06:57.765139' confirmation_sent_at
+failed_attempts
+0 unlock_token
+locked_at
+created_at
+'2015-04-10 14:06:57.783360' updated_at
+&5 2015-04-11 07:20:18.067783000 Z avatar
+1428736818-avatar.jpg avatar_filename
+1428736265-10981846_10152801789902739_2295803059867249797_n.jpg attributes
+&6 !ruby/object:ActiveRecord::AttributeSet attributes
+!ruby/object:ActiveRecord::LazyAttributeHash types
+id
+&4 !ruby/object:ActiveRecord::Type::Integer precision
+scale
+limit
+range
+!ruby/range begin
+-2147483648 end
+2147483648 excl
+true name
+&1 !ruby/object:ActiveRecord::ConnectionAdapters::SQLite3String precision
+scale
+limit
+email
+*1 encrypted_password
+*1 reset_password_token
+*1 reset_password_sent_at
+!ruby/object:ActiveRecord::AttributeMethods::TimeZoneConversion::TimeZoneConverter subtype
+&2 !ruby/object:ActiveRecord::Type::DateTime precision
+scale
+limit
+remember_created_at
+!ruby/object:ActiveRecord::AttributeMethods::TimeZoneConversion::TimeZoneConverter subtype
+*2 sign_in_count
+&3 !ruby/object:ActiveRecord::Type::Integer precision
+scale
+limit
+range
+!ruby/range begin
+-2147483648 end
+2147483648 excl
+true current_sign_in_at
+!ruby/object:ActiveRecord::AttributeMethods::TimeZoneConversion::TimeZoneConverter subtype
+*2 last_sign_in_at
+!ruby/object:ActiveRecord::AttributeMethods::TimeZoneConversion::TimeZoneConverter subtype
+*2 current_sign_in_ip
+*1 last_sign_in_ip
+*1 confirmation_token
+*1 confirmed_at
+!ruby/object:ActiveRecord::AttributeMethods::TimeZoneConversion::TimeZoneConverter subtype
+*2 confirmation_sent_at
+!ruby/object:ActiveRecord::AttributeMethods::TimeZoneConversion::TimeZoneConverter subtype
+*2 unconfirmed_email
+*1 failed_attempts
+*3 unlock_token
+*1 locked_at
+!ruby/object:ActiveRecord::AttributeMethods::TimeZoneConversion::TimeZoneConverter subtype
+*2 created_at
+!ruby/object:ActiveRecord::AttributeMethods::TimeZoneConversion::TimeZoneConverter subtype
+*2 updated_at
+!ruby/object:ActiveRecord::AttributeMethods::TimeZoneConversion::TimeZoneConverter subtype
+*2 avatar
+*1 avatar_filename
+*1 values
+id
+1 name
+josh email
+josh@example.com encrypted_password
+"$2a$10$3WBETqJm16AZy.5.blRxvuIQkYv51wjyVy34B0KP1JkEu/i1nt.Rm" reset_password_token
+reset_password_sent_at
+remember_created_at
+sign_in_count
+1 current_sign_in_at
+'2015-04-11 07:09:20.220432' last_sign_in_at
+'2015-04-11 07:09:20.220432' current_sign_in_ip
+127.0.0.1 last_sign_in_ip
+127.0.0.1 confirmation_token
+confirmed_at
+'2015-04-10 14:06:57.765139' confirmation_sent_at
+unconfirmed_email
+failed_attempts
+0 unlock_token
+locked_at
+created_at
+'2015-04-10 14:06:57.783360' updated_at
+'2015-04-11 07:13:24.891868' avatar
+1428736404-url.jpg avatar_filename
+1428736265-10981846_10152801789902739_2295803059867249797_n.jpg additional_types
+{} materialized
+true delegate_hash
+unconfirmed_email
+!ruby/object:ActiveRecord::Attribute::FromDatabase name
+unconfirmed_email value_before_type_cast
+type
+*1 value
+encrypted_password
+!ruby/object:ActiveRecord::Attribute::FromDatabase name
+encrypted_password value_before_type_cast
+"$2a$10$3WBETqJm16AZy.5.blRxvuIQkYv51wjyVy34B0KP1JkEu/i1nt.Rm" type
+*1 value
+"$2a$10$3WBETqJm16AZy.5.blRxvuIQkYv51wjyVy34B0KP1JkEu/i1nt.Rm" id
+!ruby/object:ActiveRecord::Attribute::FromDatabase name
+id value_before_type_cast
+1 type
+*4 value
+1 name
+!ruby/object:ActiveRecord::Attribute::FromUser name
+name value_before_type_cast
+josh type
+*1 value
+josh email
+!ruby/object:ActiveRecord::Attribute::FromUser name
+email value_before_type_cast
+josh@example.com type
+*1 value
+josh@example.com reset_password_token
+!ruby/object:ActiveRecord::Attribute::FromDatabase name
+reset_password_token value_before_type_cast
+type
+*1 value
+reset_password_sent_at
+!ruby/object:ActiveRecord::Attribute::FromDatabase name
+reset_password_sent_at value_before_type_cast
+type
+!ruby/object:ActiveRecord::AttributeMethods::TimeZoneConversion::TimeZoneConverter subtype
+*2 value
+remember_created_at
+!ruby/object:ActiveRecord::Attribute::FromDatabase name
+remember_created_at value_before_type_cast
+type
+!ruby/object:ActiveRecord::AttributeMethods::TimeZoneConversion::TimeZoneConverter subtype
+*2 value
+sign_in_count
+!ruby/object:ActiveRecord::Attribute::FromDatabase name
+sign_in_count value_before_type_cast
+1 type
+*3 value
+1 current_sign_in_at
+!ruby/object:ActiveRecord::Attribute::FromDatabase name
+current_sign_in_at value_before_type_cast
+'2015-04-11 07:09:20.220432' type
+!ruby/object:ActiveRecord::AttributeMethods::TimeZoneConversion::TimeZoneConverter subtype
+*2 value
+2015-04-11 07:09:20.220432000 Z last_sign_in_at
+!ruby/object:ActiveRecord::Attribute::FromDatabase name
+last_sign_in_at value_before_type_cast
+'2015-04-11 07:09:20.220432' type
+!ruby/object:ActiveRecord::AttributeMethods::TimeZoneConversion::TimeZoneConverter subtype
+*2 value
+2015-04-11 07:09:20.220432000 Z current_sign_in_ip
+!ruby/object:ActiveRecord::Attribute::FromDatabase name
+current_sign_in_ip value_before_type_cast
+127.0.0.1 type
+*1 value
+127.0.0.1 last_sign_in_ip
+!ruby/object:ActiveRecord::Attribute::FromDatabase name
+last_sign_in_ip value_before_type_cast
+127.0.0.1 type
+*1 value
+127.0.0.1 confirmation_token
+!ruby/object:ActiveRecord::Attribute::FromDatabase name
+confirmation_token value_before_type_cast
+type
+*1 value
+confirmed_at
+!ruby/object:ActiveRecord::Attribute::FromDatabase name
+confirmed_at value_before_type_cast
+'2015-04-10 14:06:57.765139' type
+!ruby/object:ActiveRecord::AttributeMethods::TimeZoneConversion::TimeZoneConverter subtype
+*2 value
+2015-04-10 14:06:57.765139000 Z confirmation_sent_at
+!ruby/object:ActiveRecord::Attribute::FromDatabase name
+confirmation_sent_at value_before_type_cast
+type
+!ruby/object:ActiveRecord::AttributeMethods::TimeZoneConversion::TimeZoneConverter subtype
+*2 value
+failed_attempts
+!ruby/object:ActiveRecord::Attribute::FromDatabase name
+failed_attempts value_before_type_cast
+0 type
+*3 value
+0 unlock_token
+!ruby/object:ActiveRecord::Attribute::FromDatabase name
+unlock_token value_before_type_cast
+type
+*1 value
+locked_at
+!ruby/object:ActiveRecord::Attribute::FromDatabase name
+locked_at value_before_type_cast
+type
+!ruby/object:ActiveRecord::AttributeMethods::TimeZoneConversion::TimeZoneConverter subtype
+*2 value
+created_at
+!ruby/object:ActiveRecord::Attribute::FromDatabase name
+created_at value_before_type_cast
+'2015-04-10 14:06:57.783360' type
+!ruby/object:ActiveRecord::AttributeMethods::TimeZoneConversion::TimeZoneConverter subtype
+*2 value
+2015-04-10 14:06:57.783360000 Z updated_at
+!ruby/object:ActiveRecord::Attribute::FromUser name
+updated_at value_before_type_cast
+*5 type
+!ruby/object:ActiveRecord::AttributeMethods::TimeZoneConversion::TimeZoneConverter subtype
+*2 value
+*5 avatar
+!ruby/object:ActiveRecord::Attribute::FromUser name
+avatar value_before_type_cast
+1428736818-avatar.jpg type
+*1 value
+1428736818-avatar.jpg avatar_filename
+!ruby/object:ActiveRecord::Attribute::FromDatabase name
+avatar_filename value_before_type_cast
+1428736265-10981846_10152801789902739_2295803059867249797_n.jpg type
+*1 value
+1428736265-10981846_10152801789902739_2295803059867249797_n.jpg new_record
+false mounted_as
+:avatar file
+!ruby/object:CarrierWave::SanitizedFile file
+"/Users/josh/Documents/Work/MuheimWebdesign/base/src/public/uploads/user/avatar/1/1428736404-url.jpg" original_filename
+content_type
+versions
+&9 :thumb
+&7 !ruby/object:AvatarUploader::Uploader2199346480 model
+!ruby/object:User raw_attributes
+unconfirmed_email
+encrypted_password
+"$2a$10$3WBETqJm16AZy.5.blRxvuIQkYv51wjyVy34B0KP1JkEu/i1nt.Rm" id
+1 name
+josh email
+josh@example.com reset_password_token
+reset_password_sent_at
+remember_created_at
+sign_in_count
+1 current_sign_in_at
+'2015-04-11 07:09:20.220432' last_sign_in_at
+'2015-04-11 07:09:20.220432' current_sign_in_ip
+127.0.0.1 last_sign_in_ip
+127.0.0.1 confirmation_token
+confirmed_at
+'2015-04-10 14:06:57.765139' confirmation_sent_at
+failed_attempts
+0 unlock_token
+locked_at
+created_at
+'2015-04-10 14:06:57.783360' updated_at
+*5 avatar
+1428736818-avatar.jpg avatar_filename
+1428736265-10981846_10152801789902739_2295803059867249797_n.jpg attributes
+*6 new_record
+false mounted_as
+:avatar parent_cache_id
+1428736817-2231-8970 cache_id
+1428736817-2231-8970 filename
+avatar.jpg original_filename
+avatar.jpg file
+!ruby/object:CarrierWave::SanitizedFile file
+"/Users/josh/Documents/Work/MuheimWebdesign/base/src/public/uploads/tmp/1428736817-2231-8970/thumb_avatar.jpg" original_filename
+content_type
+image/jpeg versions
+{} storage
+!ruby/object:CarrierWave::Storage::File uploader
+*7 :medium
+&8 !ruby/object:AvatarUploader::Uploader2199339300 model
+!ruby/object:User raw_attributes
+unconfirmed_email
+encrypted_password
+"$2a$10$3WBETqJm16AZy.5.blRxvuIQkYv51wjyVy34B0KP1JkEu/i1nt.Rm" id
+1 name
+josh email
+josh@example.com reset_password_token
+reset_password_sent_at
+remember_created_at
+sign_in_count
+1 current_sign_in_at
+'2015-04-11 07:09:20.220432' last_sign_in_at
+'2015-04-11 07:09:20.220432' current_sign_in_ip
+127.0.0.1 last_sign_in_ip
+127.0.0.1 confirmation_token
+confirmed_at
+'2015-04-10 14:06:57.765139' confirmation_sent_at
+failed_attempts
+0 unlock_token
+locked_at
+created_at
+'2015-04-10 14:06:57.783360' updated_at
+*5 avatar
+1428736818-avatar.jpg avatar_filename
+1428736265-10981846_10152801789902739_2295803059867249797_n.jpg attributes
+*6 new_record
+false mounted_as
+:avatar parent_cache_id
+1428736817-2231-8970 cache_id
+1428736817-2231-8970 filename
+avatar.jpg original_filename
+avatar.jpg file
+!ruby/object:CarrierWave::SanitizedFile file
+"/Users/josh/Documents/Work/MuheimWebdesign/base/src/public/uploads/tmp/1428736817-2231-8970/medium_avatar.jpg" original_filename
+content_type
+image/jpeg versions
+{} storage
+!ruby/object:CarrierWave::Storage::File uploader
+*8 storage
+&10 !ruby/object:CarrierWave::Storage::File uploader
+&11 !ruby/object:AvatarUploader model
+!ruby/object:User raw_attributes
+unconfirmed_email
+encrypted_password
+"$2a$10$3WBETqJm16AZy.5.blRxvuIQkYv51wjyVy34B0KP1JkEu/i1nt.Rm" id
+1 name
+josh email
+josh@example.com reset_password_token
+reset_password_sent_at
+remember_created_at
+sign_in_count
+1 current_sign_in_at
+'2015-04-11 07:09:20.220432' last_sign_in_at
+'2015-04-11 07:09:20.220432' current_sign_in_ip
+127.0.0.1 last_sign_in_ip
+127.0.0.1 confirmation_token
+confirmed_at
+'2015-04-10 14:06:57.765139' confirmation_sent_at
+failed_attempts
+0 unlock_token
+locked_at
+created_at
+'2015-04-10 14:06:57.783360' updated_at
+*5 avatar
+1428736818-avatar.jpg avatar_filename
+1428736265-10981846_10152801789902739_2295803059867249797_n.jpg attributes
+*6 new_record
+false mounted_as
+:avatar cache_id
+1428736817-2231-8970 filename
+avatar.jpg original_filename
+avatar.jpg file
+!ruby/object:CarrierWave::SanitizedFile file
+"/Users/josh/Documents/Work/MuheimWebdesign/base/src/public/uploads/tmp/1428736817-2231-8970/avatar.jpg" original_filename
+content_type
+image/jpeg versions
+*9 storage
+*10 - *11
