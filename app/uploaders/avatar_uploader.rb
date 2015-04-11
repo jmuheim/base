@@ -61,6 +61,7 @@ class AvatarUploader < CarrierWave::Uploader::Base
   # Avoid using model.id or version_name here, see uploader/store.rb for details.
   def filename
     # A timestamp as prefix prevents overwriting existing files with the same name
+    # FIXME: Timestamp is problematic, can change between versions!!!
     prefix = Rails.env.test? ? nil : "#{Time.now.to_i}-"
 
     "#{prefix}#{original_filename}"
