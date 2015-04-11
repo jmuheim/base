@@ -22,8 +22,8 @@ failed_attempts
 locked_at
 created_at
 '2015-04-10 14:06:57.783360' updated_at
-&5 2015-04-11 07:20:18.067783000 Z avatar
-1428736818-avatar.jpg avatar_filename
+&5 2015-04-11 07:20:54.966586000 Z avatar
+1428736854-nayeli.jpg avatar_filename
 1428736265-10981846_10152801789902739_2295803059867249797_n.jpg attributes
 &6 !ruby/object:ActiveRecord::AttributeSet attributes
 !ruby/object:ActiveRecord::LazyAttributeHash types
@@ -101,8 +101,8 @@ failed_attempts
 locked_at
 created_at
 '2015-04-10 14:06:57.783360' updated_at
-'2015-04-11 07:13:24.891868' avatar
-1428736404-url.jpg avatar_filename
+'2015-04-11 07:20:18.067783' avatar
+1428736818-avatar.jpg avatar_filename
 1428736265-10981846_10152801789902739_2295803059867249797_n.jpg additional_types
 {} materialized
 true delegate_hash
@@ -223,9 +223,9 @@ updated_at value_before_type_cast
 *5 avatar
 !ruby/object:ActiveRecord::Attribute::FromUser name
 avatar value_before_type_cast
-1428736818-avatar.jpg type
+1428736854-nayeli.jpg type
 *1 value
-1428736818-avatar.jpg avatar_filename
+1428736854-nayeli.jpg avatar_filename
 !ruby/object:ActiveRecord::Attribute::FromDatabase name
 avatar_filename value_before_type_cast
 1428736265-10981846_10152801789902739_2295803059867249797_n.jpg type
@@ -234,7 +234,7 @@ avatar_filename value_before_type_cast
 false mounted_as
 :avatar file
 !ruby/object:CarrierWave::SanitizedFile file
-"/Users/josh/Documents/Work/MuheimWebdesign/base/src/public/uploads/user/avatar/1/1428736404-url.jpg" original_filename
+"/Users/josh/Documents/Work/MuheimWebdesign/base/src/public/uploads/user/avatar/1/1428736818-avatar.jpg" original_filename
 content_type
 versions
 &9 :thumb
@@ -262,17 +262,17 @@ locked_at
 created_at
 '2015-04-10 14:06:57.783360' updated_at
 *5 avatar
-1428736818-avatar.jpg avatar_filename
+1428736854-nayeli.jpg avatar_filename
 1428736265-10981846_10152801789902739_2295803059867249797_n.jpg attributes
 *6 new_record
 false mounted_as
 :avatar parent_cache_id
-1428736817-2231-8970 cache_id
-1428736817-2231-8970 filename
-avatar.jpg original_filename
-avatar.jpg file
+1428736854-2231-7718 cache_id
+1428736854-2231-7718 filename
+nayeli.jpg original_filename
+nayeli.jpg file
 !ruby/object:CarrierWave::SanitizedFile file
-"/Users/josh/Documents/Work/MuheimWebdesign/base/src/public/uploads/tmp/1428736817-2231-8970/thumb_avatar.jpg" original_filename
+"/Users/josh/Documents/Work/MuheimWebdesign/base/src/public/uploads/tmp/1428736854-2231-7718/thumb_nayeli.jpg" original_filename
 content_type
 image/jpeg versions
 {} storage
@@ -302,17 +302,17 @@ locked_at
 created_at
 '2015-04-10 14:06:57.783360' updated_at
 *5 avatar
-1428736818-avatar.jpg avatar_filename
+1428736854-nayeli.jpg avatar_filename
 1428736265-10981846_10152801789902739_2295803059867249797_n.jpg attributes
 *6 new_record
 false mounted_as
 :avatar parent_cache_id
-1428736817-2231-8970 cache_id
-1428736817-2231-8970 filename
-avatar.jpg original_filename
-avatar.jpg file
+1428736854-2231-7718 cache_id
+1428736854-2231-7718 filename
+nayeli.jpg original_filename
+nayeli.jpg file
 !ruby/object:CarrierWave::SanitizedFile file
-"/Users/josh/Documents/Work/MuheimWebdesign/base/src/public/uploads/tmp/1428736817-2231-8970/medium_avatar.jpg" original_filename
+"/Users/josh/Documents/Work/MuheimWebdesign/base/src/public/uploads/tmp/1428736854-2231-7718/medium_nayeli.jpg" original_filename
 content_type
 image/jpeg versions
 {} storage
@@ -343,16 +343,16 @@ locked_at
 created_at
 '2015-04-10 14:06:57.783360' updated_at
 *5 avatar
-1428736818-avatar.jpg avatar_filename
+1428736854-nayeli.jpg avatar_filename
 1428736265-10981846_10152801789902739_2295803059867249797_n.jpg attributes
 *6 new_record
 false mounted_as
 :avatar cache_id
-1428736817-2231-8970 filename
-avatar.jpg original_filename
-avatar.jpg file
+1428736854-2231-7718 filename
+nayeli.jpg original_filename
+nayeli.jpg file
 !ruby/object:CarrierWave::SanitizedFile file
-"/Users/josh/Documents/Work/MuheimWebdesign/base/src/public/uploads/tmp/1428736817-2231-8970/avatar.jpg" original_filename
+"/Users/josh/Documents/Work/MuheimWebdesign/base/src/public/uploads/tmp/1428736854-2231-7718/nayeli.jpg" original_filename
 content_type
 image/jpeg versions
 *9 storage
