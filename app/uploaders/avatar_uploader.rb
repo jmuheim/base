@@ -9,22 +9,22 @@ class AvatarUploader < CarrierWave::Uploader::Base
   storage :file
   # storage :fog
 
-  # This seems problematic, see http://stackoverflow.com/questions/29564354/carrierwave-setting-remove-previously-stored-files-after-update-to-true-breaks
+  # We are versioning files using paper_trail
   configure do |config|
-    config.remove_previously_stored_files_after_update = false # We are versioning them using paper_trail
+    config.remove_previously_stored_files_after_update = false
   end
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
-    "#{self.class.store_dir_prefix}#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+    "#{store_dir_prefix}/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
-  def self.store_dir_prefix
-    prefix = 'uploads/'
-    prefix = "#{Rails.root}/tmp/#{prefix}" if Rails.env.test?
-
-    prefix
+  # Usually just 'uploads', but we don't want to clutter our development uploads with our spec uploads
+  def store_dir_prefix
+    parts = ['uploads']
+    parts << 'tmp' if Rails.env.test?
+    parts.join '/'
   end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
@@ -44,7 +44,7 @@ class AvatarUploader < CarrierWave::Uploader::Base
 
   # Create different versions of your uploaded files:
   version :thumb do
-    process resize_to_fill: [50, 50]
+    process resize_to_fill: [100, 100]
   end
 
   version :medium do
@@ -60,10 +60,7 @@ class AvatarUploader < CarrierWave::Uploader::Base
   # Override the filename of the uploaded files:
   # Avoid using model.id or version_name here, see uploader/store.rb for details.
   def filename
-    # A timestamp as prefix prevents overwriting existing files with the same name
-    # FIXME: Timestamp is problematic, can change between versions!!!
-    prefix = Rails.env.test? ? nil : "#{Time.now.to_i}-"
-
-    "#{prefix}#{original_filename}"
+    # See http://stackoverflow.com/questions/9423279/papertrail-and-carrierwave/29583400#29583400
+    [@cache_id, original_filename].join('-') if original_filename.present?
   end
 end

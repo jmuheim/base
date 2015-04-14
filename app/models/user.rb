@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20150410084015
+# Schema version: 20150409055838
 #
 # Table name: users
 #
@@ -25,7 +25,6 @@
 #  created_at             :datetime
 #  updated_at             :datetime
 #  avatar                 :string
-#  avatar_filename        :string
 #
 # Indexes
 #
@@ -37,7 +36,7 @@
 #
 
 class User < ActiveRecord::Base
-  has_paper_trail only: [:name, :email, :avatar_filename]
+  has_paper_trail only: [:name, :email, :avatar]
   rolify
 
   # Include default devise modules. Others available are:
@@ -47,7 +46,7 @@ class User < ActiveRecord::Base
          :confirmable, :lockable, authentication_keys: [:login]
 
   # Mount filename on different field to make versioning easy, see http://stackoverflow.com/questions/9423279/papertrail-and-carrierwave
-  mount_uploader :avatar, AvatarUploader, mount_on: :avatar_filename
+  mount_uploader :avatar, AvatarUploader
 
   attr_accessor :login
 

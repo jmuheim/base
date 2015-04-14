@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'File upload' do
   it 'allows to upload a file' do
-    pending # See http://stackoverflow.com/questions/29564354/carrierwave-setting-remove-previously-stored-files-after-update-to-true-breaks
+    # pending # See http://stackoverflow.com/questions/29564354/carrierwave-setting-remove-previously-stored-files-after-update-to-true-breaks
 
     @user = create :user, :with_avatar
     login_as(@user)
@@ -14,7 +14,8 @@ describe 'File upload' do
 
     expect {
       click_button 'Save'
-    }.to change { File.basename(@user.reload.avatar.to_s) }.from('image.jpg').to 'other_image.jpg'
+      @user = User.find @user.id # FIXME: Not nice, see pending spec "reloads the original file name on reload after reify" spec in models/user_spec.rb!
+    }.to change { File.basename(@user.avatar.to_s) }.from(match(/-image\.jpg$/)).to match(/-other_image\.jpg$/)
   end
 
   it 'displays a preview of an uploaded file' do
@@ -23,7 +24,7 @@ describe 'File upload' do
 
     visit edit_user_registration_path
 
-    expect(page).to have_css '.user_avatar .thumbnail img[src$="/image.jpg"]'
+    expect(page).to have_css '.user_avatar .thumbnail img[src$="-image.jpg"]'
   end
 
   it 'displays a preview of an uploaded file (from the temporary cache) after a re-display of the form' do
@@ -36,12 +37,11 @@ describe 'File upload' do
     fill_in 'user_current_password', with: '' # Empty password triggers validation error and form re-display
 
     click_button 'Save'
-
     expect(page).to have_css '.user_avatar .thumbnail img[src^="/uploads/tmp/"]'
   end
 
   it 'uses an uploaded file (from the temporary cache) after a re-display and then successful submit of the form' do
-    pending # See http://stackoverflow.com/questions/29564354/carrierwave-setting-remove-previously-stored-files-after-update-to-true-breaks
+    # pending # See http://stackoverflow.com/questions/29564354/carrierwave-setting-remove-previously-stored-files-after-update-to-true-breaks
     @user = create :user, :with_avatar
     login_as(@user)
 
@@ -55,9 +55,12 @@ describe 'File upload' do
 
     fill_in 'user_current_password', with: 's3cur3p@ssw0rd'
 
+    image_before = @user.avatar.to_s
+
     expect {
       click_button 'Save'
-    }.to change { File.basename(@user.reload.avatar.to_s) }.from('image.jpg').to 'other_image.jpg'
+      @user = User.find @user.id # FIXME: Not nice :(
+    }.to change { @user.avatar.to_s }.from(match(/-image\.jpg$/)).to match(/-other_image\.jpg$/)
   end
 
   it 'allows to remove a file' do
