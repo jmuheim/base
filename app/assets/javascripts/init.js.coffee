@@ -7,7 +7,7 @@ $(document).ready ->
   #   new App.ExampleScript @
 
   $('form.simple_form').each ->
-    new App.FormErrorsAccessibilizer @
+    new App.FormAccessibilizer @
 
   # Bootstrap tooltips
   $('[title]').tooltip()

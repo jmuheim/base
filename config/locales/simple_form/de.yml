@@ -1,6 +1,9 @@
 ---
 de:
   simple_form:
+    hints:
+      user:
+        password_confirmation: Gib dein Passwort nochmal ein, um Tippfehler zu vermeiden
     error_notification:
       default_message: 'Bitte überprüfe die nachfolgenden Probleme:'
     'no': Nein
