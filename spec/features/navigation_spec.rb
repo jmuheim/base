@@ -101,7 +101,7 @@ describe 'Navigation' do
     end
 
     # A menu group "Users" has a "List users" and a "Create User" item, but no "Edit User" item; for the latter, we still want the group to be marked up as active
-    it "reports the activity status of menu groups (that don't have an active item) visually and aurally", focus: true do
+    it "reports the activity status of menu groups (that don't have an active item) visually and aurally" do
       user = create :admin
       login_as user
 
