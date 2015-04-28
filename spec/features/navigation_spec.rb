@@ -85,10 +85,10 @@ describe 'Navigation' do
       active_menu_item_text  = 'List Users (current menu item)'
 
       within 'nav' do
-        expect(page).not_to have_css active_menu_group_css
+        expect(page).not_to have_css  active_menu_group_css
         expect(page).not_to have_text active_menu_group_text
 
-        expect(page).not_to have_css active_menu_item_css
+        expect(page).not_to have_css  active_menu_item_css
         expect(page).not_to have_text active_menu_item_text
       end
 
@@ -96,7 +96,29 @@ describe 'Navigation' do
 
       within 'nav' do
         expect(page).to have_css active_menu_group_css, text: active_menu_group_text
-        expect(page).to have_css active_menu_item_css, text: active_menu_item_text
+        expect(page).to have_css active_menu_item_css,  text: active_menu_item_text
+      end
+    end
+
+    # A menu group "Users" has a "List users" and a "Create User" item, but no "Edit User" item; for the latter, we still want the group to be marked up as active
+    it "reports the activity status of menu groups (that don't have an active item) visually and aurally", focus: true do
+      user = create :admin
+      login_as user
+
+      visit root_path
+
+      active_menu_group_css  = '.dropdown.active > a.dropdown-toggle'
+      active_menu_group_text = 'Users (current menu group)'
+
+      within 'nav' do
+        expect(page).not_to have_css  active_menu_group_css
+        expect(page).not_to have_text active_menu_group_text
+      end
+
+      visit edit_user_path(user)
+
+      within 'nav' do
+        expect(page).to have_css active_menu_group_css, text: active_menu_group_text
       end
     end
 

@@ -17,7 +17,7 @@ nav#navigation.navbar.yamm.navbar-inverse.navbar-fixed-top
     .collapse.navbar-collapse
       h3.sr-only = t '.content_navigation'
       = semantic_navigation :content_navigation do |navigation|
-        - navigation.group User.model_name.human(count: 2) do
+        - navigation.group User.model_name.human(count: 2), class: active_if_controller?(:users) do
           - navigation.item t('resources.list', resource: User.model_name.human(count: 2)), users_path
           - navigation.item t('resources.create', resource: User.model_name.human), new_user_path if user_signed_in? && can?(:create, User)
         - navigation.item t('.about'), page_path('about')
