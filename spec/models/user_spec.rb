@@ -29,12 +29,13 @@ require 'rails_helper'
 
 describe User do
   it { should validate_presence_of(:name).with_message "can't be blank" }
-  it { create(:user); should validate_uniqueness_of(:name).case_insensitive }
+  it { should validate_uniqueness_of(:name).case_insensitive }
 
   it 'has a valid factory' do
     expect(create(:user)).to be_valid
   end
 
+  # TODO: Why do we have these specs double?
   describe 'creating a user' do
     it 'validates presence of name' do
       @user = build :user, name: nil
