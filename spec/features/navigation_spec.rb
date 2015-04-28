@@ -30,24 +30,24 @@ describe 'Navigation' do
       expect(page).to have_css '#language_chooser .dropdown-toggle', text: 'Choose language'
     end
     
-    it 'shows the "Toggle navigation" button on small, medium, and large screens (and collapses it on extra small ones)', js: true do
+    it 'shows the "Menu" button on small, medium, and large screens (and collapses it on extra small ones)', js: true do
       visit root_path
 
       within 'nav' do
         screen_width :xs do
-          expect(page).to have_button 'Toggle navigation'
+          expect(page).to have_button 'Menu'
         end
 
         screen_width :sm do
-          expect(page).not_to have_button 'Toggle navigation'
+          expect(page).not_to have_button 'Menu'
         end
 
         screen_width :md do
-          expect(page).not_to have_button 'Toggle navigation'
+          expect(page).not_to have_button 'Menu'
         end
 
         screen_width :lg do
-          expect(page).not_to have_button 'Toggle navigation'
+          expect(page).not_to have_button 'Menu'
         end
       end
     end
@@ -70,7 +70,7 @@ describe 'Navigation' do
       within 'nav' do
         screen_width :xs do
           expect {
-            click_button 'Toggle navigation'
+            click_button 'Menu'
           }.to change { find('#toggle_navigation')['aria-expanded'].to_b }.from(false).to true
         end
       end

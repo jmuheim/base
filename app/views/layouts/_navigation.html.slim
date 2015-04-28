@@ -8,10 +8,11 @@ nav#navigation.navbar.yamm.navbar-inverse.navbar-fixed-top
       = link_to t('.home'), root_path, class: home_link_class
 
       button#toggle_navigation.navbar-toggle type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false"
-        span.sr-only = t '.toggle_navigation'
-        span.icon-bar
-        span.icon-bar
-        span.icon-bar
+        span.menu-text = t '.toggle_navigation'
+        span.menu-icon
+          span.icon-bar
+          span.icon-bar
+          span.icon-bar
 
     .collapse.navbar-collapse
       h3.sr-only = t '.content_navigation'
