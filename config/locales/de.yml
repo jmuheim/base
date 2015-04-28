@@ -35,6 +35,12 @@ de:
       title: "Über Base"
     home:
       title: Willkommen auf Base!
+    news:
+      latest_news: Letzte Neuigkeiten
+    statistics:
+      number_of_boilerplates: Anzahl Textbausteine
+      number_of_users: Anzahl Benutzer
+      title: Statistiken
   resources:
     create: "%{resource} erstellen"
     list: "%{resource} auflisten"

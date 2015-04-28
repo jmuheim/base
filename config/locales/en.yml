@@ -35,6 +35,11 @@ en:
       title: About Base
     home:
       title: Welcome to Base!
+    news:
+      latest_news: Latest news
+    statistics:
+      number_of_users: Number of users
+      statistics: Statistics
   resources:
     create: Create %{resource}
     list: List %{resource}
