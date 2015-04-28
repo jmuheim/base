@@ -20,16 +20,19 @@
     padding-right: 10px
     line-height: 14px
 
-.navbar-fixed-top
-  border-bottom-width: 0
-
 #jump_links
   a
+    +transform(translate(-50%, 0))
+    +box-shadow(#000 0 0 20px)
     position: fixed
     z-index: 1040
     left: 50%
     top: 0
-    +transform(translate(-50%, 0))
+
+    // In collapsed mode, the links are too narrow otherwise
+    padding:
+      top: 15px
+      bottom: 15px
 
     &:not(:focus)
       @extend .sr-only
