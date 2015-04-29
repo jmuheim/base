@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 describe 'Navigation' do
+  # TODO: We should think about a better specs philosophy here...
   context 'as a guest' do # TODO: This context doesn't really reflect reality. Is it really needed? Maybe a different name (e.g. 'always') would fit better?
     it 'offers a link to the home page' do
       visit root_path
@@ -15,6 +16,14 @@ describe 'Navigation' do
 
       within 'nav' do
         expect(page).to have_link 'About'
+      end
+    end
+
+    it 'offers a link to the "List Users" page' do
+      visit root_path
+
+      within 'nav' do
+        expect(page).to have_link 'List Users'
       end
     end
 
@@ -180,7 +189,7 @@ describe 'Navigation' do
       end
     end
 
-    it 'offers a link to the create user page' do
+    it 'offers a link to the "Create User" page' do
       within 'nav' do
         expect(page).to have_link 'Create User'
       end
