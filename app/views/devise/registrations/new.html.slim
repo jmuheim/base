@@ -9,16 +9,20 @@
                                 wrapper: :horizontal_form do |f|
 
       / TODO: We should think about consolidating the forms/views of registrations and users!
-      fieldset.panel.panel-default
-        legend.panel-heading = t('.account_information')
-        .panel-body
+      = panel do |panel|
+        = panel.heading do
+          = t('.account_information')
+
+        = panel.body do
           = f.input :name
           = f.input :email, required: true
           = f.input :avatar, as: :upload
 
-      fieldset.panel.panel-default
-        legend.panel-heading = t('.choose_and_confirm_password')
-        .panel-body
+      = panel do |panel|
+        = panel.heading do
+          = t('.choose_and_confirm_password')
+
+        = panel.body do
           = f.input :password, required: true
           = f.input :password_confirmation, required: true
 
