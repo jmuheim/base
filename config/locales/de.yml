@@ -14,31 +14,23 @@ de:
       home_page: Zur Startseite springen
       navigation: Zur Navigation springen
     navigation:
-      about: "Über"
-      admin: Admin
       choose_language: Sprache wählen
       content_navigation: Inhaltsnavigation
       current_group: aktuelle Menügruppe
       current_item: aktueller Menüpunkt
-      edit_account: Konto bearbeiten
-      home: Base
-      log_out: Abmelden
       meta_navigation: Benutzernavigation
       navigation: Navigation
       show_account: Konto anzeigen
-      sign_in: Anmelden
       sign_up: Registrieren
       toggle_navigation: Menü
-      user_menu: Benutzer Menü
   pages:
     about:
       title: "Über Base"
     home:
       title: Willkommen auf Base!
     news:
-      latest_news: Letzte Neuigkeiten
+      title: Letzte Neuigkeiten
     statistics:
-      number_of_boilerplates: Anzahl Textbausteine
       number_of_users: Anzahl Benutzer
       title: Statistiken
   resources:
@@ -50,6 +42,7 @@ de:
       title: Benutzer %{user} bearbeiten
     form:
       details: Details
+      password_and_confirmation: 'TRANSLATE: TRANSLATE: '
     index:
       title: Benutzer auflisten
     new:
