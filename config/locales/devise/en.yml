@@ -33,7 +33,7 @@ en:
         unhappy: Unhappy?
       new:
         account_information: Account information
-        choose_and_confirm_password: Choose a password (and confirm it to avoid typos)
+        choose_password: Choose a password
         title: Sign up
       show:
         title: Welcome, %{user}!

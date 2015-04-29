@@ -2,7 +2,7 @@
                          wrapper: :horizontal_form do |f|
 
   = panel do |panel|
-    = panel.heading do
+    = panel.title do
       = t('.details')
 
     = panel.body do
@@ -12,7 +12,7 @@
 
   - if @user.new_record?
     = panel do |panel|
-      = panel.heading do
+      = panel.title do
         = t('.password_and_confirmation')
 
       = panel.body do
