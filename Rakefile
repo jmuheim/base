@@ -4,7 +4,8 @@
 require File.expand_path('../config/application', __FILE__)
 Base::Application.load_tasks
 
-if defined? RSpec
+# http://stackoverflow.com/questions/30028315/want-to-seed-with-rails-env-production-but-getting-nameerror-uninitialized-con
+unless Rails.env.production?
   task(:default).clear
   task default: :'spec:fuubar'
 
