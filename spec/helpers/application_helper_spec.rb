@@ -71,7 +71,7 @@ describe ApplicationHelper do
 
   describe '#container_for' do
     describe '#container_for(object)' do
-      subject { container_for(user = create(:user)) { 'Some content' } }
+      subject { container_for(create(:user)) { 'Some content' } }
 
       it { should have_css 'div#user_1.user' }
       it { should have_content 'Some content' }
@@ -81,6 +81,20 @@ describe ApplicationHelper do
       subject { container_for(create(:user), tag: 'article') { 'Some content' } }
 
       it { should have_css 'article#user_1.user' }
+    end
+  end
+
+  describe '#active_if_controller?' do
+    describe '#active_if_controller?(current_controller)' do
+      subject { active_if_controller?(:test) }
+
+      it { should be :active }
+    end
+
+    describe '#active_if_controller?(other_controller)' do
+      subject { active_if_controller?(:not_test) }
+
+      it { should be_nil }
     end
   end
 end

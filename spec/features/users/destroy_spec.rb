@@ -20,9 +20,9 @@ describe 'Deleting user' do
     end
 
     it 'grants permission to delete other user' do
-      visit_delete_path_for(@user)
-
-      expect(page.driver.status_code).to eq 200
+      expect {
+        visit_delete_path_for(@user)
+      }.to change { User.count }.by -1
     end
   end
 end

@@ -10,13 +10,23 @@ describe 'Accessibility' do
     end
   end
 
-  describe 'form validations' do
-    it 'assigns the help blocks with the inputs through aria-describedby', js: true do
+  describe 'form validations and help blocks' do
+    it 'assigns general and error help blocks with the inputs through aria-describedby', js: true do
       visit new_user_registration_path
+
+      expect(page).to have_css '#user_password_confirmation_help' # Make sure the ID doesn't have a counter suffix, when there is only one help block
+      expect(page).not_to have_css '#user_name[aria-describedby]' # Make sure no empty attributes are assigned
+
+      fill_in 'user_password', with: 'somepassword' # Make sure that the password confirmation error is triggered
       click_button 'Sign up'
 
       expect(page).to have_css 'input#user_name[aria-describedby="user_name_help"]'
       expect(page).to have_css '#user_name_help'
+
+      # When there is more than one help block, the ID has a counter suffix
+      expect(page).to have_css 'input#user_password_confirmation[aria-describedby="user_password_confirmation_help_1 user_password_confirmation_help_2"]'
+      expect(page).to have_css '#user_password_confirmation_help_1'
+      expect(page).to have_css '#user_password_confirmation_help_2'
     end
 
     it 'sets the focus to the first invalid element', js: true do

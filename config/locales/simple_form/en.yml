@@ -3,6 +3,9 @@ en:
   simple_form:
     error_notification:
       default_message: 'Please review the problems below:'
+    hints:
+      user:
+        password_confirmation: Retype your password to avoid typing errors
     'no': 'No'
     remove_file: Remove existing file
     required:

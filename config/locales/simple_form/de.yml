@@ -3,6 +3,9 @@ de:
   simple_form:
     error_notification:
       default_message: 'Bitte überprüfe die nachfolgenden Probleme:'
+    hints:
+      user:
+        password_confirmation: Gib dein Passwort nochmal ein, um Tippfehler zu vermeiden
     'no': Nein
     remove_file: Existierende Datei entfernen
     required:

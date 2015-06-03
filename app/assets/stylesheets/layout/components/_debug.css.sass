@@ -1,0 +1,11 @@
+// Adds "translation missing" to untranslated text nodes
+.translation_missing::after
+  +single-text-shadow
+  display: block
+  content: 'translation missing'
+  color: red
+  position: absolute
+  z-index: 1000
+  font-size: 11px
+  line-height: 1
+  white-space: nowrap

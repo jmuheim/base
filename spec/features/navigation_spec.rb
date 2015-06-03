@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 describe 'Navigation' do
+  # TODO: We should think about a better specs philosophy here...
   context 'as a guest' do # TODO: This context doesn't really reflect reality. Is it really needed? Maybe a different name (e.g. 'always') would fit better?
     it 'offers a link to the home page' do
       visit root_path
@@ -18,6 +19,14 @@ describe 'Navigation' do
       end
     end
 
+    it 'offers a link to the "List Users" page' do
+      visit root_path
+
+      within 'nav' do
+        expect(page).to have_link 'List Users'
+      end
+    end
+
     it 'offers the possibility to switch languages' do
       visit root_path
 
@@ -30,24 +39,24 @@ describe 'Navigation' do
       expect(page).to have_css '#language_chooser .dropdown-toggle', text: 'Choose language'
     end
     
-    it 'shows the "Toggle navigation" button on small, medium, and large screens (and collapses it on extra small ones)', js: true do
+    it 'shows the "Menu" button on small, medium, and large screens (and collapses it on extra small ones)', js: true do
       visit root_path
 
       within 'nav' do
         screen_width :xs do
-          expect(page).to have_button 'Toggle navigation'
+          expect(page).to have_button 'Menu'
         end
 
         screen_width :sm do
-          expect(page).not_to have_button 'Toggle navigation'
+          expect(page).not_to have_button 'Menu'
         end
 
         screen_width :md do
-          expect(page).not_to have_button 'Toggle navigation'
+          expect(page).not_to have_button 'Menu'
         end
 
         screen_width :lg do
-          expect(page).not_to have_button 'Toggle navigation'
+          expect(page).not_to have_button 'Menu'
         end
       end
     end
@@ -70,7 +79,7 @@ describe 'Navigation' do
       within 'nav' do
         screen_width :xs do
           expect {
-            click_button 'Toggle navigation'
+            click_button 'Menu'
           }.to change { find('#toggle_navigation')['aria-expanded'].to_b }.from(false).to true
         end
       end
@@ -85,10 +94,10 @@ describe 'Navigation' do
       active_menu_item_text  = 'List Users (current menu item)'
 
       within 'nav' do
-        expect(page).not_to have_css active_menu_group_css
+        expect(page).not_to have_css  active_menu_group_css
         expect(page).not_to have_text active_menu_group_text
 
-        expect(page).not_to have_css active_menu_item_css
+        expect(page).not_to have_css  active_menu_item_css
         expect(page).not_to have_text active_menu_item_text
       end
 
@@ -96,7 +105,29 @@ describe 'Navigation' do
 
       within 'nav' do
         expect(page).to have_css active_menu_group_css, text: active_menu_group_text
-        expect(page).to have_css active_menu_item_css, text: active_menu_item_text
+        expect(page).to have_css active_menu_item_css,  text: active_menu_item_text
+      end
+    end
+
+    # A menu group "Users" has a "List users" and a "Create User" item, but no "Edit User" item; for the latter, we still want the group to be marked up as active
+    it "reports the activity status of menu groups (that don't have an active item) visually and aurally" do
+      user = create :admin
+      login_as user
+
+      visit root_path
+
+      active_menu_group_css  = '.dropdown.active > a.dropdown-toggle'
+      active_menu_group_text = 'Users (current menu group)'
+
+      within 'nav' do
+        expect(page).not_to have_css  active_menu_group_css
+        expect(page).not_to have_text active_menu_group_text
+      end
+
+      visit edit_user_path(user)
+
+      within 'nav' do
+        expect(page).to have_css active_menu_group_css, text: active_menu_group_text
       end
     end
 
@@ -158,7 +189,7 @@ describe 'Navigation' do
       end
     end
 
-    it 'offers a link to the create user page' do
+    it 'offers a link to the "Create User" page' do
       within 'nav' do
         expect(page).to have_link 'Create User'
       end

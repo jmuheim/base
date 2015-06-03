@@ -1,34 +1,14 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
- * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the top of the
- * compiled file, but it's generally better to create a new file per style scope.
- *
- *= require bootstrap-formhelpers
- *= require jasny-bootstrap
- *= require fancybox
- *
- *= require_self
- */
+// Environment (provides variables and imports)
+@import "env"
 
+// General layout
+@import "layout/main"
+@import "layout/navigation"
+@import "layout/footer"
 
-// Global stuff (provides all variables and imports)
-@import "globals/all"
+// Layout components
+@import "layout/components/*"
 
-@import "bootstrap-sprockets"
-@import "bootstrap"
-@import "yamm"
-@import "jquery-ui"
-@import "font-awesome"
-
-@import "customs/fileinput"
-@import "customs/fancybox"
-@import "customs/forms"
-
-@import "mixins"
-
-@import "screen"
+// Resources
+@import "pages/*"
+@import "users"

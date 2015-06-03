@@ -13,8 +13,28 @@ legend.control-label
     margin-bottom: 0
 
 label.required
+  white-space: nowrap
+
   // Instead of the default asterisk "*", we show a superscripted icon
   .fa
     font-size: $font-size-base / 2
     vertical-align: super
-    padding: 4px 4px 8px 4px
+    padding: 4px 4px 8px 0
+
+select.datetime
+  display: inline-block
+  width: auto
+
+.simple_form
+  .panel-body
+    padding-bottom: 0 // The .form-groups already add some spacing at the bottom
+  
+.btn:focus,
+  outline: 0
+  border-color: $input-border-focus
+  
+.btn:focus,
+input[type="file"]:focus,
+input[type="radio"]:focus,
+input[type="checkbox"]:focus
+  +box-shadow($input-border-focus 0 0 10px)

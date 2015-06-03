@@ -26,7 +26,6 @@ guard :livereload, port: 35729 do
 
   # Rails Assets Pipeline
   watch(%r{(app|vendor)(/assets/\w+/(.+\.(css|js|html|png|jpg))).*}) { |m| "/assets/#{m[3]}" }
-  watch(%r{(app/assets/stylesheets/globals)/.+\.css\.(sass|scss)}) { |m| "#{m[1]}/application.css.#{m[2]}" } # It's strange that this rule is needed, it should work without it, see http://blog.55minutes.com/2013/01/lightning-fast-sass-reloading-in-rails-32/#comment-1184644401
 end
 
 # TODO: Why is bundle exec needed? More infos here: http://stackoverflow.com/questions/22555324 and https://github.com/rails/spring/issues/277

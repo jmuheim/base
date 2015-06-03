@@ -36,7 +36,7 @@ describe 'Editing user' do
       attach_file 'user_avatar', dummy_file_path('other_image.jpg')
 
       expect {
-        click_button 'Save'
+        click_button 'Update User'
         @user.reload
       } .to  change { @user.name }.to('gustav')
         .and change { @user.avatar.to_s }

@@ -1,0 +1,14 @@
+a,
+a.dropdown-toggle
+  &:focus
+    +box-shadow($input-border-focus 0 0 5px)
+    outline: 1px solid $input-border-focus
+    outline-offset: 0
+
+a.navbar-brand:focus
+  outline-offset: -1px
+
+ul.nav > li
+  > a:focus,
+  > a.dropdown-toggle:focus
+    outline-offset: -1px

@@ -1,0 +1,69 @@
+.navbar-inverse
+  .navbar-brand.active:hover,
+  .navbar-brand.active
+    background-color: #000
+    color: #fff
+
+.navbar
+  .caret
+    margin-left: 5px
+
+  .glyphicon
+    margin-right: 0
+
+  .menu-icon
+    +float-right
+
+  .menu-text
+    +float-left
+    color: #fff
+    padding-right: 10px
+    line-height: 14px
+
+#jump_links
+  a
+    +transform(translate(-50%, 0))
+    +box-shadow(#000 0 0 20px)
+    position: fixed
+    z-index: 1040
+    left: 50%
+    top: 0
+
+    // In collapsed mode, the links are too narrow otherwise
+    padding:
+      top: 15px
+      bottom: 15px
+
+    &:not(:focus)
+      @extend .sr-only
+
+#meta_navigation
+  img.avatar
+    +border-radius(5px)
+    margin: -15px 0
+    height: 34px
+
+  #dropdown_new_user
+    .user_password
+      margin-left: 0.5em
+
+    .remember_me_and_submit
+      margin-top: 0.5em
+      text-align: right
+
+      .btn
+        margin-left: 0.5em
+
+    .user_remember_me
+      +float-left
+      margin-top: 6px
+
+      .boolean
+        margin-right: 0.25em
+
+    .visit_full_sign_in_page
+      text-align: center
+
+      hr
+        clear: both
+        margin-bottom: 5px

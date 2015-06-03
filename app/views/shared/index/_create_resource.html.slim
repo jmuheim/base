@@ -1,0 +1,3 @@
+- if can? :create, resource
+  = link_to t('actions.new_resource', resource: resource.model_name.human),
+            new_resource_path, class: 'btn btn-primary'

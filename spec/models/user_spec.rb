@@ -29,7 +29,7 @@ require 'rails_helper'
 
 describe User do
   it { should validate_presence_of(:name).with_message "can't be blank" }
-  it { create(:user); should validate_uniqueness_of(:name).case_insensitive }
+  it { should validate_uniqueness_of(:name).case_insensitive }
 
   it 'has a valid factory' do
     expect(create(:user)).to be_valid
@@ -39,16 +39,13 @@ describe User do
     it 'is versioned' do
       is_expected.to be_versioned
     end
-
-    it 'versions name, email, and avatar' do
-      user = create :user, :donald, :with_avatar
-
+  
+    it 'versions name' do
+      user = create :user, :donald
+  
       expect {
-        user.update_attributes! avatar: dummy_file('other_image.jpg')
-      }.to change { PaperTrail::Version.count(item_type: 'User') }.by 1
-
-      # have_a_version_with doesn't seem to work here, see https://github.com/airblade/paper_trail/issues/520
-      expect(user.previous_version.avatar.file.filename).to match /-image\.jpg$/
+        user.update_attributes! name: 'daisy'
+      }.to change { user.name }.from('donald').to 'daisy'
     end
 
     it 'keeps old avatar file when assigning a new file' do
@@ -119,6 +116,7 @@ describe User do
     # it 'deletes the versioned file when deleting a version'
   end
 
+  # TODO: Why do we have these specs double?
   describe 'creating a user' do
     it 'validates presence of name' do
       @user = build :user, name: nil

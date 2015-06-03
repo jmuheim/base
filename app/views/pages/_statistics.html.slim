@@ -1,0 +1,8 @@
+h2.sr-only = t '.title'
+
+table.table.table-striped.table-hover
+  tr
+    th
+      => icon :user
+      = t '.number_of_users'
+    td = User.count

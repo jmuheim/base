@@ -1,11 +1,4 @@
 / i18n-tasks-use t('.title')
 = headline_with_flash user: @user.name
 
-== render 'form'
-
-h2 Additional links
-
-ul.actions
-  li= link_to 'Show', @user
-  li= link_to 'Back', users_path
-
+== render 'form', user: @user

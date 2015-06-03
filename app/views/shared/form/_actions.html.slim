@@ -1,0 +1,20 @@
+.actions
+  .btn-group
+    = form.button :submit, class: 'btn btn-primary'
+
+    - if resource.persisted?
+      button.btn.btn-primary.dropdown-toggle type="button" data-toggle="dropdown" aria-expanded="false"
+        span.caret
+        span.sr-only = t '.toggle_dropdown'
+
+      ul.dropdown-menu role="menu"
+        li = link_to t('actions.show_resource', resource: resource.model_name.human), resource
+      
+        - if can? :destroy, resource
+          li = link_to t('actions.destroy_resource', resource: resource.model_name.human), resource_path(resource),
+              method: :delete,
+              data: { confirm:  t('actions.destroy_resource_confirmation_question',
+                      resource: resource.model_name.human,
+                      id: resource.id) }
+
+  = link_to t('actions.back_to_resources_list', resources: resource.model_name.human(count: :other)), url_for(resource.class), class: 'btn btn-default'

@@ -1,41 +1,60 @@
 module AccordionHelper
-  def accordion(title, &block)
-    Accordion.new(title, self, block).render
+  def accordion(id, options = {}, &block)
+    Accordion.new(id, options, self, block).render
   end
 
-  class Accordion < Struct.new(:title, :view, :callback)
-    delegate :content_tag, to: :view
+  class Accordion < Struct.new(:id, :options, :view, :callback)
+    class Item < Struct.new(:id, :parent_id, :options, :view, :callback)
+      attr_accessor :title_content, :body_content
+
+      def initialize(id, parent_id, options, view, block)
+        self.id        = id
+        self.parent_id = parent_id
+        super
+      end
+
+      def title(&block)
+        self.title_content = view.capture(self, &block)
+      end
+
+      def body(&block)
+        self.body_content = view.capture(self, &block)
+      end
+
+      def render
+        view.capture(self, &callback)
+
+        view.render 'bootstrap/accordion/panel', id:        id,
+                                                 parent_id: parent_id,
+                                                 title:     title_content,
+                                                 body:      body_content
+      end
+    end
+
+    delegate :link_to, to: :view
+    attr_accessor :accordion_options, :panel_options, :panel_counter
+
+    def initialize(id, options, view, callback)
+      panel_options = options.delete(:panel_options)
+
+      self.accordion_options = {
+        container_tag: :div
+      }.merge(options)
+
+      self.id           = "#{id}_accordion"
+      self.panel_counter = 0
+
+      super
+    end
 
     def render
-      content_tag :section do
-        content_tag(:h2, title) +
-        content_tag(:div, id: id, role: 'tablist', 'aria-multiselectable' => true) do
-          view.capture(self, &callback)
-        end
-      end
+      view.render 'bootstrap/accordion', id:   id,
+                                         body: view.capture(self, &callback)
     end
 
-    def item(title, &block)
-      item_id = title.slugify
-
-      content_tag(:h3, id: item_id,
-                       'data-toggle' => 'collapse',
-                       'data-parent' => "##{id}",
-                       href: "##{item_id}_collapse",
-                       'aria-expanded' => false,
-                       'aria-controls' => "#{id}_collapse",
-                       role: 'tab') do
-        view.fa_icon('plus-square-o') + title
-      end +
-      content_tag(:div, id: "#{item_id}_collapse", class: 'collapse', role: 'tabpanel', 'aria-labelledby' => item_id) do
-        view.capture(self, &block)
-      end
-    end
-
-    private
-
-    def id
-      title.slugify
+    def panel(&block)
+      self.panel_counter += 1
+      Item.new("#{id}_panel_#{panel_counter}", id, options, view, block).render
     end
   end
 end

@@ -1,10 +1,7 @@
 require 'rails_helper'
 
 describe 'Creating user' do
-  before do
-    @admin = create :admin, :scrooge
-    login_as(@admin)
-  end
+  before { login_as create :admin, :scrooge }
 
   it 'creates a user' do
     visit new_user_path
@@ -14,7 +11,7 @@ describe 'Creating user' do
     fill_in 'user_password',              with: 'somegreatpassword'
     fill_in 'user_password_confirmation', with: 'somegreatpassword'
     attach_file 'user_avatar', dummy_file_path('other_image.jpg')
-    click_button 'Save'
+    click_button 'Create User'
 
     expect(page).to have_content 'User was successfully created.'
   end

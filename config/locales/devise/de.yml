@@ -33,7 +33,7 @@ de:
         unhappy: Unglücklich?
       new:
         account_information: Benutzerkonto Informationen
-        choose_and_confirm_password: Wähle ein Passwort (und bestätige es, um Tippfehler zu vermeiden)
+        choose_password: Wähle ein Passwort
         title: Registrieren
       show:
         title: Willkommen, %{user}!

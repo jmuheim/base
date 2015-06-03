@@ -14,40 +14,42 @@ de:
       home_page: Zur Startseite springen
       navigation: Zur Navigation springen
     navigation:
-      about: "Über"
-      admin: Admin
       choose_language: Sprache wählen
       content_navigation: Inhaltsnavigation
       current_group: aktuelle Menügruppe
       current_item: aktueller Menüpunkt
-      edit_account: Konto bearbeiten
-      home: Base
-      log_out: Abmelden
       meta_navigation: Benutzernavigation
       navigation: Navigation
       show_account: Konto anzeigen
-      sign_in: Anmelden
       sign_up: Registrieren
-      toggle_navigation: Navigation anzeigen oder ausblenden
-      user_menu: Benutzer Menü
+      toggle_navigation: Menü
   pages:
     about:
       title: "Über Base"
     home:
       title: Willkommen auf Base!
+    news:
+      title: Letzte Neuigkeiten
+    statistics:
+      number_of_users: Anzahl Benutzer
+      title: Statistiken
   resources:
     create: "%{resource} erstellen"
     list: "%{resource} auflisten"
+  shared:
+    form:
+      actions:
+        toggle_dropdown: Menü umschalten
   'true': Ja
   users:
     edit:
       title: Benutzer %{user} bearbeiten
     form:
       details: Details
+      password: Passwort
     index:
       title: Benutzer auflisten
     new:
-      back: Zurück
       title: Neuer Benutzer
     show:
       title: Benutzer %{user} anzeigen
