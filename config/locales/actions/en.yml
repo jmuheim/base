@@ -1,9 +1,20 @@
 ---
 en:
   actions:
+    actions: Actions
+    back_to_resources_list: Back to list of %{resources}
     destroy: Delete
-    destroy_resource_confirmation_question: Really destroy %{resource}?
+    destroy_resource: Delete %{resource}
+    destroy_resource_confirmation_question: "Really destroy %{resource} #%{id}?"
+    destroy_resource_with_id: 'Destroy %{resource} #%{id}'
+    destroy_resource_with_name: Destroy %{resource} %{name}
     edit: Edit
+    edit_resource: Edit %{resource}
+    edit_resource_with_id: 'Edit %{resource} #%{id}'
+    edit_resource_with_name: Edit %{resource} %{name}
     new: Create
     new_resource: Create %{resource}
     show: Show
+    show_resource: Show %{resource}
+    show_resource_with_id: 'Show %{resource} #%{id}'
+    show_resource_with_name: Show %{resource} %{name}

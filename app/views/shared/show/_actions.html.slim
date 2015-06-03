@@ -1,0 +1,9 @@
+.btn-group
+  - if can? :edit, resource
+    = link_to t('actions.edit'), edit_resource_path(resource), class: 'btn btn-primary'
+  - if can? :destroy, resource
+    = link_to t('actions.destroy'), resource_path(resource), method: :delete,
+              data:  {confirm: t('actions.destroy_resource_confirmation_question', resource: resource.model_name.human, id: resource.id)},
+              class: 'btn btn-danger'
+
+=< link_to t('actions.back_to_resources_list', resources: resource.model_name.human(count: :other)), url_for(resource.class), class: 'btn btn-default'

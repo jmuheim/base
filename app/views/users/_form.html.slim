@@ -1,4 +1,4 @@
-= simple_form_for @user, html:    {class: 'form-horizontal'},
+= simple_form_for user, html:    {class: 'form-horizontal'},
                          wrapper: :horizontal_form do |f|
 
   = panel do |panel|
@@ -6,17 +6,17 @@
       = t('.details')
 
     = panel.body do
-      = f.input :name, autofocus: true
+      = f.input :name
       = f.input :email, as: :email, required: true
       = f.input :avatar, as: :upload
 
-  - if @user.new_record?
+  - if user.new_record?
     = panel do |panel|
       = panel.heading do
-        = t('.password_and_confirmation')
+        = t('.password')
 
       = panel.body do
         = f.input :password, autocomplete: 'off', required: true
         = f.input :password_confirmation, required: true
 
-  .actions = f.button :submit, t('buttons.save'), class: 'btn-success'
+  == render 'shared/form/actions', form: f, resource: resource

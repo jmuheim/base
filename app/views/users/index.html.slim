@@ -2,9 +2,6 @@
 = headline_with_flash User.model_name.human count: :other
 
 / Would be nice to do something like `= render @users, wrapper: true`, see http://stackoverflow.com/questions/22120292
-= render 'users', users: @users
+== render 'users', users: @users
 
-- if can? :create, User
-  .btn-group
-    = link_to t('actions.new_resource', resource: User.model_name.human),
-              new_user_path, class: 'btn btn-success'
+== render 'shared/index/create_resource', resource: User

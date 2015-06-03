@@ -36,17 +36,20 @@ en:
   resources:
     create: Create %{resource}
     list: List %{resource}
+  shared:
+    form:
+      actions:
+        toggle_dropdown: Toggle dropdown
   'true': 'Yes'
   users:
     edit:
       title: Edit user %{user}
     form:
       details: Details
-      password_and_confirmation: 'TRANSLATE: '
+      password: Password
     index:
       title: List users
     new:
-      back: Back
       title: New user
     show:
       title: User %{user}

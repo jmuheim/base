@@ -36,17 +36,20 @@ de:
   resources:
     create: "%{resource} erstellen"
     list: "%{resource} auflisten"
+  shared:
+    form:
+      actions:
+        toggle_dropdown: Menü umschalten
   'true': Ja
   users:
     edit:
       title: Benutzer %{user} bearbeiten
     form:
       details: Details
-      password_and_confirmation: 'TRANSLATE: TRANSLATE: '
+      password: Passwort
     index:
       title: Benutzer auflisten
     new:
-      back: Zurück
       title: Neuer Benutzer
     show:
       title: Benutzer %{user} anzeigen
