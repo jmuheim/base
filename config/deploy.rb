@@ -18,7 +18,7 @@ set :forward_agent, true
 set :domain, "#{server_name}.uberspace.de"
 set :deploy_to, "/home/#{user}/rails"
 set :repository, "git@github.com:#{repository_name}.git"
-set :branch, 'features/accessibility'
+set :branch, ENV['branch'] || 'master'
 
 # Manually create these paths in shared/ (eg: shared/config/database.yml) in your server.
 # They will be linked in the 'deploy:link_shared_paths' step.
