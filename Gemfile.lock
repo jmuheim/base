@@ -301,9 +301,10 @@ GEM
       shellany (~> 0.0)
     open4 (1.3.4)
     orm_adapter (0.5.0)
-    paper_trail (3.0.8)
-      activerecord (>= 3.0, < 5.0)
-      activesupport (>= 3.0, < 5.0)
+    paper_trail (4.0.0.rc1)
+      activerecord (>= 3.0, < 6.0)
+      activesupport (>= 3.0, < 6.0)
+      request_store (~> 1.1.0)
     parser (2.2.2.5)
       ast (>= 1.1, < 3.0)
     poltergeist (1.6.0)
@@ -397,6 +398,7 @@ GEM
       json (~> 1.4)
     redcarpet (3.2.3)
     remotipart (1.2.1)
+    request_store (1.1.0)
     rerun (0.10.0)
       listen (~> 2.7, >= 2.7.3)
     respec (0.8.2)
@@ -566,7 +568,7 @@ DEPENDENCIES
   mysql2
   navigasmic
   nilify_blanks
-  paper_trail
+  paper_trail (~> 4.0.0.rc)
   poltergeist
   pry-byebug
   quiet_assets

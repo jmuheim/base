@@ -45,7 +45,7 @@ describe User do
   
       expect {
         user.update_attributes! name: 'daisy'
-      }.to change { user.name }.from('donald').to 'daisy'
+      }.to change { user.name }.to 'daisy'
     end
   end
 
