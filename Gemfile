@@ -56,7 +56,7 @@ gem 'enumerize' # Enumerated attributes with I18n
 
 gem 'rails_admin' # Rails Admin: engine that provides an easy-to-use interface for managing data
 
-gem 'paper_trail', '~> 4.0.0.beta' # Track changes to your models' data. Good for auditing or versioning
+gem 'paper_trail', '~> 4.0.0.rc' # Track changes to your models' data. Good for auditing or versioning.
 
 gem 'carrierwave' # Classier solution for file uploads for Rails
 
