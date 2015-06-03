@@ -7,14 +7,14 @@ de:
     destroy_resource: "%{resource} löschen"
     destroy_resource_confirmation_question: "%{resource} #%{id} wirklich löschen?"
     destroy_resource_with_id: "%{resource} #%{id} löschen"
-    destroy_resource_with_name: "%{resource} %{name} löschen"
+    destroy_resource_with_name: '%{resource} "%{name}" löschen'
     edit: Bearbeiten
     edit_resource: "%{resource} bearbeiten"
     edit_resource_with_id: "%{resource} #%{id} bearbeiten"
-    edit_resource_with_name: "%{resource} %{name} löschen"
+    edit_resource_with_name: '%{resource} "%{name}" löschen'
     new: Erstellen
     new_resource: "%{resource} erstellen"
     show: Anzeigen
     show_resource: "%{resource} anzeigen"
-    show_resource_with_id: "%{resource} #%{id} anzeigen"
-    show_resource_with_name: "%{resource} %{name} anzeigen"
+    show_resource_with_id: "%{resource} #%{id}"
+    show_resource_with_name: '%{resource} "%{name}"'
