@@ -36,6 +36,7 @@
 #
 
 class User < ActiveRecord::Base
+  has_paper_trail only: :name
   rolify
 
   # Include default devise modules. Others available are:

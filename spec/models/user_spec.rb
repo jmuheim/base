@@ -35,6 +35,20 @@ describe User do
     expect(create(:user)).to be_valid
   end
 
+  describe 'versioning', versioning: true do
+    it 'is versioned' do
+      is_expected.to be_versioned
+    end
+  
+    it 'versions name' do
+      user = create :user, :donald
+  
+      expect {
+        user.update_attributes! name: 'daisy'
+      }.to change { user.name }.from('donald').to 'daisy'
+    end
+  end
+
   # TODO: Why do we have these specs double?
   describe 'creating a user' do
     it 'validates presence of name' do
