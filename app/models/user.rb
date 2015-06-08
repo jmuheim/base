@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20150409055838
+# Schema version: 20150604120332
 #
 # Table name: users
 #
@@ -25,6 +25,7 @@
 #  created_at             :datetime
 #  updated_at             :datetime
 #  avatar                 :string
+#  lock_version           :integer          default(0)
 #
 # Indexes
 #
