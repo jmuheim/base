@@ -22,14 +22,14 @@ This is a basic Rails project with everything configured the way I want. To fork
   - <code>$ bundle</code> (installs the gems)
   - <code>$ rake db:setup</code> (sets up the database with seed data)
   - <code>$ bin/rake db:migrate RAILS_ENV=test</code> (prepare test database)
-- Replace all occurrences of <code>Base</code> and <code>base</code> in the code with your project's equivalents (TODO: write executable script?)
+- Replace all occurrences of <code>Base::Application</code> with <code>PROJECT::Application</code> (e.g. <code>PrettyCalc::Application</code>) and every occurrence of <code>Module Base</code> with <code>Module PROJECT</code> (e.g. <code>Module PrettyCalc</code>)
 - Change the value of <code>secret_key_base</code> in <code>config/initializers/secret_token.rb</code> (run <code>$ rake secret</code> to create a new secret key)
 - Set the correct value of <code>repo_token</code> in <code>.travis.yml</code>
 - Change the value of <code>session_store</code> in <code>config/initializers/session_store.rb</code> to <code>_PROJECT_session</code> (while <code>PROJECT</code> is your project's downcased and underscored name)
 - Change the value of <code>config.mailer_sender</code> in <code>config/initializers/devise.rb</code> to some useful email address (e.g. <code>info@PROJECT.com</code>)
 - Change the Rack Livereload port in <code>Guardfile</code> and <code>config/development.rb</code> to e.g. <code>35730</code>
 - Change the value of <code>Port:</code> in <code>config/boot.rb</code> to e.g. <code>3002</code>
-- Create an `.rspec` file with your specific RSpec config, e.g. `--color` and `--require spec_helper`
+- Create an <code>.rspec</code> file with your specific RSpec config, e.g. <code>--color</code> and <code>--require spec_helper</code>
 
 = Activate external services
 
@@ -41,6 +41,10 @@ This is a basic Rails project with everything configured the way I want. To fork
 - {Hound}[https://houndci.com/]
 - {Rollbar}[https://rollbar.com/]
 
-= Done! :-)
+= Run specs
 
 Last but not least: run `$ rake` to see if everything's working, then commit all your changes.
+
+= Remove this file
+
+Remove <code>README.rdoc</code> to complete the forking process.
