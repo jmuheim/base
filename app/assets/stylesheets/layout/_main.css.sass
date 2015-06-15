@@ -6,3 +6,9 @@ main
   padding:
     top: 51px    // Accommodate the navbar
     bottom: 60px // Accommodate the footer
+
+  a[href^="http:"],
+  a[href^="https:"]
+    &:after
+      font: normal normal normal 14px/1 FontAwesome
+      content: " \f08e"
