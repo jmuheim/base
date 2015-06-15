@@ -12,7 +12,8 @@ describe 'Showing user' do
     expect(page).to have_content 'donald'
 
     within dom_id_selector(@user) do
-      expect(page).to have_css '.email', text: 'donald@example.com'
+      expect(page).to have_css '.email',      text: 'donald@example.com'
+      expect(page).to have_css '.created_at', text: 'Mon, 15 Jun 2015 14:33:52 +0200'
       expect(page).to have_css '.avatar img[alt="donald"]'
 
       expect(page).to have_link 'Edit'

@@ -68,3 +68,12 @@ RSpec.configure do |config|
     screen_width(:lg)
   end
 end
+
+# Set date and time always to 15th of june 2015 at 14:33:52
+RSpec.configure do |config|
+  config.include ActiveSupport::Testing::TimeHelpers
+
+  config.before(:each) do
+    travel_to DateTime.parse('2015-06-15 14:33:52 +0200')
+  end
+end
