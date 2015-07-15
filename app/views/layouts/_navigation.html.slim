@@ -16,6 +16,7 @@ nav#navigation.navbar.yamm.navbar-inverse.navbar-fixed-top
 
     .collapse.navbar-collapse
       h3.sr-only = t '.content_navigation'
+
       = semantic_navigation :content_navigation do |navigation|
         - navigation.group User.model_name.human(count: 2), class: active_if_controller?(:users) do
           - navigation.item t('resources.list', resource: User.model_name.human(count: 2)), users_path
@@ -23,6 +24,7 @@ nav#navigation.navbar.yamm.navbar-inverse.navbar-fixed-top
         - navigation.item t('.about'), page_path('about')
 
       h3.sr-only = t '.meta_navigation'
+
       = semantic_navigation :meta_navigation, class: 'navbar-right' do |navigation|
         - if user_signed_in?
           - navigation.group user_avatar(t('.user_menu')) do
@@ -41,9 +43,9 @@ nav#navigation.navbar.yamm.navbar-inverse.navbar-fixed-top
                 =< t('.admin')
 
         - else
-          - navigation.item t('.sign_up'), new_user_registration_path
+          - navigation.item "<span class='visible-sm-inline-block'>#{fa_icon 'user-plus'}</span> <span class='hidden-sm'>#{t '.sign_up'}</span>", new_user_registration_path
 
-          - navigation.group t('.sign_in'), id: :sign_in_panel do
+          - navigation.group "<span class='visible-sm-inline-block'>#{fa_icon 'sign-in'}</span> <span class='hidden-sm'>#{t '.sign_in'}</span>", id: :sign_in_panel do
             li
               .yamm-content
                 .row = render 'devise/sessions/form', resource: User.new, display: :small

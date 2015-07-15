@@ -1,8 +1,14 @@
+@import url(http://fonts.googleapis.com/css?family=IM+Fell+English+SC)
+
 .navbar-inverse
-  .navbar-brand.active:hover,
-  .navbar-brand.active
-    background-color: #000
-    color: #fff
+  .navbar-brand
+    font-family: 'IM Fell English SC', serif
+    font-size: 32px
+
+    &.active,
+    &.active:hover
+      background-color: $navbar-inverse-link-active-bg
+      color: $navbar-inverse-link-active-color
 
 .navbar
   .caret
@@ -21,6 +27,8 @@
     line-height: 14px
 
 #jump_links
+  margin: 0 /* Otherwise, Bootstrap adds a -15px margin */
+
   a
     +transform(translate(-50%, 0))
     +box-shadow(#000 0 0 20px)
@@ -28,6 +36,7 @@
     z-index: 1040
     left: 50%
     top: 0
+    background-color: $navbar-inverse-link-active-bg
 
     // In collapsed mode, the links are too narrow otherwise
     padding:
