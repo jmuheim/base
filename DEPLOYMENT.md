@@ -180,3 +180,7 @@ OSX Mail:
 Thunderbird:
 
 - Just add the account in the account settings using user name and password - Thunberbird will automatically detect the correct settings!
+
+## Additional information
+
+- If you ever have to inspect server logs, they're here: `/home/ACCOUNT/nginx/logs/error.log`
