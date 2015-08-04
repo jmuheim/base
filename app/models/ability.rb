@@ -23,7 +23,7 @@ class Ability
         can :access, :rails_admin
         can :dashboard
 
-        can :crud, :all
+        can :crud, :all # TODO: Remove this! Explicitly set every single ability!
       end
 
       cannot :destroy, User do |user|
