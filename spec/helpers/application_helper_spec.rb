@@ -91,6 +91,12 @@ describe ApplicationHelper do
       it { should be :active }
     end
 
+    describe '#active_if_controller?(some_controller, current_controller)' do
+      subject { active_if_controller?(:some_controller, :test) }
+
+      it { should be :active }
+    end
+
     describe '#active_if_controller?(other_controller)' do
       subject { active_if_controller?(:not_test) }
 

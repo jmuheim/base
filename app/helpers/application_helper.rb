@@ -60,7 +60,7 @@ module ApplicationHelper
   end
 
   # See https://github.com/jejacks0n/navigasmic/issues/52
-  def active_if_controller?(controller_to_check)
-    :active if controller_name.to_s == controller_to_check.to_s
+  def active_if_controller?(*controllers_to_check)
+    :active if controllers_to_check.map(&:to_s).include? controller_name.to_s
   end
 end
