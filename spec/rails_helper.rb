@@ -55,6 +55,13 @@ RSpec.configure do |config|
   config.infer_spec_type_from_file_location!
 end
 
+# Set locale for view specs, see https://github.com/rspec/rspec-rails/issues/255#issuecomment-2865917
+class ActionView::TestCase::TestController
+  def default_url_options(options = {})
+    {locale: I18n.default_locale}
+  end
+end
+
 # Set locale for feature specs, see https://github.com/rspec/rspec-rails/issues/255#issuecomment-24698753
 RSpec.configure do |config|
   config.before(:each, type: :feature) do
