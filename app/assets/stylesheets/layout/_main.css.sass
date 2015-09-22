@@ -7,8 +7,13 @@ main
     top: 51px    // Accommodate the navbar
     bottom: 60px // Accommodate the footer
 
+  a:not(.btn):not(.panel-title a)
+    text-decoration: underline
+
   a[href^="http:"],
   a[href^="https:"]
+    white-space: nowrap
+
     &:after
       font: normal normal normal 14px/1 FontAwesome
       content: " \f08e"
