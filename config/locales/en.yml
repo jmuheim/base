@@ -63,9 +63,3 @@ en:
       title: User %{user}
     users:
       actions: Actions
-  registrations:
-    new:
-      title: Sign up
-  confirmations:
-    new:
-      title: Bestätigungsinstruktionen erneut zusenden

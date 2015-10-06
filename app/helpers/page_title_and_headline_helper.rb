@@ -67,7 +67,8 @@ module PageTitleAndHeadlineHelper
 
   # Returns the default headline (can be overriden in controllers).
   def default_headline(options = {})
-    t "#{controller_path.gsub('/', '.')}.#{action_name_to_translate}.title", options
+    # t "#{controller_path.gsub('/', '.')}.#{action_name_to_translate}.title", options
+    t '.title', options
   end
 
   def action_name_to_translate
