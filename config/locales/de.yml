@@ -50,16 +50,6 @@ de:
         toggle_dropdown: Menü umschalten
   'true': Ja
   users:
-    edit:
-      title: "%{user} bearbeiten"
     form:
       details: Details
       password: Passwort
-    index:
-      title: Benutzer auflisten
-    new:
-      title: Neuer Benutzer
-    show:
-      title: "%{user} anzeigen"
-    users:
-      actions: Aktionen
