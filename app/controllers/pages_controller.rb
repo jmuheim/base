@@ -1,5 +1,6 @@
 class PagesController < ApplicationController
   before_filter :set_view
+  helper_method :default_headline
 
   def show
     render @view
@@ -16,7 +17,7 @@ class PagesController < ApplicationController
     super << @view
   end
 
-  def default_headline
+  def default_headline(options = {})
     t "pages.#{@view}.title"
   end
 end

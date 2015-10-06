@@ -1,9 +1,6 @@
 ---
 de:
   devise:
-    confirmations:
-      new:
-        title: Bestätigungsinstruktionen erneut zusenden.
     failure:
       invalid: Ungültige Anmeldedaten.
       not_found_in_database: Ungültige Anmeldedaten.

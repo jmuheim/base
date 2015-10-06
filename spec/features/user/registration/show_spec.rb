@@ -7,7 +7,7 @@ describe 'Showing account' do
     it 'does not grant permission to show the account' do
       visit user_registration_path
 
-      expect(page.driver.status_code).to eq 403
+      expect(page).to have_status_code 403
     end
   end
 

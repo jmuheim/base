@@ -11,9 +11,9 @@ html lang=I18n.locale
     = csrf_meta_tags
 
   body class=body_css_classes
-    == render 'layouts/jump_links'
-
     header
+      == render 'layouts/jump_links'
+
       h1.sr-only = t '.header'
       == render 'layouts/navigation'
 

@@ -30,6 +30,7 @@ en:
       sign_up: Sign up
       toggle_navigation: Menu
       user_menu: User menu
+      you_are_here: You are here
   pages:
     about:
       title: About Base
@@ -50,7 +51,7 @@ en:
   'true': 'Yes'
   users:
     edit:
-      title: Edit user %{user}
+      title: Edit %{user}
     form:
       details: Details
       password: Password
@@ -62,3 +63,9 @@ en:
       title: User %{user}
     users:
       actions: Actions
+  registrations:
+    new:
+      title: Sign up
+  confirmations:
+    new:
+      title: Bestätigungsinstruktionen erneut zusenden

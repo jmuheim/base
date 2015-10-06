@@ -6,6 +6,10 @@ describe 'Creating user' do
   it 'creates a user' do
     visit new_user_path
 
+    expect(page).to have_navigation_items 'Users', 'Create User'
+    expect(page).to have_breadcrumbs 'Base', 'Users', 'Create'
+    expect(page).to have_headline 'New user'
+
     fill_in 'user_name',                  with: 'newname' # TODO: Don't use input's ID, use label text everywhere! Addendum: really?? Shouldn't we just rely on SimpleForm displaying labels anyways?
     fill_in 'user_email',                 with: 'somemail@example.com'
     fill_in 'user_password',              with: 'somegreatpassword'
@@ -13,6 +17,6 @@ describe 'Creating user' do
     attach_file 'user_avatar', dummy_file_path('other_image.jpg')
     click_button 'Create User'
 
-    expect(page).to have_content 'User was successfully created.'
+    expect(page).to have_flash 'User was successfully created.'
   end
 end
