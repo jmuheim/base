@@ -1,4 +1,4 @@
-nav#navigation
+nav#navigation.container
   .navbar.yamm.navbar-inverse.navbar-fixed-top
     h2.sr-only = t '.navigation'
 
@@ -60,7 +60,7 @@ nav#navigation
               => flag(:de)
               | Seite auf Deutsch anzeigen
 
-  #breadcrumbs.breadcrumb.container
+  #breadcrumbs.breadcrumb
     h3 #{t '.you_are_here'}:
     ol.breadcrumb
       = render_breadcrumbs tag: :li, separator: ''
