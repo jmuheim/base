@@ -60,6 +60,6 @@ de:
     new:
       title: Neuer Benutzer
     show:
-      title: Benutzer %{user} anzeigen
+      title: %{user} anzeigen
     users:
       actions: Aktionen
