@@ -6,6 +6,9 @@ describe 'Requesting new password' do
   it 'is possible to request a new password' do
     visit new_user_password_path
 
+    expect(page).to have_breadcrumbs 'Base', 'Forgot your password?'
+    expect(page).to have_headline 'Forgot your password?'
+
     within '#new_user' do
       fill_in 'user_email', with: 'donald@example.com'
       click_button 'Send me reset password instructions'

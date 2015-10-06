@@ -30,6 +30,7 @@ de:
       sign_up: Registrieren
       toggle_navigation: Menü
       user_menu: Benutzer Menü
+      you_are_here: Sie befinden sich hier
   pages:
     about:
       title: "Über Base"
@@ -49,16 +50,6 @@ de:
         toggle_dropdown: Menü umschalten
   'true': Ja
   users:
-    edit:
-      title: Benutzer %{user} bearbeiten
     form:
       details: Details
       password: Passwort
-    index:
-      title: Benutzer auflisten
-    new:
-      title: Neuer Benutzer
-    show:
-      title: Benutzer %{user} anzeigen
-    users:
-      actions: Aktionen

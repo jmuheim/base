@@ -38,7 +38,7 @@ module PageTitleAndHeadlineHelper
       translated_flash_name = t "flash.#{name}"
 
       content_tag :div, class: classes do
-        message = content_tag :p, "#{translated_flash_name}: #{message}", id: "flash_#{name}"
+        message = content_tag :p, "#{translated_flash_name}: #{message}", id: "flash", class: "flash-#{name}"
 
         button = content_tag :button, class: 'close', type: 'button', data: {dismiss: 'alert'} do
                    icon :remove, t('flash.close', name: translated_flash_name)

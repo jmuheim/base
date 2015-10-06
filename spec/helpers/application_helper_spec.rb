@@ -31,6 +31,15 @@ describe ApplicationHelper do
     end
   end
 
+  describe '#sr_only' do
+    describe '#sr_only(content)' do
+      subject { sr_only 'This text is only for screen readers' }
+
+      it { should have_css 'span.sr-only' }
+      it { should have_content 'This text is only for screen readers' }
+    end
+  end
+
   describe '#home_link_class' do
     pending "Doesn't work yet, see http://stackoverflow.com/questions/29400657"
 

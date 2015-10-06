@@ -30,6 +30,7 @@ en:
       sign_up: Sign up
       toggle_navigation: Menu
       user_menu: User menu
+      you_are_here: You are here
   pages:
     about:
       title: About Base
@@ -49,16 +50,6 @@ en:
         toggle_dropdown: Toggle dropdown
   'true': 'Yes'
   users:
-    edit:
-      title: Edit user %{user}
     form:
       details: Details
       password: Password
-    index:
-      title: List users
-    new:
-      title: New user
-    show:
-      title: User %{user}
-    users:
-      actions: Actions

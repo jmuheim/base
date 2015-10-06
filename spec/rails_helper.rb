@@ -84,3 +84,7 @@ RSpec.configure do |config|
     travel_to DateTime.parse('2015-06-15 14:33:52 +0200')
   end
 end
+
+RSpec.configure do |config|
+  config.include Base::Matchers, type: :feature
+end

@@ -9,7 +9,7 @@ describe 'Deleting user' do
     it 'does not grant permission to delete own user' do
       visit_delete_path_for(@user)
 
-      expect(page.driver.status_code).to eq 403
+      expect(page).to have_status_code 403
     end
   end
 
@@ -23,6 +23,8 @@ describe 'Deleting user' do
       expect {
         visit_delete_path_for(@user)
       }.to change { User.count }.by -1
+
+      expect(page).to have_flash 'User was successfully destroyed.'
     end
   end
 end

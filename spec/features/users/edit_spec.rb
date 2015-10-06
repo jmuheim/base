@@ -17,7 +17,7 @@ describe 'Editing user' do
     it 'grants permission to edit own user' do
       visit edit_user_path(@user)
 
-      expect(page.driver.status_code).to eq 200
+      expect(page).to have_status_code 200
     end
   end
 
@@ -30,6 +30,10 @@ describe 'Editing user' do
     it 'grants permission to edit other user' do
       visit edit_user_path(@user)
 
+      expect(page).to have_active_navigation_items 'Users'
+      expect(page).to have_breadcrumbs 'Base', 'Users', 'donald', 'Edit'
+      expect(page).to have_headline 'Edit donald'
+
       fill_in 'user_name',  with: 'gustav'
       fill_in 'user_email', with: 'new-gustav@example.com'
 
@@ -41,6 +45,8 @@ describe 'Editing user' do
       } .to  change { @user.name }.to('gustav')
         .and change { @user.avatar.to_s }
         .and change { @user.unconfirmed_email }.to('new-gustav@example.com')
+
+      expect(page).to have_flash 'User was successfully updated.'
     end
   end
 end
