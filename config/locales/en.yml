@@ -60,6 +60,6 @@ en:
     new:
       title: New user
     show:
-      title: %{user}
+      title: "%{user}"
     users:
       actions: Actions

@@ -51,7 +51,7 @@ de:
   'true': Ja
   users:
     edit:
-      title: %{user} bearbeiten
+      title: "%{user} bearbeiten"
     form:
       details: Details
       password: Passwort
@@ -60,6 +60,6 @@ de:
     new:
       title: Neuer Benutzer
     show:
-      title: %{user} anzeigen
+      title: "%{user} anzeigen"
     users:
       actions: Aktionen
