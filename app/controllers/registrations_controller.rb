@@ -1,3 +1,4 @@
+# This controller is only necessary for devise_scope :user { get 'user' => 'registrations#show' }
 class RegistrationsController < Devise::RegistrationsController
   # before_filter :authenticate_user! # Doesn't seem to work, see https://github.com/plataformatec/devise/issues/3349#issuecomment-88604326
   before_filter :load_and_authorize_current_user

@@ -1,13 +1,17 @@
 module ApplicationHelper
   def icon(name, content = nil)
     content_tag :span, class: ['glyphicon', "glyphicon-#{name}"] do
-      content_tag :span, content, class: 'sr-only' if content
+      sr_only content if content
     end
+  end
+
+  def sr_only(content)
+    content_tag :span, content, class: 'sr-only'
   end
 
   def flag(name, content = nil)
     content_tag :span, class: ['glyphicon', "bfh-flag-#{name.upcase}"] do
-      content_tag :span, content, class: 'sr-only' if content
+      sr_only content if content
     end
   end
 
@@ -45,10 +49,10 @@ module ApplicationHelper
   # TODO: Add spec!
   def user_avatar(content)
     if user_signed_in? && current_user.avatar?
-      image_tag(current_user.avatar.url(:thumb), class: 'avatar', alt: content)
+      image_tag(current_user.avatar.url(:thumb), class: 'avatar', alt: '')
     else
-      icon :user, content
-    end
+      icon :user
+    end + sr_only(content)
   end
 
   def container_for(object, options = {})

@@ -9,7 +9,9 @@ describe 'Listing users' do
   it 'displays users' do
     visit users_path
 
-    expect(page).to have_content 'Users'
+    expect(page).to have_active_navigation_items 'Users', 'List Users'
+    expect(page).to have_breadcrumbs 'Base', 'Users'
+    expect(page).to have_headline 'Users'
 
     within dom_id_selector(@user) do
       expect(page).to have_css '.name a', text: 'donald'

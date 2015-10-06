@@ -7,7 +7,7 @@ describe 'Showing account' do
     it 'does not grant permission to show the account' do
       visit user_registration_path
 
-      expect(page.driver.status_code).to eq 403
+      expect(page).to have_status_code 403
     end
   end
 
@@ -19,6 +19,10 @@ describe 'Showing account' do
     end
 
     it 'displays the account' do
+      expect(page).to have_active_navigation_items 'User menu', 'Show account'
+      expect(page).to have_breadcrumbs 'Base', 'Welcome, donald!'
+      expect(page).to have_headline 'Welcome, donald!'
+
       within dom_id_selector(@user) do
         expect(page).to have_content 'donald'
         expect(page).to have_content 'donald@example.com'

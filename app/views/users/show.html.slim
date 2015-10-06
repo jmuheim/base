@@ -1,6 +1,5 @@
 = container_for @user do
-  / i18n-tasks-use t('.title')
-  = headline_with_flash t 'actions.show_resource_with_name', resource: @user.model_name.human, name: @user.name
+  = headline_with_flash @user.name
 
   == render 'details', user: @user
 
