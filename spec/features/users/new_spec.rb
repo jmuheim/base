@@ -6,9 +6,9 @@ describe 'Creating user' do
   it 'creates a user' do
     visit new_user_path
 
-    expect(page).to have_navigation_items 'Users', 'Create User'
-    expect(page).to have_breadcrumbs 'Base', 'Users', 'Create'
-    expect(page).to have_headline 'New user'
+    expect(page).to have_active_navigation_items 'Users', 'Create User'
+    expect(page).to have_breadcrumbs 'Base', 'Users', 'Create User'
+    expect(page).to have_headline 'Create User'
 
     fill_in 'user_name',                  with: 'newname' # TODO: Don't use input's ID, use label text everywhere! Addendum: really?? Shouldn't we just rely on SimpleForm displaying labels anyways?
     fill_in 'user_email',                 with: 'somemail@example.com'

@@ -9,7 +9,7 @@ describe 'Listing users' do
   it 'displays users' do
     visit users_path
 
-    expect(page).to have_navigation_items 'Users', 'List Users'
+    expect(page).to have_active_navigation_items 'Users', 'List Users'
     expect(page).to have_breadcrumbs 'Base', 'Users'
     expect(page).to have_headline 'Users'
 

@@ -19,6 +19,10 @@ describe 'Showing account' do
     end
 
     it 'displays the account' do
+      expect(page).to have_active_navigation_items 'User menu', 'Show account'
+      expect(page).to have_breadcrumbs 'Base', 'Welcome, donald!'
+      expect(page).to have_headline 'Welcome, donald!'
+
       within dom_id_selector(@user) do
         expect(page).to have_content 'donald'
         expect(page).to have_content 'donald@example.com'

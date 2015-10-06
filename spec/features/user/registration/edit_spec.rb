@@ -8,6 +8,10 @@ describe 'Editing account' do
   end
 
   it 'edits the account' do
+    expect(page).to have_active_navigation_items 'User menu', 'Edit account'
+    expect(page).to have_breadcrumbs 'Base', 'Edit account'
+    expect(page).to have_headline 'Edit account'
+
     fill_in 'user_name',  with: 'gustav'
     fill_in 'user_email', with: 'new-gustav@example.com'
 
