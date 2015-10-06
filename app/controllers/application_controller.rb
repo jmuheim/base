@@ -14,7 +14,6 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :set_locale
   before_action :ensure_locale
-  before_action :set_root_breadcrumb
 
   def default_url_options(options = {})
     {locale: I18n.locale}
@@ -55,9 +54,5 @@ class ApplicationController < ActionController::Base
   # TODO: Move to helpers (http://stackoverflow.com/questions/29397658) and add spec!
   def body_css_classes
     [controller_name, action_name]
-  end
-
-  def set_root_breadcrumb
-    add_breadcrumb I18n.t('app.name'), root_path(locale: nil)
   end
 end
