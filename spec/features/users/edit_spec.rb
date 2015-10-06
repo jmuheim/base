@@ -32,7 +32,7 @@ describe 'Editing user' do
 
       expect(page).to have_active_navigation_items 'Users'
       expect(page).to have_breadcrumbs 'Base', 'Users', 'donald', 'Edit'
-      expect(page).to have_headline 'Edit user donald'
+      expect(page).to have_headline 'Edit donald'
 
       fill_in 'user_name',  with: 'gustav'
       fill_in 'user_email', with: 'new-gustav@example.com'
