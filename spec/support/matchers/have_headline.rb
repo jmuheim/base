@@ -8,7 +8,7 @@ RSpec::Matchers.define :have_headline do |expected|
   end
 
   def css_selector
-    '.headline h1'
+    '#headline h1'
   end
 
   def actual_text
