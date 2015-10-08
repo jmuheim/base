@@ -26,7 +26,8 @@ module PageTitleAndHeadlineHelper
 
     @headline = heading.nil? ? default_headline(options) : heading
 
-    content_tag :div, class: 'headline' do
+    # Tabindex is required so the focus is really set to the element when using the jump link
+    content_tag :div, id: 'headline', tabindex: 0 do
       content_tag(:h1, @headline) + flash_messages(flash)
     end
   end
