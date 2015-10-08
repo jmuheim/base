@@ -6,7 +6,7 @@ nav#navigation.container
       .navbar-header
         // Place brand before the "Toggle navigation" button to have an intuitive the focus order (on the Bootstrap examples page it's after the button which seems unintuitive)
         // TODO: Replace with logo! Or add some sr-only text like "(back to home page)"!
-        = link_to t('.home'), root_path, class: home_link_class
+        = link_to t('.home'), root_path, class: home_link_class, id: 'logo'
 
         button#toggle_navigation.navbar-toggle type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false"
           span.menu-text = t '.toggle_navigation'
