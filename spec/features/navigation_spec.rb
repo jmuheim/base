@@ -198,10 +198,10 @@ describe 'Navigation' do
     it 'exists an HTML ID for every same-page jump link' do
       visit page_path('about')
 
-      expect(page).to have_css '#jump_to_navigation a[href="#navigation"]'
+      expect(page).to have_css '#jump_to_navigation a[href="#logo"]'
       expect(page).to have_css '#navigation'
 
-      expect(page).to have_css '#jump_to_content a[href="#main"]'
+      expect(page).to have_css '#jump_to_content a[href="#headline"]'
       expect(page).to have_css '#main'
     end
 

@@ -14,7 +14,7 @@ RSpec::Matchers.define :have_flash do |expected|
   end
 
   def css_selector
-    '.headline #flash'
+    '#headline #flash'
   end
 
   def actual_text
