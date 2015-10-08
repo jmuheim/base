@@ -284,7 +284,7 @@ GEM
     mini_portile (0.6.2)
     minitest (5.8.1)
     multi_json (1.11.2)
-    mysql2 (0.4.1)
+    mysql2 (0.3.18)
     navigasmic (1.1.0)
     nenv (0.2.0)
     nested_form (0.3.2)
@@ -560,7 +560,7 @@ DEPENDENCIES
   launchy
   mina
   mini_magick
-  mysql2
+  mysql2 (~> 0.3.18)
   navigasmic
   nilify_blanks
   paper_trail (~> 4.0.0.rc)
