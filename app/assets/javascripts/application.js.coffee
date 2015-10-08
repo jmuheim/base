@@ -10,13 +10,13 @@
 #
 #= require bootstrap
 #= require bootstrap-formhelpers
+#= require cocoon
 #= require jasny-bootstrap
 #= require fancybox
 #
 #= require_self
 #
 # --- Add custom requires under here! ---
-#= require cocoon
 #= require example_script
 #= require form_accessibilizer
 # --- Add custom requires above here! ---
