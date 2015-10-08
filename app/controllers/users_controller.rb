@@ -15,6 +15,11 @@ class UsersController < ApplicationController
 
     if ['edit', 'update'].include? action_name
       add_breadcrumb @user.name, user_path(@user)
+      @last_breadcrumb = t 'actions.edit'
+    end
+
+    if ['new', 'create'].include? action_name
+      @last_breadcrumb = t 'actions.new'
     end
   end
 end

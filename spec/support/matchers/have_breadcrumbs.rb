@@ -10,16 +10,18 @@ module Base
           index += 1
           a = ' a' unless index == @breadcrumbs.size
 
-          unless controller.has_css? "#breadcrumbs li:nth-child(#{index})#{a}", text: breadcrumb
+          selector = "#breadcrumbs li:nth-child(#{index})#{a}"
+          unless controller.has_css? selector, text: breadcrumb
             @failure_index = index
             @failure_breadcrumb = breadcrumb
+            @actual_text = controller.find(selector).text
             return false
           end
         end
       end
 
       def failure_message
-        "expected that \"#{@failure_breadcrumb}\" would be at position #{@failure_index} of the breadcrumbs, but it wasn't"
+        "expected that \"#{@failure_breadcrumb}\" would be at position #{@failure_index} of the breadcrumbs, but there was \"#{@actual_text}\""
       end
     end
 
