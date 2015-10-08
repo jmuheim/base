@@ -4,15 +4,6 @@ require 'i18n/tasks'
 describe 'I18n' do
   let(:i18n) { I18n::Tasks::BaseTask.new }
 
-  it 'does not have keys in locales that do not exist in base' do
-    # This produces ugly output, but for the moment it's enough. Lateron, there hopefully will be an i18n-task for this, see https://github.com/glebm/i18n-tasks/issues/71#issuecomment-48030057.
-    translated_missing_from_base = (i18n.locales - [i18n.base_locale]).map do |locale|
-       i18n.missing_tree i18n.base_locale, locale
-    end.reduce(:merge!)
-
-    expect(translated_missing_from_base).to be_empty
-  end
-
   it "doesn't have any missing keys" do
     count = i18n.missing_keys.count
     pending "There are #{count} missing i18n keys! Run 'i18n-tasks missing' for more details." if count > 0
