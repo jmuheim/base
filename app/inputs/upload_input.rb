@@ -33,7 +33,7 @@ class UploadInput < SimpleForm::Inputs::FileInput
         if file_available?
           template.image_tag object.send(attribute_name)
         else
-          template.fa_icon(:user)
+          template.fa_icon(:upload)
         end
       end
     end
