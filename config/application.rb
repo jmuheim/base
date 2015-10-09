@@ -37,6 +37,9 @@ module Base
 
     # Don't supress errors in after_rollback and after_commit callbacks
     config.active_record.raise_in_transactional_callbacks = true
+
+    # Always raise error on unpermitted parameters
+    config.action_controller.action_on_unpermitted_parameters = :raise
   end
 end
 
