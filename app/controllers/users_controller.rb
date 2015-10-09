@@ -7,7 +7,7 @@ class UsersController < ApplicationController
   private
 
   def permitted_params
-    params.permit(user: [:name, :email, :avatar, :password, :password_confirmation])
+    params.permit(user: [:name, :email, :avatar, :avatar_cache, :remove_avatar, :password, :password_confirmation])
   end
 
   def add_base_breadcrumbs

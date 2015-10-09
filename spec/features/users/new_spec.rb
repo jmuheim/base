@@ -19,4 +19,79 @@ describe 'Creating user' do
 
     expect(page).to have_flash 'User was successfully created.'
   end
+
+  # These specs make sure that the rather tricky image upload things are working as expected
+  describe 'avatar upload' do
+    it 'caches an uploaded avatar during validation errors' do
+      visit new_user_path
+
+      # Upload a file
+      attach_file 'user_avatar', dummy_file_path('image.jpg')
+
+      # Trigger validation error
+      click_button 'Create User'
+      expect(page).to have_flash('User could not be created.').of_type :alert
+
+      # Fill in other needed fields
+      fill_in 'user_name',                  with: 'newuser'
+      fill_in 'user_email',                 with: 'newuser@example.com'
+      fill_in 'user_password',              with: 'somegreatpassword'
+      fill_in 'user_password_confirmation', with: 'somegreatpassword'
+
+      click_button 'Create User'
+
+      expect(page).to have_flash 'User was successfully created.'
+      expect(File.basename(User.last.avatar.to_s)).to eq 'image.jpg'
+    end
+
+    it 'replaces a cached uploaded avatar with a new one after validation errors' do
+      visit new_user_path
+
+      # Upload a file
+      attach_file 'user_avatar', dummy_file_path('image.jpg')
+
+      # Trigger validation error
+      click_button 'Create User'
+      expect(page).to have_flash('User could not be created.').of_type :alert
+
+      # Upload another file
+      attach_file 'user_avatar', dummy_file_path('other_image.jpg')
+
+      # Fill in other needed fields
+      fill_in 'user_name',                  with: 'newuser'
+      fill_in 'user_email',                 with: 'newuser@example.com'
+      fill_in 'user_password',              with: 'somegreatpassword'
+      fill_in 'user_password_confirmation', with: 'somegreatpassword'
+
+      click_button 'Create User'
+
+      expect(page).to have_flash 'User was successfully created.'
+      expect(File.basename(User.last.avatar.to_s)).to eq 'other_image.jpg'
+    end
+
+    it 'allows to remove a cached uploaded avatar after validation errors' do
+      visit new_user_path
+
+      # Upload a file
+      attach_file 'user_avatar', dummy_file_path('image.jpg')
+
+      # Trigger validation error
+      click_button 'Create User'
+      expect(page).to have_flash('User could not be created.').of_type :alert
+
+      # Remove avatar
+      check 'user_remove_avatar'
+
+      # Fill in other needed fields
+      fill_in 'user_name',                  with: 'newuser'
+      fill_in 'user_email',                 with: 'newuser@example.com'
+      fill_in 'user_password',              with: 'somegreatpassword'
+      fill_in 'user_password_confirmation', with: 'somegreatpassword'
+
+      click_button 'Create User'
+
+      expect(page).to have_flash 'User was successfully created.'
+      expect(User.last.avatar.to_s).to eq ''
+    end
+  end
 end
