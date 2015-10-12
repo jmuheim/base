@@ -49,6 +49,8 @@ describe 'Editing user' do
       expect(page).to have_flash 'User was successfully updated.'
     end
 
+
+    # These specs make sure that the rather tricky image upload things are working as expected
     describe 'avatar upload' do
       it 'caches an uploaded avatar during validation errors' do
         visit edit_user_path @user
