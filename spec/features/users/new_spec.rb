@@ -32,7 +32,7 @@ describe 'Creating user' do
       click_button 'Create User'
       expect(page).to have_flash('User could not be created.').of_type :alert
 
-      # Fill in other needed fields
+      # Make validations pass
       fill_in 'user_name',                  with: 'newuser'
       fill_in 'user_email',                 with: 'newuser@example.com'
       fill_in 'user_password',              with: 'somegreatpassword'
@@ -57,7 +57,7 @@ describe 'Creating user' do
       # Upload another file
       attach_file 'user_avatar', dummy_file_path('other_image.jpg')
 
-      # Fill in other needed fields
+      # Make validations pass
       fill_in 'user_name',                  with: 'newuser'
       fill_in 'user_email',                 with: 'newuser@example.com'
       fill_in 'user_password',              with: 'somegreatpassword'
@@ -82,7 +82,7 @@ describe 'Creating user' do
       # Remove avatar
       check 'user_remove_avatar'
 
-      # Fill in other needed fields
+      # Make validations pass
       fill_in 'user_name',                  with: 'newuser'
       fill_in 'user_email',                 with: 'newuser@example.com'
       fill_in 'user_password',              with: 'somegreatpassword'
