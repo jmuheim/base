@@ -55,13 +55,13 @@ describe 'Editing account' do
       click_button 'Save'
       expect(page).to have_flash('User could not be updated.').of_type :alert
 
-      # Fill in current password
+      # Make validations pass
       fill_in 'user_current_password', with: 's3cur3p@ssw0rd'
 
       click_button 'Save'
 
       expect(page).to have_flash 'Your account has been updated successfully.'
-      expect(File.basename(User.last.avatar.to_s)).to eq 'image.jpg'
+      expect(File.basename(User.find(@user.id).avatar.to_s)).to eq 'image.jpg'
     end
 
     it 'replaces a cached uploaded avatar with a new one after validation errors' do
@@ -77,13 +77,13 @@ describe 'Editing account' do
       # Upload another file
       attach_file 'user_avatar', dummy_file_path('other_image.jpg')
 
-      # Fill in current password
+      # Make validations pass
       fill_in 'user_current_password', with: 's3cur3p@ssw0rd'
 
       click_button 'Save'
 
       expect(page).to have_flash 'Your account has been updated successfully.'
-      expect(File.basename(User.last.avatar.to_s)).to eq 'other_image.jpg'
+      expect(File.basename(User.find(@user.id).avatar.to_s)).to eq 'other_image.jpg'
     end
 
     it 'allows to remove a cached uploaded avatar after validation errors' do
@@ -99,13 +99,13 @@ describe 'Editing account' do
       # Remove avatar
       check 'user_remove_avatar'
 
-      # Fill in current password
+      # Make validations pass
       fill_in 'user_current_password', with: 's3cur3p@ssw0rd'
 
       click_button 'Save'
 
       expect(page).to have_flash 'Your account has been updated successfully.'
-      expect(User.last.avatar.to_s).to eq ''
+      expect(User.find(@user.id).avatar.to_s).to eq ''
     end
 
     it 'allows to remove an uploaded avatar' do
@@ -117,9 +117,7 @@ describe 'Editing account' do
 
       expect {
         click_button 'Save'
-
-        # Checking upon @user doesn't work, see https://github.com/carrierwaveuploader/carrierwave/issues/1752
-      }.to change { File.basename User.last.avatar.to_s }.from('image.jpg').to eq ''
+      }.to change { File.basename User.find(@user.id).avatar.to_s }.from('image.jpg').to eq '' # Checking upon @user doesn't work, see https://github.com/carrierwaveuploader/carrierwave/issues/1752
 
       expect(page).to have_flash 'Your account has been updated successfully.'
     end
