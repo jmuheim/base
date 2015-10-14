@@ -50,6 +50,31 @@ describe 'Editing user' do
     end
 
 
+    it "prevents from overwriting other users' changes accidently (caused by race conditions)" do
+      visit edit_user_path(@user)
+
+      # Change something in the database...
+      expect {
+        @user.update_attributes! avatar: File.open(dummy_file_path('image.jpg'))
+      }.to change { @user.lock_version }.by 1
+
+      fill_in 'user_name',       with: 'new-name'
+      attach_file 'user_avatar', dummy_file_path('other_image.jpg')
+
+      expect {
+        click_button 'Update User'
+        @user.reload
+      }.not_to change { @user }
+
+      expect(page).to have_css '.alert', text: 'Alert: Project meanwhile has been changed. The conflicting fields are: Name and Description.'
+
+      expect {
+        click_button 'Update Project'
+        @project.reload
+      } .to  change { @project.name }.to('This is a new name, yeah!')
+        .and change { @project.description }.to('First do that.\nAnd finally, do that.')
+    end
+
     # These specs make sure that the rather tricky image upload things are working as expected
     describe 'avatar upload' do
       it 'caches an uploaded avatar during validation errors' do

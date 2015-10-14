@@ -1,0 +1,62 @@
+= f.hidden_field :lock_version
+
+- if f.object.stale_info.any?
+  .stale_info
+    = panel :warning do |panel|
+      = panel.heading do
+        = t '.stale_attributes'
+
+      = panel.body do
+        table.table.table-striped.table-hover
+          thead
+            tr
+              th = t '.attribute'
+              th = t '.interim_value'
+              th = t '.new_value'
+              th = t '.difference'
+
+          tbody
+            - f.object.stale_info.each do |stale_info|
+              tr id="stale_attribute_#{stale_info.input_id}"
+                th.attribute = stale_info.human_attribute_name
+
+                td.interim_value
+                  - case stale_info.type
+                  - when :text
+                    = simple_format h stale_info.interim_value
+                  - when :string
+                    - case stale_info.interim_value
+                    - when AbstractUploader
+                      = image_tag stale_info.interim_value.url
+                    - else
+                      = h stale_info.interim_value
+                  - else
+                    = stale_info.interim_value
+
+                td.new_value
+                  - case stale_info.type
+                  - when :text
+                    = simple_format h stale_info.new_value
+                  - when :string
+                    - case stale_info.new_value
+                    - when AbstractUploader
+                      = image_tag stale_info.new_value.url
+                    - else
+                      = h stale_info.new_value
+                  - else
+                    = stale_info.new_value
+                
+                td.difference
+                  - case stale_info.type
+                  - when :text
+                    = simple_format h Differ.diff_by_line(h(stale_info.new_value), h(stale_info.interim_value)).format_as(:html).html_safe
+                  - when :string
+                    - case stale_info.new_value
+                    - when AbstractUploader
+                      = t '.no_diff_available'
+                    - else
+                      = h Differ.diff_by_word(stale_info.new_value, stale_info.interim_value).format_as(:html).html_safe
+                  - else
+                    = h Differ.diff_by_char(stale_info.new_value.to_s, stale_info.interim_value.to_s).format_as(:html).html_safe
+
+        p = t '.instructions'

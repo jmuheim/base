@@ -1,7 +1,10 @@
+require 'update_lock'
+
 class UsersController < ApplicationController
   before_filter :authenticate_user!, only: [:new, :edit]
   load_and_authorize_resource
   inherit_resources
+  include UpdateLock
   before_filter :add_base_breadcrumbs
 
   private
