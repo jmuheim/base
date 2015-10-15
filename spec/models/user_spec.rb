@@ -8,6 +8,17 @@ describe User do
     expect(create(:user)).to be_valid
   end
 
+  it 'provides optimistic locking' do
+    user = create :user
+    stale_user = User.find(user.id)
+
+    user.update_attribute :name, 'new-name'
+
+    expect {
+      stale_user.update_attribute :name, 'even-newer-name'
+    }.to raise_error ActiveRecord::StaleObjectError
+  end
+
   describe 'versioning', versioning: true do
     it 'is versioned' do
       is_expected.to be_versioned

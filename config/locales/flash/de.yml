@@ -11,6 +11,10 @@ de:
       update:
         alert: "%{resource_name} konnte nicht bearbeitet werden."
         notice: "%{resource_name} wurde erfolgreich bearbeitet."
+        stale: "%{resource_name} wurde zwischenzeitlich geändert. %{stale_info}"
+        stale_attributes_list:
+          one: 'Das sich im Konflikt befindende Feld ist: %{stale_attributes}.'
+          other: 'Die sich im Konflikt befindenden Felder sind: %{stale_attributes}.'
     alert: Alarm
     close: Schliessen %{name}
     notice: Hinweis

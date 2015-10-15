@@ -1,16 +1,23 @@
 require 'update_lock'
 
-class UsersController < ApplicationController
+class UsersController < InheritedResources::Base
   before_filter :authenticate_user!, only: [:new, :edit]
   load_and_authorize_resource
-  inherit_resources
   include UpdateLock
   before_filter :add_base_breadcrumbs
 
   private
 
   def permitted_params
-    params.permit(user: [:name, :email, :avatar, :avatar_cache, :remove_avatar, :password, :password_confirmation])
+    params.permit(user: [:name,
+                         :email,
+                         :avatar,
+                         :avatar_cache,
+                         :remove_avatar,
+                         :password,
+                         :password_confirmation,
+                         :lock_version
+                       ])
   end
 
   def add_base_breadcrumbs

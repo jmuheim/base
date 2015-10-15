@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 20151014181655) do
     t.datetime "locked_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "avatar"
     t.integer  "lock_version",           default: 0
   end
 

@@ -52,6 +52,7 @@ end
 
 module UpdateLock
   def update
+    # TODO: Would be nice to be able to make sure that lock_version is a permitted parameter!
     if params[resource_instance_name][:lock_version].blank?
       raise ActiveRecord::MissingAttributeError, 'Lock version missing'
     end

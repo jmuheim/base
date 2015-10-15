@@ -49,13 +49,13 @@ describe 'Editing user' do
       expect(page).to have_flash 'User was successfully updated.'
     end
 
-
     it "prevents from overwriting other users' changes accidently (caused by race conditions)" do
       visit edit_user_path(@user)
 
       # Change something in the database...
       expect {
-        @user.update_attributes! avatar: File.open(dummy_file_path('image.jpg'))
+        @user.update_attributes! name:   'interim-name',
+                                 avatar: File.open(dummy_file_path('image.jpg'))
       }.to change { @user.lock_version }.by 1
 
       fill_in 'user_name',       with: 'new-name'
@@ -66,13 +66,13 @@ describe 'Editing user' do
         @user.reload
       }.not_to change { @user }
 
-      expect(page).to have_css '.alert', text: 'Alert: Project meanwhile has been changed. The conflicting fields are: Name and Description.'
+      expect(page).to have_flash('User meanwhile has been changed. The conflicting fields are: Name and Profile picture.').of_type :alert
 
       expect {
-        click_button 'Update Project'
-        @project.reload
-      } .to  change { @project.name }.to('This is a new name, yeah!')
-        .and change { @project.description }.to('First do that.\nAnd finally, do that.')
+        click_button 'Update User'
+        @user.reload
+      } .to  change { @user.name }.to('new-name')
+        .and change { File.basename(@user.avatar.to_s) }.to('other_image.jpg')
     end
 
     # These specs make sure that the rather tricky image upload things are working as expected

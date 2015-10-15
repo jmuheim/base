@@ -48,6 +48,14 @@ de:
     form:
       actions:
         toggle_dropdown: Menü umschalten
+      stale_info:
+        stale_attributes: Attribute, welche verändert worden sind
+        no_diff_available: Keine Differenz möglich
+        difference: Differenz
+        attribute: Attribut
+        instructions: Das Formular beinhaltet momentan nur deine Änderungen ("Neuer Wert"). Bitte führe die zwischenzeitlich von einem anderen Benutzer getätigten Änderungen manuell zu den deinen hinzu. Speichere erst, wenn du sicher bist, dass dadurch keine Änderungen ungewollt verloren gehen!
+        interim_value: Zwischenzeitlicher Wert
+        new_value: Neuer Wert
   'true': Ja
   users:
     form:

@@ -48,6 +48,14 @@ en:
     form:
       actions:
         toggle_dropdown: Toggle dropdown
+      stale_info:
+        stale_attributes: Attributes that have been changed
+        no_diff_available: No diff possible
+        difference: Difference
+        attribute: Attribute
+        instructions: At the time being, the form only contains your changes ("New value"). Please merge the interim changes by the other user manually. Only save, when you are sure, that no changes are abandoned by error!
+        interim_value: Interim value
+        new_value: New value
   'true': 'Yes'
   users:
     form:
