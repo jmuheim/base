@@ -27,7 +27,7 @@
                   - when :string
                     - case stale_info.interim_value
                     - when AbstractUploader
-                      = image_tag stale_info.interim_value.url
+                      = image_tag stale_info.interim_value.url, alt: t('.interim_image')
                     - else
                       = h stale_info.interim_value
                   - else
@@ -40,7 +40,7 @@
                   - when :string
                     - case stale_info.new_value
                     - when AbstractUploader
-                      = image_tag stale_info.new_value.url
+                      = image_tag stale_info.new_value.url, alt: t('.new_image')
                     - else
                       = h stale_info.new_value
                   - else

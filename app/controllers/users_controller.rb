@@ -14,6 +14,7 @@ class UsersController < InheritedResources::Base
                          :avatar,
                          :avatar_cache,
                          :remove_avatar,
+                         :about,
                          :password,
                          :password_confirmation,
                          :lock_version

@@ -12,6 +12,7 @@ describe 'Signing up' do
 
     fill_in 'user_name',                  with: 'newuser'
     fill_in 'user_email',                 with: 'newuser@example.com'
+    fill_in 'user_about',                 with: 'Some info about me'
     fill_in 'user_password',              with: 'somegreatpassword'
     fill_in 'user_password_confirmation', with: 'somegreatpassword'
 

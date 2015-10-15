@@ -5,6 +5,7 @@ de:
       default_message: 'Bitte überprüfe die nachfolgenden Probleme:'
     hints:
       user:
+        about: Schreib etwas über dich (Biographie, Interessen, Hobbies...)
         password_confirmation: Gib dein Passwort nochmal ein, um Tippfehler zu vermeiden
     'no': Nein
     remove_file: Existierende Datei entfernen

@@ -10,6 +10,7 @@
       = f.input :name
       = f.input :email, as: :email, required: true
       = f.input :avatar, as: :upload
+      = f.input :about
 
   - if user.new_record?
     = panel do |panel|

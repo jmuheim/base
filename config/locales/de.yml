@@ -14,22 +14,15 @@ de:
       home_page: Zur Startseite springen
       navigation: Zur Navigation springen
     navigation:
-      about: "Über"
-      admin: Admin
       choose_language: Sprache wählen
       content_navigation: Inhaltsnavigation
       current_group: aktuelle Menügruppe
       current_item: aktueller Menüpunkt
-      edit_account: Konto bearbeiten
-      home: Base
-      log_out: Abmelden
       meta_navigation: Benutzernavigation
       navigation: Navigation
       show_account: Konto anzeigen
-      sign_in: Anmelden
       sign_up: Registrieren
       toggle_navigation: Menü
-      user_menu: Benutzer Menü
       you_are_here: Sie befinden sich hier
   pages:
     about:
@@ -49,13 +42,15 @@ de:
       actions:
         toggle_dropdown: Menü umschalten
       stale_info:
-        stale_attributes: Attribute, welche verändert worden sind
-        no_diff_available: Keine Differenz möglich
-        difference: Differenz
         attribute: Attribut
+        difference: Differenz
         instructions: Das Formular beinhaltet momentan nur deine Änderungen ("Neuer Wert"). Bitte führe die zwischenzeitlich von einem anderen Benutzer getätigten Änderungen manuell zu den deinen hinzu. Speichere erst, wenn du sicher bist, dass dadurch keine Änderungen ungewollt verloren gehen!
+        interim_image: Bisheriges Bild
         interim_value: Zwischenzeitlicher Wert
+        new_image: Neues Bild
         new_value: Neuer Wert
+        no_diff_available: Keine Differenz möglich
+        stale_attributes: Attribute, welche verändert worden sind
   'true': Ja
   users:
     form:
