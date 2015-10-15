@@ -8,13 +8,14 @@ describe 'Editing account' do
 
   it 'edits the account' do
     visit edit_user_registration_path
-    save_and_open_page
+
     expect(page).to have_active_navigation_items 'User menu', 'Edit account'
     expect(page).to have_breadcrumbs 'Base', 'Edit account'
     expect(page).to have_headline 'Edit account'
 
     fill_in 'user_name',  with: 'gustav'
     fill_in 'user_email', with: 'new-gustav@example.com'
+    fill_in 'user_about', with: 'Some info about me'
 
     attach_file 'user_avatar', dummy_file_path('other_image.jpg')
 

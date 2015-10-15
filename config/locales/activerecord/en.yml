@@ -29,6 +29,7 @@ en:
         remember_me: Remember me
         roles: Roles
         updated_at: Updated at
+        about: About
     models:
       user:
         one: User
