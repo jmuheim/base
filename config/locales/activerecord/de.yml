@@ -29,6 +29,7 @@ de:
         remember_me: Eingeloggt bleiben
         roles: Rollen
         updated_at: Aktualisiert am
+        about: Über
     models:
       user:
         one: Benutzer

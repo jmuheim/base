@@ -6,3 +6,9 @@ dl.dl-horizontal
   - if user.avatar?
     dt = User.human_attribute_name :avatar
     dd.avatar = zoomable_image user.avatar, alt: user.name
+
+- if user.about?
+  .about
+    h2 = User.human_attribute_name :about
+
+    = markdown user.about

@@ -11,6 +11,10 @@ en:
       update:
         alert: "%{resource_name} could not be updated."
         notice: "%{resource_name} was successfully updated."
+        stale: "%{resource_name} meanwhile has been changed. %{stale_info}"
+        stale_attributes_list:
+          one: 'The conflicting field is: %{stale_attributes}.'
+          other: 'The conflicting fields are: %{stale_attributes}.'
     alert: Alert
     close: Close %{name}
     notice: Notice

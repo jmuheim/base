@@ -14,22 +14,15 @@ en:
       home_page: Jump to home page
       navigation: Jump to navigation
     navigation:
-      about: About
-      admin: Admin
       choose_language: Choose language
       content_navigation: Content navigation
       current_group: current menu group
       current_item: current menu item
-      edit_account: Edit account
-      home: Base
-      log_out: Log out
       meta_navigation: User navigation
       navigation: Navigation
       show_account: Show account
-      sign_in: Sign in
       sign_up: Sign up
       toggle_navigation: Menu
-      user_menu: User menu
       you_are_here: You are here
   pages:
     about:
@@ -48,6 +41,16 @@ en:
     form:
       actions:
         toggle_dropdown: Toggle dropdown
+      stale_info:
+        attribute: Attribute
+        difference: Difference
+        instructions: At the time being, the form only contains your changes ("New value"). Please merge the interim changes by the other user manually. Only save, when you are sure, that no changes are abandoned by error!
+        interim_image: Interim image
+        interim_value: Interim value
+        new_image: New image
+        new_value: New value
+        no_diff_available: No diff possible
+        stale_attributes: Attributes that have been changed
   'true': 'Yes'
   users:
     form:

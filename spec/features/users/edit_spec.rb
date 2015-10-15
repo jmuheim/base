@@ -36,6 +36,7 @@ describe 'Editing user' do
 
       fill_in 'user_name',  with: 'gustav'
       fill_in 'user_email', with: 'new-gustav@example.com'
+      fill_in 'user_about', with: 'Some info about me'
 
       attach_file 'user_avatar', dummy_file_path('other_image.jpg')
 
@@ -43,12 +44,51 @@ describe 'Editing user' do
         click_button 'Update User'
         @user.reload
       } .to  change { @user.name }.to('gustav')
-        .and change { @user.avatar.to_s }
+        .and change { File.basename(@user.avatar.to_s) }.to('other_image.jpg')
+        .and change { @user.about }.to('Some info about me')
         .and change { @user.unconfirmed_email }.to('new-gustav@example.com')
 
       expect(page).to have_flash 'User was successfully updated.'
     end
 
+    it "prevents from overwriting other users' changes accidently (caused by race conditions)" do
+      visit edit_user_path(@user)
+
+      # Change something in the database...
+      expect {
+        @user.update_attributes! name:   'interim-name',
+                                 about:  "This is some barely interesting info.\n\nI like playing football and reading books.\n\nI don't work as a web developer anymore.",
+                                 avatar: File.open(dummy_file_path('image.jpg'))
+      }.to change { @user.lock_version }.by 1
+
+      fill_in 'user_name',       with: 'new-name'
+      attach_file 'user_avatar', dummy_file_path('other_image.jpg')
+
+      expect {
+        click_button 'Update User'
+        @user.reload
+      }.not_to change { @user }
+
+      expect(page).to have_flash('User meanwhile has been changed. The conflicting fields are: Name, Profile picture, and About.').of_type :alert
+
+      expect(page).to have_css '#stale_attribute_user_name .interim_value', text: 'interim-name'
+      expect(page).to have_css '#stale_attribute_user_name .new_value',     text: 'new-name'
+      expect(page.html).to include '<del class="differ">interim</del><ins class="differ">new</ins>-name'
+
+      expect(page).to have_css '#stale_attribute_user_about .interim_value', text: 'This is some barely interesting info. I like playing football and reading books. I don\'t work as a web developer anymore.'
+      expect(page).to have_css '#stale_attribute_user_about .new_value',     text: 'This is some very interesting info about me. I like playing football and reading books. I work as a web developer.'
+      expect(page.html).to include "<p><del class=\"differ\">This is some barely interesting info.</p>\n\n<p>I like playing football and reading books.</p>\n\n<p>I don't work as a web developer anymore.</del><ins class=\"differ\">This is some very interesting info about me.</p>\n\n<p>I like playing football and reading books.</p>\n\n<p>I work as a web developer.</ins></p>"
+
+      expect(page).to have_css '#stale_attribute_user_avatar .interim_value img[alt="Interim image"]'
+      expect(page).to have_css '#stale_attribute_user_avatar .new_value img[alt="New image"]'
+      expect(page).to have_css '#stale_attribute_user_avatar .difference', text: 'No diff possible'
+
+      expect {
+        click_button 'Update User'
+        @user.reload
+      } .to  change { @user.name }.to('new-name')
+        .and change { File.basename(@user.avatar.to_s) }.to('other_image.jpg')
+    end
 
     # These specs make sure that the rather tricky image upload things are working as expected
     describe 'avatar upload' do

@@ -15,6 +15,7 @@ describe 'Editing account' do
 
     fill_in 'user_name',  with: 'gustav'
     fill_in 'user_email', with: 'new-gustav@example.com'
+    fill_in 'user_about', with: 'Some info about me'
 
     attach_file 'user_avatar', dummy_file_path('other_image.jpg')
 
@@ -26,7 +27,8 @@ describe 'Editing account' do
       click_button 'Save'
       @user.reload
     } .to  change { @user.name }.to('gustav')
-      .and change { @user.avatar.to_s }
+      .and change { File.basename(@user.avatar.to_s) }.to('other_image.jpg')
+      .and change { @user.about }.to('Some info about me')
       .and change { @user.encrypted_password }
       .and change { @user.unconfirmed_email }.to('new-gustav@example.com')
 
