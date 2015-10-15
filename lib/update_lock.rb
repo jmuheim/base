@@ -1,16 +1,11 @@
 class ActiveRecord::Base
-  class StaleInfo # TODO: Struct?!
-    attr_accessor :resource, :attribute, :human_attribute_name, :input_id, :type, :interim_value, :new_value, :difference
+  class StaleInfo < Struct.new(:resource, :attribute, :human_attribute_name, :input_id, :type, :interim_value, :new_value)
+    attr_accessor :resource, :attribute, :human_attribute_name, :input_id, :type, :interim_value, :new_value
 
     def initialize(options)
-      self.resource             = options[:resource]
-      self.attribute            = options[:attribute]
-      self.human_attribute_name = options[:human_attribute_name]
-      self.input_id             = options[:input_id]
-      self.type                 = options[:type]
-      self.interim_value        = options[:interim_value]
-      self.new_value            = options[:new_value]
-      self.difference           = options[:difference]
+      options.each do |key, value|
+        self.send "#{key}=", value
+      end
     end
   end
 
