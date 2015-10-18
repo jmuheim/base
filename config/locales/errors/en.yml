@@ -2,6 +2,7 @@
 en:
   errors:
     messages:
+      extension_white_list_error: "You are not allowed to upload %{extension} files, allowed types: %{allowed_types}"
       after: must be after %{restriction}
       already_confirmed: was already confirmed, please try signing in
       before: must be before %{restriction}

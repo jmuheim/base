@@ -2,6 +2,7 @@
 de:
   errors:
     messages:
+      extension_white_list_error: "Das Hochladen von %{extension} Dateien ist nicht erlaubt, erlaubt sind: %{allowed_types}"
       after: muss nach %{restriction} sein
       already_confirmed: wurde bereits bestätigt
       before: muss vor %{restriction} sein
