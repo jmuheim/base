@@ -13,16 +13,22 @@ class ActiveRecord::Base
     return @stale_info if @stale_info
 
     @stale_info = []
-    @stale_info += stale_info_for(self, model_name.to_s.underscore) if persisted? && changed?
+
+    @stale_info += stale_info_for(self, model_name.to_s.underscore) if stale?
 
     nested_attributes_options.each do |association, value|
       send(association).each_with_index do |resource, i|
         prefix = "#{model_name.to_s.underscore}_#{association}_attributes_#{i}"
-        @stale_info += stale_info_for(resource, prefix, nested: true) if resource.persisted? && resource.changed?
+        @stale_info += stale_info_for(resource, prefix, nested: true) if resource.stale?
       end
     end
 
     @stale_info
+  end
+
+  def stale?
+    # TODO: At the time being, base64 strings (mount_base64_uploader) seem to always be marked as changed, even when they're not, see https://github.com/lebedev-yury/carrierwave-base64/issues/23.
+    persisted? && changed? && lock_version != self.class.find(id).lock_version
   end
 
   private

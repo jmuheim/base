@@ -82,7 +82,7 @@ group :doc do
   gem 'sdoc', require: false # bundle exec rake doc:rails generates the API under doc/api.
 end
 
-group :development, :test do  
+group :development, :test do
   # Testing tool for the Ruby programming language
   gem 'rspec'
   gem 'rspec-rails' # RSpec for Rails

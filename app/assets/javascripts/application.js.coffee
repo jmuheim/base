@@ -22,5 +22,6 @@
 # --- Add custom requires above here! ---
 #
 #= require init
+#= require callbacks
 
 @App = {}

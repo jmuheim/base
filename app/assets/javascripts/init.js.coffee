@@ -1,27 +1,30 @@
-$(document).ready ->
-  # Init your scripts here!
-  #
-  # Example:
-  #
-  # $('#some_selector').each ->
-  #   new App.ExampleScript @
+class App.Init
+  constructor: (el) ->
+    @$el = $(el)
 
-  $('form.simple_form').each ->
-    new App.FormAccessibilizer @
+    @makeFormsAccessible @$el
+    @initTooltips @$el
+    @initFancybox @$el
 
-  # Bootstrap tooltips
-  $('[title]').tooltip()
+  makeFormsAccessible: ($el) ->
+    $el.find('form.simple_form').each ->
+      new App.FormAccessibilizer @
 
-  # Fancybox
-  $('a.fancybox').fancybox
-    openSpeed: 0
-    closeSpeed: 0
-    nextSpeed: 0
-    prevSpeed: 0
-    helpers:
-      overlay:
-        locked: false
-        speedOut: 0
-      thumbs:
-        width: 100,
-        height: 100
+  initTooltips: ($el) ->
+    # Bootstrap tooltips
+    $el.find('[title]').tooltip()
+
+  initFancybox: ($el) ->
+    # Fancybox
+    $('a.fancybox').fancybox
+      openSpeed: 0
+      closeSpeed: 0
+      nextSpeed: 0
+      prevSpeed: 0
+      helpers:
+        overlay:
+          locked: false
+          speedOut: 0
+        thumbs:
+          width: 100,
+          height: 100
