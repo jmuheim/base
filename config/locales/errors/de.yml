@@ -2,12 +2,12 @@
 de:
   errors:
     messages:
-      extension_white_list_error: "Das Hochladen von %{extension} Dateien ist nicht erlaubt, erlaubt sind: %{allowed_types}"
       after: muss nach %{restriction} sein
       already_confirmed: wurde bereits bestätigt
       before: muss vor %{restriction} sein
       confirmation_period_expired: muss innerhalb %{period} bestätigt werden, bitte fordere einen neuen Link an
       expired: ist abgelaufen, bitte neu anfordern
+      extension_white_list_error: 'Das Hochladen von %{extension} Dateien ist nicht erlaubt, erlaubt sind: %{allowed_types}'
       invalid_date: ist kein valides Datum
       invalid_datetime: ist keine valide Zeit
       invalid_time: ist keine valide Zeit

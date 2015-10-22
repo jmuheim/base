@@ -11,6 +11,7 @@ de:
         resource_type: Ressource
         updated_at: Aktualisiert am
       user:
+        about: "Über"
         avatar: Profilbild
         confirmed_at: Bestätigt am
         created_at: Erstellt am
@@ -29,7 +30,6 @@ de:
         remember_me: Eingeloggt bleiben
         roles: Rollen
         updated_at: Aktualisiert am
-        about: Über
     models:
       user:
         one: Benutzer

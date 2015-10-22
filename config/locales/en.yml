@@ -14,15 +14,22 @@ en:
       home_page: Jump to home page
       navigation: Jump to navigation
     navigation:
+      about: About
+      admin: Admin
       choose_language: Choose language
       content_navigation: Content navigation
       current_group: current menu group
       current_item: current menu item
+      edit_account: Edit account
+      home: Base
+      log_out: Log out
       meta_navigation: User navigation
       navigation: Navigation
       show_account: Show account
+      sign_in: Sign in
       sign_up: Sign up
       toggle_navigation: Menu
+      user_menu: User menu
       you_are_here: You are here
   pages:
     about:

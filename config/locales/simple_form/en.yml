@@ -1,6 +1,12 @@
 ---
 en:
   simple_form:
+    error_notification:
+      default_message: 'Please review the problems below:'
+    hints:
+      user:
+        about: Write something about you (biography, interests, hobbies...)
+        password_confirmation: Retype your password to avoid typing errors
     inputs:
       upload:
         click_to_choose_a_file: Click to choose a file for %{attribute}
@@ -8,12 +14,6 @@ en:
         file_preview: File preview
         remove_file: Remove existing %{attribute} file
         reset_selection: Reset %{attribute} file selection
-    error_notification:
-      default_message: 'Please review the problems below:'
-    hints:
-      user:
-        about: Write something about you (biography, interests, hobbies...)
-        password_confirmation: Retype your password to avoid typing errors
     'no': 'No'
     required:
       mark: "*"
