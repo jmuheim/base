@@ -1,23 +1,21 @@
 ---
 en:
   simple_form:
-    click_to_choose_a_file: Click to choose a file for %{attribute}
-    click_to_choose_another_file: Click to choose another %{attribute} file
-    click_to_paste_another_image: Click to paste another %{attribute} image
+    inputs:
+      upload:
+        click_to_choose_a_file: Click to choose a file for %{attribute}
+        click_to_choose_another_file: Click to choose another %{attribute} file
+        file_preview: File preview
+        remove_file: Remove existing %{attribute} file
+        reset_selection: Reset %{attribute} file selection
     error_notification:
       default_message: 'Please review the problems below:'
-    file_preview: File preview
     hints:
       user:
         about: Write something about you (biography, interests, hobbies...)
         password_confirmation: Retype your password to avoid typing errors
-    image_preview: Image preview
     'no': 'No'
-    paste_here: Paste here
-    remove_file: Remove existing %{attribute} file
     required:
       mark: "*"
       text: required
-    reset_selection: Reset %{attribute} file selection
-    select_another_file: Select other file
     'yes': 'Yes'

@@ -1,23 +1,21 @@
 ---
 de:
   simple_form:
-    click_to_choose_a_file: Klicken um eine %{attribute} Datei zu wählen
-    click_to_choose_another_file: Klicken, um eine andere %{attribute}-Datei wählen
-    click_to_paste_another_image: Klicken, um ein anderes %{attribute}-Bild einzufügen
+    inputs:
+      upload:
+        click_to_choose_a_file: Klicken um eine %{attribute} Datei zu wählen
+        click_to_choose_another_file: Klicken, um eine andere %{attribute}-Datei zu wählen
+        file_preview: Dateivorschau
+        remove_file: Existierende %{attribute}-Datei entfernen
+        reset_selection: '%{attribute}-Dateiauswahl zurücksetzen'
     error_notification:
       default_message: 'Bitte überprüfe die nachfolgenden Probleme:'
-    file_preview: Dateivorschau
     hints:
       user:
         about: Schreib etwas über dich (Biographie, Interessen, Hobbies...)
         password_confirmation: Gib dein Passwort nochmal ein, um Tippfehler zu vermeiden
-    image_preview: Bildvorschau
     'no': Nein
-    paste_here: Hier einfügen
-    remove_file: Existierende %{attribute}-Datei entfernen
     required:
       mark: "*"
       text: Pflichtfeld
-    reset_selection: '%{attribute}-Dateiauswahl zurücksetzen'
-    select_another_file: Andere Datei auswählen
     'yes': Ja
