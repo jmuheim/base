@@ -1,7 +1,9 @@
 ---
 en:
   app:
-    name: Base
+    acronym: Base
+    slogan: Pre-configured basic Rails project. Fork me!
+    name: Base Project
   buttons:
     save: Save
   'false': 'No'
@@ -31,6 +33,8 @@ en:
       toggle_navigation: Menu
       user_menu: User menu
       you_are_here: You are here
+  org:
+    name: MuheimWebdesign
   pages:
     about:
       title: About Base

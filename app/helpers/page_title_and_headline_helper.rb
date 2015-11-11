@@ -56,7 +56,7 @@ module PageTitleAndHeadlineHelper
       parts = []
       parts += flash.map { |key, value| "#{t "flash.#{key}"}: #{value}" } if flash.any?
       parts << headline
-      parts << "- #{t('app.name')}" unless current_page?(root_path)
+      parts << "- #{t('app.acronym')}" unless current_page?(root_path)
       parts.join ' '
     end
   end

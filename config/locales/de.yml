@@ -1,7 +1,9 @@
 ---
 de:
   app:
-    name: Base
+    acronym: Base
+    slogan: Vorkonfiguriertes grundlegendes Rails Projekt. Fork erstellen!
+    name: Base Project
   buttons:
     save: Speichern
   'false': Nein
@@ -31,6 +33,8 @@ de:
       toggle_navigation: Menü
       user_menu: Benutzer Menü
       you_are_here: Sie befinden sich hier
+  org:
+    name: MuheimWebdesign
   pages:
     about:
       title: "Über Base"

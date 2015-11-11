@@ -63,6 +63,6 @@ nav#navigation.container
   #breadcrumbs.breadcrumb
     h3 #{t '.you_are_here'}:
     ol.breadcrumb
-      li = link_to t('app.name'), root_path
+      li = link_to t('app.acronym'), root_path
       = render_breadcrumbs tag: :li, separator: ''
       li = @last_breadcrumb || headline
