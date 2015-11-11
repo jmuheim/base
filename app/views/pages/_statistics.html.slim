@@ -4,5 +4,5 @@ table.table.table-striped.table-hover
   tr
     th
       => icon :user
-      = t '.number_of_users'
+      = t '.number_of_resource', resource: User.model_name.human(count: :other)
     td = User.count

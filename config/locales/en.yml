@@ -39,15 +39,13 @@ en:
     news:
       title: Latest news
     statistics:
-      number_of_users: Number of users
+      number_of_resource: Anzahl %{resource}
       title: Statistics
   resources:
     create: Create %{resource}
     list: List %{resource}
   shared:
     form:
-      actions:
-        toggle_dropdown: Toggle dropdown
       stale_info:
         attribute: Attribute
         difference: Difference

@@ -14,3 +14,4 @@ en:
     show: Show
     show_resource: Show %{resource}
     show_resource_with_id: "%{resource} #%{id}"
+    toggle_dropdown: Toggle dropdown
