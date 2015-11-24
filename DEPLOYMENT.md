@@ -46,7 +46,7 @@ daemon off; # We execute Nginx using Daemontools # <-- Do we still need this??
 ...
 
 server {
-    listen            PORT; # Choose an open port (see instuctions below)!
+    listen            PORT; # Choose an open port (see instructions below)!
     server_name       ACCOUNT.SERVER.uberspace.de;
     root              /home/ACCOUNT/rails/current/public;
     passenger_enabled on;
