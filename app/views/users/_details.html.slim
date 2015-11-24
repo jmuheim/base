@@ -3,6 +3,8 @@ dl.dl-horizontal
   dd.email = user.email
   dt = User.human_attribute_name :created_at
   dd.created_at = l user.created_at
+  dt = User.human_attribute_name :updated_at
+  dd.updated_at = l user.updated_at
   - if user.avatar?
     dt = User.human_attribute_name :avatar
     dd.avatar = zoomable_image user.avatar, alt: user.name
