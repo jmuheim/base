@@ -6,7 +6,7 @@ describe 'Requesting new confirmation' do
   it 'is possible to request a new confirmation' do
     visit new_user_confirmation_path
 
-    expect(page).to have_breadcrumbs 'Base', 'Resend confirmation instructions'
+    expect(page).to have_breadcrumbs 'Base', 'Resend confirmation...'
     expect(page).to have_headline 'Resend confirmation instructions'
 
     within '#new_user' do

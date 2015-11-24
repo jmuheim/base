@@ -65,4 +65,4 @@ nav#navigation.container
     ol.breadcrumb
       li = link_to t('app.acronym'), root_path
       = render_breadcrumbs tag: :li, separator: ''
-      li = @last_breadcrumb || headline
+      li = truncate @last_breadcrumb || headline, length: 30, separator: ' '
