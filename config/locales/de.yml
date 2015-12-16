@@ -2,8 +2,8 @@
 de:
   app:
     acronym: Base
-    slogan: Vorkonfiguriertes grundlegendes Rails Projekt. Fork erstellen!
     name: Base Project
+    slogan: Vorkonfiguriertes grundlegendes Rails Projekt. Fork erstellen!
   buttons:
     save: Speichern
   'false': Nein
@@ -16,22 +16,15 @@ de:
       home_page: Zur Startseite springen
       navigation: Zur Navigation springen
     navigation:
-      about: "Über"
-      admin: Admin
       choose_language: Sprache wählen
       content_navigation: Inhaltsnavigation
       current_group: aktuelle Menügruppe
       current_item: aktueller Menüpunkt
-      edit_account: Konto bearbeiten
-      home: Base
-      log_out: Abmelden
       meta_navigation: Benutzernavigation
       navigation: Navigation
       show_account: Konto anzeigen
-      sign_in: Anmelden
       sign_up: Registrieren
       toggle_navigation: Menü
-      user_menu: Benutzer Menü
       you_are_here: Sie befinden sich hier
   org:
     name: MuheimWebdesign

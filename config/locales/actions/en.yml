@@ -5,12 +5,15 @@ en:
     back_to_resources_list: Back to list of %{resources}
     destroy: Delete
     destroy_resource: Delete %{resource}
-    destroy_resource_confirmation_question: "Really destroy %{resource} #%{id}?"
+    destroy_resource_confirmation_question: 'Really destroy %{resource} #%{id}?'
     edit: Edit
     edit_resource: Edit %{resource}
     edit_resource_with_id: 'Edit %{resource} #%{id}'
+    filter: Filter
     new: Create
     new_resource: Create %{resource}
+    remove_filter: Remove filter
+    results: Results
     show: Show
     show_resource: Show %{resource}
     show_resource_with_id: "%{resource} #%{id}"

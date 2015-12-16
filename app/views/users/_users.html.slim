@@ -1,3 +1,24 @@
+= accordion :filter, item_options: {title_tag: 'h2', panel_class: 'panel-warning'} do |accordion|
+  = accordion.panel do |panel|
+    = panel.title do
+      => fa_icon :filter
+      = t 'actions.filter'
+
+    = panel.body do
+      - if params[:q]
+        = link_to nil
+          => fa_icon :close
+          = t 'actions.remove_filter'
+
+      = search_form_for q, html:    {class: 'form-horizontal'},
+                           wrapper: :horizontal_form do |f|
+
+        / http://stackoverflow.com/questions/34307149/i18n-my-ransack-search-fields-are-not-translated
+        = f.input :name_cont, required: false
+        = f.button :submit, t('actions.filter'), class: 'btn-warning'
+
+h2.sr-only = t 'actions.results'
+
 table.table.table-striped.table-hover
   thead
     tr
