@@ -7,25 +7,6 @@ de:
   buttons:
     save: Speichern
   'false': Nein
-  layouts:
-    application:
-      footer: Fussbereich
-      header: Kopfbereich
-    jump_links:
-      content: Zum Inhalt springen
-      home_page: Zur Startseite springen
-      navigation: Zur Navigation springen
-    navigation:
-      choose_language: Sprache wählen
-      content_navigation: Inhaltsnavigation
-      current_group: aktuelle Menügruppe
-      current_item: aktueller Menüpunkt
-      meta_navigation: Benutzernavigation
-      navigation: Navigation
-      show_account: Konto anzeigen
-      sign_up: Registrieren
-      toggle_navigation: Menü
-      you_are_here: Sie befinden sich hier
   org:
     name: MuheimWebdesign
   pages:
