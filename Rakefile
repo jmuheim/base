@@ -6,6 +6,7 @@ Base::Application.load_tasks
 
 # http://stackoverflow.com/questions/30028315/want-to-seed-with-rails-env-production-but-getting-nameerror-uninitialized-con
 unless Rails.env.production?
+  # Fuubar has problems at the moment, see https://github.com/thekompanee/fuubar/issues/84
   task(:default).clear
   task default: :'spec:fuubar'
 
