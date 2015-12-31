@@ -1,38 +1,90 @@
+# i18n-tasks finds and manages missing and unused translations: https://github.com/glebm/i18n-tasks
+
+# The "main" locale.
+base_locale: en
+## All available locales are inferred from the data by default. Alternatively, specify them explicitly:
+# locales: [es, fr]
+## Reporting locale, default: en. Available: en, ru.
+# internal_locale: en
+
+# Read and write translations.
+data:
+  ## Translations are read from the file system. Supported format: YAML, JSON.
+  ## Provide a custom adapter:
+  # adapter: I18n::Tasks::Data::FileSystem
+  # file_system is the default adapter, you can provide a custom class name here:
+
+  # Locale files or `File.find` patterns where translations are read from:
+  read:
+    ## Default:
+    - config/locales/%{locale}.yml
+    ## More files:
+    - config/locales/*.%{locale}.yml
+    - config/locales/*/%{locale}.yml
+    ## Another gem (replace %#= with %=):
+    # - "<%#= %x[bundle show vagrant].chomp %>/templates/locales/%{locale}.yml"
+
+  # Locale files to write new keys to, based on a list of key pattern => file rules. Matched from top to bottom:
+  # `i18n-tasks normalize -p` will force move the keys according to these rules
+  write:
+    ## For example, write devise and simple form keys (and others) to their respective files:
+    - ['{activerecord,actions,devise,enumerize,errors,flash,simple_form,validates_timeliness}.*', 'config/locales/\1/%{locale}.yml']
+    ## Catch-all default:
+    # - config/locales/%{locale}.yml
+
+  ## Specify the router (see Readme for details). Valid values: conservative_router, pattern_router, or a custom class.
+  # router: conservative_router
+
+  yaml:
+    write:
+      # do not wrap lines at 80 characters
+      line_width: -1
+
+  ## Pretty-print JSON:
+  # json:
+  #   write:
+  #     indent: '  '
+  #     space: ' '
+  #     object_nl: "\n"
+  #     array_nl: "\n"
+
+# Find translate calls
 search:
+  ## Paths or `File.find` patterns to search in:
   paths:
     - app/
     - vendor/
     - config/
 
+  ## Root directories for relative keys resolution.
   relative_roots:
     - app/views
 
+  ## Files or `File.fnmatch` patterns to exclude from search. Some files are always excluded regardless of this setting:
+  ##   %w(*.jpg *.png *.gif *.svg *.ico *.eot *.otf *.ttf *.woff *.woff2 *.pdf *.css *.sass *.scss *.less *.yml *.json)
   exclude:
     - '*/page_title_and_headline_helper.rb'
+    - app/assets/images
+    - app/assets/fonts
 
-data:
-  # file_system is the default adapter, you can provide a custom class name here:
-  adapter: file_system
+  ## Alternatively, the only files or `File.fnmatch patterns` to search in `paths`:
+  ## If specified, this settings takes priority over `exclude`, but `exclude` still applies.
+  # include: ["*.rb", "*.html.slim"]
 
-  # a list of file globs to read from per-locale
-  read:
-    # default:
-    - 'config/locales/%{locale}.yml'
-    # to also read from namespaced files, e.g. simple_form.en.yml:
-    - 'config/locales/*.%{locale}.yml'
-    - 'config/locales/*/%{locale}.yml'
-  # a list of {key pattern => file} routes, matched top to bottom
+  ## Default scanner finds t() and I18n.t() calls.
+  # scanner: I18n::Tasks::Scanners::PatternWithScopeScanner
 
-  write:
-    # save all devise keys in it's own file (per locale):
-    - ['{activerecord,actions,devise,enumerize,errors,flash,simple_form,validates_timeliness}.*', 'config/locales/\1/%{locale}.yml']
-    # default catch-all:
-    - 'config/locales/%{locale}.yml' # path is short for ['*', path]
+## Google Translate
+# translation:
+#   # Get an API key and set billing info at https://code.google.com/apis/console to use Google Translate
+#   api_key: "AbC-dEf5"
 
-  yaml:
-    write:
-      line_width: -1
+## Do not consider these keys missing:
+# ignore_missing:
+# - 'errors.messages.{accepted,blank,invalid,too_short,too_long}'
+# - '{devise,simple_form}.*'
 
+## Consider these keys used:
 ignore_unused:
   - activerecord.*
   - actions.*
@@ -46,14 +98,16 @@ ignore_unused:
   - validates_timeliness.*
   - app.name
 
+## Exclude these keys from the `i18n-tasks eq-base' report:
 ignore_eq_base:
   all:
     - '*'
 
+## Ignore these keys completely:
 ignore:
   - kaminari.*
 
-ignore_untranslated:
+ignore_untranslated: # TODO: Did we add this ourselves? What's the difference to ignore_missing? (Josh)
   model_names:
     - role
     - paper_trail/version
