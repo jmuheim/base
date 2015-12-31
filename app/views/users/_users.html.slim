@@ -6,15 +6,16 @@
 
     = panel.body do
       - if params[:q]
-        = link_to nil
+        = link_to request.path
           => fa_icon :close
           = t 'actions.remove_filter'
 
       = search_form_for q, html:    {class: 'form-horizontal'},
                            wrapper: :horizontal_form do |f|
 
-        / http://stackoverflow.com/questions/34307149/i18n-my-ransack-search-fields-are-not-translated
-        = f.input :name_cont, required: false
+        / TODO: Fields aren't translated automatically, see https://github.com/activerecord-hackery/ransack/issues/631
+        / TODO: Why is this required by default?
+        = f.input :name_cont, required: false, label: "#{User.human_attribute_name :name} #{t('ransack.predicates.cont')}"
         = f.button :submit, t('actions.filter'), class: 'btn-warning'
 
 h2.sr-only = t 'actions.results'
