@@ -107,17 +107,11 @@ ignore_eq_base:
 ignore:
   - kaminari.*
 
-ignore_untranslated: # TODO: Did we add this ourselves? What's the difference to ignore_missing? (Josh)
-  model_names:
+ignore_models:
+  names:
     - role
     - paper_trail/version
-  model_attributes:
-    paper_trail/version:
-      - item_type
-      - event
-      - whodunnit
-      - object
-      - created_at
+  attributes:
     user:
       - encrypted_password
       - reset_password_token
