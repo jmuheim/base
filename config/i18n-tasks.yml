@@ -28,9 +28,9 @@ data:
   # `i18n-tasks normalize -p` will force move the keys according to these rules
   write:
     ## For example, write devise and simple form keys (and others) to their respective files:
-    - ['{activerecord,actions,devise,enumerize,errors,flash,simple_form,validates_timeliness}.*', 'config/locales/\1/%{locale}.yml']
+    - ['{activerecord,actions,devise,enumerize,errors,flash,simple_form,validates_timeliness,layouts}.*', 'config/locales/\1/%{locale}.yml']
     ## Catch-all default:
-    # - config/locales/%{locale}.yml
+    - config/locales/%{locale}.yml
 
   ## Specify the router (see Readme for details). Valid values: conservative_router, pattern_router, or a custom class.
   # router: conservative_router
