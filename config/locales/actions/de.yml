@@ -9,8 +9,11 @@ de:
     edit: Bearbeiten
     edit_resource: "%{resource} bearbeiten"
     edit_resource_with_id: "%{resource} #%{id} bearbeiten"
+    filter: Filtern
     new: Erstellen
     new_resource: "%{resource} erstellen"
+    remove_filter: Filter entfernen
+    results: Resultate
     show: Anzeigen
     show_resource: "%{resource} anzeigen"
     show_resource_with_id: "%{resource} #%{id}"

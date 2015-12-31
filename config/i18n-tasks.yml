@@ -106,6 +106,7 @@ ignore_eq_base:
 ## Ignore these keys completely:
 ignore:
   - kaminari.*
+  - ransack.*
 
 ignore_models:
   names:

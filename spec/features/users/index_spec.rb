@@ -23,4 +23,23 @@ describe 'Listing users' do
 
     expect(page).to have_link 'Create User'
   end
+
+  it 'allows to filter users' do
+    create :user, name: 'anne'
+    create :user, name: 'marianne'
+    create :user, name: 'eva'
+
+    visit users_path
+
+    expect(all('.users tbody tr').count).to eq 5
+
+    fill_in 'q_name_cont', with: 'anne'
+    click_button 'Filter'
+
+    expect(all('.users tbody tr').count).to eq 2
+
+    click_link 'Remove filter'
+
+    expect(all('.users tbody tr').count).to eq 5
+  end
 end

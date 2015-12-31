@@ -6,6 +6,11 @@ class UsersController < InheritedResources::Base
   include UpdateLock
   before_filter :add_base_breadcrumbs
 
+  def index
+    @q = collection.ransack(params[:q])
+    @users = @q.result(distinct: true)
+  end
+
   private
 
   def permitted_params

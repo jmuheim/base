@@ -1,5 +1,7 @@
 require File.expand_path('../boot', __FILE__)
 
+ENV['RANSACK_FORM_BUILDER'] = '::SimpleForm::FormBuilder' # Use SimpleForm with Ransack
+
 # Don't require 'rails/all' because we use RSpec instead of rails/test_unit.
 # See http://stackoverflow.com/questions/20872895.
 require 'active_record/railtie'
