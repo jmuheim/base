@@ -1,3 +1,5 @@
+# See https://github.com/glebm/i18n-tasks/issues/183
+
 require 'rails_helper'
 require 'i18n/tasks'
 
