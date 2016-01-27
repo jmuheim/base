@@ -16,6 +16,8 @@ describe 'Creating user' do
     fill_in 'user_password',              with: 'somegreatpassword'
     fill_in 'user_password_confirmation', with: 'somegreatpassword'
 
+    expect(page).to have_css '#user_name[maxlength="100"]'
+
     attach_file 'user_avatar', dummy_file_path('other_image.jpg')
     click_button 'Create User'
 

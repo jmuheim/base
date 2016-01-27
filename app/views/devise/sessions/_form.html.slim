@@ -6,7 +6,7 @@
                             wrapper_mappings: {boolean: "#{display == :full ? :horizontal : :vertical }_boolean"} do |f|
   .login_and_password
     = f.input :login, placeholder: t('.username_or_email'), required: true
-    = f.input :password, placeholder: User.human_attribute_name(:password), required: true
+    = f.input :password, placeholder: User.human_attribute_name(:password), required: true, input_html: {size: 0}
 
   .remember_me_and_submit
     - if devise_mapping.rememberable?
