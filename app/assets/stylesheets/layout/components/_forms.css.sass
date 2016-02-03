@@ -28,13 +28,17 @@ select.datetime
 .simple_form
   .panel-body
     padding-bottom: 0 // The .form-groups already add some spacing at the bottom
-  
+
 .btn:focus,
   outline: 0
   border-color: $input-border-focus
-  
+
 .btn:focus,
 input[type="file"]:focus,
 input[type="radio"]:focus,
 input[type="checkbox"]:focus
   +box-shadow($input-border-focus 0 0 10px)
+
+.textarea-fullscreenizer
+  .textarea-fullscreenizer-toggler
+    @extend .label

@@ -36,6 +36,7 @@ de:
         stale_attributes: Attribute, welche verändert worden sind
   'true': Ja
   users:
+    detail_inputs:
+      account_information: Konto Informationen
     form:
-      details: Details
       password: Passwort

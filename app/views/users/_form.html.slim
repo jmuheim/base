@@ -2,15 +2,7 @@
                          wrapper: :horizontal_form do |f|
   == render 'shared/form/stale_info', f: f
 
-  = panel do |panel|
-    = panel.heading do
-      = t('.details')
-
-    = panel.body do
-      = f.input :name
-      = f.input :email, as: :email, required: true
-      = f.input :avatar, as: :upload
-      = f.input :about
+  == render 'detail_inputs', f: f
 
   - if user.new_record?
     = panel do |panel|

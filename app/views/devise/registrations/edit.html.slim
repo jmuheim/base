@@ -6,15 +6,7 @@
                             html:    {method: :put, class: 'form-horizontal', multipart: true},
                             wrapper: :horizontal_form do |f|
 
-  = panel do |panel|
-    = panel.heading do
-      = t('.account_information')
-
-    = panel.body do
-      = f.input :name
-      = f.input :email, as: :email, required: true
-      = f.input :avatar, as: :upload
-      = f.input :about
+  == render 'users/detail_inputs', f: f
 
   / TODO: Put into a container?
   - if devise_mapping.confirmable? && resource.pending_reconfirmation?

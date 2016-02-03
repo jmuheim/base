@@ -8,16 +8,7 @@
                                 html:    {class: 'form-horizontal'},
                                 wrapper: :horizontal_form do |f|
 
-      / TODO: We should think about consolidating the forms/views of registrations and users!
-      = panel do |panel|
-        = panel.heading do
-          = t('.account_information')
-
-        = panel.body do
-          = f.input :name
-          = f.input :email, required: true
-          = f.input :avatar, as: :upload
-          = f.input :about
+      == render 'users/detail_inputs', f: f
 
       = panel do |panel|
         = panel.heading do

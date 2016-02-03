@@ -8,6 +8,8 @@ de:
         about: Schreib etwas über dich (Biographie, Interessen, Hobbies...)
         password_confirmation: Gib dein Passwort nochmal ein, um Tippfehler zu vermeiden
     inputs:
+      text_fullscreen:
+        toggler_text: Vollansicht umschalten (Esc)
       upload:
         click_to_choose_a_file: Klicken um eine %{attribute} Datei zu wählen
         click_to_choose_another_file: Klicken, um eine andere %{attribute}-Datei zu wählen

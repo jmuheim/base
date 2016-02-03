@@ -5,6 +5,7 @@ class App.Init
     @makeFormsAccessible @$el
     @initTooltips @$el
     @initFancybox @$el
+    @makeTextareasFullscreenizable @$el
 
   makeFormsAccessible: ($el) ->
     $el.find('form.simple_form').each ->
@@ -28,3 +29,7 @@ class App.Init
         thumbs:
           width: 100,
           height: 100
+
+  makeTextareasFullscreenizable: ($el) ->
+    $el.find('textarea[data-textarea-fullscreenizer="true"]').each ->
+      new App.TextareaFullscreenizer @
