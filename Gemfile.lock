@@ -502,7 +502,7 @@ DEPENDENCIES
   fancybox2-rails
   ffaker
   font-awesome-rails
-  fuubar (~> 2.0.0rc1)
+  fuubar (>= 2.0.0rc1)
   gaffe
   guard
   guard-bundler

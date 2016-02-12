@@ -147,7 +147,7 @@ group :test do
 
   gem 'respec', require: false # Allows to rerun failed specs (first do `respec` to run all, then `respec f` or `respec 123` to run failed)
 
-  gem 'fuubar', '~> 2.0.0rc1' # The instafailing RSpec progress bar formatter
+  gem 'fuubar', '>= 2.0.0rc1' # The instafailing RSpec progress bar formatter
 
   gem 'email_spec' # Collection of RSpec matchers for testing email
 
