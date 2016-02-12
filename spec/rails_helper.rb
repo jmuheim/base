@@ -95,3 +95,8 @@ Shoulda::Matchers.configure do |config|
     with.library :rails
   end
 end
+
+require 'strip_attributes/matchers'
+RSpec.configure do |config|
+  config.include StripAttributes::Matchers
+end
