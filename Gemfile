@@ -60,8 +60,8 @@ gem 'rails_admin' # Rails Admin: engine that provides an easy-to-use interface f
 
 gem 'paper_trail', '>= 4.0.0.rc' # Track changes to your models' data. Good for auditing or versioning.
 
-gem 'carrierwave' # Classier solution for file uploads for Rails
-
+# Classier solution for file uploads for Rails
+gem 'carrierwave'
 gem 'carrierwave-base64' # Upload files encoded as base64 to carrierwave
 
 gem 'mini_magick' # Mini replacement for RMagick
