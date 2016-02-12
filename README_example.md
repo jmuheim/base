@@ -20,6 +20,8 @@ Setup:
 
 You can use [direnv](https://github.com/zimbatm/direnv) to automatically add `bin` to your `$PATH`. Otherwise you should always use `bundle exec` to run commands.
 
+Be sure to have [Pandoc](http://pandoc.org/) installed (on Mac: `$ brew install pandoc`).
+
 ## Developing
 
 - In one terminal, enter `$ server` to start the development server using [rerun](https://github.com/alexch/rerun) (which will take care of restarting the server upon changes of important config files)

@@ -62,13 +62,15 @@ gem 'paper_trail', '~> 4.0.0.rc' # Track changes to your models' data. Good for 
 
 gem 'carrierwave' # Classier solution for file uploads for Rails
 
+gem 'carrierwave-base64' # Upload files encoded as base64 to carrierwave
+
 gem 'mini_magick' # Mini replacement for RMagick
 
 gem 'fancybox2-rails' # Fancybox (lightbox clone)
 
 gem 'slugify' # Turn a string into its alphanumerical dashed equivalent
 
-gem 'redcarpet' # Markdown parser
+gem 'pandoc-ruby' # Markdown parser and format converter (from/to Markdown, HTML, Docx, PDF, Epub, ODT...)
 
 gem 'ransack' # Object-based searching
 

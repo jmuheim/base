@@ -5,7 +5,7 @@ de:
       default_message: 'Bitte überprüfe die nachfolgenden Probleme:'
     hints:
       user:
-        about: Schreib etwas über dich (Biographie, Interessen, Hobbies...)
+        about: Schreib etwas über dich (Biographie, Interessen, Hobbies...). Du kannst Pandoc Markdown verwenden zum Formatieren.
         password_confirmation: Gib dein Passwort nochmal ein, um Tippfehler zu vermeiden
     inputs:
       text_fullscreen:

@@ -13,4 +13,4 @@ dl.dl-horizontal
   .about
     h2 = User.human_attribute_name :about
 
-    = markdown user.about
+    = markdown indent_heading_level user.about, 2

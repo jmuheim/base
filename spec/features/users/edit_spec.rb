@@ -70,7 +70,7 @@ describe 'Editing user' do
       }.not_to change { @user }
 
       expect(page).to have_flash('User meanwhile has been changed. The conflicting fields are: Name, Profile picture, and About.').of_type :alert
-save_and_open_page
+
       expect(page).to have_css '#stale_attribute_user_name .interim_value', text: 'interim-name'
       expect(page).to have_css '#stale_attribute_user_name .new_value',     text: 'new-name'
       expect(page.html).to include '<del class="differ">interim</del><ins class="differ">new</ins>-name'
