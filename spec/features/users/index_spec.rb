@@ -25,9 +25,9 @@ describe 'Listing users' do
   end
 
   it 'allows to filter users' do
-    @user_1 = create :user, name: 'anne'
-    @user_2 = create :user, name: 'marianne'
-    @user_3 = create :user, name: 'eva'
+    @user_1 = create :user, name: 'anne', email: 'anne@example.com'
+    @user_2 = create :user, name: 'marianne', email: 'marianne@example.com'
+    @user_3 = create :user, name: 'eva', email: 'eva@example.com'
 
     visit users_path
 
