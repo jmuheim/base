@@ -9,7 +9,6 @@
 #= require jquery-ui-bootstrap-bridge
 #
 #= require bootstrap
-#= require bootstrap-formhelpers
 #= require cocoon
 #= require jasny-bootstrap
 #= require fancybox
