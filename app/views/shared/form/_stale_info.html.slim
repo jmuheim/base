@@ -45,17 +45,17 @@
                       = h stale_info.new_value
                   - else
                     = stale_info.new_value
-                
+
                 td.difference
                   - case stale_info.type
                   - when :text
-                    = simple_format h Differ.diff_by_line(h(stale_info.new_value), h(stale_info.interim_value)).format_as(:html).html_safe
+                    = simple_format h Differ.diff_by_line(h(stale_info.new_value.to_s), h(stale_info.interim_value.to_s)).format_as(:html).html_safe
                   - when :string
                     - case stale_info.new_value
                     - when AbstractUploader
                       = t '.no_diff_available'
                     - else
-                      = h Differ.diff_by_word(stale_info.new_value, stale_info.interim_value).format_as(:html).html_safe
+                      = h Differ.diff_by_word(stale_info.new_value.to_s, stale_info.interim_value.to_s).format_as(:html).html_safe
                   - else
                     = h Differ.diff_by_char(stale_info.new_value.to_s, stale_info.interim_value.to_s).format_as(:html).html_safe
 
