@@ -1,3 +1,9 @@
+GIT
+  remote: git://github.com/jmuheim/tilt.git
+  revision: 7428ccb0e7a5be2755d228f81f5d232153082b86
+  specs:
+    tilt (2.0.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -443,7 +449,6 @@ GEM
     thor (0.19.1)
     thread (0.2.2)
     thread_safe (0.3.5)
-    tilt (2.0.2)
     timeliness (0.3.8)
     tins (1.8.2)
     tzinfo (1.2.2)
@@ -549,6 +554,7 @@ DEPENDENCIES
   sqlite3
   strip_attributes
   terminal-notifier-guard
+  tilt!
   tzinfo-data
   uglifier (>= 1.3.0)
   validates_timeliness
