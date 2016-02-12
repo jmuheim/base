@@ -50,7 +50,7 @@ gem 'validates_timeliness' # Date and time validation plugin for ActiveModel and
 
 gem 'navigasmic' # Semantic navigation
 
-gem 'nilify_blanks' # Save NULLs instead of empty strings into the database
+gem 'strip_attributes' # Automatically strips all attributes of leading and trailing whitespace (or nilify if blank)
 
 gem 'enumerize' # Enumerated attributes with I18n
 

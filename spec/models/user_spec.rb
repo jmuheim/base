@@ -3,6 +3,8 @@ require 'rails_helper'
 describe User do
   it { should validate_presence_of(:name).with_message "can't be blank" }
   it { should validate_uniqueness_of(:name).case_insensitive }
+  it { is_expected.to strip_attribute(:name) }
+  it { is_expected.to strip_attribute(:about) }
 
   it 'has a valid factory' do
     expect(create(:user)).to be_valid
@@ -23,10 +25,10 @@ describe User do
     it 'is versioned' do
       is_expected.to be_versioned
     end
-  
+
     it 'versions name' do
       user = create :user, :donald
-  
+
       expect {
         user.update_attributes! name: 'daisy'
       }.to change { user.name }.to 'daisy'
