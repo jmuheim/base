@@ -1,9 +1,9 @@
 FactoryGirl.define do
   factory :user do
     # Ffaker calls need to be in block?! See https://github.com/EmmanuelOga/ffaker/issues/121
-    name                  { FFaker::Name.name }
-    email                 { FFaker::Internet.email }
-    about                 "This is some very interesting info about me.\n\nI like playing football and reading books.\n\nI work as a web developer."
+    name                  'User test name'
+    email                 'test@email.com'
+    about                 'User test about'
     password              's3cur3p@ssw0rd'
     password_confirmation 's3cur3p@ssw0rd'
     confirmed_at          Time.now
