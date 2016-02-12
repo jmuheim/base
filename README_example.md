@@ -32,7 +32,6 @@ Be sure to have [Pandoc](http://pandoc.org/) installed (on Mac: `$ brew install 
     - annotating models using [Guard-Annotate](https://github.com/cpjolicoeur/guard-annotate)
     - migrating the DB using [Guard-Migrate](https://github.com/glanotte/guard-migrate)
 - Open [http://localhost:PORT](http://localhost:PORT) in your browser (use whatever port you specified in `config/boot.rb`)
-- Execute `$ rip_hashrockets` from time to time to replace old Ruby hashrockets (`=>`) with the new syntax
 
 ### Before merging a pull request
 

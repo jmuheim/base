@@ -133,10 +133,6 @@ group :development do
 
   gem 'rubocop', require: false # A robust Ruby code analyzer, based on the community Ruby style guide
 
-  gem 'rip_hashrocket', # Replace hashrockets (=>) automatically
-       github:  'jmuheim/rip_hashrocket',
-       require: false
-
   gem 'capybara', '>=2.2.0.beta' # Acceptance test framework for web applications
 
   gem 'rails-footnotes' # Every Rails page has footnotes that gives information about your application
