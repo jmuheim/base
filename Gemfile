@@ -98,8 +98,8 @@ group :development, :test do
   gem 'ffaker'             # Easily generate fake data
 
   # Use Pry and its extensions instead of IRB
-  gem 'jazz_hands', github: 'nixme/jazz_hands',
-                    branch: 'bring-your-own-debugger'
+  gem 'pry-rails' # Rails >= 3 pry initializer
+  gem 'awesome_print' # Pretty print your Ruby objects with style
   gem 'pry-byebug'  # Pry navigation commands via debugger (formerly ruby-debug)
 end
 
