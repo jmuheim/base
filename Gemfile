@@ -171,7 +171,7 @@ end
 
 group :production do
   # Use specific version because of this bug: https://github.com/rails/rails/issues/21544
-  gem 'mysql2', '~> 0.3.18' # Use MySQL as the database for Active Record
+  gem 'mysql2', '>= 0.3.18' # Use MySQL as the database for Active Record
 end
 
 # Use ActiveModel has_secure_password
