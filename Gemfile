@@ -25,7 +25,7 @@ gem 'font-awesome-rails' # The iconic font and CSS toolkit
 gem 'jquery-rails'
 gem 'jquery-ui-rails' # jQuery UI components
 
-gem 'jbuilder', '~> 1.2' # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
+gem 'jbuilder', '>= 1.2' # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 
 # Flexible authentication solution
 gem 'devise'
