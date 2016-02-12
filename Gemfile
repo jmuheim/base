@@ -162,9 +162,7 @@ group :test do
 
   gem 'capybara-screenshot' # Automatically save screen shots when a scenario fails
 
-  gem 'headhunter' # Automagically validates all HTML and CSS during feature tests
-
-  gem 'i18n-tasks'
+  gem 'i18n-tasks' # Manage translation and localization with static analysis
 
   gem 'codeclimate-test-reporter', require: nil
 end
