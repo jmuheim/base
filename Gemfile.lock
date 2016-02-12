@@ -523,7 +523,7 @@ DEPENDENCIES
   pry-rails
   quiet_assets
   rack-livereload
-  rails (~> 4.2)
+  rails (~> 4.2.5)
   rails-footnotes
   rails-i18n
   rails_admin
