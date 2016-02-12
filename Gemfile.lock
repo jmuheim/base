@@ -21,14 +21,6 @@ GIT
       pry-stack_explorer (~> 0.4.9)
       railties (>= 3.0, < 5.0)
 
-GIT
-  remote: git://github.com/plataformatec/simple_form.git
-  revision: dba42c800126b4d680f3b333faff735d1d1e033d
-  specs:
-    simple_form (3.2.0)
-      actionpack (> 4, < 5.1)
-      activemodel (> 4, < 5.1)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -454,6 +446,9 @@ GEM
     shellany (0.0.1)
     shoulda-matchers (3.0.0)
       activesupport (>= 4.0.0)
+    simple_form (3.2.1)
+      actionpack (> 4, < 5.1)
+      activemodel (> 4, < 5.1)
     simplecov (0.10.0)
       docile (~> 1.1.0)
       json (~> 1.8)
@@ -591,7 +586,7 @@ DEPENDENCIES
   sdoc
   selenium-webdriver
   shoulda-matchers
-  simple_form!
+  simple_form
   slim-rails
   slugify
   spring

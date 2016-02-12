@@ -40,7 +40,7 @@ gem 'inherited_resources', '>= 1.4.1'
 gem 'has_scope' # Maps controller filters to resource scopes
 gem 'responders' # A set of Rails responders
 
-gem 'simple_form', github: 'plataformatec/simple_form' # Forms made easy for Rails
+gem 'simple_form' # Forms made easy for Rails
 
 gem 'gaffe' # Handles Rails error pages in a clean, simple way
 
