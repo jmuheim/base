@@ -40,6 +40,22 @@ describe ApplicationHelper do
     end
   end
 
+  describe '#yes_or_no' do
+    describe '#yes_or_no(true)' do
+      subject { yes_or_no true }
+
+      it { should have_css 'span.glyphicon.glyphicon-ok' }
+      it { should have_content 'Yes' }
+    end
+
+    describe '#yes_or_no(false)' do
+      subject { yes_or_no false }
+
+      it { should have_css 'span.glyphicon.glyphicon-remove' }
+      it { should have_content 'No' }
+    end
+  end
+
   describe '#home_link_class' do
     pending "Doesn't work yet, see http://stackoverflow.com/questions/29400657"
 

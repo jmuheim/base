@@ -15,6 +15,14 @@ module ApplicationHelper
     end
   end
 
+  def yes_or_no(bool)
+    if bool
+      icon 'ok', I18n.t(:true)
+    else
+      icon 'remove', I18n.t(:false)
+    end
+  end
+
   def current_locale_flag
     case I18n.locale
     when :en
