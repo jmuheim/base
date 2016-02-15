@@ -33,6 +33,15 @@ select.datetime
   outline: 0
   border-color: $input-border-focus
 
+// Make horizontal checkboxes don't have too much vertical padding
+.form-horizontal
+  .radio,
+  .checkbox,
+  .radio-inline,
+  .checkbox-inline
+    min-height: auto
+    padding-top: 0
+
 .btn:focus,
 input[type="file"]:focus,
 input[type="radio"]:focus,
