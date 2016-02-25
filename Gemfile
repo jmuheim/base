@@ -158,9 +158,9 @@ group :test do
   gem 'database_cleaner' # Resets test database after each test
 
   # Capybara - Headless, JavaScript-executing browser for Selenium
-  gem 'poltergeist'        # PhantomJS driver for Capybara
-  gem 'launchy'            # Use `save_and_open_page` in request tests to automatically open a browser
-  gem 'selenium-webdriver' # Selenium webdriver (needed to use Chrome driver)
+  gem 'poltergeist', '1.7.0' # PhantomJS driver for Capybara => FIXME: Updating to newer version makes specs fail!
+  gem 'launchy'              # Use `save_and_open_page` in request tests to automatically open a browser
+  gem 'selenium-webdriver'   # Selenium webdriver (needed to use Chrome driver)
 
   gem 'capybara-screenshot' # Automatically save screen shots when a scenario fails
 
