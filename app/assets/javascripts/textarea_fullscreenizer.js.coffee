@@ -31,20 +31,34 @@ class App.TextareaFullscreenizer
   attachEvents: ->
     @$toggler.click (e) =>
       @toggleFullscreen()
+      e.stopPropagation()
+
+    @$background.click (e) =>
+      if @isFullscreen()
+        @toggleFullscreen()
+        e.stopPropagation()
+
+    @$textarea.click (e) =>
+      e.stopPropagation()
 
     @$textarea.keyup (e) =>
-      if e.keyCode == 27
+      if e.keyCode == 27 # Esc
         @toggleFullscreen()
 
-    @$textarea.on 'focus', =>
+    @$textarea.keydown (e) =>
+      if e.keyCode == 9 # Tab
+        if @isFullscreen()
+          @toggleFullscreen()
+
+    @$textarea.on 'focus', (e) =>
       @$background.addClass(FOCUS_CSS_CLASS)
 
-    @$textarea.on 'blur', =>
+    @$textarea.on 'blur', (e) =>
       @$background.removeClass(FOCUS_CSS_CLASS)
-
-      if @$background.hasClass(FULLSCREEN_CSS_CLASS)
-        @toggleFullscreen(false)
 
   toggleFullscreen: (setFocus = true) ->
     @$background.toggleClass(FULLSCREEN_CSS_CLASS)
     @$textarea.focus() if setFocus
+
+  isFullscreen: ->
+    @$background.hasClass(FULLSCREEN_CSS_CLASS)
