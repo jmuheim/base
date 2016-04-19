@@ -104,3 +104,8 @@ require 'strip_attributes/matchers'
 RSpec.configure do |config|
   config.include StripAttributes::Matchers
 end
+
+# Reset locale to default after each spec (otherwise it may persist, see http://stackoverflow.com/questions/36040661/rails-random-failures-in-specs-because-of-wrong-default-locale)
+RSpec.configure do |config|
+  config.after(:each) { I18n.locale = :en }
+end
