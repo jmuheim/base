@@ -15,6 +15,12 @@ describe ApplicationHelper do
       it { should have_content 'This is the content' }
     end
 
+    describe '#icon(name, type: :fa)' do
+      subject { icon 'not-ok', type: :fa }
+      it { should have_css 'span.fa.fa-not-ok' }
+      it { should have_css 'span:empty' }
+    end
+
     describe '#icon(name, content, type: :fa)' do
       subject { icon('not-ok', 'This is the content', type: :fa) }
       it { should have_css 'span.fa.fa-not-ok' }
