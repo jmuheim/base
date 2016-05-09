@@ -1,13 +1,13 @@
 = accordion :filter, item_options: {title_tag: 'h2', panel_class: 'panel-warning'} do |accordion|
   = accordion.panel do |panel|
     = panel.title do
-      => fa_icon :filter
+      => icon :filter, type: :fa
       = t 'actions.filter'
 
     = panel.body do
       - if params[:q]
         = link_to request.path
-          => fa_icon :close
+          => icon :close, type: :fa
           = t 'actions.remove_filter'
 
       = search_form_for q, html:    {class: 'form-horizontal'},

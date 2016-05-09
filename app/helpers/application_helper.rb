@@ -1,6 +1,7 @@
 module ApplicationHelper
-  def icon(name, content = nil)
-    content_tag :span, class: ['glyphicon', "glyphicon-#{name}"] do
+  def icon(name, content = '', options = {})
+    type = options.delete(:type) || :glyphicon
+    content_tag :span, class: [type, "#{type}-#{name}"] do
       sr_only content if content
     end
   end

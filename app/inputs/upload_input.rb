@@ -15,7 +15,7 @@ class UploadInput < SimpleForm::Inputs::FileInput
         if file_available?
           template.image_tag(object.send(attribute_name), alt: I18n.t('simple_form.inputs.upload.file_preview'))
         else
-          template.fa_icon(:upload)
+          template.icon(:upload, type: :fa)
         end + content_tag(:span, I18n.t('simple_form.inputs.upload.click_to_choose_a_file', attribute: label_text), class: 'sr-only')
       end
     end

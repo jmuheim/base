@@ -14,6 +14,11 @@ describe ApplicationHelper do
       it { should have_css 'span span.sr-only' }
       it { should have_content 'This is the content' }
     end
+
+    describe '#icon(name, content, type: :fa)' do
+      subject { icon('not-ok', 'This is the content', type: :fa) }
+      it { should have_css 'span.fa.fa-not-ok' }
+    end
   end
 
   describe '#flag' do

@@ -29,24 +29,24 @@ nav#navigation.container
         = semantic_navigation :meta_navigation, class: 'navbar-right' do |navigation|
           - if user_signed_in?
             - navigation.group user_avatar(t('.user_menu')) do
-              - navigation.item "#{fa_icon :user} #{t '.show_account'}", user_registration_path
-              - navigation.item "#{fa_icon :edit} #{t '.edit_account'}", edit_user_registration_path
+              - navigation.item "#{icon :user, type: :fa} #{t '.show_account'}", user_registration_path
+              - navigation.item "#{icon :edit, type: :fa} #{t '.edit_account'}", edit_user_registration_path
 
               li
                 = link_to destroy_user_session_path, method: :delete do
-                  = fa_icon('sign-out')
+                  = icon('sign-out', type: :fa)
                   =< t('.log_out')
 
               - if can? :access, :rails_admin
                 li.divider
                 li = link_to rails_admin_path(locale: :en) do
-                  = fa_icon(:gears)
+                  = icon(:gears, type: :fa)
                   =< t('.admin')
 
           - else
-            - navigation.item "<span class='visible-sm-inline-block'>#{fa_icon 'user-plus'}</span> <span class='hidden-sm'>#{t '.sign_up'}</span>", new_user_registration_path
+            - navigation.item "<span class='visible-sm-inline-block'>#{icon 'user-plus', type: :fa}</span> <span class='hidden-sm'>#{t '.sign_up'}</span>", new_user_registration_path
 
-            - navigation.group "<span class='visible-sm-inline-block'>#{fa_icon 'sign-in'}</span> <span class='hidden-sm'>#{t '.sign_in'}</span>", id: :sign_in_panel do
+            - navigation.group "<span class='visible-sm-inline-block'>#{icon 'sign-in', type: :fa}</span> <span class='hidden-sm'>#{t '.sign_in'}</span>", id: :sign_in_panel do
               li
                 .yamm-content
                   .row = render 'devise/sessions/form', resource: User.new, display: :small
