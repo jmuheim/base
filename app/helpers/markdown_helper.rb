@@ -6,7 +6,7 @@ module MarkdownHelper
   end
 
   def indent_heading_level(markdown, heading_level)
-    markdown.lines.map do |line|
+    markdown.to_s.lines.map do |line|
       line.gsub /^#/, '#' * (heading_level + 1)
     end.join
   end
