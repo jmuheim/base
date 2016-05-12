@@ -21,8 +21,6 @@ gem 'bootstrap-sass' # Sleek, intuitive, and powerful front-end framework
 
 gem 'font-awesome-rails' # The iconic font and CSS toolkit
 
-gem 'tilt', github: 'jmuheim/tilt' # path: '../../tests/tilt'
-
 # jQuery
 gem 'jquery-rails'
 gem 'jquery-ui-rails' # jQuery UI components
