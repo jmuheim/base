@@ -2,7 +2,6 @@ h2.sr-only = t '.title'
 
 table.table.table-striped.table-hover
   tr
-    th
-      => icon :user
-      = t '.number_of_resource', resource: User.model_name.human(count: :other)
+    td aria-hidden="true" = icon :user
+    th = t '.number_of_resource', resource: User.model_name.human(count: :other)
     td = User.count
