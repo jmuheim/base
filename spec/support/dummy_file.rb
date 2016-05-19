@@ -5,7 +5,7 @@ module DummyFileHelper
 end
 
 RSpec.configure do |config|
-  config.include DummyFileHelper, type: :feature
+  config.include DummyFileHelper
 end
 
 FactoryGirl::SyntaxRunner.send(:include, DummyFileHelper)

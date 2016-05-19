@@ -9,11 +9,39 @@ class UploadInput < SimpleForm::Inputs::FileInput
     end
   end
 
+  def icon_for(extension)
+    if ['zip', 'rar', '7z', '7zip', 'gzip'].include? extension
+      'file-archive-o'
+    elsif ['mp3', 'wav'].include? extension
+      'file-audio-o'
+    elsif ['html', 'css', 'php', 'c', 'js', 'rb'].include? extension
+      'file-code-o'
+    elsif ['xls', 'xlsx'].include? extension
+      'file-excel-o'
+    elsif ['xls', 'xlsx'].include? extension
+      'file-image-o'
+    elsif ['pdf'].include? extension
+      'file-pdf-o'
+    elsif ['ppt', 'pptx'].include? extension
+      'file-powerpoint-o'
+    elsif ['mp4', 'divx', 'avi', 'xvid'].include? extension
+      'file-video-o'
+    elsif ['doc', 'docx'].include? extension
+      'file-word-o'
+    else
+      'file-o'
+    end
+  end
+
   def real_input_new
     template.content_tag :div, title: I18n.t('simple_form.inputs.upload.click_to_choose_a_file', attribute: label_text), data: {placement: 'right'} do # We need another div around the whole thing, otherwise Bootstrap tooltip doesn't seem to work! See http://stackoverflow.com/questions/24497353/bootstrap-tooltip-isnt-shown-on-a-specific-element-but-it-seems-to-be-applied
       template.content_tag :a, href: '#', class: ['fileinput-new', 'thumbnail'], data: {trigger: 'fileinput'} do
         if file_available?
-          template.image_tag(object.send(attribute_name), alt: I18n.t('simple_form.inputs.upload.file_preview'))
+          if ['jpg', 'jpeg', 'gif', 'png'].include? object.send(attribute_name).file.extension
+            template.image_tag(object.send(attribute_name), alt: I18n.t('simple_form.inputs.upload.file_preview'))
+          else
+            template.icon(icon_for(object.send(attribute_name).file.extension), type: :fa) + ' ' + object.send(attribute_name).file.filename
+          end
         else
           template.icon(:upload, type: :fa)
         end + content_tag(:span, I18n.t('simple_form.inputs.upload.click_to_choose_a_file', attribute: label_text), class: 'sr-only')

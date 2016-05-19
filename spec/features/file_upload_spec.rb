@@ -15,7 +15,7 @@ describe 'File upload' do
     }.to change { File.basename(@user.reload.avatar.to_s) }.from('image.jpg').to 'other_image.jpg'
   end
 
-  it 'displays a preview of an uploaded file' do
+  it 'displays a preview of an uploaded image' do
     @user = create :user, :with_avatar
     login_as(@user)
 
@@ -24,7 +24,7 @@ describe 'File upload' do
     expect(page).to have_css '.user_avatar .thumbnail img[src$="/image.jpg"]'
   end
 
-  it 'displays a preview of an uploaded file (from the temporary cache) after a re-display of the form' do
+  it 'displays a preview of an uploaded image (from the temporary cache) after a re-display of the form' do
     @user = create :user, :with_avatar
     login_as(@user)
 
@@ -38,7 +38,7 @@ describe 'File upload' do
     expect(page).to have_css '.user_avatar .thumbnail img[src^="/uploads/tmp/"]'
   end
 
-  it 'uses an uploaded file (from the temporary cache) after a re-display and then successful submit of the form' do
+  it 'uses an uploaded image (from the temporary cache) after a re-display and then successful submit of the form' do
     @user = create :user, :with_avatar
     login_as(@user)
 
