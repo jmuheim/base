@@ -1,3 +1,4 @@
+# This is officially the ugliest thing in the whole app... ;-)
 class UploadInput < SimpleForm::Inputs::FileInput
   def input(wrapper_options)
     input_cache + input_real(provides: 'fileinput')
@@ -9,6 +10,7 @@ class UploadInput < SimpleForm::Inputs::FileInput
     end
   end
 
+  # TODO: There is no spec for displaying these icons yet (as we have no uploaders other than image uploaders in our models)
   def icon_for(extension)
     if ['zip', 'rar', '7z', '7zip', 'gzip'].include? extension
       'file-archive-o'
