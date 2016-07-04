@@ -108,7 +108,6 @@ group :development do
 
   # Better Errors: Replaces the standard Rails error page with a more useful one
   gem 'better_errors'
-  gem 'binding_of_caller' # Needed by better_errors to enable html console
 
   gem 'xray-rails' # Reveals your UI's bones with Cmd-X/Ctrl-X
 
