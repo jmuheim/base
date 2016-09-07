@@ -90,7 +90,7 @@ describe 'Navigation' do
 
     expect(page).to have_css '#language_chooser .dropdown-toggle', text: 'Choose language'
   end
-  
+
   it 'shows the "Menu" button on small, medium, and large screens (and collapses it on extra small ones)', js: true do
     visit root_path
 
@@ -124,8 +124,6 @@ describe 'Navigation' do
   end
 
   it 'reports the responsiveness status (expanded/collapsed) to non-visual agents', js: true do
-    pending "Bootstrap doesn't support this yet, see https://github.com/twbs/bootstrap/issues/16099"
-
     visit root_path
 
     within 'nav' do

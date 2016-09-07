@@ -9,6 +9,7 @@ require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require 'capybara/poltergeist'
 require 'email_spec'
+require 'email_spec/rspec'
 require 'cancan/matchers'
 require 'poltergeist_warnings_suppressor'
 require 'paper_trail/frameworks/rspec'

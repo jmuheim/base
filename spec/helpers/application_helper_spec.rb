@@ -67,22 +67,22 @@ describe ApplicationHelper do
     end
   end
 
-  describe '#home_link_class' do
-    pending "Doesn't work yet, see http://stackoverflow.com/questions/29400657"
+  describe '#home_link_class', focus: true do
+    describe 'on home page' do
+      let(:request) { double('request', path: '/en') }
+      before  { allow(helper.request).to receive(:path).and_return request }
+      subject { home_link_class }
 
-    # describe 'on home page' do
-    #   before  { allow(helper.request).to receive(:path).and_return '/en' }
-    #   subject { home_link_class }
-    #
-    #   it { should eq ['navbar-brand', 'active'] }
-    # end
-    #
-    # describe 'on other page' do
-    #   before  { allow(helper.request).to receive(:path).and_return '/en/other' }
-    #   subject { home_link_class }
-    #
-    #   it { should eq ['navbar-brand'] }
-    # end
+      it { should eq ['navbar-brand', 'active'] }
+    end
+
+    describe 'on other page' do
+      let(:request) { double('request', path: '/en/other') }
+      before  { allow(helper.request).to receive(:path).and_return request }
+      subject { home_link_class }
+
+      it { should eq ['navbar-brand'] }
+    end
   end
 
   describe '#active_class_for(language)' do
