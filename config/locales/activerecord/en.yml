@@ -18,6 +18,7 @@ en:
         current_password: Current password
         current_sign_in_at: Signed in since
         current_sign_in_ip: Current IP
+        curriculum_vitae: Curriculum vitae
         email: Email
         failed_attempts: Failed attempts
         last_sign_in_at: Last sign in at

@@ -2,6 +2,7 @@
 module MarkdownHelper
   # TODO: Would be great to use the Tilt default mechanism instead!
   def markdown(string)
+    string ||= '' # If nil is supplied, Pandoc waits for input and nothing is returned
     PandocRuby.convert(string, to: :html).strip.html_safe
   end
 
