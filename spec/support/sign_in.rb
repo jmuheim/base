@@ -21,6 +21,7 @@ module FeatureSpecSignInHelper
 end
 
 RSpec.configure do |config|
-  config.include Devise::Test::ControllerHelpers, type: [:controller, :view]
+  config.include Devise::Test::ControllerHelpers, type: :controller
+  config.include Devise::Test::ControllerHelpers, type: :view
   config.include FeatureSpecSignInHelper, type: :feature
 end
