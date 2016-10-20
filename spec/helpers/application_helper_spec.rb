@@ -67,7 +67,7 @@ describe ApplicationHelper do
     end
   end
 
-  describe '#home_link_class', focus: true do
+  describe '#home_link_class' do
     describe 'on home page' do
       let(:request) { double('request', path: '/en') }
       before  { allow(helper.request).to receive(:path).and_return request }
