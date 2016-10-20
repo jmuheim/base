@@ -17,7 +17,7 @@ en:
     news:
       title: Latest news
     statistics:
-      number_of_resource: Anzahl %{resource}
+      number_of_resource: Number of %{resource}
       title: Statistics
   resources:
     create: Create %{resource}
