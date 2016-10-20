@@ -136,7 +136,8 @@ group :development do
 
   gem 'rails-footnotes' # Every Rails page has footnotes that gives information about your application
 
-  gem 'mina', require: false # Really fast deployer and server automation tool
+  # TODO: Update to version 1.0 (breaks the deploy script)!
+  gem 'mina', '0.3.8', require: false # Really fast deployer and server automation tool
 
   gem 'i18n_yaml_sorter' # A I18n YAML deep sorter that will keep your locales organized
 end
