@@ -164,7 +164,8 @@ group :test do
 
   gem 'i18n-tasks' # Manage translation and localization with static analysis
 
-  gem 'codeclimate-test-reporter', require: nil
+  gem 'simplecov'
+  gem 'codeclimate-test-reporter', '~> 1.0.0'
 end
 
 group :production do
