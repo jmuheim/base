@@ -1,4 +1,7 @@
-/* https://github.com/jgm/highlighting-kate/blob/master/css/hk-tango.css */
+/* TODO: Prevent CSS output by Pandoc when exporting to HTML, otherwise these styles here are overruled. */
+/* See http://stackoverflow.com/questions/41039084 */
+
+/* Loosely based on pygment's default colors
 
 table.sourceCode, tr.sourceCode
   margin: 0
@@ -24,9 +27,9 @@ table.sourceCode pre
 
 td
   &.lineNumbers
+    border-right: 1px solid #AAAAAA
     text-align: right
-    background-color: #EBEBEB
-    color: black
+    color: #AAAAAA
     padding-right: 5px
     padding-left: 5px
   &.sourceCode
@@ -36,26 +39,24 @@ pre.sourceCode
 
 code.sourceCode span
   &.kw
+    color: #007020
     font-weight: bold
   &.dt
-    color: #800000
-  &.dv, &.bn
-    color: #0000FF
-  &.fl
-    color: #800080
-  &.ch
-    color: #FF00FF
-  &.st
-    color: #DD0000
+    color: #902000
+  &.dv, &.bn, &.fl
+    color: #40a070
+  &.ch, &.st
+    color: #4070a0
   &.co
-    color: #808080
+    color: #60a0b0
     font-style: italic
   &.ot
+    color: #007020
   &.al
-    color: green
+    color: red
     font-weight: bold
   &.fu
-    color: #000080
+    color: #06287e
   &.re
   &.er
     color: red
