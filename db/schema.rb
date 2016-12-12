@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160127105323) do
+ActiveRecord::Schema.define(version: 20161212151729) do
 
   create_table "roles", force: :cascade do |t|
     t.string   "name"
@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(version: 20160127105323) do
     t.string   "avatar"
     t.integer  "lock_version",                       default: 0
     t.text     "about"
+    t.string   "curriculum_vitae"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
@@ -73,11 +74,11 @@ ActiveRecord::Schema.define(version: 20160127105323) do
   add_index "version_associations", ["version_id"], name: "index_version_associations_on_version_id"
 
   create_table "versions", force: :cascade do |t|
-    t.string   "item_type",      null: false
-    t.integer  "item_id",        null: false
-    t.string   "event",          null: false
+    t.string   "item_type",                       null: false
+    t.integer  "item_id",                         null: false
+    t.string   "event",                           null: false
     t.string   "whodunnit"
-    t.text     "object"
+    t.text     "object",         limit: 16777215
     t.datetime "created_at"
     t.text     "object_changes"
     t.integer  "transaction_id"
