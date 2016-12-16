@@ -11,7 +11,6 @@ addons:
 notifications:
   email:
     recipients:
-      - felipe@29sul.com.br
-      - elton@29sul.com.br
+      - joshua.muheim@access-for-all.ch
     on_failure: change
     on_success: change
