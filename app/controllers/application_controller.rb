@@ -65,9 +65,6 @@ class ApplicationController < ActionController::Base
       render_edit_with_stale_info(instance_variable_get("@#{resource_name}"))
     end
   end
-  rescue_from ActiveRecord::StaleObjectError do
-    render_edit_with_stale_info(@user)
-  end
 
   def render_edit_with_stale_info(resource)
     flash.now[:alert] = t(
