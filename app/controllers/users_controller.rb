@@ -1,13 +1,13 @@
 require 'update_lock'
 
-class UsersController < InheritedResources::Base
+class UsersController < ApplicationController
   before_filter :authenticate_user!, only: [:new, :edit]
   load_and_authorize_resource
   include UpdateLock
   before_filter :add_base_breadcrumbs
 
   def index
-    @q = collection.ransack(params[:q])
+    @q = @users.ransack(params[:q])
     @users = @q.result(distinct: true)
   end
 
