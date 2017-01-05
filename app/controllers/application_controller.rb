@@ -15,6 +15,8 @@ class ApplicationController < ActionController::Base
   before_action :set_locale
   before_action :ensure_locale
 
+  include OptimisticLockingHandler
+
   def default_url_options(options = {})
     {locale: I18n.locale}
   end
@@ -58,29 +60,5 @@ class ApplicationController < ActionController::Base
   # TODO: Move to helpers (http://stackoverflow.com/questions/29397658) and add spec!
   def body_css_classes
     [controller_name, action_name]
-  end
-
-  def self.provide_optimistic_locking_for(resource_name)
-    rescue_from ActiveRecord::StaleObjectError do
-      render_edit_with_stale_info(instance_variable_get("@#{resource_name}"))
-    end
-  end
-
-  def render_edit_with_stale_info(resource)
-    flash.now[:alert] = t(
-      'flash.actions.update.stale',
-      resource_name: resource.class.model_name.human,
-      stale_info:    t('flash.actions.update.stale_attributes_list',
-        stale_attributes: resource.stale_info.map { |info| info.human_attribute_name }.to_sentence,
-        count:            resource.stale_info.size
-      )
-    )
-
-    # Set lock version to current value in DB so when saving again (after manually solving the conflicts), no StaleObjectError is thrown anymore
-    resource.stale_info.each do |stale_info|
-      stale_info.resource.lock_version = stale_info.resource.class.find(stale_info.resource.id).lock_version
-    end
-
-    render :edit, status: :conflict
   end
 end
