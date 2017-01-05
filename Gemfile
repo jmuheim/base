@@ -35,6 +35,8 @@ gem 'cancancan' # Authorization library which restricts what resources a given u
 
 gem 'rolify' # Manage roles of users
 
+gem 'responders' # A set of Rails responders
+
 gem 'simple_form' # Forms made easy for Rails
 
 gem 'gaffe' # Handles Rails error pages in a clean, simple way

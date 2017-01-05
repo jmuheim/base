@@ -514,6 +514,7 @@ DEPENDENCIES
   rb-fsevent
   rerun
   respec
+  responders
   rolify
   rspec
   rspec-collection_matchers

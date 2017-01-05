@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   load_and_authorize_resource
   before_filter :add_base_breadcrumbs
   provide_optimistic_locking_for :user
+  respond_to :html
 
   def index
     @q = @users.ransack(params[:q])
@@ -10,26 +11,18 @@ class UsersController < ApplicationController
   end
 
   def create
-    if @user.save
-      redirect_to @user, notice: t('flash.actions.create.notice', resource_name: User.model_name.human)
-    else
-      flash.now[:alert] = t('flash.actions.create.alert', resource_name: User.model_name.human)
-      render :new
-    end
+    @user.save
+    respond_with @user
   end
 
   def update
-    if @user.update(user_params)
-      redirect_to @user, notice: t('flash.actions.update.notice', resource_name: User.model_name.human)
-    else
-      flash.now[:alert] = t('flash.actions.update.alert', resource_name: User.model_name.human)
-      render :edit
-    end
+    @user.update(user_params)
+    respond_with @user
   end
 
   def destroy
     @user.destroy
-    redirect_to users_url, notice: t('flash.actions.destroy.notice', resource_name: User.model_name.human)
+    respond_with @user
   end
 
   private
