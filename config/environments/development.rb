@@ -32,9 +32,16 @@ Base::Application.configure do
   # Notice: BetterErrors::Middleware is injected as an engine, so it's not
   # available at this point, so we just insert before Rack::Lock which is nearly
   # at the top of the stack.
-  config.middleware.insert_before Rack::Lock, Rack::LiveReload, no_swf:           true,
-                                                                live_reload_port: 35729
+  # More info also here: https://github.com/johnbintz/rack-livereload/issues/73
+  config.middleware.insert_before ActionDispatch::DebugExceptions, Rack::LiveReload, no_swf:           true,
+                                                                                     live_reload_port: 35729
 
   # TODO: This should be retrieved from DefaultOptions, see http://stackoverflow.com/questions/3842818#comment46921326_23489706
   config.action_mailer.default_url_options = {host: 'localhost:3001'}
+
+  # Turns off the Rails asset pipeline log. This means that it suppresses messages in your development log such as:
+  #
+  # Started GET "/assets/application.js" for 127.0.0.1 at 2015-01-28 13:35:34 +0300
+  # Served asset /application.js - 304 Not Modified (8ms)
+  config.assets.quiet = true
 end

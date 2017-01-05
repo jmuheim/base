@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '~> 4.2.7'
+gem 'rails', '~> 5.0.1'
 
 gem 'rails-i18n' # Locale data
 
@@ -101,8 +101,6 @@ group :development, :test do
 end
 
 group :development do
-  gem 'quiet_assets' # Turns off assets pipeline log
-
   # Better Errors: Replaces the standard Rails error page with a more useful one
   gem 'better_errors'
 
