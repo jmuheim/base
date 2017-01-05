@@ -1,13 +1,8 @@
-require 'update_lock'
-
 class UsersController < ApplicationController
   before_filter :authenticate_user!, only: [:new, :edit]
   load_and_authorize_resource
   before_filter :add_base_breadcrumbs
-
-  rescue_from ActiveRecord::StaleObjectError do
-    prepare_conflicted_stuff(@user)
-  end
+  provide_optimistic_locking_for :user
 
   def index
     @q = @users.ransack(params[:q])
@@ -62,23 +57,5 @@ class UsersController < ApplicationController
     if ['new', 'create'].include? action_name
       @last_breadcrumb = t 'actions.new'
     end
-  end
-
-  def prepare_conflicted_stuff(resource)
-    flash.now[:alert] = t(
-      'flash.actions.update.stale',
-      resource_name: resource.class.model_name.human,
-      stale_info:    t('flash.actions.update.stale_attributes_list',
-        stale_attributes: resource.stale_info.map { |info| info.human_attribute_name }.to_sentence,
-        count:            resource.stale_info.size
-      )
-    )
-
-    # Set lock version to current value in DB so when saving again (after manually solving the conflicts), no StaleObjectError is thrown anymore
-    resource.stale_info.each do |stale_info|
-      stale_info.resource.lock_version = stale_info.resource.class.find(stale_info.resource.id).lock_version
-    end
-
-    render :edit, status: :conflict
   end
 end
