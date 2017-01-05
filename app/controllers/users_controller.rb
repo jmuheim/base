@@ -1,29 +1,42 @@
-require 'update_lock'
-
-class UsersController < InheritedResources::Base
+class UsersController < ApplicationController
   before_filter :authenticate_user!, only: [:new, :edit]
   load_and_authorize_resource
-  include UpdateLock
   before_filter :add_base_breadcrumbs
+  provide_optimistic_locking_for :user
+  respond_to :html
 
   def index
-    @q = collection.ransack(params[:q])
+    @q = @users.ransack(params[:q])
     @users = @q.result(distinct: true)
+  end
+
+  def create
+    @user.save
+    respond_with @user
+  end
+
+  def update
+    @user.update(user_params)
+    respond_with @user
+  end
+
+  def destroy
+    @user.destroy
+    respond_with @user
   end
 
   private
 
-  def permitted_params
-    params.permit(user: [:name,
-                         :email,
-                         :avatar,
-                         :avatar_cache,
-                         :remove_avatar,
-                         :about,
-                         :password,
-                         :password_confirmation,
-                         :lock_version
-                       ])
+  def user_params
+    params.require(:user).permit(:name,
+                                 :email,
+                                 :avatar,
+                                 :avatar_cache,
+                                 :remove_avatar,
+                                 :about,
+                                 :password,
+                                 :password_confirmation,
+                                 :lock_version)
   end
 
   def add_base_breadcrumbs

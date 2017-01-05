@@ -7,10 +7,10 @@
 
     ul.dropdown-menu.dropdown-menu-right role="menu"
       - if can?(:update, resource)
-        li = link_to t('actions.edit_resource', resource: resource.model_name.human), edit_resource_path(resource)
+        li = link_to t('actions.edit_resource', resource: resource.model_name.human), [:edit, resource]
 
       - if can?(:destroy, resource)
-        li = link_to t('actions.destroy_resource', resource: resource.model_name.human), resource_path(resource), method: :delete,
+        li = link_to t('actions.destroy_resource', resource: resource.model_name.human), resource, method: :delete,
                data: { confirm:  t('actions.destroy_resource_confirmation_question',
                        resource: resource.model_name.human,
                        id:       resource.id) }

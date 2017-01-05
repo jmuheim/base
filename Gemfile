@@ -35,9 +35,6 @@ gem 'cancancan' # Authorization library which restricts what resources a given u
 
 gem 'rolify' # Manage roles of users
 
-# Inherit RESTful actions in controllers
-gem 'inherited_resources', '>= 1.4.1'
-gem 'has_scope' # Maps controller filters to resource scopes
 gem 'responders' # A set of Rails responders
 
 gem 'simple_form' # Forms made easy for Rails

@@ -50,30 +50,3 @@ class ActiveRecord::Base
     end.compact
   end
 end
-
-module UpdateLock
-  def update
-    # TODO: Would be nice to be able to make sure that lock_version is a permitted parameter!
-    if params[resource_instance_name][:lock_version].blank?
-      raise ActiveRecord::MissingAttributeError, 'Lock version missing'
-    end
-
-    super
-  rescue ActiveRecord::StaleObjectError
-    flash.now[:alert] = t(
-      'flash.actions.update.stale',
-      resource_name: resource.class.model_name.human,
-      stale_info:    t('flash.actions.update.stale_attributes_list',
-        stale_attributes: resource.stale_info.map { |info| info.human_attribute_name }.to_sentence,
-        count:            resource.stale_info.size
-      )
-    )
-
-    # Set lock version to current value in DB so when saving again (after manually solving the conflicts), no StaleObjectError is thrown anymore
-    resource.stale_info.each do |stale_info|
-      stale_info.resource.lock_version = stale_info.resource.class.find(stale_info.resource.id).lock_version
-    end
-
-    render :edit, status: :conflict
-  end
-end

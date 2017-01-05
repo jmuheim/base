@@ -3,9 +3,9 @@
 
   .btn-group
     - if can? :edit, resource
-      = link_to t('actions.edit'), edit_resource_path(resource), class: 'btn btn-primary'
+      = link_to t('actions.edit'), [:edit, resource], class: 'btn btn-primary'
     - if can? :destroy, resource
-      = link_to t('actions.destroy'), resource_path(resource), method: :delete,
+      = link_to t('actions.destroy'), resource, method: :delete,
                 data:  {confirm: t('actions.destroy_resource_confirmation_question', resource: resource.model_name.human, id: resource.id)},
                 class: 'btn btn-danger'
 
