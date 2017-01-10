@@ -55,12 +55,26 @@ describe ApplicationHelper do
     describe '#yes_or_no(true)' do
       subject { yes_or_no true }
 
-      it { should have_css 'span.glyphicon.glyphicon-ok' }
       it { should have_content 'Yes' }
     end
 
     describe '#yes_or_no(false)' do
       subject { yes_or_no false }
+
+      it { should have_content 'No' }
+    end
+  end
+
+  describe '#yes_or_no_icon' do
+    describe '#yes_or_no_icon(true)' do
+      subject { yes_or_no_icon true }
+
+      it { should have_css 'span.glyphicon.glyphicon-ok' }
+      it { should have_content 'Yes' }
+    end
+
+    describe '#yes_or_no_icon(false)' do
+      subject { yes_or_no_icon false }
 
       it { should have_css 'span.glyphicon.glyphicon-remove' }
       it { should have_content 'No' }
