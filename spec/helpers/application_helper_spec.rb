@@ -81,6 +81,23 @@ describe ApplicationHelper do
     end
   end
 
+  describe '#first_or_recurrent_occurrence?' do
+    it 'returns whether an element is a sub sequent recurring occurrence of the very same object (namespaced by a namespace)' do
+      expect(first_or_recurrent_occurrence?('hello', 'namespace')).to eq :first_occurrence
+      expect(first_or_recurrent_occurrence?('hello 2', 'namespace')).to eq :first_occurrence
+      expect(first_or_recurrent_occurrence?('hello 2', 'namespace 2')).to eq :first_occurrence
+      expect(first_or_recurrent_occurrence?('hello 2', 'namespace')).to eq :recurrent_occurrence
+      expect(first_or_recurrent_occurrence?('hello', 'namespace')).to eq :first_occurrence
+    end
+
+    describe '#yes_or_no_icon(false)' do
+      subject { yes_or_no_icon false }
+
+      it { should have_css 'span.glyphicon.glyphicon-remove' }
+      it { should have_content 'No' }
+    end
+  end
+
   describe '#home_link_class' do
     describe 'on home page' do
       let(:request) { double('request', path: '/en') }

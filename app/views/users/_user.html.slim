@@ -1,7 +1,9 @@
 tr id=dom_id(user)
   th.name  = link_to_if can?(:read, user), user.name, user
   td.email = user.email
-  td.roles = user.roles.map(&:name).join ', '
+  td.roles
+    span class=first_or_recurrent_occurrence?(roles = user.roles.map(&:name).join(', '), :roles)
+      = roles
 
   td.actions
     == render 'shared/index/actions', resource: user

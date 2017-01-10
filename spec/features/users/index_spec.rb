@@ -3,7 +3,9 @@ require 'rails_helper'
 describe 'Listing users' do
   before do
     @user = create :user, :donald
-    login_as(create :admin)
+    @admin = create :admin
+
+    login_as(@admin)
   end
 
   it 'displays users' do
@@ -47,5 +49,28 @@ describe 'Listing users' do
     expect(page).to have_css dom_id_selector(@user_1)
     expect(page).to have_css dom_id_selector(@user_2)
     expect(page).to have_css dom_id_selector(@user_3)
+  end
+
+  it 'marks recurrent occurences of identical roles' do
+    @another_admin = create :admin, name: 'another admin', email: 'another-admin@test.com'
+    @another_user = create :user, name: 'another user', email: 'another-user@test.com'
+
+    visit users_path
+
+    within dom_id_selector(@user) do
+      expect(page).to have_css '.roles .first_occurrence', text: ''
+    end
+
+    within dom_id_selector(@admin) do
+      expect(page).to have_css '.roles .first_occurrence', text: 'admin'
+    end
+
+    within dom_id_selector(@another_admin) do
+      expect(page).to have_css '.roles .recurrent_occurrence', text: 'admin'
+    end
+
+    within dom_id_selector(@another_user) do
+      expect(page).to have_css '.roles .first_occurrence', text: ''
+    end
   end
 end
