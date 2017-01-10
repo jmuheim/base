@@ -9,6 +9,7 @@ describe 'Showing user' do
   it 'displays a user' do
     visit user_path(@user)
 
+    expect(page).to have_title 'donald - Base'
     expect(page).to have_active_navigation_items 'Users'
     expect(page).to have_breadcrumbs 'Base', 'Users', 'donald'
     expect(page).to have_headline 'donald'

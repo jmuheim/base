@@ -80,14 +80,16 @@ module ApplicationHelper
     :active if controllers_to_check.map(&:to_s).include? controller_name.to_s
   end
 
-  def first_or_recurrent_occurrence?(element, namespace)
+  def recurring_string?(element, namespace)
     @recurrent_elements ||= {}
 
-    if element == @recurrent_elements[namespace]
-      :recurrent_occurrence
-    else
-      @recurrent_elements[namespace] = element
-      :first_occurrence
-    end
+    klass = if element == @recurrent_elements[namespace]
+              :recurrent_occurrence
+            else
+              @recurrent_elements[namespace] = element
+              :first_occurrence
+            end
+
+    content_tag :span, element, class: klass
   end
 end

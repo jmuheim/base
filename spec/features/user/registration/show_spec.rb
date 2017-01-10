@@ -19,6 +19,7 @@ describe 'Showing account' do
     end
 
     it 'displays the account' do
+      expect(page).to have_title 'Welcome, donald! - Base'
       expect(page).to have_active_navigation_items 'User menu', 'Show account'
       expect(page).to have_breadcrumbs 'Base', 'Welcome, donald!'
       expect(page).to have_headline 'Welcome, donald!'

@@ -9,6 +9,7 @@ describe 'Editing account' do
   it 'edits the account' do
     visit edit_user_registration_path
 
+    expect(page).to have_title 'Edit account - Base'
     expect(page).to have_active_navigation_items 'User menu', 'Edit account'
     expect(page).to have_breadcrumbs 'Base', 'Edit account'
     expect(page).to have_headline 'Edit account'

@@ -4,6 +4,7 @@ describe 'Signing up' do
   it 'signs up a new user and lets him confirm his email' do
     visit new_user_registration_path
 
+    expect(page).to have_title 'Sign up - Base'
     expect(page).to have_active_navigation_items 'Sign up'
     expect(page).to have_breadcrumbs 'Base', 'Sign up'
     expect(page).to have_headline 'Sign up'

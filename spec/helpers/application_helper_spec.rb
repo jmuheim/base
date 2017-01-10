@@ -81,13 +81,13 @@ describe ApplicationHelper do
     end
   end
 
-  describe '#first_or_recurrent_occurrence?' do
+  describe '#recurring_string?' do
     it 'returns whether an element is a sub sequent recurring occurrence of the very same object (namespaced by a namespace)' do
-      expect(first_or_recurrent_occurrence?('hello', 'namespace')).to eq :first_occurrence
-      expect(first_or_recurrent_occurrence?('hello 2', 'namespace')).to eq :first_occurrence
-      expect(first_or_recurrent_occurrence?('hello 2', 'namespace 2')).to eq :first_occurrence
-      expect(first_or_recurrent_occurrence?('hello 2', 'namespace')).to eq :recurrent_occurrence
-      expect(first_or_recurrent_occurrence?('hello', 'namespace')).to eq :first_occurrence
+      expect(recurring_string?('hello',   'namespace')).to   eq '<span class="first_occurrence">hello</span>'
+      expect(recurring_string?('hello 2', 'namespace')).to   eq '<span class="first_occurrence">hello 2</span>'
+      expect(recurring_string?('hello 2', 'namespace 2')).to eq '<span class="first_occurrence">hello 2</span>'
+      expect(recurring_string?('hello 2', 'namespace')).to   eq '<span class="recurrent_occurrence">hello 2</span>'
+      expect(recurring_string?('hello',   'namespace')).to   eq '<span class="first_occurrence">hello</span>'
     end
 
     describe '#yes_or_no_icon(false)' do
