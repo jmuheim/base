@@ -2,10 +2,15 @@ class App.Init
   constructor: (el) ->
     @$el = $(el)
 
+    @makeJumpLinksVisibleOnFocus @$el
     @makeFormsAccessible @$el
     @initTooltips @$el
     @initFancybox @$el
     @makeTextareasFullscreenizable @$el
+
+  makeJumpLinksVisibleOnFocus: ($el) ->
+    $el.find('#jump_links a').each ->
+      new App.VisibilityOnFocusHandler @
 
   makeFormsAccessible: ($el) ->
     $el.find('form.simple_form').each ->

@@ -19,6 +19,7 @@
 #= require example_script
 #= require form_accessibilizer
 #= require textarea_fullscreenizer
+#= require visibility_on_focus_handler
 # --- Add custom requires above here! ---
 #
 #= require init
