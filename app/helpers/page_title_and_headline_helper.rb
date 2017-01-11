@@ -30,8 +30,8 @@ module PageTitleAndHeadlineHelper
     @title = @headline
 
     # Tabindex is required so the focus is really set to the element when using the jump link
-    content_tag :div, id: 'headline', tabindex: -1 do
-      content_tag(:h1, @headline) + flash_messages(flash)
+    content_tag :div, id: 'headline' do
+      content_tag(:h1, @headline, id: 'headline_title', tabindex: -1) + flash_messages(flash)
     end
   end
 

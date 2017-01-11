@@ -185,22 +185,21 @@ describe 'Navigation' do
     it 'visually displays them only on focus', js: true do
       visit page_path('about')
 
-      ['jump_to_home_page', 'jump_to_navigation', 'jump_to_content'].each do |selector|
-        # Initial (hidden) position
-        expect(page).to have_selector("##{selector}[class='sr-only']") # Make sure the link has sr-only class
-
-        # Set focus
+      ['jump_to_home_page', 'jump_to_content'].each do |selector|
+        expect(page).to have_selector("##{selector}[class='sr-only']")
         focus_element("##{selector}")
-
-        # Displayed position
-        expect(page).not_to have_selector("##{selector}[class='sr-only']") # Make sure the link doesn't have sr-only class
-
-        # Remove focus
+        expect(page).not_to have_selector("##{selector}[class='sr-only']")
         unfocus_element("##{selector}")
-
-        # Hidden position again
-        expect(page).to have_selector("##{selector}[class='sr-only']") # Make sure the link has sr-only class
+        expect(page).to have_selector("##{selector}[class='sr-only']")
       end
+    end
+
+    it 'jumps to content when clicking jump to content link', js: true, focus: true do
+      visit page_path('about')
+
+      focus_element('#jump_to_content')
+      click_link 'Jump to content'
+      expect(focused_element_id).to eq 'headline_title'
     end
 
     it 'offers access keys', js: true do
