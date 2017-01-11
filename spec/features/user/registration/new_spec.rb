@@ -21,7 +21,6 @@ describe 'Signing up' do
 
     expect(page).to have_flash 'Welcome! You have signed up successfully.'
 
-    pending 'Emails are not sent anymore! See https://github.com/email-spec/email-spec/issues/186.'
     expect(unread_emails_for('newuser@example.com').size).to eq 1
     expect(page).to have_link 'Log out'
 

@@ -1,5 +1,6 @@
 .navbar-inverse
   = semantic_navigation :jump_links do |navigation|
-    - navigation.item t('.home_page'),  root_path,   link_html: {accesskey: 0, class: 'sr-only', id: 'jump_to_home_page'} unless current_page?(root_path)
-    - navigation.item t('.navigation'), '#logo',     link_html: {accesskey: 1, class: 'sr-only', id: 'jump_to_navigation'}
-    - navigation.item t('.content'),    '#headline', link_html: {accesskey: 2, class: 'sr-only', id: 'jump_to_content'}
+    - unless current_page?(root_path)
+      - navigation.item t('.home_page'), root_path, link_html: {accesskey: 0, class: 'sr-only', id: 'jump_to_home_page'}
+
+    - navigation.item t('.content'), '#headline_title', link_html: {accesskey: 1, class: 'sr-only', id: 'jump_to_content'}

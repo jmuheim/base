@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
-  before_filter :authenticate_user!, only: [:new, :edit]
+  before_action :authenticate_user!, only: [:new, :edit]
   load_and_authorize_resource
-  before_filter :add_base_breadcrumbs
+  before_action :add_base_breadcrumbs
   provide_optimistic_locking_for :user
   respond_to :html
 

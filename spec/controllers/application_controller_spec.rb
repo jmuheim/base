@@ -3,7 +3,7 @@ require 'rails_helper'
 describe ApplicationController do
   controller(ApplicationController) do
     def index
-      render text: 'Hello World'
+      render body: 'Hello World'
     end
   end
 
@@ -14,7 +14,7 @@ describe ApplicationController do
     end
 
     it 'can be set through the request' do
-      get :index, locale: :de
+      get :index, params: {locale: :de}
       expect(I18n.locale).to eq :de
     end
   end

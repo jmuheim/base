@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  before_filter :set_view
+  before_action :set_view
   helper_method :default_headline
 
   def show

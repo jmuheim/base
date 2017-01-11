@@ -1,4 +1,4 @@
-require File.expand_path('../boot', __FILE__)
+require_relative 'boot'
 
 ENV['RANSACK_FORM_BUILDER'] = '::SimpleForm::FormBuilder' # Use SimpleForm with Ransack
 
@@ -12,7 +12,7 @@ require 'tilt/pandoc'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
-Bundler.require(:default, Rails.env)
+Bundler.require(*Rails.groups)
 
 module Base
   class Application < Rails::Application
@@ -37,9 +37,6 @@ module Base
     end
 
     config.action_dispatch.rescue_responses.merge! 'CanCan::AccessDenied' => :forbidden
-
-    # Don't supress errors in after_rollback and after_commit callbacks
-    config.active_record.raise_in_transactional_callbacks = true
 
     # Always raise error on unpermitted parameters
     # config.action_controller.action_on_unpermitted_parameters = :raise
