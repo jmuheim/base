@@ -100,23 +100,57 @@ describe 'Creating user' do
     end
   end
 
-  describe 'textarea fullscreen feature' do
-    it 'allows to toggle fullscreen mode of "about" textarea', js: true do
-      pending "Doesn't work anymore since poltergeist > 1.7! We will introduce a real JavaScript testing framework soon, e.g. Konacha, so this hopefully will work better there."
+  describe 'textarea fullscreen feature of "about" textarea', js: true do
+    it 'applies the fullscreenizer' do
       visit new_user_path
 
-      # This is a very fragile test, it only makes sure that the initialisation was done correctly.
-      # See http://stackoverflow.com/questions/35177110/testing-javascript-using-rspec-capybara-how-to-improve-my-spec-for-testing-a-t
+      expect(page).to have_css '.textarea-fullscreenizer'
+    end
+
+    it 'shows the fullscreen toggler on focus' do
+      visit new_user_path
+
       within '.user_about' do
-        expect(page).to have_css '.textarea-fullscreenizer'
+        expect(page).not_to have_css '.textarea-fullscreenizer-focus'
+        expect(page).not_to have_css '.textarea-fullscreenizer-toggler', text: 'Toggle fullscreen (Esc)'
+
+        focus_element('#user_about')
+        expect(page).to have_css '.textarea-fullscreenizer-focus'
         expect(page).to have_css '.textarea-fullscreenizer-toggler', text: 'Toggle fullscreen (Esc)'
 
-        expect {
-          find('.textarea-fullscreenizer-toggler').click
-        }.to change {
-          page.has_css? '.textarea-fullscreenizer.textarea-fullscreenizer-focus'
-        }.to true
+        unfocus_element('#user_about')
+        expect(page).not_to have_css '.textarea-fullscreenizer-focus'
+        expect(page).not_to have_css '.textarea-fullscreenizer-toggler', text: 'Toggle fullscreen (Esc)'
       end
     end
+
+    it 'shows the fullscreen toggler on hover' do
+      visit new_user_path
+
+      within '.user_about' do
+        expect(page).not_to have_css '.textarea-fullscreenizer-toggler', text: 'Toggle fullscreen (Esc)'
+        find('#user_about').hover
+        expect(page).to have_css '.textarea-fullscreenizer-toggler', text: 'Toggle fullscreen (Esc)'
+      end
+    end
+
+    it 'toggles fullscreen on pressing the fullscreen toggler' do
+      visit new_user_path
+
+      within '.user_about' do
+        find('#user_about').hover
+        expect(page).not_to have_css '.textarea-fullscreenizer-fullscreen'
+
+        find('.textarea-fullscreenizer-toggler').trigger('click')
+        expect(page).to have_css '.textarea-fullscreenizer-fullscreen'
+        expect(focused_element_id).to eq 'user_about'
+
+        find('.textarea-fullscreenizer-toggler').trigger('click')
+        expect(page).not_to have_css '.textarea-fullscreenizer-fullscreen'
+        expect(focused_element_id).to eq 'user_about'
+      end
+    end
+
+    # Toggling using esc can't be tested (afaik), see http://stackoverflow.com/questions/35177110/testing-javascript-using-rspec-capybara-how-to-improve-my-spec-for-testing-a-t
   end
 end
