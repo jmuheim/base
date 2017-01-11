@@ -194,7 +194,7 @@ describe 'Navigation' do
       end
     end
 
-    it 'jumps to content when clicking jump to content link', js: true, focus: true do
+    it 'jumps to content when clicking jump to content link', js: true do
       visit page_path('about')
 
       focus_element('#jump_to_content')
