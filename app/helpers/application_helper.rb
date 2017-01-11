@@ -20,11 +20,11 @@ module ApplicationHelper
   end
 
   def yes_or_no(bool)
-    if bool
-      icon 'ok', I18n.t(:true)
-    else
-      icon 'remove', I18n.t(:false)
-    end
+    I18n.t(bool.to_s)
+  end
+
+  def yes_or_no_icon(bool)
+    icon((bool ? :ok : :remove), yes_or_no(bool))
   end
 
   def current_locale_flag
@@ -78,5 +78,18 @@ module ApplicationHelper
   # See https://github.com/jejacks0n/navigasmic/issues/52
   def active_if_controller?(*controllers_to_check)
     :active if controllers_to_check.map(&:to_s).include? controller_name.to_s
+  end
+
+  def recurring_string?(element, namespace)
+    @recurrent_elements ||= {}
+
+    klass = if element == @recurrent_elements[namespace]
+              :recurrent_occurrence
+            else
+              @recurrent_elements[namespace] = element
+              :first_occurrence
+            end
+
+    content_tag :span, element, class: klass
   end
 end

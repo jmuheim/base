@@ -182,24 +182,46 @@ describe 'Navigation' do
   end
 
   context 'jump links' do
-    # See http://stackoverflow.com/questions/29209518/rspec-and-capybara-how-to-get-the-horizontal-and-vertical-position-of-an-elemen
-    it 'visually displays them only on focus', js: true
+    it 'visually displays them only on focus', js: true do
+      visit page_path('about')
+
+      ['#jump_to_home_page', '#jump_to_navigation', '#jump_to_content'].each do |selector|
+        expect(page.evaluate_script('document.activeElement.id')).to eq '' # Make sure the link isn't focused yet
+
+        # Initial (hidden) position
+        expect(page.evaluate_script("$('#{selector}')[0].className")).to eq 'sr-only' # Make sure the link has sr-only class
+
+        # Set focus
+        page.evaluate_script("$('#{selector}').focus()")
+        expect('#' + page.evaluate_script('document.activeElement.id')).to eq selector # Make sure the link is focused now
+
+        # Displayed position
+        expect(page.evaluate_script("$('#{selector}')[0].className")).to eq '' # Make sure the link doesn't have sr-only class
+
+        # Remove focus
+        page.evaluate_script("$('#{selector}').blur()")
+        expect(page.evaluate_script('document.activeElement.id')).to eq '' # Make sure the link isn't focused anymore
+
+        # Hidden position again
+        expect(page.evaluate_script("$('#{selector}')[0].className")).to eq 'sr-only' # Make sure the link has sr-only class
+      end
+    end
 
     it 'offers access keys', js: true do
       visit page_path('about')
 
-      expect(page).to have_css '#jump_to_home_page a[accesskey="0"]'
-      expect(page).to have_css '#jump_to_navigation a[accesskey="1"]'
-      expect(page).to have_css '#jump_to_content a[accesskey="2"]'
+      expect(page).to have_css '#jump_to_home_page[accesskey="0"]'
+      expect(page).to have_css '#jump_to_navigation[accesskey="1"]'
+      expect(page).to have_css '#jump_to_content[accesskey="2"]'
     end
 
     it 'exists an HTML ID for every same-page jump link' do
       visit page_path('about')
 
-      expect(page).to have_css '#jump_to_navigation a[href="#logo"]'
+      expect(page).to have_css '#jump_to_navigation[href="#logo"]'
       expect(page).to have_css '#navigation'
 
-      expect(page).to have_css '#jump_to_content a[href="#headline"]'
+      expect(page).to have_css '#jump_to_content[href="#headline"]'
       expect(page).to have_css '#main'
     end
 

@@ -9,6 +9,8 @@
 # - Flash messages (if there are any)
 # - The headline
 # - The app's name (except on the home page, which's headline typically already contains the app's name)
+#
+# If more details are needed in the title than the headline provides, it can be prefixed with more info.
 module PageTitleAndHeadlineHelper
   # Displays the current headline, followed by flash messages.
   #
@@ -25,9 +27,10 @@ module PageTitleAndHeadlineHelper
     raise "You can't provide both a heading and options!" if heading && options.any?
 
     @headline = heading.nil? ? default_headline(options) : heading
+    @title = @headline
 
     # Tabindex is required so the focus is really set to the element when using the jump link
-    content_tag :div, id: 'headline', tabindex: 0 do
+    content_tag :div, id: 'headline', tabindex: -1 do
       content_tag(:h1, @headline) + flash_messages(flash)
     end
   end
@@ -55,7 +58,7 @@ module PageTitleAndHeadlineHelper
     content_tag :title do
       parts = []
       parts += flash.map { |key, value| "#{t "flash.#{key}"}: #{value}" } if flash.any?
-      parts << headline
+      parts << @title
       parts << "- #{t('app.acronym')}" unless current_page?(root_path)
       parts.join ' '
     end
@@ -64,6 +67,12 @@ module PageTitleAndHeadlineHelper
   # Returns the current headline (be sure to call #headline_with_flash first).
   def headline
     @headline or raise 'No page heading provided! Be sure to call #headline_with_flash first.'
+  end
+
+  # Can be used to prefix the title with additional content. Returns the given prefix.
+  def title_prefix(prefix)
+    @title = "#{prefix} - #{@title}" if headline
+    prefix
   end
 
   # Returns the default headline (can be overriden in controllers).

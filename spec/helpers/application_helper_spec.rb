@@ -55,12 +55,43 @@ describe ApplicationHelper do
     describe '#yes_or_no(true)' do
       subject { yes_or_no true }
 
-      it { should have_css 'span.glyphicon.glyphicon-ok' }
       it { should have_content 'Yes' }
     end
 
     describe '#yes_or_no(false)' do
       subject { yes_or_no false }
+
+      it { should have_content 'No' }
+    end
+  end
+
+  describe '#yes_or_no_icon' do
+    describe '#yes_or_no_icon(true)' do
+      subject { yes_or_no_icon true }
+
+      it { should have_css 'span.glyphicon.glyphicon-ok' }
+      it { should have_content 'Yes' }
+    end
+
+    describe '#yes_or_no_icon(false)' do
+      subject { yes_or_no_icon false }
+
+      it { should have_css 'span.glyphicon.glyphicon-remove' }
+      it { should have_content 'No' }
+    end
+  end
+
+  describe '#recurring_string?' do
+    it 'returns whether an element is a sub sequent recurring occurrence of the very same object (namespaced by a namespace)' do
+      expect(recurring_string?('hello',   'namespace')).to   eq '<span class="first_occurrence">hello</span>'
+      expect(recurring_string?('hello 2', 'namespace')).to   eq '<span class="first_occurrence">hello 2</span>'
+      expect(recurring_string?('hello 2', 'namespace 2')).to eq '<span class="first_occurrence">hello 2</span>'
+      expect(recurring_string?('hello 2', 'namespace')).to   eq '<span class="recurrent_occurrence">hello 2</span>'
+      expect(recurring_string?('hello',   'namespace')).to   eq '<span class="first_occurrence">hello</span>'
+    end
+
+    describe '#yes_or_no_icon(false)' do
+      subject { yes_or_no_icon false }
 
       it { should have_css 'span.glyphicon.glyphicon-remove' }
       it { should have_content 'No' }

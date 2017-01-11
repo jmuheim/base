@@ -81,5 +81,16 @@ describe PageTitleAndHeadlineHelper do
 
       it { should eq '<title>Alert: This is an alert! Notice: This is a notice! This is the title - Base</title>' }
     end
+
+    context 'with prefixes' do
+      subject do
+        helper.headline_with_flash('This is the title')
+        helper.title_prefix('This is a first prefix')
+        helper.title_prefix('This is another prefix')
+        helper.title_tag
+      end
+
+      it { should eq '<title>This is another prefix - This is a first prefix - This is the title - Base</title>' }
+    end
   end
 end
