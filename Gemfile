@@ -2,15 +2,17 @@ source 'https://rubygems.org'
 
 gem 'rails', '~> 5.0.1'
 
+gem 'puma', '~> 3.0' # Use Puma as the app server
+
 gem 'rails-i18n' # Locale data
 
 gem 'slim-rails' # Awesome template language that replaces ERB
 
 gem 'uglifier', '>= 1.3.0' # Use Uglifier as compressor for JavaScript assets
 
-gem 'coffee-rails', '>= 4.0.0' # Use CoffeeScript for .js.coffee assets and views
+gem 'coffee-rails', '~> 4.2' # Use CoffeeScript for .js.coffee assets and views
 
-gem 'sass-rails', '>= 4.0.0' # Use Sass for stylesheets
+gem 'sass-rails', '~> 5.0' # Use Sass for stylesheets
 
 gem 'compass-rails' # Compass framework
 
@@ -25,7 +27,7 @@ gem 'font-awesome-rails' # The iconic font and CSS toolkit
 gem 'jquery-rails'
 gem 'jquery-ui-rails' # jQuery UI components
 
-gem 'jbuilder', '>= 1.2' # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
+gem 'jbuilder', '~> 2.5' # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 
 # Flexible authentication solution
 gem 'devise'
@@ -94,20 +96,26 @@ group :development, :test do
   gem 'factory_girl_rails' # Test data generator
   gem 'ffaker'             # Easily generate fake data
 
-  # Use Pry and its extensions instead of IRB
+  # Use Pry and its extensions to debug
   gem 'pry-rails' # Rails >= 3 pry initializer
   gem 'awesome_print' # Pretty print your Ruby objects with style
   gem 'pry-byebug'  # Pry navigation commands via debugger (formerly ruby-debug)
 end
 
 group :development do
+  gem 'web-console', '>= 3.3.0' # Access an IRB console by using <%= console %> anywhere in the code
+
+  gem 'listen', '~> 3.0.5' # Listens to file modifications and notifies you about the changes
+
   # Better Errors: Replaces the standard Rails error page with a more useful one
   gem 'better_errors'
+  # gem 'binding_of_caller' # Adds a REPL console to error pages (disabled, because it's very slow, see https://github.com/charliesome/better_errors/issues/341)
 
   gem 'xray-rails' # Reveals your UI's bones with Cmd-X/Ctrl-X
 
   # Rails application preloader
   gem 'spring'
+  gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'spring-commands-rspec' # Commands for RSpec
 
   # Guard: automatically run commands when files are changed
