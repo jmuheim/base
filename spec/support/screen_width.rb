@@ -23,8 +23,8 @@ module ScreenWidth
   end
 
   def screen_width(screen, &block)
-    original_width = page.driver.evaluate_script('window.innerWidth')
-    original_height = page.driver.evaluate_script('window.innerHeight')
+    original_width = page.driver.execute_script('return window.innerWidth')
+    original_height = page.driver.execute_script('return window.innerHeight')
 
     page.driver.resize_window desired_width(screen), 500
 

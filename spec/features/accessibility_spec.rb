@@ -35,7 +35,7 @@ describe 'Accessibility' do
       click_button 'Sign up'
 
       # Check for focused element, see http://stackoverflow.com/questions/7940525/testing-focus-with-capybara
-      expect(page.evaluate_script('document.activeElement.id')).to eq 'user_email'
+      expect(focused_element_id).to eq 'user_email'
     end
   end
 

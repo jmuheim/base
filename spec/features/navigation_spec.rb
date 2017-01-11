@@ -185,25 +185,21 @@ describe 'Navigation' do
     it 'visually displays them only on focus', js: true do
       visit page_path('about')
 
-      ['#jump_to_home_page', '#jump_to_navigation', '#jump_to_content'].each do |selector|
-        expect(page.evaluate_script('document.activeElement.id')).to eq '' # Make sure the link isn't focused yet
-
+      ['jump_to_home_page', 'jump_to_navigation', 'jump_to_content'].each do |selector|
         # Initial (hidden) position
-        expect(page.evaluate_script("$('#{selector}')[0].className")).to eq 'sr-only' # Make sure the link has sr-only class
+        expect(page).to have_selector("##{selector}[class='sr-only']") # Make sure the link has sr-only class
 
         # Set focus
-        page.evaluate_script("$('#{selector}').focus()")
-        expect('#' + page.evaluate_script('document.activeElement.id')).to eq selector # Make sure the link is focused now
+        focus_element("##{selector}")
 
         # Displayed position
-        expect(page.evaluate_script("$('#{selector}')[0].className")).to eq '' # Make sure the link doesn't have sr-only class
+        expect(page).not_to have_selector("##{selector}[class='sr-only']") # Make sure the link doesn't have sr-only class
 
         # Remove focus
-        page.evaluate_script("$('#{selector}').blur()")
-        expect(page.evaluate_script('document.activeElement.id')).to eq '' # Make sure the link isn't focused anymore
+        unfocus_element("##{selector}")
 
         # Hidden position again
-        expect(page.evaluate_script("$('#{selector}')[0].className")).to eq 'sr-only' # Make sure the link has sr-only class
+        expect(page).to have_selector("##{selector}[class='sr-only']") # Make sure the link has sr-only class
       end
     end
 
