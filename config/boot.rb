@@ -6,7 +6,7 @@ require 'bundler/setup' # Set up gems listed in the Gemfile.
 require 'rails/commands/server'
 module DefaultOptions
   def default_options
-    super.merge!(Port: 3001)
+    super.merge!(Port: 3001) # As long as the config in config/puma.doesn't work, we keep this here (see https://github.com/rails/rails/issues/24435)
   end
 end
 Rails::Server.send(:prepend, DefaultOptions)
