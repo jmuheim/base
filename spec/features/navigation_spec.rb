@@ -206,18 +206,7 @@ describe 'Navigation' do
       visit page_path('about')
 
       expect(page).to have_css '#jump_to_home_page[accesskey="0"]'
-      expect(page).to have_css '#jump_to_navigation[accesskey="1"]'
-      expect(page).to have_css '#jump_to_content[accesskey="2"]'
-    end
-
-    it 'exists an HTML ID for every same-page jump link' do
-      visit page_path('about')
-
-      expect(page).to have_css '#jump_to_navigation[href="#logo"]'
-      expect(page).to have_css '#navigation'
-
-      expect(page).to have_css '#jump_to_content[href="#headline"]'
-      expect(page).to have_css '#main'
+      expect(page).to have_css '#jump_to_content[accesskey="1"]'
     end
 
     it 'displays the link to the home page only on other pages' do
