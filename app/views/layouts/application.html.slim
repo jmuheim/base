@@ -6,8 +6,8 @@ html lang=I18n.locale
     meta[name="viewport" content="width=device-width, initial-scale=1.0"]
     meta name="description" content="#{yield(:description)}"
 
-    = stylesheet_link_tag    'application', media: 'all'
-    = javascript_include_tag 'application'
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
     = csrf_meta_tags
 
   body class=body_css_classes

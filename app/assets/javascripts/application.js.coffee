@@ -4,6 +4,7 @@
 #
 #= require jquery
 #= require jquery_ujs
+#= require turbolinks
 #= require jquery-ui
 #
 #= require jquery-ui-bootstrap-bridge
