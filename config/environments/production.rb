@@ -31,7 +31,7 @@ Rails.application.configure do
   # config.assets.css_compressor = :sass
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
-  config.assets.compile = false
+  config.assets.compile = true # Couldn't get Bootstrap Glyphicons to work without setting this to true, see https://github.com/twbs/bootstrap-sass/issues/395#issuecomment-28737219
 
   # Generate digests for assets URLs.
   config.assets.digest = true
