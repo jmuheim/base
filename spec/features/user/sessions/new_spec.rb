@@ -22,6 +22,14 @@ describe 'Signing in' do
     it 'is possible to sign in using email' do
       visit new_user_session_path
 
+      within '.frequently_occuring_sign_in_problems' do
+        expect(page).to have_css 'h2', text: 'Frequently occurring sign in problems'
+
+        expect(page).to have_link 'Forgot your password?'
+        expect(page).to have_link "Didn't receive confirmation instructions?"
+        expect(page).to have_link "Didn't receive unlock instructions?"
+      end
+
       within '#new_user' do
         fill_in 'user_login',    with: 'donald'
         fill_in 'user_password', with: 's3cur3p@ssw0rd'
@@ -31,7 +39,7 @@ describe 'Signing in' do
       expect(page).to have_content 'Signed in successfully.'
       expect(page).to have_link 'Log out'
     end
-  
+
     it 'is possible to sign in using name' do
       visit new_user_session_path
 
@@ -57,7 +65,7 @@ describe 'Signing in' do
       expect(page).to have_content 'Invalid login or password.'
       expect(page).not_to have_link 'Log out'
     end
-  
+
     it 'is not possible to sign in with wrong password' do
       visit new_user_session_path
 

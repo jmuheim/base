@@ -20,6 +20,14 @@ describe 'Creating user' do
     expect(page).to have_css '#user_name[maxlength="100"]'
 
     attach_file 'user_avatar', dummy_file_path('other_image.jpg')
+
+    within '.actions' do
+      expect(page).to have_css 'h2', text: 'Actions'
+
+      expect(page).to have_button 'Create User'
+      expect(page).to have_link 'Back to list of Users'
+    end
+
     click_button 'Create User'
 
     expect(page).to have_flash 'User was successfully created.'

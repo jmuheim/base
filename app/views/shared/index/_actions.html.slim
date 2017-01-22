@@ -1,16 +1,13 @@
-.actions
-  / TODO: Would be nice to not output .btn-group if no link available, see http://stackoverflow.com/questions/22222327
-  .btn-group
-    button.btn.btn-sm.btn-default.dropdown-toggle type="button" data-toggle="dropdown" aria-expanded="false"
-      = t 'actions.actions'
-      span.caret<
+/ TODO: Would be nice to not output .btn-group if no link available, see http://stackoverflow.com/questions/22222327
+.btn-group
+  - if can?(:update, resource)
+    = link_to [:edit, belongs_to ||= nil, resource], class: 'btn btn-sm btn-primary'
+      = icon(:pencil, t('actions.edit_resource', resource: resource.model_name.human), type: :fa)
 
-    ul.dropdown-menu.dropdown-menu-right role="menu"
-      - if can?(:update, resource)
-        li = link_to t('actions.edit_resource', resource: resource.model_name.human), [:edit, resource]
-
-      - if can?(:destroy, resource)
-        li = link_to t('actions.destroy_resource', resource: resource.model_name.human), resource, method: :delete,
-               data: { confirm:  t('actions.destroy_resource_confirmation_question',
-                       resource: resource.model_name.human,
-                       id:       resource.id) }
+  - if can?(:destroy, resource)
+    = link_to [belongs_to, resource], method: :delete,
+        class: 'btn btn-sm btn-danger',
+        data: { confirm:  t('actions.destroy_resource_confirmation_question',
+                resource: resource.model_name.human,
+                id:       resource.id) } do
+      = icon(:remove, t('actions.destroy_resource', resource: resource.model_name.human), type: :fa)

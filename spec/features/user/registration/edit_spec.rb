@@ -24,6 +24,8 @@ describe 'Editing account' do
     fill_in 'user_password_confirmation', with: 'n3wp4ssw0rd'
     fill_in 'user_current_password',      with: 's3cur3p@ssw0rd'
 
+    expect(page).to have_css 'h2', text: 'Cancel my account'
+
     expect {
       click_button 'Save'
       @user.reload

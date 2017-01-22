@@ -41,6 +41,13 @@ describe 'Editing user' do
 
       attach_file 'user_avatar', dummy_file_path('other_image.jpg')
 
+      within '.actions' do
+        expect(page).to have_css 'h2', text: 'Actions'
+
+        expect(page).to have_button 'Update User'
+        expect(page).to have_link 'Back to list of Users'
+      end
+
       expect {
         click_button 'Update User'
         @user.reload

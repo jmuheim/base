@@ -10,6 +10,13 @@ describe 'Requesting new password' do
     expect(page).to have_breadcrumbs 'Base', 'Forgot your password?'
     expect(page).to have_headline 'Forgot your password?'
 
+    within '.frequently_occuring_sign_in_problems' do
+      expect(page).to have_css 'h2', text: 'Frequently occurring sign in problems'
+
+      expect(page).to have_link "Didn't receive confirmation instructions?"
+      expect(page).to have_link "Didn't receive unlock instructions?"
+    end
+
     within '#new_user' do
       fill_in 'user_email', with: 'donald@example.com'
       click_button 'Send me reset password instructions'

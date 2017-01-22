@@ -17,6 +17,14 @@ describe 'Signing up' do
     fill_in 'user_password',              with: 'somegreatpassword'
     fill_in 'user_password_confirmation', with: 'somegreatpassword'
 
+    within '.frequently_occuring_sign_in_problems' do
+      expect(page).to have_css 'h2', text: 'Frequently occurring sign in problems'
+
+      expect(page).to have_link 'Forgot your password?'
+      expect(page).to have_link "Didn't receive confirmation instructions?"
+      expect(page).to have_link "Didn't receive unlock instructions?"
+    end
+
     click_button 'Sign up'
 
     expect(page).to have_flash 'Welcome! You have signed up successfully.'

@@ -1,3 +1,6 @@
-- if can? :create, resource_class
-  = link_to t('actions.new_resource', resource: resource.model_name.human),
-            [:new, resource.to_s.underscore], class: 'btn btn-primary'
+.actions
+  *{tag: "h#{heading_level ||= 2}", class: 'sr-only'} = t 'actions.actions'
+
+  - if can? :create, resource_class
+    = link_to t('actions.new_resource', resource: resource.model_name.human),
+              [:new, resource.to_s.underscore], class: 'btn btn-primary'

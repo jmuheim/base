@@ -16,6 +16,9 @@ describe 'Listing users' do
     expect(page).to have_breadcrumbs 'Base', 'Users'
     expect(page).to have_headline 'Users'
 
+    expect(page).to have_css 'h2', text: 'Filter'
+    expect(page).to have_css 'h2', text: 'Results'
+
     within dom_id_selector(@user) do
       expect(page).to have_css '.name a', text: 'donald'
       expect(page).to have_css '.email',  text: 'donald@example.com'
@@ -24,7 +27,10 @@ describe 'Listing users' do
       expect(page).to have_link 'Delete'
     end
 
-    expect(page).to have_link 'Create User'
+    within 'div.actions' do
+      expect(page).to have_css 'h2', text: 'Actions'
+      expect(page).to have_link 'Create User'
+    end
   end
 
   it 'allows to filter users' do

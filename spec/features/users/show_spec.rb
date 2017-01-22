@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'Showing user' do
   before do
-    @user = create :user, :donald, :with_avatar
+    @user = create :user, :donald, :with_avatar, about: "# Here's some info about me\n\nBla bla bla."
     login_as(create :admin)
   end
 
@@ -18,7 +18,13 @@ describe 'Showing user' do
       expect(page).to have_css '.email',      text: 'donald@example.com'
       expect(page).to have_css '.created_at', text: 'Mon, 15 Jun 2015 14:33:52 +0200'
       expect(page).to have_css '.updated_at', text: 'Mon, 15 Jun 2015 14:33:52 +0200'
-      expect(page).to have_css '.about',      text: 'User test about'
+
+      within '.about' do
+        expect(page).to have_css 'h2', text: 'About'
+        expect(page).to have_css 'h3', text: "Here's some info about me"
+        expect(page).to have_content 'Bla bla bla.'
+      end
+
       expect(page).to have_css '.avatar img[alt="donald"]'
 
       expect(page).to have_link 'Edit'
