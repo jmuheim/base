@@ -23,7 +23,6 @@ describe 'Showing account' do
       expect(page).to have_active_navigation_items 'User menu', 'Show account'
       expect(page).to have_breadcrumbs 'Base', 'Welcome, donald!'
       expect(page).to have_headline 'Welcome, donald!'
-      save_and_open_page
 
       within dom_id_selector(@user) do
         expect(page).to have_content 'donald'
