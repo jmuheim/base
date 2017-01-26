@@ -36,4 +36,10 @@ describe MarkdownHelper do
       end
     end
   end
+
+  describe '#pandoc_version' do
+    it 'returns the version' do
+      expect(pandoc_version.to_i).to be > 0
+    end
+  end
 end

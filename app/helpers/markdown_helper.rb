@@ -11,4 +11,9 @@ module MarkdownHelper
       line.gsub /^#/, '#' * (heading_level + 1)
     end.join
   end
+
+  def pandoc_version
+    matches = `pandoc -v`.match /\bpandoc (\d+\.\d+)\b/
+    matches[1]
+  end
 end
