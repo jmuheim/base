@@ -32,6 +32,19 @@ nav#navigation.container
 
         = semantic_navigation :meta_navigation, class: 'navbar-right' do |navigation|
           - if user_signed_in?
+            - if current_user.has_role? :admin
+              - navigation.group t('.admin'), class: active_if_controller?(:pages) do
+                - if can? :create, Page
+                  - navigation.item "#{icon :bars, type: :fa} #{t 'actions.resources_list', resources: Page.model_name.human(count: :other)}", pages_path
+                  - navigation.item "#{icon :plus, type: :fa} #{t 'actions.new_resource', resource: Page.model_name.human}", new_page_path
+
+                - if can? :access, :rails_admin
+                  li.divider role="presentation"
+
+                  li = link_to rails_admin_path(locale: :en) do
+                    = icon(:gears, type: :fa)
+                    =< t('.admin')
+
             - navigation.group user_avatar(t('.user_menu')) do
               - navigation.item "#{icon :user, type: :fa} #{t '.show_account'}", user_registration_path
               - navigation.item "#{icon :edit, type: :fa} #{t '.edit_account'}", edit_user_registration_path
@@ -40,25 +53,6 @@ nav#navigation.container
                 = link_to destroy_user_session_path, method: :delete do
                   = icon('sign-out', type: :fa)
                   =< t('.log_out')
-
-              - if can? :create, Page
-                li.divider role="presentation"
-
-                li = link_to pages_path do
-                  = icon(:bars, type: :fa)
-                  =< t('actions.resources_list', resources: Page.model_name.human(count: :other)) do
-
-                li = link_to new_page_path do
-                  = icon(:plus, type: :fa)
-                  =< t('actions.new_resource', resource: Page.model_name.human) do
-
-
-              - if can? :access, :rails_admin
-                li.divider role="presentation"
-
-                li = link_to rails_admin_path(locale: :en) do
-                  = icon(:gears, type: :fa)
-                  =< t('.admin')
 
           - else
             - navigation.item "<span class='visible-sm-inline-block'>#{icon 'user-plus', type: :fa}</span> <span class='hidden-sm'>#{t '.sign_up'}</span>", new_user_registration_path

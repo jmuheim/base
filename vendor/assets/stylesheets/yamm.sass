@@ -1,0 +1,27 @@
+// Yamm!3 - Yet another megamenu for Bootstrap 3
+// http://geedmo.github.com/yamm3
+//
+// @geedmo - Licensed under the MIT license
+
+.yamm
+  .nav,
+  .collapse,
+  .dropup,
+  .dropdown
+    // Static position makes all navbar-right dropdowns be at the very right of the screen! But when removing it, the login dropdown collapses. To prevent this, we disallow whitespace to wrap for login and password. See https://github.com/geedmo/yamm3/issues/56.
+    // position: static
+    .login_and_password
+      white-space: nowrap
+
+  .container
+    position: relative
+
+  .dropdown-menu
+    left: auto
+
+  .yamm-content
+    padding: 20px 30px
+
+  .dropdown.yamm-fw .dropdown-menu
+    left: 0
+    right: 0
