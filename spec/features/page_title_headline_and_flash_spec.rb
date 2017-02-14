@@ -9,10 +9,10 @@ describe 'Page title, headline and flash' do
   end
 
   it 'displays the page title and the headline on other pages' do
-    visit page_path('about')
+    visit page_path(create :page)
 
-    expect(page).to have_title 'About Base - Base'
-    expect(page).to have_css 'main h1', text: 'About Base'
+    expect(page).to have_title 'Page test title - Base'
+    expect(page).to have_css 'main h1', text: 'Page test title'
   end
 
   context 'with flash' do

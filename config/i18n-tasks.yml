@@ -110,6 +110,7 @@ ignore:
 
 ignore_models:
   names:
+    - application_record
     - role
     - paper_trail/version
   attributes:

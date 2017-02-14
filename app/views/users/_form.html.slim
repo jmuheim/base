@@ -1,7 +1,7 @@
 = simple_form_for user, html:    {class: 'form-horizontal'},
-                         wrapper: :horizontal_form do |f|
-  == render 'shared/form/stale_info', f: f
+                        wrapper: :horizontal_form do |f|
 
+  == render 'shared/form/stale_info', f: f
   == render 'detail_inputs', f: f
 
   - if user.new_record?

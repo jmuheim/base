@@ -2,6 +2,8 @@ require 'rails_helper'
 
 describe 'Navigation' do
   describe 'items' do
+    before { create :page }
+
     context 'as a guest' do
       it 'offers the expected links' do
         visit root_path
@@ -13,7 +15,7 @@ describe 'Navigation' do
             expect(page).to     have_link 'List Users'
             expect(page).not_to have_link 'Create User'
 
-            expect(page).to have_link 'About'
+            expect(page).to have_link 'Page test navigation title'
           end
 
           within '#meta_navigation' do
@@ -39,7 +41,7 @@ describe 'Navigation' do
             expect(page).to     have_link 'List Users'
             expect(page).not_to have_link 'Create User'
 
-            expect(page).to have_link 'About'
+            expect(page).to have_link 'Page test navigation title'
           end
 
           within '#meta_navigation' do
@@ -65,7 +67,7 @@ describe 'Navigation' do
             expect(page).to have_link 'List Users'
             expect(page).to have_link 'Create User'
 
-            expect(page).to have_link 'About'
+            expect(page).to have_link 'Page test navigation title'
           end
 
           within '#meta_navigation' do
@@ -183,7 +185,7 @@ describe 'Navigation' do
 
   context 'jump links' do
     it 'visually displays them only on focus', js: true do
-      visit page_path('about')
+      visit page_path(create :page)
 
       ['#jump_to_home_page', '#jump_to_content'].each do |selector|
         expect(page).to have_selector("#{selector}[class='sr-only']")
@@ -195,7 +197,7 @@ describe 'Navigation' do
     end
 
     it 'jumps to content when clicking jump to content link', js: true do
-      visit page_path('about')
+      visit page_path(create :page)
 
       focus_element('#jump_to_content')
       click_link 'Jump to content'
@@ -203,7 +205,7 @@ describe 'Navigation' do
     end
 
     it 'offers access keys', js: true do
-      visit page_path('about')
+      visit page_path(create :page)
 
       expect(page).to have_css '#jump_to_home_page[accesskey="0"]'
       expect(page).to have_css '#jump_to_content[accesskey="1"]'
@@ -213,7 +215,7 @@ describe 'Navigation' do
       visit root_path
       expect(page).not_to have_link 'Jump to home page'
 
-      visit page_path('about')
+      visit page_path(create :page)
       expect(page).to have_link 'Jump to home page'
     end
   end

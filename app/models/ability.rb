@@ -11,6 +11,7 @@ class Ability
     alias_action :create, :read, :update, :destroy, to: :crud
 
     can :read, User
+    can :read, Page
 
     if current_user.nil?
       can :create, User
@@ -28,6 +29,10 @@ class Ability
 
       cannot :destroy, User do |user|
         user == current_user
+      end
+
+      cannot :destroy, Page do |page|
+        page.system?
       end
     end
   end

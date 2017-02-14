@@ -7,23 +7,22 @@ en:
   buttons:
     save: Save
   'false': 'No'
-  org:
-    name: MuheimWebdesign
-  pages:
-    about:
-      title: About Base
-    home:
-      title: Welcome to Base!
+  homepage:
     news:
       title: Latest news
+    show:
+      title: Welcome to Base!
     statistics:
       number_of_resource: Number of %{resource}
       title: Statistics
+  org:
+    name: MuheimWebdesign
   resources:
     create: Create %{resource}
     list: List %{resource}
   shared:
     form:
+      details: Details
       stale_info:
         attribute: Attribute
         difference: Difference

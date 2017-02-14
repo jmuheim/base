@@ -7,6 +7,16 @@ describe Ability do
   context 'when is a guest' do
     subject { Ability.new nil }
 
+    describe 'managing pages' do
+      it { should_not be_able_to(:create, Page) }
+
+      it { should     be_able_to(:read, Page.new) }
+
+      it { should_not be_able_to(:update, Page.new) }
+
+      it { should_not be_able_to(:destroy, Page.new) }
+    end
+
     describe 'managing roles' do
       it { should_not be_able_to(:create, Role) }
 
@@ -31,6 +41,16 @@ describe Ability do
   context 'when is a registered user' do
     before  { @user = create(:user) }
     subject { Ability.new(@user) }
+
+    describe 'managing pages' do
+      it { should_not be_able_to(:create, Page) }
+
+      it { should     be_able_to(:read, Page.new) }
+
+      it { should_not be_able_to(:update, Page.new) }
+
+      it { should_not be_able_to(:destroy, Page.new) }
+    end
 
     describe 'managing roles' do
       it { should_not be_able_to(:create, Role) }
@@ -61,6 +81,17 @@ describe Ability do
 
     it { should be_able_to(:access, :rails_admin) }
 
+    describe 'managing pages' do
+      it { should be_able_to(:create, Page) }
+
+      it { should be_able_to(:read, Page.new) }
+
+      it { should be_able_to(:update, Page.new) }
+
+      it { should     be_able_to(:destroy, Page.new) }
+      it { should_not be_able_to(:destroy, Page.new(system: true)) }
+    end
+
     describe 'managing roles' do
       it { should be_able_to(:create, Role) }
 
@@ -78,7 +109,7 @@ describe Ability do
 
       it { should be_able_to(:update, User.new) }
 
-      it { should be_able_to(:destroy, User.new) }
+      it { should     be_able_to(:destroy, User.new) }
       it { should_not be_able_to(:destroy, @admin) }
     end
   end

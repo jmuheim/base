@@ -2,7 +2,6 @@
 en:
   actions:
     actions: Actions
-    back_to_resources_list: Back to list of %{resources}
     destroy: Delete
     destroy_resource: Delete %{resource}
     destroy_resource_confirmation_question: 'Really destroy %{resource} #%{id}?'
@@ -13,6 +12,7 @@ en:
     new: Create
     new_resource: Create %{resource}
     remove_filter: Remove filter
+    resources_list: List of %{resources}
     results: Results
     show: Show
     show_resource: Show %{resource}

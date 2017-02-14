@@ -5,6 +5,11 @@ de:
       defaults:
         created_at: Erstellt am
         updated_at: Aktualisiert am
+      page:
+        content: Inhalt
+        navigation_title: Navigations-Titel
+        notes: Notizen
+        title: Titel
       role:
         created_at: Erstellt am
         name: Name
@@ -32,6 +37,9 @@ de:
         roles: Rollen
         updated_at: Aktualisiert am
     models:
+      page:
+        one: Seite
+        other: Seiten
       user:
         one: Benutzer
         other: Benutzer
