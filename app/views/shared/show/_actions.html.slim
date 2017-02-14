@@ -1,12 +1,23 @@
 .actions
-  h2.sr-only = t 'actions.actions'
+  *{tag: "h#{heading_level ||= 2}", class: 'sr-only'} = t 'actions.actions'
 
   .btn-group
     - if can? :edit, resource
-      = link_to t('actions.edit'), [:edit, resource], class: 'btn btn-primary'
+      = link_to [:edit, belongs_to ||= nil, resource], class: 'btn btn-primary' do
+        = icon(:pencil, type: :fa)
+        =< t('actions.edit')
+
     - if can? :destroy, resource
-      = link_to t('actions.destroy'), resource, method: :delete,
+      = link_to [belongs_to, resource], method: :delete,
                 data:  {confirm: t('actions.destroy_resource_confirmation_question', resource: resource.model_name.human, id: resource.id)},
                 class: 'btn btn-danger'
+        = icon(:remove, type: :fa)
+        =< t('actions.destroy')
 
-  =< link_to t('actions.back_to_resources_list', resources: resource.model_name.human(count: :other)), {controller: resource.model_name.to_s.tableize, action: 'index'}, class: 'btn btn-default'
+  | &nbsp;
+  .btn-group
+    - if can? :create, resource.class
+      = link_to [:new, belongs_to ||= nil, resource.class.to_s.underscore], class: 'btn btn-success' do
+        = icon(:plus, type: :fa)
+        =< t('actions.new_resource', resource: resource.model_name.human)
+    = link_to t('actions.back_to_resources_list', resources: resource.model_name.human(count: :other)), [belongs_to, resource.model_name.to_s.tableize], class: 'btn btn-default'

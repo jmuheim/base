@@ -1,3 +1,11 @@
 .nav-tabs
   margin-top: 20px
   margin-bottom: 20px
+
+  li.active
+    a
+      // Another hard visual criterion is needed to make active tabs perceivable in e.g. high contrast mode
+      font-weight: bold
+
+  a:hover
+    cursor: pointer !important

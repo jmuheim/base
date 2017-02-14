@@ -185,12 +185,12 @@ describe 'Navigation' do
     it 'visually displays them only on focus', js: true do
       visit page_path('about')
 
-      ['jump_to_home_page', 'jump_to_content'].each do |selector|
-        expect(page).to have_selector("##{selector}[class='sr-only']")
-        focus_element("##{selector}")
-        expect(page).not_to have_selector("##{selector}[class='sr-only']")
-        unfocus_element("##{selector}")
-        expect(page).to have_selector("##{selector}[class='sr-only']")
+      ['#jump_to_home_page', '#jump_to_content'].each do |selector|
+        expect(page).to have_selector("#{selector}[class='sr-only']")
+        focus_element("#{selector}")
+        expect(page).not_to have_selector("#{selector}[class='sr-only']")
+        unfocus_element("#{selector}")
+        expect(page).to have_selector("#{selector}[class='sr-only']")
       end
     end
 

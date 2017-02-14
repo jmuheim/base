@@ -1,6 +1,14 @@
 .table
   width: 100%
 
+  th
+    a
+      display: inline-block
+
+  // Prevents e.g. paragraphs from having a margin bottom in tables
+  td *:last-child
+    margin-bottom: 0
+
   td.actions
     padding:
       top: 3px
