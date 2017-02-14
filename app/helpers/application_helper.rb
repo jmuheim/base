@@ -75,6 +75,7 @@ module ApplicationHelper
     end
   end
 
+  # This doesn't take into account create and update actions (when having validation errors), see http://stackoverflow.com/questions/42234081/rails-why-does-create-update-action-point-to-the-same-url-like-the-index-action.
   # See https://github.com/jejacks0n/navigasmic/issues/52
   def active_if_controller?(*controllers_to_check)
     :active if controllers_to_check.map(&:to_s).include? controller_name.to_s
