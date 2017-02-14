@@ -9,10 +9,8 @@ en:
   'false': 'No'
   org:
     name: MuheimWebdesign
-  pages:
-    about:
-      title: About Base
-    home:
+  homepage:
+    show:
       title: Welcome to Base!
     news:
       title: Latest news

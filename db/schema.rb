@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170113093552) do
+ActiveRecord::Schema.define(version: 20170214155853) do
 
   create_table "activities", force: :cascade do |t|
     t.string   "trackable_type"
@@ -65,6 +65,16 @@ ActiveRecord::Schema.define(version: 20170113093552) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.index ["commontable_id", "commontable_type"], name: "index_commontator_threads_on_c_id_and_c_type", unique: true
+  end
+
+  create_table "pages", force: :cascade do |t|
+    t.string   "title"
+    t.string   "navigation_title"
+    t.text     "content"
+    t.text     "notes"
+    t.integer  "lock_version",     default: 0, null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
   end
 
   create_table "roles", force: :cascade do |t|

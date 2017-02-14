@@ -29,10 +29,10 @@ class PagesController < ApplicationController
   end
 
   def add_base_breadcrumbs
-    add_breadcrumb page.model_name.human(count: :other), pages_path unless action_name == 'index'
+    # add_breadcrumb Page.model_name.human(count: :other), pages_path unless action_name == 'index'
 
     if ['edit', 'update'].include? action_name
-      add_breadcrumb @page.name_with_details, page_path(@page)
+      add_breadcrumb @page.title, page_path(@page)
       @last_breadcrumb = t 'actions.edit'
     end
 

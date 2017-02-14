@@ -1,0 +1,11 @@
+tr id=dom_id(page)
+  th.title = link_to page.title, page
+
+  td.content
+    = markdown page.content
+
+  td.notes
+    = markdown page.notes
+
+  td.actions
+    == render 'shared/index/actions', resource: page

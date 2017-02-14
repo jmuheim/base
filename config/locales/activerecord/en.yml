@@ -5,6 +5,11 @@ en:
       defaults:
         created_at: Created at
         updated_at: Updated at
+      page:
+        title: Title
+        navigation_title: Title in the navigation
+        content: Content
+        notes: Notes
       role:
         created_at: Created at
         name: Name
@@ -32,6 +37,9 @@ en:
         roles: Roles
         updated_at: Updated at
     models:
+      page:
+        one: Page
+        other: Pages
       user:
         one: User
         other: Users

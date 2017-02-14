@@ -1,0 +1,6 @@
+= headline_with_flash Page.model_name.human count: :other
+
+== render 'pages', pages: @pages
+
+h2.sr-only = t 'actions.actions'
+== render 'shared/index/create_resource', resource: Page

@@ -1,0 +1,10 @@
+table.pages.table.table-striped.table-hover
+  thead
+    tr
+      th.title   = User.human_attribute_name :title
+      th.content = User.human_attribute_name :content
+      th.notes   = User.human_attribute_name :notes
+      th colspan="3" = t 'actions.actions'
+
+  tbody
+    = render pages

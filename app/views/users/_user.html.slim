@@ -1,5 +1,5 @@
 tr id=dom_id(user)
-  th.name  = link_to_if can?(:read, user), user.name, user
+  th.name  = link_to user.name, user
   td.email = user.email
   td.roles
     = recurring_string?(user.roles.map(&:name).join(', '), :roles)

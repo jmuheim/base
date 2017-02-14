@@ -8,15 +8,13 @@ Rails.application.routes.draw do
     end
 
     resources :users
+    resources :pages
 
     [403, 404, 422, 500].each do |code|
       get code, to: 'errors#show', code: code
     end
 
-    get '/pages/:view', to: 'pages#show',
-                        as: 'page'
-
-    root 'pages#show', view: 'home'
+    root 'homepage#show'
 
     # The priority is based upon order of creation: first created -> highest priority.
     # See how all your routes lay out with "rake routes".

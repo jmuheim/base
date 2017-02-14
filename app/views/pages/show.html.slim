@@ -1,0 +1,11 @@
+= container_for @page do
+  = headline_with_flash @page.title
+
+  = markdown indent_heading_level @page.content, 1
+
+  - unless @page.notes.empty?
+    .alert.alert-warning
+      h2.sr-only = Page.human_attribute_name :notes
+      = markdown indent_heading_level @page.notes, 2
+
+  == render 'shared/show/actions', resource: @page
