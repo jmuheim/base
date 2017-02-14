@@ -15,7 +15,7 @@ describe 'Navigation' do
             expect(page).to     have_link 'List Users'
             expect(page).not_to have_link 'Create User'
 
-            expect(page).to have_link 'Page test title'
+            expect(page).to have_link 'Page test navigation title'
           end
 
           within '#meta_navigation' do
@@ -41,7 +41,7 @@ describe 'Navigation' do
             expect(page).to     have_link 'List Users'
             expect(page).not_to have_link 'Create User'
 
-            expect(page).to have_link 'Page test title'
+            expect(page).to have_link 'Page test navigation title'
           end
 
           within '#meta_navigation' do
@@ -67,7 +67,7 @@ describe 'Navigation' do
             expect(page).to have_link 'List Users'
             expect(page).to have_link 'Create User'
 
-            expect(page).to have_link 'Page test title'
+            expect(page).to have_link 'Page test navigation title'
           end
 
           within '#meta_navigation' do
