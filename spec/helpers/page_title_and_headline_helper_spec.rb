@@ -3,10 +3,10 @@ require 'rails_helper'
 describe PageTitleAndHeadlineHelper do
   describe '#headline_with_flash' do
     describe 'no params given' do
-      before { helper.instance_variable_set(:@virtual_path, 'pages.about') }
+      before { helper.instance_variable_set(:@virtual_path, 'homepage.show') }
       subject { helper.headline_with_flash } # Why do we need explicit receiver? See http://stackoverflow.com/questions/29229368
 
-      it { should have_content 'About Base' }
+      it { should have_content 'Welcome to Base!' }
     end
 
     describe '#headline_with_flash("Some title")' do

@@ -45,7 +45,7 @@ describe 'Editing user' do
         expect(page).to have_css 'h2', text: 'Actions'
 
         expect(page).to have_button 'Update User'
-        expect(page).to have_link 'Back to list of Users'
+        expect(page).to have_link 'List of Users'
       end
 
       expect {

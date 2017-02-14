@@ -1,8 +1,7 @@
 FactoryGirl.define do
   factory :page do
-    title "MyString"
-    content "MyText"
-    notes "MyText"
-    lock_version 1
+    title   'Page test title'
+    content 'Page test content'
+    notes   'Page test notes'
   end
 end

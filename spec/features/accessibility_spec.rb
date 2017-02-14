@@ -44,8 +44,8 @@ describe 'Accessibility' do
       visit root_path
       expect(page).to have_title 'Welcome to Base!'
 
-      visit page_path('about')
-      expect(page).to have_title 'About Base - Base'
+      visit page_path(create :page)
+      expect(page).to have_title 'Page test title - Base'
     end
 
     it 'prepends flash messages' do
