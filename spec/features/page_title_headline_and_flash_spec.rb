@@ -12,7 +12,7 @@ describe 'Page title, headline and flash' do
     visit page_path(create :page)
 
     expect(page).to have_title 'Page test title - Base'
-    expect(page).to have_css 'main h1', text: 'About Base'
+    expect(page).to have_css 'main h1', text: 'Page test title'
   end
 
   context 'with flash' do
