@@ -1,5 +1,5 @@
 class Page < ApplicationRecord
-  scope :appear_in_navigation, -> { where(appear_in_navigation: true) }
+  has_paper_trail only: [:title, :navigation_title, :content, :notes]
 
   validates :title, presence: true
   validates :navigation_title, presence: true
