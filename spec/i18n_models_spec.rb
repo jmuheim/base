@@ -60,6 +60,6 @@ describe 'I18n' do
   end
 
   def project_models
-    @project_models ||= ::ActiveRecord::Base.subclasses.collect { |type| type.name }.reject { |descendant| descendant =~ /^HABTM_|ActiveRecord|PaperTrail/ }.sort.map { |descendant| descendant.constantize }
+    @project_models ||= ::ActiveRecord::Base.subclasses.collect { |type| type.name }.reject { |descendant| descendant =~ /^HABTM_|ActiveRecord|PaperTrail|ApplicationRecord/ }.sort.map { |descendant| descendant.constantize }
   end
 end
