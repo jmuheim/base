@@ -1,5 +1,6 @@
 tr id=dom_id(page)
-  th.title = link_to page.title, page
+  th.title            = link_to page.title, page
+  td.navigation_title = page.navigation_title
 
   td.content
     = markdown page.content

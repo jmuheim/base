@@ -72,9 +72,10 @@ ActiveRecord::Schema.define(version: 20170214155853) do
     t.string   "navigation_title"
     t.text     "content"
     t.text     "notes"
-    t.integer  "lock_version",     default: 0, null: false
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
+    t.boolean  "system",           default: false
+    t.integer  "lock_version",     default: 0,     null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
   end
 
   create_table "roles", force: :cascade do |t|

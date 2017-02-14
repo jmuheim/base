@@ -6,10 +6,10 @@ en:
         created_at: Created at
         updated_at: Updated at
       page:
-        title: Title
-        navigation_title: Title in the navigation
         content: Content
+        navigation_title: Navigation title
         notes: Notes
+        title: Title
       role:
         created_at: Created at
         name: Name

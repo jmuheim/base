@@ -9,8 +9,8 @@ describe 'Editing page' do
     visit edit_page_path(@page)
 
     expect(page).to have_title 'Edit Page test title - Base'
-    expect(page).to have_active_navigation_items 'Success Criteria'
-    expect(page).to have_breadcrumbs 'Base', 'Pages', 'Page test title', 'Edit'
+    expect(page).to have_active_navigation_items 'Page test navigation title'
+    expect(page).to have_breadcrumbs 'Base', 'Page test navigation title', 'Edit'
     expect(page).to have_headline 'Edit Page test title'
 
     fill_in 'page_title',            with: 'A new title'

@@ -26,14 +26,14 @@ nav#navigation.container
             - navigation.item t('resources.create', resource: User.model_name.human), new_user_path if user_signed_in? && can?(:create, User)
 
           - Page.all.each do |page|
-            - navigation.item page.navigation_title, page_path(page), class: (:active if current_page? page_path(page))
+            - navigation.item page.navigation_title, page_path(page), class: (:active if request.path =~ /^#{page_path(page)}/)
 
         h3.sr-only = t '.meta_navigation'
 
         = semantic_navigation :meta_navigation, class: 'navbar-right' do |navigation|
           - if user_signed_in?
             - if current_user.has_role? :admin
-              - navigation.group t('.admin'), class: active_if_controller?(:pages) do
+              - navigation.group t('.admin') do
                 - if can? :create, Page
                   - navigation.item "#{icon :bars, type: :fa} #{t 'actions.resources_list', resources: Page.model_name.human(count: :other)}", pages_path
                   - navigation.item "#{icon :plus, type: :fa} #{t 'actions.new_resource', resource: Page.model_name.human}", new_page_path

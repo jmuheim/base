@@ -5,6 +5,7 @@ class CreatePages < ActiveRecord::Migration[5.0]
       t.string :navigation_title
       t.text :content
       t.text :notes
+      t.boolean :system, default: false
       t.integer :lock_version, null: false, default: 0
 
       t.timestamps

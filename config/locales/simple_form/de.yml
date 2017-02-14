@@ -4,6 +4,8 @@ de:
     error_notification:
       default_message: 'Bitte überprüfe die nachfolgenden Probleme:'
     hints:
+      page:
+        notes: Nur für den internen Gebrauch bestimmt (sind nicht öffentlich einsehbar)
       user:
         about: Schreib etwas über dich (Biographie, Interessen, Hobbies...). Du kannst Pandoc Markdown verwenden zum Formatieren.
         password_confirmation: Gib dein Passwort nochmal ein, um Tippfehler zu vermeiden

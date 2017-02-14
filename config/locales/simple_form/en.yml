@@ -4,6 +4,8 @@ en:
     error_notification:
       default_message: 'Please review the problems below:'
     hints:
+      page:
+        notes: Only for internal usage (aren't publicly viewable)
       user:
         about: Write something about you (biography, interests, hobbies...). You can use Pandoc Markdown to add basic formatting.
         password_confirmation: Retype your password to avoid typing errors

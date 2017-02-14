@@ -2,7 +2,6 @@
 de:
   actions:
     actions: Aktionen
-    resources_list: "%{resources}-Liste"
     destroy: Löschen
     destroy_resource: "%{resource} löschen"
     destroy_resource_confirmation_question: "%{resource} #%{id} wirklich löschen?"
@@ -13,6 +12,7 @@ de:
     new: Erstellen
     new_resource: "%{resource} erstellen"
     remove_filter: Filter entfernen
+    resources_list: "%{resources}-Liste"
     results: Resultate
     show: Anzeigen
     show_resource: "%{resource} anzeigen"

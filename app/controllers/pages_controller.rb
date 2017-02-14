@@ -23,22 +23,25 @@ class PagesController < ApplicationController
 
   def page_params
     params.require(:page).permit(:title,
+                                 :navigation_title,
                                  :content,
                                  :notes,
                                  :lock_version)
   end
 
   def add_base_breadcrumbs
-    # add_breadcrumb Page.model_name.human(count: :other), pages_path unless action_name == 'index'
+    add_breadcrumb Page.model_name.human(count: :other), pages_path if [:new, :create].include? action_name.to_sym
 
     if ['edit', 'update'].include? action_name
-      add_breadcrumb @page.title, page_path(@page)
+      add_breadcrumb @page.navigation_title, page_path(@page)
       @last_breadcrumb = t 'actions.edit'
     end
 
     if ['new', 'create'].include? action_name
       @last_breadcrumb = t 'actions.new'
     end
+
+    @last_breadcrumb = @page.navigation_title if action_name == 'show'
   end
 
   # before_action :set_view

@@ -6,10 +6,10 @@ de:
         created_at: Erstellt am
         updated_at: Aktualisiert am
       page:
-        title: Titel
-        navigation_title: Titel in der Navigation
         content: Inhalt
+        navigation_title: Navigations-Titel
         notes: Notizen
+        title: Titel
       role:
         created_at: Erstellt am
         name: Name

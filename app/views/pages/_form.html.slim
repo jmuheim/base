@@ -5,10 +5,11 @@
 
   = panel do |panel|
     = panel.heading do
-      = Page.model_name.human
+      = t('shared.form.details')
 
     = panel.body do
       = f.input :title
+      = f.input :navigation_title
       = f.input :content, as: :text_fullscreen
       = f.input :notes, as: :text_fullscreen
 

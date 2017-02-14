@@ -30,6 +30,10 @@ class Ability
       cannot :destroy, User do |user|
         user == current_user
       end
+
+      cannot :destroy, Page do |page|
+        page.system?
+      end
     end
   end
 end
