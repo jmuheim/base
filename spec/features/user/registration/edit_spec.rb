@@ -172,7 +172,7 @@ describe 'Editing account' do
       click_button 'Save'
 
       expect(page).to have_flash 'Your account has been updated successfully.'
-      expect(File.basename(@user.reload.avatar.to_s)).to eq 'file.png'
+      expect(@user.reload.avatar.file.size).to eq base64_other_image[:size]
     end
 
     it 'allows to remove a cached uploaded avatar after validation errors' do

@@ -56,7 +56,7 @@ describe 'Signing up' do
 
       click_button 'Sign up'
 
-      expect(page).to have_flash 'Notice: Welcome! You have signed up successfully.'
+      expect(page).to have_flash 'Welcome! You have signed up successfully.'
       expect(File.basename(User.last.avatar.to_s)).to eq 'file.png'
     end
 
@@ -83,7 +83,7 @@ describe 'Signing up' do
 
       click_button 'Sign up'
 
-      expect(page).to have_flash 'Notice: Welcome! You have signed up successfully.'
+      expect(page).to have_flash 'Welcome! You have signed up successfully.'
       expect(File.basename(User.last.avatar.to_s)).to eq 'file.png'
     end
 
@@ -108,7 +108,7 @@ describe 'Signing up' do
 
       click_button 'Sign up'
 
-      expect(page).to have_flash 'Notice: Welcome! You have signed up successfully.'
+      expect(page).to have_flash 'Welcome! You have signed up successfully.'
       expect(User.last.avatar.to_s).to eq ''
     end
   end

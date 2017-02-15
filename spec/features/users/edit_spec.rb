@@ -108,12 +108,12 @@ describe 'Editing user' do
         .and change { File.basename(@user.curriculum_vitae.to_s) }.to('other_document.txt')
     end
 
-    describe 'curriculum_vitae upload' do
+    describe 'avatar upload' do
       it 'caches an uploaded curriculum_vitae during validation errors' do
         visit edit_user_path @user
 
         # Upload a file
-        attach_file 'user_curriculum_vitae', dummy_file_path('document.txt')
+        fill_in 'user_avatar', with: base64_image[:data]
 
         # Trigger validation error
         fill_in 'user_name', with: ''
@@ -127,14 +127,14 @@ describe 'Editing user' do
 
         expect(page).to have_flash 'User was successfully updated.'
 
-        expect(File.basename(@user.reload.curriculum_vitae.to_s)).to eq 'document.txt'
+        expect(File.basename(@user.reload.avatar.to_s)).to eq 'file.png'
       end
 
-      it 'replaces a cached uploaded curriculum_vitae with a new one after validation errors' do
+      it 'replaces a cached uploaded avatar with a new one after validation errors' do
         visit edit_user_path @user
 
         # Upload a file
-        attach_file 'user_curriculum_vitae', dummy_file_path('document.txt')
+        fill_in 'user_avatar', with: base64_image[:data]
 
         # Trigger validation error
         fill_in 'user_name', with: ''
@@ -142,7 +142,7 @@ describe 'Editing user' do
         expect(page).to have_flash('User could not be updated.').of_type :alert
 
         # Upload another file
-        attach_file 'user_curriculum_vitae', dummy_file_path('other_document.txt')
+        find('#user_avatar', visible: false).set base64_other_image[:data]
 
         # Make validations pass
         fill_in 'user_name', with: 'john'
@@ -150,14 +150,14 @@ describe 'Editing user' do
         click_button 'Update'
 
         expect(page).to have_flash 'User was successfully updated.'
-        expect(File.basename(@user.reload.curriculum_vitae.to_s)).to eq 'other_document.txt'
+        expect(@user.reload.avatar.file.size).to eq base64_other_image[:size]
       end
 
-      it 'allows to remove a cached uploaded curriculum_vitae after validation errors' do
+      it 'allows to remove a cached uploaded avatar after validation errors' do
         visit edit_user_path @user
 
         # Upload a file
-        attach_file 'user_curriculum_vitae', dummy_file_path('document.txt')
+        fill_in 'user_avatar', with: base64_image[:data]
 
         # Trigger validation error
         fill_in 'user_name', with: ''
@@ -165,7 +165,7 @@ describe 'Editing user' do
         expect(page).to have_flash('User could not be updated.').of_type :alert
 
         # Remove curriculum_vitae
-        check 'user_remove_curriculum_vitae'
+        check 'user_remove_avatar'
 
         # Make validations pass
         fill_in 'user_name', with: 'john'
@@ -173,18 +173,18 @@ describe 'Editing user' do
         click_button 'Update'
 
         expect(page).to have_flash 'User was successfully updated.'
-        expect(@user.reload.curriculum_vitae.to_s).to eq ''
+        expect(@user.reload.avatar.to_s).to eq ''
       end
 
-      it 'allows to remove an uploaded curriculum_vitae' do
-        @user.update_attributes! curriculum_vitae: File.open(dummy_file_path('document.txt'))
+      it 'allows to remove an uploaded avatar' do
+        @user.update_attributes! avatar: File.open(dummy_file_path('image.jpg'))
 
         visit edit_user_path @user
-        check 'user_remove_curriculum_vitae'
+        check 'user_remove_avatar'
 
         expect {
           click_button 'Update'
-        }.to change { File.basename User.find(@user.id).curriculum_vitae.to_s }.from('document.txt').to eq '' # Here @user.reload works! Not the same as in https://github.com/carrierwaveuploader/carrierwave/issues/1752!
+        }.to change { File.basename User.find(@user.id).avatar.to_s }.from('image.jpg').to eq '' # Here @user.reload works! Not the same as in https://github.com/carrierwaveuploader/carrierwave/issues/1752!
 
         expect(page).to have_flash 'User was successfully updated.'
       end
