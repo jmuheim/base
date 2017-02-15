@@ -19,7 +19,8 @@ describe 'Creating user' do
 
     expect(page).to have_css '#user_name[maxlength="100"]'
 
-    attach_file 'user_avatar', dummy_file_path('other_image.jpg')
+    find('#user_curriculum_vitae', visible: false).set base64_image[:data]
+    attach_file 'user_curriculum_vitae', dummy_file_path('document.txt')
 
     within '.actions' do
       expect(page).to have_css 'h2', text: 'Actions'
@@ -33,13 +34,12 @@ describe 'Creating user' do
     expect(page).to have_flash 'User was successfully created.'
   end
 
-  # These specs make sure that the rather tricky image upload things are working as expected
   describe 'avatar upload' do
     it 'caches an uploaded avatar during validation errors' do
       visit new_user_path
 
       # Upload a file
-      attach_file 'user_avatar', dummy_file_path('image.jpg')
+      fill_in 'user_avatar', with: base64_image[:data]
 
       # Trigger validation error
       click_button 'Create User'
@@ -54,21 +54,21 @@ describe 'Creating user' do
       click_button 'Create User'
 
       expect(page).to have_flash 'User was successfully created.'
-      expect(File.basename(User.last.avatar.to_s)).to eq 'image.jpg'
+      expect(File.basename(User.last.avatar.to_s)).to eq 'file.png'
     end
 
     it 'replaces a cached uploaded avatar with a new one after validation errors' do
       visit new_user_path
 
       # Upload a file
-      attach_file 'user_avatar', dummy_file_path('image.jpg')
+      fill_in 'user_avatar', with: base64_image[:data]
 
       # Trigger validation error
       click_button 'Create User'
       expect(page).to have_flash('User could not be created.').of_type :alert
 
       # Upload another file
-      attach_file 'user_avatar', dummy_file_path('other_image.jpg')
+      find('#user_avatar', visible: false).set base64_other_image[:data]
 
       # Make validations pass
       fill_in 'user_name',                  with: 'newuser'
@@ -79,20 +79,20 @@ describe 'Creating user' do
       click_button 'Create User'
 
       expect(page).to have_flash 'User was successfully created.'
-      expect(File.basename(User.last.avatar.to_s)).to eq 'other_image.jpg'
+      expect(User.last.avatar.file.size).to eq base64_other_image[:size]
     end
 
     it 'allows to remove a cached uploaded avatar after validation errors' do
       visit new_user_path
 
       # Upload a file
-      attach_file 'user_avatar', dummy_file_path('image.jpg')
+      fill_in 'user_avatar', with: base64_image[:data]
 
       # Trigger validation error
       click_button 'Create User'
       expect(page).to have_flash('User could not be created.').of_type :alert
 
-      # Remove avatar
+      # Remove curriculum_vitae
       check 'user_remove_avatar'
 
       # Make validations pass
@@ -105,6 +105,80 @@ describe 'Creating user' do
 
       expect(page).to have_flash 'User was successfully created.'
       expect(User.last.avatar.to_s).to eq ''
+    end
+  end
+
+  describe 'curriculum_vitae upload' do
+    it 'caches an uploaded curriculum_vitae during validation errors' do
+      visit new_user_path
+
+      # Upload a file
+      attach_file 'user_curriculum_vitae', dummy_file_path('document.txt')
+
+      # Trigger validation error
+      click_button 'Create User'
+      expect(page).to have_flash('User could not be created.').of_type :alert
+
+      # Make validations pass
+      fill_in 'user_name',                  with: 'newuser'
+      fill_in 'user_email',                 with: 'newuser@example.com'
+      fill_in 'user_password',              with: 'somegreatpassword'
+      fill_in 'user_password_confirmation', with: 'somegreatpassword'
+
+      click_button 'Create User'
+
+      expect(page).to have_flash 'User was successfully created.'
+      expect(File.basename(User.last.curriculum_vitae.to_s)).to eq 'document.txt'
+    end
+
+    it 'replaces a cached uploaded curriculum_vitae with a new one after validation errors' do
+      visit new_user_path
+
+      # Upload a file
+      attach_file 'user_curriculum_vitae', dummy_file_path('document.txt')
+
+      # Trigger validation error
+      click_button 'Create User'
+      expect(page).to have_flash('User could not be created.').of_type :alert
+
+      # Upload another file
+      attach_file 'user_curriculum_vitae', dummy_file_path('other_document.txt')
+
+      # Make validations pass
+      fill_in 'user_name',                  with: 'newuser'
+      fill_in 'user_email',                 with: 'newuser@example.com'
+      fill_in 'user_password',              with: 'somegreatpassword'
+      fill_in 'user_password_confirmation', with: 'somegreatpassword'
+
+      click_button 'Create User'
+
+      expect(page).to have_flash 'User was successfully created.'
+      expect(File.basename(User.last.curriculum_vitae.to_s)).to eq 'other_document.txt'
+    end
+
+    it 'allows to remove a cached uploaded curriculum_vitae after validation errors' do
+      visit new_user_path
+
+      # Upload a file
+      attach_file 'user_curriculum_vitae', dummy_file_path('document.txt')
+
+      # Trigger validation error
+      click_button 'Create User'
+      expect(page).to have_flash('User could not be created.').of_type :alert
+
+      # Remove curriculum_vitae
+      check 'user_remove_curriculum_vitae'
+
+      # Make validations pass
+      fill_in 'user_name',                  with: 'newuser'
+      fill_in 'user_email',                 with: 'newuser@example.com'
+      fill_in 'user_password',              with: 'somegreatpassword'
+      fill_in 'user_password_confirmation', with: 'somegreatpassword'
+
+      click_button 'Create User'
+
+      expect(page).to have_flash 'User was successfully created.'
+      expect(User.last.curriculum_vitae.to_s).to eq ''
     end
   end
 

@@ -18,6 +18,7 @@ de:
       user:
         about: "Über"
         avatar: Profilbild
+        curriculum_vitae: Lebenslauf
         confirmed_at: Bestätigt am
         created_at: Erstellt am
         current_password: Aktuelles Passwort

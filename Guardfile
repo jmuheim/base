@@ -62,8 +62,7 @@ guard :bundler do
 end
 
 guard :migrate, cmd:          'spring rake',
-                run_on_start: false,
-                test_clone:   true do
+                run_on_start: false do
   watch(%r{^db/migrate/(\d+).+\.rb})
   watch('db/seeds.rb')
 end

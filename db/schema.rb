@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170214155853) do
+ActiveRecord::Schema.define(version: 20170215124356) do
 
   create_table "activities", force: :cascade do |t|
     t.string   "trackable_type"

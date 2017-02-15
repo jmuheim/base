@@ -21,6 +21,10 @@ FactoryGirl.define do
       avatar { File.open dummy_file_path('image.jpg') }
     end
 
+    trait :with_curriculum_vitae do
+      curriculum_vitae { File.open dummy_file_path('document.txt') }
+    end
+
     factory :admin do
       after(:create) do |user|
         user.roles << create(:role, name: 'admin')

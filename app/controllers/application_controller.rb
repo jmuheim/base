@@ -27,8 +27,11 @@ class ApplicationController < ActionController::Base
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit :sign_up, keys: [ :name, :email, :about,
                                                         :password, :password_confirmation,
-                                                        :remember_me, :avatar,
-                                                        :avatar_cache, :remove_avatar
+                                                        :remember_me,
+                                                        :avatar, :avatar_cache, :remove_avatar,
+                                                        :curriculum_vitae,
+                                                        :curriculum_vitae_cache,
+                                                        :remove_curriculum_vitae
                                                       ]
 
     devise_parameter_sanitizer.permit :sign_in, keys: [ :name, :email, :password,
@@ -38,7 +41,10 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit :account_update, keys: [ :name, :email, :about,
                                                                :password, :password_confirmation,
                                                                :current_password, :avatar,
-                                                               :avatar_cache, :remove_avatar
+                                                               :avatar_cache, :remove_avatar,
+                                                               :curriculum_vitae,
+                                                               :curriculum_vitae_cache,
+                                                               :remove_curriculum_vitae
                                                              ]
   end
 
