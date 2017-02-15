@@ -37,5 +37,5 @@ class App.ClipboardToTextareaPasteabilizer
     @$previewImage.attr('src', dataUrl) # Set image preview
 
     @$previewContainer.toggle() # Show the image preview
-    @$input.toggle()     # Hide the textarea
-    @$previewContainer.focus()
+    @$previewContainer.focus()  # Focus the image preview
+    @$input.toggle()            # Hide the textarea
