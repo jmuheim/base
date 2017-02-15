@@ -26,8 +26,10 @@
                     = simple_format h stale_info.interim_value
                   - when :string
                     - case stale_info.interim_value
-                    - when AbstractUploader
+                    - when ImageUploader
                       = image_tag stale_info.interim_value.url, alt: t('.interim_image')
+                    - when DocumentUploader
+                      = link_to stale_info.interim_value.file.identifier, stale_info.interim_value.url
                     - else
                       = h stale_info.interim_value
                   - else
@@ -39,8 +41,10 @@
                     = simple_format h stale_info.new_value
                   - when :string
                     - case stale_info.new_value
-                    - when AbstractUploader
+                    - when ImageUploader
                       = image_tag stale_info.new_value.url, alt: t('.new_image')
+                    - when DocumentUploader
+                      = link_to stale_info.new_value.file.identifier, stale_info.new_value.url
                     - else
                       = h stale_info.new_value
                   - else
