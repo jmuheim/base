@@ -163,7 +163,7 @@ describe 'Editing account' do
 
       # Upload another file
       scroll_by(0, 10000) # Otherwise the footer overlaps the element and results in a Capybara::Poltergeist::MouseEventFailed, see http://stackoverflow.com/questions/4424790/cucumber-capybara-scroll-to-bottom-of-page
-      click_link 'Click to paste another Avatar image'
+      click_link 'Click to paste another Profile picture image'
       fill_in 'user_avatar',  with: base64_other_image[:data]
 
       # Make validations pass
