@@ -4,6 +4,7 @@ class App.Init
 
     @makeJumpLinksVisibleOnFocus @$el
     @makeFormsAccessible @$el
+    @makeTextareasPasteable @$el
     @initTooltips @$el
     @initFancybox @$el
     @makeTextareasFullscreenizable @$el
@@ -15,6 +16,10 @@ class App.Init
   makeFormsAccessible: ($el) ->
     $el.find('form.simple_form').each ->
       new App.FormAccessibilizer @
+
+  makeTextareasPasteable: ($el) ->
+    $el.find('[data-paste]').each ->
+      new App.ClipboardToTextareaPasteabilizer @
 
   initTooltips: ($el) ->
     # Bootstrap tooltips

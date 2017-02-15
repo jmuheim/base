@@ -12,11 +12,13 @@
 #= require cocoon
 #= require jasny-bootstrap
 #= require fancybox
+#= require paste
 #
 #= require_self
 #
 # --- Add custom requires under here! ---
 #= require example_script
+#= require clipboard_to_textarea_pasteabilizer
 #= require form_accessibilizer
 #= require textarea_fullscreenizer
 #= require visibility_on_focus_handler

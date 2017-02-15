@@ -8,12 +8,14 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :confirmable, :lockable, authentication_keys: [:login]
 
-  mount_uploader :avatar, AvatarUploader
+  mount_base64_uploader :avatar, AvatarUploader
+  mount_uploader :curriculum_vitae, DocumentUploader
 
   attr_accessor :login
 
   validates :name, presence: true
   validates :name, uniqueness: {case_sensitive: false}
+  validates :avatar, file_size: {maximum: (Rails.env.test? ? 15 : 500).kilobytes.to_i} # TODO: It would be nice to stub the maximum within the spec itself. See https://gist.github.com/chrisbloom7/1009861#comment-1220820
   validates :avatar, file_size: {maximum: (Rails.env.test? ? 15 : 500).kilobytes.to_i} # TODO: It would be nice to stub the maximum within the spec itself. See https://gist.github.com/chrisbloom7/1009861#comment-1220820
 
   # https://github.com/plataformatec/devise/wiki/How-To:-Allow-users-to-sign-in-using-their-username-or-email-address

@@ -18,6 +18,7 @@ en:
       user:
         about: About
         avatar: Profile picture
+        curriculum_vitae: Curriculum Vitae
         confirmed_at: Confirmed at
         created_at: Created at
         current_password: Current password
