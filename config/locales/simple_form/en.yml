@@ -11,7 +11,7 @@ en:
         password_confirmation: Retype your password to avoid typing errors
     inputs:
       paste:
-        click_to_paste_another_image: Click to paste another image
+        click_to_paste_another_image: Click to paste another %{attribute} image
         image_preview: Image preview
         paste_here: Paste here
       text_fullscreen:

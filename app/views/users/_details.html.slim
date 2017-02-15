@@ -12,7 +12,7 @@ dl.dl-horizontal
 
   - if user.curriculum_vitae?
     dt = User.human_attribute_name :curriculum_vitae
-    dd.avatar = link_to user.curriculum_vitae.file.identifier, user.curriculum_vitae.url
+    dd.curriculum_vitae = link_to user.curriculum_vitae.file.identifier, user.curriculum_vitae.url
 
 - if user.about?
   .about

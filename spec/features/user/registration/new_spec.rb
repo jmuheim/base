@@ -111,7 +111,7 @@ describe 'Signing up' do
     end
   end
 
-  describe 'avatar upload', focus: true do
+  describe 'avatar upload' do
     it 'caches an uploaded avatar during validation errors' do
       visit new_user_registration_path
 
