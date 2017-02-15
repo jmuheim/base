@@ -51,86 +51,6 @@ describe 'Editing account' do
     }.not_to change { @user.reload.encrypted_password }
   end
 
-  describe 'curriculum_vitae upload' do
-    it 'caches an uploaded curriculum_vitae during validation errors' do
-      visit edit_user_registration_path
-
-      # Upload a file
-      attach_file 'user_curriculum_vitae', dummy_file_path('document.txt')
-
-      # Trigger validation error
-      click_button 'Save'
-      expect(page).to have_flash('User could not be updated.').of_type :alert
-
-      # Make validations pass
-      fill_in 'user_current_password', with: 's3cur3p@ssw0rd'
-
-      click_button 'Save'
-
-      expect(page).to have_flash 'Your account has been updated successfully.'
-      expect(File.basename(User.find(@user.id).curriculum_vitae.to_s)).to eq 'document.txt'
-    end
-
-    it 'replaces a cached uploaded curriculum_vitae with a new one after validation errors' do
-      visit edit_user_registration_path
-
-      # Upload a file
-      attach_file 'user_curriculum_vitae', dummy_file_path('document.txt')
-
-      # Trigger validation error
-      click_button 'Save'
-      expect(page).to have_flash('User could not be updated.').of_type :alert
-
-      # Upload another file
-      attach_file 'user_curriculum_vitae', dummy_file_path('other_document.txt')
-
-      # Make validations pass
-      fill_in 'user_current_password', with: 's3cur3p@ssw0rd'
-
-      click_button 'Save'
-
-      expect(page).to have_flash 'Your account has been updated successfully.'
-      expect(File.basename(User.find(@user.id).curriculum_vitae.to_s)).to eq 'other_document.txt'
-    end
-
-    it 'allows to remove a cached uploaded curriculum_vitae after validation errors' do
-      visit edit_user_registration_path
-
-      # Upload a file
-      attach_file 'user_curriculum_vitae', dummy_file_path('document.txt')
-
-      # Trigger validation error
-      click_button 'Save'
-      expect(page).to have_flash('User could not be updated.').of_type :alert
-
-      # Remove curriculum_vitae
-      check 'user_remove_curriculum_vitae'
-
-      # Make validations pass
-      fill_in 'user_current_password', with: 's3cur3p@ssw0rd'
-
-      click_button 'Save'
-
-      expect(page).to have_flash 'Your account has been updated successfully.'
-      expect(User.find(@user.id).curriculum_vitae.to_s).to eq ''
-    end
-
-    it 'allows to remove an uploaded curriculum_vitae' do
-      @user.update_attributes! curriculum_vitae: File.open(dummy_file_path('document.txt'))
-
-      visit edit_user_registration_path
-      check 'user_remove_curriculum_vitae'
-      fill_in 'user_current_password', with: 's3cur3p@ssw0rd'
-
-      expect {
-        click_button 'Save'
-      }.to change { File.basename User.find(@user.id).curriculum_vitae.to_s }.from('document.txt').to eq '' # Checking upon @user doesn't work, see https://github.com/carrierwaveuploader/carrierwave/issues/1752
-
-      expect(page).to have_flash 'Your account has been updated successfully.'
-    end
-  end
-
-  # These specs make sure that the rather tricky image upload things are working as expected
   describe 'avatar upload' do
     it 'caches an uploaded avatar during validation errors' do
       visit edit_user_registration_path
@@ -210,6 +130,85 @@ describe 'Editing account' do
       expect {
         click_button 'Save'
       }.to change { File.basename User.find(@user.id).avatar.to_s }.from('image.jpg').to eq '' # Here @user.reload works! Not the same as in https://github.com/carrierwaveuploader/carrierwave/issues/1752!
+
+      expect(page).to have_flash 'Your account has been updated successfully.'
+    end
+  end
+
+  describe 'curriculum_vitae upload' do
+    it 'caches an uploaded curriculum_vitae during validation errors' do
+      visit edit_user_registration_path
+
+      # Upload a file
+      attach_file 'user_curriculum_vitae', dummy_file_path('document.txt')
+
+      # Trigger validation error
+      click_button 'Save'
+      expect(page).to have_flash('User could not be updated.').of_type :alert
+
+      # Make validations pass
+      fill_in 'user_current_password', with: 's3cur3p@ssw0rd'
+
+      click_button 'Save'
+
+      expect(page).to have_flash 'Your account has been updated successfully.'
+      expect(File.basename(User.find(@user.id).curriculum_vitae.to_s)).to eq 'document.txt'
+    end
+
+    it 'replaces a cached uploaded curriculum_vitae with a new one after validation errors' do
+      visit edit_user_registration_path
+
+      # Upload a file
+      attach_file 'user_curriculum_vitae', dummy_file_path('document.txt')
+
+      # Trigger validation error
+      click_button 'Save'
+      expect(page).to have_flash('User could not be updated.').of_type :alert
+
+      # Upload another file
+      attach_file 'user_curriculum_vitae', dummy_file_path('other_document.txt')
+
+      # Make validations pass
+      fill_in 'user_current_password', with: 's3cur3p@ssw0rd'
+
+      click_button 'Save'
+
+      expect(page).to have_flash 'Your account has been updated successfully.'
+      expect(File.basename(User.find(@user.id).curriculum_vitae.to_s)).to eq 'other_document.txt'
+    end
+
+    it 'allows to remove a cached uploaded curriculum_vitae after validation errors' do
+      visit edit_user_registration_path
+
+      # Upload a file
+      attach_file 'user_curriculum_vitae', dummy_file_path('document.txt')
+
+      # Trigger validation error
+      click_button 'Save'
+      expect(page).to have_flash('User could not be updated.').of_type :alert
+
+      # Remove curriculum_vitae
+      check 'user_remove_curriculum_vitae'
+
+      # Make validations pass
+      fill_in 'user_current_password', with: 's3cur3p@ssw0rd'
+
+      click_button 'Save'
+
+      expect(page).to have_flash 'Your account has been updated successfully.'
+      expect(User.find(@user.id).curriculum_vitae.to_s).to eq ''
+    end
+
+    it 'allows to remove an uploaded curriculum_vitae' do
+      @user.update_attributes! curriculum_vitae: File.open(dummy_file_path('document.txt'))
+
+      visit edit_user_registration_path
+      check 'user_remove_curriculum_vitae'
+      fill_in 'user_current_password', with: 's3cur3p@ssw0rd'
+
+      expect {
+        click_button 'Save'
+      }.to change { File.basename User.find(@user.id).curriculum_vitae.to_s }.from('document.txt').to eq '' # Checking upon @user doesn't work, see https://github.com/carrierwaveuploader/carrierwave/issues/1752
 
       expect(page).to have_flash 'Your account has been updated successfully.'
     end

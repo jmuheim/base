@@ -109,7 +109,7 @@ describe 'Editing user' do
     end
 
     describe 'avatar upload' do
-      it 'caches an uploaded curriculum_vitae during validation errors' do
+      it 'caches an uploaded avatar during validation errors' do
         visit edit_user_path @user
 
         # Upload a file
@@ -164,7 +164,7 @@ describe 'Editing user' do
         click_button 'Update'
         expect(page).to have_flash('User could not be updated.').of_type :alert
 
-        # Remove curriculum_vitae
+        # Remove avatar
         check 'user_remove_avatar'
 
         # Make validations pass
