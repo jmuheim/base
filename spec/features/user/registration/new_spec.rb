@@ -37,80 +37,6 @@ describe 'Signing up' do
     expect(page).to have_flash 'Your email address has been successfully confirmed.'
   end
 
-  describe 'curriculum_vitae upload' do
-    it 'caches an uploaded curriculum_vitae during validation errors' do
-      visit new_user_registration_path
-
-      # Upload a file
-      attach_file 'user_curriculum_vitae', dummy_file_path('document.txt')
-
-      # Trigger validation error
-      click_button 'Sign up'
-      expect(page).to have_flash('User could not be created.').of_type :alert
-
-      # Make validations pass
-      fill_in 'user_name',                  with: 'newuser'
-      fill_in 'user_email',                 with: 'newuser@example.com'
-      fill_in 'user_password',              with: 'somegreatpassword'
-      fill_in 'user_password_confirmation', with: 'somegreatpassword'
-
-      click_button 'Sign up'
-
-      expect(page).to have_flash 'Welcome! You have signed up successfully.'
-      expect(File.basename(User.last.curriculum_vitae.to_s)).to eq 'document.txt'
-    end
-
-    it 'replaces a cached uploaded curriculum_vitae with a new one after validation errors' do
-      visit new_user_registration_path
-
-      # Upload a file
-      attach_file 'user_curriculum_vitae', dummy_file_path('document.txt')
-
-      # Trigger validation error
-      click_button 'Sign up'
-      expect(page).to have_flash('User could not be created.').of_type :alert
-
-      # Upload another file
-      attach_file 'user_curriculum_vitae', dummy_file_path('other_document.txt')
-
-      # Make validations pass
-      fill_in 'user_name',                  with: 'newuser'
-      fill_in 'user_email',                 with: 'newuser@example.com'
-      fill_in 'user_password',              with: 'somegreatpassword'
-      fill_in 'user_password_confirmation', with: 'somegreatpassword'
-
-      click_button 'Sign up'
-
-      expect(page).to have_flash 'Welcome! You have signed up successfully.'
-      expect(File.basename(User.last.curriculum_vitae.to_s)).to eq 'other_document.txt'
-    end
-
-    it 'allows to remove a cached uploaded curriculum_vitae after validation errors' do
-      visit new_user_registration_path
-
-      # Upload a file
-      attach_file 'user_curriculum_vitae', dummy_file_path('document.txt')
-
-      # Trigger validation error
-      click_button 'Sign up'
-      expect(page).to have_flash('User could not be created.').of_type :alert
-
-      # Remove curriculum_vitae
-      check 'user_remove_curriculum_vitae'
-
-      # Make validations pass
-      fill_in 'user_name',                  with: 'newuser'
-      fill_in 'user_email',                 with: 'newuser@example.com'
-      fill_in 'user_password',              with: 'somegreatpassword'
-      fill_in 'user_password_confirmation', with: 'somegreatpassword'
-
-      click_button 'Sign up'
-
-      expect(page).to have_flash 'Welcome! You have signed up successfully.'
-      expect(User.last.curriculum_vitae.to_s).to eq ''
-    end
-  end
-
   describe 'avatar upload' do
     it 'caches an uploaded avatar during validation errors' do
       visit new_user_registration_path
@@ -184,6 +110,80 @@ describe 'Signing up' do
 
       expect(page).to have_flash 'Notice: Welcome! You have signed up successfully.'
       expect(User.last.avatar.to_s).to eq ''
+    end
+  end
+
+  describe 'curriculum_vitae upload' do
+    it 'caches an uploaded curriculum_vitae during validation errors' do
+      visit new_user_registration_path
+
+      # Upload a file
+      attach_file 'user_curriculum_vitae', dummy_file_path('document.txt')
+
+      # Trigger validation error
+      click_button 'Sign up'
+      expect(page).to have_flash('User could not be created.').of_type :alert
+
+      # Make validations pass
+      fill_in 'user_name',                  with: 'newuser'
+      fill_in 'user_email',                 with: 'newuser@example.com'
+      fill_in 'user_password',              with: 'somegreatpassword'
+      fill_in 'user_password_confirmation', with: 'somegreatpassword'
+
+      click_button 'Sign up'
+
+      expect(page).to have_flash 'Welcome! You have signed up successfully.'
+      expect(File.basename(User.last.curriculum_vitae.to_s)).to eq 'document.txt'
+    end
+
+    it 'replaces a cached uploaded curriculum_vitae with a new one after validation errors' do
+      visit new_user_registration_path
+
+      # Upload a file
+      attach_file 'user_curriculum_vitae', dummy_file_path('document.txt')
+
+      # Trigger validation error
+      click_button 'Sign up'
+      expect(page).to have_flash('User could not be created.').of_type :alert
+
+      # Upload another file
+      attach_file 'user_curriculum_vitae', dummy_file_path('other_document.txt')
+
+      # Make validations pass
+      fill_in 'user_name',                  with: 'newuser'
+      fill_in 'user_email',                 with: 'newuser@example.com'
+      fill_in 'user_password',              with: 'somegreatpassword'
+      fill_in 'user_password_confirmation', with: 'somegreatpassword'
+
+      click_button 'Sign up'
+
+      expect(page).to have_flash 'Welcome! You have signed up successfully.'
+      expect(File.basename(User.last.curriculum_vitae.to_s)).to eq 'other_document.txt'
+    end
+
+    it 'allows to remove a cached uploaded curriculum_vitae after validation errors' do
+      visit new_user_registration_path
+
+      # Upload a file
+      attach_file 'user_curriculum_vitae', dummy_file_path('document.txt')
+
+      # Trigger validation error
+      click_button 'Sign up'
+      expect(page).to have_flash('User could not be created.').of_type :alert
+
+      # Remove curriculum_vitae
+      check 'user_remove_curriculum_vitae'
+
+      # Make validations pass
+      fill_in 'user_name',                  with: 'newuser'
+      fill_in 'user_email',                 with: 'newuser@example.com'
+      fill_in 'user_password',              with: 'somegreatpassword'
+      fill_in 'user_password_confirmation', with: 'somegreatpassword'
+
+      click_button 'Sign up'
+
+      expect(page).to have_flash 'Welcome! You have signed up successfully.'
+      expect(User.last.curriculum_vitae.to_s).to eq ''
     end
   end
 end
