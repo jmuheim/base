@@ -38,3 +38,4 @@ class App.ClipboardToTextareaPasteabilizer
 
     @$previewContainer.toggle() # Show the image preview
     @$input.toggle()     # Hide the textarea
+    @$previewContainer.focus()
