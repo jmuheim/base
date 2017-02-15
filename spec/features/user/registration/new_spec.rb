@@ -111,77 +111,79 @@ describe 'Signing up' do
     end
   end
 
-  # describe 'avatar upload', focus: true do
-  #   it 'caches an uploaded avatar during validation errors' do
-  #     visit new_user_registration_path
-  #
-  #     # Upload a file
-  #     attach_file 'user_avatar', dummy_file_path('image.jpg')
-  #
-  #     # Trigger validation error
-  #     click_button 'Sign up'
-  #     expect(page).to have_flash('User could not be created.').of_type :alert
-  #
-  #     # Make validations pass
-  #     fill_in 'user_name',                  with: 'newuser'
-  #     fill_in 'user_email',                 with: 'newuser@example.com'
-  #     fill_in 'user_password',              with: 'somegreatpassword'
-  #     fill_in 'user_password_confirmation', with: 'somegreatpassword'
-  #
-  #     click_button 'Sign up'
-  #
-  #     expect(page).to have_flash 'Welcome! You have signed up successfully.'
-  #     expect(File.basename(User.last.avatar.to_s)).to eq 'image.jpg'
-  #   end
-  #
-  #   it 'replaces a cached uploaded avatar with a new one after validation errors' do
-  #     visit new_user_registration_path
-  #
-  #     # Upload a file
-  #     attach_file 'user_avatar', dummy_file_path('image.jpg')
-  #
-  #     # Trigger validation error
-  #     click_button 'Sign up'
-  #     expect(page).to have_flash('User could not be created.').of_type :alert
-  #
-  #     # Upload another file
-  #     attach_file 'user_avatar', dummy_file_path('other_image.jpg')
-  #
-  #     # Make validations pass
-  #     fill_in 'user_name',                  with: 'newuser'
-  #     fill_in 'user_email',                 with: 'newuser@example.com'
-  #     fill_in 'user_password',              with: 'somegreatpassword'
-  #     fill_in 'user_password_confirmation', with: 'somegreatpassword'
-  #
-  #     click_button 'Sign up'
-  #
-  #     expect(page).to have_flash 'Welcome! You have signed up successfully.'
-  #     expect(File.basename(User.last.avatar.to_s)).to eq 'other_image.jpg'
-  #   end
-  #
-  #   it 'allows to remove a cached uploaded avatar after validation errors' do
-  #     visit new_user_registration_path
-  #
-  #     # Upload a file
-  #     attach_file 'user_avatar', dummy_file_path('image.jpg')
-  #
-  #     # Trigger validation error
-  #     click_button 'Sign up'
-  #     expect(page).to have_flash('User could not be created.').of_type :alert
-  #
-  #     # Remove avatar
-  #     check 'user_remove_avatar'
-  #
-  #     # Make validations pass
-  #     fill_in 'user_name',                  with: 'newuser'
-  #     fill_in 'user_email',                 with: 'newuser@example.com'
-  #     fill_in 'user_password',              with: 'somegreatpassword'
-  #     fill_in 'user_password_confirmation', with: 'somegreatpassword'
-  #
-  #     click_button 'Sign up'
-  #
-  #     expect(page).to have_flash 'Welcome! You have signed up successfully.'
-  #     expect(User.last.avatar.to_s).to eq ''
-  #   end
-  # end
+  describe 'avatar upload', focus: true do
+    it 'caches an uploaded avatar during validation errors' do
+      visit new_user_registration_path
+
+      # Upload a file
+      fill_in 'user_avatar', with: base64_image[:data]
+
+      # Trigger validation error
+      click_button 'Sign up'
+      expect(page).to have_flash('User could not be created.').of_type :alert
+
+      # Make validations pass
+      fill_in 'user_name',                  with: 'newuser'
+      fill_in 'user_email',                 with: 'newuser@example.com'
+      fill_in 'user_password',              with: 'somegreatpassword'
+      fill_in 'user_password_confirmation', with: 'somegreatpassword'
+
+      click_button 'Sign up'
+
+      expect(page).to have_flash 'Notice: Welcome! You have signed up successfully.'
+      expect(File.basename(User.last.avatar.to_s)).to eq 'file.png'
+    end
+
+    it 'replaces a cached uploaded avatar with a new one after validation errors', js: true do
+      visit new_user_registration_path
+
+      # Upload a file
+      fill_in 'user_avatar', with: base64_image[:data]
+
+      # Trigger validation error
+      click_button 'Sign up'
+      expect(page).to have_flash('User could not be created.').of_type :alert
+
+      # Upload another file
+      scroll_by(0, 10000) # Otherwise the footer overlaps the element and results in a Capybara::Poltergeist::MouseEventFailed, see http://stackoverflow.com/questions/4424790/cucumber-capybara-scroll-to-bottom-of-page
+      click_link 'Click to paste another image'
+      fill_in 'user_avatar',  with: base64_other_image[:data]
+
+      # Make validations pass
+      fill_in 'user_name',                  with: 'newuser'
+      fill_in 'user_email',                 with: 'newuser@example.com'
+      fill_in 'user_password',              with: 'somegreatpassword'
+      fill_in 'user_password_confirmation', with: 'somegreatpassword'
+
+      click_button 'Sign up'
+
+      expect(page).to have_flash 'Notice: Welcome! You have signed up successfully.'
+      expect(File.basename(User.last.avatar.to_s)).to eq 'file.png'
+    end
+
+    it 'allows to remove a cached uploaded avatar after validation errors' do
+      visit new_user_registration_path
+
+      # Upload a file
+      fill_in 'user_avatar', with: base64_image[:data]
+
+      # Trigger validation error
+      click_button 'Sign up'
+      expect(page).to have_flash('User could not be created.').of_type :alert
+
+      # Remove avatar
+      check 'user_remove_avatar'
+
+      # Make validations pass
+      fill_in 'user_name',                  with: 'newuser'
+      fill_in 'user_email',                 with: 'newuser@example.com'
+      fill_in 'user_password',              with: 'somegreatpassword'
+      fill_in 'user_password_confirmation', with: 'somegreatpassword'
+
+      click_button 'Sign up'
+
+      expect(page).to have_flash 'Notice: Welcome! You have signed up successfully.'
+      expect(User.last.avatar.to_s).to eq ''
+    end
+  end
 end

@@ -22,7 +22,7 @@ FactoryGirl.define do
     end
 
     trait :with_curriculum_vitae do
-      curriculum_vitae { File.open dummy_file_path('curriculum_vitae.txt') }
+      curriculum_vitae { File.open dummy_file_path('document.txt') }
     end
 
     factory :admin do

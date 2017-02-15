@@ -13,7 +13,7 @@ describe 'Showing account' do
 
   context 'signed in as user' do
     before do
-      @user = create :user, :donald, :with_avatar
+      @user = create :user, :donald, :with_avatar, :with_curriculum_vitae
       login_as(@user)
       visit user_registration_path
     end
@@ -28,6 +28,7 @@ describe 'Showing account' do
         expect(page).to have_content 'donald'
         expect(page).to have_content 'donald@example.com'
         expect(page).to have_css 'img[alt="donald"]'
+        expect(page).to have_link 'document.txt'
         expect(page).to have_link 'Edit'
       end
     end
