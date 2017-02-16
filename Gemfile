@@ -4,6 +4,8 @@ gem 'rails', '~> 5.0.1'
 
 gem 'puma', '~> 3.0' # Use Puma as the app server
 
+gem 'turbolinks', '~> 5' # Turbolinks makes navigating your web application faster
+
 gem 'rails-i18n' # Locale data
 
 gem 'slim-rails' # Awesome template language that replaces ERB
@@ -111,6 +113,7 @@ group :development do
   gem 'better_errors'
   # gem 'binding_of_caller' # Adds a REPL console to error pages (disabled, because it's very slow, see https://github.com/charliesome/better_errors/issues/341)
 
+  # Doesn't work with turbolinks?!
   gem 'xray-rails' # Reveals your UI's bones with Cmd-X/Ctrl-X
 
   # Rails application preloader

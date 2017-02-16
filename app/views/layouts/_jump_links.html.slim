@@ -3,4 +3,5 @@
     - unless current_page?(root_path)
       - navigation.item t('.home_page'), root_path, link_html: {accesskey: 0, class: 'sr-only', id: 'jump_to_home_page'}
 
-    - navigation.item t('.content'), '#headline_title', link_html: {accesskey: 1, class: 'sr-only', id: 'jump_to_content'}
+    - # https://github.com/turbolinks/turbolinks/issues/214
+    - navigation.item t('.content'), '#headline_title', link_html: {accesskey: 1, class: 'sr-only', id: 'jump_to_content',  data: {turbolinks: false}}

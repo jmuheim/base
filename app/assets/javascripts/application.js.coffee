@@ -4,6 +4,7 @@
 #
 #= require jquery
 #= require jquery_ujs
+#= require turbolinks
 #= require jquery-ui
 #
 #= require jquery-ui-bootstrap-bridge
@@ -17,6 +18,7 @@
 #= require_self
 #
 # --- Add custom requires under here! ---
+#= require a11yfy
 #= require example_script
 #= require clipboard_to_textarea_pasteabilizer
 #= require form_accessibilizer
