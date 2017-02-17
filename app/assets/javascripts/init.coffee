@@ -6,6 +6,7 @@ class App.Init
     @makeFormsAccessible @$el
     @makeTextareasPasteable @$el
     @makeTextareasPasteableToNestedImage @$el
+    @optimizeMarkdownGeneratedHtml @$el
     @initTooltips @$el
     @initFancybox @$el
     @makeTextareasFullscreenizable @$el
@@ -43,6 +44,9 @@ class App.Init
 
   makeTextareasPasteableToNestedImage: ($el) ->
     new App.ClipboardToNestedImagePasteabilizer $el
+
+  optimizeMarkdownGeneratedHtml: ($el) ->
+    new App.MarkdownHtmlOptimizer $el
 
   makeTextareasFullscreenizable: ($el) ->
     $el.find('textarea[data-textarea-fullscreenizer="true"]').each ->

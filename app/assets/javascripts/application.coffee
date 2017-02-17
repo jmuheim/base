@@ -22,6 +22,7 @@
 #= require clipboard_to_nested_image_pasteabilizer
 #= require clipboard_to_textarea_pasteabilizer
 #= require form_accessibilizer
+#= require markdown_html_optimizer
 #= require textarea_fullscreenizer
 #= require visibility_on_focus_handler
 # --- Add custom requires above here! ---

@@ -3,12 +3,12 @@
 
   .row
     .col-md-8
-      .content = markdown indent_heading_level @page.content_with_referenced_images, 1
+      .content.markdown = markdown indent_heading_level @page.content_with_referenced_images, 1
 
     .col-md-4
       - if can? :crud, @page
         - unless @page.notes.blank?
-          .notes
+          .notes.markdown
             h2 = Page.human_attribute_name :notes
 
             .alert.alert-warning
