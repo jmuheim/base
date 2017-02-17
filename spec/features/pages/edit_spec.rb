@@ -4,7 +4,7 @@ describe 'Editing page' do
   before { login_as create :admin }
 
   it 'grants permission to edit a page', js: true do
-    @page = create :page
+    @page = create :page, :with_image
 
     visit edit_page_path(@page)
 
@@ -18,7 +18,7 @@ describe 'Editing page' do
     fill_in 'page_content',          with: 'A new content'
     fill_in 'page_notes',            with: 'A new note'
 
-    fill_in 'page_images_attributes_0_file', with: base64_other_image[:data]
+    find('#page_images_attributes_0_file', visible: false).set base64_other_image[:data]
     fill_in 'page_images_attributes_0_identifier', with: 'some-identifier'
 
     within '.actions' do
