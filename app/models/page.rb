@@ -12,19 +12,9 @@ class Page < ApplicationRecord
   }
 
   def content_with_referenced_images
-    content_with_images
-  end
-
-  def content_with_embedded_images
-    content_with_images(false)
-  end
-
-  private
-
-  def content_with_images(referenced = true)
     content.lines.map do |line|
       images.each do |image|
-        line.gsub! /\(#{image.identifier}\)/, "(#{referenced ? image.file.url : image.file.path})"
+        line.gsub! /\(#{image.identifier}\)/, "(#{image.file.url})"
       end
 
       line
