@@ -22,11 +22,18 @@ class PagesController < ApplicationController
   private
 
   def page_params
-    params.require(:page).permit(:title,
-                                 :navigation_title,
-                                 :content,
-                                 :notes,
-                                 :lock_version)
+    params.require(:page).permit( :title,
+                                  :navigation_title,
+                                  :content,
+                                  :notes,
+                                  :lock_version,
+                                  images_attributes: [ :id,
+                                                       :file,
+                                                       :file_cache,
+                                                       :identifier,
+                                                       :_destroy
+                                                    ]
+                                )
   end
 
   def add_base_breadcrumbs

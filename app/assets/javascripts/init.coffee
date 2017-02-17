@@ -5,6 +5,7 @@ class App.Init
     @makeJumpLinksVisibleOnFocus @$el
     @makeFormsAccessible @$el
     @makeTextareasPasteable @$el
+    @makeTextareasPasteableToNestedImage @$el
     @initTooltips @$el
     @initFancybox @$el
     @makeTextareasFullscreenizable @$el
@@ -39,6 +40,9 @@ class App.Init
         thumbs:
           width: 100,
           height: 100
+
+  makeTextareasPasteableToNestedImage: ($el) ->
+    new App.ClipboardToNestedImagePasteabilizer $el
 
   makeTextareasFullscreenizable: ($el) ->
     $el.find('textarea[data-textarea-fullscreenizer="true"]').each ->

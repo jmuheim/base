@@ -25,7 +25,7 @@ guard :livereload, port: 35729 do
   watch('app/models/ability.rb')
 
   # Rails Assets Pipeline
-  watch(%r{(app|vendor)(/assets/\w+/(.+\.(css|js|html|png|jpg))).*}) { |m| "/assets/#{m[3]}" }
+  watch(%r{(app|vendor)(/assets/\w+/(.+\.(sass|coffee|css|js|html|png|jpg))).*}) { |m| "/assets/#{m[3]}" }
 end
 
 # TODO: Why is bundle exec needed? More infos here: http://stackoverflow.com/questions/22555324 and https://github.com/rails/spring/issues/277

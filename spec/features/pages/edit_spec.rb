@@ -3,7 +3,7 @@ require 'rails_helper'
 describe 'Editing page' do
   before { login_as create :admin }
 
-  it 'grants permission to edit a page' do
+  it 'grants permission to edit a page', js: true do
     @page = create :page
 
     visit edit_page_path(@page)
@@ -17,6 +17,9 @@ describe 'Editing page' do
     fill_in 'page_navigation_title', with: 'A new navigation title'
     fill_in 'page_content',          with: 'A new content'
     fill_in 'page_notes',            with: 'A new note'
+
+    fill_in 'page_images_attributes_0_file', with: base64_other_image[:data]
+    fill_in 'page_images_attributes_0_identifier', with: 'some-identifier'
 
     within '.actions' do
       expect(page).to have_css 'h2', text: 'Actions'
@@ -32,6 +35,8 @@ describe 'Editing page' do
       .and change { @page.navigation_title }.to('A new navigation title')
       .and change { @page.content }.to('A new content')
       .and change { @page.notes }.to('A new note')
+      .and change { @page.images.first.file.file.identifier }.to('file.png')
+      .and change { @page.images.first.identifier }.to('some-identifier')
   end
 
   it "prevents from overwriting other users' changes accidently (caused by race conditions)" do

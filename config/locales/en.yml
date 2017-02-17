@@ -17,11 +17,18 @@ en:
       title: Statistics
   org:
     name: MuheimWebdesign
+  pages:
+    form:
+      add_image: Add image
+    image_fields:
+      remove_image: Remove image
   resources:
     create: Create %{resource}
     list: List %{resource}
   shared:
     form:
+      alt_prompt: Enter alternative text (leave empty for decorative image)
+      identifier_prompt: Enter file name (leave empty to use random number)
       details: Details
       stale_info:
         attribute: Attribute

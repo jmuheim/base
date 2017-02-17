@@ -5,6 +5,10 @@ en:
       defaults:
         created_at: Created at
         updated_at: Updated at
+      image:
+        created_at: Erstellt am
+        file: Datei
+        identifier: Identifizierungsmerkmal
       page:
         content: Content
         navigation_title: Navigation title
@@ -18,7 +22,6 @@ en:
       user:
         about: About
         avatar: Profile picture
-        curriculum_vitae: Curriculum Vitae
         confirmed_at: Confirmed at
         created_at: Created at
         current_password: Current password
