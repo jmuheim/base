@@ -2,6 +2,7 @@ class PagesController < ApplicationController
   load_and_authorize_resource
   provide_optimistic_locking_for :page
   before_action :add_base_breadcrumbs
+  after_action :remove_abandoned_images, only: [:create, :update], if: -> { @page.persisted? }
   respond_to :html
 
   def create
@@ -34,6 +35,10 @@ class PagesController < ApplicationController
                                                        :_destroy
                                                     ]
                                 )
+  end
+
+  def remove_abandoned_images
+    # TODO: Nach Bildern suchen mit Identifier, welche in der DB nicht existieren!
   end
 
   def add_base_breadcrumbs
