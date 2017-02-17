@@ -1,25 +1,25 @@
 = container_for @page do
   = headline_with_flash @page.title
 
-.row
-  .col-md-8
-    .content = markdown indent_heading_level @page.content_with_referenced_images, 1
+  .row
+    .col-md-8
+      .content = markdown indent_heading_level @page.content_with_referenced_images, 1
 
-  .col-md-4
-    - if can? :crud, @page
-      - unless @page.notes.blank?
-        .notes
-          h2 = Page.human_attribute_name :notes
+    .col-md-4
+      - if can? :crud, @page
+        - unless @page.notes.blank?
+          .notes
+            h2 = Page.human_attribute_name :notes
 
-          .alert.alert-warning
-            = markdown indent_heading_level @page.notes, 2
+            .alert.alert-warning
+              = markdown indent_heading_level @page.notes, 2
 
-      - if @page.images.any?
-        .images
-          h2 = Page.human_attribute_name :images
+        - if @page.images.any?
+          .images
+            h2 = Page.human_attribute_name :images
 
-          = image_gallery do |gallery|
-            - @page.images.each do |image|
-              = gallery.zoomable_image(image.file)
+            = image_gallery do |gallery|
+              - @page.images.each do |image|
+                = gallery.zoomable_image(image.file)
 
   == render 'shared/show/actions', resource: @page

@@ -4,7 +4,7 @@ describe 'Showing page' do
   before { login_as(create :admin) }
 
   it 'displays a page' do
-    @page = create :page, content: "# Some content title\n\nAnd some content stuff.",
+    @page = create :page, content: "# Some content title\n\nAnd some content stuff.\n\n![And an image](Image test identifier)",
                           notes: "# Some notes title\n\nAnd some notes stuff."
 
     visit page_path(@page)
