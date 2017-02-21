@@ -3,10 +3,10 @@ tr id=dom_id(page)
   td.navigation_title = page.navigation_title
 
   td.content
-    = markdown page.content
+    = markdown remove_headings page.content
 
   td.notes
-    = markdown page.notes
+    = markdown remove_headings page.notes
 
   td.actions
     == render 'shared/index/actions', resource: page

@@ -8,8 +8,10 @@
       = t('shared.form.details')
 
     = panel.body do
+      = f.association :parent, collection: @parent_collection
       = f.input :title
       = f.input :navigation_title
+      = f.input :lead, as: :text_fullscreen
       = f.input :content, as: :text_fullscreen
       = f.input :notes, as: :text_fullscreen
 

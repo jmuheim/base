@@ -14,11 +14,12 @@ de:
       current_group: aktuelle Menügruppe
       current_item: aktueller Menüpunkt
       edit_account: Konto bearbeiten
-      go_to_home_page: (zur Startseite)
+      go_to_home_page: "(zur Startseite)"
       home: Base
       log_out: Abmelden
       meta_navigation: Benutzernavigation
       navigation: Navigation
+      overview: Übersicht
       show_account: Konto anzeigen
       sign_in: Anmelden
       sign_up: Registrieren

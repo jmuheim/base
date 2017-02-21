@@ -25,8 +25,13 @@ nav#navigation.container
             - navigation.item t('resources.list', resource: User.model_name.human(count: 2)), users_path
             - navigation.item t('resources.create', resource: User.model_name.human), new_user_path if user_signed_in? && can?(:create, User)
 
-          - Page.all.each do |page|
-            - navigation.item page.navigation_title, page_path(page), class: (:active if request.path =~ /^#{page_path(page)}/)
+          - Page.roots.each do |page|
+            - navigation.group page.navigation_title_or_title do
+              - navigation.item t('.overview'), page_path(page), class: (:active if request.path =~ /^#{page_path(page)}/)
+              li.divider role="decoration"
+
+              - page.children.each do |child|
+                - navigation.item navigation_title(child), page_path(child), class: (:active if request.path =~ /^#{page_path(child)}/)
 
         h3.sr-only = t '.meta_navigation'
 
