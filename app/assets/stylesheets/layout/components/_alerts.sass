@@ -2,10 +2,15 @@
 .alert
   position: relative
 
-  h2.title
-    margin-top: 0
+  h2, h3
     font-style: normal
     font-size: $font-size-base
+    margin-top: 10px
+
+  h2
+    &:first-child,
+    &.sr-only + h3
+      margin-top: 0
 
   .close
     position: absolute
