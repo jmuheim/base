@@ -1,6 +1,7 @@
 fieldset.panel class="panel-#{type}"
   legend.panel-heading *heading_options
-    = heading_content
+    / In HTML 5.2, headings are allowed within legend elements, see https://w3c.github.io/html/sec-forms.html#the-legend-element. This is very good news, as in complex forms, legends serve the same purpose as headings do, and e.g. screenreaders only announce legends when focusing a form element, but having headings describing the page is always a good idea.
+    h2 = heading_content
 
   .panel-body *heading_options
     = body_content

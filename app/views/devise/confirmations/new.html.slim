@@ -2,7 +2,10 @@
 = headline_with_flash
 
 .row
-  .col-sm-8
+  .col-sm-4.col-sm-push-8
+    = render 'devise/shared/links'
+
+  .col-sm-8.col-sm-pull-4
     = simple_form_for resource, as:      resource_name,
                                 url:     confirmation_path(resource_name),
                                 html:    {method: :post, class: 'form-horizontal'},
@@ -10,6 +13,3 @@
 
       = f.input :email, required: true
       = f.button :submit, headline
-
-  .col-sm-4
-    = render 'devise/shared/links'
