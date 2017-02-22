@@ -3,7 +3,12 @@ class PagesController < ApplicationController
   provide_optimistic_locking_for :page
   before_action :add_base_breadcrumbs
   before_action :provide_parent_collection, only: [:new, :create, :edit, :update]
+  before_action :provide_position_collection, only: [:edit, :update]
   respond_to :html
+
+  def index
+    @pages = Page.collection_tree
+  end
 
   def create
     @page.save
@@ -29,6 +34,7 @@ class PagesController < ApplicationController
                                  :content,
                                  :notes,
                                  :parent_id,
+                                 :position,
                                  :lock_version)
   end
 
@@ -55,5 +61,10 @@ class PagesController < ApplicationController
 
   def provide_parent_collection
     @parent_collection = @page.collection_tree_without_self_and_descendants
+  end
+
+  def provide_position_collection
+    @position_collection = (@page.siblings + [@page]).sort_by(&:position)
+                                                     .map { |sibling| [sibling.title, sibling.position] }
   end
 end

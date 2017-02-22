@@ -19,6 +19,7 @@
 # --- Add custom requires under here! ---
 #= require example_script
 #= require clipboard_to_textarea_pasteabilizer
+#= require depending_input_disabler
 #= require form_accessibilizer
 #= require textarea_fullscreenizer
 #= require visibility_on_focus_handler

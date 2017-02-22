@@ -1,18 +1,41 @@
 = simple_form_for page, html:    {class: 'form-horizontal'},
                         wrapper: :horizontal_form do |f|
 
-  == render 'shared/form/stale_info', f: f
+  .row
+    .col-md-4.col-md-push-8
+      .alert.alert-info
+        markdown:
+          **Pages are organized in a tree hierarchy:**
 
-  = panel do |panel|
-    = panel.heading do
-      = t('shared.form.details')
+          - Root pages (without a parent) appear as menu groups in the navigation and as "Overview" page within the menu group itself
+          - Sub pages of root pages appear as menu items in their respective menu group
+              - Menu items display the number of their own sub pages (if any)
+          - Every page displays sub pages (if any) as teasers below its content
 
-    = panel.body do
-      = f.association :parent, collection: @parent_collection
-      = f.input :title
-      = f.input :navigation_title
-      = f.input :lead, as: :text_fullscreen
-      = f.input :content, as: :text_fullscreen
-      = f.input :notes, as: :text_fullscreen
+          **Position of pages:**
 
-  == render 'shared/form/actions', form: f, resource: @page
+          - Pages with the same parent can be sorted using the position attribute
+          - This is only available when editing a page and the parent stays unchanged
+          - When creating a new page or changing the parent of an existing page, the page is inserted at the bottom of the chosen parent
+
+    .col-md-8.col-md-pull-4
+      == render 'shared/form/stale_info', f: f
+
+      = panel do |panel|
+        = panel.heading do
+          = t('shared.form.details')
+
+        = panel.body do
+          = f.association :parent, collection: @parent_collection, label_method: :indented_name
+
+          - if f.object.persisted?
+            = f.input :position, collection: @position_collection, include_blank: false, input_html: {data: {'depends-id': 'page_parent_id', 'depends-value': f.object.parent_id}}
+
+          = f.input :title
+          = f.input :navigation_title
+          = f.input :lead, as: :text_fullscreen
+          = f.input :content, as: :text_fullscreen
+          = f.input :notes, as: :text_fullscreen
+
+  .row
+    == render 'shared/form/actions', form: f, resource: @page

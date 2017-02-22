@@ -6,6 +6,10 @@ en:
     hints:
       page:
         notes: Only for internal usage (aren't publicly viewable)
+        title: Appears as main heading when displaying the page
+        navigation_title: Appears in the menu and breadcrumbs. Leave empty to use title.
+        lead: Describe the page's content in a few short sentences. Displayed on top of the page and in teasers.
+        content: The main content of the page. Displayed below the lead and above the teasers of the page's sub pages.
       user:
         about: Write something about you (biography, interests, hobbies...). You can use Pandoc Markdown to add basic formatting.
         password_confirmation: Retype your password to avoid typing errors

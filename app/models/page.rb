@@ -24,4 +24,8 @@ class Page < ApplicationRecord
   def collection_tree_without_self_and_descendants
     Page.collection_tree - [self] - [descendants] # TODO: No self and children!!!
   end
+
+  def indented_name
+    "#{title} (##{id})"
+  end
 end

@@ -1,9 +1,9 @@
 tr id=dom_id(page)
-  th.title            = link_to page.title, page
+  th.title            = link_to page.title, page, style: "margin-left: #{page.ancestors.count * 20}px"
   td.navigation_title = page.navigation_title
 
-  td.content
-    = markdown remove_headings page.content
+  td.ancestors
+    = recurring_string? page.ancestors.count, :ancestors
 
   td.notes
     = markdown remove_headings page.notes
