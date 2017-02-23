@@ -4,15 +4,17 @@
   .row
     .col-md-4.col-md-push-8
       .alert.alert-info
-        markdown:
-          **Pages are organized in a tree hierarchy:**
+        h2.sr-only Information about hierarchy of pages
 
-          - Root pages (without a parent) appear as menu groups in the navigation and as "Overview" page within the menu group itself
+        markdown:
+          ### Pages are organized in a tree hierarchy
+
+          - Root pages (they don't have a parent) appear as menu groups in the navigation and as "Overview" page within the menu group itself
           - Sub pages of root pages appear as menu items in their respective menu group
               - Menu items display the number of their own sub pages (if any)
           - Every page displays sub pages (if any) as teasers below its content
 
-          **Position of pages:**
+          ### Position of pages
 
           - Pages with the same parent can be sorted using the position attribute
           - This is only available when editing a page and the parent stays unchanged
