@@ -24,16 +24,6 @@ class App.ClipboardToNestedImagePasteabilizer
 
     @makePastable() # TODO: Do something that can be tested using Capybara to make sure that at least the initialisation of stuff works!
 
-  insertImageStringIntoTextarea: (alternative_text, identifier) ->
-    caret_position = @$input.caret()
-
-    value_before = @$input.val().substring(0, caret_position)
-    value_after  = @$input.val().substring(caret_position)
-    image_string = "![#{alternative_text}](#{identifier})"
-
-    @$input.val(value_before + image_string + value_after)
-    @$input.caret(caret_position + image_string.length)
-
   makePastable: ->
     @$input.pastableTextarea()
 
@@ -63,6 +53,16 @@ class App.ClipboardToNestedImagePasteabilizer
       return
     ).on 'pasteText', (ev, data) ->
       return
+
+  insertImageStringIntoTextarea: (alternative_text, identifier) ->
+    caret_position = @$input.caret()
+
+    value_before = @$input.val().substring(0, caret_position)
+    value_after  = @$input.val().substring(caret_position)
+    image_string = "![#{alternative_text}](#{identifier})"
+
+    @$input.val(value_before + image_string + value_after)
+    @$input.caret(caret_position + image_string.length)
 
   # https://gist.github.com/mathewbyrne/1280286
   slugify: (text) ->
