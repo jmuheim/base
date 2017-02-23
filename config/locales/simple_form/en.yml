@@ -4,8 +4,6 @@ en:
     error_notification:
       default_message: 'Please review the problems below:'
     hints:
-      images:
-        identifier: 'Use this in markdown to reference the image URL. Example: for an identifier <code>123</code>, use a markdown image string like this: <code>![Some alt text](123)</code>.'
       page:
         notes: Only for internal usage (aren't publicly viewable)
       user:

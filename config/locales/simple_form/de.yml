@@ -4,8 +4,6 @@ de:
     error_notification:
       default_message: 'Bitte überprüfe die nachfolgenden Probleme:'
     hints:
-      images:
-        identifier: 'Nutze dies in Markdown, um die Bild-URL zu referenzieren. Beispiel: Für ein Kennzeichen <code>123</code>, verwende eine Markdown Bild Definition wie folgt: <code>![Ein Alt-Text](123)</code>.'
       page:
         notes: Nur für den internen Gebrauch bestimmt (sind nicht öffentlich einsehbar)
       user:
