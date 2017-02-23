@@ -16,10 +16,10 @@ en:
       number_of_resource: Number of %{resource}
       title: Statistics
   images:
-    images:
-      add_image: Add image
     image_fields:
       remove_image: Remove image
+    images:
+      add_image: Add image
   org:
     name: MuheimWebdesign
   resources:

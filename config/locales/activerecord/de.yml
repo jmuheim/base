@@ -8,7 +8,7 @@ de:
       image:
         created_at: Erstellt am
         file: Datei
-        identifier: Identifizierungsmerkmal
+        identifier: Kennung
       page:
         content: Inhalt
         navigation_title: Navigations-Titel
@@ -41,6 +41,9 @@ de:
         roles: Rollen
         updated_at: Aktualisiert am
     models:
+      image:
+        one: Abbildung
+        other: Abbildungen
       page:
         one: Seite
         other: Seiten

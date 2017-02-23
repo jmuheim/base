@@ -4,21 +4,23 @@ en:
     error_notification:
       default_message: 'Please review the problems below:'
     hints:
+      images:
+        identifier: 'Use this in markdown to reference the image URL. Example: for an identifier <code>123</code>, use a markdown image string like this: <code>![Some alt text](123)</code>.'
       page:
         notes: Only for internal usage (aren't publicly viewable)
       user:
         about: Write something about you (biography, interests, hobbies...). You can use Pandoc Markdown to add basic formatting.
         password_confirmation: Retype your password to avoid typing errors
     inputs:
-      text_fullscreen_with_pastable_images:
-        alt_prompt: Enter alternative text (leave empty for decorative image)
-        identifier_prompt: Enter file name (leave empty to use random number only)
       paste:
         click_to_paste_another_image: Click to paste another %{attribute} image
         image_preview: Image preview
         paste_here: Paste here
       text_fullscreen:
         toggler_text: Toggle fullscreen (Esc)
+      text_fullscreen_with_pastable_images:
+        alt_prompt: Enter alternative text (leave empty for decorative image)
+        identifier_prompt: Enter file name (leave empty to use random number only)
       upload:
         click_to_choose_a_file: Click to choose a file for %{attribute}
         click_to_choose_another_file: Click to choose another %{attribute} file
