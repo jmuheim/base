@@ -15,20 +15,18 @@ de:
     statistics:
       number_of_resource: Anzahl %{resource}
       title: Statistiken
+  images:
+    images:
+      add_image: Bild hinzufügen
+    image_fields:
+      remove_image: Bild entfernen
   org:
     name: MuheimWebdesign
-  pages:
-    form:
-      add_image: Add image
-    image_fields:
-      remove_image: Remove image
   resources:
     create: "%{resource} erstellen"
     list: "%{resource} auflisten"
   shared:
     form:
-      alt_prompt: Alternativtext eingeben (leer lassen für dekoratives Bild)
-      identifier_prompt: Dateiname eingeben (leer lassen um Zufallszahl zu verwenden)
       details: Details
       stale_info:
         attribute: Attribut

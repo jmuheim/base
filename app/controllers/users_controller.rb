@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   load_and_authorize_resource
   before_action :add_base_breadcrumbs
   provide_optimistic_locking_for :user
+  provide_image_pasting_for :page
   respond_to :html
 
   def index

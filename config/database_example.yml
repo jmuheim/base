@@ -1,18 +1,15 @@
-# SQLite version 3.x
-#   gem install sqlite3
-#
-#   Ensure the SQLite 3 gem is defined in your Gemfile
-#   gem 'sqlite3'
-
+# It's highly recommended to use MySQL for both development and test!
 default: &default
-  adapter: sqlite3
+  adapter: mysql2
+  encoding: utf8
   pool: 5
-  timeout: 5000
+  username: root
+  password: t00R
 
-development: &development
+development:
   <<: *default
-  database: db/development.sqlite3
+  database: base_development
 
 test:
   <<: *default
-  database: db/test.sqlite3
+  database: base_test

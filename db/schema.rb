@@ -10,9 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170217183844) do
+ActiveRecord::Schema.define(version: 20170220175311) do
 
-  create_table "images", force: :cascade do |t|
+  create_table "images", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "file"
     t.integer  "page_id"
     t.string   "identifier"
@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 20170217183844) do
     t.index ["page_id"], name: "index_images_on_page_id", using: :btree
   end
 
-  create_table "pages", force: :cascade do |t|
+  create_table "pages", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "title"
     t.string   "navigation_title"
     t.text     "content",          limit: 65535
@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 20170217183844) do
     t.datetime "updated_at",                                     null: false
   end
 
-  create_table "roles", force: :cascade do |t|
+  create_table "roles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
     t.string   "resource_type"
     t.integer  "resource_id"
@@ -42,7 +42,7 @@ ActiveRecord::Schema.define(version: 20170217183844) do
     t.index ["name"], name: "index_roles_on_name", using: :btree
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name",                   limit: 100
     t.string   "email"
     t.string   "encrypted_password"
@@ -74,13 +74,13 @@ ActiveRecord::Schema.define(version: 20170217183844) do
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree
   end
 
-  create_table "users_roles", id: false, force: :cascade do |t|
+  create_table "users_roles", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "user_id"
     t.integer "role_id"
     t.index ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id", using: :btree
   end
 
-  create_table "version_associations", force: :cascade do |t|
+  create_table "version_associations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "version_id"
     t.string  "foreign_key_name", null: false
     t.integer "foreign_key_id"
@@ -88,7 +88,7 @@ ActiveRecord::Schema.define(version: 20170217183844) do
     t.index ["version_id"], name: "index_version_associations_on_version_id", using: :btree
   end
 
-  create_table "versions", force: :cascade do |t|
+  create_table "versions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "item_type",                       null: false
     t.integer  "item_id",                         null: false
     t.string   "event",                           null: false

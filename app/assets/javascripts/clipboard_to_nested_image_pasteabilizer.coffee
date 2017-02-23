@@ -2,57 +2,68 @@
 #
 # Be sure you have https://github.com/layerssss/paste.js available.
 class App.ClipboardToNestedImagePasteabilizer
+  class ImageFields
+    constructor: ($images) ->
+      @$images = $images
+
+      @file_field       = @$images.find(':input[id$="_file"]')
+      @identifier_field = @$images.find(':input[id$="_identifier"]')
+      @previewContainer = @$images.find('.thumbnail')
+      @previewImage     = @previewContainer.find('img')
+
+    getTemporaryIdentifierId: ->
+      @file_field.attr('id').match(/_(\d+)_file$/)[1]
+
   constructor: (el) ->
-    $el = $(el)
-    @$input = $el.find 'textarea#page_content'
-    @$add_image_link = $el.find 'a.add_fields'
-    @alt_prompt = @$input.data('pasteable-image-alt-prompt')
+    @$input = $(el)
+
+    @$images           = $('#images')
+    @$add_image_link   = @$images.find('a.add_fields')
+    @alt_prompt        = @$input.data('pasteable-image-alt-prompt')
     @identifier_prompt = @$input.data('pasteable-image-identifier-prompt')
 
     @makePastable() # TODO: Do something that can be tested using Capybara to make sure that at least the initialisation of stuff works!
 
+  insertImageStringIntoTextarea: (alternative_text, identifier) ->
+    caret_position = @$input.caret()
+
+    value_before = @$input.val().substring(0, caret_position)
+    value_after  = @$input.val().substring(caret_position)
+    image_string = "![#{alternative_text}](#{identifier})"
+
+    @$input.val(value_before + image_string + value_after)
+    @$input.caret(caret_position + image_string.length)
+
   makePastable: ->
     @$input.pastableTextarea()
+
     @$input.on('pasteImage', (ev, data) =>
-      alternative_text = prompt(@alt_prompt)
-      return if alternative_text == null
-      identifier = prompt(@identifier_prompt, @slugify(alternative_text))
+      alternative_text = prompt(@alt_prompt) # Get alternative text from user
+      return if alternative_text == null     # Cancel?
+
+      identifier = prompt(@identifier_prompt, @slugify(alternative_text)) # Get identifier from user (propose slugified alternative text)
+      return if identifier == null                                        # Cancel?
 
       @$add_image_link.click() # Add another file input field
-      $nested_fields = $('.nested-fields:last')
-      $file_field = $nested_fields.find(':input[id$="_file"]')
-      $temporary_identifier_field = $nested_fields.find(':input[id$="_identifier"]')
-      temporary_identifier_id = $file_field.attr('id').match(/_(\d+)_file$/)[1]
+      imageFields = new ImageFields(@$images.find('.nested-fields:last'))
 
-      if identifier
-        identifier += "-#{temporary_identifier_id}"
-      else
-        identifier = temporary_identifier_id
+      temporary_identifier_id = imageFields.getTemporaryIdentifierId()
+      identifier = if identifier
+                     "#{identifier}-#{temporary_identifier_id}"
+                   else
+                     temporary_identifier_id
 
-      $previewContainer = $nested_fields.find('.thumbnail')
-      $previewImage     = $previewContainer.find('img')
-      dataUrl = data.dataURL
-      blobUrl = URL.createObjectURL(data.blob)
-      $file_field.val(dataUrl)                # Set blob string to textarea
-      $previewImage.attr('src', blobUrl) # Set image preview
+      imageFields.file_field.val(data.dataURL)                             # Set blob string to textarea
+      imageFields.previewImage.attr('src', URL.createObjectURL(data.blob)) # Set image preview
+      imageFields.previewContainer.toggle()                                # Show the image preview
+      imageFields.file_field.toggle()                                      # Hide the textarea
+      imageFields.identifier_field.val(identifier)
 
-      $previewContainer.toggle() # Show the image preview
-      $file_field.toggle()            # Hide the textarea
-
-      $temporary_identifier_field.val(identifier)
-
-      caret_position = @$input.caret()
-      value_before = @$input.val().substring(0, caret_position)
-      value_after = @$input.val().substring(caret_position)
-      image_text = "![#{alternative_text}](#{identifier})"
-
-      @$input.val(value_before + image_text + value_after)
-
-      @$input.caret(caret_position + image_text.length)
+      @insertImageStringIntoTextarea(alternative_text, identifier)
       return
     ).on 'pasteText', (ev, data) ->
       return
 
-    # https://gist.github.com/mathewbyrne/1280286
+  # https://gist.github.com/mathewbyrne/1280286
   slugify: (text) ->
     text.toString().toLowerCase().replace(/\s+/g, '-').replace(/[^\w\-]+/g, '').replace(/\-\-+/g, '-').replace(/^-+/, '').replace /-+$/, ''

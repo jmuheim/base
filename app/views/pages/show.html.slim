@@ -12,7 +12,7 @@
             h2 = Page.human_attribute_name :notes
 
             .alert.alert-warning
-              = markdown indent_heading_level @page.notes, 2
+              = markdown indent_heading_level @page.notes_with_referenced_images, 2
 
         - if @page.images.any?
           .images

@@ -10,20 +10,9 @@
     = panel.body do
       = f.input :title
       = f.input :navigation_title
-      = f.input :content, as: :text_fullscreen, input_html: {data: {'pasteable-image-alt-prompt' => t('shared.form.alt_prompt'), 'pasteable-image-identifier-prompt' => t('shared.form.identifier_prompt')}}
-      = f.input :notes, as: :text_fullscreen
+      = f.input :content, as: :text_fullscreen_with_pastable_images
+      = f.input :notes, as: :text_fullscreen_with_pastable_images
 
-  = panel do |panel|
-    = panel.heading do
-      = Image.model_name.human count: :other
-
-    = panel.body do
-      #images
-        = f.simple_fields_for :images do |image|
-          = render 'image_fields', f: image
-        p.links
-          = link_to_add_association f, :images do
-            => fa_icon 'plus-circle'
-            = t '.add_image'
+  == render 'images/images', f: f
 
   == render 'shared/form/actions', form: f, resource: @page

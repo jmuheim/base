@@ -43,7 +43,8 @@ class App.Init
           height: 100
 
   makeTextareasPasteableToNestedImage: ($el) ->
-    new App.ClipboardToNestedImagePasteabilizer $el
+    $el.find('textarea[data-pasteable-image="true"]').each ->
+      new App.ClipboardToNestedImagePasteabilizer @
 
   optimizeMarkdownGeneratedHtml: ($el) ->
     new App.MarkdownHtmlOptimizer $el
