@@ -114,6 +114,8 @@ ignore_models:
     - role
     - paper_trail/version
   attributes:
+    page:
+      - lock_version
     user:
       - encrypted_password
       - reset_password_token
