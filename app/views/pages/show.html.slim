@@ -40,10 +40,4 @@
 
                 = markdown indent_heading_level child.lead, 3
 
-        - unless @page.notes.blank?
-          - if can? :crud, @page
-            .notes.alert.alert-warning
-              h2.sr-only = Page.human_attribute_name :notes
-              = markdown indent_heading_level @page.notes, 2
-
   == render 'shared/show/actions', resource: @page
