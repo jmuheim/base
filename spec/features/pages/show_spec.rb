@@ -19,7 +19,7 @@ describe 'Showing page' do
       within '.content' do
         expect(page).to have_css 'h2', text: 'Some content title'
         expect(page).to have_content 'And some content stuff'
-        expect(page).to have_css 'img[alt="And an image"][src="/uploads/image/file/1/image.jpg"]'
+        expect(page).to have_css "img[alt='And an image'][src='#{@page.images.last.file.url}']"
       end
 
       within '.notes' do
