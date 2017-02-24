@@ -26,11 +26,11 @@ module ScreenWidth
     original_width = page.driver.execute_script('return window.innerWidth')
     original_height = page.driver.execute_script('return window.innerHeight')
 
-    page.driver.resize_window desired_width(screen), 500
+    Capybara.page.current_window.resize_to desired_width(screen), 10000
 
     if block_given?
       yield
-      page.driver.resize_window original_width, original_height
+      page.driver.browser.manage.window.resize_to original_width, original_height
     end
   end
 end
