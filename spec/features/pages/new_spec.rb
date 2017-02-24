@@ -37,4 +37,7 @@ describe 'Creating page' do
 
     expect(page).to have_flash 'Page was successfully created.'
   end
+
+  # See https://github.com/layerssss/paste.js/issues/39
+  it 'allows to paste images directly into the textarea'
 end

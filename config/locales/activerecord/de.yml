@@ -11,6 +11,7 @@ de:
         identifier: Kennung
       page:
         content: Inhalt
+        images: Bilder
         navigation_title: Navigations-Titel
         notes: Notizen
         title: Titel

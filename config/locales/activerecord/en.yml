@@ -11,6 +11,7 @@ en:
         identifier: Identifier
       page:
         content: Content
+        images: Images
         navigation_title: Navigation title
         notes: Notes
         title: Title

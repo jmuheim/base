@@ -14,7 +14,7 @@ class ApplicationRecord < ActiveRecord::Base
 
     textareas.each do |textarea|
       define_method "#{textarea}_with_referenced_images" do
-        send(textarea).lines.map do |line|
+        send(textarea).to_s.lines.map do |line|
           images.each do |image|
             # TODO: Da wird gar nicht nach dem ganzen Bild gesucht!
             line.gsub! /\(#{image.identifier}\)/, "(#{image.file.url})"
