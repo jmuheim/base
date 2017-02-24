@@ -1,4 +1,4 @@
-class TextFullscreenWithPastableImagesInput < SimpleForm::Inputs::TextFullscreenInput
+class TextFullscreenWithPastableImagesInput < TextFullscreenInput
   def input(wrapper_options)
     super wrapper_options.merge(
       'data-pastable-image'                   => true,
