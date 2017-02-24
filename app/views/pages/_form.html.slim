@@ -42,4 +42,6 @@
           = f.input :notes, as: :text_fullscreen_with_pastable_images
 
   .row
-    == render 'shared/form/actions', form: f, resource: @page
+    .col-md-12
+      == render 'images/images', f: f
+      == render 'shared/form/actions', form: f, resource: @page
