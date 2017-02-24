@@ -1,6 +1,7 @@
 class PagesController < ApplicationController
   load_and_authorize_resource
   provide_optimistic_locking_for :page
+  provide_image_pasting_for :page
   before_action :add_base_breadcrumbs
   respond_to :html
 
@@ -22,11 +23,13 @@ class PagesController < ApplicationController
   private
 
   def page_params
-    params.require(:page).permit(:title,
-                                 :navigation_title,
-                                 :content,
-                                 :notes,
-                                 :lock_version)
+    params.require(:page).permit( :title,
+                                  :navigation_title,
+                                  :content,
+                                  :notes,
+                                  :lock_version,
+                                  images_attributes: image_attributes
+                                )
   end
 
   def add_base_breadcrumbs

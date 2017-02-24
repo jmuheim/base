@@ -2,3 +2,7 @@
 # new App.Init(element)
 $(document).ready ->
   new App.Init @
+
+  $('#images').on('cocoon:after-insert', (e, added_image) ->
+    new App.Init added_image
+  )

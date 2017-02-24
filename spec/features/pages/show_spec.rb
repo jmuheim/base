@@ -4,8 +4,9 @@ describe 'Showing page' do
   before { login_as(create :admin) }
 
   it 'displays a page' do
-    @page = create :page, content: "# Some content title\n\nAnd some content stuff.",
-                          notes: "# Some notes title\n\nAnd some notes stuff."
+    @page = create :page, :with_image,
+                          content: "# Some content title\n\nAnd some content stuff.\n\n![And an image](Image test identifier)",
+                          notes:   "# Some notes title\n\nAnd some notes stuff."
 
     visit page_path(@page)
 
@@ -18,6 +19,7 @@ describe 'Showing page' do
       within '.content' do
         expect(page).to have_css 'h2', text: 'Some content title'
         expect(page).to have_content 'And some content stuff'
+        expect(page).to have_css "img[alt='And an image'][src='#{@page.images.last.file.url}']"
       end
 
       within '.notes' do
@@ -34,6 +36,11 @@ describe 'Showing page' do
         expect(page).to have_link 'Create Page'
         expect(page).to have_link 'List of Pages'
       end
+    end
+
+    within '.images' do
+      expect(page).to have_css 'h2', text: 'Images'
+      expect(page).to have_css "a[href='#{@page.images.last.file.url}'] img[alt='Thumb image'][src='#{@page.images.last.file.url(:thumb)}']"
     end
   end
 end

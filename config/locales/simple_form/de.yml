@@ -10,6 +10,9 @@ de:
         about: Schreib etwas über dich (Biographie, Interessen, Hobbies...). Du kannst Pandoc Markdown verwenden zum Formatieren.
         password_confirmation: Gib dein Passwort nochmal ein, um Tippfehler zu vermeiden
     inputs:
+      text_fullscreen_with_pastable_images:
+        alt_prompt: Alternativtext eingeben (leer lassen für dekoratives Bild)
+        identifier_prompt: Dateiname eingeben (leer lassen um nur eine Zufallszahl zu verwenden)
       paste:
         click_to_paste_another_image: Klicken, um ein anderes %{attribute}-Bild einzufügen
         image_preview: Bildvorschau

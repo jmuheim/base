@@ -19,7 +19,7 @@ class ActiveRecord::Base
     nested_attributes_options.each do |association, value|
       send(association).each_with_index do |resource, i|
         prefix = "#{model_name.to_s.underscore}_#{association}_attributes_#{i}"
-        @stale_info += stale_info_for(resource, prefix, nested: true) if resource.stale?
+        @stale_info += stale_info_for(resource, prefix, nested: true) if resource.respond_to?(:lock_version) && resource.stale?
       end
     end
 

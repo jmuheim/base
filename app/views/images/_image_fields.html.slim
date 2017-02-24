@@ -1,0 +1,11 @@
+.nested-fields
+  .row
+    .col-md-6
+      = f.input :identifier
+
+    .col-md-6
+      = f.input :file, as: :paste
+
+      = link_to_remove_association f do
+        = t '.remove_image'
+        =< fa_icon 'times-circle'

@@ -3,14 +3,22 @@
 
   == render 'shared/form/stale_info', f: f
 
-  = panel do |panel|
-    = panel.heading do
-      = t('shared.form.details')
+  .row
+    .col-md-4.col-md-push-8
+      .alert.alert-info
+        == render 'paste_image_info'
 
-    = panel.body do
-      = f.input :title
-      = f.input :navigation_title
-      = f.input :content, as: :text_fullscreen
-      = f.input :notes, as: :text_fullscreen
+    .col-md-8.col-md-pull-4
+      = panel do |panel|
+        = panel.heading do
+          = t('shared.form.details')
+
+        = panel.body do
+          = f.input :title
+          = f.input :navigation_title
+          = f.input :content, as: :text_fullscreen_with_pastable_images
+          = f.input :notes, as: :text_fullscreen_with_pastable_images
+
+  == render 'images/images', f: f
 
   == render 'shared/form/actions', form: f, resource: @page

@@ -1,0 +1,12 @@
+= panel do |panel|
+  = panel.heading do
+    = Image.model_name.human count: :other
+
+  = panel.body do
+    #images
+      = f.simple_fields_for :images do |image|
+        = render 'images/image_fields', f: image
+      p.links
+        = link_to_add_association f, :images, partial: 'images/image_fields' do
+          => fa_icon 'plus-circle'
+          = t '.add_image'

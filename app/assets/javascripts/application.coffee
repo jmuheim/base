@@ -11,6 +11,7 @@
 #= require bootstrap
 #= require cocoon
 #= require jasny-bootstrap
+#= require jquery-caret2
 #= require fancybox
 #= require paste
 #
@@ -18,8 +19,10 @@
 #
 # --- Add custom requires under here! ---
 #= require example_script
-#= require clipboard_to_textarea_pasteabilizer
+#= require clipboard_to_nested_image_pastabilizer
+#= require clipboard_to_textarea_pastabilizer
 #= require form_accessibilizer
+#= require markdown_html_optimizer
 #= require textarea_fullscreenizer
 #= require visibility_on_focus_handler
 # --- Add custom requires above here! ---

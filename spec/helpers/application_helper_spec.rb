@@ -137,17 +137,19 @@ describe ApplicationHelper do
   end
 
   describe '#container_for' do
-    describe '#container_for(object)' do
-      subject { container_for(create(:user)) { 'Some content' } }
+    before { @user = create :user }
 
-      it { should have_css 'div#user_1.user' }
+    describe '#container_for(object)' do
+      subject { container_for(@user) { 'Some content' } }
+
+      it { should have_css "div#user_#{@user.id}.user" }
       it { should have_content 'Some content' }
     end
 
     describe '#container_for(object, :tag)' do
-      subject { container_for(create(:user), tag: 'article') { 'Some content' } }
+      subject { container_for(@user, tag: 'article') { 'Some content' } }
 
-      it { should have_css 'article#user_1.user' }
+      it { should have_css "article#user_#{@user.id}.user" }
     end
   end
 
