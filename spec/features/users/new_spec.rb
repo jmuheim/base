@@ -35,6 +35,9 @@ describe 'Creating user' do
   end
 
   describe 'avatar upload' do
+    # See https://github.com/layerssss/paste.js/issues/39
+    it 'allows to paste an image directly into the textarea'
+
     it 'caches an uploaded avatar during validation errors' do
       visit new_user_path
 

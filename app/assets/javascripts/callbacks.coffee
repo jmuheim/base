@@ -3,7 +3,6 @@
 $(document).ready ->
   new App.Init @
 
-  # Besser umbenennen zu ImageUpload??
   $('#images').on('cocoon:after-insert', (e, added_image) ->
     new App.Init added_image
   )
