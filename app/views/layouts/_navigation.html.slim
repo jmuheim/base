@@ -1,10 +1,10 @@
 nav#navigation.container
   .navbar.yamm.navbar-inverse.navbar-fixed-top
-    h2#navigation_title.sr-only tabindex="-1" = t '.navigation'
+    h2#navigation_title.sr-only = t '.navigation'
 
     .container
       .navbar-header
-        // Place brand before the "Toggle navigation" button to have an intuitive the focus order (on the Bootstrap examples page it's after the button which seems unintuitive)
+        // Place brand before the "Toggle navigation" button to have an intuitive focus order (on the Bootstrap examples page it's after the button which seems unintuitive)
         // TODO: Replace with logo! Or add some sr-only text like "(back to home page)"!
         = link_to root_path, class: home_link_class, id: 'logo' do
           = t('.home')
