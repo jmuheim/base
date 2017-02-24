@@ -114,6 +114,7 @@ ignore_models:
     - role
     - paper_trail/version
   attributes:
+    image: lock_version
     page:
       - lock_version
     user:
