@@ -37,5 +37,10 @@ describe 'Showing page' do
         expect(page).to have_link 'List of Pages'
       end
     end
+
+    within '.images' do
+      expect(page).to have_css 'h2', text: 'Images'
+      expect(page).to have_css "a[href='#{@page.images.last.file.url}'] img[alt='Thumb image'][src='#{@page.images.last.file.url(:thumb)}']"
+    end
   end
 end
