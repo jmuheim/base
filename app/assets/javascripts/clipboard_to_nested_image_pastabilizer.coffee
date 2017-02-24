@@ -16,6 +16,7 @@ class App.ClipboardToNestedImagePastabilizer
 
   constructor: (el) ->
     @$input = $(el)
+    @$input.after("<span class='fa fa-image'></span>")
 
     @$images           = $('#images')
     @$add_image_link   = @$images.find('a.add_fields')

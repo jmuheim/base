@@ -8,6 +8,7 @@ class App.ClipboardToTextareaPastabilizer
     @$input            = $el.find('textarea')
     @$previewContainer = $el.find('.thumbnail')
     @$previewImage     = @$previewContainer.find('img')
+    @$input.after("<span class='fa fa-image'></span>")
 
     @removeWhitespace()
     @makePastable()

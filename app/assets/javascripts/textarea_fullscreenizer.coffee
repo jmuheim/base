@@ -23,7 +23,7 @@ class App.TextareaFullscreenizer
     @$background = @$textarea.parent()
 
     togglerText = @$textarea.data("#{TOGGLER_CSS_CLASS}-text")
-    @$background.append("<span class='#{TOGGLER_CSS_CLASS}' aria-hidden='true'>#{togglerText}</span>")
+    @$background.append("<span class='#{TOGGLER_CSS_CLASS}' aria-hidden='true'><span class='fa fa-expand'></span> #{togglerText}</span>")
     @$toggler = @$background.find(".#{TOGGLER_CSS_CLASS}")
 
     @attachEvents()
