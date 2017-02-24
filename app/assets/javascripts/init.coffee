@@ -4,7 +4,9 @@ class App.Init
 
     @makeJumpLinksVisibleOnFocus @$el
     @makeFormsAccessible @$el
-    @makeTextareasPasteable @$el
+    @makeTextareasPastable @$el
+    @makeTextareasPastableToNestedImage @$el
+    @optimizeMarkdownGeneratedHtml @$el
     @initTooltips @$el
     @initFancybox @$el
     @makeTextareasFullscreenizable @$el
@@ -18,9 +20,9 @@ class App.Init
     $el.find('form.simple_form').each ->
       new App.FormAccessibilizer @
 
-  makeTextareasPasteable: ($el) ->
+  makeTextareasPastable: ($el) ->
     $el.find('[data-paste]').each ->
-      new App.ClipboardToTextareaPasteabilizer @
+      new App.ClipboardToTextareaPastabilizer @
 
   initTooltips: ($el) ->
     # Bootstrap tooltips
@@ -40,6 +42,13 @@ class App.Init
         thumbs:
           width: 100,
           height: 100
+
+  makeTextareasPastableToNestedImage: ($el) ->
+    $el.find('textarea[data-pastable-image="true"]').each ->
+      new App.ClipboardToNestedImagePastabilizer @
+
+  optimizeMarkdownGeneratedHtml: ($el) ->
+    new App.MarkdownHtmlOptimizer $el
 
   makeTextareasFullscreenizable: ($el) ->
     $el.find('textarea[data-textarea-fullscreenizer="true"]').each ->

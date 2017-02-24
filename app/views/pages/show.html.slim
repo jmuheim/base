@@ -1,29 +1,49 @@
 = container_for @page do
   = headline_with_flash @page.title
 
-  .lead
-    h2.sr-only = Page.human_attribute_name :lead
-    = markdown indent_heading_level @page.lead, 2
+  .row
+    .col-md-8
+      .content.markdown = markdown indent_heading_level @page.content_with_referenced_images, 1
+        .lead
+          h2.sr-only = Page.human_attribute_name :lead
+          = markdown indent_heading_level @page.lead, 2
 
-  .content
-    h2.sr-only = Page.human_attribute_name :content
-    = markdown indent_heading_level @page.content, 2
+        .content
+          h2.sr-only = Page.human_attribute_name :content
+          = markdown indent_heading_level @page.content, 2
 
-  - if @page.children.any?
-    h2 = Page.human_attribute_name :children
-
-    - @page.children.each_slice(4) do |slice_of_children|
-      .row
-        - slice_of_children.each do |child|
-          .col-md-3
-            h3 = link_to child.title, child
-
-            = markdown indent_heading_level child.lead, 3
-
-    - unless @page.notes.blank?
+    .col-md-4
       - if can? :crud, @page
-        .notes.alert.alert-warning
-          h2.sr-only = Page.human_attribute_name :notes
-          = markdown indent_heading_level @page.notes, 2
+        - unless @page.notes.blank?
+          .notes.markdown.alert.alert-warning
+            h2 = Page.human_attribute_name :notes
+            = markdown indent_heading_level @page.notes_with_referenced_images, 2
+
+        - if @page.images.any?
+          .images
+            h2 = Page.human_attribute_name :images
+
+            = image_gallery do |gallery|
+              - @page.images.each do |image|
+                = gallery.zoomable_image(image.file)
+
+  .row
+    .col-md-12
+      - if @page.children.any?
+        h2 = Page.human_attribute_name :children
+
+        - @page.children.each_slice(4) do |slice_of_children|
+          .row
+            - slice_of_children.each do |child|
+              .col-md-3
+                h3 = link_to child.title, child
+
+                = markdown indent_heading_level child.lead, 3
+
+        - unless @page.notes.blank?
+          - if can? :crud, @page
+            .notes.alert.alert-warning
+              h2.sr-only = Page.human_attribute_name :notes
+              = markdown indent_heading_level @page.notes, 2
 
   == render 'shared/show/actions', resource: @page

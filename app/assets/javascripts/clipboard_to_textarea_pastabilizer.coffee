@@ -1,13 +1,14 @@
 # Adds the features of paste.js to all textareas of the given element.
 #
 # Be sure you have https://github.com/layerssss/paste.js available.
-class App.ClipboardToTextareaPasteabilizer
+class App.ClipboardToTextareaPastabilizer
   constructor: (el) ->
     $el = $(el)
 
     @$input            = $el.find('textarea')
     @$previewContainer = $el.find('.thumbnail')
     @$previewImage     = @$previewContainer.find('img')
+    @$input.after("<span class='fa fa-image'></span>")
 
     @removeWhitespace()
     @makePastable()

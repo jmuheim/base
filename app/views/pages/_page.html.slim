@@ -5,6 +5,8 @@ tr id=dom_id(page)
   td.ancestors
     = recurring_string? page.ancestors.count, :ancestors
 
+  td.images = page.images.count
+
   td.notes
     = markdown remove_headings page.notes
 

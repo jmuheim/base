@@ -5,8 +5,14 @@ de:
       defaults:
         created_at: Erstellt am
         updated_at: Aktualisiert am
+      image:
+        created_at: Erstellt am
+        updated_at: Aktualisiert am
+        file: Datei
+        identifier: Kennung
       page:
         content: Inhalt
+        images: Bilder
         navigation_title: Navigations-Titel
         notes: Notizen
         title: Titel
@@ -37,6 +43,9 @@ de:
         roles: Rollen
         updated_at: Aktualisiert am
     models:
+      image:
+        one: Abbildung
+        other: Abbildungen
       page:
         one: Seite
         other: Seiten

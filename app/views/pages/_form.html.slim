@@ -20,6 +20,8 @@
           - This is only available when editing a page and the parent stays unchanged
           - When creating a new page or changing the parent of an existing page, the page is inserted at the bottom of the chosen parent
 
+        == render 'paste_image_info'
+
     .col-md-8.col-md-pull-4
       == render 'shared/form/stale_info', f: f
 
@@ -36,8 +38,8 @@
           = f.input :title
           = f.input :navigation_title
           = f.input :lead, as: :text_fullscreen
-          = f.input :content, as: :text_fullscreen
-          = f.input :notes, as: :text_fullscreen
+          = f.input :content, as: :text_fullscreen_with_pastable_images
+          = f.input :notes, as: :text_fullscreen_with_pastable_images
 
   .row
     == render 'shared/form/actions', form: f, resource: @page

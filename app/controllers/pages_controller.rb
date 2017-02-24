@@ -1,6 +1,7 @@
 class PagesController < ApplicationController
   load_and_authorize_resource
   provide_optimistic_locking_for :page
+  provide_image_pasting_for :page
   before_action :add_base_breadcrumbs
   before_action :provide_parent_collection, only: [:new, :create, :edit, :update]
   before_action :provide_position_collection, only: [:edit, :update]
@@ -35,7 +36,8 @@ class PagesController < ApplicationController
                                  :notes,
                                  :parent_id,
                                  :position,
-                                 :lock_version)
+                                 :lock_version,
+                                 images_attributes: image_attributes)
   end
 
   def add_base_breadcrumbs

@@ -8,7 +8,7 @@ module Base
 
       def matches?(controller)
         @items.each_with_index do |item, index|
-          unless controller.has_css? "#navigation li.active a", text: item
+          unless controller.has_css? "#navigation li.active a", text: item, visible: false
             @failure_item = item
             return false
           end

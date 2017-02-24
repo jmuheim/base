@@ -1,0 +1,24 @@
+.markdown
+  table
+    @extend .table
+    @extend .table-bordered
+    @extend .table-striped
+
+  .figure
+    +float-right
+    @extend .img-thumbnail
+    margin-bottom: 10px
+    background-color: #f5f5f5
+
+    .caption
+      margin-top: 4px
+      margin-bottom: 0
+
+  img
+    @extend .img-thumbnail
+
+  .alert
+    +clearfix
+
+  .clear
+    clear: both

@@ -4,7 +4,7 @@ describe 'Listing pages' do
   before { login_as(create :admin) }
 
   it 'displays pages' do
-    @page = create :page
+    @page = create :page, :with_image
     visit pages_path
 
     expect(page).to have_title 'Pages - Base'
@@ -15,7 +15,7 @@ describe 'Listing pages' do
     within dom_id_selector(@page) do
       expect(page).to have_css '.title a',          text: 'Page test title'
       expect(page).to have_css '.navigation_title', text: 'Page test navigation title'
-      expect(page).to have_css '.content',          text: 'Page test content'
+      expect(page).to have_css '.images',           text: 1
       expect(page).to have_css '.notes',            text: 'Page test notes'
 
       expect(page).to have_link 'Edit'
