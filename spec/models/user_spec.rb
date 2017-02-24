@@ -31,7 +31,7 @@ describe User do
 
       expect {
         user.update_attributes! name: 'daisy'
-      }.to change { user.name }.to 'daisy'
+      }.to change { user.versions.count }.by 1
     end
   end
 

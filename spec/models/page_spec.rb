@@ -2,8 +2,6 @@ require 'rails_helper'
 
 RSpec.describe Page, type: :model do
   it { should validate_presence_of(:title).with_message "can't be blank" }
-  it { should validate_presence_of(:navigation_title).with_message "can't be blank" }
-  it { should validate_presence_of(:content).with_message "can't be blank" }
 
   it { should have_many(:images).dependent :destroy }
 
@@ -34,7 +32,7 @@ RSpec.describe Page, type: :model do
       }.not_to change { Image.count }
     end
 
-    it 'creates a new finding' do
+    it 'creates a new image' do
       page = create :page
 
       expect {
@@ -48,7 +46,7 @@ RSpec.describe Page, type: :model do
       expect(File.basename(image.file.to_s)).to eq 'image.jpg'
     end
 
-    it 'updates an existing finding' do
+    it 'updates an existing image' do
       page = create :page, :with_image
       image = page.images.first
 
@@ -61,7 +59,7 @@ RSpec.describe Page, type: :model do
       .and change { File.basename(image.reload.file.to_s) }.to('other_image.jpg')
     end
 
-    it 'removes an existing finding' do
+    it 'removes an existing image' do
       page = create :page, :with_image
       image = page.images.first
 
@@ -126,25 +124,32 @@ RSpec.describe Page, type: :model do
     end
   end
 
-  describe '#content_with_referenced_images' do
-    before { @page = create(:page, :with_image) }
 
-    it 'replaces image identifiers of block images with absolute web paths' do
-      @page.update_attribute :content, "Some text.\n\n[My image](Image test identifier)\n\nSome more text."
-      expect(@page.content_with_referenced_images).to eq "Some text.\n\n[My image](/uploads/image/file/1/image.jpg)\n\nSome more text."
-    end
+  describe 'replacing markdown image definition identifiers with absolute URLs' do
+    [:content, :notes].each do |textarea|
+      textarea_with_referenced_images = "#{textarea}_with_referenced_images"
 
-    it 'replaces image identifiers of inline images with absolute web paths' do
-      @page.update_attribute :content, "This is an [inline image](Image test identifier)!"
-      expect(@page.content_with_referenced_images).to eq "This is an [inline image](/uploads/image/file/1/image.jpg)!"
-    end
+      describe "##{textarea_with_referenced_images}" do
+        before { @page = create(:page, :with_image) }
 
-    it 'replaces image identifiers of more than one inline image in a row with absolute web paths' do
-      @page.images << create(:image, identifier: 'other',
-                                     file:       File.open(dummy_file_path('other_image.jpg')))
+        it 'replaces image identifiers of block images with absolute web paths' do
+          @page.update_attribute textarea, "Some text.\n\n![My image](Image test identifier)\n\nSome more text."
+          expect(@page.send(textarea_with_referenced_images)).to eq "Some text.\n\n![My image](#{@page.images.first.file.url})\n\nSome more text."
+        end
 
-      @page.update_attribute :content, "This is [an inline image](Image test identifier), and [another inline image](other)!"
-      expect(@page.content_with_referenced_images).to eq "This is [an inline image](/uploads/image/file/1/image.jpg), and [another inline image](/uploads/image/file/2/other_image.jpg)!"
+        it 'replaces image identifiers of inline images with absolute web paths' do
+          @page.update_attribute textarea, "This is an ![inline image](Image test identifier)!"
+          expect(@page.send(textarea_with_referenced_images)).to eq "This is an ![inline image](#{@page.images.first.file.url})!"
+        end
+
+        it 'replaces image identifiers of more than one inline image in a row with absolute web paths' do
+          @page.images << create(:image, identifier: 'other',
+                                         file:       File.open(dummy_file_path('other_image.jpg')))
+
+          @page.update_attribute textarea, "This is ![an inline image](Image test identifier), and ![another inline image](other)!"
+          expect(@page.send(textarea_with_referenced_images)).to eq "This is ![an inline image](#{@page.images.first.file.url}), and ![another inline image](#{@page.images.last.file.url})!"
+        end
+      end
     end
   end
 end

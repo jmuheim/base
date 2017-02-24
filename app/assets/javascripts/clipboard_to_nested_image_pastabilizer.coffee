@@ -1,7 +1,7 @@
 # Adds the features of paste.js to all textareas of the given element.
 #
 # Be sure you have https://github.com/layerssss/paste.js available.
-class App.ClipboardToNestedImagePasteabilizer
+class App.ClipboardToNestedImagePastabilizer
   class ImageFields
     constructor: ($images) ->
       @$images = $images
@@ -19,8 +19,8 @@ class App.ClipboardToNestedImagePasteabilizer
 
     @$images           = $('#images')
     @$add_image_link   = @$images.find('a.add_fields')
-    @alt_prompt        = @$input.data('pasteable-image-alt-prompt')
-    @identifier_prompt = @$input.data('pasteable-image-identifier-prompt')
+    @alt_prompt        = @$input.data('pastable-image-alt-prompt')
+    @identifier_prompt = @$input.data('pastable-image-identifier-prompt')
 
     @makePastable() # TODO: Do something that can be tested using Capybara to make sure that at least the initialisation of stuff works!
 

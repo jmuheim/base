@@ -6,13 +6,11 @@
       .content.markdown = markdown indent_heading_level @page.content_with_referenced_images, 1
 
     .col-md-4
-      - if can? :crud, @page
+      - if current_user.has_role? :admin
         - unless @page.notes.blank?
-          .notes.markdown
+          .notes.markdown.alert.alert-warning
             h2 = Page.human_attribute_name :notes
-
-            .alert.alert-warning
-              = markdown indent_heading_level @page.notes_with_referenced_images, 2
+            = markdown indent_heading_level @page.notes_with_referenced_images, 2
 
         - if @page.images.any?
           .images
