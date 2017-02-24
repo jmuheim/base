@@ -110,8 +110,3 @@ end
 RSpec.configure do |config|
   config.after(:each) { I18n.locale = :en }
 end
-
-# Allow view specs with different abilities, see http://stackoverflow.com/questions/5018344/testing-views-that-use-cancan-and-devise-with-rspec
-RSpec.configure do |config|
-  config.include Devise::TestHelpers, type: :view
-end

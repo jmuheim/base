@@ -30,7 +30,7 @@ module ScreenWidth
 
     if block_given?
       yield
-      page.driver.browser.manage.window.resize_to original_width, original_height
+      Capybara.page.current_window.resize_to original_width, original_height
     end
   end
 end
