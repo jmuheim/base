@@ -50,5 +50,5 @@ describe 'Creating page' do
   end
 
   # See https://github.com/layerssss/paste.js/issues/39
-  it 'allows to paste images directly into the textarea'
+  it 'allows to paste images as nested attributes directly into content and notes textareas'
 end
