@@ -7,16 +7,16 @@ en:
         updated_at: Updated at
       image:
         created_at: Erstellt am
-        updated_at: Updated at
         file: Datei
         identifier: Identifier
+        updated_at: Updated at
       page:
+        children: Sub pages
         content: Content
         images: Images
         navigation_title: Navigation title
         notes: Notes
         title: Title
-        children: Sub pages
       role:
         created_at: Created at
         name: Name

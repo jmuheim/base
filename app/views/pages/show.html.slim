@@ -13,6 +13,20 @@
           = markdown indent_heading_level @page.content, 2
 
     .col-md-4
+      h2 = t '.browsing'
+
+      #browsing.btn-group
+        / TODO: Methoden erstellen für Page und optimieren (höhere und tiefere Levels berücksichtigen)!
+        - if previous_page = @page.siblings.select { |sibling| sibling.position < @page.position }.last
+          = link_to previous_page, class: 'btn btn-default previous' do
+            => icon :backward, t('.previous_page') + ':', type: :fa
+            = previous_page.navigation_title_or_title
+
+        - if next_page = @page.siblings.select { |sibling| sibling.position > @page.position }.first
+          = link_to next_page, class: 'btn btn-default next' do
+            => icon :forward, t('.next_page') + ':', type: :fa
+            = next_page.navigation_title_or_title
+
       - if can? :crud, @page
         - unless @page.notes.blank?
           .notes.markdown.alert.alert-warning

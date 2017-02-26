@@ -22,6 +22,11 @@ en:
       add_image: Add image
   org:
     name: MuheimWebdesign
+  pages:
+    show:
+      browsing: Browsing
+      next_page: Next page
+      previous_page: Previous page
   resources:
     create: Create %{resource}
     list: List %{resource}

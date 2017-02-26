@@ -7,10 +7,11 @@ de:
         updated_at: Aktualisiert am
       image:
         created_at: Erstellt am
-        updated_at: Aktualisiert am
         file: Datei
         identifier: Kennung
+        updated_at: Aktualisiert am
       page:
+        children: Unterseiten
         content: Inhalt
         images: Bilder
         navigation_title: Navigations-Titel
