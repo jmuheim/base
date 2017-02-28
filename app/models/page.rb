@@ -23,10 +23,18 @@ class Page < ApplicationRecord
   end
 
   def collection_tree_without_self_and_descendants
-    Page.collection_tree - [self] - [descendants] # TODO: No self and children!!!
+    Page.collection_tree.reject { |page| descendants.include? page } - [self]
   end
 
-  def indented_name
+  def title_with_details
     "#{title} (##{id})"
+  end
+
+  def previous_page
+    siblings.select { |sibling| sibling.position < position }.last
+  end
+
+  def next_page
+    siblings.select { |sibling| sibling.position > position }.first
   end
 end

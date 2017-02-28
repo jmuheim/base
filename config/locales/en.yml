@@ -23,12 +23,15 @@ en:
   org:
     name: MuheimWebdesign
   pages:
+    form:
+      info: Information about creating and editing pages and images
     show:
       browsing: Browsing
+      browsing_only_on_same_level_possible: At the time being, browsing only works on pages of the same hierarchy level.
       next_page: Next page
+      no_next_page: No next page
+      no_previous_page: No previous page
       previous_page: Previous page
-    form:
-      info: Information about editing pages and images
   resources:
     create: Create %{resource}
     list: List %{resource}

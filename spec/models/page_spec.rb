@@ -123,4 +123,53 @@ RSpec.describe Page do
       }.to change { page.versions.count }.by 1
     end
   end
+
+  describe '#collection_tree_without_self_and_descendants' do
+    it 'returns the collection without self and descendants' do
+      parent        = create :page, title: 'parent'
+      page          = create :page, title: 'page',          parent: parent
+      child         = create :page, title: 'child',         parent: page
+      sibling       = create :page, title: 'sibling',       parent: parent
+      sibling_child = create :page, title: 'sibling child', parent: sibling
+
+      expect(page.collection_tree_without_self_and_descendants).to eq [parent, sibling, sibling_child]
+    end
+  end
+
+  describe '#title_with_details' do
+    it 'returns the name with the id' do
+      page = create(:page)
+      expect(page.title_with_details).to eq "Page test title (##{page.id})"
+    end
+  end
+
+  describe '#previous_page' do
+    before do
+      @first_page = create :page, title: 'First page'
+      @second_page = create :page, title: 'Second page'
+    end
+
+    it 'returns the previous sibling if exists' do
+      expect(@second_page.previous_page).to eq @first_page
+    end
+
+    it 'returns nil if no previous sibling' do
+      expect(@first_page.previous_page).to eq nil
+    end
+  end
+
+  describe '#next_page' do
+    before do
+      @first_page = create :page, title: 'First page'
+      @second_page = create :page, title: 'Second page'
+    end
+
+    it 'returns the next sibling if exists' do
+      expect(@first_page.next_page).to eq @second_page
+    end
+
+    it 'returns nil if no next sibling' do
+      expect(@second_page.next_page).to eq nil
+    end
+  end
 end

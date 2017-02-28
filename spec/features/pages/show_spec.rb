@@ -4,28 +4,56 @@ describe 'Showing page' do
   before { login_as(create :admin) }
 
   it 'displays a page' do
+    other_page = create :page, title: 'Some cool other page'
     @page = create :page, :with_image,
-                          content: "# Some content title\n\nAnd some content stuff.\n\n![And an image](@image-Image test identifier)",
-                          notes:   "# Some notes title\n\nAnd some notes stuff."
+                          lead:   "# Some lead title\n\nAnd some lead stuff.",
+                          content: "# Some content title\n\nAnd some content stuff.\n\n![Content image](@image-Image test identifier) with a [](@page-#{other_page.id}) and [some alt](@page-#{other_page.id})",
+                          notes:   "# Some notes title\n\nAnd some notes stuff.\n\n![Notes image](@image-Image test identifier) with a [](@page-#{other_page.id}) and [some alt](@page-#{other_page.id})",
+                          parent:  create(:page, title: 'Cool parent page', navigation_title: nil),
+                          children: [create(:page, title: 'A cool sub page', lead: 'Some sub page lead')]
+    sibling_page = create :page, navigation_title: 'Sibling page', parent: @page.parent
 
     visit page_path(@page)
 
     expect(page).to have_title 'Page test title - Base'
     expect(page).to have_active_navigation_items 'Page test navigation title'
-    expect(page).to have_breadcrumbs 'Base', 'Page test navigation title'
+    expect(page).to have_breadcrumbs 'Base', 'Cool parent page', 'Page test navigation title'
     expect(page).to have_headline 'Page test title'
 
     within dom_id_selector(@page) do
+      within '.lead' do
+        expect(page).to have_css 'h2', text: 'Lead'
+        expect(page).to have_css 'h3', text: 'Some lead title'
+        expect(page).to have_content 'And some lead stuff'
+      end
+
       within '.content' do
-        expect(page).to have_css 'h2', text: 'Some content title'
+        expect(page).to have_css 'h2', text: 'Content'
+        expect(page).to have_css 'h3', text: 'Some content title'
         expect(page).to have_content 'And some content stuff'
-        expect(page).to have_css "img[alt='And an image'][src='#{@page.images.last.file.url}']"
+        expect(page).to have_css "img[alt='Content image'][src='#{@page.images.last.file.url}']"
+        expect(page).to have_css "a[href='/en/pages/#{other_page.id}']", text: 'Some cool other page'
+        expect(page).to have_css "a[href='/en/pages/#{other_page.id}'][title='Some cool other page']", text: 'some alt'
       end
 
       within '.notes' do
         expect(page).to have_css 'h2', text: 'Notes'
         expect(page).to have_css 'h3', text: 'Some notes title'
         expect(page).to have_content 'And some notes stuff'
+        expect(page).to have_css "img[alt='Notes image'][src='#{@page.images.last.file.url}']"
+        expect(page).to have_css "a[href='/en/pages/#{other_page.id}']", text: 'Some cool other page'
+        expect(page).to have_css "a[href='/en/pages/#{other_page.id}'][title='Some cool other page']", text: 'some alt'
+      end
+
+      within '.browsing' do
+        expect(page).to have_css 'span', text: 'No previous page'
+        expect(page).to have_css "a[href='/en/pages/#{sibling_page.id}']", text: 'Next page: Sibling page'
+      end
+
+      within '.children' do
+        expect(page).to have_css 'h2', text: 'Sub pages'
+        expect(page).to have_css 'h3', text: 'A cool sub page'
+        expect(page).to have_css 'p', text: 'Some sub page lead'
       end
 
       within '.actions' do

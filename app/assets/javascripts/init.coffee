@@ -10,7 +10,7 @@ class App.Init
     @initTooltips @$el
     @initFancybox @$el
     @makeTextareasFullscreenizable @$el
-    @disableDependingInput @$el
+    @disableDependingSelect @$el
 
   makeJumpLinksVisibleOnFocus: ($el) ->
     $el.find('#jump_links a').each ->
@@ -54,6 +54,6 @@ class App.Init
     $el.find('textarea[data-textarea-fullscreenizer="true"]').each ->
       new App.TextareaFullscreenizer @
 
-  disableDependingInput: ($el) ->
+  disableDependingSelect: ($el) ->
     $el.find('[data-depends-id][data-depends-value]').each ->
-      new App.DependingInputDisabler @, $el
+      new App.DependingSelectDisabler @, $el

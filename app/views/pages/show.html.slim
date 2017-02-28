@@ -3,29 +3,39 @@
 
   .row
     .col-md-8
-      .content.markdown = markdown indent_heading_level @page.content_with_references, 1
+      .markdown
         .lead
           h2.sr-only = Page.human_attribute_name :lead
           = markdown indent_heading_level @page.lead, 2
 
         .content
           h2.sr-only = Page.human_attribute_name :content
-          = markdown indent_heading_level @page.content, 2
+          = markdown indent_heading_level @page.content_with_references, 2
 
-    .col-md-4
+    .col-md-4.browsing
       h2 = t '.browsing'
 
-      #browsing.btn-group
-        / TODO: Methoden erstellen für Page und optimieren (höhere und tiefere Levels berücksichtigen)!
-        - if previous_page = @page.siblings.select { |sibling| sibling.position < @page.position }.last
+      p.btn-group
+        - if previous_page = @page.previous_page
           = link_to previous_page, class: 'btn btn-default previous' do
             => icon :backward, t('.previous_page') + ':', type: :fa
             = previous_page.navigation_title_or_title
+        - else
+          span.btn.btn-default.disabled.previous
+            => icon :backward, type: :fa
+            = t('.no_previous_page')
 
-        - if next_page = @page.siblings.select { |sibling| sibling.position > @page.position }.first
+        - if next_page = @page.next_page
           = link_to next_page, class: 'btn btn-default next' do
             => icon :forward, t('.next_page') + ':', type: :fa
             = next_page.navigation_title_or_title
+        - else
+          span.btn.btn-default.disabled.next
+            => icon :forward, type: :fa
+            = t('.no_next_page')
+
+        p.alert.alert-info
+          = t '.browsing_only_on_same_level_possible'
 
       - if can? :crud, @page
         - unless @page.notes.blank?
@@ -41,9 +51,9 @@
               - @page.images.each do |image|
                 = gallery.zoomable_image(image.file)
 
-  .row
-    .col-md-12
-      - if @page.children.any?
+  - if @page.children.any?
+    .row.children
+      .col-md-12
         h2 = Page.human_attribute_name :children
 
         - @page.children.each_slice(4) do |slice_of_children|

@@ -4,27 +4,28 @@ body.pages
       display: none
 
   &.show
-    #browsing
-      width: 100%
+    .browsing
+      .btn-group
+        width: 100%
 
-      a.btn
-        +ellipsis
-        width: 50%
-        white-space: nowrap
-        text-align: center
+        .btn
+          +ellipsis
+          width: 50%
+          white-space: nowrap
+          text-align: center
 
-        &.previous
-          padding-left: 30px
+          &.previous
+            padding-left: 30px
 
-          .fa
-            position: absolute
-            top: 9px
-            left: 12px
+            .fa
+              position: absolute
+              top: 9px
+              left: 12px
 
-        &.next
-          padding-right: 30px
+          &.next
+            padding-right: 30px
 
-          .fa
-            position: absolute
-            top: 9px
-            right: 12px
+            .fa
+              position: absolute
+              top: 9px
+              right: 12px

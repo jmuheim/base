@@ -23,12 +23,15 @@ de:
   org:
     name: MuheimWebdesign
   pages:
+    form:
+      info: Informationen zum Erstellen und Bearbeiten von Seiten und Bildern
     show:
       browsing: Blättern
+      browsing_only_on_same_level_possible: Zurzeit unterstützt der Blättern-Mechanismus nur Seiten auf derselben Hierarchie-Stufe.
       next_page: Nächste Seite
+      no_next_page: Keine nächste Seite
+      no_previous_page: Keine vorherige Seite
       previous_page: Vorherige Seite
-    form:
-      info: Informationen zum Bearbeiten von Seiten und Bildern
   resources:
     create: "%{resource} erstellen"
     list: "%{resource} auflisten"

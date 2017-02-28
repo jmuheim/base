@@ -18,10 +18,12 @@
       = t('shared.form.details')
 
     = panel.body do
-      = f.association :parent, collection: @parent_collection, label_method: :indented_name
+      = f.association :parent, collection: @parent_collection, label_method: :title_with_details
 
-      - if f.object.persisted?
-        = f.input :position, collection: @position_collection, include_blank: false, input_html: {data: {'depends-id': 'page_parent_id', 'depends-value': f.object.parent_id}}
+      - if f.object.new_record?
+        = f.input :position, collection: [], disabled: true
+      - else
+        = f.input :position, collection: @position_collection, include_blank: false, input_html: {data: {'depends-id': 'page_parent_id', 'depends-value': f.object.parent_id || ''}}
 
       = f.input :title
       = f.input :navigation_title
