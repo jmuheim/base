@@ -7,7 +7,7 @@ RSpec.describe Image, type: :model do
   describe 'uniqueness validations' do
     subject { build :image }
 
-    it { should validate_uniqueness_of(:identifier).scoped_to :page_id }
+    it { should validate_uniqueness_of(:identifier) }
   end
 
   it 'has a valid factory' do
