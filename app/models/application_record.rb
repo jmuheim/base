@@ -11,17 +11,5 @@ class ApplicationRecord < ActiveRecord::Base
     define_method :textareas_accepting_pasted_images do
       textareas
     end
-
-    textareas.each do |textarea|
-      define_method "#{textarea}_with_referenced_images" do
-        send(textarea).to_s.lines.map do |line|
-          images.each do |image|
-            line.gsub!(/\!\[(.*?)\]\(#{image.identifier}\)/) { "![#{$1}](#{image.file.url})" }
-          end
-
-          line
-        end.join
-      end
-    end
   end
 end
