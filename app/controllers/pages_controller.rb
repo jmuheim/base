@@ -5,6 +5,10 @@ class PagesController < ApplicationController
   before_action :add_base_breadcrumbs
   respond_to :html
 
+  def show
+    @page = @page.decorate
+  end
+
   def create
     @page.save
     respond_with @page

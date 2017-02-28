@@ -73,6 +73,8 @@ gem 'pandoc-ruby' # Markdown parser and format converter (from/to Markdown, HTML
 
 gem 'ransack' # Object-based searching
 
+gem 'draper', '3.0.0.pre1' # Decorators/View-Models for Rails Applications
+
 gem 'actionview-encoded_mail_to' # Rails mail_to helper with obfuscation
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw] # Timezone Data for TZInfo (needed when run on Microsoft Windows, see https://github.com/tzinfo/tzinfo/wiki/Resolving-TZInfo::DataSourceNotFound-Errors)

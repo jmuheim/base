@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Image, type: :model do
+RSpec.describe Image do
   it { should belong_to(:page) }
 
   # Uniqueness specs are a bit nasty, see http://stackoverflow.com/questions/27046691/cant-get-uniqueness-validation-test-pass-with-shoulda-matcher

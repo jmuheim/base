@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Page, type: :model do
+RSpec.describe Page do
   it { should validate_presence_of(:title).with_message "can't be blank" }
 
   it { should have_many(:images).dependent :destroy }
