@@ -7,9 +7,9 @@ en:
         updated_at: Updated at
       image:
         created_at: Erstellt am
-        updated_at: Updated at
         file: Datei
         identifier: Identifier
+        updated_at: Updated at
       page:
         content: Content
         images: Images

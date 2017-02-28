@@ -16,12 +16,15 @@ de:
       number_of_resource: Anzahl %{resource}
       title: Statistiken
   images:
-    images:
-      add_image: Abbildung hinzufügen
     image_fields:
       remove_image: Bild entfernen
+    images:
+      add_image: Abbildung hinzufügen
   org:
     name: MuheimWebdesign
+  pages:
+    form:
+      info: Informationen zum Bearbeiten von Seiten und Bildern
   resources:
     create: "%{resource} erstellen"
     list: "%{resource} auflisten"
