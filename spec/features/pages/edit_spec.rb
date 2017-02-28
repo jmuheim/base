@@ -15,7 +15,7 @@ describe 'Editing page' do
 
     fill_in 'page_title',            with: 'A new title'
     fill_in 'page_navigation_title', with: 'A new navigation title'
-    fill_in 'page_content',          with: "A new content with a ![existing image](some-existing-identifier) and a ![new image](some-new-identifier)"
+    fill_in 'page_content',          with: "A new content with a ![existing image](@image-some-existing-identifier) and a ![new image](@image-some-new-identifier)"
     fill_in 'page_notes',            with: 'A new note'
 
     find('#page_images_attributes_0_file', visible: false).set base64_other_image[:data]
@@ -49,7 +49,7 @@ describe 'Editing page' do
       @page.reload
     } .to  change { @page.title }.to('A new title')
       .and change { @page.navigation_title }.to('A new navigation title')
-      .and change { @page.content }.to("A new content with a ![existing image](some-existing-identifier) and a ![new image](some-new-identifier)")
+      .and change { @page.content }.to("A new content with a ![existing image](@image-some-existing-identifier) and a ![new image](@image-some-new-identifier)")
       .and change { @page.notes }.to('A new note')
       .and change { @page.images.count }.by(1)
       .and change { @page.images.first.file.file.identifier }.to('file.png')

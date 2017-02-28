@@ -39,10 +39,7 @@ class App.ClipboardToNestedImagePastabilizer
       imageFields = new ImageFields(@$images.find('.nested-fields:last'))
 
       temporary_identifier_id = imageFields.getTemporaryIdentifierId()
-      identifier = if identifier
-                     "#{identifier}-#{temporary_identifier_id}"
-                   else
-                     temporary_identifier_id
+      identifier = temporary_identifier_id if identifier == ''
 
       imageFields.file_field.val(data.dataURL)                             # Set blob string to textarea
       imageFields.previewImage.attr('src', URL.createObjectURL(data.blob)) # Set image preview
@@ -60,7 +57,7 @@ class App.ClipboardToNestedImagePastabilizer
 
     value_before = @$input.val().substring(0, caret_position)
     value_after  = @$input.val().substring(caret_position)
-    image_string = "![#{alternative_text}](#{identifier})"
+    image_string = "![#{alternative_text}](@image-#{identifier})"
 
     @$input.val(value_before + image_string + value_after)
     @$input.caret(caret_position + image_string.length)

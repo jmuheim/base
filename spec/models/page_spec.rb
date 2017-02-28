@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Page, type: :model do
+RSpec.describe Page do
   it { should validate_presence_of(:title).with_message "can't be blank" }
 
   it { should have_many(:images).dependent :destroy }
@@ -121,35 +121,6 @@ RSpec.describe Page, type: :model do
       expect {
         page.update_attributes! notes: 'New notes'
       }.to change { page.versions.count }.by 1
-    end
-  end
-
-
-  describe 'replacing markdown image definition identifiers with absolute URLs' do
-    [:content, :notes].each do |textarea|
-      textarea_with_referenced_images = "#{textarea}_with_referenced_images"
-
-      describe "##{textarea_with_referenced_images}" do
-        before { @page = create(:page, :with_image) }
-
-        it 'replaces image identifiers of block images with absolute web paths' do
-          @page.update_attribute textarea, "Some text.\n\n![My image](Image test identifier)\n\nSome more text."
-          expect(@page.send(textarea_with_referenced_images)).to eq "Some text.\n\n![My image](#{@page.images.first.file.url})\n\nSome more text."
-        end
-
-        it 'replaces image identifiers of inline images with absolute web paths' do
-          @page.update_attribute textarea, "This is an ![inline image](Image test identifier)!"
-          expect(@page.send(textarea_with_referenced_images)).to eq "This is an ![inline image](#{@page.images.first.file.url})!"
-        end
-
-        it 'replaces image identifiers of more than one inline image in a row with absolute web paths' do
-          @page.images << create(:image, identifier: 'other',
-                                         file:       File.open(dummy_file_path('other_image.jpg')))
-
-          @page.update_attribute textarea, "This is ![an inline image](Image test identifier), and ![another inline image](other)!"
-          expect(@page.send(textarea_with_referenced_images)).to eq "This is ![an inline image](#{@page.images.first.file.url}), and ![another inline image](#{@page.images.last.file.url})!"
-        end
-      end
     end
   end
 end

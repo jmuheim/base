@@ -22,6 +22,9 @@ en:
       add_image: Add image
   org:
     name: MuheimWebdesign
+  pages:
+    form:
+      info: Information about editing pages and images
   resources:
     create: Create %{resource}
     list: List %{resource}

@@ -3,21 +3,24 @@
 
   == render 'shared/form/stale_info', f: f
 
-  .row
-    .col-md-4.col-md-push-8
-      .alert.alert-info
-        == render 'paste_image_info'
+  = accordion :info, item_options: {title_tag: 'h2', panel_class: 'panel-info'} do |accordion|
+    = accordion.panel do |panel|
+      = panel.title do
+        = t '.info'
 
-    .col-md-8.col-md-pull-4
-      = panel do |panel|
-        = panel.heading do
-          = t('shared.form.details')
+      = panel.body do
+        == render 'referencing_pages_info'
+        == render 'pasting_images_info'
 
-        = panel.body do
-          = f.input :title
-          = f.input :navigation_title
-          = f.input :content, as: :text_fullscreen_with_pastable_images
-          = f.input :notes, as: :text_fullscreen_with_pastable_images
+  = panel do |panel|
+    = panel.heading do
+      = t('shared.form.details')
+
+    = panel.body do
+      = f.input :title
+      = f.input :navigation_title
+      = f.input :content, as: :text_fullscreen_with_pastable_images
+      = f.input :notes, as: :text_fullscreen_with_pastable_images
 
   == render 'images/images', f: f
 

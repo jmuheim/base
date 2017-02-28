@@ -5,7 +5,7 @@ describe 'Showing page' do
 
   it 'displays a page' do
     @page = create :page, :with_image,
-                          content: "# Some content title\n\nAnd some content stuff.\n\n![And an image](Image test identifier)",
+                          content: "# Some content title\n\nAnd some content stuff.\n\n![And an image](@image-Image test identifier)",
                           notes:   "# Some notes title\n\nAnd some notes stuff."
 
     visit page_path(@page)
