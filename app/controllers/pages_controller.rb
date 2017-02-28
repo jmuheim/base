@@ -11,6 +11,10 @@ class PagesController < ApplicationController
     @pages = Page.collection_tree
   end
 
+  def show
+    @page = @page.decorate
+  end
+
   def create
     @page.save
     respond_with @page

@@ -17,7 +17,7 @@
   | &nbsp;
   .btn-group
     - if can? :create, resource.class
-      = link_to [:new, belongs_to ||= nil, resource.class.to_s.underscore], class: 'btn btn-success' do
+      = link_to [:new, belongs_to ||= nil, resource.resource_class], class: 'btn btn-success' do
         = icon(:plus, type: :fa)
         =< t('actions.new_resource', resource: resource.model_name.human)
     = link_to [belongs_to, resource.model_name.to_s.tableize], class: 'btn btn-default' do

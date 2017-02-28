@@ -27,6 +27,8 @@ en:
       browsing: Browsing
       next_page: Next page
       previous_page: Previous page
+    form:
+      info: Information about editing pages and images
   resources:
     create: Create %{resource}
     list: List %{resource}

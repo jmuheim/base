@@ -13,7 +13,7 @@ describe 'Creating page' do
 
     fill_in 'page_title',            with: 'new title'
     fill_in 'page_navigation_title', with: 'new navigation title'
-    fill_in 'page_content',          with: 'A cool image: ![image](referenced-identifier)'
+    fill_in 'page_content',          with: 'A cool image: ![image](@image-referenced-identifier)'
     fill_in 'page_notes',            with: 'new notes'
 
     # Let's add an image that is referenced in the content

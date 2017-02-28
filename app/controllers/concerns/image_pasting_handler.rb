@@ -27,7 +27,7 @@ module ImagePastingHandler
     page.textareas_accepting_pasted_images.each do |textarea|
       page.send(textarea).to_s.lines.map do |line|
         page.images.each do |image|
-          referenced_images << image if line =~ /\(#{image.identifier}\)/
+          referenced_images << image if line =~ /\(@image-#{image.identifier}\)/
         end
       end
     end

@@ -1,13 +1,13 @@
 require 'rails_helper'
 
-RSpec.describe Image, type: :model do
+RSpec.describe Image do
   it { should belong_to(:page) }
 
   # Uniqueness specs are a bit nasty, see http://stackoverflow.com/questions/27046691/cant-get-uniqueness-validation-test-pass-with-shoulda-matcher
   describe 'uniqueness validations' do
     subject { build :image }
 
-    it { should validate_uniqueness_of(:identifier).scoped_to :page_id }
+    it { should validate_uniqueness_of(:identifier).scoped_to(:page_id) }
   end
 
   it 'has a valid factory' do
