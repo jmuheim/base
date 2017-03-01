@@ -143,33 +143,36 @@ RSpec.describe Page do
     end
   end
 
-  describe '#previous_page' do
+  describe 'browsing' do
     before do
-      @first_page = create :page, title: 'First page'
-      @second_page = create :page, title: 'Second page'
+      @root_1                 = create :page, title: 'Root 1'
+      @root_1_child_1         = create :page, title: 'Root 1 child 1',         parent: @root_1
+      @root_1_child_2         = create :page, title: 'Root 1 child 2',         parent: @root_1
+      @root_1_child_2_child_1 = create :page, title: 'Root 1 child 2 child 1', parent: @root_1_child_2
+      @root_2                 = create :page, title: 'Root 2'
+      @root_2_child_1         = create :page, title: 'Root 2 child 1',         parent: @root_2
     end
 
-    it 'returns the previous sibling if exists' do
-      expect(@second_page.previous_page).to eq @first_page
+    describe '#previous_page' do
+      it 'returns the previous page (or nil if first)' do
+        expect(@root_1.previous_page).to eq nil
+        expect(@root_1_child_1.previous_page).to eq @root_1
+        expect(@root_1_child_2.previous_page).to eq @root_1_child_1
+        expect(@root_1_child_2_child_1.previous_page).to eq @root_1_child_2
+        expect(@root_2.previous_page).to eq @root_1_child_2_child_1
+        expect(@root_2_child_1.previous_page).to eq @root_2
+      end
     end
 
-    it 'returns nil if no previous sibling' do
-      expect(@first_page.previous_page).to eq nil
-    end
-  end
-
-  describe '#next_page' do
-    before do
-      @first_page = create :page, title: 'First page'
-      @second_page = create :page, title: 'Second page'
-    end
-
-    it 'returns the next sibling if exists' do
-      expect(@first_page.next_page).to eq @second_page
-    end
-
-    it 'returns nil if no next sibling' do
-      expect(@second_page.next_page).to eq nil
+    describe '#next_page' do
+      it 'returns the next page (or nil if last)' do
+        expect(@root_1.next_page).to eq @root_1_child_1
+        expect(@root_1_child_1.next_page).to eq @root_1_child_2
+        expect(@root_1_child_2.next_page).to eq @root_1_child_2_child_1
+        expect(@root_1_child_2_child_1.next_page).to eq @root_2
+        expect(@root_2.next_page).to eq @root_2_child_1
+        expect(@root_2_child_1.next_page).to eq nil
+      end
     end
   end
 end
