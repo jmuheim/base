@@ -9,33 +9,10 @@
           = markdown indent_heading_level @page.lead, 2
 
         .content
-          h2.sr-only = Page.human_attribute_name :content
-          = markdown indent_heading_level @page.content_with_references, 2
+          = markdown indent_heading_level @page.content_with_references, 1
 
     .col-md-4.browsing
-      h2 = t '.browsing'
-
-      p.btn-group
-        - if previous_page = @page.previous_page
-          = link_to previous_page, class: 'btn btn-default previous' do
-            => icon :backward, t('.previous_page') + ':', type: :fa
-            = previous_page.navigation_title_or_title
-        - else
-          span.btn.btn-default.disabled.previous
-            => icon :backward, type: :fa
-            = t('.no_previous_page')
-
-        - if next_page = @page.next_page
-          = link_to next_page, class: 'btn btn-default next' do
-            => icon :forward, t('.next_page') + ':', type: :fa
-            = next_page.navigation_title_or_title
-        - else
-          span.btn.btn-default.disabled.next
-            => icon :forward, type: :fa
-            = t('.no_next_page')
-
-        p.alert.alert-info
-          = t '.browsing_only_on_same_level_possible'
+      == render 'browsing', page: @page
 
       - if can? :crud, @page
         - unless @page.notes.blank?

@@ -21,17 +21,13 @@ nav#navigation.container
         h3.sr-only = t '.content_navigation'
 
         = semantic_navigation :content_navigation do |navigation|
-          - navigation.group User.model_name.human(count: 2), class: active_if_controller?(:users) do
-            - navigation.item t('resources.list', resource: User.model_name.human(count: 2)), users_path
-            - navigation.item t('resources.create', resource: User.model_name.human), new_user_path if user_signed_in? && can?(:create, User)
-
           - Page.roots.each do |page|
             - navigation.group page.navigation_title_or_title do
-              - navigation.item t('.overview'), page_path(page), class: (:active if request.path =~ /^#{page_path(page)}$/)
+              - navigation.item t('.overview'), page_path(page)
               li.divider role="decoration"
 
               - page.children.each do |child|
-                - navigation.item navigation_title(child), page_path(child), class: (:active if request.path =~ /^#{page_path(child)}$/)
+                - navigation.item navigation_title(child), page_path(child)
 
         h3.sr-only = t '.meta_navigation'
 
@@ -42,6 +38,10 @@ nav#navigation.container
                 - if can? :create, Page
                   - navigation.item "#{icon :bars, type: :fa} #{t 'actions.resources_list', resources: Page.model_name.human(count: :other)}", pages_path
                   - navigation.item "#{icon :plus, type: :fa} #{t 'actions.new_resource', resource: Page.model_name.human}", new_page_path
+
+                li.divider role="presentation"
+                - navigation.item "#{icon :bars, type: :fa} #{t 'actions.resources_list', resources: User.model_name.human(count: :other)}", users_path
+                - navigation.item "#{icon :plus, type: :fa} #{t 'actions.new_resource', resource: User.model_name.human}", new_user_path if can?(:create, User)
 
                 - if can? :access, :rails_admin
                   li.divider role="presentation"
