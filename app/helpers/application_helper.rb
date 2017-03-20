@@ -93,17 +93,4 @@ module ApplicationHelper
 
     content_tag :span, element, class: klass
   end
-
-  def navigation_title(page)
-    buffer = page.navigation_title_or_title
-
-    if page.children.any?
-      buffer += ' '.html_safe
-      buffer += content_tag :span, class: 'badge' do
-                  sr_only('- ') + page.children.count.to_s + sr_only(' ' + Page.human_attribute_name(:children))
-                end
-    end
-
-    buffer
-  end
 end

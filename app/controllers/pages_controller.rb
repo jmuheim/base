@@ -1,15 +1,12 @@
 class PagesController < ApplicationController
-  load_and_authorize_resource
+  load_and_authorize_resource except: :index
   provide_optimistic_locking_for :page
   provide_image_pasting_for :page
   before_action :add_base_breadcrumbs
   before_action :provide_parent_collection, only: [:new, :create, :edit, :update]
   before_action :provide_position_collection, only: [:edit, :update]
+  before_action :provide_previous_and_next_page, only: :show
   respond_to :html
-
-  def index
-    @pages = Page.collection_tree
-  end
 
   def show
     @page = @page.decorate
@@ -45,7 +42,8 @@ class PagesController < ApplicationController
   end
 
   def add_base_breadcrumbs
-    add_breadcrumb Page.model_name.human(count: :other), pages_path if [:new, :create].include? action_name.to_sym
+    add_breadcrumb Page.model_name.human(count: :other), pages_path if [:index, :new, :create].include? action_name.to_sym
+    add_breadcrumb t('actions.new_resource', resource: Page.model_name.human), new_page_path if [:new, :create].include? action_name.to_sym
 
     unless action_name == 'index'
       @page.ancestors.reverse.each do |ancestor|
@@ -53,24 +51,28 @@ class PagesController < ApplicationController
       end
     end
 
+    add_breadcrumb @page.navigation_title_or_title, page_path(@page) if [:show, :edit, :update].include? action_name.to_sym
+
     if ['edit', 'update'].include? action_name
-      add_breadcrumb @page.navigation_title_or_title, page_path(@page)
-      @last_breadcrumb = t 'actions.edit'
+      add_breadcrumb t('actions.edit'), edit_page_path(@page)
     end
 
     if ['new', 'create'].include? action_name
-      @last_breadcrumb = t 'actions.new'
+      add_breadcrumb t('actions.edit'), new_page_path
     end
-
-    @last_breadcrumb = @page.navigation_title_or_title if action_name == 'show'
   end
 
   def provide_parent_collection
-    @parent_collection = @page.collection_tree_without_self_and_descendants
+    @parent_collection = @pages.reject { |page| @page.descendants.include? page } - [@page]
   end
 
   def provide_position_collection
     @position_collection = (@page.siblings + [@page]).sort_by(&:position)
                                                      .map { |sibling| [sibling.title, sibling.position] }
+  end
+
+  def provide_previous_and_next_page
+    @previous_page = (index = @pages.index(@page)) == 0 ? nil : @pages[index - 1]
+    @next_page     = @pages[@pages.index(@page) + 1]
   end
 end

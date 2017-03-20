@@ -64,7 +64,6 @@ GEM
     bootstrap-sass (3.3.7)
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
-    breadcrumbs_on_rails (3.0.1)
     builder (3.2.3)
     byebug (9.0.6)
     cancancan (1.15.0)
@@ -252,7 +251,6 @@ GEM
     minitest (5.10.1)
     multi_json (1.12.1)
     mysql2 (0.4.5)
-    navigasmic (1.1.0)
     nenv (0.3.0)
     nested_form (0.3.2)
     nio4r (1.2.1)
@@ -485,7 +483,6 @@ DEPENDENCIES
   awesome_print
   better_errors
   bootstrap-sass
-  breadcrumbs_on_rails
   cancancan
   capybara (>= 2.2.0.beta)
   capybara-screenshot
@@ -524,7 +521,6 @@ DEPENDENCIES
   mina
   mini_magick
   mysql2 (>= 0.3.18)
-  navigasmic
   pandoc-ruby
   paper_trail (>= 4.0.0.rc)
   poltergeist
