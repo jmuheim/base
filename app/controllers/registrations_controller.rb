@@ -17,11 +17,11 @@ class RegistrationsController < Devise::RegistrationsController
     add_breadcrumb @user.name, user_registration_path
 
     if ['edit', 'update'].include? action_name
-      @last_breadcrumb = t 'actions.edit'
+      add_breadcrumb t('actions.edit'),
     end
 
     if ['new', 'create'].include? action_name
-      @last_breadcrumb = t 'actions.new'
+      add_breadcrumb t('actions.new'), new_user_registration_path
     end
   end
 end

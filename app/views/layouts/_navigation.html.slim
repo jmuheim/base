@@ -57,9 +57,9 @@ nav#navigation.container
                   =< t('.admin')
 
           - else
-            - navigation_item "<span class='visible-sm-inline-block'>#{icon 'user-plus', type: :fa}</span> <span class='hidden-sm'>#{t '.sign_up'}</span>", new_user_registration_path
+            = navigation_item "<span class='visible-sm-inline-block'>#{icon 'user-plus', type: :fa}</span> <span class='hidden-sm'>#{t '.sign_up'}</span>", new_user_registration_path
 
-            - navigation_group "<span class='visible-sm-inline-block'>#{icon 'sign-in', type: :fa}</span> <span class='hidden-sm'>#{t '.sign_in'}</span>", id: :sign_in_panel do
+            = navigation_group "<span class='visible-sm-inline-block'>#{icon 'sign-in', type: :fa}</span> <span class='hidden-sm'>#{t '.sign_in'}</span>", id: :sign_in_panel do
               li
                 .yamm-content
                   .row = render 'devise/sessions/form', resource: User.new, display: :small
