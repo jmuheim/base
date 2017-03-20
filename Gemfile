@@ -65,7 +65,7 @@ gem 'paper_trail', '>= 4.0.0.rc' # Track changes to your models' data. Good for 
 
 # Classier solution for file uploads for Rails
 gem 'carrierwave'
-gem 'carrierwave-base64' # Upload files encoded as base64 to carrierwave
+gem 'carrierwave-base64', '>= 2.5' # Upload files encoded as base64 to carrierwave
 
 gem 'mini_magick' # Mini replacement for RMagick
 
@@ -168,6 +168,7 @@ group :test do
   gem 'launchy'              # Use `save_and_open_page` in request tests to automatically open a browser
   gem 'selenium-webdriver'   # Selenium webdriver (needed to use Chrome driver)
 
+  # TODO: Configure, see https://github.com/mattheworiordan/capybara-screenshot
   gem 'capybara-screenshot' # Automatically save screen shots when a scenario fails
 
   gem 'i18n-tasks' # Manage translation and localization with static analysis
