@@ -60,7 +60,7 @@ RSpec.describe PageDecorator do
         end
 
         it "only replaces identifiers of own images" do
-          other_page = create :page, images: [create(:image, identifier: 'other-identifier')]
+          other_page = create :page, title: 'Other page', images: [create(:image, identifier: 'other-identifier')]
 
           @page_decorator.update_attribute field, "![My image](@image-other-identifier)"
           expect(@page_decorator.send("#{field}_with_references")).to eq "![My image](@image-other-identifier)"

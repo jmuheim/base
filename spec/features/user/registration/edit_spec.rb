@@ -11,7 +11,7 @@ describe 'Editing account' do
 
     expect(page).to have_title 'Edit account - Base'
     expect(page).to have_active_navigation_items 'User menu', 'Edit account'
-    expect(page).to have_breadcrumbs 'Base', 'Edit account'
+    expect(page).to have_breadcrumbs 'Base', 'donald', 'Edit account'
     expect(page).to have_headline 'Edit account'
 
     fill_in 'user_name',  with: 'gustav'

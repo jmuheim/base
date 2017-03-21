@@ -9,7 +9,7 @@ describe 'Deleting user' do
     it 'does not grant permission to delete own user' do
       visit_delete_path_for(@user)
 
-      expect(page).to have_status_code 403
+      expect(page).to have_flash('You are not authorized to access this page.').of_type :alert
     end
   end
 

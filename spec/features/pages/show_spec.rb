@@ -5,13 +5,16 @@ describe 'Showing page' do
 
   it 'displays a page' do
     other_page = create :page, title: 'Some cool other page'
+    parent_page = create(:page, title: 'Cool parent page', navigation_title: nil)
+    child_page = create(:page, title: 'A cool sub page', lead: 'Some sub page lead')
     @page = create :page, :with_image,
+                          navigation_title: 'Page test navigation title',
                           lead:   "# Some lead title\n\nAnd some lead stuff.",
                           content: "# Some content title\n\nAnd some content stuff.\n\n![Content image](@image-Image test identifier) with a [](@page-#{other_page.id}) and [some alt](@page-#{other_page.id})",
                           notes:   "# Some notes title\n\nAnd some notes stuff.\n\n![Notes image](@image-Image test identifier) with a [](@page-#{other_page.id}) and [some alt](@page-#{other_page.id})",
-                          parent:  create(:page, title: 'Cool parent page', navigation_title: nil),
-                          children: [create(:page, title: 'A cool sub page', lead: 'Some sub page lead')]
-    sibling_page = create :page, navigation_title: 'Sibling page', parent: @page.parent
+                          parent:  parent_page,
+                          children: [child_page]
+    sibling_page = create :page, title: 'Other page', navigation_title: 'Sibling page', parent: parent_page
 
     visit page_path(@page)
 
@@ -28,8 +31,7 @@ describe 'Showing page' do
       end
 
       within '.content' do
-        expect(page).to have_css 'h2', text: 'Content'
-        expect(page).to have_css 'h3', text: 'Some content title'
+        expect(page).to have_css 'h2', text: 'Some content title'
         expect(page).to have_content 'And some content stuff'
         expect(page).to have_css "img[alt='Content image'][src='#{@page.images.last.file.url}']"
         expect(page).to have_css "a[href='/en/pages/#{other_page.id}']", text: 'Some cool other page'
@@ -46,8 +48,8 @@ describe 'Showing page' do
       end
 
       within '.browsing' do
-        expect(page).to have_css 'span', text: 'No previous page'
-        expect(page).to have_css "a[href='/en/pages/#{sibling_page.id}']", text: 'Next page: Sibling page'
+        expect(page).to have_css "a[href='/en/pages/#{parent_page.id}']", text: 'Previous page: Cool parent page'
+        expect(page).to have_css "a[href='/en/pages/#{child_page.id}']", text: 'Next page: A cool sub page'
       end
 
       within '.children' do
@@ -70,5 +72,34 @@ describe 'Showing page' do
       expect(page).to have_css 'h2', text: 'Images'
       expect(page).to have_css "a[href='#{@page.images.last.file.url}'] img[alt='Thumb image'][src='#{@page.images.last.file.url(:thumb)}']"
     end
+  end
+
+  it 'offers links to browse page by page (previous page / next page) like a book' do
+    @root_1                 = create :page, title: 'Root 1'
+    @root_1_child_1         = create :page, title: 'Root 1 child 1',         parent: @root_1
+    @root_1_child_2         = create :page, title: 'Root 1 child 2',         parent: @root_1
+    @root_1_child_2_child_1 = create :page, title: 'Root 1 child 2 child 1', parent: @root_1_child_2
+    @root_2                 = create :page, title: 'Root 2'
+    @root_2_child_1         = create :page, title: 'Root 2 child 1',         parent: @root_2
+
+    visit page_path(@root_1)
+    expect(page).to have_css '.previous.disabled', text: 'No previous page'
+    expect(page).to have_link 'Next page: Root 1 child 1'
+
+    click_link 'Next page: Root 1 child 1'
+    expect(page).to have_link 'Previous page: Root 1'
+
+    click_link 'Next page: Root 1'
+    expect(page).to have_link 'Previous page: Root 1 child 1'
+
+    click_link 'Next page: Root 1 child 2 child 1'
+    expect(page).to have_link 'Previous page: Root 1 child 2'
+
+    click_link 'Next page: Root 2'
+    expect(page).to have_link 'Previous page: Root 1 child 2 child 1'
+
+    click_link 'Next page: Root 2 child 1'
+    expect(page).to have_link 'Previous page: Root 2'
+    expect(page).to have_css '.next.disabled', text: 'No next page'
   end
 end

@@ -8,7 +8,7 @@ describe 'Listing pages' do
     visit pages_path
 
     expect(page).to have_title 'Pages - Base'
-    expect(page).to have_active_navigation_items 'Admin', 'List of Pages'
+    expect(page).to have_active_navigation_items 'Pages', 'List of Pages'
     expect(page).to have_breadcrumbs 'Base', 'Pages'
     expect(page).to have_headline 'Pages'
 

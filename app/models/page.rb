@@ -10,6 +10,10 @@ class Page < ApplicationRecord
   validates :title, presence: true,
                     uniqueness: {scope: :parent_id}
 
+  # TODO: Auch sicher stellen, dass navigation_title_or_title unique ist!
+  # validates :navigation_title, uniqueness: {scope: :parent_id},
+  #                              if: -> { navigation_title.present? }
+
   def navigation_title_or_title
     navigation_title || title
   end

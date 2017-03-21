@@ -51,6 +51,11 @@ class ApplicationController < ActionController::Base
                                                              ]
   end
 
+  # TODO: Müsste man da auch noch Status 403 ausgeben?? expect(page).to have_status_code 403
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_to root_url, alert: exception.message
+  end
+
   private
 
   def set_locale

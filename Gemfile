@@ -164,7 +164,6 @@ group :test do
   gem 'launchy'              # Use `save_and_open_page` in request tests to automatically open a browser
   gem 'selenium-webdriver'   # Selenium webdriver (needed to use Chrome driver)
 
-  # TODO: Configure, see https://github.com/mattheworiordan/capybara-screenshot
   gem 'capybara-screenshot' # Automatically save screen shots when a scenario fails
 
   gem 'i18n-tasks' # Manage translation and localization with static analysis

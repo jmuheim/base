@@ -1,7 +1,6 @@
 FactoryGirl.define do
   factory :page do
     title            'Page test title'
-    navigation_title 'Page test navigation title'
     content          'Page test content'
     notes            'Page test notes'
 
