@@ -47,11 +47,11 @@ class UsersController < ApplicationController
 
     if ['show', 'edit', 'update'].include? action_name
       add_breadcrumb @user.name, user_path(@user)
-      @last_breadcrumb = t 'actions.edit'
+      add_breadcrumb t('actions.edit'), edit_user_path(@user)
     end
 
     if ['new', 'create'].include? action_name
-      @last_breadcrumb = t 'actions.new'
+      add_breadcrumb t('actions.new'), new_user_path
     end
   end
 end

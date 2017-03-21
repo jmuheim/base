@@ -24,7 +24,7 @@ module BreadcrumbsHelper
 
     divider = nil
     if item_title.nil?
-      item_title = t('.overview')
+      item_title = t('layouts.navigation.overview')
       divider  = content_tag :li, nil, class: 'divider', role: 'decoration'
     end
 

@@ -20,10 +20,10 @@ class Ability
         can :dashboard
 
         can :crud, :all # TODO: Remove this! Explicitly set every single ability!
-      end
-
-      can :update, User do |user|
-        user == current_user
+      else
+        can [:read, :update], User do |user|
+          user == current_user
+        end
       end
 
       cannot :destroy, User do |user|

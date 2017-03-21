@@ -32,9 +32,6 @@ en:
       previous_page: Previous page
     form:
       info: Information about creating and editing pages and images
-  resources:
-    create: Create %{resource}
-    list: List %{resource}
   shared:
     form:
       details: Details

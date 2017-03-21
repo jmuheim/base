@@ -1,15 +1,13 @@
 class User::RegistrationsController < Devise::RegistrationsController
-  # before_action :authenticate_user! # Doesn't seem to work, see https://github.com/plataformatec/devise/issues/3349#issuecomment-88604326
-  # I really think that Devise's RegistrationsController should authenticate the :show action the same way it does for the :edit action (e.g. when visiting /user/edit as non logged in user, it redirects to root page and displays a warning).
-  before_action :load_and_authorize_current_user, only: :show
+  # Would like to use `before_action :authenticate_user!`, but doesn't work. See http://stackoverflow.com/questions/42938450/devise-cancan-route-get-user-registration-path-isnt-available-how-to-create
+  before_action :load_current_user
+  load_and_authorize_resource class: 'User', only: :show
   before_action :add_base_breadcrumbs
 
   private
 
-  # We can't rely on CanCanCan, as it relies on a params[:id] which isn't present, and by manually setting @user, the authorization isn't performed anymore. See https://github.com/ryanb/cancan/issues/452#issuecomment-88614091.
-  def load_and_authorize_current_user
+  def load_current_user
     @user = current_user
-    authorize!(params[:action].to_sym, @user)
   end
 
   def add_base_breadcrumbs

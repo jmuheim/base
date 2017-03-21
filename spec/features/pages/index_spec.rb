@@ -4,7 +4,7 @@ describe 'Listing pages' do
   before { login_as(create :admin) }
 
   it 'displays pages' do
-    @page = create :page, :with_image
+    @page = create :page, :with_image, navigation_title: 'Page test navigation title'
     visit pages_path
 
     expect(page).to have_title 'Pages - Base'

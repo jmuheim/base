@@ -32,9 +32,6 @@ de:
       previous_page: Vorherige Seite
     form:
       info: Informationen zum Erstellen und Bearbeiten von Seiten und Bildern
-  resources:
-    create: "%{resource} erstellen"
-    list: "%{resource} auflisten"
   shared:
     form:
       details: Details

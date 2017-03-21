@@ -4,17 +4,17 @@ describe 'Editing page' do
   before { login_as create :admin }
 
   it 'grants permission to edit a page and removes abandoned images', js: true do
-    old_page_parent = create :page, title: 'Cool parent page', navigation_title: nil
+    old_page_parent = create :page, title: 'Cool parent page'
     new_parent_page = create :page, title: 'Cooler parent page'
     child_of_new_parent_page = create :page, parent: new_parent_page
 
-    @page = create :page, :with_image, parent: old_page_parent
+    @page = create :page, :with_image, parent: old_page_parent, navigation_title: 'Cool navigation title'
 
     visit edit_page_path(@page)
 
     expect(page).to have_title 'Edit Page test title - Base'
-    expect(page).to have_active_navigation_items 'Page test navigation title'
-    expect(page).to have_breadcrumbs 'Base', 'Cool parent page', 'Page test navigation title', 'Edit'
+    expect(page).to have_active_navigation_items 'Cool parent page', 'Cool navigation title'
+    expect(page).to have_breadcrumbs 'Base', 'Cool parent page', 'Cool navigation title', 'Edit'
     expect(page).to have_headline 'Edit Page test title'
 
     # Changing the parent disables the position select
