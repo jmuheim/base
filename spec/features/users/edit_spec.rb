@@ -53,7 +53,7 @@ describe 'Editing user' do
         click_button 'Update User'
         @user.reload
       } .to  change { @user.name }.to('gustav')
-        .and change { File.basename(@user.avatar.to_s) }.to('file.png')
+        .and change { File.basename(@user.avatar.to_s) }.to('avatar.png')
         .and change { File.basename(@user.curriculum_vitae.to_s) }.to('other_document.txt')
         .and change { @user.about }.to('Some info about me')
         .and change { @user.unconfirmed_email }.to('new-gustav@example.com')
@@ -104,7 +104,7 @@ describe 'Editing user' do
         @user.reload
       } .to  change { @user.name }.to('new-name')
         .and change { @user.about }.to('This is some very interesting info about me. I like playing football and reading books. I work as a web developer.')
-        .and change { File.basename(@user.avatar.to_s) }.to('file.png')
+        .and change { File.basename(@user.avatar.to_s) }.to('avatar.png')
         .and change { File.basename(@user.curriculum_vitae.to_s) }.to('other_document.txt')
     end
 
@@ -127,7 +127,7 @@ describe 'Editing user' do
 
         expect(page).to have_flash 'User was successfully updated.'
 
-        expect(File.basename(@user.reload.avatar.to_s)).to eq 'file.png'
+        expect(File.basename(@user.reload.avatar.to_s)).to eq 'avatar.png'
       end
 
       it 'replaces a cached uploaded avatar with a new one after validation errors' do

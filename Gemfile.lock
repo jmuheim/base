@@ -78,8 +78,9 @@ GEM
       activemodel (>= 4.0.0)
       activesupport (>= 4.0.0)
       mime-types (>= 1.16)
-    carrierwave-base64 (2.3.4)
+    carrierwave-base64 (2.5.0)
       carrierwave (>= 0.8.0)
+      mime-types (~> 3.0)
     childprocess (0.6.1)
       ffi (~> 1.0, >= 1.0.11)
     chunky_png (1.3.8)
@@ -483,7 +484,7 @@ DEPENDENCIES
   capybara (>= 2.2.0.beta)
   capybara-screenshot
   carrierwave
-  carrierwave-base64
+  carrierwave-base64 (>= 2.5)
   cocoon
   codeclimate-test-reporter (~> 1.0.0)
   coffee-rails (~> 4.2)

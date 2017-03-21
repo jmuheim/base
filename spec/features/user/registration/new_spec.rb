@@ -57,7 +57,7 @@ describe 'Signing up' do
       click_button 'Sign up'
 
       expect(page).to have_flash 'Welcome! You have signed up successfully.'
-      expect(File.basename(User.last.avatar.to_s)).to eq 'file.png'
+      expect(File.basename(User.last.avatar.to_s)).to eq 'avatar.png'
     end
 
     it 'replaces a cached uploaded avatar with a new one after validation errors', js: true do
@@ -84,7 +84,7 @@ describe 'Signing up' do
       click_button 'Sign up'
 
       expect(page).to have_flash 'Welcome! You have signed up successfully.'
-      expect(File.basename(User.last.avatar.to_s)).to eq 'file.png'
+      expect(File.basename(User.last.avatar.to_s)).to eq 'avatar.png'
     end
 
     it 'allows to remove a cached uploaded avatar after validation errors' do

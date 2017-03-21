@@ -32,7 +32,7 @@ describe 'Editing account' do
       click_button 'Save'
       @user.reload
     } .to  change { @user.name }.to('gustav')
-      .and change { File.basename(@user.avatar.to_s) }.to('file.png')
+      .and change { File.basename(@user.avatar.to_s) }.to('avatar.png')
       .and change { File.basename(@user.curriculum_vitae.to_s) }.to('other_document.txt')
       .and change { @user.about }.to('Some info about me')
       .and change { @user.encrypted_password }
@@ -68,7 +68,7 @@ describe 'Editing account' do
       click_button 'Save'
 
       expect(page).to have_flash 'Your account has been updated successfully.'
-      expect(File.basename(@user.reload.avatar.to_s)).to eq 'file.png'
+      expect(File.basename(@user.reload.avatar.to_s)).to eq 'avatar.png'
     end
 
     it 'replaces a cached uploaded avatar with a new one after validation errors', js: true do
