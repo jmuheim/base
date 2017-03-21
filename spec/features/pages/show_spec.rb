@@ -6,7 +6,7 @@ describe 'Showing page' do
   it 'displays a page' do
     other_page = create :page, title: 'Some cool other page'
     parent_page = create(:page, title: 'Cool parent page', navigation_title: nil)
-    child_page = create(:page, title: 'A cool sub page', lead: 'Some sub page lead')
+    child_page = create(:page, title: 'A cool sub page', navigation_title: 'Really cool sub page', lead: 'Some sub page lead')
     @page = create :page, :with_image,
                           navigation_title: 'Page test navigation title',
                           lead:   "# Some lead title\n\nAnd some lead stuff.",
@@ -49,7 +49,7 @@ describe 'Showing page' do
 
       within '.browsing' do
         expect(page).to have_css "a[href='/en/pages/#{parent_page.id}']", text: 'Previous page: Cool parent page'
-        expect(page).to have_css "a[href='/en/pages/#{child_page.id}']", text: 'Next page: A cool sub page'
+        expect(page).to have_css "a[href='/en/pages/#{child_page.id}']", text: 'Next page: Really cool sub page'
       end
 
       within '.children' do
@@ -75,12 +75,12 @@ describe 'Showing page' do
   end
 
   it 'offers links to browse page by page (previous page / next page) like a book' do
-    @root_1                 = create :page, title: 'Root 1'
-    @root_1_child_1         = create :page, title: 'Root 1 child 1',         parent: @root_1
-    @root_1_child_2         = create :page, title: 'Root 1 child 2',         parent: @root_1
-    @root_1_child_2_child_1 = create :page, title: 'Root 1 child 2 child 1', parent: @root_1_child_2
-    @root_2                 = create :page, title: 'Root 2'
-    @root_2_child_1         = create :page, title: 'Root 2 child 1',         parent: @root_2
+    @root_1                 = create :page, navigation_title: nil, title: 'Root 1'
+    @root_1_child_1         = create :page, navigation_title: nil, title: 'Root 1 child 1',         parent: @root_1
+    @root_1_child_2         = create :page, navigation_title: nil, title: 'Root 1 child 2',         parent: @root_1
+    @root_1_child_2_child_1 = create :page, navigation_title: nil, title: 'Root 1 child 2 child 1', parent: @root_1_child_2
+    @root_2                 = create :page, navigation_title: nil, title: 'Root 2'
+    @root_2_child_1         = create :page, navigation_title: nil, title: 'Root 2 child 1',         parent: @root_2
 
     visit page_path(@root_1)
     expect(page).to have_css '.previous.disabled', text: 'No previous page'

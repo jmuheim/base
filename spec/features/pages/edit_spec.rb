@@ -4,7 +4,7 @@ describe 'Editing page' do
   before { login_as create :admin }
 
   it 'grants permission to edit a page and removes abandoned images', js: true do
-    old_page_parent = create :page, title: 'Cool parent page'
+    old_page_parent = create :page, title: 'Cool parent page', navigation_title: nil
     new_parent_page = create :page, title: 'Cooler parent page'
     child_of_new_parent_page = create :page, parent: new_parent_page
 
