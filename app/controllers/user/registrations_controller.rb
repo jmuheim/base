@@ -1,7 +1,7 @@
 class User::RegistrationsController < Devise::RegistrationsController
   # before_action :authenticate_user! # Doesn't seem to work, see https://github.com/plataformatec/devise/issues/3349#issuecomment-88604326
   # I really think that Devise's RegistrationsController should authenticate the :show action the same way it does for the :edit action (e.g. when visiting /user/edit as non logged in user, it redirects to root page and displays a warning).
-  before_action :load_and_authorize_current_user
+  before_action :load_and_authorize_current_user, only: :show
   before_action :add_base_breadcrumbs
 
   private
