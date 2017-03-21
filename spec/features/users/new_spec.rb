@@ -62,7 +62,7 @@ describe 'Creating user' do
       click_button 'Create User'
 
       expect(page).to have_flash 'User was successfully created.'
-      expect(File.basename(User.last.avatar.to_s)).to eq 'file.png'
+      expect(File.basename(User.last.avatar.to_s)).to eq 'avatar.png'
     end
 
     it 'replaces a cached uploaded avatar with a new one after validation errors' do

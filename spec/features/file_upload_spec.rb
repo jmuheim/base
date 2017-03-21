@@ -12,7 +12,7 @@ describe 'Image paste upload' do
 
     expect {
       click_button 'Save'
-    }.to change { File.basename(@user.reload.avatar.to_s) }.from('image.jpg').to 'file.png'
+    }.to change { File.basename(@user.reload.avatar.to_s) }.from('image.jpg').to 'avatar.png'
   end
 
   it 'displays a preview of an uploaded image' do
@@ -54,7 +54,7 @@ describe 'Image paste upload' do
 
     expect {
       click_button 'Save'
-    }.to change { File.basename(@user.reload.avatar.to_s) }.from('image.jpg').to 'file.png'
+    }.to change { File.basename(@user.reload.avatar.to_s) }.from('image.jpg').to 'avatar.png'
   end
 
   it 'allows to remove a file' do
