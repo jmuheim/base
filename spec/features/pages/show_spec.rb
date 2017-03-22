@@ -25,8 +25,7 @@ describe 'Showing page' do
 
     within dom_id_selector(@page) do
       within '.lead' do
-        expect(page).to have_css 'h2', text: 'Lead'
-        expect(page).to have_css 'h3', text: 'Some lead title'
+        expect(page).to have_css 'h2', text: 'Some lead title'
         expect(page).to have_content 'And some lead stuff'
       end
 
@@ -83,7 +82,7 @@ describe 'Showing page' do
     @root_2_child_1         = create :page, navigation_title: nil, title: 'Root 2 child 1',         parent: @root_2
 
     visit page_path(@root_1)
-    expect(page).to have_css '.previous.disabled', text: 'No previous page'
+    expect(page).to have_css '.previous[disabled]', text: 'No previous page'
     expect(page).to have_link 'Next page: Root 1 child 1'
 
     click_link 'Next page: Root 1 child 1'
@@ -100,6 +99,6 @@ describe 'Showing page' do
 
     click_link 'Next page: Root 2 child 1'
     expect(page).to have_link 'Previous page: Root 2'
-    expect(page).to have_css '.next.disabled', text: 'No next page'
+    expect(page).to have_css '.next[disabled]', text: 'No next page'
   end
 end

@@ -5,8 +5,7 @@
     .col-md-8
       .markdown
         .lead
-          h2.sr-only = Page.human_attribute_name :lead
-          = markdown indent_heading_level @page.lead, 2
+          = markdown indent_heading_level @page.lead, 1
 
         .content
           = markdown indent_heading_level @page.content_with_references, 1

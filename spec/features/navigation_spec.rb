@@ -159,6 +159,16 @@ describe 'Navigation' do
     end
   end
 
+  it "only uses root pages as menu groups" do
+    parent_page = create :page, title: 'Parent page', navigation_title: nil
+    @page       = create :page, title: 'Cool page',   navigation_title: nil, parent: parent_page
+
+    visit root_path
+
+    expect(page).to have_css 'a.dropdown-toggle',                   text: 'Parent page'
+    expect(page).to have_css '.dropdown > .dropdown-menu > li > a', text: 'Cool page'
+  end
+
   # A menu group "Users" has a "List of Users" and a "Create User" item, but no "Edit User" item; for the latter, we still want the group to be marked up as active
   it "reports the activity status of menu groups (that don't have an active item) visually and semantically" do
     user = create :admin

@@ -8,7 +8,8 @@ tr id=dom_id(page)
   td.images = page.images.count
 
   td.notes
-    = markdown remove_headings page.notes
+    - if page.notes.present?
+      pre = page.notes
 
   td.actions
     == render 'shared/index/actions', resource: page

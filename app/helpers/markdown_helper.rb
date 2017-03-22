@@ -12,12 +12,6 @@ module MarkdownHelper
     end.join
   end
 
-  def remove_headings(markdown)
-    markdown.to_s.lines.map do |line|
-      line.gsub /^#+/, ''
-    end.join
-  end
-
   def pandoc_version
     matches = `pandoc -v`.match /\bpandoc (\d+\.\d+)\b/
     matches[1]

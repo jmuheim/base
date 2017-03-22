@@ -19,6 +19,7 @@ class ApplicationController < ActionController::Base
   before_action :set_locale
   before_action :ensure_locale
   before_action :provide_pages
+  before_action :provide_root_pages
 
   def default_url_options(options = {})
     {locale: I18n.locale}
@@ -83,5 +84,9 @@ class ApplicationController < ActionController::Base
 
       @pages << page
     end
+  end
+
+  def provide_root_pages
+    @root_pages = @pages.select { | page | page.level == 0 }
   end
 end

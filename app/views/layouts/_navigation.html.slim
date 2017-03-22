@@ -5,7 +5,6 @@ nav#navigation.container
     .container
       .navbar-header
         // Place brand before the "Toggle navigation" button to have an intuitive focus order (on the Bootstrap examples page it's after the button which seems unintuitive)
-        // TODO: Replace with logo! Or add some sr-only text like "(back to home page)"!
         = link_to root_path, class: home_link_class, id: 'logo' do
           = t('.home')
           span.sr-only =< t('.go_to_home_page')
@@ -21,7 +20,7 @@ nav#navigation.container
         h3.sr-only = t '.content_navigation'
 
         ul#content_navigation.nav.navbar-nav
-          - @pages.select { | page | page.level == 0 }.each do |page|
+          - @root_pages.each do |page|
             - if (children = page.children).any?
               = navigation_group page.navigation_title_or_title, page_path(page) do
                 - page.children.each do |child|

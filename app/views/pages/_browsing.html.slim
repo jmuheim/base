@@ -6,7 +6,7 @@ p.btn-group
       => icon :backward, t('.previous_page') + ':', type: :fa
       = @previous_page.navigation_title_or_title
   - else
-    span.btn.btn-default.disabled.previous
+    button.btn.btn-default.previous disabled="disabled"
       => icon :backward, type: :fa
       = t('.no_previous_page')
 
@@ -15,7 +15,7 @@ p.btn-group
       => icon :forward, t('.next_page') + ':', type: :fa
       = @next_page.navigation_title_or_title
   - else
-    span.btn.btn-default.disabled.next
+    button.btn.btn-default.next disabled="disabled"
       => icon :forward, type: :fa
       = t('.no_next_page')
 
