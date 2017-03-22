@@ -3,9 +3,16 @@
 
   .row
     .col-md-8
-      .content.markdown = markdown indent_heading_level @page.content_with_references, 1
+      .markdown
+        .lead
+          = markdown indent_heading_level @page.lead, 1
 
-    .col-md-4
+        .content
+          = markdown indent_heading_level @page.content_with_references, 1
+
+    .col-md-4.browsing
+      == render 'browsing', page: @page
+
       - if can? :crud, @page
         - unless @page.notes.blank?
           .notes.markdown.alert.alert-warning
@@ -19,5 +26,18 @@
             = image_gallery do |gallery|
               - @page.images.each do |image|
                 = gallery.zoomable_image(image.file)
+
+  - if @page.children.any?
+    .row.children
+      .col-md-12
+        h2 = Page.human_attribute_name :children
+
+        - @page.children.each_slice(4) do |slice_of_children|
+          .row
+            - slice_of_children.each do |child|
+              .col-md-3
+                h3 = link_to child.title, child
+
+                = markdown indent_heading_level child.lead, 3
 
   == render 'shared/show/actions', resource: @page

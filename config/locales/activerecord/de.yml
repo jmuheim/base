@@ -11,6 +11,7 @@ de:
         identifier: Kennung
         updated_at: Aktualisiert am
       page:
+        children: Unterseiten
         content: Inhalt
         images: Bilder
         navigation_title: Navigations-Titel

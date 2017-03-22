@@ -4,19 +4,38 @@ describe 'Editing page' do
   before { login_as create :admin }
 
   it 'grants permission to edit a page and removes abandoned images', js: true do
-    @page = create :page, :with_image
+    old_page_parent = create :page, title: 'Cool parent page', navigation_title: nil
+    new_parent_page = create :page, title: 'Cooler parent page'
+    child_of_new_parent_page = create :page, parent: new_parent_page
+
+    @page = create :page, :with_image, parent: old_page_parent, navigation_title: 'Cool navigation title'
 
     visit edit_page_path(@page)
 
     expect(page).to have_title 'Edit Page test title - Base'
-    expect(page).to have_active_navigation_items 'Page test navigation title'
-    expect(page).to have_breadcrumbs 'Base', 'Page test navigation title', 'Edit'
+    expect(page).to have_active_navigation_items 'Cool parent page', 'Cool navigation title'
+    expect(page).to have_breadcrumbs 'Base', 'Cool parent page', 'Cool navigation title', 'Edit'
     expect(page).to have_headline 'Edit Page test title'
+
+    # Changing the parent disables the position select
+    expect {
+      select 'Cooler parent page', from: 'page_parent_id'
+    }.to change {
+      page.has_css? '#page_position[disabled]'
+    }.from(false).to true
+
+    # Changing the parent back to the original value re-enables the position select
+    expect {
+      select 'Cool parent page', from: 'page_parent_id'
+    }.to change {
+      page.has_css? '#page_position[disabled]'
+    }.from(true).to false
 
     fill_in 'page_title',            with: 'A new title'
     fill_in 'page_navigation_title', with: 'A new navigation title'
     fill_in 'page_content',          with: "A new content with a ![existing image](@image-some-existing-identifier) and a ![new image](@image-some-new-identifier)"
     fill_in 'page_notes',            with: 'A new note'
+    select 'Cooler parent page', from: 'page_parent_id'
 
     find('#page_images_attributes_0_file', visible: false).set base64_other_image[:data]
     fill_in 'page_images_attributes_0_identifier', with: 'some-existing-identifier'
@@ -49,6 +68,8 @@ describe 'Editing page' do
       @page.reload
     } .to  change { @page.title }.to('A new title')
       .and change { @page.navigation_title }.to('A new navigation title')
+      .and change { @page.parent }.from(old_page_parent).to(new_parent_page)
+      .and change { @page.position }.from(1).to(2)
       .and change { @page.content }.to("A new content with a ![existing image](@image-some-existing-identifier) and a ![new image](@image-some-new-identifier)")
       .and change { @page.notes }.to('A new note')
       .and change { @page.images.count }.by(1)
@@ -60,6 +81,28 @@ describe 'Editing page' do
     # Only the referenced image is kept
     expect(Image.count).to eq 2
     expect(Image.last.identifier).to eq 'some-new-identifier'
+  end
+
+  it "provides the correct parent and position collections" do
+    parent_page = create :page, title: 'Parent page'
+    @page = create :page, parent: parent_page, title: 'Page'
+    page_child = create :page, parent: @page, title: 'Page child'
+    page_sibling = create :page, parent: parent_page, title: 'Page sibling'
+    parent_page_sibling = create :page, title: 'Parent page sibling'
+    parent_page_sibling_child = create :page, title: 'Parent page sibling child'
+
+    visit edit_page_path(@page)
+
+    expect(all("select#page_parent_id option").map(&:text)).to eq [ '',
+                                                                    "Parent page (##{parent_page.id})",
+                                                                    "Page sibling (##{page_sibling.id})",
+                                                                    "Parent page sibling (##{parent_page_sibling.id})",
+                                                                    "Parent page sibling child (##{parent_page_sibling_child.id})"
+                                                                  ]
+
+    expect(all("select#page_position option").map(&:text)).to eq [ "Page (##{@page.id})",
+                                                                   "Page sibling (##{page_sibling.id})"
+                                                                 ]
   end
 
   it "prevents from overwriting other users' changes accidently (caused by race conditions)" do

@@ -7,7 +7,7 @@ describe 'Showing account' do
     it 'does not grant permission to show the account' do
       visit user_registration_path
 
-      expect(page).to have_status_code 403
+      expect(page).to have_flash('You are not authorized to access this page.').of_type :alert
     end
   end
 
@@ -21,7 +21,7 @@ describe 'Showing account' do
     it 'displays the account' do
       expect(page).to have_title 'Welcome, donald! - Base'
       expect(page).to have_active_navigation_items 'User menu', 'Show account'
-      expect(page).to have_breadcrumbs 'Base', 'Welcome, donald!'
+      expect(page).to have_breadcrumbs 'Base', 'donald'
       expect(page).to have_headline 'Welcome, donald!'
 
       within dom_id_selector(@user) do

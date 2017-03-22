@@ -4,17 +4,19 @@ describe 'Listing pages' do
   before { login_as(create :admin) }
 
   it 'displays pages' do
-    @page = create :page, :with_image
+    parent_page = create :page
+    @page = create :page, :with_image, navigation_title: 'Page test navigation title', parent: parent_page
     visit pages_path
 
     expect(page).to have_title 'Pages - Base'
-    expect(page).to have_active_navigation_items 'Admin', 'List of Pages'
+    expect(page).to have_active_navigation_items 'Pages', 'List of Pages'
     expect(page).to have_breadcrumbs 'Base', 'Pages'
     expect(page).to have_headline 'Pages'
 
     within dom_id_selector(@page) do
       expect(page).to have_css '.title a',          text: 'Page test title'
       expect(page).to have_css '.navigation_title', text: 'Page test navigation title'
+      expect(page).to have_css '.ancestors',        text: 1
       expect(page).to have_css '.images',           text: 1
       expect(page).to have_css '.notes',            text: 'Page test notes'
 

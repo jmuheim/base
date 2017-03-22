@@ -14,11 +14,12 @@ en:
       current_group: current menu group
       current_item: current menu item
       edit_account: Edit account
-      go_to_home_page: (go to home page)
+      go_to_home_page: "(go to home page)"
       home: Base
       log_out: Log out
       meta_navigation: User navigation
       navigation: Navigation
+      overview: Overview
       show_account: Show account
       sign_in: Sign in
       sign_up: Sign up

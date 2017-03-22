@@ -9,7 +9,7 @@ describe 'Deleting page' do
     it 'does not grant permission to delete page' do
       visit_delete_path_for(@page)
 
-      expect(page).to have_status_code 403
+      expect(page).to have_flash('You are not authorized to access this page.').of_type :alert
     end
   end
 

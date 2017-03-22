@@ -11,6 +11,7 @@ en:
         identifier: Identifier
         updated_at: Updated at
       page:
+        children: Sub pages
         content: Content
         images: Images
         navigation_title: Navigation title

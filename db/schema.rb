@@ -31,12 +31,15 @@ ActiveRecord::Schema.define(version: 20170220175311) do
     t.integer  "lock_version",                   default: 0,     null: false
     t.datetime "created_at",                                     null: false
     t.datetime "updated_at",                                     null: false
+    t.integer  "parent_id"
+    t.integer  "position",                       default: 1,     null: false
+    t.text     "lead",             limit: 65535
   end
 
   create_table "roles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
-    t.integer  "resource_id"
     t.string   "resource_type"
+    t.integer  "resource_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.index ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id", using: :btree

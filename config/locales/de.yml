@@ -23,11 +23,15 @@ de:
   org:
     name: MuheimWebdesign
   pages:
+    browsing:
+      browsing: Blättern
+      how_to_browse: Die komplette Website kann wie ein Buch Seite für Seite gelesen werden.
+      next_page: Nächste Seite
+      no_next_page: Keine nächste Seite
+      no_previous_page: Keine vorherige Seite
+      previous_page: Vorherige Seite
     form:
-      info: Informationen zum Bearbeiten von Seiten und Bildern
-  resources:
-    create: "%{resource} erstellen"
-    list: "%{resource} auflisten"
+      info: Informationen zum Erstellen und Bearbeiten von Seiten und Bildern
   shared:
     form:
       details: Details

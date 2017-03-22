@@ -1,6 +1,10 @@
 require 'application_responder'
 
 class ApplicationController < ActionController::Base
+  include BreadcrumbsHandler
+  include OptimisticLockingHandler
+  include ImagePastingHandler
+
   helper :image_gallery
 
   helper_method :body_css_classes
@@ -14,9 +18,8 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :set_locale
   before_action :ensure_locale
-
-  include OptimisticLockingHandler
-  include ImagePastingHandler
+  before_action :provide_pages
+  before_action :provide_root_pages
 
   def default_url_options(options = {})
     {locale: I18n.locale}
@@ -49,6 +52,10 @@ class ApplicationController < ActionController::Base
                                                              ]
   end
 
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_to root_url, alert: exception.message
+  end
+
   private
 
   def set_locale
@@ -67,5 +74,19 @@ class ApplicationController < ActionController::Base
   # TODO: Move to helpers (http://stackoverflow.com/questions/29397658) and add spec!
   def body_css_classes
     [controller_name, action_name]
+  end
+
+  # This is needed on every page to display the navigation. Always use this variable instead of executing `Page.collection_tree` again, to prevent heavy and redundant DB queries!
+  def provide_pages
+    @pages = []
+    Page.walk_tree do |page, level|
+      page.define_singleton_method(:level) { level }
+
+      @pages << page
+    end
+  end
+
+  def provide_root_pages
+    @root_pages = @pages.select { | page | page.level == 0 }
   end
 end

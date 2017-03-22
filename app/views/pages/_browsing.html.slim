@@ -1,0 +1,22 @@
+h2 = t '.browsing'
+
+p.btn-group
+  - if @previous_page
+    = link_to @previous_page, class: 'btn btn-default previous' do
+      => icon :backward, t('.previous_page') + ':', type: :fa
+      = @previous_page.navigation_title_or_title
+  - else
+    button.btn.btn-default.previous disabled="disabled"
+      => icon :backward, type: :fa
+      = t('.no_previous_page')
+
+  - if @next_page
+    = link_to @next_page, class: 'btn btn-default next' do
+      => icon :forward, t('.next_page') + ':', type: :fa
+      = @next_page.navigation_title_or_title
+  - else
+    button.btn.btn-default.next disabled="disabled"
+      => icon :forward, type: :fa
+      = t('.no_next_page')
+
+p.alert.alert-info = t '.how_to_browse'

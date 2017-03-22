@@ -123,4 +123,72 @@ RSpec.describe Page do
       }.to change { page.versions.count }.by 1
     end
   end
+
+  describe '#title_with_details' do
+    it 'returns the name with the id' do
+      page = create(:page)
+      expect(page.title_with_details).to eq "Page test title (##{page.id})"
+    end
+  end
+
+  describe 'acts as tree' do
+    it 'acts as tree' do
+      page = create :page
+      page.children = [create(:page, title: 'child 1'), create(:page, title: 'child 2')]
+
+      expect(page.children.count).to be 2
+    end
+
+    it 'sorts by position' do
+      root = create :page
+      child_1 = create :page, title: 'child 1'
+      child_2 = create :page, title: 'child 2'
+
+      root.children = [child_2, child_1]
+
+      expect(root.children.first).to eq child_2
+      expect(root.children.last).to eq child_1
+    end
+  end
+
+  describe 'acts as list' do
+    it 'acts as list' do
+      page_1 = create :page, title: 'criterion 1'
+      page_2 = create :page, title: 'criterion 2'
+
+      expect(page_1.position).to be 1
+      expect(page_2.position).to be 2
+    end
+
+    it 'scopes by parent_id' do
+      root = create :page
+      child_1 = create :page, title: 'child 1'
+      child_2 = create :page, title: 'child 2'
+
+      root.children = [child_1, child_2]
+
+      expect(root.position).to be 1
+      expect(child_1.position).to be 1
+      expect(child_2.position).to be 2
+    end
+  end
+
+  describe '#navigation_title_or_title' do
+    it 'returns navigation_title if present' do
+      page = create(:page, navigation_title: 'My navigation title', title: 'My title')
+      expect(page.navigation_title_or_title).to eq 'My navigation title'
+    end
+
+    it 'returns title if navigation_title not present' do
+      page = create(:page, navigation_title: nil, title: 'My title')
+      expect(page.navigation_title_or_title).to eq 'My title'
+    end
+  end
+
+  describe '#title_with_details' do
+    it 'returns the title and ID' do
+      page = create(:page, title: 'My title')
+      expect(page.title_with_details).to eq "My title (##{page.id})"
+    end
+  end
 end

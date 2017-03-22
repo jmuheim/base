@@ -4,10 +4,11 @@ describe 'Creating page' do
   before { login_as create :admin, :scrooge }
 
   it 'creates a page and removes abandoned images', js: true do
+    parent_page = create :page, title: 'Cool parent page'
     visit new_page_path
 
     expect(page).to have_title 'Create Page - Base'
-    expect(page).to have_active_navigation_items 'Admin', 'Create Page'
+    expect(page).to have_active_navigation_items 'Pages', 'Create Page'
     expect(page).to have_breadcrumbs 'Base', 'Pages', 'Create'
     expect(page).to have_headline 'Create Page'
 
@@ -15,6 +16,13 @@ describe 'Creating page' do
     fill_in 'page_navigation_title', with: 'new navigation title'
     fill_in 'page_content',          with: 'A cool image: ![image](@image-referenced-identifier)'
     fill_in 'page_notes',            with: 'new notes'
+
+    # Setting a position isn't possible when creating a page
+    expect {
+      select 'Cool parent page', from: 'page_parent_id'
+    }.not_to change {
+      page.has_css? '#page_position[disabled]'
+    }.from(true)
 
     # Let's add an image that is referenced in the content
     expect {

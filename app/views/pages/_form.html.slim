@@ -9,6 +9,7 @@
         = t '.info'
 
       = panel.body do
+        == render 'page_hierarchy_info'
         == render 'referencing_pages_info'
         == render 'pasting_images_info'
 
@@ -17,11 +18,20 @@
       = t('shared.form.details')
 
     = panel.body do
+      = f.association :parent, collection: @parent_collection, label_method: :title_with_details
+
+      - if f.object.new_record?
+        = f.input :position, collection: [], disabled: true
+      - else
+        = f.input :position, collection: @position_collection, include_blank: false, input_html: {data: {'depends-id': 'page_parent_id', 'depends-value': f.object.parent_id || ''}}
+
       = f.input :title
       = f.input :navigation_title
+      = f.input :lead, as: :text_fullscreen
       = f.input :content, as: :text_fullscreen_with_pastable_images
       = f.input :notes, as: :text_fullscreen_with_pastable_images
 
-  == render 'images/images', f: f
-
-  == render 'shared/form/actions', form: f, resource: @page
+  .row
+    .col-md-12
+      == render 'images/images', f: f
+      == render 'shared/form/actions', form: f, resource: @page

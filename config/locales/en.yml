@@ -23,11 +23,15 @@ en:
   org:
     name: MuheimWebdesign
   pages:
+    browsing:
+      browsing: Browsing
+      how_to_browse: The complete website can be read page by page like a book.
+      next_page: Next page
+      no_next_page: No next page
+      no_previous_page: No previous page
+      previous_page: Previous page
     form:
-      info: Information about editing pages and images
-  resources:
-    create: Create %{resource}
-    list: List %{resource}
+      info: Information about creating and editing pages and images
   shared:
     form:
       details: Details

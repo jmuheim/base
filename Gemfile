@@ -23,6 +23,10 @@ gem 'bootstrap-sass' # Sleek, intuitive, and powerful front-end framework
 
 gem 'font-awesome-rails' # The iconic font and CSS toolkit
 
+gem 'acts_as_tree' # Extends ActiveRecord to add simple support for organizing items into parent–children relationships
+
+gem 'acts_as_list' # An ActiveRecord plugin for managing lists
+
 # jQuery
 gem 'jquery-rails'
 gem 'jquery-ui-rails' # jQuery UI components
@@ -47,13 +51,9 @@ gem 'cocoon' # Dynamic nested forms made easy
 
 gem 'validates_timeliness' # Date and time validation plugin for ActiveModel and Rails
 
-gem 'navigasmic' # Semantic navigation
-
 gem 'strip_attributes' # Automatically strips all attributes of leading and trailing whitespace (or nilify if blank)
 
 gem 'enumerize' # Enumerated attributes with I18n
-
-gem 'breadcrumbs_on_rails' # A simple plugin for creating and managing a breadcrumb navigation
 
 gem 'rails_admin' # Rails Admin: engine that provides an easy-to-use interface for managing data
 

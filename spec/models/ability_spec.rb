@@ -30,7 +30,7 @@ describe Ability do
     describe 'managing users' do
       it { should be_able_to(:create, User) }
 
-      it { should     be_able_to(:read, User.new) }
+      it { should_not be_able_to(:read, User.new) }
 
       it { should_not be_able_to(:update, User.new) }
 
@@ -65,7 +65,7 @@ describe Ability do
     describe 'managing users' do
       it { should_not be_able_to(:create, User) }
 
-      it { should     be_able_to(:read, User.new) }
+      it { should_not be_able_to(:read, User.new) }
 
       it { should_not be_able_to(:update, User.new) }
       it { should     be_able_to(:update, @user) }

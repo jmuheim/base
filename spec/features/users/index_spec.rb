@@ -12,7 +12,7 @@ describe 'Listing users' do
     visit users_path
 
     expect(page).to have_title 'Users - Base'
-    expect(page).to have_active_navigation_items 'Users', 'List Users'
+    expect(page).to have_active_navigation_items 'Users', 'List of Users'
     expect(page).to have_breadcrumbs 'Base', 'Users'
     expect(page).to have_headline 'Users'
 
