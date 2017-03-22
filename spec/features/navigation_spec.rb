@@ -159,27 +159,61 @@ describe 'Navigation' do
     end
   end
 
-  # # A menu group "Users" has a "List users" and a "Create User" item, but no "Edit User" item; for the latter, we still want the group to be marked up as active
-  # it "reports the activity status of menu groups (that don't have an active item) visually and aurally" do
-  #   user = create :admin
-  #   login_as user
-  #
-  #   visit root_path
-  #
-  #   active_menu_group_css  = '.dropdown.active > a.dropdown-toggle'
-  #   active_menu_group_text = 'Users (current menu group)'
-  #
-  #   within 'nav' do
-  #     expect(page).not_to have_css  active_menu_group_css
-  #     expect(page).not_to have_text active_menu_group_text
-  #   end
-  #
-  #   visit edit_user_path(user)
-  #
-  #   within 'nav' do
-  #     expect(page).to have_css active_menu_group_css, text: active_menu_group_text
-  #   end
-  # end
+  # A menu group "Users" has a "List of Users" and a "Create User" item, but no "Edit User" item; for the latter, we still want the group to be marked up as active
+  it "reports the activity status of menu groups (that don't have an active item) visually and semantically" do
+    user = create :admin
+    login_as user
+
+    visit root_path
+
+    active_menu_group_css  = '.dropdown.active > a.dropdown-toggle'
+    active_menu_group_text = 'Users (current menu group)'
+
+    within 'nav' do
+      expect(page).not_to have_css  active_menu_group_css
+      expect(page).not_to have_text active_menu_group_text
+    end
+
+    visit edit_user_path(user)
+
+    within 'nav' do
+      expect(page).to have_css active_menu_group_css, text: active_menu_group_text
+    end
+  end
+
+  it "reports the overview page of menu groups as active only when it's the current page", focus: true do
+    parent_page = create :page, title: 'Parent page', navigation_title: nil
+    @page       = create :page, title: 'Cool page',   navigation_title: nil, parent: parent_page
+
+    visit root_path
+
+    expect(page).to     have_css '.dropdown:not(.active) > a', text: 'Parent page'
+    expect(page).not_to have_link 'Parent page (current menu group)', exact: true
+
+    expect(page).to     have_css '.dropdown:not(.active) > ul > li a:not(.active)', text: 'Overview'
+    expect(page).not_to have_link 'Overview (current menu item)', exact: true
+
+    expect(page).to     have_css '.dropdown:not(.active) > ul > li a:not(.active)', text: 'Cool page'
+    expect(page).not_to have_link 'Cool page (current menu item)', exact: true
+
+    visit page_path(parent_page)
+
+    expect(page).to     have_css '.dropdown.active > a', text: 'Parent page (current menu group)'
+
+    expect(page).to     have_css '.dropdown.active > ul > li.active a', text: 'Overview (current menu item)'
+
+    expect(page).to     have_css '.dropdown.active > ul > li:not(.active)', text: 'Cool page'
+    expect(page).not_to have_link 'Cool page (current menu item)', exact: true
+
+    visit page_path(@page)
+
+    expect(page).to     have_css '.dropdown.active > a', text: 'Parent page (current menu group)'
+
+    expect(page).to     have_css '.dropdown.active > ul > li:not(.active)', text: 'Overview'
+    expect(page).not_to have_link 'Overview (current menu item)', exact: true
+
+    expect(page).to     have_css '.dropdown.active > ul > li.active a', text: 'Cool page (current menu item)'
+  end
 
   context 'jump links' do
     it 'visually displays them only on focus', js: true do

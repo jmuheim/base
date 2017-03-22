@@ -94,14 +94,14 @@ describe 'Editing page' do
     visit edit_page_path(@page)
 
     expect(all("select#page_parent_id option").map(&:text)).to eq [ '',
-                                                                    'Parent page (#1)',
-                                                                    'Page sibling (#4)',
-                                                                    'Parent page sibling (#5)',
-                                                                    'Parent page sibling child (#6)'
+                                                                    "Parent page (##{parent_page.id})",
+                                                                    "Page sibling (##{page_sibling.id})",
+                                                                    "Parent page sibling (##{parent_page_sibling.id})",
+                                                                    "Parent page sibling child (##{parent_page_sibling_child.id})"
                                                                   ]
 
-    expect(all("select#page_position option").map(&:text)).to eq [ 'Page (#2)',
-                                                                   'Page sibling (#4)'
+    expect(all("select#page_position option").map(&:text)).to eq [ "Page (##{@page.id})",
+                                                                   "Page sibling (##{page_sibling.id})"
                                                                  ]
   end
 
