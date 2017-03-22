@@ -1,0 +1,5 @@
+= navigation_group resource_class.model_name.human(count: :other), send("#{resource_class.to_s.underscore.pluralize}_path"), "#{icon :bars, type: :fa} #{t 'actions.resources_list', resources: resource_class.model_name.human(count: :other)}" do
+  - if can? :create, resource_class
+    = navigation_item send("new_#{resource_class.to_s.underscore}_path") do
+      = icon :plus, type: :fa
+      =< t 'actions.new_resource', resource: resource_class.model_name.human

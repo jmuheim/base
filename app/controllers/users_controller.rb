@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!, only: [:new, :edit]
   load_and_authorize_resource
-  before_action :add_base_breadcrumbs
+  before_action :add_breadcrumbs
   provide_optimistic_locking_for :user
   respond_to :html
 
@@ -42,16 +42,11 @@ class UsersController < ApplicationController
                                  :lock_version)
   end
 
-  def add_base_breadcrumbs
+  def add_breadcrumbs
     add_breadcrumb User.model_name.human(count: :other), users_path
 
-    if ['show', 'edit', 'update'].include? action_name
-      add_breadcrumb @user.name, user_path(@user)
-      add_breadcrumb t('actions.edit'), edit_user_path(@user)
-    end
-
-    if ['new', 'create'].include? action_name
-      add_breadcrumb t('actions.new'), new_user_path
-    end
+    add_breadcrumb @user.name,        user_path(@user)      if [:show, :edit, :update].include? action_name.to_sym
+    add_breadcrumb t('actions.new'),  new_user_path         if [:new,  :create].include?        action_name.to_sym
+    add_breadcrumb t('actions.edit'), edit_user_path(@user) if [:edit, :update].include?        action_name.to_sym
   end
 end

@@ -31,17 +31,8 @@ nav#navigation.container
         h3.sr-only = t '.meta_navigation'
 
         ul#meta_navigation.nav.navbar-nav.navbar-right
-          - if can? :crud, Page && pages = Page.model_name.human(count: :other)
-            = navigation_group pages, pages_path, "#{icon :bars, type: :fa} #{t 'actions.resources_list', resources: pages}" do
-              = navigation_item new_page_path do
-                = icon :plus, type: :fa
-                =< t 'actions.new_resource', resource: Page.model_name.human
-
-          - if can? :crud, User && users = User.model_name.human(count: :other)
-            = navigation_group users, users_path, "#{icon :bars, type: :fa} #{t 'actions.resources_list', resources: users}" do
-              = navigation_item new_user_path do
-                = icon :plus, type: :fa
-                =< t 'actions.new_resource', resource: User.model_name.human
+          == render 'layouts/resource_navigation_group', resource_class: Page if can? :crud, Page
+          == render 'layouts/resource_navigation_group', resource_class: User if can? :crud, User
 
           - if user_signed_in?
             = navigation_group user_avatar(t('.user_menu')), user_registration_path, "#{icon :user, type: :fa} #{t '.show_account'}" do
