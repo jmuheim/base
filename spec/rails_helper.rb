@@ -19,7 +19,7 @@ require 'capybara-screenshot/rspec'
 # For capybara-screenshot, so when running a development server, the screenshots look better
 Capybara.asset_host = 'http://localhost:3001'
 Capybara::Screenshot.register_filename_prefix_formatter(:rspec) do |example|
-  "screenshot_#{example.description.gsub(' ', '-').gsub(/^.*\/spec\//,'')}"
+  "screenshot_#{example.description.gsub(/\W/, '-').gsub(/^.*\/spec\//, '')}"
 end
 Capybara::Screenshot.append_timestamp = false
 Capybara::Screenshot.prune_strategy = :keep_last_run

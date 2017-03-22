@@ -22,6 +22,11 @@ describe 'Signing in' do
     it 'is possible to sign in using email' do
       visit new_user_session_path
 
+      expect(page).to have_title 'Sign in - Base'
+      expect(page).to have_active_navigation_items 'Sign in'
+      expect(page).to have_breadcrumbs 'Base', 'Sign in'
+      expect(page).to have_headline 'Sign in'
+
       within '.frequently_occuring_sign_in_problems' do
         expect(page).to have_css 'h2', text: 'Frequently occurring sign in problems'
 

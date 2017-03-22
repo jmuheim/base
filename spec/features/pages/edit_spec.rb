@@ -83,6 +83,28 @@ describe 'Editing page' do
     expect(Image.last.identifier).to eq 'some-new-identifier'
   end
 
+  it "provides the correct parent and position collections" do
+    parent_page = create :page, title: 'Parent page'
+    @page = create :page, parent: parent_page, title: 'Page'
+    page_child = create :page, parent: @page, title: 'Page child'
+    page_sibling = create :page, parent: parent_page, title: 'Page sibling'
+    parent_page_sibling = create :page, title: 'Parent page sibling'
+    parent_page_sibling_child = create :page, title: 'Parent page sibling child'
+
+    visit edit_page_path(@page)
+
+    expect(all("select#page_parent_id option").map(&:text)).to eq [ '',
+                                                                    'Parent page (#1)',
+                                                                    'Page sibling (#4)',
+                                                                    'Parent page sibling (#5)',
+                                                                    'Parent page sibling child (#6)'
+                                                                  ]
+
+    expect(all("select#page_position option").map(&:text)).to eq [ 'Page (#2)',
+                                                                   'Page sibling (#4)'
+                                                                 ]
+  end
+
   it "prevents from overwriting other users' changes accidently (caused by race conditions)" do
     @page = create :page
     visit edit_page_path(@page)

@@ -32,17 +32,23 @@ nav#navigation.container
         h3.sr-only = t '.meta_navigation'
 
         ul#meta_navigation.nav.navbar-nav.navbar-right
-          - if can? :crud, Page
-            = navigation_group Page.model_name.human(count: :other), pages_path, "#{icon :bars, type: :fa} #{t 'actions.resources_list', resources: Page.model_name.human(count: :other)}" do
-              = navigation_item "#{icon :plus, type: :fa} #{t 'actions.new_resource', resource: Page.model_name.human}", new_page_path
+          - if can? :crud, Page && pages = Page.model_name.human(count: :other)
+            = navigation_group pages, pages_path, "#{icon :bars, type: :fa} #{t 'actions.resources_list', resources: pages}" do
+              = navigation_item new_page_path do
+                = icon :plus, type: :fa
+                =< t 'actions.new_resource', resource: Page.model_name.human
 
-          - if can? :crud, User
-            = navigation_group User.model_name.human(count: :other), users_path, "#{icon :bars, type: :fa} #{t 'actions.resources_list', resources: User.model_name.human(count: :other)}" do
-              = navigation_item "#{icon :plus, type: :fa} #{t 'actions.new_resource', resource: User.model_name.human}", new_user_path
+          - if can? :crud, User && users = User.model_name.human(count: :other)
+            = navigation_group users, users_path, "#{icon :bars, type: :fa} #{t 'actions.resources_list', resources: users}" do
+              = navigation_item new_user_path do
+                = icon :plus, type: :fa
+                =< t 'actions.new_resource', resource: User.model_name.human
 
           - if user_signed_in?
             = navigation_group user_avatar(t('.user_menu')), user_registration_path, "#{icon :user, type: :fa} #{t '.show_account'}" do
-              = navigation_item "#{icon :edit, type: :fa} #{t '.edit_account'}", edit_user_registration_path
+              = navigation_item edit_user_registration_path do
+                = icon :edit, type: :fa
+                =< t '.edit_account'
 
               li
                 = link_to destroy_user_session_path, method: :delete do
@@ -57,17 +63,12 @@ nav#navigation.container
                   =< t('.admin')
 
           - else
-            = navigation_item "<span class='visible-sm-inline-block'>#{icon 'user-plus', type: :fa}</span> <span class='hidden-sm'>#{t '.sign_up'}</span>", new_user_registration_path
+            = navigation_item new_user_registration_path do
+              span.visible-sm-inline-block = icon 'user-plus', type: :fa
+              span.hidden-sm = t '.sign_up'
 
-            li#sign_in_panel.dropdown
-              = link_to '#', class: 'dropdown-toggle', 'data-toggle': 'dropdown', 'aria-expanded': false do
-                span.visible-sm-inline-block = icon 'sign-in', type: :fa
-                span.hidden-sm = t '.sign_in'
-                b.caret
-
-              .dropdown-menu
-                .yamm-content
-                  .row = render 'devise/sessions/form', resource: User.new, display: :small
+            = navigation_mega t('.sign_in'), new_user_session_path do
+              .row = render 'devise/sessions/form', resource: User.new, display: :small
 
           li#language_chooser.dropdown
             = link_to flag(current_locale_flag, t('.choose_language')), '#', class: 'dropdown-toggle', 'data-toggle': 'dropdown', 'aria-expanded': false

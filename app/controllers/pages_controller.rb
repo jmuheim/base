@@ -1,4 +1,5 @@
 class PagesController < ApplicationController
+  # As the pages are all loaded for the navigation already, we don't have to load it on index again
   load_and_authorize_resource except: :index
   provide_optimistic_locking_for :page
   provide_image_pasting_for :page
@@ -68,7 +69,7 @@ class PagesController < ApplicationController
 
   def provide_position_collection
     @position_collection = (@page.siblings + [@page]).sort_by(&:position)
-                                                     .map { |sibling| [sibling.title, sibling.position] }
+                                                     .map { |sibling| [sibling.title_with_details, sibling.position] }
   end
 
   def provide_previous_and_next_page
