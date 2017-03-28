@@ -29,7 +29,7 @@ describe 'Navigation' do
 
     context 'as a user' do
       it 'offers the expected links' do
-        sign_in_as create :admin
+        sign_in_as create :user
 
         visit root_path
 
@@ -41,12 +41,12 @@ describe 'Navigation' do
           end
 
           within '#meta_navigation' do
-            expect(page).to     have_link 'List of Users'
-            expect(page).to     have_link 'Create User'
+            expect(page).not_to have_link 'List of Users'
+            expect(page).not_to have_link 'Create User'
             expect(page).to     have_link 'Show account'
             expect(page).to     have_link 'Edit account'
             expect(page).to     have_link 'Log out'
-            expect(page).to     have_link 'Admin'
+            expect(page).not_to have_link 'Admin'
           end
         end
       end
