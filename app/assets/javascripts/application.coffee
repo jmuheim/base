@@ -10,6 +10,7 @@
 #
 #= require bootstrap
 #= require cocoon
+#= require diff_match_patch
 #= require jasny-bootstrap
 #= require jquery-caret2
 #= require fancybox

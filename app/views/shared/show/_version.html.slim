@@ -4,7 +4,17 @@
     td.event = recurring_string?(t(".#{version.event}"), "version-#{version.id}-event")
     td.created_at = recurring_string?(l(version.created_at, format: :short), "version-#{version.id}-created_at")
     th.attribute     = Page.human_attribute_name attribute
-    td.interim_value = change[0]
-    td.new_value     = change[1]
+    td.difference
+      textarea.sr-only id="change_#{version.id}_#{attribute}_previous_value" = change[0]
+      textarea.sr-only id="change_#{version.id}_#{attribute}_new_value"      = change[1]
 
-    td.difference = diff change[0].to_s, change[1].to_s
+      pre id="change_#{version.id}_#{attribute}_difference"
+
+      javascript:
+        var dmp = new diff_match_patch();
+        var text1 = document.getElementById("change_#{version.id}_#{attribute}_previous_value").value;
+        var text2 = document.getElementById("change_#{version.id}_#{attribute}_new_value").value;
+        var d = dmp.diff_main(text1, text2);
+        dmp.diff_cleanupSemantic(d);
+        var ds = dmp.diff_prettyHtml(d);
+        document.getElementById("change_#{version.id}_#{attribute}_difference").innerHTML = ds;
