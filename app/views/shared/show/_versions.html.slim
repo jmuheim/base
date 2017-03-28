@@ -1,22 +1,27 @@
-/= accordion :versions, item_options: {title_tag: 'h2', panel_class: 'panel-info'} do |accordion|
-/  = accordion.panel do |panel|
-/    = panel.title do
-/      = PaperTrail::Version.model_name.human count: :other
+h2
+  = PaperTrail::Version.model_name.human count: :other
+  sup =< "(#{versions.size})"
 
-/    = panel.body do
+- if @page.versions.count > 0
+  = accordion :versions, item_options: {title_tag: 'div', panel_class: 'panel-success'} do |accordion|
+    = accordion.panel do |panel|
+      = panel.title do
+        | Anzeigen / verstecken
 
-table.table.table-striped.table-hover.versions
-  thead
-    tr
-      th = PaperTrail::Version.model_name.human
-      th = PaperTrail::Version.human_attribute_name :event
-      th = PaperTrail::Version.human_attribute_name :created_at
-      th = PaperTrail::Version.human_attribute_name :whodunnit
-      th = t '.attribute'
-      th = t '.interim_value'
-      th = t '.new_value'
-      th = t '.difference'
+      = panel.body do
+        table.table.table-striped.table-hover.versions
+          thead
+            tr
+              th = PaperTrail::Version.model_name.human
+              th = PaperTrail::Version.human_attribute_name :event
+              th = PaperTrail::Version.human_attribute_name :created_at
+              th = t '.attribute'
+              th = t '.previous_value'
+              th = t '.new_value'
+              th = t '.difference'
 
-  tbody
-    - versions.reverse.each_with_index do |version, i|
-      == render 'shared/show/version', version: version, count: versions.size - i
+          tbody
+            - versions.reverse.each_with_index do |version, i|
+              == render 'shared/show/version', version: version, count: versions.size - i
+- else
+  p = t '.no_earlier_versions'

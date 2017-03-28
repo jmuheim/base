@@ -47,13 +47,14 @@ en:
         stale_attributes: Attributes that have been changed
     show:
       version:
-        title: "Version #%{count}, %{event} at %{date} by Joshua Muheim"
-        create: created
-        update: updated
+        create: Create
+        update: Update
+      versions:
         attribute: Attribute
         difference: Difference
-        interim_value: Interim value
+        previous_value: Previous value
         new_value: New value
+        no_earlier_versions: There are no earlier versions.
   'true': 'Yes'
   users:
     detail_inputs:

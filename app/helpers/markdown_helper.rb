@@ -19,9 +19,9 @@ module MarkdownHelper
 
   def diff(before, after)
     if before.lines.count > 1 || after.lines.count > 1 # Text
-      content_tag :form, method: :post, action: "http://www.textdiff.com/" do
-        before = content_tag :input, nil, type: "hidden", name: "string1", value: before
-        after  = content_tag :input, nil, type: "hidden", name: "string2", value: after
+      content_tag :form, method: :post, action: "http://www.text-compare.com/" do
+        before = content_tag :input, nil, type: "hidden", name: "text1", value: before
+        after  = content_tag :input, nil, type: "hidden", name: "text2", value: after
         button = content_tag :button, 'Diff', class: "btn btn-xs btn-warning", type: "submit"
 
         (before + after + button).html_safe

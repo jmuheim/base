@@ -47,12 +47,14 @@ de:
         stale_attributes: Attribute, welche verändert worden sind
     show:
       version:
-        title: "Version #%{count}, %{event} am %{date}"
+        create: Erstellen
+        update: Aktualisieren
       versions:
-        attribute: Attribute
-        difference: Difference
-        interim_value: Interim value
-        new_value: New value
+        attribute: Attribut
+        difference: Unterschied
+        previous_value: Vorheriger Wert
+        new_value: Neuer Wert
+        no_earlier_versions: Es existieren keine früheren Versionen.
   'true': Ja
   users:
     detail_inputs:

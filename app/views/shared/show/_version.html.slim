@@ -1,9 +1,8 @@
 - version.changeset.each do |attribute, change|
   tr
-    th.title = recurring_string?("##{count}", "version-#{version.id}-title")
-    th.event = recurring_string?(t(".#{version.event}"), "version-#{version.id}-event")
-    th.created_at = recurring_string?(l(version.created_at, format: :long), "version-#{version.id}-created_at")
-    th = recurring_string?(PaperTrail::Version.human_attribute_name(:whodunnit), "version-#{version.id}-whodunnit")
+    th.title = recurring_string?(count, "version-#{version.id}-title")
+    td.event = recurring_string?(t(".#{version.event}"), "version-#{version.id}-event")
+    td.created_at = recurring_string?(l(version.created_at, format: :short), "version-#{version.id}-created_at")
     th.attribute     = Page.human_attribute_name attribute
     td.interim_value = change[0]
     td.new_value     = change[1]
