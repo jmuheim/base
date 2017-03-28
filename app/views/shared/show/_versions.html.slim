@@ -1,0 +1,9 @@
+/= accordion :versions, item_options: {title_tag: 'h2', panel_class: 'panel-info'} do |accordion|
+/  = accordion.panel do |panel|
+/    = panel.title do
+/      = PaperTrail::Version.model_name.human count: :other
+
+/    = panel.body do
+
+- resource.versions.reverse.each_with_index do |version, i|
+  == render 'shared/show/version', version: version, count: resource.versions.size - i

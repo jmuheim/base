@@ -16,4 +16,20 @@ module MarkdownHelper
     matches = `pandoc -v`.match /\bpandoc (\d+\.\d+)\b/
     matches[1]
   end
+
+  def diff(before, after)
+    if before.lines.count > 1 || after.lines.count > 1 # Text
+      content_tag :form, method: :post, action: "http://www.textdiff.com/" do
+        before = content_tag :input, nil, type: "hidden", name: "string1", value: before
+        after  = content_tag :input, nil, type: "hidden", name: "string2", value: after
+        button = content_tag :button, 'Diff', class: "btn btn-xs btn-warning", type: "submit"
+
+        (before + after + button).html_safe
+      end
+    elsif before.split.count > 1 || after.split.count > 1 # Words
+      h Differ.diff_by_word(before, after.to_s).format_as(:html).html_safe
+    else
+      h Differ.diff_by_char(before, after.to_s).format_as(:html).html_safe
+    end
+  end
 end

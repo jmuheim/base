@@ -27,6 +27,9 @@ gem 'acts_as_tree' # Extends ActiveRecord to add simple support for organizing i
 
 gem 'acts_as_list' # An ActiveRecord plugin for managing lists
 
+gem 'clerk' # Adds magic creator and updater attributes to ActiveRecord models
+gem 'diff-lcs'
+
 # jQuery
 gem 'jquery-rails'
 gem 'jquery-ui-rails' # jQuery UI components

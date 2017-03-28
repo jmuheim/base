@@ -50,6 +50,9 @@ en:
       page:
         one: Page
         other: Pages
+      paper_trail/version:
+        one: Version
+        other: Versions
       user:
         one: User
         other: Users

@@ -10,16 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170220175311) do
+ActiveRecord::Schema.define(version: 20170328181608) do
 
   create_table "images", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "file"
     t.integer  "page_id"
     t.string   "identifier"
-    t.integer  "lock_version", default: 0
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.integer  "lock_version",  default: 0
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.integer  "created_by_id",             null: false
+    t.integer  "updated_by_id",             null: false
+    t.index ["created_by_id"], name: "fk_rails_920d946580", using: :btree
     t.index ["page_id"], name: "index_images_on_page_id", using: :btree
+    t.index ["updated_by_id"], name: "fk_rails_df28ee77dc", using: :btree
   end
 
   create_table "pages", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -34,6 +38,10 @@ ActiveRecord::Schema.define(version: 20170220175311) do
     t.integer  "parent_id"
     t.integer  "position",                       default: 1,     null: false
     t.text     "lead",             limit: 65535
+    t.integer  "created_by_id",                                  null: false
+    t.integer  "updated_by_id",                                  null: false
+    t.index ["created_by_id"], name: "fk_rails_af73c24fa7", using: :btree
+    t.index ["updated_by_id"], name: "fk_rails_06bf42f87e", using: :btree
   end
 
   create_table "roles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -105,4 +113,8 @@ ActiveRecord::Schema.define(version: 20170220175311) do
     t.index ["transaction_id"], name: "index_versions_on_transaction_id", using: :btree
   end
 
+  add_foreign_key "images", "users", column: "created_by_id"
+  add_foreign_key "images", "users", column: "updated_by_id"
+  add_foreign_key "pages", "users", column: "created_by_id"
+  add_foreign_key "pages", "users", column: "updated_by_id"
 end

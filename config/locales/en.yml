@@ -45,6 +45,15 @@ en:
         new_value: New value
         no_diff_available: No diff possible
         stale_attributes: Attributes that have been changed
+    show:
+      version:
+        title: "Version #%{count}, %{event} at %{date} by Joshua Muheim"
+        create: created
+        update: updated
+        attribute: Attribute
+        difference: Difference
+        interim_value: Interim value
+        new_value: New value
   'true': 'Yes'
   users:
     detail_inputs:

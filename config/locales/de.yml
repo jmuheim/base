@@ -45,6 +45,14 @@ de:
         new_value: Neuer Wert
         no_diff_available: Keine Differenz möglich
         stale_attributes: Attribute, welche verändert worden sind
+    show:
+      version:
+        title: "Version #%{count}, %{event} am %{date}"
+      versions:
+        attribute: Attribute
+        difference: Difference
+        interim_value: Interim value
+        new_value: New value
   'true': Ja
   users:
     detail_inputs:
