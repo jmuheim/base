@@ -5,5 +5,18 @@
 
 /    = panel.body do
 
-- resource.versions.reverse.each_with_index do |version, i|
-  == render 'shared/show/version', version: version, count: resource.versions.size - i
+table.table.table-striped.table-hover.versions
+  thead
+    tr
+      th = PaperTrail::Version.model_name.human
+      th = PaperTrail::Version.human_attribute_name :event
+      th = PaperTrail::Version.human_attribute_name :created_at
+      th = PaperTrail::Version.human_attribute_name :whodunnit
+      th = t '.attribute'
+      th = t '.interim_value'
+      th = t '.new_value'
+      th = t '.difference'
+
+  tbody
+    - versions.reverse.each_with_index do |version, i|
+      == render 'shared/show/version', version: version, count: versions.size - i

@@ -1,30 +1,11 @@
-h3.h2
-  = PaperTrail::Version.model_name.human
-  =< count
+- version.changeset.each do |attribute, change|
+  tr
+    th.title = recurring_string?("##{count}", "version-#{version.id}-title")
+    th.event = recurring_string?(t(".#{version.event}"), "version-#{version.id}-event")
+    th.created_at = recurring_string?(l(version.created_at, format: :long), "version-#{version.id}-created_at")
+    th = recurring_string?(PaperTrail::Version.human_attribute_name(:whodunnit), "version-#{version.id}-whodunnit")
+    th.attribute     = Page.human_attribute_name attribute
+    td.interim_value = change[0]
+    td.new_value     = change[1]
 
-dl.dl-horizontal
-  dt.event = PaperTrail::Version.human_attribute_name :event
-  dd.event = t ".#{version.event}"
-
-  dt.created_at = PaperTrail::Version.human_attribute_name :created_at
-  dd.created_at = l(version.created_at, format: :long)
-
-  dt.whodunnit = PaperTrail::Version.human_attribute_name :whodunnit
-  dd.whodunnit
-
-table.table.table-striped.table-hover.versions
-  thead
-    tr
-      th = t '.attribute'
-      th = t '.interim_value'
-      th = t '.new_value'
-      th = t '.difference'
-
-  tbody
-    - version.changeset.each do |attribute, change|
-      tr id="changed_attribute_#{attribute}"
-        th.attribute     = Page.human_attribute_name attribute
-        td.interim_value = change[0]
-        td.new_value     = change[1]
-
-        td.difference = diff change[0].to_s, change[1].to_s
+    td.difference = diff change[0].to_s, change[1].to_s

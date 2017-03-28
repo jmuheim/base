@@ -40,5 +40,5 @@
 
                 = markdown indent_heading_level child.lead, 3
 
-  == render 'shared/show/versions', resource: @page
+  == render 'shared/show/versions', versions: @page.versions if @page.versions.count > 0
   == render 'shared/show/actions', resource: @page
