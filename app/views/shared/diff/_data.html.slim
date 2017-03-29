@@ -1,22 +1,26 @@
 th.attribute = attribute
 
 td.value_before
-  - case before
-  - when ImageUploader
-    = image_tag before.url, alt: t('.image_before') if before.present?
-  - when DocumentUploader
-    = link_to before.file.identifier, before.url if before.present?
-  - else
-    textarea.form-control data-diff-string="1" = before
+  - if before.present?
+    - case before
+    - when ImageUploader
+      = image_tag before.url, alt: t('.image_before')
+    - when DocumentUploader
+      = link_to before.file.identifier, before.url
+    - else
+      = label "version_#{id}_before", "#{attribute.downcase}", class: 'sr-only'
+      = text_area "version_#{id}_before", "#{attribute.downcase}", class: 'form-control', data: {'diff-string': 1}, value: before
 
 td.value_after
-  - case before
-  - when ImageUploader
-    = image_tag after.url, alt: t('.image_after') if after.present?
-  - when DocumentUploader
-    = link_to after.file.identifier, after.url if after.present?
-  - else
-    textarea.form-control data-diff-string="2" = after
+  - if after.present?
+    - case before
+    - when ImageUploader
+      = image_tag after.url, alt: t('.image_after')
+    - when DocumentUploader
+      = link_to after.file.identifier, after.url
+    - else
+      = label "version_#{id}_after", "#{attribute.downcase}", class: 'sr-only'
+      = text_area "version_#{id}_after", "#{attribute.downcase}", class: 'form-control', data: {'diff-string': 2}, value: after
 
 td.value_difference
   - case before

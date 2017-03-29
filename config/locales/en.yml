@@ -51,7 +51,6 @@ en:
     show:
       version:
         create: Create
-        no_diff_available: No diff available
         update: Update
       versions:
         no_earlier_versions: There are no earlier versions.
