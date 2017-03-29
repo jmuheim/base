@@ -215,7 +215,7 @@ describe 'Showing page' do
       end
     end
 
-    it "generates a diff view", versioning: true, js: true, focus: true do
+    it "generates a diff view", versioning: true, js: true do
       @page = create :page
       visit page_path(@page)
 
