@@ -1,6 +1,6 @@
 - version.changeset.each do |attribute, change|
-  tr data-diff="true"
-    th.title = recurring_string?(count, "version-#{version.id}-title")
+  tr data-diff="true" id="version_#{version.id}_#{attribute}"
+    th.count = recurring_string?(count, "version-#{version.id}-count")
     td.event = recurring_string?(t(".#{version.event}"), "version-#{version.id}-event")
     td.created_at = recurring_string?(l(version.created_at, format: :short), "version-#{version.id}-created_at")
 

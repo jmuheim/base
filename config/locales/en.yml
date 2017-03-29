@@ -48,7 +48,7 @@ en:
     form:
       details: Details
       stale_info:
-        instructions: At the time being, the form only contains your changes ("New value"). Please merge the interim changes by the other user manually. Only save, when you are sure, that no changes are abandoned by error!
+        instructions: At the time being, the form only contains your changes ("Value after"). Please merge the interim changes ("Value before") by the other user manually. Only save, when you are sure, that no changes are abandoned by error!
         stale_attributes: Attributes that have been changed
     show:
       version:

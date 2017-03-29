@@ -101,4 +101,125 @@ describe 'Showing page' do
     expect(page).to have_link 'Previous page: Root 2'
     expect(page).to have_css '.next[disabled]', text: 'No next page'
   end
+
+  describe 'versioning' do
+    it "doesn't display versions if none available" do
+      @page = create :page
+      visit page_path(@page)
+
+      within '.versions' do
+        expect(page).to have_css  'h2', text: 'Versions (0)'
+        expect(page).to have_text 'There are no earlier versions'
+      end
+    end
+
+    it 'displays versions if available', versioning: true do
+      @page = create :page
+      @page.update_attributes! title: 'This is a new title',
+                               lead:  'And a new lead'
+      @page.update_attributes! title:   'And another title',
+                               content: 'And some other content'
+
+      visit page_path(@page)
+
+      within '.versions' do
+        expect(page).to have_css 'h2', text: 'Versions (3)'
+
+        within '#version_4_title' do
+          expect(page).to have_css '.count      .first_occurrence', text: 3
+          expect(page).to have_css '.event      .first_occurrence', text: 'Update'
+          expect(page).to have_css '.created_at .first_occurrence', text: '15 Jun 14:33'
+
+          expect(page).to have_css '.attribute',        text: 'Title'
+          expect(page).to have_css '.value_before',     text: 'This is a new title'
+          expect(page).to have_css '.value_after',      text: 'And another title'
+          expect(page).to have_css '.value_difference', text: 'No diff view available (please activate JavaScript)'
+        end
+
+        within '#version_4_content' do
+          expect(page).to have_css '.count      .recurrent_occurrence', text: 3
+          expect(page).to have_css '.event      .recurrent_occurrence', text: 'Update'
+          expect(page).to have_css '.created_at .recurrent_occurrence', text: '15 Jun 14:33'
+
+          expect(page).to have_css '.attribute',        text: 'Content'
+          expect(page).to have_css '.value_before',     text: 'Page test content'
+          expect(page).to have_css '.value_after',      text: 'And some other content'
+          expect(page).to have_css '.value_difference', text: 'No diff view available (please activate JavaScript)'
+        end
+
+        within '#version_3_title' do
+          expect(page).to have_css '.count      .first_occurrence', text: 2
+          expect(page).to have_css '.event      .first_occurrence', text: 'Update'
+          expect(page).to have_css '.created_at .first_occurrence', text: '15 Jun 14:33'
+
+          expect(page).to have_css '.attribute',        text: 'Title'
+          expect(page).to have_css '.value_before',     text: 'Page test title'
+          expect(page).to have_css '.value_after',      text: 'This is a new title'
+          expect(page).to have_css '.value_difference', text: 'No diff view available (please activate JavaScript)'
+        end
+
+        within '#version_3_lead' do
+          expect(page).to have_css '.count      .recurrent_occurrence', text: 2
+          expect(page).to have_css '.event      .recurrent_occurrence', text: 'Update'
+          expect(page).to have_css '.created_at .recurrent_occurrence', text: '15 Jun 14:33'
+
+          expect(page).to have_css '.attribute',        text: 'Lead'
+          expect(find('.value_before').text).to eq ''
+          expect(page).to have_css '.value_after',      text: 'And a new lead'
+          expect(page).to have_css '.value_difference', text: 'No diff view available (please activate JavaScript)'
+        end
+
+        within '#version_2_title' do
+          expect(page).to have_css '.count      .first_occurrence', text: 1
+          expect(page).to have_css '.event      .first_occurrence', text: 'Create'
+          expect(page).to have_css '.created_at .first_occurrence', text: '15 Jun 14:33'
+
+          expect(page).to have_css '.attribute',        text: 'Title'
+          expect(find('.value_before').text).to eq ''
+          expect(page).to have_css '.value_after',      text: 'Page test title'
+          expect(page).to have_css '.value_difference', text: 'No diff view available (please activate JavaScript)'
+        end
+
+        within '#version_2_navigation_title' do
+          expect(page).to have_css '.count      .recurrent_occurrence', text: 1
+          expect(page).to have_css '.event      .recurrent_occurrence', text: 'Create'
+          expect(page).to have_css '.created_at .recurrent_occurrence', text: '15 Jun 14:33'
+
+          expect(page).to have_css '.attribute',        text: 'Navigation title'
+          expect(find('.value_before').text).to eq ''
+          expect(page).to have_css '.value_after',      text: 'Page test navigation title'
+          expect(page).to have_css '.value_difference', text: 'No diff view available (please activate JavaScript)'
+        end
+
+        within '#version_2_content' do
+          expect(page).to have_css '.count      .recurrent_occurrence', text: 1
+          expect(page).to have_css '.event      .recurrent_occurrence', text: 'Create'
+          expect(page).to have_css '.created_at .recurrent_occurrence', text: '15 Jun 14:33'
+
+          expect(page).to have_css '.attribute',        text: 'Content'
+          expect(find('.value_before').text).to eq ''
+          expect(page).to have_css '.value_after',      text: 'Page test content'
+          expect(page).to have_css '.value_difference', text: 'No diff view available (please activate JavaScript)'
+        end
+
+        within '#version_2_notes' do
+          expect(page).to have_css '.count      .recurrent_occurrence', text: 1
+          expect(page).to have_css '.event      .recurrent_occurrence', text: 'Create'
+          expect(page).to have_css '.created_at .recurrent_occurrence', text: '15 Jun 14:33'
+
+          expect(page).to have_css '.attribute',        text: 'Notes'
+          expect(find('.value_before').text).to eq ''
+          expect(page).to have_css '.value_after',      text: 'Page test notes'
+          expect(page).to have_css '.value_difference', text: 'No diff view available (please activate JavaScript)'
+        end
+      end
+    end
+
+    it "generates a diff view", versioning: true, js: true, focus: true do
+      @page = create :page
+      visit page_path(@page)
+
+      expect(page.html).to include '<pre data-diff-result=""><ins style="background:#e6ffe6;">Page test title</ins></pre>'
+    end
+  end
 end

@@ -10,6 +10,7 @@ class App.DiffGenerator
   constructor: (el) ->
     @$el = $(el) # Always pass an element to the constructor and make it available as a jQuery selector!
 
+    # Inspired by https://neil.fraser.name/software/diff_match_patch/svn/trunk/demos/demo_diff.html
     dmp = new diff_match_patch
     text1 = @$el.find('[data-diff-string="before"]').text()
     text2 = @$el.find('[data-diff-string="after"]').text()
