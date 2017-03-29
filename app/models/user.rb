@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   include SentientUser
 
-  has_paper_trail only: :name
+  has_paper_trail only: [:name, :email, :about]
   rolify
 
   # Include default devise modules. Others available are:
