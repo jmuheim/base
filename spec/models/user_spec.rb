@@ -34,14 +34,6 @@ describe User do
       }.to change { user.versions.count }.by 1
     end
 
-    it 'versions email' do
-      user = create :user, :donald
-
-      expect {
-        user.update_attributes! email: 'daisy@duck.com'
-      }.to change { user.versions.count }.by 1
-    end
-
     it 'versions about' do
       user = create :user, :donald
 

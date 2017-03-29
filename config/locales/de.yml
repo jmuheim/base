@@ -38,7 +38,8 @@ de:
         image_before: Bild vorher
         image_after: Bild nachher
       data:
-        no_diff_available: Kein Unterschied verfügbar
+        no_diff_available: Keine Unterschieds-Anzeige verfügbar (bitte JavaScript aktivieren)
+        diff_not_possible: Unterschieds-Anzeige nicht möglich
       head:
         attribute: Attribut
         value_after: Wert vorher
