@@ -15,6 +15,6 @@
           tbody
             - f.object.stale_info.each do |stale_info|
               tr id="stale_attribute_#{stale_info.input_id}" data-diff="true"
-                == render 'shared/diff/data', attribute: stale_info.human_attribute_name, id: f.object.id, before: stale_info.value_before, after: stale_info.value_after
+                == render 'shared/diff/data', attribute: stale_info.human_attribute_name, before: stale_info.value_before, after: stale_info.value_after
 
         p = t '.instructions'

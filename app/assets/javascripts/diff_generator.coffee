@@ -5,8 +5,8 @@ class App.DiffGenerator
     @$el = $(el) # Always pass an element to the constructor and make it available as a jQuery selector!
 
     dmp = new diff_match_patch
-    text1 = @$el.find('[data-diff-string="1"]').text()
-    text2 = @$el.find('[data-diff-string="2"]').text()
+    text1 = @$el.find('[data-diff-string="before"]').text()
+    text2 = @$el.find('[data-diff-string="after"]').text()
     d = dmp.diff_main(text1, text2)
     dmp.diff_cleanupSemantic d
     ds = dmp.diff_prettyHtml(d)

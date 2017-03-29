@@ -4,23 +4,21 @@ td.value_before
   - if before.present?
     - case before
     - when ImageUploader
-      = image_tag before.url, alt: t('.image_before')
+      = image_tag before.url, alt: t('.image_before'), class: 'img-thumbnail'
     - when DocumentUploader
       = link_to before.file.identifier, before.url
     - else
-      = label "version_#{id}_before", "#{attribute.downcase}", class: 'sr-only'
-      = text_area "version_#{id}_before", "#{attribute.downcase}", class: 'form-control', data: {'diff-string': 1}, value: before
+      pre data-diff-string="before" = before
 
 td.value_after
   - if after.present?
     - case before
     - when ImageUploader
-      = image_tag after.url, alt: t('.image_after')
+      = image_tag after.url, alt: t('.image_after'), class: 'img-thumbnail'
     - when DocumentUploader
       = link_to after.file.identifier, after.url
     - else
-      = label "version_#{id}_after", "#{attribute.downcase}", class: 'sr-only'
-      = text_area "version_#{id}_after", "#{attribute.downcase}", class: 'form-control', data: {'diff-string': 2}, value: after
+      pre data-diff-string="after" = after
 
 td.value_difference
   - case before
