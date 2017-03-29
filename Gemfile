@@ -27,9 +27,6 @@ gem 'acts_as_tree' # Extends ActiveRecord to add simple support for organizing i
 
 gem 'acts_as_list' # An ActiveRecord plugin for managing lists
 
-gem 'clerk' # Adds magic creator and updater attributes to ActiveRecord models
-gem 'diff-lcs'
-
 # jQuery
 gem 'jquery-rails'
 gem 'jquery-ui-rails' # jQuery UI components
@@ -83,9 +80,6 @@ gem 'actionview-encoded_mail_to' # Rails mail_to helper with obfuscation
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw] # Timezone Data for TZInfo (needed when run on Microsoft Windows, see https://github.com/tzinfo/tzinfo/wiki/Resolving-TZInfo::DataSourceNotFound-Errors)
 
 gem 'wannabe_bool' # Converts strings, integers, etc. intuitively to boolean values
-
-gem 'differ' # A simple gem for generating string diffs
-gem 'diffy' # Easy Diffing in Ruby
 
 group :doc do
   gem 'sdoc', require: false # bundle exec rake doc:rails generates the API under doc/api.
