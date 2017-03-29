@@ -31,4 +31,15 @@ describe 'Showing user' do
       expect(page).to have_link 'Delete'
     end
   end
+
+  # The more thorough tests are implemented for pages#show. As we simply render the same partial here, we just make sure the container is there.
+  it 'displays versions' do
+    @page = create :page
+    visit page_path(@page)
+
+    within '.versions' do
+      expect(page).to have_css  'h2', text: 'Versions (0)'
+      expect(page).to have_text 'There are no earlier versions'
+    end
+  end
 end

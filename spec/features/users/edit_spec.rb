@@ -83,21 +83,30 @@ describe 'Editing user' do
 
       expect(page).to have_flash('User meanwhile has been changed. The conflicting fields are: Name, Profile picture, Curriculum vitae, and About.').of_type :alert
 
-      expect(page).to have_css '#stale_attribute_user_name .interim_value', text: 'interim-name'
-      expect(page).to have_css '#stale_attribute_user_name .new_value',     text: 'new-name'
-      expect(page.html).to include '<del class="differ">interim</del><ins class="differ">new</ins>-name'
+      within '#stale_attribute_user_name' do
+        expect(page).to have_css '.attribute',        text: 'Name'
+        expect(page).to have_css '.value_before',     text: 'interim-name'
+        expect(page).to have_css '.value_after',      text: 'new-name'
+        expect(page).to have_css '.value_difference', text: 'No diff view available (please activate JavaScript)'
+      end
 
-      expect(page).to have_css '#stale_attribute_user_about .interim_value', text: 'This is some barely interesting info. I like playing football and reading books. I don\'t work as a web developer anymore.'
-      expect(page).to have_css '#stale_attribute_user_about .new_value',     text: 'This is some very interesting info about me. I like playing football and reading books. I work as a web developer.'
-      expect(page.html).to include "<p><del class=\"differ\">This is some barely interesting info.</p>\n\n<p>I like playing football and reading books.</p>\n\n<p>I don't work as a web developer anymore.</del><ins class=\"differ\">This is some very interesting info about me. I like playing football and reading books. I work as a web developer.</ins></p>"
+      within '#stale_attribute_user_about' do
+        expect(page).to have_css '.value_before',     text: 'This is some barely interesting info. I like playing football and reading books. I don\'t work as a web developer anymore.'
+        expect(page).to have_css '.value_after',      text: 'This is some very interesting info about me. I like playing football and reading books. I work as a web developer.'
+        expect(page).to have_css '.value_difference', text: 'No diff view available (please activate JavaScript)'
+      end
 
-      expect(page).to have_css '#stale_attribute_user_avatar .interim_value img[alt="Interim image"]'
-      expect(page).to have_css '#stale_attribute_user_avatar .new_value img[alt="New image"]'
-      expect(page).to have_css '#stale_attribute_user_avatar .difference', text: 'No diff possible'
+      within '#stale_attribute_user_avatar' do
+        expect(page).to have_css '.value_before img[alt="Image before"]'
+        expect(page).to have_css '.value_after img[alt="Image after"]'
+        expect(page).to have_css '.value_difference', text: 'Diff view not possible'
+      end
 
-      expect(page).to have_css '#stale_attribute_user_curriculum_vitae .interim_value a', text: 'document.txt'
-      expect(page).to have_css '#stale_attribute_user_curriculum_vitae .new_value a', text: 'other_document.txt'
-      expect(page).to have_css '#stale_attribute_user_curriculum_vitae .difference', text: 'No diff possible'
+      within '#stale_attribute_user_curriculum_vitae' do
+        expect(page).to have_css '.value_before a', text: 'document.txt'
+        expect(page).to have_css '.value_after a', text: 'other_document.txt'
+        expect(page).to have_css '.value_difference', text: 'Diff view not possible'
+      end
 
       expect {
         click_button 'Update User'
@@ -106,6 +115,26 @@ describe 'Editing user' do
         .and change { @user.about }.to('This is some very interesting info about me. I like playing football and reading books. I work as a web developer.')
         .and change { File.basename(@user.avatar.to_s) }.to('avatar.png')
         .and change { File.basename(@user.curriculum_vitae.to_s) }.to('other_document.txt')
+    end
+
+    it "generates a diff view on displaying optimistic locking warning", js: true do
+      visit edit_user_path(@user)
+
+      # Change something in the database...
+      expect {
+        @user.update_attributes! about:  "This is some barely interesting info.\n\nI like playing football and reading books.\n\nI don't work as a web developer anymore."
+      }.to change { @user.lock_version }.by 1
+
+      fill_in 'user_about', with: "Yeah this looks different now!\n\nThis is some very interesting info.\n\nI like playing american football and watching movies."
+
+      expect {
+        click_button 'Update User'
+        @user.reload
+      }.not_to change { @user }
+
+      expect(page).to have_flash('User meanwhile has been changed. The conflicting field is: About.').of_type :alert
+
+      expect(page.html).to include '<pre data-diff-result=""><ins style="background:#e6ffe6;">Yeah this looks different now!¶<br>¶<br></ins><span>This is some </span><del style="background:#ffe6e6;">barel</del><ins style="background:#e6ffe6;">ver</ins><span>y interesting info.¶<br>¶<br>I like playing </span><ins style="background:#e6ffe6;">american </ins><span>football and </span><del style="background:#ffe6e6;">reading books.¶<br>¶<br>I don\'t work as a web developer anymore</del><ins style="background:#e6ffe6;">watching movies</ins><span>.</span></pre>'
     end
 
     describe 'avatar upload' do

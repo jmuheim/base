@@ -1,0 +1,11 @@
+th.attribute = attribute
+
+== render 'shared/diff/before_or_after', value: before, state: 'before'
+== render 'shared/diff/before_or_after', value: after,  state: 'after'
+
+td.value_difference
+  - case before
+  - when ImageUploader, DocumentUploader
+    = t '.diff_not_possible'
+  - else
+    pre data-diff-result="" = t '.no_diff_available'

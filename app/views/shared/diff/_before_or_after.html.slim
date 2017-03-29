@@ -1,0 +1,12 @@
+/ i18n-tasks-use t('.image_before')
+/ i18n-tasks-use t('.image_after')
+
+td class="value_#{state}"
+  - if value.present?
+    - case value
+    - when ImageUploader
+      = image_tag value.url, alt: t(".image_#{state}"), class: 'img-thumbnail'
+    - when DocumentUploader
+      = link_to value.file.identifier, value.url
+    - else
+      pre data-diff-string=state = value

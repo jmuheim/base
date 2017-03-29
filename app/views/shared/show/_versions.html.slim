@@ -1,0 +1,25 @@
+.versions
+  h2
+    = PaperTrail::Version.model_name.human count: :other
+    sup =< "(#{versions.size})"
+
+  - if versions.count > 0
+    = accordion :versions, item_options: {title_tag: 'div', panel_class: 'panel-success'} do |accordion|
+      = accordion.panel do |panel|
+        = panel.title do
+          = t 'actions.toggle'
+
+        = panel.body do
+          table.table.table-striped.table-hover.diff
+            thead
+              tr
+                th = PaperTrail::Version.model_name.human
+                th = PaperTrail::Version.human_attribute_name :event
+                th = PaperTrail::Version.human_attribute_name :created_at
+                == render 'shared/diff/head'
+
+            tbody
+              - versions.reverse.each_with_index do |version, i|
+                == render 'shared/show/version', version: version, count: versions.size - i
+  - else
+    p = t '.no_earlier_versions'

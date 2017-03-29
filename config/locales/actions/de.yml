@@ -17,4 +17,5 @@ de:
     show: Anzeigen
     show_resource: "%{resource} anzeigen"
     show_resource_with_id: "%{resource} #%{id}"
+    toggle: Ansicht umschalten
     toggle_dropdown: Menü umschalten

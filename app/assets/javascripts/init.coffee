@@ -11,6 +11,7 @@ class App.Init
     @initFancybox @$el
     @makeTextareasFullscreenizable @$el
     @disableDependingSelect @$el
+    @generateDiffs @$el
 
   makeJumpLinksVisibleOnFocus: ($el) ->
     $el.find('#jump_links a').each ->
@@ -57,3 +58,7 @@ class App.Init
   disableDependingSelect: ($el) ->
     $el.find('[data-depends-id][data-depends-value]').each ->
       new App.DependingSelectDisabler @, $el
+
+  generateDiffs: ($el) ->
+    $el.find('[data-diff]').each ->
+      new App.DiffGenerator @

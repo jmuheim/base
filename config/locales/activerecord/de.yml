@@ -50,6 +50,9 @@ de:
       page:
         one: Seite
         other: Seiten
+      paper_trail/version:
+        one: Version
+        other: Versionen
       user:
         one: Benutzer
         other: Benutzer

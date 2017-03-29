@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  has_paper_trail only: :name
+  has_paper_trail only: [:name, :about]
   rolify
 
   # Include default devise modules. Others available are:

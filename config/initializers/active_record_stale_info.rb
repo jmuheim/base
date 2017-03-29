@@ -1,6 +1,6 @@
 class ActiveRecord::Base
-  class StaleInfo < Struct.new(:resource, :attribute, :human_attribute_name, :input_id, :type, :interim_value, :new_value)
-    attr_accessor :resource, :attribute, :human_attribute_name, :input_id, :type, :interim_value, :new_value
+  class StaleInfo < Struct.new(:resource, :attribute, :human_attribute_name, :input_id, :type, :value_before, :value_after)
+    attr_accessor :resource, :attribute, :human_attribute_name, :input_id, :type, :value_before, :value_after
 
     def initialize(options)
       options.each do |key, value|
@@ -44,8 +44,8 @@ class ActiveRecord::Base
                       human_attribute_name: "#{resource.class.human_attribute_name(attribute)}#{model_name_suffix}",
                       input_id:             "#{prefix}_#{attribute}",
                       type:                 resource.class.columns_hash[attribute].type,
-                      interim_value:        change[0],
-                      new_value:            change[1]
+                      value_before:         change[0],
+                      value_after:          change[1]
       end
     end.compact
   end
