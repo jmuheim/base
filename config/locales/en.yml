@@ -34,9 +34,10 @@ en:
       info: Information about creating and editing pages and images
   shared:
     diff:
-      data:
-        image_after: Image after
+      before_or_after:
         image_before: Image before
+        image_after: Image after
+      data:
         no_diff_available: No diff available
       head:
         attribute: Attribute

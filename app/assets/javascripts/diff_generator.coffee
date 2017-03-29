@@ -1,4 +1,10 @@
-# This is an example file. Use it as reference when creating your own script classes.
+# This creates a diff (in the style of GitHub) from two text strings.
+#
+# - There needs to be a container with attribute `data-diff-before`
+# - There needs to be a container with attribute `data-diff-after`
+# - There needs to be a container with attribute `data-diff-result`; this one will hold the generated diff
+#
+# All these elements need to be in a container with attribute `data-diff`. For every diff, such a container is needed.
 
 class App.DiffGenerator
   constructor: (el) ->

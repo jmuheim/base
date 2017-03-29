@@ -33,6 +33,22 @@ describe User do
         user.update_attributes! name: 'daisy'
       }.to change { user.versions.count }.by 1
     end
+
+    it 'versions email' do
+      user = create :user, :donald
+
+      expect {
+        user.update_attributes! email: 'daisy@duck.com'
+      }.to change { user.versions.count }.by 1
+    end
+
+    it 'versions about' do
+      user = create :user, :donald
+
+      expect {
+        user.update_attributes! about: 'I like make up'
+      }.to change { user.versions.count }.by 1
+    end
   end
 
   # TODO: Why do we have these specs double?

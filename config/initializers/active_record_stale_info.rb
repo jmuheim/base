@@ -44,8 +44,8 @@ class ActiveRecord::Base
                       human_attribute_name: "#{resource.class.human_attribute_name(attribute)}#{model_name_suffix}",
                       input_id:             "#{prefix}_#{attribute}",
                       type:                 resource.class.columns_hash[attribute].type,
-                      value_before:        change[0],
-                      value_after:            change[1]
+                      value_before:         change[0],
+                      value_after:          change[1]
       end
     end.compact
   end

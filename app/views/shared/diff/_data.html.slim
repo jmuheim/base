@@ -1,24 +1,7 @@
 th.attribute = attribute
 
-td.value_before
-  - if before.present?
-    - case before
-    - when ImageUploader
-      = image_tag before.url, alt: t('.image_before'), class: 'img-thumbnail'
-    - when DocumentUploader
-      = link_to before.file.identifier, before.url
-    - else
-      pre data-diff-string="before" = before
-
-td.value_after
-  - if after.present?
-    - case before
-    - when ImageUploader
-      = image_tag after.url, alt: t('.image_after'), class: 'img-thumbnail'
-    - when DocumentUploader
-      = link_to after.file.identifier, after.url
-    - else
-      pre data-diff-string="after" = after
+== render 'shared/diff/before_or_after', value: before, state: 'before'
+== render 'shared/diff/before_or_after', value: after,  state: 'after'
 
 td.value_difference
   - case before

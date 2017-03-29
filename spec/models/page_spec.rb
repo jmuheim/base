@@ -107,6 +107,14 @@ RSpec.describe Page do
       }.to change { page.versions.count }.by 1
     end
 
+    it 'versions lead' do
+      page = create :page
+
+      expect {
+        page.update_attributes! lead: 'New lead'
+      }.to change { page.versions.count }.by 1
+    end
+
     it 'versions content' do
       page = create :page
 

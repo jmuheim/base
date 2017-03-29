@@ -34,9 +34,10 @@ de:
       info: Informationen zum Erstellen und Bearbeiten von Seiten und Bildern
   shared:
     diff:
+      before_or_after:
+        image_before: Bild vorher
+        image_after: Bild nachher
       data:
-        image_after: Bild vorher
-        image_before: Bild nachher
         no_diff_available: Kein Unterschied verfügbar
       head:
         attribute: Attribut

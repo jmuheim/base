@@ -40,5 +40,5 @@
 
                 = markdown indent_heading_level child.lead, 3
 
-  == render 'shared/show/versions', versions: @page.versions
+  == render 'shared/show/versions', versions: @page.versions if can? :read, PaperTrail::Version
   == render 'shared/show/actions', resource: @page
