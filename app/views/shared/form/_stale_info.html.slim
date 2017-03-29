@@ -17,50 +17,8 @@
 
           tbody
             - f.object.stale_info.each do |stale_info|
-              tr id="stale_attribute_#{stale_info.input_id}"
+              tr id="stale_attribute_#{stale_info.input_id}" data-diff="true"
                 th.attribute = stale_info.human_attribute_name
-
-                td.interim_value
-                  - case stale_info.type
-                  - when :text
-                    = simple_format h stale_info.interim_value
-                  - when :string
-                    - case stale_info.interim_value
-                    - when ImageUploader
-                      = image_tag stale_info.interim_value.url, alt: t('.interim_image')
-                    - when DocumentUploader
-                      = link_to stale_info.interim_value.file.identifier, stale_info.interim_value.url
-                    - else
-                      = h stale_info.interim_value
-                  - else
-                    = stale_info.interim_value
-
-                td.new_value
-                  - case stale_info.type
-                  - when :text
-                    = simple_format h stale_info.new_value
-                  - when :string
-                    - case stale_info.new_value
-                    - when ImageUploader
-                      = image_tag stale_info.new_value.url, alt: t('.new_image')
-                    - when DocumentUploader
-                      = link_to stale_info.new_value.file.identifier, stale_info.new_value.url
-                    - else
-                      = h stale_info.new_value
-                  - else
-                    = stale_info.new_value
-
-                td.difference
-                  - case stale_info.type
-                  - when :text
-                    = simple_format h Differ.diff_by_line(h(stale_info.new_value.to_s), h(stale_info.interim_value.to_s)).format_as(:html).html_safe
-                  - when :string
-                    - case stale_info.new_value
-                    - when AbstractUploader
-                      = t '.no_diff_available'
-                    - else
-                      = h Differ.diff_by_word(stale_info.new_value.to_s, stale_info.interim_value.to_s).format_as(:html).html_safe
-                  - else
-                    = h Differ.diff_by_char(stale_info.new_value.to_s, stale_info.interim_value.to_s).format_as(:html).html_safe
+                == render 'shared/diff/row', before: stale_info.interim_value.to_s, after: stale_info.new_value.to_s
 
         p = t '.instructions'

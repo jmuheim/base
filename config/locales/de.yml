@@ -48,11 +48,12 @@ de:
     show:
       version:
         create: Erstellen
+        no_diff_available: Kein diff verfügbar
         update: Aktualisieren
       versions:
         attribute: Attribut
+        current_value: Aktueller Wert
         difference: Unterschied
-        new_value: Neuer Wert
         no_earlier_versions: Es existieren keine früheren Versionen.
         previous_value: Vorheriger Wert
   'true': Ja

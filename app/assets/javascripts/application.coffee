@@ -23,6 +23,7 @@
 #= require clipboard_to_nested_image_pastabilizer
 #= require clipboard_to_textarea_pastabilizer
 #= require depending_select_disabler
+#= require diff_generator
 #= require form_accessibilizer
 #= require markdown_html_optimizer
 #= require textarea_fullscreenizer

@@ -1,20 +1,7 @@
 - version.changeset.each do |attribute, change|
-  tr
+  tr data-diff="true"
     th.title = recurring_string?(count, "version-#{version.id}-title")
     td.event = recurring_string?(t(".#{version.event}"), "version-#{version.id}-event")
     td.created_at = recurring_string?(l(version.created_at, format: :short), "version-#{version.id}-created_at")
     th.attribute     = Page.human_attribute_name attribute
-    td.difference
-      textarea style="display: none" id="change_#{version.id}_#{attribute}_previous_value" = change[0]
-      textarea style="display: none" id="change_#{version.id}_#{attribute}_new_value"      = change[1]
-
-      pre id="change_#{version.id}_#{attribute}_difference"
-
-      javascript:
-        var dmp = new diff_match_patch();
-        var text1 = document.getElementById("change_#{version.id}_#{attribute}_previous_value").value;
-        var text2 = document.getElementById("change_#{version.id}_#{attribute}_new_value").value;
-        var d = dmp.diff_main(text1, text2);
-        dmp.diff_cleanupSemantic(d);
-        var ds = dmp.diff_prettyHtml(d);
-        document.getElementById("change_#{version.id}_#{attribute}_difference").innerHTML = ds;
+    == render 'shared/diff/row', before: change[0], after: change[1]

@@ -3,7 +3,7 @@ class Page < ApplicationRecord
 
   track_who_does_it
 
-  has_paper_trail only: [:title, :navigation_title, :content, :notes]
+  has_paper_trail only: [:title, :navigation_title, :lead, :content, :notes]
   accepts_pasted_images_for :content, :notes
 
   acts_as_tree order: :position, dependent: :restrict_with_error
