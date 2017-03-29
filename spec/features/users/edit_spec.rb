@@ -83,20 +83,20 @@ describe 'Editing user' do
 
       expect(page).to have_flash('User meanwhile has been changed. The conflicting fields are: Name, Profile picture, Curriculum vitae, and About.').of_type :alert
 
-      expect(page).to have_css '#stale_attribute_user_name .interim_value', text: 'interim-name'
-      expect(page).to have_css '#stale_attribute_user_name .new_value',     text: 'new-name'
+      expect(page).to have_css '#stale_attribute_user_name .value_before', text: 'interim-name'
+      expect(page).to have_css '#stale_attribute_user_name .value_after',     text: 'new-name'
       expect(page.html).to include '<del class="differ">interim</del><ins class="differ">new</ins>-name'
 
-      expect(page).to have_css '#stale_attribute_user_about .interim_value', text: 'This is some barely interesting info. I like playing football and reading books. I don\'t work as a web developer anymore.'
-      expect(page).to have_css '#stale_attribute_user_about .new_value',     text: 'This is some very interesting info about me. I like playing football and reading books. I work as a web developer.'
+      expect(page).to have_css '#stale_attribute_user_about .value_before', text: 'This is some barely interesting info. I like playing football and reading books. I don\'t work as a web developer anymore.'
+      expect(page).to have_css '#stale_attribute_user_about .value_after',     text: 'This is some very interesting info about me. I like playing football and reading books. I work as a web developer.'
       expect(page.html).to include "<p><del class=\"differ\">This is some barely interesting info.</p>\n\n<p>I like playing football and reading books.</p>\n\n<p>I don't work as a web developer anymore.</del><ins class=\"differ\">This is some very interesting info about me. I like playing football and reading books. I work as a web developer.</ins></p>"
 
-      expect(page).to have_css '#stale_attribute_user_avatar .interim_value img[alt="Interim image"]'
-      expect(page).to have_css '#stale_attribute_user_avatar .new_value img[alt="New image"]'
+      expect(page).to have_css '#stale_attribute_user_avatar .value_before img[alt="Interim image"]'
+      expect(page).to have_css '#stale_attribute_user_avatar .value_after img[alt="New image"]'
       expect(page).to have_css '#stale_attribute_user_avatar .difference', text: 'No diff possible'
 
-      expect(page).to have_css '#stale_attribute_user_curriculum_vitae .interim_value a', text: 'document.txt'
-      expect(page).to have_css '#stale_attribute_user_curriculum_vitae .new_value a', text: 'other_document.txt'
+      expect(page).to have_css '#stale_attribute_user_curriculum_vitae .value_before a', text: 'document.txt'
+      expect(page).to have_css '#stale_attribute_user_curriculum_vitae .value_after a', text: 'other_document.txt'
       expect(page).to have_css '#stale_attribute_user_curriculum_vitae .difference', text: 'No diff possible'
 
       expect {

@@ -33,17 +33,20 @@ de:
     form:
       info: Informationen zum Erstellen und Bearbeiten von Seiten und Bildern
   shared:
+    diff:
+      data:
+        image_after: Bild vorher
+        image_before: Bild nachher
+        no_diff_available: Kein Unterschied verfügbar
+      head:
+        attribute: Attribut
+        value_after: Wert vorher
+        value_before: Wert nachher
+        value_difference: Wert Unterschied
     form:
       details: Details
       stale_info:
-        attribute: Attribut
-        difference: Differenz
         instructions: Das Formular beinhaltet momentan nur deine Änderungen ("Neuer Wert"). Bitte führe die zwischenzeitlich von einem anderen Benutzer getätigten Änderungen manuell zu den deinen hinzu. Speichere erst, wenn du sicher bist, dass dadurch keine Änderungen ungewollt verloren gehen!
-        interim_image: Bisheriges Bild
-        interim_value: Zwischenzeitlicher Wert
-        new_image: Neues Bild
-        new_value: Neuer Wert
-        no_diff_available: Keine Differenz möglich
         stale_attributes: Attribute, welche verändert worden sind
     show:
       version:
@@ -51,11 +54,7 @@ de:
         no_diff_available: Kein diff verfügbar
         update: Aktualisieren
       versions:
-        attribute: Attribut
-        current_value: Aktueller Wert
-        difference: Unterschied
         no_earlier_versions: Es existieren keine früheren Versionen.
-        previous_value: Vorheriger Wert
   'true': Ja
   users:
     detail_inputs:

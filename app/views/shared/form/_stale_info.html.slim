@@ -10,15 +10,11 @@
         table.table.table-striped.table-hover
           thead
             tr
-              th = t '.attribute'
-              th = t '.interim_value'
-              th = t '.new_value'
-              th = t '.difference'
+              == render 'shared/diff/head'
 
           tbody
             - f.object.stale_info.each do |stale_info|
               tr id="stale_attribute_#{stale_info.input_id}" data-diff="true"
-                th.attribute = stale_info.human_attribute_name
-                == render 'shared/diff/row', before: stale_info.interim_value.to_s, after: stale_info.new_value.to_s
+                == render 'shared/diff/data', attribute: stale_info.human_attribute_name, before: stale_info.value_before, after: stale_info.value_after
 
         p = t '.instructions'

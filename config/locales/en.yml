@@ -33,17 +33,20 @@ en:
     form:
       info: Information about creating and editing pages and images
   shared:
+    diff:
+      data:
+        image_after: Image after
+        image_before: Image before
+        no_diff_available: No diff available
+      head:
+        attribute: Attribute
+        value_after: Value after
+        value_before: Value before
+        value_difference: Value difference
     form:
       details: Details
       stale_info:
-        attribute: Attribute
-        difference: Difference
         instructions: At the time being, the form only contains your changes ("New value"). Please merge the interim changes by the other user manually. Only save, when you are sure, that no changes are abandoned by error!
-        interim_image: Interim image
-        interim_value: Interim value
-        new_image: New image
-        new_value: New value
-        no_diff_available: No diff possible
         stale_attributes: Attributes that have been changed
     show:
       version:
@@ -51,11 +54,7 @@ en:
         no_diff_available: No diff available
         update: Update
       versions:
-        attribute: Attribute
-        current_value: Current value
-        difference: Difference
         no_earlier_versions: There are no earlier versions.
-        previous_value: Previous value
   'true': 'Yes'
   users:
     detail_inputs:

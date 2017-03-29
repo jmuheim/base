@@ -3,5 +3,5 @@
     th.title = recurring_string?(count, "version-#{version.id}-title")
     td.event = recurring_string?(t(".#{version.event}"), "version-#{version.id}-event")
     td.created_at = recurring_string?(l(version.created_at, format: :short), "version-#{version.id}-created_at")
-    th.attribute     = Page.human_attribute_name attribute
-    == render 'shared/diff/row', before: change[0], after: change[1]
+
+    == render 'shared/diff/data', attribute: Page.human_attribute_name(attribute), before: change[0], after: change[1]

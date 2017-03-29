@@ -1,0 +1,26 @@
+th.attribute = attribute
+
+td.value_before
+  - case before
+  - when ImageUploader
+    = image_tag before.url, alt: t('.image_before') if before.present?
+  - when DocumentUploader
+    = link_to before.file.identifier, before.url if before.present?
+  - else
+    textarea.form-control data-diff-string="1" = before
+
+td.value_after
+  - case before
+  - when ImageUploader
+    = image_tag after.url, alt: t('.image_after') if after.present?
+  - when DocumentUploader
+    = link_to after.file.identifier, after.url if after.present?
+  - else
+    textarea.form-control data-diff-string="2" = after
+
+td.value_difference
+  - case before
+  - when ImageUploader, DocumentUploader
+    = t '.no_diff_available'
+  - else
+    pre data-diff-result="" = t '.no_diff_available'

@@ -1,6 +1,4 @@
 class User < ApplicationRecord
-  include SentientUser
-
   has_paper_trail only: [:name, :email, :about]
   rolify
 

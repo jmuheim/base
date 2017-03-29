@@ -1,8 +1,6 @@
 class Page < ApplicationRecord
   extend ActsAsTree::TreeWalker
 
-  track_who_does_it
-
   has_paper_trail only: [:title, :navigation_title, :lead, :content, :notes]
   accepts_pasted_images_for :content, :notes
 
