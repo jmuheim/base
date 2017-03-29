@@ -5,8 +5,8 @@
     td.created_at = recurring_string?(l(version.created_at, format: :short), "version-#{version.id}-created_at")
     th.attribute     = Page.human_attribute_name attribute
     td.difference
-      textarea.sr-only id="change_#{version.id}_#{attribute}_previous_value" = change[0]
-      textarea.sr-only id="change_#{version.id}_#{attribute}_new_value"      = change[1]
+      textarea style="display: none" id="change_#{version.id}_#{attribute}_previous_value" = change[0]
+      textarea style="display: none" id="change_#{version.id}_#{attribute}_new_value"      = change[1]
 
       pre id="change_#{version.id}_#{attribute}_difference"
 

@@ -6,7 +6,7 @@ h2
   = accordion :versions, item_options: {title_tag: 'div', panel_class: 'panel-success'} do |accordion|
     = accordion.panel do |panel|
       = panel.title do
-        | Anzeigen / verstecken
+        = t 'actions.toggle'
 
       = panel.body do
         table.table.table-striped.table-hover.versions

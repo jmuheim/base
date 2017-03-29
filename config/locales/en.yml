@@ -52,9 +52,9 @@ en:
       versions:
         attribute: Attribute
         difference: Difference
-        previous_value: Previous value
         new_value: New value
         no_earlier_versions: There are no earlier versions.
+        previous_value: Previous value
   'true': 'Yes'
   users:
     detail_inputs:
