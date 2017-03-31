@@ -53,6 +53,7 @@ de:
     show:
       version:
         create: Erstellen
+        no_changes: Keine Änderungen in dieser Version
         update: Aktualisieren
       versions:
         no_earlier_versions: Es existieren keine früheren Versionen.

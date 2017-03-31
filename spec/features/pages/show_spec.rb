@@ -113,7 +113,7 @@ describe 'Showing page' do
       end
     end
 
-    it 'displays versions if available', versioning: true do
+    it 'displays versions if available (if authorized)', versioning: true do
       @page = create :page
       @page.update_attributes! title: 'This is a new title',
                                lead:  'And a new lead'
@@ -211,6 +211,29 @@ describe 'Showing page' do
           expect(find('.value_before').text).to eq ''
           expect(page).to have_css '.value_after',      text: 'Page test notes'
           expect(page).to have_css '.value_difference', text: 'No diff view available (please activate JavaScript)'
+        end
+      end
+
+      login_as(create :user, :donald)
+      visit page_path(@page)
+      expect(page).not_to have_css '.versions'
+    end
+
+    it 'displays empty versions if available', versioning: true, focus: true do
+      @page = create :page
+      @page.versions.last.update_attribute :object_changes, nil
+
+      visit page_path(@page)
+
+      within '.versions' do
+        expect(page).to have_css 'h2', text: 'Versions (1)'
+
+        within '#version_2' do
+          expect(page).to have_css '.count      .first_occurrence', text: 1
+          expect(page).to have_css '.event      .first_occurrence', text: 'Create'
+          expect(page).to have_css '.created_at .first_occurrence', text: '15 Jun 14:33'
+
+          expect(page).to have_css '.no_changes', text: 'No changes in this version'
         end
       end
     end
