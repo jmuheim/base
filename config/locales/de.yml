@@ -32,14 +32,18 @@ de:
       previous_page: Vorherige Seite
     form:
       info: Informationen zum Erstellen und Bearbeiten von Seiten und Bildern
+    index:
+      atom_notice_title: Hinweis zum Atom Feed
+      atom_notice_content: Dein Feed Reader hat Version %{version} der aktuellen Seite heruntergeladen, welche am %{date} aktuell war. Mittlerweile könnte eine neue Version der Seite online vorhanden sein. Besuche die Original-Seite, um die aktuellste Version zu sehen!
+      position_in_hierarchy: Position in der Seiten-Hierarchie
   shared:
     diff:
       before_or_after:
-        image_before: Bild vorher
         image_after: Bild nachher
+        image_before: Bild vorher
       data:
-        no_diff_available: Keine Unterschieds-Anzeige verfügbar (bitte JavaScript aktivieren)
         diff_not_possible: Unterschieds-Anzeige nicht möglich
+        no_diff_available: Keine Unterschieds-Anzeige verfügbar (bitte JavaScript aktivieren)
       head:
         attribute: Attribut
         value_after: Wert vorher
