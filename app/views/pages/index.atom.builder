@@ -6,19 +6,8 @@ atom_feed do |feed|
   @pages.each do |page|
     feed.entry(page) do |entry|
       entry.title(page.title)
-      entry.content(type: 'html') do |html|
-        html.h1 t('.position_in_hierarchy')
-        html.p ([page] + page.ancestors).reverse.map(&:title).join ': '
 
-        html.h1 Page.human_attribute_name :lead
-        html.div markdown indent_heading_level(page.lead_with_references, 1)
-
-        html.h1 Page.human_attribute_name :content
-        html.div markdown indent_heading_level(page.content_with_references, 1)
-
-        html.h1 t('.atom_notice_title')
-        html.p t('.atom_notice_content', version: page.versions.count, date: l(page.updated_at, format: :long))
-      end
+      entry.content(render('page', page: page), type: 'html')
     end
   end
 end
