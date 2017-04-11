@@ -33,7 +33,6 @@ de:
     form:
       info: Informationen zum Erstellen und Bearbeiten von Seiten und Bildern
   shared:
-    created_by_html: Erstellt am %{date} von %{name}
     diff:
       before_or_after:
         image_after: Bild nachher
@@ -59,7 +58,6 @@ de:
         update: Aktualisieren
       versions:
         no_earlier_versions: Es existieren keine früheren Versionen.
-    updated_by_html: Zuletzt bearbeitet am %{date} von %{name}
   'true': Ja
   users:
     detail_inputs:

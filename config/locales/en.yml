@@ -33,7 +33,6 @@ en:
     form:
       info: Information about creating and editing pages and images
   shared:
-    created_by_html: Created at %{date} by %{name}
     diff:
       before_or_after:
         image_after: Image after
@@ -59,7 +58,6 @@ en:
         update: Update
       versions:
         no_earlier_versions: There are no earlier versions.
-    updated_by_html: Last updated at %{date} by %{name}
   'true': 'Yes'
   users:
     detail_inputs:
