@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170220175311) do
+ActiveRecord::Schema.define(version: 20170406170011) do
 
   create_table "images", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "file"
@@ -34,6 +34,8 @@ ActiveRecord::Schema.define(version: 20170220175311) do
     t.integer  "parent_id"
     t.integer  "position",                       default: 1,     null: false
     t.text     "lead",             limit: 65535
+    t.integer  "created_by_id",                                  null: false
+    t.integer  "updated_by_id",                                  null: false
   end
 
   create_table "roles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

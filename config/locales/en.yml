@@ -33,13 +33,14 @@ en:
     form:
       info: Information about creating and editing pages and images
   shared:
+    created_by_html: Created at %{date} by %{name}
     diff:
       before_or_after:
-        image_before: Image before
         image_after: Image after
+        image_before: Image before
       data:
-        no_diff_available: No diff view available (please activate JavaScript)
         diff_not_possible: Diff view not possible
+        no_diff_available: No diff view available (please activate JavaScript)
       head:
         attribute: Attribute
         value_after: Value after
@@ -57,6 +58,7 @@ en:
         update: Update
       versions:
         no_earlier_versions: There are no earlier versions.
+    updated_by_html: Last updated at %{date} by %{name}
   'true': 'Yes'
   users:
     detail_inputs:

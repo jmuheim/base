@@ -4,7 +4,9 @@ de:
     attributes:
       defaults:
         created_at: Erstellt am
+        created_by: Erstellt von
         updated_at: Aktualisiert am
+        updated_by: Aktualisiert am
       image:
         created_at: Erstellt am
         file: Datei

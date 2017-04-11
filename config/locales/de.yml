@@ -33,13 +33,14 @@ de:
     form:
       info: Informationen zum Erstellen und Bearbeiten von Seiten und Bildern
   shared:
+    created_by_html: Erstellt am %{date} von %{name}
     diff:
       before_or_after:
-        image_before: Bild vorher
         image_after: Bild nachher
+        image_before: Bild vorher
       data:
-        no_diff_available: Keine Unterschieds-Anzeige verfügbar (bitte JavaScript aktivieren)
         diff_not_possible: Unterschieds-Anzeige nicht möglich
+        no_diff_available: Keine Unterschieds-Anzeige verfügbar (bitte JavaScript aktivieren)
       head:
         attribute: Attribut
         value_after: Wert vorher
@@ -57,6 +58,7 @@ de:
         update: Aktualisieren
       versions:
         no_earlier_versions: Es existieren keine früheren Versionen.
+    updated_by_html: Zuletzt bearbeitet am %{date} von %{name}
   'true': Ja
   users:
     detail_inputs:

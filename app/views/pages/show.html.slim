@@ -27,10 +27,28 @@
               - @page.images.each do |image|
                 = gallery.zoomable_image(image.file)
 
+        .additional_information
+          h2.sr-only = t '.additional_information'
+          -binding.pry
+          dl
+            dt.created_by = Page.human_attribute_name :created_by
+            dd.created_by = link_to @page.creator.name, @page.creator
+
+            dt.created_at = Page.human_attribute_name :created_at
+            dd.created_at = l @page.created_at, format: :long
+
+            dt.updated_by = Page.human_attribute_name :updated_by
+            dd.updated_by = link_to @page.creator.name, @page.creator
+
+            dt.updated_at = Page.human_attribute_name :updated_at
+            dd.updated_at = l @page.updated_at, format: :long
+
   - if @page.children.any?
     .row.children
+      hr
+
       .col-md-12
-        h2 = Page.human_attribute_name :children
+        h2.sr-only = Page.human_attribute_name :children
 
         - @page.children.each_slice(4) do |slice_of_children|
           .row
