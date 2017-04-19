@@ -15,10 +15,14 @@ en:
       page:
         children: Sub pages
         content: Content
+        created_at: Erstellt am
+        created_by: Erstellt von
         images: Images
         navigation_title: Navigation title
         notes: Notes
         title: Title
+        updated_at: Aktualisiert am
+        updated_by: Aktualisiert von
       role:
         created_at: Created at
         name: Name

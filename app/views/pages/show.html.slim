@@ -22,18 +22,18 @@
         .additional_information
           h2 = t 'shared.show.additional_information'
 
-          dl
+          dl.dl-horizontal
             dt.created_by = Page.human_attribute_name :created_by
             dd.created_by = link_to @page.creator.name, @page.creator
 
             dt.created_at = Page.human_attribute_name :created_at
-            dd.created_at = l @page.created_at, format: :long
+            dd.created_at = l @page.created_at, format: :short
 
             dt.updated_by = Page.human_attribute_name :updated_by
             dd.updated_by = link_to @page.updater.name, @page.updater
 
             dt.updated_at = Page.human_attribute_name :updated_at
-            dd.updated_at = l @page.updated_at, format: :long
+            dd.updated_at = l @page.updated_at, format: :short
 
         - if @page.images.any?
           .images

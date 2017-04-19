@@ -60,6 +60,8 @@ de:
         no_earlier_versions: Es existieren keine früheren Versionen.
   'true': Ja
   users:
+    created_pages:
+      no_created_pages: Keine erstellten Seiten
     detail_inputs:
       account_information: Konto Informationen
     form:
