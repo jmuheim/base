@@ -30,7 +30,7 @@
             dd.created_at = l @page.created_at, format: :long
 
             dt.updated_by = Page.human_attribute_name :updated_by
-            dd.updated_by = link_to @page.creator.name, @page.creator
+            dd.updated_by = link_to @page.updater.name, @page.updater
 
             dt.updated_at = Page.human_attribute_name :updated_at
             dd.updated_at = l @page.updated_at, format: :long

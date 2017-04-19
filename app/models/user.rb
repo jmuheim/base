@@ -1,6 +1,4 @@
 class User < ApplicationRecord
-  include SentientUser
-
   has_paper_trail only: [:name, :about]
   rolify
 
@@ -12,6 +10,8 @@ class User < ApplicationRecord
 
   mount_base64_uploader :avatar, AvatarUploader
   mount_uploader :curriculum_vitae, DocumentUploader
+
+  has_many :created_pages, foreign_key: :creator_id, class_name: Page
 
   attr_accessor :login
 

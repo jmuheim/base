@@ -79,12 +79,12 @@ describe 'Showing page' do
   end
 
   it 'offers links to browse page by page (previous page / next page) like a book' do
-    @root_1                 = create :page, navigation_title: nil, title: 'Root 1', creator: @user, updater: @user
-    @root_1_child_1         = create :page, navigation_title: nil, title: 'Root 1 child 1',         parent: @root_1
-    @root_1_child_2         = create :page, navigation_title: nil, title: 'Root 1 child 2',         parent: @root_1
-    @root_1_child_2_child_1 = create :page, navigation_title: nil, title: 'Root 1 child 2 child 1', parent: @root_1_child_2
-    @root_2                 = create :page, navigation_title: nil, title: 'Root 2'
-    @root_2_child_1         = create :page, navigation_title: nil, title: 'Root 2 child 1',         parent: @root_2
+    @root_1                 = create :page, navigation_title: nil, title: 'Root 1',                 creator: @user, updater: @user
+    @root_1_child_1         = create :page, navigation_title: nil, title: 'Root 1 child 1',         creator: @user, updater: @user, parent: @root_1
+    @root_1_child_2         = create :page, navigation_title: nil, title: 'Root 1 child 2',         creator: @user, updater: @user, parent: @root_1
+    @root_1_child_2_child_1 = create :page, navigation_title: nil, title: 'Root 1 child 2 child 1', creator: @user, updater: @user, parent: @root_1_child_2
+    @root_2                 = create :page, navigation_title: nil, title: 'Root 2',                 creator: @user, updater: @user
+    @root_2_child_1         = create :page, navigation_title: nil, title: 'Root 2 child 1',         creator: @user, updater: @user, parent: @root_2
 
     visit page_path(@root_1)
     expect(page).to have_css '.previous[disabled]', text: 'No previous page'

@@ -1,0 +1,27 @@
+.created_pages
+  hr
+
+  h2
+    = User.human_attribute_name :created_pages
+    sup =< "(#{pages.size})"
+
+  - if pages.count > 0
+    = accordion :created_pages, item_options: {title_tag: 'div', panel_class: 'panel-success'} do |accordion|
+      = accordion.panel do |panel|
+        = panel.title do
+          = t 'actions.toggle'
+
+        = panel.body do
+          table.table.table-striped.table-hover
+            thead
+              tr
+                th = Page.human_attribute_name :title
+                th = Page.human_attribute_name :created_at
+
+            tbody
+              - pages.each do |page|
+                tr id=dom_id(page)
+                  th = link_to page.title, page
+                  td = l page.created_at, format: :short
+  - else
+    p = t '.no_created_pages'

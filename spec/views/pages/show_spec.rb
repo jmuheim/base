@@ -1,8 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe "pages/show", type: :view do
+  before { @user = create :user, :donald }
+
   describe "Rendering notes" do
-    before { assign :page, create(:page).decorate }
+    before { assign :page, create(:page, creator: @user, updater: @user).decorate }
 
     it 'renders to admins' do
       allow(controller).to receive(:current_user).and_return(create :admin)
@@ -18,7 +20,7 @@ RSpec.describe "pages/show", type: :view do
   end
 
   describe "Rendering images" do
-    before { assign :page, create(:page, :with_image).decorate }
+    before { assign :page, create(:page, :with_image, creator: @user, updater: @user).decorate }
 
     it 'renders to admins' do
       allow(controller).to receive(:current_user).and_return(create :admin)

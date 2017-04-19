@@ -8,7 +8,6 @@ class ApplicationController < ActionController::Base
   include BreadcrumbsHandler
   include OptimisticLockingHandler
   include ImagePastingHandler
-  include SentientController
 
   helper :image_gallery
 

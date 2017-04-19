@@ -4,10 +4,11 @@ class Page < ApplicationRecord
   has_paper_trail only: [:title, :navigation_title, :lead, :content, :notes]
   accepts_pasted_images_for :content, :notes
 
-  track_who_does_it
-
   acts_as_tree order: :position, dependent: :restrict_with_error
   acts_as_list scope: [:parent_id]
+
+  belongs_to :creator, class_name: User, foreign_key: :creator_id
+  belongs_to :updater, class_name: User, foreign_key: :updater_id
 
   validates :title, presence: true,
                     uniqueness: {scope: :parent_id}
