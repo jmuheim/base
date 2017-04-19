@@ -8,7 +8,6 @@ class Page < ApplicationRecord
   acts_as_list scope: [:parent_id]
 
   belongs_to :creator, class_name: User, foreign_key: :creator_id
-  belongs_to :updater, class_name: User, foreign_key: :updater_id
 
   validates :title, presence: true,
                     uniqueness: {scope: :parent_id}
