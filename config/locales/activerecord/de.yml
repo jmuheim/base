@@ -49,6 +49,9 @@ de:
         remember_me: Eingeloggt bleiben
         roles: Rollen
         updated_at: Aktualisiert am
+      paper_trail/version:
+        whodunnit: Verantwortlicher
+        created_at: Erstellt am
     models:
       image:
         one: Abbildung

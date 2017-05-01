@@ -1,27 +1,28 @@
 .versions
-  hr
+  = accordion :versions, item_options: {title_tag: "h#{heading_level}", panel_class: 'panel-success'} do |accordion|
+    = accordion.panel do |panel|
+      = panel.title do
+        = PaperTrail::Version.model_name.human count: :other
+        =< "(#{versions.size})"
 
-  h2
-    = PaperTrail::Version.model_name.human count: :other
-    sup =< "(#{versions.size})"
+      = panel.body do
+        table.table.table-striped.table-hover.diff
+          thead
+            tr
+              th = PaperTrail::Version.model_name.human
+              th = PaperTrail::Version.human_attribute_name :whodunnit
+              th = PaperTrail::Version.human_attribute_name :event
+              th = PaperTrail::Version.human_attribute_name :created_at
+              == render 'shared/diff/head'
 
-  - if versions.count > 0
-    = accordion :versions, item_options: {title_tag: 'div', panel_class: 'panel-success'} do |accordion|
-      = accordion.panel do |panel|
-        = panel.title do
-          = t 'actions.toggle'
-
-        = panel.body do
-          table.table.table-striped.table-hover.diff
-            thead
-              tr
-                th = PaperTrail::Version.model_name.human
-                th = PaperTrail::Version.human_attribute_name :event
-                th = PaperTrail::Version.human_attribute_name :created_at
-                == render 'shared/diff/head'
-
-            tbody
-              - versions.reverse.each_with_index do |version, i|
-                == render 'shared/show/version', version: version, count: versions.size - i
-  - else
-    p = t '.no_earlier_versions'
+          tbody
+            - versions.reverse.each_with_index do |version, i|
+              - if version.changeset.count > 0
+                - version.changeset.each do |attribute, change|
+                  tr data-diff="true" id="version_#{version.id}_#{attribute}"
+                    == render 'shared/show/version', version: version, count: versions.size - i
+                    == render 'shared/diff/data', attribute: Page.human_attribute_name(attribute), before: change[0], after: change[1]
+              - else
+                tr id="version_#{version.id}"
+                  == render 'shared/show/version', version: version, count: versions.size - i
+                  td.no_changes colspan="4" = t '.no_changes'

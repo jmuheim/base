@@ -32,13 +32,8 @@
             dt.updated_at = Page.human_attribute_name :updated_at
             dd.updated_at = l @page.updated_at, format: :short
 
-        - if @page.images.any?
-          .images
-            h2 = Page.human_attribute_name :images
-
-            = image_gallery do |gallery|
-              - @page.images.each do |image|
-                = gallery.zoomable_image(image.file)
+  == render 'images',               images:   @page.images,   heading_level: 3 if @page.images.any?
+  == render 'shared/show/versions', versions: @page.versions, heading_level: 3 if can? :read, PaperTrail::Version
 
   - if @page.children.any?
     .row.children
@@ -52,8 +47,6 @@
             - slice_of_children.each do |child|
               .col-md-3
                 h3 = link_to child.title, child
-
                 = markdown indent_heading_level child.lead, 3
 
-  == render 'shared/show/versions', versions: @page.versions if can? :read, PaperTrail::Version
-  == render 'shared/show/actions', resource: @page
+  == render 'shared/show/actions',  resource: @page

@@ -6,5 +6,10 @@ class SetCreatorOfImages < ActiveRecord::Migration[5.0]
       image.creator = user
       image.save!
     end
+
+    PaperTrail::Version.where(item_type: 'Image').each do |version|
+      version.whodunnit = user.id
+      version.save!
+    end
   end
 end

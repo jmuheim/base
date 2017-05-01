@@ -1,14 +1,11 @@
-- if version.changeset.count > 0
-  - version.changeset.each do |attribute, change|
-    tr data-diff="true" id="version_#{version.id}_#{attribute}"
-      th.count = recurring_string?(count, "version-#{version.id}-count")
-      td.event = recurring_string?(t(".#{version.event}"), "version-#{version.id}-event")
-      td.created_at = recurring_string?(l(version.created_at, format: :short), "version-#{version.id}-created_at")
+th.count
+  = recurring_string?(count, "version-#{version.id}-count")
 
-      == render 'shared/diff/data', attribute: Page.human_attribute_name(attribute), before: change[0], after: change[1]
-- else
-  tr id="version_#{version.id}"
-    th.count = recurring_string?(count, "version-#{version.id}-count")
-    td.event = recurring_string?(t(".#{version.event}"), "version-#{version.id}-event")
-    td.created_at = recurring_string?(l(version.created_at, format: :short), "version-#{version.id}-created_at")
-    td.no_changes colspan="4" = t '.no_changes'
+td.whodunnit
+  = recurring_string?(versions_whodunnit(version.whodunnit), "version-#{version.id}-whodunnit")
+
+td.event
+  = recurring_string?(t(".#{version.event}"), "version-#{version.id}-event")
+
+td.created_at
+  = recurring_string?(l(version.created_at, format: :short), "version-#{version.id}-created_at")
