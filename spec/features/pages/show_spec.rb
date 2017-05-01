@@ -219,7 +219,7 @@ describe 'Showing page' do
       expect(page).not_to have_css '.versions'
     end
 
-    it 'displays empty versions if available', versioning: true, focus: true do
+    it 'displays empty versions if available', versioning: true do
       @page = create :page
       @page.versions.last.update_attribute :object_changes, nil
 
