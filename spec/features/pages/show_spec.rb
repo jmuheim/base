@@ -10,7 +10,7 @@ describe 'Showing page' do
     other_page = create :page, title: 'Some cool other page'
     parent_page = create(:page, title: 'Cool parent page', navigation_title: nil)
     child_page = create(:page, title: 'A cool sub page', navigation_title: 'Really cool sub page', lead: 'Some sub page lead')
-    @page = create :page, :with_image,
+    @page = create :page, images: [create(:image, creator: @user)],
                           navigation_title: 'Page test navigation title',
                           lead:   "# Some lead title\n\nAnd some lead stuff.",
                           content: "# Some content title\n\nAnd some content stuff.\n\n![Content image](@image-Image test identifier) with a [](@page-#{other_page.id}) and [some alt](@page-#{other_page.id})",
@@ -111,10 +111,7 @@ describe 'Showing page' do
       @page = create :page, creator: @user
       visit page_path(@page)
 
-      within '.versions' do
-        expect(page).to have_css  'h2', text: 'Versions (0)'
-        expect(page).to have_text 'There are no earlier versions'
-      end
+      expect(page).not_to have_css '.versions'
     end
 
     it 'displays versions if available (if authorized)', versioning: true do

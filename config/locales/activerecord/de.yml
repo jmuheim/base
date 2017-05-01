@@ -4,6 +4,7 @@ de:
     attributes:
       image:
         created_at: Erstellt am
+        created_by: Erstellt von
         file: Datei
         identifier: Kennung
         updated_at: Aktualisiert am

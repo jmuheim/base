@@ -56,7 +56,7 @@ en:
         create: Create
         update: Update
       versions:
-        no_changes: No changes
+        no_changes: No changes in this version
   'true': 'Yes'
   users:
     detail_inputs:

@@ -25,6 +25,10 @@ class PagesController < ApplicationController
     @page.images.select(&:new_record?).each { |image| image.creator = current_user }
     @page.save
 
+    # @page.update(page_params) do |page|
+    #   page.images.select(&:new_record?).each { |image| image.creator = current_user }
+    # end
+
     respond_with @page
   end
 
