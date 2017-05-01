@@ -1,11 +1,7 @@
 module VersionsHelper
   def versions_whodunnit(user_id)
-    user = User.where(user_id).first
+    user = User.where(id: user_id).first
 
-    if user.nil?
-      user_id
-    else
-      link_to user.name, user
-    end
+    user.present? ? link_to(user.name, user) : user_id
   end
 end
