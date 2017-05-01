@@ -2,11 +2,6 @@
 en:
   activerecord:
     attributes:
-      defaults:
-        created_at: Created at
-        created_by: Created by
-        updated_at: Updated at
-        updated_by: Updated by
       image:
         created_at: Erstellt am
         file: Datei
@@ -23,6 +18,9 @@ en:
         title: Title
         updated_at: Aktualisiert am
         updated_by: Aktualisiert von
+      paper_trail/version:
+        created_at: Created at
+        whodunnit: Whodunnit
       role:
         created_at: Created at
         name: Name

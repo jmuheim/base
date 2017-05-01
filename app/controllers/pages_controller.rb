@@ -14,12 +14,17 @@ class PagesController < ApplicationController
   end
 
   def create
+    @page.creator = current_user
     @page.save
+
     respond_with @page
   end
 
   def update
-    @page.update(page_params)
+    @page.assign_attributes(page_params)
+    @page.images.select(&:new_record?).each { |image| image.creator = current_user }
+    @page.save
+
     respond_with @page
   end
 

@@ -54,14 +54,11 @@ de:
       additional_information: Weitere Informationen
       version:
         create: Erstellen
-        no_changes: Keine Änderungen in dieser Version
         update: Aktualisieren
       versions:
-        no_earlier_versions: Es existieren keine früheren Versionen.
+        no_changes: No changes
   'true': Ja
   users:
-    created_pages:
-      no_created_pages: Keine erstellten Seiten
     detail_inputs:
       account_information: Konto Informationen
     form:

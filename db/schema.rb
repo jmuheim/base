@@ -36,7 +36,6 @@ ActiveRecord::Schema.define(version: 20170419170011) do
     t.integer  "position",                       default: 1,     null: false
     t.text     "lead",             limit: 65535
     t.integer  "creator_id",                                     null: false
-    t.integer  "updated_id",                                     null: false
   end
 
   create_table "roles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

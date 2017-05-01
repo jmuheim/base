@@ -17,8 +17,7 @@ describe 'Showing page' do
                           notes:   "# Some notes title\n\nAnd some notes stuff.\n\n![Notes image](@image-Image test identifier) with a [](@page-#{other_page.id}) and [some alt](@page-#{other_page.id})",
                           parent:  parent_page,
                           children: [child_page],
-                          creator: @user,
-                          updater: @user
+                          creator: @user
     sibling_page = create :page, title: 'Other page', navigation_title: 'Sibling page', parent: parent_page
 
     visit page_path(@page)
@@ -79,12 +78,12 @@ describe 'Showing page' do
   end
 
   it 'offers links to browse page by page (previous page / next page) like a book' do
-    @root_1                 = create :page, navigation_title: nil, title: 'Root 1',                 creator: @user, updater: @user
-    @root_1_child_1         = create :page, navigation_title: nil, title: 'Root 1 child 1',         creator: @user, updater: @user, parent: @root_1
-    @root_1_child_2         = create :page, navigation_title: nil, title: 'Root 1 child 2',         creator: @user, updater: @user, parent: @root_1
-    @root_1_child_2_child_1 = create :page, navigation_title: nil, title: 'Root 1 child 2 child 1', creator: @user, updater: @user, parent: @root_1_child_2
-    @root_2                 = create :page, navigation_title: nil, title: 'Root 2',                 creator: @user, updater: @user
-    @root_2_child_1         = create :page, navigation_title: nil, title: 'Root 2 child 1',         creator: @user, updater: @user, parent: @root_2
+    @root_1                 = create :page, navigation_title: nil, title: 'Root 1',                 creator: @user
+    @root_1_child_1         = create :page, navigation_title: nil, title: 'Root 1 child 1',         creator: @user, parent: @root_1
+    @root_1_child_2         = create :page, navigation_title: nil, title: 'Root 1 child 2',         creator: @user, parent: @root_1
+    @root_1_child_2_child_1 = create :page, navigation_title: nil, title: 'Root 1 child 2 child 1', creator: @user, parent: @root_1_child_2
+    @root_2                 = create :page, navigation_title: nil, title: 'Root 2',                 creator: @user
+    @root_2_child_1         = create :page, navigation_title: nil, title: 'Root 2 child 1',         creator: @user, parent: @root_2
 
     visit page_path(@root_1)
     expect(page).to have_css '.previous[disabled]', text: 'No previous page'
@@ -109,7 +108,7 @@ describe 'Showing page' do
 
   describe 'versioning' do
     it "doesn't display versions if none available" do
-      @page = create :page, creator: @user, updater: @user
+      @page = create :page, creator: @user
       visit page_path(@page)
 
       within '.versions' do
@@ -119,7 +118,7 @@ describe 'Showing page' do
     end
 
     it 'displays versions if available (if authorized)', versioning: true do
-      @page = create :page, creator: @user, updater: @user
+      @page = create :page, creator: @user
       @page.update_attributes! title: 'This is a new title',
                                lead:  'And a new lead'
       @page.update_attributes! title:   'And another title',
@@ -225,7 +224,7 @@ describe 'Showing page' do
     end
 
     it 'displays empty versions if available', versioning: true do
-      @page = create :page, creator: @user, updater: @user
+      @page = create :page, creator: @user
       @page.versions.last.update_attribute :object_changes, nil
 
       visit page_path(@page)
@@ -244,7 +243,7 @@ describe 'Showing page' do
     end
 
     it "generates a diff view", versioning: true, js: true do
-      @page = create :page, creator: @user, updater: @user
+      @page = create :page, creator: @user
       visit page_path(@page)
 
       expect(page.html).to include '<pre data-diff-result=""><ins style="background:#e6ffe6;">Page test title</ins></pre>'
