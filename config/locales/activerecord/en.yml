@@ -3,15 +3,16 @@ en:
   activerecord:
     attributes:
       image:
-        created_at: Erstellt am
+        created_at: Created at
+        created_by: Created by
         file: Datei
         identifier: Identifier
         updated_at: Updated at
       page:
         children: Sub pages
         content: Content
-        created_at: Erstellt am
-        created_by: Erstellt von
+        created_at: Created at
+        created_by: Created by
         images: Images
         navigation_title: Navigation title
         notes: Notes

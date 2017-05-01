@@ -17,7 +17,7 @@
 
           tbody
             - versions.reverse.each_with_index do |version, i|
-              - if version.changeset.count > 0
+              - if version.changeset.any?
                 - version.changeset.each do |attribute, change|
                   tr data-diff="true" id="version_#{version.id}_#{attribute}"
                     == render 'shared/show/version', version: version, count: versions.size - i

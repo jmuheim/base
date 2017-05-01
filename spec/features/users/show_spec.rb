@@ -1,12 +1,11 @@
 require 'rails_helper'
 
 describe 'Showing user' do
-  before do
-    @user = create :user, :with_avatar, about: "# Here's some info about me\n\nBla bla bla."
-    login_as(create :admin, :scrooge)
-  end
+  before { login_as(create :admin, :scrooge) }
 
   it 'displays a user' do
+    @user = create :user, :with_avatar, about: "# Here's some info about me\n\nBla bla bla."
+
     visit user_path(@user)
 
     expect(page).to have_title 'User test name - Base'
@@ -33,12 +32,13 @@ describe 'Showing user' do
   end
 
   # The more thorough tests are implemented for pages#show. As we simply render the same partial here, we just make sure the container is there.
-  it 'displays versions (if authorized)' do
+  it 'displays versions (if authorized)', versioning: true do
+    @user = create :user
+
     visit user_path(@user)
 
     within '.versions' do
-      expect(page).to have_css  'h2', text: 'Versions (0)'
-      expect(page).to have_text 'There are no earlier versions'
+      expect(page).to have_css 'h2', text: 'Versions (1)'
     end
 
     login_as(create :user, :donald)

@@ -15,6 +15,7 @@ class PagesController < ApplicationController
 
   def create
     @page.creator = current_user
+    set_creator_of_new_images(@page.images)
     @page.save
 
     respond_with @page
@@ -22,12 +23,8 @@ class PagesController < ApplicationController
 
   def update
     @page.assign_attributes(page_params)
-    @page.images.select(&:new_record?).each { |image| image.creator = current_user }
+    set_creator_of_new_images(@page.images)
     @page.save
-
-    # @page.update(page_params) do |page|
-    #   page.images.select(&:new_record?).each { |image| image.creator = current_user }
-    # end
 
     respond_with @page
   end
@@ -77,5 +74,9 @@ class PagesController < ApplicationController
   def provide_previous_and_next_page
     @previous_page = (index = @pages.index(@page)) == 0 ? nil : @pages[index - 1]
     @next_page     = @pages[@pages.index(@page) + 1]
+  end
+
+  def set_creator_of_new_images(images)
+    images.select(&:new_record?).each { |image| image.creator = current_user }
   end
 end

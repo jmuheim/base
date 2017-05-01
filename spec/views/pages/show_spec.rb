@@ -20,7 +20,7 @@ RSpec.describe "pages/show", type: :view do
   end
 
   describe "Rendering images" do
-    before { assign :page, create(:page, :with_image, creator: @user).decorate }
+    before { assign :page, create(:page, images: [create(:image, creator: @user)], creator: @user).decorate }
 
     it 'renders to admins' do
       allow(controller).to receive(:current_user).and_return(create :admin)

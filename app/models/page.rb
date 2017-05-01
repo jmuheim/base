@@ -12,6 +12,8 @@ class Page < ApplicationRecord
   validates :title, presence: true,
                     uniqueness: {scope: :parent_id}
 
+  validates :creator_id, presence: true
+
   def navigation_title_or_title
     navigation_title || title
   end

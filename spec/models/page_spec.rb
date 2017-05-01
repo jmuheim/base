@@ -37,7 +37,8 @@ RSpec.describe Page do
 
       expect {
         page.update_attributes! images_attributes: [{identifier: 'my-great-identifier',
-                                                     file: File.open(dummy_file_path('image.jpg'))
+                                                     file: File.open(dummy_file_path('image.jpg')),
+                                                     creator_id: 0
                                                    }]
       }.to change { Image.count }.by 1
 

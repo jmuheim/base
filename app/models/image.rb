@@ -10,4 +10,6 @@ class Image < ApplicationRecord
 
   validates :identifier, presence: true,
                          uniqueness: {scope: :page_id}
+
+  validates :creator_id, presence: true
 end
