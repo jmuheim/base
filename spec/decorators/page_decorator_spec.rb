@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe PageDecorator do
-  [:content, :notes].each do |field|
+  [:lead, :content, :notes].each do |field|
     describe "##{field}_with_references" do
       context 'replacing page references' do
         before { @page_decorator = create(:page).decorate }

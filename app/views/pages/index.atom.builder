@@ -9,9 +9,10 @@ atom_feed do |feed|
 
       entry.author do |author|
         author.name(page.creator.name)
+        author.uri(user_path(page.creator))
       end
 
-      entry.summary(markdown page.lead_with_references) if page.lead.present?
+      entry.summary(markdown page.lead_with_references)
 
       entry.content(render('page', page: page), type: 'html')
     end

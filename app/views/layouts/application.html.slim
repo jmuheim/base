@@ -9,7 +9,7 @@ html lang=I18n.locale
     = stylesheet_link_tag    'application', media: 'all'
     = javascript_include_tag 'application'
     = csrf_meta_tags
-    = auto_discovery_link_tag(:atom, pages_path(format: :atom), title: Page.model_name.human)
+    = auto_discovery_link_tag(:atom, pages_path(format: :atom), title: Page.model_name.human(count: :other))
 
   body class=body_css_classes
     header
@@ -27,10 +27,13 @@ html lang=I18n.locale
       h1.sr-only = t '.footer'
       .container
         .row
-          .col-xs-8.slogan
+          .col-xs-6.slogan.atom
             p
               => link_to t('app.name'), 'https://github.com/jmuheim/base/'
               span.hidden-xs = t 'app.slogan'
+
+              =< link_to pages_path(format: :atom) do
+                = icon :rss, 'Atom Feed', type: :fa
 
           .col-xs-4.copyright
             p &copy; 2015 #{link_to t('org.name'), 'http://www.muheimwebdesign.ch/'}
