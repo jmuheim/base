@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Page do
   it { should validate_presence_of(:title).with_message "can't be blank" }
+  it { should validate_presence_of(:creator_id).with_message "can't be blank" }
 
   it { should have_many(:images).dependent :destroy }
 

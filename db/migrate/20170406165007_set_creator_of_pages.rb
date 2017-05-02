@@ -1,5 +1,7 @@
 class SetCreatorOfPages < ActiveRecord::Migration[5.0]
   def up
+    ActiveRecord::Base.record_timestamps = false
+
     user = User.first
 
     Page.all.each do |page|
@@ -11,5 +13,7 @@ class SetCreatorOfPages < ActiveRecord::Migration[5.0]
       version.whodunnit = user.id
       version.save!
     end
+
+    ActiveRecord::Base.record_timestamps = true
   end
 end
