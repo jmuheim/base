@@ -32,14 +32,11 @@
             dt.updated_at = Page.human_attribute_name :updated_at
             dd.updated_at = l @page.updated_at, format: :short
 
-  == render 'images',               images:   @page.images,   heading_level: 2 if can?(:crud, Image) && @page.images.any?
-  == render 'shared/show/versions', versions: @page.versions, heading_level: 2 if can?(:read, PaperTrail::Version) && @page.versions.any?
-
   - if @page.children.any?
     .row.children
-      hr
-
       .col-md-12
+        hr
+
         h2 = Page.human_attribute_name :children
 
         - @page.children.each_slice(4) do |slice_of_children|
@@ -48,5 +45,10 @@
               .col-md-3
                 h3 = link_to child.title, child
                 = markdown indent_heading_level child.lead, 3
+
+  hr
+
+  == render 'images',               images:   @page.images,   heading_level: 2 if can?(:crud, Image) && @page.images.any?
+  == render 'shared/show/versions', versions: @page.versions, heading_level: 2 if can?(:read, PaperTrail::Version) && @page.versions.any?
 
   == render 'shared/show/actions',  resource: @page
