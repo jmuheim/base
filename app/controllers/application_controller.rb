@@ -20,6 +20,7 @@ class ApplicationController < ActionController::Base
   before_action :ensure_locale
   before_action :provide_pages
   before_action :provide_root_pages
+  before_action :set_paper_trail_whodunnit
 
   def default_url_options(options = {})
     {locale: I18n.locale}

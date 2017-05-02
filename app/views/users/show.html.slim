@@ -2,6 +2,6 @@
   = headline_with_flash @user.name
 
   == render 'details', user: @user
-
-  == render 'shared/show/versions', versions: @user.versions if can? :read, PaperTrail::Version
+  == render 'created_pages', pages: @user.created_pages, heading_level: 2 if @user.created_pages.any?
+  == render 'shared/show/versions', versions: @user.versions, heading_level: 2 if can?(:read, PaperTrail::Version) && @user.versions.size > 0
   == render 'shared/show/actions', resource: @user

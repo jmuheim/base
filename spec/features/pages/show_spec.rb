@@ -1,19 +1,23 @@
 require 'rails_helper'
 
 describe 'Showing page' do
-  before { login_as(create :admin) }
+  before do
+    @user = create :admin
+    login_as(@user)
+  end
 
   it 'displays a page' do
     other_page = create :page, title: 'Some cool other page'
     parent_page = create(:page, title: 'Cool parent page', navigation_title: nil)
     child_page = create(:page, title: 'A cool sub page', navigation_title: 'Really cool sub page', lead: 'Some sub page lead')
-    @page = create :page, :with_image,
+    @page = create :page, images: [create(:image, creator: @user)],
                           navigation_title: 'Page test navigation title',
                           lead:   "# Some lead title\n\nAnd some lead stuff.",
                           content: "# Some content title\n\nAnd some content stuff.\n\n![Content image](@image-Image test identifier) with a [](@page-#{other_page.id}) and [some alt](@page-#{other_page.id})",
                           notes:   "# Some notes title\n\nAnd some notes stuff.\n\n![Notes image](@image-Image test identifier) with a [](@page-#{other_page.id}) and [some alt](@page-#{other_page.id})",
                           parent:  parent_page,
-                          children: [child_page]
+                          children: [child_page],
+                          creator: @user
     sibling_page = create :page, title: 'Other page', navigation_title: 'Sibling page', parent: parent_page
 
     visit page_path(@page)
@@ -66,20 +70,15 @@ describe 'Showing page' do
         expect(page).to have_link 'List of Pages'
       end
     end
-
-    within '.images' do
-      expect(page).to have_css 'h2', text: 'Images'
-      expect(page).to have_css "a[href='#{@page.images.last.file.url}'] img[alt='Thumb image'][src='#{@page.images.last.file.url(:thumb)}']"
-    end
   end
 
   it 'offers links to browse page by page (previous page / next page) like a book' do
-    @root_1                 = create :page, navigation_title: nil, title: 'Root 1'
-    @root_1_child_1         = create :page, navigation_title: nil, title: 'Root 1 child 1',         parent: @root_1
-    @root_1_child_2         = create :page, navigation_title: nil, title: 'Root 1 child 2',         parent: @root_1
-    @root_1_child_2_child_1 = create :page, navigation_title: nil, title: 'Root 1 child 2 child 1', parent: @root_1_child_2
-    @root_2                 = create :page, navigation_title: nil, title: 'Root 2'
-    @root_2_child_1         = create :page, navigation_title: nil, title: 'Root 2 child 1',         parent: @root_2
+    @root_1                 = create :page, navigation_title: nil, title: 'Root 1',                 creator: @user
+    @root_1_child_1         = create :page, navigation_title: nil, title: 'Root 1 child 1',         creator: @user, parent: @root_1
+    @root_1_child_2         = create :page, navigation_title: nil, title: 'Root 1 child 2',         creator: @user, parent: @root_1
+    @root_1_child_2_child_1 = create :page, navigation_title: nil, title: 'Root 1 child 2 child 1', creator: @user, parent: @root_1_child_2
+    @root_2                 = create :page, navigation_title: nil, title: 'Root 2',                 creator: @user
+    @root_2_child_1         = create :page, navigation_title: nil, title: 'Root 2 child 1',         creator: @user, parent: @root_2
 
     visit page_path(@root_1)
     expect(page).to have_css '.previous[disabled]', text: 'No previous page'
@@ -102,19 +101,46 @@ describe 'Showing page' do
     expect(page).to have_css '.next[disabled]', text: 'No next page'
   end
 
-  describe 'versioning' do
-    it "doesn't display versions if none available" do
-      @page = create :page
+  describe 'images' do
+    it "doesn't display images if none available" do
+      @page = create :page, creator: @user
       visit page_path(@page)
 
-      within '.versions' do
-        expect(page).to have_css  'h2', text: 'Versions (0)'
-        expect(page).to have_text 'There are no earlier versions'
+      expect(page).not_to have_css '.images'
+    end
+
+    it 'displays images if available (if authorized)' do
+      @page = create :page, images: [create(:image, creator: @user)], creator: @user
+      visit page_path(@page)
+
+      within '.images' do
+        expect(page).to have_css 'h2', text: 'Images'
+
+        within '#image_1' do
+          expect(page).to have_css ".image a[href='#{@page.images.last.file.url}'] img[alt='Thumb image'][src='#{@page.images.last.file.url(:thumb)}']"
+          expect(page).to have_css '.identifier', text: 'Image test identifier'
+          expect(page).to have_css '.created_by a', text: 'User test name'
+          expect(page).to have_css '.created_at', text: '15 Jun 14:33'
+          expect(page).to have_css '.updated_at', text: '15 Jun 14:33'
+        end
       end
+
+      login_as(create :user, :donald)
+      visit page_path(@page)
+      expect(page).not_to have_css '.images'
+    end
+  end
+
+  describe 'versioning' do
+    it "doesn't display versions if none available" do
+      @page = create :page, creator: @user
+      visit page_path(@page)
+
+      expect(page).not_to have_css '.versions'
     end
 
     it 'displays versions if available (if authorized)', versioning: true do
-      @page = create :page
+      @page = create :page, creator: @user
       @page.update_attributes! title: 'This is a new title',
                                lead:  'And a new lead'
       @page.update_attributes! title:   'And another title',
@@ -220,7 +246,7 @@ describe 'Showing page' do
     end
 
     it 'displays empty versions if available', versioning: true do
-      @page = create :page
+      @page = create :page, creator: @user
       @page.versions.last.update_attribute :object_changes, nil
 
       visit page_path(@page)
@@ -239,7 +265,7 @@ describe 'Showing page' do
     end
 
     it "generates a diff view", versioning: true, js: true do
-      @page = create :page
+      @page = create :page, creator: @user
       visit page_path(@page)
 
       expect(page.html).to include '<pre data-diff-result=""><ins style="background:#e6ffe6;">Page test title</ins></pre>'

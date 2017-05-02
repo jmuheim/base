@@ -35,11 +35,11 @@ en:
   shared:
     diff:
       before_or_after:
-        image_before: Image before
         image_after: Image after
+        image_before: Image before
       data:
-        no_diff_available: No diff view available (please activate JavaScript)
         diff_not_possible: Diff view not possible
+        no_diff_available: No diff view available (please activate JavaScript)
       head:
         attribute: Attribute
         value_after: Value after
@@ -51,12 +51,12 @@ en:
         instructions: At the time being, the form only contains your changes ("Value after"). Please merge the interim changes ("Value before") by the other user manually. Only save, when you are sure, that no changes are abandoned by error!
         stale_attributes: Attributes that have been changed
     show:
+      additional_information: Additional information
       version:
         create: Create
-        no_changes: No changes in this version
         update: Update
       versions:
-        no_earlier_versions: There are no earlier versions.
+        no_changes: No changes in this version
   'true': 'Yes'
   users:
     detail_inputs:

@@ -2,21 +2,26 @@
 de:
   activerecord:
     attributes:
-      defaults:
-        created_at: Erstellt am
-        updated_at: Aktualisiert am
       image:
         created_at: Erstellt am
+        created_by: Erstellt von
         file: Datei
         identifier: Kennung
         updated_at: Aktualisiert am
       page:
         children: Unterseiten
         content: Inhalt
+        created_at: Erstellt am
+        created_by: Erstellt von
         images: Bilder
         navigation_title: Navigations-Titel
         notes: Notizen
         title: Titel
+        updated_at: Aktualisiert am
+        updated_by: Aktualisiert von
+      paper_trail/version:
+        created_at: Erstellt am
+        whodunnit: Verantwortlicher
       role:
         created_at: Erstellt am
         name: Name

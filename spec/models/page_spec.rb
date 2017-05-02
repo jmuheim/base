@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Page do
   it { should validate_presence_of(:title).with_message "can't be blank" }
+  it { should validate_presence_of(:creator_id).with_message "can't be blank" }
 
   it { should have_many(:images).dependent :destroy }
 
@@ -37,7 +38,8 @@ RSpec.describe Page do
 
       expect {
         page.update_attributes! images_attributes: [{identifier: 'my-great-identifier',
-                                                     file: File.open(dummy_file_path('image.jpg'))
+                                                     file: File.open(dummy_file_path('image.jpg')),
+                                                     creator_id: 0
                                                    }]
       }.to change { Image.count }.by 1
 

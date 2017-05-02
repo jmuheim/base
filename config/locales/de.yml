@@ -35,11 +35,11 @@ de:
   shared:
     diff:
       before_or_after:
-        image_before: Bild vorher
         image_after: Bild nachher
+        image_before: Bild vorher
       data:
-        no_diff_available: Keine Unterschieds-Anzeige verfügbar (bitte JavaScript aktivieren)
         diff_not_possible: Unterschieds-Anzeige nicht möglich
+        no_diff_available: Keine Unterschieds-Anzeige verfügbar (bitte JavaScript aktivieren)
       head:
         attribute: Attribut
         value_after: Wert vorher
@@ -51,12 +51,12 @@ de:
         instructions: Das Formular beinhaltet momentan nur deine Änderungen ("Wert vorher"). Bitte führe die zwischenzeitlich von einem anderen Benutzer getätigten Änderungen ("Wert nachher") manuell zu den deinen hinzu. Speichere erst, wenn du sicher bist, dass dadurch keine Änderungen ungewollt verloren gehen!
         stale_attributes: Attribute, welche verändert worden sind
     show:
+      additional_information: Weitere Informationen
       version:
         create: Erstellen
-        no_changes: Keine Änderungen in dieser Version
         update: Aktualisieren
       versions:
-        no_earlier_versions: Es existieren keine früheren Versionen.
+        no_changes: Keine Änderungen in dieser Version
   'true': Ja
   users:
     detail_inputs:

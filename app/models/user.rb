@@ -11,6 +11,9 @@ class User < ApplicationRecord
   mount_base64_uploader :avatar, AvatarUploader
   mount_uploader :curriculum_vitae, DocumentUploader
 
+  has_many :created_pages,  foreign_key: :creator_id, class_name: Page
+  has_many :created_images, foreign_key: :creator_id, class_name: Image
+
   attr_accessor :login
 
   validates :name, presence: true
