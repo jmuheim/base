@@ -55,12 +55,12 @@ en:
         instructions: At the time being, the form only contains your changes ("Value after"). Please merge the interim changes ("Value before") by the other user manually. Only save, when you are sure, that no changes are abandoned by error!
         stale_attributes: Attributes that have been changed
     show:
+      additional_information: Additional information
       version:
         create: Create
-        no_changes: No changes in this version
         update: Update
       versions:
-        no_earlier_versions: There are no earlier versions.
+        no_changes: No changes in this version
   'true': 'Yes'
   users:
     detail_inputs:

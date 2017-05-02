@@ -1,0 +1,20 @@
+.images
+  = accordion :images, item_options: {title_tag: "h#{heading_level}", panel_class: 'panel-warning'} do |accordion|
+    = accordion.panel do |panel|
+      = panel.title do
+        = Image.model_name.human count: :other
+        =< "(#{images.size})"
+
+      = panel.body do
+        table.table.table-striped.table-hover.diff
+          thead
+            tr
+              th = Image.model_name.human
+              th = Image.human_attribute_name :identifier
+              th = Image.human_attribute_name :created_by
+              th = Image.human_attribute_name :created_at
+              th = Image.human_attribute_name :updated_at
+
+          tbody
+            - images.each do |image|
+              == render 'image', image: image

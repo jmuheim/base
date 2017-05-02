@@ -7,8 +7,12 @@ class Page < ApplicationRecord
   acts_as_tree order: :position, dependent: :restrict_with_error
   acts_as_list scope: [:parent_id]
 
+  belongs_to :creator, class_name: User, foreign_key: :creator_id
+
   validates :title, presence: true,
                     uniqueness: {scope: :parent_id}
+
+  validates :creator_id, presence: true
 
   def navigation_title_or_title
     navigation_title || title

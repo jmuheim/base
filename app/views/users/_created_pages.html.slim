@@ -1,0 +1,23 @@
+.created_pages
+  = accordion :created_pages, item_options: {title_tag: "h#{heading_level}", panel_class: 'panel-success'} do |accordion|
+    = accordion.panel do |panel|
+      = panel.title do
+        = User.human_attribute_name :created_pages
+        =< "(#{pages.size})"
+
+      = panel.body do
+        table.table.table-striped.table-hover
+          thead
+            tr
+              th = Page.human_attribute_name :title
+              th = Page.human_attribute_name :navigation_title
+              th = Page.human_attribute_name :created_at
+              th = Page.human_attribute_name :updated_at
+
+          tbody
+            - pages.each do |page|
+              tr id=dom_id(page)
+                th.title            = link_to page.title, page
+                td.navigation_title = page.navigation_title
+                td.created_at       = l page.created_at, format: :short
+                td.updated_at       = l page.updated_at, format: :short

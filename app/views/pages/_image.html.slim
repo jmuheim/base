@@ -1,0 +1,6 @@
+tr id=dom_id(image)
+  td.image = zoomable_image(image.file)
+  td.identifier = image.identifier
+  td.created_by = link_to image.creator.name, image.creator
+  td.created_at = l image.created_at, format: :short
+  td.updated_at = l image.updated_at, format: :short
