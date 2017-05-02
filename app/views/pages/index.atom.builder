@@ -7,6 +7,12 @@ atom_feed do |feed|
     feed.entry(page) do |entry|
       entry.title(page.title)
 
+      entry.author do |author|
+        author.name(page.creator.name)
+      end
+
+      entry.summary(markdown page.lead_with_references) if page.lead.present?
+
       entry.content(render('page', page: page), type: 'html')
     end
   end
