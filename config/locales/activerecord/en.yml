@@ -17,8 +17,8 @@ en:
         navigation_title: Navigation title
         notes: Notes
         title: Title
-        updated_at: Aktualisiert am
-        updated_by: Aktualisiert von
+        updated_at: Updated at
+        updated_by: Updated by
       paper_trail/version:
         created_at: Created at
         whodunnit: Whodunnit
