@@ -7,7 +7,12 @@ class PagesController < ApplicationController
   before_action :provide_parent_collection, only: [:new, :create, :edit, :update]
   before_action :provide_position_collection, only: [:edit, :update]
   before_action :provide_previous_and_next_page, only: :show
-  respond_to :html
+  respond_to :html,
+             :atom
+
+  def index
+    @pages = PageDecorator.decorate_collection(@pages)
+  end
 
   def show
     @page = @page.decorate

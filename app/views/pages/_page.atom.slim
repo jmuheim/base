@@ -1,0 +1,13 @@
+h1 = t('.position_in_hierarchy')
+
+ol
+  li = link_to t('app.name'), root_path
+
+  - ([page] + page.ancestors).reverse.each do |page|
+    li = link_to page.navigation_title_or_title, page
+
+h1 = Page.human_attribute_name(:content)
+= markdown indent_heading_level(page.content_with_references, 1)
+
+h1 = t('.notice_title')
+p = t('.notice_content', version: page.versions.count, date: l(Time.now, format: :long))

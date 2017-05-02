@@ -2,6 +2,10 @@
 class PageDecorator < Draper::Decorator
   delegate_all
 
+  def lead_with_references
+    complete_internal_references lead
+  end
+
   def content_with_references
     complete_internal_references content
   end

@@ -32,6 +32,10 @@ en:
       previous_page: Previous page
     form:
       info: Information about creating and editing pages and images
+    page:
+      notice_title: Notice about Atom feed
+      notice_content: Your feed reader has downloaded version %{version} of the current page, which was current at %{date}. Meanwhile there could be an updated version of the page available online. Visit the original page to see the most current version!
+      position_in_hierarchy: Position in page hierarchy
   shared:
     diff:
       before_or_after:

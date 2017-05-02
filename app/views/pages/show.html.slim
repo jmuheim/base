@@ -5,7 +5,7 @@
     .col-md-8
       .markdown
         .lead
-          = markdown indent_heading_level @page.lead, 1
+          = markdown indent_heading_level @page.lead_with_references, 1
 
         .content
           = markdown indent_heading_level @page.content_with_references, 1

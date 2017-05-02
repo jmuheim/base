@@ -12,7 +12,7 @@ describe 'Showing page' do
     child_page = create(:page, title: 'A cool sub page', navigation_title: 'Really cool sub page', lead: 'Some sub page lead')
     @page = create :page, images: [create(:image, creator: @user)],
                           navigation_title: 'Page test navigation title',
-                          lead:   "# Some lead title\n\nAnd some lead stuff.",
+                          lead:   "# Some lead title\n\nAnd some lead stuff. [some alt](@page-#{other_page.id})",
                           content: "# Some content title\n\nAnd some content stuff.\n\n![Content image](@image-Image test identifier) with a [](@page-#{other_page.id}) and [some alt](@page-#{other_page.id})",
                           notes:   "# Some notes title\n\nAnd some notes stuff.\n\n![Notes image](@image-Image test identifier) with a [](@page-#{other_page.id}) and [some alt](@page-#{other_page.id})",
                           parent:  parent_page,
@@ -31,6 +31,7 @@ describe 'Showing page' do
       within '.lead' do
         expect(page).to have_css 'h2', text: 'Some lead title'
         expect(page).to have_content 'And some lead stuff'
+        expect(page).to have_css "a[href='/en/pages/#{other_page.id}'][title='Some cool other page']", text: 'some alt'
       end
 
       within '.content' do
@@ -190,7 +191,7 @@ describe 'Showing page' do
           expect(page).to have_css '.created_at .recurrent_occurrence', text: '15 Jun 14:33'
 
           expect(page).to have_css '.attribute',        text: 'Lead'
-          expect(find('.value_before').text).to eq ''
+          expect(find('.value_before').text).to eq 'Page test lead'
           expect(page).to have_css '.value_after',      text: 'And a new lead'
           expect(page).to have_css '.value_difference', text: 'No diff view available (please activate JavaScript)'
         end
