@@ -3,7 +3,7 @@ de:
   app:
     acronym: Base
     name: Base Project
-    slogan: Vorkonfiguriertes grundlegendes Rails Projekt. Fork erstellen!
+    slogan: Vorkonfiguriertes grundlegendes zugängliches Rails Projekt. Fork erstellen!
   buttons:
     save: Speichern
   'false': Nein
