@@ -14,7 +14,7 @@ atom_feed do |feed|
 
       entry.summary(markdown page.lead_with_references)
 
-      entry.content(render('page', page: page), type: 'html')
+      entry.content(render(page), type: 'html')
     end
   end
 end
