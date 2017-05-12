@@ -10,7 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170419170011) do
+ActiveRecord::Schema.define(version: 20170512133220) do
+
+  create_table "code_pens", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "title"
+    t.string   "identifier"
+    t.text     "description",  limit: 65535
+    t.integer  "page_id"
+    t.text     "html",         limit: 65535
+    t.text     "css",          limit: 65535
+    t.text     "js",           limit: 65535
+    t.integer  "lock_version"
+    t.integer  "creator_id"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.index ["creator_id"], name: "index_code_pens_on_creator_id", using: :btree
+    t.index ["page_id"], name: "index_code_pens_on_page_id", using: :btree
+  end
 
   create_table "images", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "file"
@@ -107,4 +123,6 @@ ActiveRecord::Schema.define(version: 20170419170011) do
     t.index ["transaction_id"], name: "index_versions_on_transaction_id", using: :btree
   end
 
+  add_foreign_key "code_pens", "pages"
+  add_foreign_key "code_pens", "users", column: "creator_id"
 end

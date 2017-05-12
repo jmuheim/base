@@ -1,0 +1,12 @@
+= panel do |panel|
+  = panel.heading do
+    = CodePen.model_name.human count: :other
+
+  = panel.body do
+    #code_pens
+      = f.simple_fields_for :code_pens do |code_pen|
+        = render 'code_pens/code_pen_fields', f: code_pen
+      p.links
+        = link_to_add_association f, :code_pens, partial: 'code_pens/code_pen_fields' do
+          => fa_icon 'plus-circle'
+          = t '.add_code_pen'
