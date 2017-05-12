@@ -14,5 +14,5 @@
     .col-md-12
 
       = link_to_remove_association f do
-        = t '.remove_code'
+        = t('actions.destroy_resource', resource: Code.model_name.human)
         =< fa_icon 'times-circle'

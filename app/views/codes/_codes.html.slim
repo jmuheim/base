@@ -9,4 +9,4 @@
       p.links
         = link_to_add_association f, :codes, partial: 'codes/code_fields' do
           => fa_icon 'plus-circle'
-          = t '.add_code'
+          = t('actions.new_resource', resource: Code.model_name.human)

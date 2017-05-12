@@ -14,11 +14,24 @@ module PastabilityHandler
     end
   end
 
-  def image_attributes
+  def images_attributes
     [ :id,
       :file,
       :file_cache,
       :identifier,
+      :_destroy
+    ]
+  end
+
+  def codes_attributes
+    [ :id,
+      :identifier,
+      :title,
+      :description,
+      :html,
+      :css,
+      :js,
+      :lock_version,
       :_destroy
     ]
   end

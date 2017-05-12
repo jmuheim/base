@@ -20,7 +20,8 @@ class PagesController < ApplicationController
 
   def create
     @page.creator = current_user
-    set_creator_of_new_images(@page.images)
+    set_creator_of_new_pastables(@page.images)
+    set_creator_of_new_pastables(@page.codes)
     @page.save
 
     respond_with @page
@@ -28,7 +29,8 @@ class PagesController < ApplicationController
 
   def update
     @page.assign_attributes(page_params)
-    set_creator_of_new_images(@page.images)
+    set_creator_of_new_pastables(@page.images)
+    set_creator_of_new_pastables(@page.codes)
     @page.save
 
     respond_with @page
@@ -50,7 +52,8 @@ class PagesController < ApplicationController
                                  :parent_id,
                                  :position,
                                  :lock_version,
-                                 images_attributes: image_attributes)
+                                 images_attributes: images_attributes,
+                                 codes_attributes: codes_attributes)
   end
 
   def add_breadcrumbs
@@ -81,7 +84,7 @@ class PagesController < ApplicationController
     @next_page     = @pages[@pages.index(@page) + 1]
   end
 
-  def set_creator_of_new_images(images)
-    images.select(&:new_record?).each { |image| image.creator = current_user }
+  def set_creator_of_new_pastables(pastables)
+    pastables.select(&:new_record?).each { |pastable| pastable.creator = current_user }
   end
 end

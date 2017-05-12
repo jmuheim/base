@@ -40,6 +40,11 @@ class PageDecorator < Draper::Decorator
           if image = images.find_by_identifier(id)
             url = image.file.url
           end
+        when 'code'
+          if code = codes.find_by_identifier(id)
+            text = code.title
+            url = h.code_path(code)
+          end
         end
 
         "[#{text}](#{url})#{data}"
