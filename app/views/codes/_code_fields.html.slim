@@ -1,0 +1,18 @@
+.nested-fields
+  .row
+    .col-md-6
+      = f.input :identifier
+      = f.input :title
+      = f.input :description
+
+    .col-md-6
+      = f.input :html
+      = f.input :css
+      = f.input :js
+
+  .row
+    .col-md-12
+
+      = link_to_remove_association f do
+        = t '.remove_code'
+        =< fa_icon 'times-circle'

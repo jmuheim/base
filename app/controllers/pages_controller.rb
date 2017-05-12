@@ -2,7 +2,7 @@ class PagesController < ApplicationController
   # As the pages are all loaded for the navigation already, we don't have to load it on index again
   load_and_authorize_resource except: :index
   provide_optimistic_locking_for :page
-  provide_image_pasting_for :page
+  provide_pastability_for :page
   before_action :add_breadcrumbs
   before_action :provide_parent_collection, only: [:new, :create, :edit, :update]
   before_action :provide_position_collection, only: [:edit, :update]

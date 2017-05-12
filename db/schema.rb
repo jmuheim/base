@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 20170512133220) do
 
-  create_table "code_pens", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "codes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "title"
     t.string   "identifier"
     t.text     "description",  limit: 65535
@@ -24,8 +24,8 @@ ActiveRecord::Schema.define(version: 20170512133220) do
     t.integer  "creator_id"
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
-    t.index ["creator_id"], name: "index_code_pens_on_creator_id", using: :btree
-    t.index ["page_id"], name: "index_code_pens_on_page_id", using: :btree
+    t.index ["creator_id"], name: "index_codes_on_creator_id", using: :btree
+    t.index ["page_id"], name: "index_codes_on_page_id", using: :btree
   end
 
   create_table "images", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -123,6 +123,6 @@ ActiveRecord::Schema.define(version: 20170512133220) do
     t.index ["transaction_id"], name: "index_versions_on_transaction_id", using: :btree
   end
 
-  add_foreign_key "code_pens", "pages"
-  add_foreign_key "code_pens", "users", column: "creator_id"
+  add_foreign_key "codes", "pages"
+  add_foreign_key "codes", "users", column: "creator_id"
 end

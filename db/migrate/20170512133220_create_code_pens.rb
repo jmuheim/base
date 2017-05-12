@@ -1,6 +1,6 @@
-class CreateCodePens < ActiveRecord::Migration[5.0]
+class CreateCodes < ActiveRecord::Migration[5.0]
   def change
-    create_table :code_pens do |t|
+    create_table :codes do |t|
       t.string :title
       t.string :identifier
       t.text :description

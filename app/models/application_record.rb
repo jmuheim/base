@@ -6,7 +6,7 @@ class ApplicationRecord < ActiveRecord::Base
   end
 
   def self.accepts_pastables_for(*textareas)
-    [:images, :code_pens].each do |pastable|
+    [:images, :codes].each do |pastable|
       has_many pastable, dependent: :destroy
       accepts_nested_attributes_for pastable, allow_destroy: true, reject_if: -> attributes {
         # Ignore lock_version and _destroy when checking for attributes
