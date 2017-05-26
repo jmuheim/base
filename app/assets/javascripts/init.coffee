@@ -46,7 +46,7 @@ class App.Init
 
   makeTextareasPastableToNestedImage: ($el) ->
     $el.find('textarea[data-pastable-image="true"]').each ->
-      new App.ClipboardToNestedImagePastabilizer @
+      new App.ClipboardToNestedResourcePastabilizer @
 
   optimizeMarkdownGeneratedHtml: ($el) ->
     new App.MarkdownHtmlOptimizer $el

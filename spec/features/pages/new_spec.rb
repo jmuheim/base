@@ -61,7 +61,7 @@ describe 'Creating page' do
   it 'allows to paste images as nested attributes directly into content and notes textareas', js: true do
     visit new_page_path
 
-    # Make sure that the ClipboardToNestedImagePastabilizer loaded successfully. Some better tests would be good, but don't know how. See https://github.com/layerssss/paste.js/issues/39.
+    # Make sure that the ClipboardToNestedResourcePastabilizer loaded successfully. Some better tests would be good, but don't know how. See https://github.com/layerssss/paste.js/issues/39.
     expect(page).to have_css '.page_content.text_fullscreen_with_pastable_images .fa.fa-expand', visible: false
     expect(page).to have_css '.page_notes.text_fullscreen_with_pastable_images .fa.fa-expand',   visible: false
   end
