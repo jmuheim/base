@@ -1,5 +1,5 @@
 .codes
-  = accordion :codes, item_options: {title_tag: "h#{heading_level}", panel_class: 'panel-warning'} do |accordion|
+  = accordion :codes, item_options: {title_tag: "h#{heading_level}", panel_class: 'panel-success'} do |accordion|
     = accordion.panel do |panel|
       = panel.title do
         = Code.model_name.human count: :other

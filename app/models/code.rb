@@ -11,8 +11,16 @@ class Code < ApplicationRecord
   validates :creator_id, presence: true
   validates :title, presence: true
 
-  def url
+  def pen_url
+    url(:pen)
+  end
+
+  def debug_url
+    url(:debug)
+  end
+
+  def url(type)
     matches = identifier.match(/^(.+)\-(.+)$/)
-    "https://codepen.io/#{matches[1]}/pen/#{matches[2]}"
+    "https://codepen.io/#{matches[1]}/#{type}/#{matches[2]}"
   end
 end
