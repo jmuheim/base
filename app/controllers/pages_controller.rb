@@ -20,7 +20,8 @@ class PagesController < ApplicationController
 
   def create
     @page.creator = current_user
-    set_attributes_of_new_pastables(@page)
+    assign_creator_to_new_pastables
+    assign_codepen_data_to_codes
     @page.save
 
     respond_with @page
@@ -28,7 +29,8 @@ class PagesController < ApplicationController
 
   def update
     @page.assign_attributes(page_params)
-    set_attributes_of_new_pastables(@page)
+    assign_creator_to_new_pastables
+    assign_codepen_data_to_codes
     @page.save
 
     respond_with @page
@@ -82,17 +84,21 @@ class PagesController < ApplicationController
     @next_page     = @pages[@pages.index(@page) + 1]
   end
 
-  def set_attributes_of_new_pastables(page)
+  def assign_creator_to_new_pastables
     [:images, :codes].each do |pastables|
-      page.send(pastables).select(&:new_record?).each { |pastable| pastable.creator = current_user }
+      @page.send(pastables).select(&:new_record?).each { |pastable| pastable.creator = current_user }
     end
+  end
 
-    page.codes.select(&:new_record?).each do |code|
-      json = JSON.load(open("https://codepen.io/api/oembed?url=#{code.url}&format=json"))
+  def assign_codepen_data_to_codes
+    @page.codes.each do |code|
+      # Some meta data is available through CodePen's JSON API
+      json = JSON.load(open("https://codepen.io/api/oembed?url=#{code.pen_url}&format=json"))
       code.title = json['title']
 
+      # HTML, CSS, and JavaScript must be imported through the pen's URL with proper extension appended
       [:html, :css, :js].each do |format|
-        code.send "#{format}=", open("#{code.url}.#{format}").read
+        code.send "#{format}=", open("#{code.pen_url}.#{format}").read
       end
     end
   end
