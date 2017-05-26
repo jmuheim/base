@@ -1,0 +1,6 @@
+tr id=dom_id(code)
+  td.identifier = code.identifier
+  td.url        = link_to code.url, code.url
+  td.created_by = link_to code.creator.name, code.creator
+  td.created_at = l code.created_at, format: :short
+  td.updated_at = l code.updated_at, format: :short
