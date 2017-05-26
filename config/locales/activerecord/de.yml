@@ -2,6 +2,13 @@
 de:
   activerecord:
     attributes:
+      code:
+        title: Titel
+        created_at: Erstellt am
+        created_by: Erstellt von
+        identifier: Kennung
+        updated_at: Aktualisiert am
+        url: URL
       image:
         created_at: Erstellt am
         created_by: Erstellt von
@@ -49,6 +56,9 @@ de:
         roles: Rollen
         updated_at: Aktualisiert am
     models:
+      code:
+        one: Code
+        other: Codes
       image:
         one: Abbildung
         other: Abbildungen

@@ -9,11 +9,11 @@
         table.table.table-striped.table-hover.diff
           thead
             tr
-              th = Image.human_attribute_name :identifier
-              th = Image.human_attribute_name :url
-              th = Image.human_attribute_name :created_by
-              th = Image.human_attribute_name :created_at
-              th = Image.human_attribute_name :updated_at
+              th = Code.human_attribute_name :identifier
+              th = Code.human_attribute_name :url
+              th = Code.human_attribute_name :created_by
+              th = Code.human_attribute_name :created_at
+              th = Code.human_attribute_name :updated_at
 
           tbody
             - codes.each do |code|
