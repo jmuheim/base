@@ -20,7 +20,7 @@ de:
         paste_here: Hier einfügen
       text_fullscreen:
         toggler_text: Vollansicht umschalten (Esc)
-      text_fullscreen_with_pastable_images:
+      text_fullscreen_with_pastable_resources:
         alt_prompt: Alternativtext eingeben (leer lassen für dekoratives Bild)
         identifier_prompt: Dateiname eingeben (leer lassen um nur eine Zufallszahl zu verwenden)
       upload:
