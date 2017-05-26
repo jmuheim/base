@@ -15,11 +15,6 @@ de:
     statistics:
       number_of_resource: Anzahl %{resource}
       title: Statistiken
-  images:
-    image_fields:
-      remove_image: Bild entfernen
-    images:
-      add_image: Abbildung hinzufügen
   org:
     name: MuheimWebdesign
   pages:

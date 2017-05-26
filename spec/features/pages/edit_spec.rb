@@ -42,7 +42,7 @@ describe 'Editing page' do
 
     # # Let's add an image that is referenced in the content
     expect {
-      click_link 'Add image'
+      click_link 'Create Image'
     } .to change { all('#images .nested-fields').count }.by 1
 
     scroll_by(0, 10000) # Otherwise the footer overlaps the element and results in a Capybara::Poltergeist::MouseEventFailed, see http://stackoverflow.com/questions/4424790/cucumber-capybara-scroll-to-bottom-of-page
@@ -51,7 +51,7 @@ describe 'Editing page' do
     fill_in "page_images_attributes_#{nested_field_id}_file", with: base64_image[:data]
 
     # Let's add another image that's not referenced
-    click_link 'Add image'
+    click_link 'Create Image'
     nested_field_id = get_latest_nested_field_id(:page_images)
     fill_in "page_images_attributes_#{nested_field_id}_file", with: base64_image[:data]
     fill_in "page_images_attributes_#{nested_field_id}_identifier", with: 'abandoned-identifier'

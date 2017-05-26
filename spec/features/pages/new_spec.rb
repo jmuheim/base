@@ -26,7 +26,7 @@ describe 'Creating page' do
 
     # Let's add an image that is referenced in the content
     expect {
-      click_link 'Add image'
+      click_link 'Create Image'
     } .to change { all('#images .nested-fields').count }.by 1
 
     nested_field_id = get_latest_nested_field_id(:page_images)
@@ -34,7 +34,7 @@ describe 'Creating page' do
     fill_in "page_images_attributes_#{nested_field_id}_identifier", with: 'referenced-identifier'
 
     # Let's add another image that's not referenced
-    click_link 'Add image'
+    click_link 'Create Image'
     nested_field_id = get_latest_nested_field_id(:page_images)
     fill_in "page_images_attributes_#{nested_field_id}_file", with: base64_image[:data]
     fill_in "page_images_attributes_#{nested_field_id}_identifier", with: 'abandoned-identifier'
