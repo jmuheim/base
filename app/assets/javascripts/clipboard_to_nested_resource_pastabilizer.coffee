@@ -87,15 +87,15 @@ class App.ClipboardToNestedResourcePastabilizer
       '#codes'
 
     stringForInput: ->
-      console.log 'code!'
       @identifier_field  = @$newNestedFields.find(':input[id$="_identifier"]')
-      @title_field       = @$newNestedFields.find(':input[id$="_title"]')
-      @description_field = @$newNestedFields.find(':input[id$="_description"]')
-      @html_field        = @$newNestedFields.find(':input[id$="_html"]')
-      @css_field         = @$newNestedFields.find(':input[id$="_css"]')
-      @js_field          = @$newNestedFields.find(':input[id$="_js"]')
 
-      "[code](@code-133)"
+      codeUser        = @pastedData[1]
+      codePen         = @pastedData[2]
+      codeIdentifier = "#{codeUser}-#{codePen}"
+
+      @identifier_field.val codeIdentifier
+
+      "[](@code-#{codeIdentifier})"
 
   constructor: (el) ->
     @$input = $(el)
