@@ -24,6 +24,9 @@ class App.ClipboardToNestedResourcePastabilizer
     prepareIdentifierField: ->
       @identifier_field = @$newNestedFields.find(':input[id$="_identifier"]')
 
+    getTemporaryIdentifierId: ->
+      @identifier_field.attr('id').match(/_(\d+)_identifier$/)[1]
+
     insertStringIntoInput: (string) ->
       caret_position = @$input.caret()
 
@@ -42,6 +45,9 @@ class App.ClipboardToNestedResourcePastabilizer
       # In sub class, return string for inserting into input! In addition, you can do other stuff, e.g. displaying a pasted image.
 
   class ImagePaster extends AbstractPaster
+    nestedFieldsIdentifier: ->
+      '#images'
+
     stringForInput: ->
       @alternative_text = @examineAlternativeText()
       return null if @alternative_text == null # Cancel!
@@ -59,10 +65,7 @@ class App.ClipboardToNestedResourcePastabilizer
       @file_field.toggle()                                             # Hide the textarea
       @identifier_field.val(@identifier)
 
-      return "![#{@alternative_text}](@image-#{@identifier})"
-
-    nestedFieldsIdentifier: ->
-      return '#images'
+      "![#{@alternative_text}](@image-#{@identifier})"
 
     examineAlternativeText: ->
       prompt(@$input.data('pastable-image-alt-prompt'))
@@ -71,7 +74,7 @@ class App.ClipboardToNestedResourcePastabilizer
       identifier = prompt(@$input.data('pastable-image-identifier-prompt'), @slugify(@alternative_text))
 
       if identifier == ''
-        @identifier_field.attr('id').match(/_(\d+)_identifier$/)[1]
+        @getTemporaryIdentifierId()
       else
         identifier
 
@@ -79,26 +82,30 @@ class App.ClipboardToNestedResourcePastabilizer
     slugify: (text) ->
       text.toString().toLowerCase().replace(/\s+/g, '-').replace(/[^\w\-]+/g, '').replace(/\-\-+/g, '-').replace(/^-+/, '').replace /-+$/, ''
 
-  # class CodePaster
-  #   constructor: ($elements) ->
-  #     @$elements = $elements
-  #
-  #     @identifier_field  = @$elements.find(':input[id$="_identifier"]')
-  #     @title_field       = @$elements.find(':input[id$="_title"]')
-  #     @description_field = @$elements.find(':input[id$="_description"]')
-  #     @html_field        = @$elements.find(':input[id$="_html"]')
-  #     @css_field         = @$elements.find(':input[id$="_css"]')
-  #     @js_field          = @$elements.find(':input[id$="_js"]')
-  #
-  #   getTemporaryIdentifierId: ->
-  #     @identifier_field.attr('id').match(/_(\d+)_identifier$/)[1]
+  class CodePaster extends AbstractPaster
+    nestedFieldsIdentifier: ->
+      '#codes'
+
+    stringForInput: ->
+      console.log 'code!'
+      @identifier_field  = @$newNestedFields.find(':input[id$="_identifier"]')
+      @title_field       = @$newNestedFields.find(':input[id$="_title"]')
+      @description_field = @$newNestedFields.find(':input[id$="_description"]')
+      @html_field        = @$newNestedFields.find(':input[id$="_html"]')
+      @css_field         = @$newNestedFields.find(':input[id$="_css"]')
+      @js_field          = @$newNestedFields.find(':input[id$="_js"]')
+
+      "[code](@code-133)"
 
   constructor: (el) ->
     @$input = $(el)
 
-    @$input.pastableTextarea() # TODO: Do something that can be tested using Capybara to make sure that at least the initialisation of stuff works!
+    @$input.pastableTextarea()
 
     @$input.on('pasteImage', (ev, pastedData) =>
       new ImagePaster(@$input, pastedData)
-    ).on 'pasteText', (ev, pastedData) ->
-      console.log 'text!!!'
+    ).on 'pasteText', (ev, pastedData) =>
+      if match = pastedData.text.match(/https:\/\/codepen.io\/(.+)\/pen\/(.+)/)
+        new CodePaster(@$input, match)
+      else
+        pastedData.text
