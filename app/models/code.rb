@@ -10,4 +10,9 @@ class Code < ApplicationRecord
 
   validates :creator_id, presence: true
   validates :title, presence: true
+
+  def url
+    matches = identifier.match(/^(.+)\-(.+)$/)
+    "https://codepen.io/#{matches[1]}/pen/#{matches[2]}"
+  end
 end

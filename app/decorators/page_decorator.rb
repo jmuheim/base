@@ -43,11 +43,11 @@ class PageDecorator < Draper::Decorator
         when 'code'
           if code = codes.find_by_identifier(id)
             text = code.title
-            url = h.code_path(code)
+            url = code.url
           end
         end
 
-        "[#{text}](#{url})#{data}"
+        "[#{text}](#{url})#{data}{.#{type}}"
       end
 
       line
