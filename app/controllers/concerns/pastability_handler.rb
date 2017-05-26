@@ -2,13 +2,9 @@ module PastabilityHandler
   extend ActiveSupport::Concern
 
   module ClassMethods
-    def provide_pastability_for(resource_name)
+    def provide_pastability
       after_action :remove_abandoned_pastables, only: [:create, :update],
-                                                if: -> { instance_variable_get("@#{resource_name}").persisted? }
-
-      define_method :resource_accepting_pastables do
-        instance_variable_get("@#{resource_name}")
-      end
+                                                if: -> { instance_variable_get("@#{controller_name.classify.underscore}").persisted? }
     end
   end
 
@@ -35,20 +31,20 @@ module PastabilityHandler
   end
 
   def remove_abandoned_pastables
-    page = resource_accepting_pastables
+    resource = instance_variable_get("@#{controller_name.classify.underscore}")
 
     [:images, :codes].each do |pastables|
       referenced_pastables = []
 
-      page.textareas_accepting_pastables.each do |textarea|
-        page.send(textarea).to_s.lines.map do |line|
-          page.send(pastables).each do |pastable|
+      resource.textareas_accepting_pastables.each do |textarea|
+        resource.send(textarea).to_s.lines.map do |line|
+          resource.send(pastables).each do |pastable|
             referenced_pastables << pastable if line =~ /\(@#{pastables.to_s.singularize}-#{pastable.identifier}\)/
           end
         end
       end
 
-      page.send(pastables).each do |pastable|
+      resource.send(pastables).each do |pastable|
         pastable.destroy unless referenced_pastables.include? pastable
       end
     end
