@@ -4,6 +4,8 @@
       = f.input :identifier
 
     .col-md-6
+      = f.input :title, disabled: true
+
       = link_to_remove_association f do
         = t('actions.destroy_resource', resource: Code.model_name.human)
         =< fa_icon 'times-circle'

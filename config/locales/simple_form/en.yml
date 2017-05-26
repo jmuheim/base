@@ -4,6 +4,9 @@ en:
     error_notification:
       default_message: 'Please review the problems below:'
     hints:
+      codes:
+        identifier: Consists of CodePen user and pen ID, separated by a hyphen (e.g. jmuheim-KmKOZO)
+        title: Is loaded automatically from the pen during save
       page:
         content: The main content of the page. Displayed below the lead and above the teasers of the page's sub pages.
         lead: Describe the page's content in a few short sentences. Displayed on top of the page and in teasers.

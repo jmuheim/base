@@ -1,8 +1,13 @@
 body.pages
+  .simple_form
+    .page_codes_title
+      .col-sm-9
+        padding-right: 128px
+
   &.show
     a.code:before
       font: normal 14px/1 FontAwesome
-      content: "\f121 " // Whitespace doesn't work :-(
+      content: "\f121\00a0"
 
     .notes
       +clearfix

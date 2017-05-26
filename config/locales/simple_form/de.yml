@@ -4,6 +4,9 @@ de:
     error_notification:
       default_message: 'Bitte überprüfe die nachfolgenden Probleme:'
     hints:
+      codes:
+        identifier: Besteht aus CodePen-Nutzer und Pen-ID, getrennt durch Bindestrich (z.B. jmuheim-KmKOZO)
+        title: Wird während des Speicherns automatisch aus dem Pen übernommen
       page:
         content: Der Hauptinhalt der Seite. Angezeigt unter dem the Lead und über den Teasern der Unterseiten der Seite.
         lead: Beschreibe den Inhalt der Seite in wenigen kurzen Sätzen. Angezeigt am Anfang der Seite und in Teasern.

@@ -43,11 +43,11 @@ class PageDecorator < Draper::Decorator
         when 'code'
           if code = codes.find_by_identifier(id)
             text = code.title
-            url = code.url
+            url = h.code_path(code)
           end
         end
 
-        "[#{text}](#{url})#{data}{.#{type}}"
+        "[#{text}](#{url})#{data}{.code} ([CodePen.io](#{code.url}))"
       end
 
       line
