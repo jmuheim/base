@@ -7,18 +7,18 @@ describe 'Showing page' do
   end
 
   it 'displays a page' do
-    other_page = create :page, title: 'Some cool other page'
-    parent_page = create(:page, title: 'Cool parent page', navigation_title: nil)
-    child_page = create(:page, title: 'A cool sub page', navigation_title: 'Really cool sub page', lead: 'Some sub page lead')
-    @page = create :page, images: [create(:image, creator: @user)],
-                          navigation_title: 'Page test navigation title',
+    other_page = create :page, creator: @user, title: 'Some cool other page'
+    parent_page = create(:page, creator: @user, title: 'Cool parent page', navigation_title: nil)
+    child_page = create(:page, creator: @user, title: 'A cool sub page', navigation_title: 'Really cool sub page', lead: 'Some sub page lead')
+    @page = create :page, navigation_title: 'Page test navigation title',
+                          images: [create(:image, creator: @user)],
                           lead:   "# Some lead title\n\nAnd some lead stuff. [some alt](@page-#{other_page.id})",
                           content: "# Some content title\n\nAnd some content stuff.\n\n![Content image](@image-Image test identifier) with a [](@page-#{other_page.id}) and [some alt](@page-#{other_page.id})",
                           notes:   "# Some notes title\n\nAnd some notes stuff.\n\n![Notes image](@image-Image test identifier) with a [](@page-#{other_page.id}) and [some alt](@page-#{other_page.id})",
                           parent:  parent_page,
                           children: [child_page],
                           creator: @user
-    sibling_page = create :page, title: 'Other page', navigation_title: 'Sibling page', parent: parent_page
+    sibling_page = create :page, creator: @user, title: 'Other page', navigation_title: 'Sibling page', parent: parent_page
 
     visit page_path(@page)
 

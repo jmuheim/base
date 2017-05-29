@@ -1,10 +1,13 @@
 require 'rails_helper'
 
 describe 'Deleting page' do
-  before { @page = create :page, :with_image }
+  before do
+    @user = create :user
+    @page = create :page, creator: @user, images: [create(:image, creator: @user)]
+  end
 
   context 'signed in as user' do
-    before { login_as(create :user) }
+    before { login_as(@user) }
 
     it 'does not grant permission to delete page' do
       visit_delete_path_for(@page)
