@@ -10,5 +10,9 @@ FactoryGirl.define do
     trait :with_image do
       images { [create(:image)] }
     end
+
+    trait :with_code do
+      codes { [create(:code)] }
+    end
   end
 end

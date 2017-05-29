@@ -1,5 +1,5 @@
 class Code < ApplicationRecord
-  has_paper_trail only: [:title, :identifier, :description, :html, :css, :js]
+  has_paper_trail only: [:identifier, :title, :html, :css, :js]
 
   belongs_to :page
 

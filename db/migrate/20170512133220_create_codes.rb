@@ -3,13 +3,12 @@ class CreateCodes < ActiveRecord::Migration[5.0]
     create_table :codes do |t|
       t.string :title
       t.string :identifier
-      t.text :description
       t.references :page, foreign_key: true
       t.text :html
       t.text :css
       t.text :js
       t.integer :lock_version
-      t.references :creator, foreign_key: {to_table: :users}
+      t.references :creator # TODO: Add foreign key constraint! (foreign_key: {to_table: :users})
 
       t.timestamps
     end

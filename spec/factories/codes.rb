@@ -1,8 +1,7 @@
 FactoryGirl.define do
   factory :code do
-    title       'Code test title'
     identifier  'Code test identifier'
-    description 'Code test description'
+    title       'Code test title'
     html        'Code test html'
     css         'Code test css'
     js          'Code test js'

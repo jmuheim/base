@@ -23,11 +23,12 @@ class PageDecorator < Draper::Decorator
         url  = $2
         type = $3
         id   = $4
-        data = [".type"]
+        data = []
 
         case type
         when 'page'
           if page = Page.find_by_id(id)
+            data << ".#{type}"
             url = h.page_path(page)
 
             if text.empty?
@@ -38,10 +39,13 @@ class PageDecorator < Draper::Decorator
           end
         when 'image'
           if image = images.find_by_identifier(id)
+            data << ".#{type}"
             url = image.file.url
           end
         when 'code'
           if code = codes.find_by_identifier(id)
+            data << ".#{type}"
+
             if text.empty?
               text = code.title
             elsif text != code.title
@@ -51,7 +55,8 @@ class PageDecorator < Draper::Decorator
           end
         end
 
-        "[#{text}](#{url}){#{data.join ' '}}"
+        data_string = data.empty? ? nil : "{#{data.join ' '}}"
+        "[#{text}](#{url})#{data_string}"
       end
 
       line
