@@ -1,10 +1,13 @@
 require 'rails_helper'
 
 describe 'Creating page' do
-  before { login_as create :admin, :scrooge }
+  before do
+    @user = create :admin, :scrooge
+    login_as @user
+  end
 
   it 'creates a page and removes abandoned images', js: true do
-    parent_page = create :page, title: 'Cool parent page'
+    parent_page = create :page, creator: @user, title: 'Cool parent page'
     visit new_page_path
 
     expect(page).to have_title 'Create Page - Base'

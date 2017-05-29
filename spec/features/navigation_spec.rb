@@ -1,8 +1,10 @@
 require 'rails_helper'
 
 describe 'Navigation' do
+  before { @user = create(:user) }
+
   describe 'items' do
-    before { create :page }
+    before { create :page, creator: @user }
 
     context 'as a guest' do
       it 'offers the expected links' do
@@ -29,7 +31,7 @@ describe 'Navigation' do
 
     context 'as a user' do
       it 'offers the expected links' do
-        sign_in_as create :user
+        sign_in_as @user
 
         visit root_path
 
@@ -54,7 +56,7 @@ describe 'Navigation' do
 
     context 'as an admin' do
       it 'offers the expected links' do
-        sign_in_as create :admin
+        sign_in_as create :admin, :scrooge
 
         visit root_path
 
@@ -135,7 +137,7 @@ describe 'Navigation' do
   end
 
   it 'reports the activity status of menu groups and items visually and aurally' do
-    sign_in_as create :admin
+    sign_in_as create :admin, :scrooge
     visit root_path
 
     active_menu_group_css  = '.dropdown.active > a.dropdown-toggle'
@@ -160,8 +162,8 @@ describe 'Navigation' do
   end
 
   it "only uses root pages as menu groups" do
-    parent_page = create :page, title: 'Parent page', navigation_title: nil
-    @page       = create :page, title: 'Cool page',   navigation_title: nil, parent: parent_page
+    parent_page = create :page, creator: @user, title: 'Parent page', navigation_title: nil
+    @page       = create :page, creator: @user, title: 'Cool page',   navigation_title: nil, parent: parent_page
 
     visit root_path
 
@@ -171,7 +173,7 @@ describe 'Navigation' do
 
   # A menu group "Users" has a "List of Users" and a "Create User" item, but no "Edit User" item; for the latter, we still want the group to be marked up as active
   it "reports the activity status of menu groups (that don't have an active item) visually and semantically" do
-    user = create :admin
+    user = create :admin, :scrooge
     login_as user
 
     visit root_path
@@ -192,8 +194,8 @@ describe 'Navigation' do
   end
 
   it "reports the menu groups and menu items correctly as active" do
-    parent_page = create :page, title: 'Parent page', navigation_title: nil
-    @page       = create :page, title: 'Cool page',   navigation_title: nil, parent: parent_page
+    parent_page = create :page, creator: @user, title: 'Parent page', navigation_title: nil
+    @page       = create :page, creator: @user, title: 'Cool page',   navigation_title: nil, parent: parent_page
 
     # First, none of the pages should be reported as active
     visit root_path
@@ -230,7 +232,7 @@ describe 'Navigation' do
 
   context 'jump links' do
     it 'visually displays them only on focus', js: true do
-      visit page_path(create :page)
+      visit page_path(create :page, creator: @user)
 
       ['#jump_to_home_page', '#jump_to_content'].each do |selector|
         expect(page).to have_selector("#{selector}[class='sr-only']")
@@ -242,7 +244,7 @@ describe 'Navigation' do
     end
 
     it 'jumps to content when clicking jump to content link', js: true do
-      visit page_path(create :page)
+      visit page_path(create :page, creator: @user)
 
       focus_element('#jump_to_content')
       click_link 'Jump to content'
@@ -250,7 +252,7 @@ describe 'Navigation' do
     end
 
     it 'offers access keys', js: true do
-      visit page_path(create :page)
+      visit page_path(create :page, creator: @user)
 
       expect(page).to have_css '#jump_to_home_page[accesskey="0"]'
       expect(page).to have_css '#jump_to_content[accesskey="1"]'
@@ -260,7 +262,7 @@ describe 'Navigation' do
       visit root_path
       expect(page).not_to have_link 'Jump to home page'
 
-      visit page_path(create :page)
+      visit page_path(create :page, creator: @user)
       expect(page).to have_link 'Jump to home page'
     end
   end

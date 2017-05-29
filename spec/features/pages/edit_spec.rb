@@ -1,14 +1,17 @@
 require 'rails_helper'
 
 describe 'Editing page' do
-  before { login_as create :admin }
+  before do
+    @user = create(:admin)
+    login_as @user
+  end
 
   it 'grants permission to edit a page and removes abandoned images', js: true do
-    old_page_parent = create :page, title: 'Cool parent page', navigation_title: nil
-    new_parent_page = create :page, title: 'Cooler parent page'
-    child_of_new_parent_page = create :page, parent: new_parent_page
+    old_page_parent = create :page, creator: @user, title: 'Cool parent page', navigation_title: nil
+    new_parent_page = create :page, creator: @user, title: 'Cooler parent page'
+    child_of_new_parent_page = create :page, creator: @user, parent: new_parent_page
 
-    @page = create :page, :with_image, parent: old_page_parent, navigation_title: 'Cool navigation title'
+    @page = create :page, creator: @user, images: [create(:image, creator: @user)], parent: old_page_parent, navigation_title: 'Cool navigation title'
 
     visit edit_page_path(@page)
 
@@ -84,12 +87,12 @@ describe 'Editing page' do
   end
 
   it "provides the correct parent and position collections" do
-    parent_page = create :page, title: 'Parent page'
-    @page = create :page, parent: parent_page, title: 'Page'
-    page_child = create :page, parent: @page, title: 'Page child'
-    page_sibling = create :page, parent: parent_page, title: 'Page sibling'
-    parent_page_sibling = create :page, title: 'Parent page sibling'
-    parent_page_sibling_child = create :page, title: 'Parent page sibling child'
+    parent_page = create :page, creator: @user, title: 'Parent page'
+    @page = create :page, creator: @user, parent: parent_page, title: 'Page'
+    page_child = create :page, creator: @user, parent: @page, title: 'Page child'
+    page_sibling = create :page, creator: @user, parent: parent_page, title: 'Page sibling'
+    parent_page_sibling = create :page, creator: @user, title: 'Parent page sibling'
+    parent_page_sibling_child = create :page, creator: @user, title: 'Parent page sibling child'
 
     visit edit_page_path(@page)
 
@@ -106,7 +109,7 @@ describe 'Editing page' do
   end
 
   it "prevents from overwriting other users' changes accidently (caused by race conditions)" do
-    @page = create :page
+    @page = create :page, creator: @user
     visit edit_page_path(@page)
 
     # Change something in the database...
