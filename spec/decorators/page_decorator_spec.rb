@@ -1,10 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe PageDecorator do
+  before { @creator = create :user }
+
   [:lead, :content, :notes].each do |field|
     describe "##{field}_with_references" do
       context 'replacing page references' do
-        before { @page_decorator = create(:page).decorate }
+        before { @page_decorator = create(:page, creator: @creator).decorate }
 
         it 'converts @references to page ids to full page paths (e.g. @page-123)' do
           @page_decorator.update_attribute field, "[](@page-#{@page_decorator.id})"
@@ -42,7 +44,7 @@ RSpec.describe PageDecorator do
       end
 
       context 'replacing image references' do
-        before { @page_decorator = create(:page, :with_image).decorate }
+        before { @page_decorator = create(:page, creator: @creator, images: [create(:image, creator: @creator)]).decorate }
 
         it 'converts @references to image identifiers to full image paths (e.g. @image-test-123)' do
           @page_decorator.update_attribute field, "![My image](@image-Image test identifier)"
@@ -60,7 +62,7 @@ RSpec.describe PageDecorator do
         end
 
         it "only replaces identifiers of own images" do
-          other_page = create :page, title: 'Other page', images: [create(:image, identifier: 'other-identifier')]
+          other_page = create :page, title: 'Other page', creator: @creator, images: [create(:image, identifier: 'other-identifier', creator: @creator)]
 
           @page_decorator.update_attribute field, "![My image](@image-other-identifier)"
           expect(@page_decorator.send("#{field}_with_references")).to eq "![My image](@image-other-identifier)"
