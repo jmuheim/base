@@ -44,7 +44,7 @@ describe 'Accessibility' do
       visit root_path
       expect(page).to have_title 'Welcome to Base!'
 
-      visit page_path(create :page)
+      visit page_path(create :page, creator: create(:user))
       expect(page).to have_title 'Page test title - Base'
     end
 

@@ -7,8 +7,8 @@ describe 'Listing pages' do
   end
 
   it 'displays pages' do
-    parent_page = create :page
-    @page = create :page, :with_image, navigation_title: 'Page test navigation title', parent: parent_page
+    parent_page = create :page, creator: @user
+    @page = create :page, creator: @user, images: [create(:image, creator: @user)], navigation_title: 'Page test navigation title', parent: parent_page
     visit pages_path
 
     expect(page).to have_title 'Pages - Base'
@@ -35,7 +35,7 @@ describe 'Listing pages' do
 
   it 'offers an ATOM feed' do
     parent_page = create :page, creator: @user, title: 'Parent page'
-    @page = create :page, :with_image, navigation_title: 'Page test navigation title', parent: parent_page, creator: @user
+    @page = create :page, creator: @user, images: [create(:image, creator: @user)], navigation_title: 'Page test navigation title', parent: parent_page, creator: @user
     visit pages_path format: :atom
 
     expect(page).to have_title 'Pages - Base Project'

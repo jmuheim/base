@@ -5,14 +5,5 @@ FactoryGirl.define do
     lead             'Page test lead'
     content          'Page test content'
     notes            'Page test notes'
-    creator_id       0
-
-    trait :with_image do
-      images { [create(:image)] }
-    end
-
-    trait :with_code do
-      codes { [create(:code)] }
-    end
   end
 end
