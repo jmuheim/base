@@ -35,7 +35,7 @@ describe 'Listing pages' do
 
   it 'offers an ATOM feed' do
     parent_page = create :page, creator: @user, title: 'Parent page'
-    @page = create :page, creator: @user, images: [create(:image, creator: @user)], navigation_title: 'Page test navigation title', parent: parent_page, creator: @user
+    @page = create :page, creator: @user, images: [create(:image, creator: @user)], navigation_title: 'Page test navigation title', parent: parent_page
     visit pages_path format: :atom
 
     expect(page).to have_title 'Pages - Base Project'
