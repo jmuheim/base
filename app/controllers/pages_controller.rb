@@ -94,7 +94,8 @@ class PagesController < ApplicationController
     @page.codes.each do |code|
       # Some meta data is available through CodePen's JSON API
       json = JSON.load(open("https://codepen.io/api/oembed?url=#{code.pen_url}&format=json"))
-      code.title = json['title']
+      code.title         = json['title']
+      code.thumbnail_url = json['thumbnail_url']
 
       # HTML, CSS, and JavaScript must be imported through the pen's URL with proper extension appended
       [:html, :css, :js].each do |format|

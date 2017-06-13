@@ -19,11 +19,11 @@ class PageDecorator < Draper::Decorator
   def complete_internal_references(markdown)
     markdown.to_s.lines.map do |line|
       line.gsub!(/\[(.*?)\]\((@(.+?)-(.+?))\)/) do
-        text = $1
-        url  = $2
-        type = $3
-        id   = $4
-        data = []
+        caption = $1
+        url     = $2
+        type    = $3
+        id      = $4
+        data    = []
 
         case type
         when 'page'
@@ -31,9 +31,9 @@ class PageDecorator < Draper::Decorator
             data << ".#{type}"
             url = h.page_path(page)
 
-            if text.empty?
-              text = page.title
-            elsif text != page.title
+            if caption.empty?
+              caption = page.title
+            elsif caption != page.title
               data << "title=\"#{page.title}\""
             end
           end
@@ -46,17 +46,20 @@ class PageDecorator < Draper::Decorator
           if code = codes.find_by_identifier(id)
             data << ".#{type}"
 
-            if text.empty?
-              text = code.title
-            elsif text != code.title
+            if caption.empty?
+              caption = code.title
+            elsif caption != code.title
               data << "title=\"#{code.title}\""
             end
+
+            caption = "#{caption}![](#{code.thumbnail_url})"
+
             url = code.debug_url
           end
         end
 
         data_string = data.empty? ? nil : "{#{data.join ' '}}"
-        "[#{text}](#{url})#{data_string}"
+        "[#{caption}](#{url})#{data_string}"
       end
 
       line
