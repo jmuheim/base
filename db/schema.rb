@@ -126,5 +126,6 @@ ActiveRecord::Schema.define(version: 20170529153837) do
 
   add_foreign_key "codes", "pages"
   add_foreign_key "images", "users", column: "creator_id", name: "index_images_on_creator_id"
+  add_foreign_key "pages", "users", column: "creator_id"
   add_foreign_key "pages", "users", column: "creator_id", name: "index_pages_on_creator_id"
 end
