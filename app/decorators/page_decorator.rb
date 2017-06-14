@@ -52,7 +52,7 @@ class PageDecorator < Draper::Decorator
               data << "title=\"#{code.title}\""
             end
 
-            caption = "#{caption}![](#{code.thumbnail_url})"
+            caption = "**#{caption}**![](#{code.thumbnail_url})"
 
             url = code.debug_url
           end
