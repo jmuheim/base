@@ -22,19 +22,20 @@ class App.ClipboardToNestedResourcePastabilizer
       @$newNestedFields = @$allNestedFields.find('.nested-fields:last')
 
     prepareIdentifierField: ->
-      @identifier_field = @$newNestedFields.find(':input[id$="_identifier"]')
+      @identifierField = @$newNestedFields.find(':input[id$="_identifier"]')
 
     getTemporaryIdentifierId: ->
-      @identifier_field.attr('id').match(/_(\d+)_identifier$/)[1]
+      @identifierField.attr('id').match(/_(\d+)_identifier$/)[1]
 
+    # TODO: This breaks the undo/redo history (tested in Chrome OSX), see https://stackoverflow.com/questions/7553430/javascript-textarea-undo-redo/10345596#10345596
     insertStringIntoInput: (string) ->
-      caret_position = @$input.caret()
+      caretPosition = @$input.caret()
 
-      value_before = @$input.val().substring(0, caret_position)
-      value_after  = @$input.val().substring(caret_position)
+      valueBefore = @$input.val().substring(0, caretPosition)
+      valueAfter  = @$input.val().substring(caretPosition)
 
-      @$input.val(value_before + string + value_after)
-      @$input.caret(caret_position + string.length)
+      @$input.val(valueBefore + string + valueAfter)
+      @$input.caret(caretPosition + string.length)
 
     nestedFieldsIdentifier: ->
       throw ("Implement in sub class!")
@@ -52,7 +53,7 @@ class App.ClipboardToNestedResourcePastabilizer
       prompt(@$input.data('pastable-image-alt-prompt'))
 
     examineIdentifier: ->
-      identifier = prompt(@$input.data('pastable-image-identifier-prompt'), @slugify(@alternative_text))
+      identifier = prompt(@$input.data('pastable-image-identifier-prompt'), @slugify(@alternativeText))
 
       if identifier == ''
         @getTemporaryIdentifierId()
@@ -64,36 +65,36 @@ class App.ClipboardToNestedResourcePastabilizer
       text.toString().toLowerCase().replace(/\s+/g, '-').replace(/[^\w\-]+/g, '').replace(/\-\-+/g, '-').replace(/^-+/, '').replace /-+$/, ''
 
     stringForInput: ->
-      @alternative_text = @examineAlternativeText()
-      return null if @alternative_text == null # Cancel!
+      @alternativeText = @examineAlternativeText()
+      return null if @alternativeText == null # Cancel!
 
       @identifier = @examineIdentifier()
       return null if @identifier == null # Cancel!
 
-      @file_field       = @$newNestedFields.find(':input[id$="_file"]')
+      @fileField       = @$newNestedFields.find(':input[id$="_file"]')
       @previewContainer = @$newNestedFields.find('.thumbnail')
       @previewImage     = @previewContainer.find('img')
 
-      @file_field.val(@pastedData.dataURL)                             # Set blob string to textarea
+      @fileField.val(@pastedData.dataURL)                             # Set blob string to textarea
       @previewImage.attr('src', URL.createObjectURL(@pastedData.blob)) # Set image preview
       @previewContainer.toggle()                                       # Show the image preview
-      @file_field.toggle()                                             # Hide the textarea
-      @identifier_field.val(@identifier)
+      @fileField.toggle()                                             # Hide the textarea
+      @identifierField.val(@identifier)
 
-      "![#{@alternative_text}](@image-#{@identifier})"
+      "![#{@alternativeText}](@image-#{@identifier})"
 
   class CodePaster extends AbstractPaster
     nestedFieldsIdentifier: ->
       '#codes'
 
     stringForInput: ->
-      @identifier_field  = @$newNestedFields.find(':input[id$="_identifier"]')
+      @identifierField  = @$newNestedFields.find(':input[id$="_identifier"]')
 
       codeUser        = @pastedData[1]
       codePen         = @pastedData[2]
       codeIdentifier = "#{codeUser}-#{codePen}"
 
-      @identifier_field.val codeIdentifier
+      @identifierField.val codeIdentifier
 
       "[](@code-#{codeIdentifier})"
 
@@ -104,9 +105,15 @@ class App.ClipboardToNestedResourcePastabilizer
 
     @$input.on('pasteImage', (ev, pastedData) =>
       new ImagePaster(@$input, pastedData)
-    ).on 'pasteText', (ev, pastedData) =>
+    ).on('pasteText', (ev, pastedData) =>
       if match = pastedData.text.match(/https:\/\/codepen.io\/(.+)\/pen\/(.+)/)
         new CodePaster(@$input, match)
-      else
-        pastedData.text
-      
+
+        # Doesn't work at the time being, see https://github.com/layerssss/paste.js/issues/45
+        ev.preventDefault()
+
+        # ...so we need this workaround:
+        caretPosition = @$input.caret()
+        @$input.val(@$input.val().replace(pastedData.text, ''))
+        @$input.caret(caretPosition - pastedData.text.length)
+    )
