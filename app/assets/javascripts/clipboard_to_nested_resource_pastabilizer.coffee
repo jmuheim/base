@@ -1,4 +1,4 @@
-# Adds the features of paste.js to all textareas of the given element.
+# Allows pasting of clipboard to nested resources.
 #
 # Be sure you have https://github.com/layerssss/paste.js available.
 class App.ClipboardToNestedResourcePastabilizer
@@ -48,6 +48,21 @@ class App.ClipboardToNestedResourcePastabilizer
     nestedFieldsIdentifier: ->
       '#images'
 
+    examineAlternativeText: ->
+      prompt(@$input.data('pastable-image-alt-prompt'))
+
+    examineIdentifier: ->
+      identifier = prompt(@$input.data('pastable-image-identifier-prompt'), @slugify(@alternative_text))
+
+      if identifier == ''
+        @getTemporaryIdentifierId()
+      else
+        identifier
+
+    # https://gist.github.com/mathewbyrne/1280286
+    slugify: (text) ->
+      text.toString().toLowerCase().replace(/\s+/g, '-').replace(/[^\w\-]+/g, '').replace(/\-\-+/g, '-').replace(/^-+/, '').replace /-+$/, ''
+
     stringForInput: ->
       @alternative_text = @examineAlternativeText()
       return null if @alternative_text == null # Cancel!
@@ -66,21 +81,6 @@ class App.ClipboardToNestedResourcePastabilizer
       @identifier_field.val(@identifier)
 
       "![#{@alternative_text}](@image-#{@identifier})"
-
-    examineAlternativeText: ->
-      prompt(@$input.data('pastable-image-alt-prompt'))
-
-    examineIdentifier: ->
-      identifier = prompt(@$input.data('pastable-image-identifier-prompt'), @slugify(@alternative_text))
-
-      if identifier == ''
-        @getTemporaryIdentifierId()
-      else
-        identifier
-
-    # https://gist.github.com/mathewbyrne/1280286
-    slugify: (text) ->
-      text.toString().toLowerCase().replace(/\s+/g, '-').replace(/[^\w\-]+/g, '').replace(/\-\-+/g, '-').replace(/^-+/, '').replace /-+$/, ''
 
   class CodePaster extends AbstractPaster
     nestedFieldsIdentifier: ->
@@ -109,3 +109,4 @@ class App.ClipboardToNestedResourcePastabilizer
         new CodePaster(@$input, match)
       else
         pastedData.text
+      
