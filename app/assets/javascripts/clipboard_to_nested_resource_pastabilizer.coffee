@@ -27,7 +27,13 @@ class App.ClipboardToNestedResourcePastabilizer
     getTemporaryIdentifierId: ->
       @identifierField.attr('id').match(/_(\d+)_identifier$/)[1]
 
-    # TODO: This breaks the undo/redo history (tested in Chrome OSX), see https://stackoverflow.com/questions/7553430/javascript-textarea-undo-redo/10345596#10345596
+    # TODO: This breaks the undo/redo history in Chrome and Safari (FF and IE seem to work)!
+    #
+    # More info:
+    #
+    # - https://stackoverflow.com/questions/7553430/javascript-textarea-undo-redo/10345596#10345596
+    # - https://stackoverflow.com/questions/16195644/in-chrome-undo-does-not-work-properly-for-input-element-after-contents-changed-p
+    # - http://jsfiddle.net/rudiedirkx/k4spa0dv/
     insertStringIntoInput: (string) ->
       caretPosition = @$input.caret()
 
