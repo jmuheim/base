@@ -57,6 +57,7 @@ GEM
       execjs
     awesome_print (1.7.0)
     bcrypt (3.1.11)
+    bcrypt (3.1.11-x86-mingw32)
     better_errors (2.1.1)
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
@@ -148,6 +149,7 @@ GEM
       activesupport (>= 3.2)
     erubis (2.7.0)
     eventmachine (1.2.2)
+    eventmachine (1.2.2-x86-mingw32)
     execjs (2.7.0)
     factory_girl (4.8.0)
       activesupport (>= 3.0.0)
@@ -158,6 +160,7 @@ GEM
       railties (>= 3.1.0)
     ffaker (2.4.0)
     ffi (1.9.17)
+    ffi (1.9.17-x86-mingw32)
     font-awesome-rails (4.7.0.1)
       railties (>= 3.2, < 5.1)
     formatador (0.2.5)
@@ -250,10 +253,13 @@ GEM
     minitest (5.10.1)
     multi_json (1.12.1)
     mysql2 (0.4.5)
+    mysql2 (0.4.5-x86-mingw32)
     nenv (0.3.0)
     nested_form (0.3.2)
     nio4r (1.2.1)
     nokogiri (1.7.0.1)
+      mini_portile2 (~> 2.1.0)
+    nokogiri (1.7.0.1-x86-mingw32)
       mini_portile2 (~> 2.1.0)
     notiffany (0.1.1)
       nenv (~> 0.1)
@@ -434,6 +440,7 @@ GEM
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
     sqlite3 (1.3.13)
+    sqlite3 (1.3.13-x86-mingw32)
     strip_attributes (1.8.0)
       activemodel (>= 3.0, < 6.0)
     temple (0.7.7)
@@ -450,6 +457,8 @@ GEM
     tins (1.13.0)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
+    tzinfo-data (1.2017.2)
+      tzinfo (>= 1.0.0)
     uglifier (3.0.4)
       execjs (>= 0.3.0, < 3)
     unicode-display_width (1.1.3)
@@ -474,6 +483,7 @@ GEM
 
 PLATFORMS
   ruby
+  x86-mingw32
 
 DEPENDENCIES
   actionview-encoded_mail_to
@@ -562,4 +572,4 @@ DEPENDENCIES
   xray-rails
 
 BUNDLED WITH
-   1.13.7
+   1.15.1

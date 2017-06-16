@@ -11,6 +11,6 @@ addons:
 notifications:
   email:
     recipients:
-      - joshua.muheim@access-for-all.ch
+      - reto.inniger@gmx.ch
     on_failure: change
     on_success: change

@@ -102,7 +102,7 @@ RSpec.configure do |config|
 end
 
 RSpec.configure do |config|
-  config.include Base::Matchers, type: :feature
+  config.include ProjectManager::Matchers, type: :feature
 end
 
 Shoulda::Matchers.configure do |config|

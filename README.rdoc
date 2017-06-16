@@ -22,7 +22,7 @@ This is a basic Rails project with everything configured the way I want. To fork
   - <code>$ bundle</code> (installs the gems)
   - <code>$ rake db:setup</code> (sets up the database with seed data))
   - <code>$ bin/rake db:test:prepare</code> (prepare test database)
-- Replace all occurrences of <code>Base::Application</code> with <code>PROJECT::Application</code> (e.g. <code>PrettyCalc::Application</code>), every occurrence of <code>module Base</code> with <code>module PROJECT</code> (e.g. <code>module PrettyCalc</code>), and every occurrence of <code>Base::</code> with <code>PROJECT::</code> (e.g. <code>PrettyCalc::</code>)
+- Replace all occurrences of <code>ProjectManager::Application</code> with <code>PROJECT::Application</code> (e.g. <code>PrettyCalc::Application</code>), every occurrence of <code>module ProjectManager</code> with <code>module PROJECT</code> (e.g. <code>module PrettyCalc</code>), and every occurrence of <code>ProjectManager::</code> with <code>PROJECT::</code> (e.g. <code>PrettyCalc::</code>)
 - Change the value of <code>secret_key_base</code> in <code>config/initializers/secret_token.rb</code> (run <code>$ rake secret</code> to create a new secret key)
 - Set the correct value of <code>repo_token</code> in <code>.travis.yml</code> (TODO: is this still the case??)
 - Change the value of <code>session_store</code> in <code>config/initializers/session_store.rb</code> to <code>_PROJECT_session</code> (while <code>PROJECT</code> is your project's downcased and underscored name)
