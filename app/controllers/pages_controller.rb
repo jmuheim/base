@@ -90,6 +90,7 @@ class PagesController < ApplicationController
     end
   end
 
+  # TODO: Only when the codepen was updated!
   def assign_codepen_data_to_codes
     @page.codes.each do |code|
       # Some meta data is available through CodePen's JSON API
