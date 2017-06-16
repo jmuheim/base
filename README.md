@@ -1,10 +1,10 @@
-# project-manager Manager
+# Project Manager
 
 TODO: Add badges!
 
-## Setting up project-manager locally
+## Setting up Project Manager locally
 
-Live project-manager: [ACCOUNT.SERVER.uberspace.de](http://ACCOUNT.SERVER.uberspace.de)
+Live Project Manager: [ACCOUNT.SERVER.uberspace.de](http://ACCOUNT.SERVER.uberspace.de)
 
 Recommended environment:
 
@@ -56,7 +56,7 @@ The [i18n-tasks](https://retoinniger.com/glebm/i18n-tasks) gem makes handling tr
 
 - `$ i18n-tasks normalize`, then commit
 - `$ i18n-tasks unused`, then remove unused keys and commit
-- `$ i18n-tasks add-missing -v 'TRANSLATE: %{value}'`, then translate everything (do a project-manager search for `TRANSLATE:`) and commit
+- `$ i18n-tasks add-missing -v 'TRANSLATE: %{value}'`, then translate everything (do a project search for `TRANSLATE:`) and commit
 
 ## Testing
 
