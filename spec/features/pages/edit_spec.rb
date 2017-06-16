@@ -8,7 +8,7 @@ describe 'Editing page' do
 
   it 'grants permission to edit a page and removes abandoned images', js: true do
     [:abandoned, :new].each do |code|
-      allow_any_instance_of(PagesController).to receive(:open).with("https://codepen.io/api/oembed?url=https://codepen.io/#{code}/pen/code&format=json").and_return '{"title": "A great pen!"}'
+      allow_any_instance_of(PagesController).to receive(:open).with("https://codepen.io/api/oembed?url=https://codepen.io/#{code}/pen/code&format=json").and_return '{"title": "A great pen!", "thumbnail_url": "http://example.com/thumbnail.png"}'
       html = double('html null object')
       allow(html).to receive(:read).and_return('Some HTML')
       allow_any_instance_of(PagesController).to receive(:open).with("https://codepen.io/#{code}/pen/code.html").and_return html

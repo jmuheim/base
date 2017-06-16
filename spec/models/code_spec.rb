@@ -4,6 +4,7 @@ RSpec.describe Code do
   it { should belong_to(:page) }
   it { should validate_presence_of(:creator_id).with_message "can't be blank" }
   it { should validate_presence_of(:title).with_message "can't be blank" }
+  it { should validate_presence_of(:thumbnail_url).with_message "can't be blank" }
 
   # Uniqueness specs are a bit nasty, see http://stackoverflow.com/questions/27046691/cant-get-uniqueness-validation-test-pass-with-shoulda-matcher
   describe 'uniqueness validations' do

@@ -6,9 +6,9 @@ describe 'Creating page' do
     login_as @user
   end
 
-  it 'creates a page and removes abandoned images', js: true do
+  it 'creates a page and removes abandoned images and codes', js: true do
     [:abandoned, :referenced].each do |code|
-      allow_any_instance_of(PagesController).to receive(:open).with("https://codepen.io/api/oembed?url=https://codepen.io/#{code}/pen/code&format=json").and_return '{"title": "A great pen!"}'
+      allow_any_instance_of(PagesController).to receive(:open).with("https://codepen.io/api/oembed?url=https://codepen.io/#{code}/pen/code&format=json").and_return '{"title": "A great pen!", "thumbnail_url": "http://example.com/thumbnail.png"}'
       html = double('html null object')
       allow(html).to receive(:read).and_return('Some HTML')
       allow_any_instance_of(PagesController).to receive(:open).with("https://codepen.io/#{code}/pen/code.html").and_return html
@@ -56,7 +56,7 @@ describe 'Creating page' do
     fill_in "page_images_attributes_#{nested_field_id}_file", with: base64_image[:data]
     fill_in "page_images_attributes_#{nested_field_id}_identifier", with: 'abandoned-image'
 
-    # Let's add an code that is referenced in the content
+    # Let's add a code that is referenced in the content
     expect {
       click_link 'Create Code'
     } .to change { all('#codes .nested-fields').count }.by 1
@@ -64,7 +64,7 @@ describe 'Creating page' do
     nested_field_id = get_latest_nested_field_id(:page_codes)
     fill_in "page_codes_attributes_#{nested_field_id}_identifier", with: 'referenced-code'
 
-    # Let's add another image that's not referenced
+    # Let's add another code that's not referenced
     click_link 'Create Code'
     nested_field_id = get_latest_nested_field_id(:page_codes)
     fill_in "page_codes_attributes_#{nested_field_id}_identifier", with: 'abandoned-code'
@@ -90,13 +90,14 @@ describe 'Creating page' do
     expect(Code.count).to eq 1
     code = Code.last
     expect(code.identifier).to eq 'referenced-code'
+    expect(code.thumbnail_url).to eq 'http://example.com/thumbnail.png'
     expect(code.html).to eq 'Some HTML'
     expect(code.css).to eq 'Some CSS'
     expect(code.js).to eq 'Some JavaScript'
   end
 
   # See https://github.com/layerssss/paste.js/issues/39
-  it 'allow_any_instance_ofs to paste images and codes as nested attributes directly into content and notes textareas', js: true do
+  it 'allows to paste images and codes as nested attributes directly into content and notes textareas', js: true do
     visit new_page_path
 
     # Make sure that the ClipboardToNestedResourcePastabilizer loaded successfully. Some better tests would be good, but don't know how. See https://github.com/layerssss/paste.js/issues/39.

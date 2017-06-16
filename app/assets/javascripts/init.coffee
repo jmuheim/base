@@ -45,7 +45,7 @@ class App.Init
           height: 100
 
   makeTextareasPastableToNestedResource: ($el) ->
-    $el.find('textarea[data-pastable-image="true"]').each ->
+    $el.find('textarea[data-pastable-resources="true"]').each ->
       new App.ClipboardToNestedResourcePastabilizer @
 
   optimizeMarkdownGeneratedHtml: ($el) ->

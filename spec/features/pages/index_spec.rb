@@ -8,7 +8,7 @@ describe 'Listing pages' do
 
   it 'displays pages' do
     parent_page = create :page, creator: @user
-    @page = create :page, creator: @user, images: [create(:image, creator: @user)], navigation_title: 'Page test navigation title', parent: parent_page
+    @page = create :page, creator: @user, images: [create(:image, creator: @user)], codes: [create(:code, creator: @user)], navigation_title: 'Page test navigation title', parent: parent_page
     visit pages_path
 
     expect(page).to have_title 'Pages - Base'
@@ -21,6 +21,7 @@ describe 'Listing pages' do
       expect(page).to have_css '.navigation_title', text: 'Page test navigation title'
       expect(page).to have_css '.ancestors',        text: 1
       expect(page).to have_css '.images',           text: 1
+      expect(page).to have_css '.codes',            text: 1
       expect(page).to have_css '.notes',            text: 'Page test notes'
 
       expect(page).to have_link 'Edit'
@@ -35,7 +36,7 @@ describe 'Listing pages' do
 
   it 'offers an ATOM feed' do
     parent_page = create :page, creator: @user, title: 'Parent page'
-    @page = create :page, creator: @user, images: [create(:image, creator: @user)], navigation_title: 'Page test navigation title', parent: parent_page
+    @page = create :page, creator: @user, navigation_title: 'Page test navigation title', parent: parent_page
     visit pages_path format: :atom
 
     expect(page).to have_title 'Pages - Base Project'

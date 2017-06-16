@@ -56,10 +56,10 @@ class App.ClipboardToNestedResourcePastabilizer
       '#images'
 
     examineAlternativeText: ->
-      prompt(@$input.data('pastable-image-alt-prompt'))
+      prompt(@$input.data('pastable-resources-image-alt-prompt'))
 
     examineIdentifier: ->
-      identifier = prompt(@$input.data('pastable-image-identifier-prompt'), @slugify(@alternativeText))
+      identifier = prompt(@$input.data('pastable-resources-image-identifier-prompt'), @slugify(@alternativeText))
 
       if identifier == ''
         @getTemporaryIdentifierId()
@@ -93,16 +93,20 @@ class App.ClipboardToNestedResourcePastabilizer
     nestedFieldsIdentifier: ->
       '#codes'
 
+    examineAlternativeText: ->
+      prompt(@$input.data('pastable-resources-code-text-prompt'))
+
     stringForInput: ->
-      @identifierField  = @$newNestedFields.find(':input[id$="_identifier"]')
+      @alternativeText = @examineAlternativeText()
+      return null if @alternativeText == null # Cancel!
 
       codeUser        = @pastedData[1]
       codePen         = @pastedData[2]
-      codeIdentifier = "#{codeUser}-#{codePen}"
+      codeIdentifier  = "#{codeUser}-#{codePen}"
 
       @identifierField.val codeIdentifier
 
-      "[](@code-#{codeIdentifier})"
+      "[#{@alternativeText}](@code-#{codeIdentifier})"
 
   constructor: (el) ->
     @$input = $(el)

@@ -6,6 +6,7 @@ tr id=dom_id(page)
     = recurring_string? page.ancestors.count, :ancestors
 
   td.images = page.images.count
+  td.codes  = page.codes.count
 
   td.notes
     - if page.notes.present?

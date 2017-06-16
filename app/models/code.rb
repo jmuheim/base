@@ -10,6 +10,7 @@ class Code < ApplicationRecord
 
   validates :creator_id, presence: true
   validates :title, presence: true
+  validates :thumbnail_url, presence: true
 
   def pen_url
     url(:pen)
