@@ -48,6 +48,6 @@ This is a basic Rails project with everything configured the way I want. To fork
 
 Last but not least: run `$ rails spec` to see if everything's working, then commit all your changes.
 
-= Remove this file
+= Complement README.md
 
-Remove <code>README.rdoc</code> to complete the forking process. And complement `README.md` it with your project specific details.
+ As there are now both a <code>README.md</code> and <code>README.rdoc</code> file, GitHub will show the <code>README.md</code> when browsing the repository. So please complement <code>README.md</code> with your project specific details (and leave <code>README.rdoc</code> in place).
