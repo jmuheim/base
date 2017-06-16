@@ -7,10 +7,10 @@
 
 This is a basic Rails project with everything configured the way I want. To fork it, create a new repository on GitHub, clone it to your computer, and execute <code>git remote add upstream git@github.com:jmuheim/base.git</code> to add Base's original repository as upstream. Now you can always merge Base's code into your project using <code>git pull upstream master</code>.
 
-= Additional TODOs in your fork:
+= Additional TODOs in your fork
 
 - Rename <code>README_example.md</code> to <code>README.md</code> and commit. Then open <code>README.md</code> and...
-  - Replace <code>TITLE</code> with a meaningful title, e.g. <code>Pretty Calc - A pretty calculator</code>
+  - Replace <code>TITLE</code> with a meaningful title, e.g. <code>Pretty Calc - A pretty calculator</code> (be sure you search case sensitive!)
   - Replace all occurrences of GITHUB to the name of the GitHub account where your repository lies, e.g. <code>jmuheim</code>
   - Replace all occurrences of PROJECT to your project's downcased name, e.g. <code>pretty_calc</code> for <code>Pretty Calc</code>
 - Change the content of <code>.ruby-gemset</code> file to the name of your fork's repository
@@ -28,6 +28,7 @@ This is a basic Rails project with everything configured the way I want. To fork
 - We want to use ports different to the default ports, so they don't clash with other Rails apps:
     - Change the Rack Livereload port in <code>Guardfile</code> and <code>config/development.rb</code> to e.g. <code>35730</code>
     - Change the value of <code>port</code> in <code>config/puma.rb</code> and the value of <code>config.action_mailer.default_url_options</code> in <code>config/development.rb</code> to e.g. <code>3050</code>
+        - Note: in your browser, you will have to connect to your app using this port, e.g. `localhost:3050`!
 - Create an <code>.rspec</code> file with your specific RSpec config, e.g. <code>--color</code>
 - Copy <code>db/config_example.yml</code> to <code>db/config.yml</code> and specify database settings
 - Execute the following:
