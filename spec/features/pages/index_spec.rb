@@ -57,7 +57,7 @@ describe 'Listing pages' do
         expect(page).to have_content '<h1>Content</h1>'
         expect(page).to have_content '<p>Page test content</p>'
         expect(page).to have_content '<h1>Notice about Atom feed</h1>'
-        expect(page).to have_content '<p>Your feed reader has downloaded version 0 of the current page, which was current at June 15, 2015 12:33. Meanwhile there could be an updated version of the page available online. Visit the original page to see the most current version!</p>'
+        expect(page).to have_content '<p>Your feed reader has downloaded version 0 of the current page, which was current at June 15, 2015 14:33. Meanwhile there could be an updated version of the page available online. Visit the original page to see the most current version!</p>'
       end
     end
 
