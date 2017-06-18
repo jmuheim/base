@@ -7,7 +7,8 @@ describe 'Editing page' do
   end
 
   it 'grants permission to edit a page and removes abandoned images', js: true do
-    [:abandoned, :new].each do |code|
+    # Admitted, this looks very ugly...
+    [:existing, :abandoned, :new].each do |code|
       allow_any_instance_of(PagesController).to receive(:open).with("https://codepen.io/api/oembed?url=https://codepen.io/#{code}/pen/code&format=json").and_return '{"title": "A great pen!", "thumbnail_url": "http://example.com/thumbnail.png"}'
       html = double('html null object')
       allow(html).to receive(:read).and_return('Some HTML')
@@ -24,7 +25,7 @@ describe 'Editing page' do
     new_parent_page = create :page, creator: @user, title: 'Cooler parent page'
     child_of_new_parent_page = create :page, creator: @user, parent: new_parent_page
 
-    @page = create :page, creator: @user, images: [create(:image, creator: @user)], parent: old_page_parent, navigation_title: 'Cool navigation title'
+    @page = create :page, creator: @user, images: [create(:image, creator: @user)], codes: [create(:code, creator: @user)], parent: old_page_parent, navigation_title: 'Cool navigation title'
 
     visit edit_page_path(@page)
 
@@ -55,6 +56,8 @@ describe 'Editing page' do
 
     find('#page_images_attributes_0_file', visible: false).set base64_other_image[:data]
     fill_in 'page_images_attributes_0_identifier', with: 'existing-image'
+
+    fill_in 'page_codes_attributes_0_identifier', with: 'existing-code'
 
     # Let's add an image that is referenced in the content
     expect {
@@ -108,15 +111,19 @@ describe 'Editing page' do
       .and change { @page.images.last.file.file.identifier }.to('file.png')
       .and change { @page.images.last.identifier }.to('new-image')
       .and change { @page.codes.count }.by(1)
-      .and change { @page.codes.first.identifier }.to('existing-image')
-      .and change { @page.codes.first.identifier }.to('existing-image')
-      .and change { @page.codes.first.identifier }.to('existing-image')
-      .and change { @page.codes.first.identifier }.to('existing-image')
-      .and change { @page.codes.last.identifier }.to('new-image')
+      .and change { @page.codes.first.identifier }.to('existing-code')
+      .and change { @page.codes.first.html }.to('Some HTML')
+      .and change { @page.codes.first.css }.to('Some CSS')
+      .and change { @page.codes.first.js }.to('Some JavaScript')
+      .and change { @page.codes.last.identifier }.to('new-code')
 
     # Only the referenced image is kept
     expect(Image.count).to eq 2
     expect(Image.last.identifier).to eq 'new-image'
+
+    # Only the referenced code is kept
+    expect(Code.count).to eq 2
+    expect(Code.last.identifier).to eq 'new-code'
   end
 
   it "provides the correct parent and position collections" do
