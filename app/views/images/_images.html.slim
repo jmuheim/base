@@ -9,4 +9,4 @@
       p.links
         = link_to_add_association f, :images, partial: 'images/image_fields' do
           => fa_icon 'plus-circle'
-          = t '.add_image'
+          = t('actions.new_resource', resource: Image.model_name.human)

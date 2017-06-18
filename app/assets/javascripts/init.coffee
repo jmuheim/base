@@ -5,7 +5,7 @@ class App.Init
     @makeJumpLinksVisibleOnFocus @$el
     @makeFormsAccessible @$el
     @makeTextareasPastable @$el
-    @makeTextareasPastableToNestedImage @$el
+    @makeTextareasPastableToNestedResource @$el
     @optimizeMarkdownGeneratedHtml @$el
     @initTooltips @$el
     @initFancybox @$el
@@ -44,9 +44,9 @@ class App.Init
           width: 100,
           height: 100
 
-  makeTextareasPastableToNestedImage: ($el) ->
-    $el.find('textarea[data-pastable-image="true"]').each ->
-      new App.ClipboardToNestedImagePastabilizer @
+  makeTextareasPastableToNestedResource: ($el) ->
+    $el.find('textarea[data-pastable-resources="true"]').each ->
+      new App.ClipboardToNestedResourcePastabilizer @
 
   optimizeMarkdownGeneratedHtml: ($el) ->
     new App.MarkdownHtmlOptimizer $el

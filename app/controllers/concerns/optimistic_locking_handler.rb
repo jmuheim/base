@@ -2,9 +2,9 @@ module OptimisticLockingHandler
   extend ActiveSupport::Concern
 
   module ClassMethods
-    def provide_optimistic_locking_for(resource_name)
+    def provide_optimistic_locking
       rescue_from ActiveRecord::StaleObjectError do
-        render_edit_with_stale_info(instance_variable_get("@#{resource_name}"))
+        render_edit_with_stale_info(instance_variable_get("@#{controller_name.classify.underscore}"))
       end
     end
   end

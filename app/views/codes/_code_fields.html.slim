@@ -4,9 +4,9 @@
       = f.input :identifier
 
     .col-md-6
-      = f.input :file, as: :paste
+      = f.input :title, disabled: true
 
       / TODO: We don't test this yet!
       = link_to_remove_association f do
-        = t('actions.destroy_resource', resource: Image.model_name.human)
+        = t('actions.destroy_resource', resource: Code.model_name.human)
         =< fa_icon 'times-circle'

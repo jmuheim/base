@@ -34,4 +34,20 @@ RSpec.describe "pages/show", type: :view do
       expect(rendered).not_to have_selector('.images')
     end
   end
+
+  describe "Rendering codes" do
+    before { assign :page, create(:page, codes: [create(:code, creator: @user)], creator: @user).decorate }
+
+    it 'renders to admins' do
+      allow(controller).to receive(:current_user).and_return(create :admin)
+      render
+      expect(rendered).to have_selector('.codes')
+    end
+
+    it "doesn't render to normal users" do
+      allow(controller).to receive(:current_user).and_return(create :user)
+      render
+      expect(rendered).not_to have_selector('.codes')
+    end
+  end
 end
