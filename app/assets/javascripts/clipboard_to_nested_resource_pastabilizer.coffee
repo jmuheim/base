@@ -116,13 +116,17 @@ class App.ClipboardToNestedResourcePastabilizer
     @$input.on('pasteImage', (ev, pastedData) =>
       new ImagePaster(@$input, pastedData)
     ).on('pasteText', (ev, pastedData) =>
-      if match = pastedData.text.match(/https:\/\/codepen.io\/(.+)\/pen\/(.+)/)
+      preventDefault = false
+
+      if match = pastedData.text.match(new RegExp("^https:\/\/codepen.io\/(.+)\/pen\/(.+)$"))
         new CodePaster(@$input, match)
+        preventDefault = true
+      else if match = pastedData.text.match(new RegExp("^https?:\/\/#{window.location.host}\/(.{2})\/pages\/(.+)$"))
+        # TODO: Ask for text and insert link ([](@page-xy))
+        preventDefault = true
 
-        # Doesn't work at the time being, see https://github.com/layerssss/paste.js/issues/45
-        ev.preventDefault()
-
-        # ...so we need this workaround:
+      # ev.preventDefault() doesn't work at the time being, see https://github.com/layerssss/paste.js/issues/45
+      if preventDefault
         caretPosition = @$input.caret()
         @$input.val(@$input.val().replace(pastedData.text, ''))
         @$input.caret(caretPosition - pastedData.text.length)
