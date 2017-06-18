@@ -60,6 +60,7 @@ describe 'Creating page' do
     expect {
       click_link 'Create Code'
     } .to change { all('#codes .nested-fields').count }.by 1
+    expect(page).to have_css '#codes .nested-fields .page_codes_title input:disabled'
 
     nested_field_id = get_latest_nested_field_id(:page_codes)
     fill_in "page_codes_attributes_#{nested_field_id}_identifier", with: 'referenced-code'

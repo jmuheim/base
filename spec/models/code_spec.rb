@@ -5,6 +5,10 @@ RSpec.describe Code do
   it { should validate_presence_of(:creator_id).with_message "can't be blank" }
   it { should validate_presence_of(:title).with_message "can't be blank" }
   it { should validate_presence_of(:thumbnail_url).with_message "can't be blank" }
+  it { should validate_presence_of(:identifier).with_message "can't be blank" }
+  it { should allow_value('pen-id').for(:identifier) }
+  it { should allow_value('p3N-1D').for(:identifier) }
+  it { should_not allow_value('somethingother').for(:identifier) }
 
   # Uniqueness specs are a bit nasty, see http://stackoverflow.com/questions/27046691/cant-get-uniqueness-validation-test-pass-with-shoulda-matcher
   describe 'uniqueness validations' do
@@ -37,7 +41,7 @@ RSpec.describe Code do
       code = create :code
 
       expect {
-        code.update_attributes! identifier: 'daisy'
+        code.update_attributes! identifier: 'some-identifier'
       }.to change { code.versions.count }.by 1
     end
 
@@ -71,6 +75,18 @@ RSpec.describe Code do
       expect {
         code.update_attributes! js: 'daisy'
       }.to change { code.versions.count }.by 1
+    end
+  end
+
+  describe '#pen_url' do
+    it 'returns the URL to the pen view' do
+      expect(create(:code, identifier: 'name-id').pen_url).to eq 'https://codepen.io/name/pen/id'
+    end
+  end
+
+  describe '#debug_url' do
+    it 'returns the URL to the debug view' do
+      expect(create(:code, identifier: 'name-id').debug_url).to eq 'https://codepen.io/name/debug/id'
     end
   end
 end

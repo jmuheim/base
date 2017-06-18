@@ -1,0 +1,12 @@
+markdown:
+  ### Resources can be pasted directly from the clipboard
+
+  - There are two resource types which can be pasted directly from the clipboard: image and code
+      - An image resource is image data (e.g. after creating a screenshot)
+      - A code resource is the link to an existing [CodePen.io](https://codepen.io) pen (e.g. `http://codepen.io/jmuheim/pen/gLwzGZ`)
+  - Every resource has an identifier: use it to reference the respective resource in your Markdown
+      - For an image identifier `dragon`, use a Markdown image definition like follows: `![An alt text](@image-dragon)` (leave alt text empty for a decorative image)
+      - For a code identifier `jmuheim-gLwzGZ`, use a Markdown link definition like follows: `[A link text](@code-jmuheim-gLwzGZ)` (leave link text empty to use the code's original title)
+          - The code identifier must be the CodePen user and the pen's ID, separated with a hyphen
+  - When pasting a resource from the clipboard, the respective Markdown definition is generated and inserted automatically
+  - Resources whose identifier doesn't occur in any of the markdown fields are deleted automatically (to prevent abandoned resources)

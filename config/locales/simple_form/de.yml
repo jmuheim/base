@@ -25,8 +25,8 @@ de:
         toggler_text: Vollansicht umschalten (Esc)
       text_fullscreen_with_pastable_resources:
         image_alt_prompt: Alternativtext eingeben (leer lassen für dekoratives Bild)
-        image_identifier_prompt: Dateiname eingeben (leer lassen um eine Zufallszahl zu verwenden)
-        code_text_prompt: Alternativtext eingeben (leer lassen um Original-Titel zu verwenden)
+        image_identifier_prompt: Dateiname eingeben (leer lassen, um eine Zufallszahl zu verwenden)
+        code_text_prompt: Alternativtext eingeben (leer lassen, um Original-Titel zu verwenden)
       upload:
         click_to_choose_a_file: Klicken um eine %{attribute} Datei zu wählen
         click_to_choose_another_file: Klicken, um eine andere %{attribute}-Datei zu wählen

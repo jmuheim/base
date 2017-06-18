@@ -6,7 +6,8 @@ class Code < ApplicationRecord
   belongs_to :creator, class_name: User, foreign_key: :creator_id
 
   validates :identifier, presence: true,
-                         uniqueness: {scope: :page_id}
+                         uniqueness: {scope: :page_id},
+                         format: /\A\w+\-\w+\z/
 
   validates :creator_id, presence: true
   validates :title, presence: true
@@ -19,6 +20,8 @@ class Code < ApplicationRecord
   def debug_url
     url(:debug)
   end
+
+  private
 
   def url(type)
     matches = identifier.match(/^(.+)\-(.+)$/)

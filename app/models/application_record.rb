@@ -12,10 +12,10 @@ class ApplicationRecord < ActiveRecord::Base
         # Ignore lock_version and _destroy when checking for attributes
         attributes.all? { |key, value| %w(_destroy lock_version).include?(key) || value.blank? }
       }
+    end
 
-      define_method :textareas_accepting_pastables do
-        textareas
-      end
+    define_method :textareas_accepting_pastables do
+      textareas
     end
   end
 end
