@@ -74,7 +74,7 @@ RSpec.describe PageDecorator do
 
         it 'converts @references to code identifiers to full code paths (e.g. @code-test-123)' do
           @page_decorator.update_attribute field, "[My code](@code-test-123)"
-          expect(@page_decorator.send("#{field}_with_references")).to eq "[**My code**![](Code test thumbnail url)](https://codepen.io/test/debug/123){.code title=\"Code test title\"}"
+          expect(@page_decorator.send("#{field}_with_references")).to eq "[**My code**![](Code test thumbnail url)](https://codepen.io/test/pen/123){.code title=\"Code test title\"}"
         end
 
         it "doesn't take into account references that miss the @ (e.g. code-test-123)" do
@@ -96,20 +96,20 @@ RSpec.describe PageDecorator do
 
         it 'replaces empty text with the code title' do
           @page_decorator.update_attribute field, "[](@code-test-123)"
-          expect(@page_decorator.send("#{field}_with_references")).to eq "[**Code test title**![](Code test thumbnail url)](https://codepen.io/test/debug/123){.code}"
+          expect(@page_decorator.send("#{field}_with_references")).to eq "[**Code test title**![](Code test thumbnail url)](https://codepen.io/test/pen/123){.code}"
         end
 
         context 'text different to code title' do
           it 'adds the code title as title attribute' do
             @page_decorator.update_attribute field, "[some other title](@code-test-123)"
-            expect(@page_decorator.send("#{field}_with_references")).to eq "[**some other title**![](Code test thumbnail url)](https://codepen.io/test/debug/123){.code title=\"Code test title\"}"
+            expect(@page_decorator.send("#{field}_with_references")).to eq "[**some other title**![](Code test thumbnail url)](https://codepen.io/test/pen/123){.code title=\"Code test title\"}"
           end
         end
 
         context 'text equals code title' do
           it "doesn't add title as title attribute" do
             @page_decorator.update_attribute field, "[Code test title](@code-test-123)"
-            expect(@page_decorator.send("#{field}_with_references")).to eq "[**Code test title**![](Code test thumbnail url)](https://codepen.io/test/debug/123){.code}"
+            expect(@page_decorator.send("#{field}_with_references")).to eq "[**Code test title**![](Code test thumbnail url)](https://codepen.io/test/pen/123){.code}"
           end
         end
       end

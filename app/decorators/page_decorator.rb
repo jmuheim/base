@@ -55,7 +55,7 @@ class PageDecorator < Draper::Decorator
             # TODO: Adding the thumbnail only works well in block links! Inline links should have a font awesome code icon instead.
             caption = "**#{caption}**![](#{code.thumbnail_url})"
 
-            url = code.debug_url
+            url = code.pen_url
           end
         end
 
