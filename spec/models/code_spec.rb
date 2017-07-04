@@ -8,6 +8,7 @@ RSpec.describe Code do
   it { should validate_presence_of(:identifier).with_message "can't be blank" }
   it { should allow_value('pen-id').for(:identifier) }
   it { should allow_value('p3N-1D').for(:identifier) }
+  it { should allow_value('pen-with-hyphen-1D').for(:identifier) }
   it { should_not allow_value('somethingother').for(:identifier) }
 
   # Uniqueness specs are a bit nasty, see http://stackoverflow.com/questions/27046691/cant-get-uniqueness-validation-test-pass-with-shoulda-matcher
@@ -80,13 +81,13 @@ RSpec.describe Code do
 
   describe '#pen_url' do
     it 'returns the URL to the pen view' do
-      expect(create(:code, identifier: 'name-id').pen_url).to eq 'https://codepen.io/name/pen/id'
+      expect(create(:code, identifier: 'name-with-hyphen-id').pen_url).to eq 'https://codepen.io/name-with-hyphen/pen/id'
     end
   end
 
   describe '#debug_url' do
     it 'returns the URL to the debug view' do
-      expect(create(:code, identifier: 'name-id').debug_url).to eq 'https://codepen.io/name/debug/id'
+      expect(create(:code, identifier: 'name-with-hyphen-id').debug_url).to eq 'https://codepen.io/name-with-hyphen/debug/id'
     end
   end
 end

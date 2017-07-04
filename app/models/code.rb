@@ -7,7 +7,7 @@ class Code < ApplicationRecord
 
   validates :identifier, presence: true,
                          uniqueness: {scope: :page_id},
-                         format: /\A\w+\-\w+\z/
+                         format: /\A.+\-\w+\z/
 
   validates :creator_id, presence: true
   validates :title, presence: true
@@ -24,7 +24,7 @@ class Code < ApplicationRecord
   private
 
   def url(type)
-    matches = identifier.match(/^(.+)\-(.+)$/)
+    matches = identifier.match(/\A(.+)\-(\w+)\z/)
     "https://codepen.io/#{matches[1]}/#{type}/#{matches[2]}"
   end
 end
