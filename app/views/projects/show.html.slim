@@ -5,7 +5,9 @@
     .col-md-8
       .markdown
         .description
-          = markdown indent_heading_level @project.description, 1
+          h2 = Project.human_attribute_name :description
+
+          = markdown indent_heading_level @project.description, 2
 
     .col-md-4
       .additional_information
