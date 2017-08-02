@@ -6,7 +6,7 @@ describe PageTitleAndHeadlineHelper do
       before { helper.instance_variable_set(:@virtual_path, 'homepage.show') }
       subject { helper.headline_with_flash } # Why do we need explicit receiver? See http://stackoverflow.com/questions/29229368
 
-      it { should have_content 'Welcome to Base!' }
+      it { should have_content 'Welcome to the Project Manager!' }
     end
 
     describe '#headline_with_flash("Some title")' do
@@ -68,7 +68,7 @@ describe PageTitleAndHeadlineHelper do
         helper.title_tag
       end
 
-      it { should eq '<title>This is the title - Base</title>' }
+      it { should eq '<title>This is the title - Project Manager</title>' }
     end
 
     context 'with flash' do
@@ -79,7 +79,7 @@ describe PageTitleAndHeadlineHelper do
         helper.title_tag
       end
 
-      it { should eq '<title>Alert: This is an alert! Notice: This is a notice! This is the title - Base</title>' }
+      it { should eq '<title>Alert: This is an alert! Notice: This is a notice! This is the title - Project Manager</title>' }
     end
 
     context 'with prefixes' do
@@ -90,7 +90,7 @@ describe PageTitleAndHeadlineHelper do
         helper.title_tag
       end
 
-      it { should eq '<title>This is another prefix - This is a first prefix - This is the title - Base</title>' }
+      it { should eq '<title>This is another prefix - This is a first prefix - This is the title - Project Manager</title>' }
     end
   end
 end

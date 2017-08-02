@@ -8,7 +8,7 @@ describe 'Requesting new password' do
 
     expect(page).to have_title 'Forgot your password? - Project Manager'
     expect(page).to have_active_navigation_items 'Sign in'
-    expect(page).to have_breadcrumbs 'Base', 'Sign in', 'Forgot your password?'
+    expect(page).to have_breadcrumbs 'Project Manager', 'Sign in', 'Forgot your password?'
     expect(page).to have_headline 'Forgot your password?'
 
     within '.frequently_occuring_sign_in_problems' do

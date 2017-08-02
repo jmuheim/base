@@ -10,9 +10,9 @@ describe 'Creating page' do
     parent_page = create :page, creator: @user, title: 'Cool parent page'
     visit new_page_path
 
-    expect(page).to have_title 'Create Page - Base'
+    expect(page).to have_title 'Create Page - Project Manager'
     expect(page).to have_active_navigation_items 'Pages', 'Create Page'
-    expect(page).to have_breadcrumbs 'Base', 'Pages', 'Create'
+    expect(page).to have_breadcrumbs 'Project Manager', 'Pages', 'Create'
     expect(page).to have_headline 'Create Page'
 
     fill_in 'page_title',            with: 'new title'

@@ -11,9 +11,9 @@ describe 'Showing user' do
 
     visit user_path(other_user)
 
-    expect(page).to have_title 'User test name - Base'
+    expect(page).to have_title 'User test name - Project Manager'
     expect(page).to have_active_navigation_items 'Users'
-    expect(page).to have_breadcrumbs 'Base', 'Users', 'User test name'
+    expect(page).to have_breadcrumbs 'Project Manager', 'Users', 'User test name'
     expect(page).to have_headline 'User test name'
 
     within dom_id_selector(other_user) do
