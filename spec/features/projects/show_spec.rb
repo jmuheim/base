@@ -9,9 +9,9 @@ describe 'Showing project' do
   it 'displays a project' do
     visit project_path(@project)
 
-    expect(page).to have_title 'Project test name - Base'
+    expect(page).to have_title 'Project test name - Project Manager'
     expect(page).to have_active_navigation_items 'Projects'
-    expect(page).to have_breadcrumbs 'Base', 'Projects', 'Project test name'
+    expect(page).to have_breadcrumbs 'Project Manager', 'Projects', 'Project test name'
     expect(page).to have_headline 'Project test name'
 
     within dom_id_selector(@project) do
