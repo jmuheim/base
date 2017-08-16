@@ -5,5 +5,9 @@ tr id=dom_id(project)
     - if project.description.present?
       pre = project.description
 
+  td.customer
+    - if project.customer.present?
+      pre = project.customer
+
   td.actions
     == render 'shared/index/actions', resource: project

@@ -11,6 +11,7 @@ describe 'Editing project' do
 
     fill_in 'project_name',         with: ''
     fill_in 'project_description',  with: 'The project description'
+    fill_in 'project_customer',     with: 'The project customer'
 
     click_button 'Update Project'
 
