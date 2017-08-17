@@ -25,6 +25,7 @@ de:
       project:
         name: Name
         description: Beschreibung
+        customer: Kunde
         created_at: Erstellt am
         created_by: Erstellt von
       role:

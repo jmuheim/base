@@ -3,7 +3,9 @@ require 'rails_helper'
 describe 'Deleting project' do
 
   before do
-    @project = create :project, :customer, description: "# Here's some info about the project\n\nBla bla bla."
+    @project = create :project,
+                      description: "# Here's some info about the project\n\nBla bla bla.",
+                      customer: "# Here's customer about the project\n\nBla bla bla."
     login_as(create :admin)
   end
 

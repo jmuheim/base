@@ -3,6 +3,10 @@ class ProjectsController < ApplicationController
   before_action :add_breadcrumbs
   respond_to :html
 
+  def index
+    @projects = Project.all
+  end
+
   def create
     @project.save
     respond_with @project

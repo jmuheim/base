@@ -2,7 +2,9 @@ require 'rails_helper'
 
 describe 'Listing projects' do
   before do
-    @project = create :project, :customer, description: "# Here's some info about the project\n\nBla bla bla."
+    @project = create :project,
+                      description: "# Here's some info about the project\n\nBla bla bla.",
+                      customer: "# Here's customer about the project\n\nBla bla bla."
     login_as(create :admin)
   end
 
@@ -15,7 +17,6 @@ describe 'Listing projects' do
     expect(page).to have_headline 'Projects'
 
     within dom_id_selector(@project) do
-
       expect(page).to have_link 'Edit'
       expect(page).to have_link 'Delete'
     end
