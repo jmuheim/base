@@ -17,7 +17,6 @@ describe 'Creating Project' do
 
     fill_in 'project_name',           with: ''
     fill_in 'project_description',    with: 'New Description'
-    fill_in 'project_customer',       with: 'New Customer'
 
     click_button 'Create Project'
 

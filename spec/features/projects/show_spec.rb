@@ -24,11 +24,6 @@ describe 'Showing project' do
         expect(page).to have_css 'h3', text: "Here's some info about the project"
         expect(page).to have_content 'Bla bla bla.'
       end
-      within '.customer' do
-        expect(page).to have_css 'h2', text: 'Customer'
-        expect(page).to have_css 'h3', text: "Here's customer about the project"
-        expect(page).to have_content 'Bla bla bla.'
-      end
 
       expect(page).to have_link 'Edit'
       expect(page).to have_link 'Delete'
