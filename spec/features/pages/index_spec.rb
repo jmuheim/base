@@ -11,9 +11,9 @@ describe 'Listing pages' do
     @page = create :page, creator: @user, images: [create(:image, creator: @user)], codes: [create(:code, creator: @user)], navigation_title: 'Page test navigation title', parent: parent_page
     visit pages_path
 
-    expect(page).to have_title 'Pages - Base'
+    expect(page).to have_title 'Pages - Project Manager'
     expect(page).to have_active_navigation_items 'Pages', 'List of Pages'
-    expect(page).to have_breadcrumbs 'Base', 'Pages'
+    expect(page).to have_breadcrumbs 'Project Manager', 'Pages'
     expect(page).to have_headline 'Pages'
 
     within dom_id_selector(@page) do
@@ -39,7 +39,7 @@ describe 'Listing pages' do
     @page = create :page, creator: @user, navigation_title: 'Page test navigation title', parent: parent_page
     visit pages_path format: :atom
 
-    expect(page).to have_title 'Pages - Base Project'
+    expect(page).to have_title 'Pages - Project Manager'
 
     within 'entry:nth-of-type(1)' do
       expect(page).to have_css 'title', text: 'Parent page'
@@ -53,7 +53,7 @@ describe 'Listing pages' do
 
       within 'content' do
         expect(page).to have_content '<h1>Position in page hierarchy</h1>'
-        expect(page).to have_content '<ol><li><a href="/en">Base Project</a></li><li><a href="/en/pages/1">Page test navigation title</a></li></ol>'
+        expect(page).to have_content '<ol><li><a href="/en">Project Manager</a></li><li><a href="/en/pages/1">Page test navigation title</a></li></ol>'
         expect(page).to have_content '<h1>Content</h1>'
         expect(page).to have_content '<p>Page test content</p>'
         expect(page).to have_content '<h1>Notice about Atom feed</h1>'
@@ -65,7 +65,7 @@ describe 'Listing pages' do
       expect(page).to have_css 'title', text: 'Page test title'
 
       within 'content' do
-        expect(page).to have_content '<ol><li><a href="/en">Base Project</a></li><li><a href="/en/pages/1">Page test navigation title</a></li><li><a href="/en/pages/2">Page test navigation title</a></li></ol>'
+        expect(page).to have_content '<ol><li><a href="/en">Project Manager</a></li><li><a href="/en/pages/1">Page test navigation title</a></li><li><a href="/en/pages/2">Page test navigation title</a></li></ol>'
       end
     end
   end

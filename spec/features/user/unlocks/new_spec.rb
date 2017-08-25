@@ -20,9 +20,9 @@ describe 'Requesting new unlock' do
     # Now we can unlock it
     visit new_user_unlock_path
 
-    expect(page).to have_title 'Resend unlock instructions - Base'
+    expect(page).to have_title 'Resend unlock instructions - Project Manager'
     expect(page).to have_active_navigation_items 'Sign up'
-    expect(page).to have_breadcrumbs 'Base', 'Sign up', 'Resend unlock instructions'
+    expect(page).to have_breadcrumbs 'Project Manager', 'Sign up', 'Resend unlock instructions'
     expect(page).to have_headline 'Resend unlock instructions'
 
     within '.frequently_occuring_sign_in_problems' do
