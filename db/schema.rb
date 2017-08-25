@@ -132,15 +132,6 @@ ActiveRecord::Schema.define(version: 20170801111309) do
     t.index ["transaction_id"], name: "index_versions_on_transaction_id", using: :btree
   end
 
-  create_table "works", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.datetime "created_at",                                        null: false
-    t.datetime "updated_at",                                        null: false
-    t.string   "title"
-    t.text     "description", limit: 65535
-    t.string   "name"
-    t.decimal  "hour",                      precision: 8, scale: 2
-  end
-
   add_foreign_key "codes", "pages"
   add_foreign_key "images", "users", column: "creator_id", name: "index_images_on_creator_id"
   add_foreign_key "pages", "users", column: "creator_id"

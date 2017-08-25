@@ -30,7 +30,6 @@ en:
       project:
         name: Name
         description: Description
-        customer: Customer
         created_at: Created at
         created_by: Updated at
       user:
