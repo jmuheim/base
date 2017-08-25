@@ -10,21 +10,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170801111309) do
+ActiveRecord::Schema.define(version: 20170825181703) do
 
   create_table "codes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "title"
-    t.string   "identifier"
+    t.string   "title",                                   null: false
+    t.string   "identifier",                              null: false
     t.integer  "page_id"
-    t.text     "html",         limit: 65535
-    t.text     "css",          limit: 65535
-    t.text     "js",           limit: 65535
-    t.integer  "lock_version"
+    t.text     "html",          limit: 65535
+    t.text     "css",           limit: 65535
+    t.text     "js",            limit: 65535
+    t.string   "thumbnail_url",                           null: false
+    t.integer  "lock_version",                default: 0
     t.integer  "creator_id"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
     t.index ["creator_id"], name: "index_codes_on_creator_id", using: :btree
     t.index ["page_id"], name: "index_codes_on_page_id", using: :btree
+  end
+
+  create_table "customers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "customer"
+    t.text     "address",    limit: 65535
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
   create_table "images", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -42,16 +50,16 @@ ActiveRecord::Schema.define(version: 20170801111309) do
   create_table "pages", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "title"
     t.string   "navigation_title"
-    t.text     "content",          limit: 16777215
-    t.text     "notes",            limit: 16777215
-    t.boolean  "system",                            default: false
-    t.integer  "lock_version",                      default: 0,     null: false
-    t.datetime "created_at",                                        null: false
-    t.datetime "updated_at",                                        null: false
+    t.text     "content",          limit: 65535
+    t.text     "notes",            limit: 65535
+    t.boolean  "system",                         default: false
+    t.integer  "lock_version",                   default: 0,     null: false
+    t.datetime "created_at",                                     null: false
+    t.datetime "updated_at",                                     null: false
     t.integer  "parent_id"
-    t.integer  "position",                          default: 1,     null: false
+    t.integer  "position",                       default: 1,     null: false
     t.text     "lead",             limit: 65535
-    t.integer  "creator_id",                                        null: false
+    t.integer  "creator_id",                                     null: false
     t.index ["creator_id"], name: "index_pages_on_creator_id", using: :btree
   end
 
@@ -65,8 +73,8 @@ ActiveRecord::Schema.define(version: 20170801111309) do
 
   create_table "roles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
-    t.integer  "resource_id"
     t.string   "resource_type"
+    t.integer  "resource_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.index ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id", using: :btree
@@ -80,7 +88,7 @@ ActiveRecord::Schema.define(version: 20170801111309) do
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                           default: 0, null: false
+    t.integer  "sign_in_count",                        default: 0, null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -89,14 +97,14 @@ ActiveRecord::Schema.define(version: 20170801111309) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
-    t.integer  "failed_attempts",                         default: 0, null: false
+    t.integer  "failed_attempts",                      default: 0, null: false
     t.string   "unlock_token"
     t.datetime "locked_at"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "avatar"
-    t.integer  "lock_version",                            default: 0
-    t.text     "about",                  limit: 16777215
+    t.integer  "lock_version",                         default: 0
+    t.text     "about",                  limit: 65535
     t.string   "curriculum_vitae"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
@@ -120,29 +128,19 @@ ActiveRecord::Schema.define(version: 20170801111309) do
   end
 
   create_table "versions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "item_type",                         null: false
-    t.integer  "item_id",                           null: false
-    t.string   "event",                             null: false
+    t.string   "item_type",                       null: false
+    t.integer  "item_id",                         null: false
+    t.string   "event",                           null: false
     t.string   "whodunnit"
-    t.text     "object",         limit: 4294967295
+    t.text     "object",         limit: 16777215
     t.datetime "created_at"
-    t.text     "object_changes", limit: 16777215
+    t.text     "object_changes", limit: 65535
     t.integer  "transaction_id"
     t.index ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id", using: :btree
     t.index ["transaction_id"], name: "index_versions_on_transaction_id", using: :btree
   end
 
-  create_table "works", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.datetime "created_at",                                        null: false
-    t.datetime "updated_at",                                        null: false
-    t.string   "title"
-    t.text     "description", limit: 65535
-    t.string   "name"
-    t.decimal  "hour",                      precision: 8, scale: 2
-  end
-
   add_foreign_key "codes", "pages"
   add_foreign_key "images", "users", column: "creator_id", name: "index_images_on_creator_id"
-  add_foreign_key "pages", "users", column: "creator_id"
   add_foreign_key "pages", "users", column: "creator_id", name: "index_pages_on_creator_id"
 end

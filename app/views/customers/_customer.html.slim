@@ -1,0 +1,9 @@
+tr id=dom_id(customer)
+  th.customer       = link_to customer.customer, customer
+
+  td.address
+    - if customer.address.present?
+      pre = customer.address
+
+  td.actions
+    == render 'shared/index/actions', resource: customer

@@ -1,0 +1,9 @@
+table.projects.table.table-striped.table-hover
+  thead
+    tr
+      th.customer     = Customer.human_attribute_name :customer
+      th.address      = Customer.human_attribute_name :address
+      th colspan="3"  = t 'actions.actions'
+
+  tbody
+    = render customers
