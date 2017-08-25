@@ -11,7 +11,7 @@
       = panel.body do
         == render 'page_hierarchy_info'
         == render 'referencing_pages_info'
-        == render 'pasting_images_info'
+        == render 'pasting_resources_info'
 
   = panel do |panel|
     = panel.heading do
@@ -28,10 +28,11 @@
       = f.input :title
       = f.input :navigation_title
       = f.input :lead, as: :text_fullscreen
-      = f.input :content, as: :text_fullscreen_with_pastable_images
-      = f.input :notes, as: :text_fullscreen_with_pastable_images
+      = f.input :content, as: :text_fullscreen_with_pastable_resources
+      = f.input :notes, as: :text_fullscreen_with_pastable_resources
 
   .row
     .col-md-12
       == render 'images/images', f: f
+      == render 'codes/codes', f: f
       == render 'shared/form/actions', form: f, resource: @page

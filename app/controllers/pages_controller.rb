@@ -1,8 +1,8 @@
 class PagesController < ApplicationController
   # As the pages are all loaded for the navigation already, we don't have to load it on index again
   load_and_authorize_resource except: :index
-  provide_optimistic_locking_for :page
-  provide_image_pasting_for :page
+  provide_optimistic_locking
+  provide_pastability
   before_action :add_breadcrumbs
   before_action :provide_parent_collection, only: [:new, :create, :edit, :update]
   before_action :provide_position_collection, only: [:edit, :update]
@@ -20,7 +20,8 @@ class PagesController < ApplicationController
 
   def create
     @page.creator = current_user
-    set_creator_of_new_images(@page.images)
+    assign_creator_to_new_pastables
+    assign_codepen_data_to_codes
     @page.save
 
     respond_with @page
@@ -28,7 +29,8 @@ class PagesController < ApplicationController
 
   def update
     @page.assign_attributes(page_params)
-    set_creator_of_new_images(@page.images)
+    assign_creator_to_new_pastables
+    assign_codepen_data_to_codes
     @page.save
 
     respond_with @page
@@ -50,7 +52,8 @@ class PagesController < ApplicationController
                                  :parent_id,
                                  :position,
                                  :lock_version,
-                                 images_attributes: image_attributes)
+                                 images_attributes: images_attributes,
+                                 codes_attributes: codes_attributes)
   end
 
   def add_breadcrumbs
@@ -81,7 +84,24 @@ class PagesController < ApplicationController
     @next_page     = @pages[@pages.index(@page) + 1]
   end
 
-  def set_creator_of_new_images(images)
-    images.select(&:new_record?).each { |image| image.creator = current_user }
+  def assign_creator_to_new_pastables
+    [:images, :codes].each do |pastables|
+      @page.send(pastables).select(&:new_record?).each { |pastable| pastable.creator = current_user }
+    end
+  end
+
+  # TODO: Only when the codepen was updated!
+  def assign_codepen_data_to_codes
+    @page.codes.each do |code|
+      # Some meta data is available through CodePen's JSON API
+      json = JSON.load(open("https://codepen.io/api/oembed?url=#{code.pen_url}&format=json"))
+      code.title         = json['title']
+      code.thumbnail_url = json['thumbnail_url']
+
+      # HTML, CSS, and JavaScript must be imported through the pen's URL with proper extension appended
+      [:html, :css, :js].each do |format|
+        code.send "#{format}=", open("#{code.pen_url}.#{format}").read
+      end
+    end
   end
 end

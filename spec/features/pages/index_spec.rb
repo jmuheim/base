@@ -8,7 +8,7 @@ describe 'Listing pages' do
 
   it 'displays pages' do
     parent_page = create :page, creator: @user
-    @page = create :page, creator: @user, images: [create(:image, creator: @user)], navigation_title: 'Page test navigation title', parent: parent_page
+    @page = create :page, creator: @user, images: [create(:image, creator: @user)], codes: [create(:code, creator: @user)], navigation_title: 'Page test navigation title', parent: parent_page
     visit pages_path
 
     expect(page).to have_title 'Pages - Base'
@@ -21,6 +21,7 @@ describe 'Listing pages' do
       expect(page).to have_css '.navigation_title', text: 'Page test navigation title'
       expect(page).to have_css '.ancestors',        text: 1
       expect(page).to have_css '.images',           text: 1
+      expect(page).to have_css '.codes',            text: 1
       expect(page).to have_css '.notes',            text: 'Page test notes'
 
       expect(page).to have_link 'Edit'
@@ -35,7 +36,7 @@ describe 'Listing pages' do
 
   it 'offers an ATOM feed' do
     parent_page = create :page, creator: @user, title: 'Parent page'
-    @page = create :page, creator: @user, images: [create(:image, creator: @user)], navigation_title: 'Page test navigation title', parent: parent_page
+    @page = create :page, creator: @user, navigation_title: 'Page test navigation title', parent: parent_page
     visit pages_path format: :atom
 
     expect(page).to have_title 'Pages - Base Project'
@@ -56,7 +57,7 @@ describe 'Listing pages' do
         expect(page).to have_content '<h1>Content</h1>'
         expect(page).to have_content '<p>Page test content</p>'
         expect(page).to have_content '<h1>Notice about Atom feed</h1>'
-        expect(page).to have_content '<p>Your feed reader has downloaded version 0 of the current page, which was current at June 15, 2015 12:33. Meanwhile there could be an updated version of the page available online. Visit the original page to see the most current version!</p>'
+        expect(page).to have_content '<p>Your feed reader has downloaded version 0 of the current page, which was current at June 15, 2015 14:33. Meanwhile there could be an updated version of the page available online. Visit the original page to see the most current version!</p>'
       end
     end
 

@@ -1,7 +1,12 @@
 markdown:
-  ### Bilder können direkt aus dem Zwischenspeicher eingefügt werden
+  ### Ressourcen können direkt aus dem Zwischenspeicher eingefügt werden
 
-  - Jedes Bild hat eine eindeutige Kennzeichnung: nutze diese, um die entsprechende Bild-URL zu referenzieren
-  - Beispiel: Für ein Kennzeichen `123`, verwende eine Markdown Bild-Definition wie folgt: `![Ein Alt-Text](@image-123)`
-  - Beim Einfügen eines Bildes aus dem Zwischenspeicher wird die entsprechende Bild-Definition automatisch generiert und eingefügt
-  - Bilder, deren Kennzeichnung in keinem der Markdown Felder auftaucht, werden automatisch beim Speichern gelöscht (dadurch werden verwaiste Bilder vermieden)
+  - Folgende zwei Ressource-Typen können aus dem Zwischenspeicher eingefügt werden: Bild und Code
+      - Eine Bild-Ressource ist eine Bild-Datei (z.B. beim Erstellen eines Screenshots)
+      - Eine Code-Ressource ist ein Link zu einem existierenden [CodePen.io](https://codepen.io) Pen (z.B. `http://codepen.io/jmuheim/pen/gLwzGZ`)
+  - Jede Ressource hat eine Kennung: nutze sie, um eine entsprechende Ressource in deinem Markdown zu referenzieren
+      - Für eine Bild-Kennung `dragon`, nutze eine Markdown-Bild-Definition wie folgt: `![Ein alt Text](@image-dragon)` (lasse den alt Text leer bei dekorativen Bildern)
+      - Für eine Code-Kennung `jmuheim-gLwzGZ`, nutze eine Markdown-Bild-Definition wie folgt: `[Ein Link Text](@code-jmuheim-gLwzGZ)` (lasse den Link Text leer, um den Original-Titel des Code's zu verwenden)
+          - Die Code-Kennung muss aus dem CodePen-Nutzer und der ID des Pens bestehen, getrennt durch einen Bindestrich
+  - Beim Einfügen einer Ressource aus dem Zwischenspeicher wird die entsprechende Markdown-Definition automatisch erstellt und eingefügt
+  - Ressourcen, deren Kennungen sich in keinem der Markdown-Felder befinden, werden automatisch gelöscht (um vergessene Ressourcen zu vermeiden)

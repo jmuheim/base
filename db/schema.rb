@@ -13,16 +13,17 @@
 ActiveRecord::Schema.define(version: 20170529153837) do
 
   create_table "codes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "title"
-    t.string   "identifier"
+    t.string   "title",                                   null: false
+    t.string   "identifier",                              null: false
     t.integer  "page_id"
-    t.text     "html",         limit: 65535
-    t.text     "css",          limit: 65535
-    t.text     "js",           limit: 65535
-    t.integer  "lock_version"
+    t.text     "html",          limit: 65535
+    t.text     "css",           limit: 65535
+    t.text     "js",            limit: 65535
+    t.string   "thumbnail_url",                           null: false
+    t.integer  "lock_version",                default: 0
     t.integer  "creator_id"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
     t.index ["creator_id"], name: "index_codes_on_creator_id", using: :btree
     t.index ["page_id"], name: "index_codes_on_page_id", using: :btree
   end
