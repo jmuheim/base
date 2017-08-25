@@ -11,18 +11,19 @@ describe 'Editing project' do
     visit edit_project_path(@project)
 
     fill_in 'project_name',         with: ''
-    fill_in 'project_description',  with: 'The project description'
 
     click_button 'Update Project'
 
     expect(page).to have_content 'Alert: Project could not be updated.'
 
-    fill_in 'project_name',       with: 'The new Project'
+    fill_in 'project_name',         with: 'The new Project'
+    fill_in 'project_description',  with: 'The project description'
 
-    click_button 'Update Project'
-    @project.reload
+    expect {
+      click_button 'Update Project'
+      @project.reload
+    } .to  change { @project.name }.to('The new Project')
+      .and change { @project.description }.to('The project description')
 
-    expect(page).to have_link 'The new Project'
-    expect(page).to have_content 'The project description'
   end
 end

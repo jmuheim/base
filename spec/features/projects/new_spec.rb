@@ -15,14 +15,14 @@ describe 'Creating Project' do
     expect(page).to have_breadcrumbs 'Project Manager', 'Project', 'Create'
     expect(page).to have_headline 'Create Project'
 
-    fill_in 'project_name',           with: ''
-    fill_in 'project_description',    with: 'New Description'
+    fill_in 'project_name',         with: ''
+    fill_in 'project_description',  with: 'New Description'
 
     click_button 'Create Project'
 
     expect(page).to have_flash('Project could not be created.').of_type :alert
 
-    fill_in 'project_name',           with: 'New Project'
+    fill_in 'project_name', with: 'New Project'
 
     within '.actions' do
       expect(page).to have_css 'h2', text: 'Actions'
