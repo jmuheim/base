@@ -1,9 +1,9 @@
 ---
 de:
   app:
-    acronym: Base
-    name: Base Project
-    slogan: Vorkonfiguriertes grundlegendes zugängliches Rails Projekt. Fork erstellen!
+    acronym: Projekt Manager
+    name: Projekt Manager
+    slogan: Das praktische und zugängliche Projekt Management Tool
   buttons:
     save: Speichern
   'false': Nein
@@ -11,12 +11,12 @@ de:
     news:
       title: Letzte Neuigkeiten
     show:
-      title: Willkommen auf Base!
+      title: Willkommen im Projekt Manager!
     statistics:
       number_of_resource: Anzahl %{resource}
       title: Statistiken
   org:
-    name: MuheimWebdesign
+    name: Reto Inniger
   pages:
     browsing:
       browsing: Blättern
