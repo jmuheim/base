@@ -10,20 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170529153837) do
+ActiveRecord::Schema.define(version: 20170801111309) do
 
   create_table "codes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "title",                                   null: false
-    t.string   "identifier",                              null: false
+    t.string   "title"
+    t.string   "identifier"
     t.integer  "page_id"
-    t.text     "html",          limit: 65535
-    t.text     "css",           limit: 65535
-    t.text     "js",            limit: 65535
-    t.string   "thumbnail_url",                           null: false
-    t.integer  "lock_version",                default: 0
+    t.text     "html",         limit: 65535
+    t.text     "css",          limit: 65535
+    t.text     "js",           limit: 65535
+    t.integer  "lock_version"
     t.integer  "creator_id"
-    t.datetime "created_at",                              null: false
-    t.datetime "updated_at",                              null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
     t.index ["creator_id"], name: "index_codes_on_creator_id", using: :btree
     t.index ["page_id"], name: "index_codes_on_page_id", using: :btree
   end
@@ -54,6 +53,14 @@ ActiveRecord::Schema.define(version: 20170529153837) do
     t.text     "lead",             limit: 65535
     t.integer  "creator_id",                                        null: false
     t.index ["creator_id"], name: "index_pages_on_creator_id", using: :btree
+  end
+
+  create_table "projects", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name",                      null: false
+    t.text     "description", limit: 65535
+    t.string   "customer"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
   create_table "roles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -123,6 +130,15 @@ ActiveRecord::Schema.define(version: 20170529153837) do
     t.integer  "transaction_id"
     t.index ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id", using: :btree
     t.index ["transaction_id"], name: "index_versions_on_transaction_id", using: :btree
+  end
+
+  create_table "works", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.datetime "created_at",                                        null: false
+    t.datetime "updated_at",                                        null: false
+    t.string   "title"
+    t.text     "description", limit: 65535
+    t.string   "name"
+    t.decimal  "hour",                      precision: 8, scale: 2
   end
 
   add_foreign_key "codes", "pages"

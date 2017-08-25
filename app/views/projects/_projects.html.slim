@@ -1,0 +1,9 @@
+table.projects.table.table-striped.table-hover
+  thead
+    tr
+      th.name         = Project.human_attribute_name :name
+      th.description  = Project.human_attribute_name :description
+      th colspan="3"  = t 'actions.actions'
+
+  tbody
+    = render projects

@@ -1,0 +1,33 @@
+= container_for @project do
+  = headline_with_flash @project.name
+
+  .row
+    .col-md-8
+      .markdown
+        .description
+          h2 = Project.human_attribute_name :description
+
+          = markdown indent_heading_level @project.description, 2
+
+  .row
+    .col-md-8
+      .markdown
+        .customer
+          h2 = Project.human_attribute_name :customer
+
+          = markdown indent_heading_level @project.customer, 2
+
+    .col-md-4
+      .additional_information
+        h2 = t 'shared.show.additional_information'
+
+        dl.dl-horizontal
+          dt.created_at = Project.human_attribute_name :created_at
+          dd.created_at = l @project.created_at, format: :short
+
+          dt.updated_at = Project.human_attribute_name :updated_at
+          dd.updated_at = l @project.updated_at, format: :short
+
+  == render 'shared/show/versions', versions: @project.versions, heading_level: 2 if can?(:read, PaperTrail::Version) && @project.versions.any?
+
+  == render 'shared/show/actions',  resource: @project
