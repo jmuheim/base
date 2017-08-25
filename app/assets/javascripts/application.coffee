@@ -20,7 +20,7 @@
 #
 # --- Add custom requires under here! ---
 #= require example_script
-#= require clipboard_to_nested_image_pastabilizer
+#= require clipboard_to_nested_resource_pastabilizer
 #= require clipboard_to_textarea_pastabilizer
 #= require depending_select_disabler
 #= require diff_generator

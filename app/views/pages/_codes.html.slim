@@ -1,0 +1,21 @@
+.codes
+  = accordion :codes, item_options: {title_tag: "h#{heading_level}", panel_class: 'panel-success'} do |accordion|
+    = accordion.panel do |panel|
+      = panel.title do
+        = Code.model_name.human count: :other
+        =< "(#{codes.size})"
+
+      = panel.body do
+        table.table.table-striped.table-hover.diff
+          thead
+            tr
+              th = Code.human_attribute_name :identifier
+              th = Code.human_attribute_name :title
+              th = Code.human_attribute_name :url
+              th = Code.human_attribute_name :created_by
+              th = Code.human_attribute_name :created_at
+              th = Code.human_attribute_name :updated_at
+
+          tbody
+            - codes.each do |code|
+              == render 'code', code: code

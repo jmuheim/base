@@ -2,7 +2,7 @@ class Page < ApplicationRecord
   extend ActsAsTree::TreeWalker
 
   has_paper_trail only: [:title, :navigation_title, :lead, :content, :notes]
-  accepts_pasted_images_for :content, :notes
+  accepts_pastables_for :content, :notes
 
   acts_as_tree order: :position, dependent: :restrict_with_error
   acts_as_list scope: [:parent_id]

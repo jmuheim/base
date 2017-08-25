@@ -15,11 +15,6 @@ de:
     statistics:
       number_of_resource: Anzahl %{resource}
       title: Statistiken
-  images:
-    image_fields:
-      remove_image: Bild entfernen
-    images:
-      add_image: Abbildung hinzufügen
   org:
     name: Reto Inniger
   pages:
@@ -31,7 +26,7 @@ de:
       no_previous_page: Keine vorherige Seite
       previous_page: Vorherige Seite
     form:
-      info: Informationen zum Erstellen und Bearbeiten von Seiten und Bildern
+      info: Informationen zum Erstellen und Bearbeiten von Seiten, zum Einfügen von Bildern und Codes
     page:
       notice_title: Hinweis zum Atom Feed
       notice_content: Dein Feed Reader hat Version %{version} der aktuellen Seite heruntergeladen, welche am %{date} aktuell war. Mittlerweile könnte eine neue Version der Seite online vorhanden sein. Besuche die Original-Seite, um die aktuellste Version zu sehen!

@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
 
   include BreadcrumbsHandler
   include OptimisticLockingHandler
-  include ImagePastingHandler
+  include PastabilityHandler
 
   helper :image_gallery
 
