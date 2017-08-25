@@ -22,8 +22,7 @@ class ProjectsController < ApplicationController
 
   def project_params
     params.require(:project).permit(:name,
-                                    :description,
-                                    :customer)
+                                    :description)
   end
 
   def add_breadcrumbs

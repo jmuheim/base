@@ -3,8 +3,7 @@ require 'rails_helper'
 describe 'Creating Project' do
   before do
     @project = create :project,
-                      description: "# Here's some info about the project\n\nBla bla bla.",
-                      customer: "# Here's customer about the project\n\nBla bla bla."
+                      description: "# Here's some info about the project\n\nBla bla bla."
     login_as(create :admin)
   end
 
@@ -18,7 +17,6 @@ describe 'Creating Project' do
 
     fill_in 'project_name',           with: ''
     fill_in 'project_description',    with: 'New Description'
-    fill_in 'project_customer',       with: 'New Customer'
 
     click_button 'Create Project'
 

@@ -3,8 +3,7 @@ require 'rails_helper'
 describe 'Showing project' do
   before do
     @project = create :project,
-                      description: "# Here's some info about the project\n\nBla bla bla.",
-                      customer: "# Here's customer about the project\n\nBla bla bla."
+                      description: "# Here's some info about the project\n\nBla bla bla."
     login_as(create :admin)
   end
 
@@ -23,11 +22,6 @@ describe 'Showing project' do
       within '.description' do
         expect(page).to have_css 'h2', text: 'Description'
         expect(page).to have_css 'h3', text: "Here's some info about the project"
-        expect(page).to have_content 'Bla bla bla.'
-      end
-      within '.customer' do
-        expect(page).to have_css 'h2', text: 'Customer'
-        expect(page).to have_css 'h3', text: "Here's customer about the project"
         expect(page).to have_content 'Bla bla bla.'
       end
 
