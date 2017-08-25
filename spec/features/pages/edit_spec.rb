@@ -7,11 +7,25 @@ describe 'Editing page' do
   end
 
   it 'grants permission to edit a page and removes abandoned images', js: true do
+    # Admitted, this looks very ugly...
+    [:existing, :abandoned, :new].each do |code|
+      allow_any_instance_of(PagesController).to receive(:open).with("https://codepen.io/api/oembed?url=https://codepen.io/#{code}/pen/code&format=json").and_return '{"title": "A great pen!", "thumbnail_url": "http://example.com/thumbnail.png"}'
+      html = double('html null object')
+      allow(html).to receive(:read).and_return('Some HTML')
+      allow_any_instance_of(PagesController).to receive(:open).with("https://codepen.io/#{code}/pen/code.html").and_return html
+      css = double('css null object')
+      allow(css).to receive(:read).and_return('Some CSS')
+      allow_any_instance_of(PagesController).to receive(:open).with("https://codepen.io/#{code}/pen/code.css").and_return css
+      js = double('js null object')
+      allow(js).to receive(:read).and_return('Some JavaScript')
+      allow_any_instance_of(PagesController).to receive(:open).with("https://codepen.io/#{code}/pen/code.js").and_return js
+    end
+
     old_page_parent = create :page, creator: @user, title: 'Cool parent page', navigation_title: nil
     new_parent_page = create :page, creator: @user, title: 'Cooler parent page'
     child_of_new_parent_page = create :page, creator: @user, parent: new_parent_page
 
-    @page = create :page, creator: @user, images: [create(:image, creator: @user)], parent: old_page_parent, navigation_title: 'Cool navigation title'
+    @page = create :page, creator: @user, images: [create(:image, creator: @user)], codes: [create(:code, creator: @user)], parent: old_page_parent, navigation_title: 'Cool navigation title'
 
     visit edit_page_path(@page)
 
@@ -36,28 +50,44 @@ describe 'Editing page' do
 
     fill_in 'page_title',            with: 'A new title'
     fill_in 'page_navigation_title', with: 'A new navigation title'
-    fill_in 'page_content',          with: "A new content with a ![existing image](@image-some-existing-identifier) and a ![new image](@image-some-new-identifier)"
+    fill_in 'page_content',          with: "A new content with a ![existing image](@image-existing-image) and a ![new image](@image-new-image). Also an ![existing code](@code-existing-code) and a ![new code](@code-new-code). "
     fill_in 'page_notes',            with: 'A new note'
     select 'Cooler parent page', from: 'page_parent_id'
 
     find('#page_images_attributes_0_file', visible: false).set base64_other_image[:data]
-    fill_in 'page_images_attributes_0_identifier', with: 'some-existing-identifier'
+    fill_in 'page_images_attributes_0_identifier', with: 'existing-image'
 
-    # # Let's add an image that is referenced in the content
+    fill_in 'page_codes_attributes_0_identifier', with: 'existing-code'
+
+    # Let's add an image that is referenced in the content
     expect {
-      click_link 'Add image'
+      click_link 'Create Image'
     } .to change { all('#images .nested-fields').count }.by 1
 
     scroll_by(0, 10000) # Otherwise the footer overlaps the element and results in a Capybara::Poltergeist::MouseEventFailed, see http://stackoverflow.com/questions/4424790/cucumber-capybara-scroll-to-bottom-of-page
     nested_field_id = get_latest_nested_field_id(:page_images)
-    fill_in "page_images_attributes_#{nested_field_id}_identifier", with: 'some-new-identifier'
+    fill_in "page_images_attributes_#{nested_field_id}_identifier", with: 'new-image'
     fill_in "page_images_attributes_#{nested_field_id}_file", with: base64_image[:data]
 
     # Let's add another image that's not referenced
-    click_link 'Add image'
+    click_link 'Create Image'
     nested_field_id = get_latest_nested_field_id(:page_images)
     fill_in "page_images_attributes_#{nested_field_id}_file", with: base64_image[:data]
-    fill_in "page_images_attributes_#{nested_field_id}_identifier", with: 'abandoned-identifier'
+    fill_in "page_images_attributes_#{nested_field_id}_identifier", with: 'abandoned-image'
+
+    # Let's add a code that is referenced in the content
+    expect {
+      click_link 'Create Code'
+    } .to change { all('#codes .nested-fields').count }.by 1
+
+    scroll_by(0, 10000) # Otherwise the footer overlaps the element and results in a Capybara::Poltergeist::MouseEventFailed, see http://stackoverflow.com/questions/4424790/cucumber-capybara-scroll-to-bottom-of-page
+    nested_field_id = get_latest_nested_field_id(:page_codes)
+    fill_in "page_codes_attributes_#{nested_field_id}_identifier", with: 'new-code'
+
+    # Let's add another code that's not referenced
+    click_link 'Create Code'
+    nested_field_id = get_latest_nested_field_id(:page_codes)
+    fill_in "page_codes_attributes_#{nested_field_id}_identifier", with: 'abandoned-code'
 
     within '.actions' do
       expect(page).to have_css 'h2', text: 'Actions'
@@ -73,17 +103,27 @@ describe 'Editing page' do
       .and change { @page.navigation_title }.to('A new navigation title')
       .and change { @page.parent }.from(old_page_parent).to(new_parent_page)
       .and change { @page.position }.from(1).to(2)
-      .and change { @page.content }.to("A new content with a ![existing image](@image-some-existing-identifier) and a ![new image](@image-some-new-identifier)")
+      .and change { @page.content }.to("A new content with a ![existing image](@image-existing-image) and a ![new image](@image-new-image). Also an ![existing code](@code-existing-code) and a ![new code](@code-new-code).")
       .and change { @page.notes }.to('A new note')
       .and change { @page.images.count }.by(1)
       .and change { @page.images.first.file.file.identifier }.to('file.png')
-      .and change { @page.images.first.identifier }.to('some-existing-identifier')
+      .and change { @page.images.first.identifier }.to('existing-image')
       .and change { @page.images.last.file.file.identifier }.to('file.png')
-      .and change { @page.images.last.identifier }.to('some-new-identifier')
+      .and change { @page.images.last.identifier }.to('new-image')
+      .and change { @page.codes.count }.by(1)
+      .and change { @page.codes.first.identifier }.to('existing-code')
+      .and change { @page.codes.first.html }.to('Some HTML')
+      .and change { @page.codes.first.css }.to('Some CSS')
+      .and change { @page.codes.first.js }.to('Some JavaScript')
+      .and change { @page.codes.last.identifier }.to('new-code')
 
     # Only the referenced image is kept
     expect(Image.count).to eq 2
-    expect(Image.last.identifier).to eq 'some-new-identifier'
+    expect(Image.last.identifier).to eq 'new-image'
+
+    # Only the referenced code is kept
+    expect(Code.count).to eq 2
+    expect(Code.last.identifier).to eq 'new-code'
   end
 
   it "provides the correct parent and position collections" do

@@ -1,0 +1,12 @@
+= panel do |panel|
+  = panel.heading do
+    = Code.model_name.human count: :other
+
+  = panel.body do
+    #codes
+      = f.simple_fields_for :codes do |code|
+        = render 'codes/code_fields', f: code
+      p.links
+        = link_to_add_association f, :codes, partial: 'codes/code_fields' do
+          => fa_icon 'plus-circle'
+          = t('actions.new_resource', resource: Code.model_name.human)

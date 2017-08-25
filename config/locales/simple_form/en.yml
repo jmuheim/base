@@ -4,6 +4,9 @@ en:
     error_notification:
       default_message: 'Please review the problems below:'
     hints:
+      codes:
+        identifier: Consists of CodePen user and pen ID, separated by a hyphen (e.g. jmuheim-KmKOZO)
+        title: Is loaded automatically from the pen during save
       page:
         content: The main content of the page. Displayed below the lead and above the teasers of the page's sub pages.
         lead: Describe the page's content in a few short sentences. Displayed on top of the page and in teasers.
@@ -20,9 +23,10 @@ en:
         paste_here: Paste here
       text_fullscreen:
         toggler_text: Toggle fullscreen (Esc)
-      text_fullscreen_with_pastable_images:
-        alt_prompt: Enter alternative text (leave empty for decorative image)
-        identifier_prompt: Enter file name (leave empty to use random number only)
+      text_fullscreen_with_pastable_resources:
+        image_alt_prompt: Enter alternative text (leave empty for decorative image)
+        image_identifier_prompt: Enter file name (leave empty to use random number)
+        code_text_prompt: Enter alternative text (leave empty to use original title)
       upload:
         click_to_choose_a_file: Click to choose a file for %{attribute}
         click_to_choose_another_file: Click to choose another %{attribute} file

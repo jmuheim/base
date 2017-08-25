@@ -119,10 +119,41 @@ describe 'Showing page' do
 
         within '#image_1' do
           expect(page).to have_css ".image a[href='#{@page.images.last.file.url}'] img[alt='Thumb image'][src='#{@page.images.last.file.url(:thumb)}']"
-          expect(page).to have_css '.identifier', text: 'Image test identifier'
+          expect(page).to have_css '.identifier',   text: 'Image test identifier'
           expect(page).to have_css '.created_by a', text: 'User test name'
-          expect(page).to have_css '.created_at', text: '15 Jun 14:33'
-          expect(page).to have_css '.updated_at', text: '15 Jun 14:33'
+          expect(page).to have_css '.created_at',   text: '15 Jun 14:33'
+          expect(page).to have_css '.updated_at',   text: '15 Jun 14:33'
+        end
+      end
+
+      login_as(create :user, :donald)
+      visit page_path(@page)
+      expect(page).not_to have_css '.images'
+    end
+  end
+
+  describe 'codes' do
+    it "doesn't display codes if none available" do
+      @page = create :page, creator: @user
+      visit page_path(@page)
+
+      expect(page).not_to have_css '.codes'
+    end
+
+    it 'displays codes if available (if authorized)' do
+      @page = create :page, codes: [create(:code, creator: @user)], creator: @user
+      visit page_path(@page)
+
+      within '.codes' do
+        expect(page).to have_css 'h2', text: 'Codes'
+
+        within '#code_1' do
+          expect(page).to have_css '.identifier',   text: 'jmuheim-PipApO'
+          expect(page).to have_css '.title',        text: 'Code test title'
+          expect(page).to have_css '.url a',        text: 'https://codepen.io/jmuheim/pen/PipApO'
+          expect(page).to have_css '.created_by a', text: 'User test name'
+          expect(page).to have_css '.created_at',   text: '15 Jun 14:33'
+          expect(page).to have_css '.updated_at',   text: '15 Jun 14:33'
         end
       end
 
