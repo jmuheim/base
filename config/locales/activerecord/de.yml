@@ -34,6 +34,12 @@ de:
         description: Beschreibung
         created_at: Erstellt am
         created_by: Erstellt von
+      customer:
+        customer: Kundenname
+        address: Adresse
+        description: Beschreibung
+        created_at: Erstellt am
+        created_by: Erstellt von
       role:
         created_at: Erstellt am
         name: Name

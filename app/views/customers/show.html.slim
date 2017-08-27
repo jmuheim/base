@@ -9,6 +9,12 @@
 
           = markdown indent_heading_level @customer.address, 2
 
+  .row
+    .col-md-8
+      .description
+        h2 = Customer.human_attribute_name :description
+
+
     .col-md-4
       .additional_information
         h2 = t 'shared.show.additional_information'

@@ -30,9 +30,10 @@ ActiveRecord::Schema.define(version: 20170825181703) do
 
   create_table "customers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "customer"
-    t.text     "address",    limit: 65535
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.text     "address",     limit: 65535
+    t.text     "description", limit: 65535
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
   create_table "images", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
