@@ -3,7 +3,7 @@ require 'rails_helper'
 describe 'Creating Customer' do
   before do
     @customer = create :customer,
-                        address: "# Here's some info about the customer\n\nBla bla bla.",
+                        address: "# Here the Customer address\n\nBla bla bla.",
                         description: "Customer description"
     login_as(create :admin)
   end
@@ -16,8 +16,9 @@ describe 'Creating Customer' do
     expect(page).to have_breadcrumbs 'Project Manager', 'Customer', 'Create'
     expect(page).to have_headline 'Create Customer'
 
-    fill_in 'customer_customer', with: ''
-    fill_in 'customer_address',  with: 'New Address'
+    fill_in 'customer_customer',    with: ''
+    fill_in 'customer_address',     with: 'New Address'
+    fill_in 'customer_description', with: 'New Description'
 
     click_button 'Create Customer'
 
