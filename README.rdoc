@@ -5,35 +5,32 @@
 {<img src="https://gemnasium.com/jmuheim/base.png" alt="Dependency Status" />}[https://gemnasium.com/jmuheim/base]
 {<img src="https://codeclimate.com/github/jmuheim/base/badges/coverage.svg" alt="Coverage Status" />}[https://codeclimate.com/github/jmuheim/base]
 
+Test
+
 This is a basic Rails project with everything configured the way I want. To fork it, create a new repository on GitHub, clone it to your computer, and execute <code>git remote add upstream git@github.com:jmuheim/base.git</code> to add Base's original repository as upstream. Now you can always merge Base's code into your project using <code>git pull upstream master</code>.
 
-= Additional TODOs in your fork
+= Additional TODOs in your fork:
 
 - Rename <code>README_example.md</code> to <code>README.md</code> and commit. Then open <code>README.md</code> and...
-  - Replace <code>TITLE</code> with a meaningful title, e.g. <code>Pretty Calc - A pretty calculator</code> (be sure you search case sensitive!)
+  - Replace <code>TITLE</code> with a meaningful title, e.g. <code>Pretty Calc - A pretty calculator</code>
   - Replace all occurrences of GITHUB to the name of the GitHub account where your repository lies, e.g. <code>jmuheim</code>
   - Replace all occurrences of PROJECT to your project's downcased name, e.g. <code>pretty_calc</code> for <code>Pretty Calc</code>
+  - Complement it with your project specific details
 - Change the content of <code>.ruby-gemset</code> file to the name of your fork's repository
 - Execute the following:
   - <code>$ rvm use .</code> (activates the RVM gemset)
   - <code>$ bundle</code> (installs the gems)
-- Replace all occurrences of <code>Base::Application</code> with <code>PROJECT::Application</code> (e.g. <code>PrettyCalc::Application</code>), every occurrence of <code>module Base</code> with <code>module PROJECT</code> (e.g. <code>module PrettyCalc</code>), and every occurrence of <code>Base::</code> with <code>PROJECT::</code> (e.g. <code>PrettyCalc::</code>)
-- Change the values of <code>secret_key_base</code> in <code>config/secrets.yml</code> (run <code>$ rails secret</code> to create a new secret key for both `development` and `test` environment)
-- Configure [Travis CI](https://travis-ci.org/) and [CodeClimate](https://codeclimate.com/) (optional - if you don't like it, simply remove `travis.yml` file instead):
-    - [Integrate Travis CI with your GitHub account](https://docs.travis-ci.com/user/getting-started/)
-    - TODO: Integrate CodeClimate with your GitHub account
-    - Then edit `.travis.yml`
+  - <code>$ rake db:setup</code> (sets up the database with seed data))
+  - <code>$ bin/rake db:test:prepare</code> (prepare test database)
+- Replace all occurrences of <code>ProjectManager::Application</code> with <code>PROJECT::Application</code> (e.g. <code>PrettyCalc::Application</code>), every occurrence of <code>module ProjectManager</code> with <code>module PROJECT</code> (e.g. <code>module PrettyCalc</code>), and every occurrence of <code>ProjectManager::</code> with <code>PROJECT::</code> (e.g. <code>PrettyCalc::</code>)
+- Change the value of <code>secret_key_base</code> in <code>config/initializers/secret_token.rb</code> (run <code>$ rake secret</code> to create a new secret key)
+- Set the correct value of <code>repo_token</code> in <code>.travis.yml</code> (TODO: is this still the case??)
 - Change the value of <code>session_store</code> in <code>config/initializers/session_store.rb</code> to <code>_PROJECT_session</code> (while <code>PROJECT</code> is your project's downcased and underscored name)
 - Change the value of <code>config.mailer_sender</code> in <code>config/initializers/devise.rb</code> to some useful email address (e.g. <code>info@PROJECT.com</code>)
-- We want to use ports different to the default ports, so they don't clash with other Rails apps:
-    - Change the Rack Livereload port in <code>Guardfile</code> and <code>config/development.rb</code> to e.g. <code>35730</code>
-    - Change the value of <code>port</code> in <code>config/puma.rb</code> and the value of <code>config.action_mailer.default_url_options</code> in <code>config/development.rb</code> to e.g. <code>3050</code>
-        - Note: in your browser, you will have to connect to your app using this port, e.g. `localhost:3050`!
-- Create an <code>.rspec</code> file with your specific RSpec config, e.g. <code>--color</code>
+- Change the Rack Livereload port in <code>Guardfile</code> and <code>config/development.rb</code> to e.g. <code>35730</code>
+- Change the value of <code>Port:</code> in <code>config/boot.rb</code> to e.g. <code>3002</code>
+- Create an <code>.rspec</code> file with your specific RSpec config, e.g. <code>--color</code>, and <code>--require spec_helper</code>
 - Copy <code>db/config_example.yml</code> to <code>db/config.yml</code> and specify database settings
-- Execute the following:
-  - <code>$ rails db:setup</code> (sets up the database with seed data))
-  - <code>$ rails db:test:prepare</code> (prepare test database)
 
 = Activate external services
 
@@ -47,8 +44,8 @@ This is a basic Rails project with everything configured the way I want. To fork
 
 = Run specs
 
-Last but not least: run `$ rails spec` to see if everything's working, then commit all your changes.
+Last but not least: run `$ rake` to see if everything's working, then commit all your changes.
 
-= Complement README.md
+= Remove this file
 
- As there are now both a <code>README.md</code> and <code>README.rdoc</code> file, GitHub will show the <code>README.md</code> when browsing the repository. So please complement <code>README.md</code> with your project specific details (and leave <code>README.rdoc</code> in place).
+Remove <code>README.rdoc</code> to complete the forking process.

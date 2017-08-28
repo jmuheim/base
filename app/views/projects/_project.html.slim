@@ -1,0 +1,9 @@
+tr id=dom_id(project)
+  th.name       = link_to project.name, project
+
+  td.description
+    - if project.description.present?
+      pre = project.description
+
+  td.actions
+    == render 'shared/index/actions', resource: project

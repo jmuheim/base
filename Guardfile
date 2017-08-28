@@ -16,7 +16,7 @@ guard :shell do
   # end
 end
 
-guard :livereload, port: 35729 do
+guard :livereload, port: 35576 do
   watch(%r{app/views/.+\.(erb|haml|slim)$})
   watch(%r{app/(helpers|inputs)/.+\.rb})
   watch('config/routes.rb')

@@ -2,7 +2,7 @@
 # for example lib/tasks/capistrano.rake, and they will automatically be available to Rake.
 
 require File.expand_path('../config/application', __FILE__)
-Base::Application.load_tasks
+ProjectManager::Application.load_tasks
 
 # http://stackoverflow.com/questions/30028315/want-to-seed-with-rails-env-production-but-getting-nameerror-uninitialized-con
 unless Rails.env.production?

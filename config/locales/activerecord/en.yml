@@ -34,6 +34,11 @@ en:
         name: Name
         resource_type: Resource
         updated_at: Updated at
+      project:
+        name: Name
+        description: Description
+        created_at: Created at
+        created_by: Updated at
       user:
         about: About
         avatar: Profile picture
@@ -68,6 +73,9 @@ en:
       paper_trail/version:
         one: Version
         other: Versions
+      project:
+        one: Project
+        other: Projects
       user:
         one: User
         other: Users

@@ -1,0 +1,14 @@
+= simple_form_for project, html:    {class: 'form-horizontal'},
+                           wrapper: :horizontal_form do |f|
+
+  = panel do |panel|
+    = panel.heading do
+      = t('shared.form.details')
+
+    = panel.body do
+      = f.input :name
+      = f.input :description, as: :text_fullscreen
+
+  .row
+    .col-md-12
+      == render 'shared/form/actions', form: f, resource: @project

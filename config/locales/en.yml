@@ -1,9 +1,9 @@
 ---
 en:
   app:
-    acronym: Base
-    name: Base Project
-    slogan: Pre-configured basic accessible Rails project. Fork me!
+    acronym: Project Manager
+    name: Project Manager
+    slogan: The nitty gritty accessible project management tool
   buttons:
     save: Save
   'false': 'No'
@@ -11,12 +11,12 @@ en:
     news:
       title: Latest news
     show:
-      title: Welcome to Base!
+      title: Welcome to the Project Manager!
     statistics:
       number_of_resource: Number of %{resource}
       title: Statistics
   org:
-    name: MuheimWebdesign
+    name: Reto Inniger
   pages:
     browsing:
       browsing: Browsing

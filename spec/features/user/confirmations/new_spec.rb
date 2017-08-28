@@ -6,9 +6,9 @@ describe 'Requesting new confirmation' do
   it 'is possible to request a new confirmation' do
     visit new_user_confirmation_path
 
-    expect(page).to have_title 'Resend confirmation instructions - Base'
+    expect(page).to have_title 'Resend confirmation instructions - Project Manager'
     expect(page).to have_active_navigation_items 'Sign up'
-    expect(page).to have_breadcrumbs 'Base', 'Sign up', 'Resend confirmation...'
+    expect(page).to have_breadcrumbs 'Project Manager', 'Sign up', 'Resend confirmation...'
     expect(page).to have_headline 'Resend confirmation instructions'
 
     within '.frequently_occuring_sign_in_problems' do

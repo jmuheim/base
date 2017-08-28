@@ -1,4 +1,4 @@
-module Base
+module ProjectManager
   module Matchers
     class HaveBreadcrumbs
       def initialize(*breadcrumbs)

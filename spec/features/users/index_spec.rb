@@ -11,9 +11,9 @@ describe 'Listing users' do
   it 'displays users' do
     visit users_path
 
-    expect(page).to have_title 'Users - Base'
+    expect(page).to have_title 'Users - Project Manager'
     expect(page).to have_active_navigation_items 'Users', 'List of Users'
-    expect(page).to have_breadcrumbs 'Base', 'Users'
+    expect(page).to have_breadcrumbs 'Project Manager', 'Users'
     expect(page).to have_headline 'Users'
 
     expect(page).to have_css 'h2', text: 'Filter'

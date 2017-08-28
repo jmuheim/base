@@ -29,6 +29,11 @@ de:
       paper_trail/version:
         created_at: Erstellt am
         whodunnit: Verantwortlicher
+      project:
+        name: Name
+        description: Beschreibung
+        created_at: Erstellt am
+        created_by: Erstellt von
       role:
         created_at: Erstellt am
         name: Name
@@ -68,6 +73,9 @@ de:
       paper_trail/version:
         one: Version
         other: Versionen
+      project:
+        one: Projekt
+        other: Projekte
       user:
         one: Benutzer
         other: Benutzer

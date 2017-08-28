@@ -30,9 +30,9 @@ describe 'Editing user' do
     it 'grants permission to edit other user' do
       visit edit_user_path(@user)
 
-      expect(page).to have_title 'Edit donald - Base'
+      expect(page).to have_title 'Edit donald - Project Manager'
       expect(page).to have_active_navigation_items 'Users'
-      expect(page).to have_breadcrumbs 'Base', 'Users', 'donald', 'Edit'
+      expect(page).to have_breadcrumbs 'Project Manager', 'Users', 'donald', 'Edit'
       expect(page).to have_headline 'Edit donald'
 
       fill_in 'user_name',  with: 'gustav'
