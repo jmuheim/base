@@ -3,7 +3,7 @@ require 'rails_helper'
 describe 'Listing timetracks' do
   before do
     @timetrack = create :timetrack,
-                        description: "# Here's some info about the project\n\nBla bla bla.",
+                        description: "# Here's some info about the timetrack\n\nBla bla bla.",
                         bill_time: 4.5
     login_as(create :admin)
   end
@@ -18,7 +18,7 @@ describe 'Listing timetracks' do
 
     within dom_id_selector(@timetrack) do
       expect(page).to have_css '.name a',       text: 'Timetrack test name'
-      expect(page).to have_css '.description',  text: "# Here's some info about the project Bla bla bla."
+      expect(page).to have_css '.description',  text: "# Here's some info about the timetrack Bla bla bla."
       expect(page).to have_link 'Edit'
       expect(page).to have_link 'Delete'
     end
