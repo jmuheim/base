@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :customer do
-    customer    "Customer test customer"
+    name        "Customer test name"
     address     "Customer test address"
     description "Customer test description"
   end

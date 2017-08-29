@@ -1,10 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe Customer do
-  it { should validate_presence_of(:customer).with_message "can't be blank" }
+  it { should validate_presence_of(:name).with_message "can't be blank" }
 
   it 'has a valid factory' do
-    expect(create(:customer)).to be_valid
+    expect(create(:name)).to be_valid
   end
 
   describe 'versioning', versioning: true do
@@ -16,7 +16,7 @@ RSpec.describe Customer do
       customer = create :customer
 
       expect {
-        customer.update_attributes! customer: 'New name'
+        customer.update_attributes! name: 'New name'
       }.to change { customer.versions.count }.by 1
     end
 
@@ -32,7 +32,7 @@ RSpec.describe Customer do
       customer = create :customer
 
       expect {
-        customer.update_attributes! description: 'New description'
+        customer.update_attributes! description: 'New des'
       }.to change { customer.versions.count }.by 1
     end
   end

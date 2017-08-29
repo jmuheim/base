@@ -21,7 +21,7 @@ class CustomersController < ApplicationController
   private
 
   def customer_params
-    params.require(:customer).permit(:customer,
+    params.require(:customer).permit(:name,
                                       :address,
                                       :description)
   end
@@ -29,8 +29,8 @@ class CustomersController < ApplicationController
   def add_breadcrumbs
     add_breadcrumb Customer.model_name.human(count: :other), customers_path
 
-    add_breadcrumb @customer.customer,  customer_path(@customer)      if [:show, :edit, :update].include? action_name.to_sym
-    add_breadcrumb t('actions.new'),    new_customer_path             if [:new,  :create].include?        action_name.to_sym
-    add_breadcrumb t('actions.edit'),   edit_customer_path(@customer) if [:edit, :update].include?        action_name.to_sym
+    add_breadcrumb @customer.name,    customer_path(@customer)      if [:show, :edit, :update].include? action_name.to_sym
+    add_breadcrumb t('actions.new'),  new_customer_path             if [:new,  :create].include?        action_name.to_sym
+    add_breadcrumb t('actions.edit'), edit_customer_path(@customer) if [:edit, :update].include?        action_name.to_sym
   end
 end

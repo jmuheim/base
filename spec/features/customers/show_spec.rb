@@ -11,10 +11,10 @@ describe 'Showing customer' do
   it 'displays a customer' do
     visit customer_path(@customer)
 
-    expect(page).to have_title 'Customer test customer - Project Manager'
+    expect(page).to have_title 'Customer test name - Project Manager'
     expect(page).to have_active_navigation_items 'Customer', 'List of Customer'
-    expect(page).to have_breadcrumbs 'Project Manager', 'Customer', 'Customer test customer'
-    expect(page).to have_headline 'Customer test customer'
+    expect(page).to have_breadcrumbs 'Project Manager', 'Customer', 'Customer test name'
+    expect(page).to have_headline 'Customer test name'
 
     within dom_id_selector(@customer) do
       expect(page).to have_css '.created_at', text: '15 Jun 14:33'

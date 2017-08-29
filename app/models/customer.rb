@@ -1,6 +1,6 @@
 class Customer < ApplicationRecord
-  has_paper_trail only: [:customer, :address, :description]
+  has_paper_trail only: [:name, :address, :description]
 
-  validates :customer, presence: true,
+  validates :name, presence: true,
                       uniqueness: true
 end

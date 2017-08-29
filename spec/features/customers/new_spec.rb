@@ -13,7 +13,7 @@ describe 'Creating Customer' do
     expect(page).to have_breadcrumbs 'Project Manager', 'Customer', 'Create'
     expect(page).to have_headline 'Create Customer'
 
-    fill_in 'customer_customer',    with: ''
+    fill_in 'customer_name',        with: ''
     fill_in 'customer_address',     with: 'New Address'
     fill_in 'customer_description', with: 'New Description'
 
@@ -21,7 +21,7 @@ describe 'Creating Customer' do
 
     expect(page).to have_flash('Customer could not be created.').of_type :alert
 
-    fill_in 'customer_customer', with: 'New Customer'
+    fill_in 'customer_name', with: 'New Customer'
 
     within '.actions' do
       expect(page).to have_css 'h2', text: 'Actions'
