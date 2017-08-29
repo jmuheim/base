@@ -35,7 +35,7 @@ de:
         created_at: Erstellt am
         created_by: Erstellt von
       customer:
-        customer: Kundenname
+        customer: Name
         address: Adresse
         description: Beschreibung
         created_at: Erstellt am

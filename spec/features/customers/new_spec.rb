@@ -2,9 +2,6 @@ require 'rails_helper'
 
 describe 'Creating Customer' do
   before do
-    @customer = create :customer,
-                        address: "# Here the Customer address\n\nBla bla bla.",
-                        description: "Customer description"
     login_as(create :admin)
   end
 

@@ -3,9 +3,8 @@ require 'rails_helper'
 describe 'Deleting customer' do
 
   before do
-    @customer = create :customer,
-                        address: "# Here the Customer address\n\nBla bla bla.",
-                        description: "Customer description"
+    @customer = create :customer
+
     login_as(create :admin)
   end
 

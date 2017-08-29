@@ -40,7 +40,7 @@ en:
         created_at: Created at
         created_by: Updated at
       customer:
-        customer: Customer
+        customer: Name
         address: Address
         description: Description
         created_at: Created at

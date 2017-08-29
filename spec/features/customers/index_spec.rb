@@ -2,9 +2,8 @@ require 'rails_helper'
 
 describe 'Listing customers' do
   before do
-    @customer = create :customer,
-                        address: "# Here the Customer address\n\nBla bla bla.",
-                        description: "Customer description"
+    @customer = create :customer
+
     login_as(create :admin)
   end
 
@@ -18,8 +17,8 @@ describe 'Listing customers' do
 
     within dom_id_selector(@customer) do
       expect(page).to have_css '.customer a',   text: 'Customer test customer'
-      expect(page).to have_css '.address',      text: "# Here the Customer address Bla bla bla."
-      expect(page).to have_css '.description',  text: 'Customer description'
+      expect(page).to have_css '.address',      text: 'Customer test address'
+      expect(page).to have_css '.description',  text: 'Customer test description'
       expect(page).to have_link 'Edit'
       expect(page).to have_link 'Delete'
     end
