@@ -11,7 +11,7 @@ bundler_args: --without development
 addons:
   # Replace repo_token (or remove this part)
   code_climate:
-    repo_token: 243e5ab59244b7a1d3fb97d56bfe9961307ad558cb4a7cbeec3c85104e9ee11b
+    repo_token: <insert-token-here>
 notifications:
   email:
     recipients:
