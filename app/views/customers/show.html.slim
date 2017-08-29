@@ -5,6 +5,7 @@
     .col-md-8
       .address
         h2 = Customer.human_attribute_name :address
+        p = @customer.address
 
   .row
     .col-md-8
@@ -12,7 +13,7 @@
         .description
           h2 = Customer.human_attribute_name :description
 
-          = markdown indent_heading_level @customer.address, 2
+          = markdown indent_heading_level @customer.description, 2
 
     .col-md-4
       .additional_information

@@ -22,12 +22,12 @@ describe 'Showing customer' do
 
       within '.address' do
         expect(page).to have_css 'h2', text: 'Address'
-        expect(page).to have_content,  text: '# Here the Customer address Bla bla bla.'
+        expect(page).to have_content 'Here the Customer address'
       end
 
       within '.description' do
         expect(page).to have_css 'h2', text: 'Description'
-        expect(page).to have_content,  text: 'Customer description'
+        expect(page).to have_content 'Customer description'
       end
 
       within '.actions' do
