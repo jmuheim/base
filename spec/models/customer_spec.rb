@@ -4,7 +4,7 @@ RSpec.describe Customer do
   it { should validate_presence_of(:name).with_message "can't be blank" }
 
   it 'has a valid factory' do
-    expect(create(:name)).to be_valid
+    expect(create(:customer)).to be_valid
   end
 
   describe 'versioning', versioning: true do
