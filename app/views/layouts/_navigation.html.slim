@@ -22,6 +22,7 @@ nav#navigation.container
         ul#content_navigation.nav.navbar-nav
           == render 'layouts/resource_navigation_group', resource_class: Project if can? :crud, Project
           == render 'layouts/resource_navigation_group', resource_class: Customer if can? :crud, Customer
+          == render 'layouts/resource_navigation_group', resource_class: Timetrack if can? :crud, Timetrack
 
           - @root_pages.each do |page|
             - if (children = page.children).any?

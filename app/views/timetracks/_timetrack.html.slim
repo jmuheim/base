@@ -1,0 +1,17 @@
+tr id=dom_id(timetrack)
+  th.name       = link_to timetrack.name, timetrack
+
+  td.description
+    - if timetrack.description.present?
+      pre = timetrack.description
+
+  td.work_time
+    - if timetrack.work_time.present?
+      pre = timetrack.work_time
+
+  td.bill_time
+    - if timetrack.bill_time.present?
+      pre = timetrack.bill_time
+
+  td.actions
+    == render 'shared/index/actions', resource: timetrack
