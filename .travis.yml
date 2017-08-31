@@ -1,9 +1,11 @@
-dist: trusty
 language: ruby
 rvm:
   - 2.2.6
 bundler_args: --without development
+cache: bundler
 addons:
+  apt_packages:
+    - pandoc
   code_climate:
     repo_token: 243e5ab59244b7a1d3fb97d56bfe9961307ad558cb4a7cbeec3c85104e9ee11b
 before_script:
