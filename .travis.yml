@@ -2,15 +2,21 @@ language: ruby
 rvm:
   - 2.2.6
 before_script:
+  - export PATH=$PATH:/home/travis/.cabal/bin
   - cp config/secrets.travis.yml config/secrets.yml
 script:
   - RAILS_ENV=test bundle exec rails db:setup
   - bundle exec rails spec
 bundler_args: --without development
 addons:
-  # Replace repo_token (or remove this part)
+  apt:
+    packages:
+    - haskell-platform
   code_climate:
     repo_token: 243e5ab59244b7a1d3fb97d56bfe9961307ad558cb4a7cbeec3c85104e9ee11b
+install:
+  - cabal update
+  - cabal install pandoc
 notifications:
   email:
     recipients:
