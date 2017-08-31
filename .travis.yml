@@ -1,12 +1,7 @@
+sudo: false
 language: ruby
 rvm:
   - 2.2.6
-before_script:
-  - export PATH=$PATH:/home/travis/.cabal/bin
-  - cp config/secrets.travis.yml config/secrets.yml
-script:
-  - RAILS_ENV=test bundle exec rails db:setup
-  - bundle exec rails spec
 bundler_args: --without development
 addons:
   apt:
@@ -17,9 +12,15 @@ addons:
 install:
   - cabal update
   - cabal install pandoc
+before_script:
+  - export PATH=$PATH:/home/travis/.cabal/bin
+  - cp config/secrets.travis.yml config/secrets.yml
+script:
+  - RAILS_ENV=test bundle exec rails db:setup
+  - bundle exec rails spec
 notifications:
   email:
     recipients:
-      - your-email@example.com
+      - joshua.muheim@access-for-all.ch
     on_failure: change
     on_success: change
