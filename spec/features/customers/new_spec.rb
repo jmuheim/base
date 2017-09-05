@@ -14,14 +14,14 @@ describe 'Creating Customer' do
     expect(page).to have_headline 'Create Customer'
 
     fill_in 'customer_name',        with: ''
-    fill_in 'customer_address',     with: 'New Address'
-    fill_in 'customer_description', with: 'New Description'
 
     click_button 'Create Customer'
 
     expect(page).to have_flash('Customer could not be created.').of_type :alert
 
-    fill_in 'customer_name', with: 'New Customer'
+    fill_in 'customer_name',        with: 'New Customer'
+    fill_in 'customer_address',     with: 'New Address'
+    fill_in 'customer_description', with: 'New Description'
 
     within '.actions' do
       expect(page).to have_css 'h2', text: 'Actions'
