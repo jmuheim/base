@@ -16,9 +16,9 @@ describe 'Listing customers' do
     expect(page).to have_headline 'Customer'
 
     within dom_id_selector(@customer) do
-      expect(page).to have_css '.name a',       text: 'Customer test name'
-      expect(page).to have_css '.address',      text: 'Customer test address'
-      expect(page).to have_css '.description',  text: 'Customer test description'
+      expect(page).to have_css '.name a',          text: 'Customer test name'
+      expect(page).to have_css '.address pre',     text: 'Customer test address'
+      expect(page).to have_css '.description pre', text: 'Customer test description'
       expect(page).to have_link 'Edit'
       expect(page).to have_link 'Delete'
     end
