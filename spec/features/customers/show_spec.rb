@@ -3,18 +3,18 @@ require 'rails_helper'
 describe 'Showing customer' do
   before do
     @customer = create :customer,
-                        address: "# Here the Customer address\n\nBla bla bla.",
-                        description: "Customer description"
+                        address: 'Customer address',
+                        description: "# Here a title\n\nBla bla bla."
     login_as(create :admin)
   end
 
   it 'displays a customer' do
     visit customer_path(@customer)
 
-    expect(page).to have_title 'Customer test customer - Project Manager'
+    expect(page).to have_title 'Customer test name - Project Manager'
     expect(page).to have_active_navigation_items 'Customer', 'List of Customer'
-    expect(page).to have_breadcrumbs 'Project Manager', 'Customer', 'Customer test customer'
-    expect(page).to have_headline 'Customer test customer'
+    expect(page).to have_breadcrumbs 'Project Manager', 'Customer', 'Customer test name'
+    expect(page).to have_headline 'Customer test name'
 
     within dom_id_selector(@customer) do
       expect(page).to have_css '.created_at', text: '15 Jun 14:33'
@@ -22,12 +22,13 @@ describe 'Showing customer' do
 
       within '.address' do
         expect(page).to have_css 'h2', text: 'Address'
-        expect(page).to have_content,  text: "# Here the Customer address Bla bla bla."
+        expect(page).to have_content 'Customer address'
       end
 
       within '.description' do
         expect(page).to have_css 'h2', text: 'Description'
-        expect(page).to have_content,  text: 'Customer description'
+        expect(page).to have_css 'h3', text: 'Here a title'
+        expect(page).to have_content 'Bla bla bla'
       end
 
       within '.actions' do

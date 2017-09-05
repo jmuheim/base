@@ -1,19 +1,19 @@
 = container_for @customer do
-  = headline_with_flash @customer.customer
+  = headline_with_flash @customer.name
+
+  .row
+    .col-md-8
+      .address
+        h2 = Customer.human_attribute_name :address
+        pre = @customer.address
 
   .row
     .col-md-8
       .markdown
-        .address
-          h2 = Customer.human_attribute_name :address
+        .description
+          h2 = Customer.human_attribute_name :description
 
-          = markdown indent_heading_level @customer.address, 2
-
-  .row
-    .col-md-8
-      .description
-        h2 = Customer.human_attribute_name :description
-
+          = markdown indent_heading_level @customer.description, 2
 
     .col-md-4
       .additional_information

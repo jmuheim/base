@@ -1,7 +1,7 @@
-table.projects.table.table-striped.table-hover
+table.customer.table.table-striped.table-hover
   thead
     tr
-      th.customer     = Customer.human_attribute_name :customer
+      th.name         = Customer.human_attribute_name :name
       th.address      = Customer.human_attribute_name :address
       th.description  = Customer.human_attribute_name :description
       th colspan="3"  = t 'actions.actions'
