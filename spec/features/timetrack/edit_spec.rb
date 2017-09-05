@@ -22,7 +22,7 @@ describe 'Editing timetrack' do
     expect {
       click_button 'Update Timetrack'
       @timetrack.reload
-    } .to  change { @timetrack.name }.to('The new Name')
+    } .to  change { @timetrack.name}.to('The new Name')
       .and change { @timetrack.description}.to('The timetrack description')
       .and change { @timetrack.work_time}.to(2.6)
 

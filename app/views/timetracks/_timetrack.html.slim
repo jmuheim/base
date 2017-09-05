@@ -7,11 +7,11 @@ tr id=dom_id(timetrack)
 
   td.work_time
     - if timetrack.work_time.present?
-      pre = timetrack.work_time
+      timetrack.work_time
 
   td.bill_time
     - if timetrack.bill_time.present?
-      pre = timetrack.bill_time
+      timetrack.bill_time
 
   td.actions
     == render 'shared/index/actions', resource: timetrack
