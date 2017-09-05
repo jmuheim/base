@@ -1,0 +1,10 @@
+table.customer.table.table-striped.table-hover
+  thead
+    tr
+      th.name         = Customer.human_attribute_name :name
+      th.address      = Customer.human_attribute_name :address
+      th.description  = Customer.human_attribute_name :description
+      th colspan="3"  = t 'actions.actions'
+
+  tbody
+    = render customers

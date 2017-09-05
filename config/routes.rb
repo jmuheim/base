@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     resources :users
     resources :pages
     resources :projects
+    resources :customers
 
     [403, 404, 422, 500].each do |code|
       get code, to: 'errors#show', code: code
