@@ -22,8 +22,8 @@ class CustomersController < ApplicationController
 
   def customer_params
     params.require(:customer).permit(:name,
-                                      :address,
-                                      :description)
+                                     :address,
+                                     :description)
   end
 
   def add_breadcrumbs

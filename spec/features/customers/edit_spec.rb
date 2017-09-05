@@ -10,7 +10,7 @@ describe 'Editing customer' do
   it 'edit a customer' do
     visit edit_customer_path(@customer)
 
-    fill_in 'customer_name',         with: ''
+    fill_in 'customer_name', with: ''
 
     click_button 'Update Customer'
 
