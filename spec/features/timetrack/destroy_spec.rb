@@ -3,10 +3,7 @@ require 'rails_helper'
 describe 'Deleting timetrack' do
 
   before do
-    @timetrack = create :timetrack,
-                        description: "# Here the Timetrack description\n\nBla bla bla.",
-                        work_time: 3.00,
-                        bill_time: 2.80
+    @timetrack = create :timetrack
     login_as(create :admin)
   end
 

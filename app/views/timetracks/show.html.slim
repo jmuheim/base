@@ -11,13 +11,15 @@
 
   .row
     .col-md-8
-        .work_time
-          h2 = Timetrack.human_attribute_name :work_time
+      .work_time
+        h2 = Timetrack.human_attribute_name :work_time
+        p = @timetrack.work_time
 
   .row
     .col-md-8
       .bill_time
         h2 = Timetrack.human_attribute_name :bill_time
+        p = @timetrack.bill_time
 
 
     .col-md-4

@@ -2,9 +2,7 @@ require 'rails_helper'
 
 describe 'Editing timetrack' do
   before do
-    @timetrack = create :timetrack,
-                        description: "# Here's some info about the timetrack\n\nBla bla bla.",
-                        bill_time: 2.80
+    @timetrack = create :timetrack
     login_as(create :admin)
   end
 

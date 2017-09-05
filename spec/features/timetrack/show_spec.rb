@@ -22,7 +22,8 @@ describe 'Showing timetrack' do
 
       within '.description' do
         expect(page).to have_css 'h2', text: 'Description'
-        expect(page).to have_content,  text: 'Timetrack description'
+        expect(page).to have_css 'h3', text: "Here's some info about the timetrack"
+        expect(page).to have_content 'Bla bla bla'
       end
 
       within '.work_time' do
