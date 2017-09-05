@@ -3,8 +3,8 @@ require 'rails_helper'
 describe 'Showing customer' do
   before do
     @customer = create :customer,
-                        address: "# Here the Customer address\n\nBla bla bla.",
-                        description: "Customer description"
+                        address: 'Customer address',
+                        description: "# Here a title\n\nBla bla bla."
     login_as(create :admin)
   end
 
@@ -22,12 +22,13 @@ describe 'Showing customer' do
 
       within '.address' do
         expect(page).to have_css 'h2', text: 'Address'
-        expect(page).to have_content 'Here the Customer address'
+        expect(page).to have_content 'Customer address'
       end
 
       within '.description' do
         expect(page).to have_css 'h2', text: 'Description'
-        expect(page).to have_content 'Customer description'
+        expect(page).to have_css 'h3', text: 'Here a title'
+        expect(page).to have_content 'Bla bla bla'
       end
 
       within '.actions' do
