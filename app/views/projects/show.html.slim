@@ -14,6 +14,10 @@
         h2 = t 'shared.show.additional_information'
 
         dl.dl-horizontal
+          - if @project.customer.present?
+            dt.customer = Project.human_attribute_name :customer
+            dd.customer = link_to @project.customer.name, @project.customer
+
           dt.created_at = Project.human_attribute_name :created_at
           dd.created_at = l @project.created_at, format: :short
 

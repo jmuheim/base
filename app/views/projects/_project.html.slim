@@ -1,9 +1,14 @@
 tr id=dom_id(project)
-  th.name       = link_to project.name, project
+  th.name = link_to project.name, project
 
   td.description
     - if project.description.present?
       pre = project.description
+
+  td.customer
+    - if project.customer.present?
+      = link_to project.customer.name, project.customer
+
 
   td.actions
     == render 'shared/index/actions', resource: project

@@ -15,11 +15,19 @@
 
           = markdown indent_heading_level @customer.description, 2
 
+      - if  @customer.projects.present?
+        .projects
+          h2 = Customer.human_attribute_name :projects
+          ul
+            - @customer.projects.each do |project|
+              li = link_to project.name, project
+
     .col-md-4
       .additional_information
         h2 = t 'shared.show.additional_information'
 
         dl.dl-horizontal
+
           dt.created_at = Customer.human_attribute_name :created_at
           dd.created_at = l @customer.created_at, format: :short
 
