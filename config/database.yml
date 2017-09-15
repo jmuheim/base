@@ -2,17 +2,17 @@
 #
 # - The schema isn't DB-agnostic anymore (it adds options about used engine, etc.), which makes it difficult to use in different database types (e.g. MySQL for development and SQLite for test)
 # - Running specs using Selenium (e.g. driver: :chrome) results in an SQLite3::BusyException error (when using SQLite)
+
 default: &default
-  adapter: mysql2
+  adapter: <%= Rails.application.secrets['database']['adapter'] %>
+  database: <%= Rails.application.secrets['database']['database'] %>
   encoding: utf8
   pool: 5
-  username: root
-  password: t00R
+  username: <%= Rails.application.secrets['database']['username'] %>
+  password: <%= Rails.application.secrets['database']['password'] %>
 
 development:
   <<: *default
-  database: base_development
 
 test:
   <<: *default
-  database: base_test
