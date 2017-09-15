@@ -9,9 +9,10 @@ addons:
     - pandoc
   code_climate:
     repo_token: 243e5ab59244b7a1d3fb97d56bfe9961307ad558cb4a7cbeec3c85104e9ee11b
+before_install:
+  - export TZ=Europe/Zurich
 before_script:
   - cp config/secrets.travis.yml config/secrets.yml
-  - export TZ=Europe/Zurich
 script:
   - RAILS_ENV=test bundle exec rails db:setup
   - bundle exec rails spec
