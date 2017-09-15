@@ -9,6 +9,8 @@ addons:
     - pandoc
   code_climate:
     repo_token: TODO # Can be found here: On codeclimate.com, go to "Test coverage"
+before_install:
+  - export TZ=Europe/Zurich
 before_script:
   - cp config/secrets.travis.yml config/secrets.yml
 script:
@@ -17,7 +19,6 @@ script:
 notifications:
   email:
     recipients:
-      - john.doe@example.com # Change!
-      - lisa.gonzales@example.com # Change!
+      - john.doe@example.com # TODO
     on_failure: change
     on_success: change
