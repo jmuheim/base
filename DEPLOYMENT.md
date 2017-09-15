@@ -41,10 +41,6 @@ Change the default URL options' `:host` in `config/environments/production.rb` t
 Edit `~/nginx/conf/nginx.conf` like so:
 
 ```
-daemon off; # We execute Nginx using Daemontools # <-- Do we still need this??
-
-...
-
 server {
     listen            PORT; # Choose an open port (see instructions below)!
     server_name       ACCOUNT.SERVER.uberspace.de;
