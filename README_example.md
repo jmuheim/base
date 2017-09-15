@@ -17,7 +17,7 @@ Setup:
 - `$ git clone git@github.com:GITHUB/PROJECT.git`
 - `$ cd PROJECT`
 - `$ bundle install`
-- `$ cp db/config_example.yml db/config.yml`, then open `db/config.yml` and edit config
+- `$ cp config/secrets.example.yml config/secrets.yml`, then open `config/secrets.yml` and edit it
 - `$ rails db:setup`
 - `$ rails db:test:prepare`
 

@@ -115,18 +115,20 @@ Be sure you have commited and pushed all changes.
 
 Execute `$ mina setup`. Use the `--verbose` and `--trace` switch for debugging if something goes wrong.
 
-## Database <sup>(remote)</sup>
+## Secrets.yml
 
-Then edit `~/rails/shared/config/database.yml` and add the following:
+Create `/home/ACCOUNT/rails/shared/config/secrets.yml` and add a secret key for `production` (use `$ rails secret` to create a new key):
 
 ```
 production:
-  adapter: mysql2
-  encoding: utf8
-  username: ACCOUNT
-  password: ???
-  database: ACCOUNT
-  socket: /var/lib/mysql/mysql.sock
+  secret_key_base: <insert-key-here>
+  database:
+    adapter: mysql2
+    encoding: utf8
+    username: ACCOUNT
+    password: ???
+    database: ACCOUNT
+    socket: /var/lib/mysql/mysql.sock
 ```
 
 The password for [MySQL](http://uberspace.de/dokuwiki/database:mysql) can be found in the file `~/.my.cnf`.
