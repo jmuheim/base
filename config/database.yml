@@ -1,0 +1,13 @@
+default: &default
+  adapter: <%= Rails.application.secrets['database']['adapter'] %>
+  database: <%= Rails.application.secrets['database']['database'] %>
+  encoding: utf8
+  pool: 5
+  username: <%= Rails.application.secrets['database']['username'] %>
+  password: <%= Rails.application.secrets['database']['password'] %>
+
+development:
+  <<: *default
+
+test:
+  <<: *default
