@@ -8,9 +8,8 @@ addons:
   apt_packages:
     - pandoc
   code_climate:
-    repo_token: <%= Rails.application.secrets['code_climate_repo_token'] %>
+    repo_token: 243e5ab59244b7a1d3fb97d56bfe9961307ad558cb4a7cbeec3c85104e9ee11b
 before_script:
-  - unlink config/secrets.yml
   - cp config/secrets.travis.yml config/secrets.yml
 script:
   - RAILS_ENV=test bundle exec rails db:setup
@@ -18,6 +17,6 @@ script:
 notifications:
   email:
     recipients:
-      - <%= Rails.application.secrets['notifications_email_recipient'] %>
+      - joshua.muheim@access-for-all.ch
     on_failure: change
     on_success: change
