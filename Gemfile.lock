@@ -1,3 +1,12 @@
+GIT
+  remote: https://github.com/globalize/globalize
+  revision: 35adbbd4928577fef701b0986f7d7d035b0d4340
+  specs:
+    globalize (5.1.0.beta2)
+      activemodel (>= 4.2, < 5.2)
+      activerecord (>= 4.2, < 5.2)
+      request_store (~> 1.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -486,6 +495,7 @@ PLATFORMS
 
 DEPENDENCIES
   actionview-encoded_mail_to
+  activemodel-serializers-xml
   acts_as_list
   acts_as_tree
   awesome_print
@@ -512,6 +522,7 @@ DEPENDENCIES
   font-awesome-rails
   fuubar (>= 2.0.0rc1)
   gaffe
+  globalize!
   guard
   guard-bundler
   guard-livereload

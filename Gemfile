@@ -6,6 +6,9 @@ gem 'puma', '~> 3.0' # Use Puma as the app server
 
 gem 'rails-i18n' # Locale data
 
+gem 'globalize', git: 'https://github.com/globalize/globalize' # Rails I18n de-facto standard library for ActiveRecord model/data translation
+gem 'activemodel-serializers-xml' # TODO: Is this needed?!
+
 gem 'slim-rails' # Awesome template language that replaces ERB
 
 gem 'uglifier', '>= 1.3.0' # Use Uglifier as compressor for JavaScript assets

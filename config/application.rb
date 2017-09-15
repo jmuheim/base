@@ -40,6 +40,9 @@ module Base
 
     # Always raise error on unpermitted parameters
     # config.action_controller.action_on_unpermitted_parameters = :raise
+
+    # If a model translation isn't available, use original language
+    config.i18n.fallbacks = true
   end
 end
 

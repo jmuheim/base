@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170529153837) do
+ActiveRecord::Schema.define(version: 20170915174059) do
 
   create_table "codes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "title",                                   null: false
@@ -40,19 +40,28 @@ ActiveRecord::Schema.define(version: 20170529153837) do
     t.index ["page_id"], name: "index_images_on_page_id", using: :btree
   end
 
-  create_table "pages", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "page_translations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "page_id",                        null: false
+    t.string   "locale",                         null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
     t.string   "title"
     t.string   "navigation_title"
-    t.text     "content",          limit: 16777215
-    t.text     "notes",            limit: 16777215
-    t.boolean  "system",                            default: false
-    t.integer  "lock_version",                      default: 0,     null: false
-    t.datetime "created_at",                                        null: false
-    t.datetime "updated_at",                                        null: false
-    t.integer  "parent_id"
-    t.integer  "position",                          default: 1,     null: false
     t.text     "lead",             limit: 65535
-    t.integer  "creator_id",                                        null: false
+    t.text     "content",          limit: 65535
+    t.index ["locale"], name: "index_page_translations_on_locale", using: :btree
+    t.index ["page_id"], name: "index_page_translations_on_page_id", using: :btree
+  end
+
+  create_table "pages", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.text     "notes",        limit: 16777215
+    t.boolean  "system",                        default: false
+    t.integer  "lock_version",                  default: 0,     null: false
+    t.datetime "created_at",                                    null: false
+    t.datetime "updated_at",                                    null: false
+    t.integer  "parent_id"
+    t.integer  "position",                      default: 1,     null: false
+    t.integer  "creator_id",                                    null: false
     t.index ["creator_id"], name: "index_pages_on_creator_id", using: :btree
   end
 
