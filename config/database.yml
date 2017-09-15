@@ -1,3 +1,8 @@
+# It's highly recommended to use MySQL for both development and test because of the following reasons:
+#
+# - The schema isn't DB-agnostic anymore (it adds options about used engine, etc.), which makes it difficult to use in different database types (e.g. MySQL for development and SQLite for test)
+# - Running specs using Selenium (e.g. driver: :chrome) results in an SQLite3::BusyException error (when using SQLite)
+
 default: &default
   adapter: <%= Rails.application.secrets['database']['adapter'] %>
   database: <%= Rails.application.secrets['database']['database'] %>
