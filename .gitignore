@@ -17,6 +17,8 @@
 .powenv
 coverage
 .rspec
+secrets.yml
+secrets.travis.yml
 public/assets
 public/uploads
 db/config.yml
