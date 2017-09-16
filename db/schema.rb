@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170529153837) do
+ActiveRecord::Schema.define(version: 20170915185427) do
 
   create_table "codes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "title",                                   null: false
@@ -36,8 +36,32 @@ ActiveRecord::Schema.define(version: 20170529153837) do
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
     t.integer  "creator_id",               null: false
-    t.index ["creator_id"], name: "index_images_on_creator_id", using: :btree
     t.index ["page_id"], name: "index_images_on_page_id", using: :btree
+  end
+
+  create_table "mobility_string_translations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "locale"
+    t.string   "key"
+    t.string   "value"
+    t.integer  "translatable_id"
+    t.string   "translatable_type"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.index ["translatable_id", "translatable_type", "key"], name: "index_mobility_string_translations_on_translatable_attribute", using: :btree
+    t.index ["translatable_id", "translatable_type", "locale", "key"], name: "index_mobility_string_translations_on_keys", unique: true, using: :btree
+    t.index ["translatable_type", "key", "value", "locale"], name: "index_mobility_string_translations_on_query_keys", using: :btree
+  end
+
+  create_table "mobility_text_translations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "locale"
+    t.string   "key"
+    t.text     "value",             limit: 65535
+    t.integer  "translatable_id"
+    t.string   "translatable_type"
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.index ["translatable_id", "translatable_type", "key"], name: "index_mobility_text_translations_on_translatable_attribute", using: :btree
+    t.index ["translatable_id", "translatable_type", "locale", "key"], name: "index_mobility_text_translations_on_keys", unique: true, using: :btree
   end
 
   create_table "pages", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -53,7 +77,6 @@ ActiveRecord::Schema.define(version: 20170529153837) do
     t.integer  "position",                          default: 1,     null: false
     t.text     "lead",             limit: 65535
     t.integer  "creator_id",                                        null: false
-    t.index ["creator_id"], name: "index_pages_on_creator_id", using: :btree
   end
 
   create_table "roles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -126,7 +149,4 @@ ActiveRecord::Schema.define(version: 20170529153837) do
   end
 
   add_foreign_key "codes", "pages"
-  add_foreign_key "images", "users", column: "creator_id", name: "index_images_on_creator_id"
-  add_foreign_key "pages", "users", column: "creator_id"
-  add_foreign_key "pages", "users", column: "creator_id", name: "index_pages_on_creator_id"
 end
