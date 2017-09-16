@@ -1,7 +1,7 @@
 dist: trusty
 language: ruby
 rvm:
-  - 2.2.6
+  - 2.4.1
 bundler_args: --without development
 cache: bundler
 addons:
