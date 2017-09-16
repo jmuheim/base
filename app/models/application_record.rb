@@ -36,6 +36,8 @@ class ApplicationRecord < ActiveRecord::Base
       else
         super(attribute_key_name, options)
       end
+    else
+      super(attribute_key_name, options)
     end
   end
 end
