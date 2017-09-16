@@ -16,6 +16,8 @@ gem 'sass-rails', '~> 5.0' # Use Sass for stylesheets
 
 gem 'compass-rails' # Compass framework
 
+gem 'traco'
+
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 

@@ -1,6 +1,8 @@
 class Page < ApplicationRecord
   extend ActsAsTree::TreeWalker
 
+  translates :title
+
   has_paper_trail only: [:title, :navigation_title, :lead, :content, :notes]
   accepts_pastables_for :content, :notes
 
