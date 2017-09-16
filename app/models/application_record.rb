@@ -19,18 +19,23 @@ class ApplicationRecord < ActiveRecord::Base
     end
   end
 
-  # If it's a translated attribute in not the current language, its name in the current language is returned together with the language abbreviation in brackets. E.g. if the current language is english and the human name for attribute `content_de`, the returned value is "Content (de)".
+  # For a translated attribute, if it's not the current language, its name in the current language is returned together with the language abbreviation in brackets. E.g. if the current language is english:
+  #
+  # - If attribute name is `content_de`, the returned value is "Content (de)"
+  # - If attribute name is `content_en`, the returned value is "Content"
   def self.human_attribute_name(attribute_key_name, options = {})
-    if match = attribute_key_name.match(/^(#{translated_attribute_names.join('|')})_(#{I18n.available_locales.join('|')})$/)
-      human_attribute_name = super(match[1], options)
+    if respond_to? :translated_attribute_names
+      if match = attribute_key_name.match(/^(#{translated_attribute_names.join('|')})_(#{I18n.available_locales.join('|')})$/)
+        human_attribute_name = super(match[1], options)
 
-      if match[2] == I18n.locale.to_s
-        human_attribute_name
+        if match[2] == I18n.locale.to_s
+          human_attribute_name
+        else
+          human_attribute_name + " (#{match[2]})"
+        end
       else
-        human_attribute_name + " (#{match[2]})"
+        super(attribute_key_name, options)
       end
-    else
-      super(attribute_key_name, options)
     end
   end
 end
