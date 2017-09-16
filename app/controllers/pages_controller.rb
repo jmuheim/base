@@ -29,8 +29,9 @@ class PagesController < ApplicationController
 
   def update
     @page.assign_attributes(page_params)
-    assign_creator_to_new_pastables
-    assign_codepen_data_to_codes
+    # assign_creator_to_new_pastables
+    # assign_codepen_data_to_codes
+    # binding.pry
     @page.save
 
     respond_with @page

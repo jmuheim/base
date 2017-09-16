@@ -39,9 +39,16 @@ class ActiveRecord::Base
 
     resource.changes.map do |attribute, change|
       unless ['updated_at', 'lock_version'].include? attribute
+
+        human_attribute_name = if human_attribute_name_match = attribute.match(/^(#{resource.translated_attributes.map { |x| x[0] }.join('|')})_(#{I18n.available_locales.join('|')})$/)
+                                 resource.class.human_attribute_name(human_attribute_name_match[1], locale: human_attribute_name_match[2])
+                               else
+                                 resource.class.human_attribute_name(attribute)
+                               end
+
         StaleInfo.new resource:             resource,
                       attribute:            attribute,
-                      human_attribute_name: "#{resource.class.human_attribute_name(attribute)}#{model_name_suffix}",
+                      human_attribute_name: "#{human_attribute_name}#{model_name_suffix}",
                       input_id:             "#{prefix}_#{attribute}",
                       type:                 resource.class.columns_hash[attribute].type,
                       value_before:         change[0],

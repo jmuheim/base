@@ -6,6 +6,8 @@ gem 'puma', '~> 3.0' # Use Puma as the app server
 
 gem 'rails-i18n' # Locale data
 
+gem 'mobility', '~> 0.2.3'
+
 gem 'slim-rails' # Awesome template language that replaces ERB
 
 gem 'uglifier', '>= 1.3.0' # Use Uglifier as compressor for JavaScript assets

@@ -1,7 +1,19 @@
 class Page < ApplicationRecord
   extend ActsAsTree::TreeWalker
 
-  has_paper_trail only: [:title, :navigation_title, :lead, :content, :notes]
+  extend Mobility
+  translates :title, :navigation_title, :lead, :content
+
+  has_paper_trail only: [:title_de,
+                         :title_en,
+                         :navigation_title_de,
+                         :navigation_title_en,
+                         :lead_de,
+                         :lead_en,
+                         :content_de,
+                         :content_en,
+                         :notes]
+
   accepts_pastables_for :content, :notes
 
   acts_as_tree order: :position, dependent: :restrict_with_error
