@@ -6,7 +6,7 @@ describe 'Editing page' do
     login_as @user
   end
 
-  it 'grants permission to edit a page and removes abandoned images', js: true, focus: true do
+  it 'grants permission to edit a page and removes abandoned images', js: true do
     # Admitted, this looks very ugly...
     [:existing, :abandoned, :new].each do |code|
       allow_any_instance_of(PagesController).to receive(:open).with("https://codepen.io/api/oembed?url=https://codepen.io/#{code}/pen/code&format=json").and_return '{"title": "A great pen!", "thumbnail_url": "http://example.com/thumbnail.png"}'
