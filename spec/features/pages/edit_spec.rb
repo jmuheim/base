@@ -171,4 +171,75 @@ describe 'Editing page' do
       @page.reload
     } .to change { @page.content }.to('This is the new content, yeah!')
   end
+
+  it 'translates a page', focus: true do
+    @page = create :page, title:            'English title',
+                          navigation_title: 'English navigation title',
+                          lead:             'English lead',
+                          content:          'English content',
+                          notes:            'Notes are not translated!',
+                          creator:          @user
+
+    # English page in English... as always.
+    visit page_path(@page)
+
+    expect(page).to have_active_navigation_items 'English navigation title'
+    expect(page).to have_headline 'English title'
+
+    within dom_id_selector(@page) do
+      expect(page).to have_css '.lead',    text: 'English lead'
+      expect(page).to have_css '.content', text: 'English content'
+      expect(page).to have_css '.notes',   text: 'Notes are not translated!'
+    end
+
+    # German page falls back to English as no translation done yet!
+    visit page_path(@page, locale: :de)
+
+    expect(page).to have_active_navigation_items 'English navigation title'
+    expect(page).to have_headline 'English title'
+
+    within dom_id_selector(@page) do
+      expect(page).to have_css '.lead',    text: 'English lead'
+      expect(page).to have_css '.content', text: 'English content'
+      expect(page).to have_css '.notes',   text: 'Notes are not translated!'
+    end
+
+    # Let's translate stuff now!
+    visit edit_page_path(@page, locale: :de)
+
+    expect(page).to have_css '#page_title[value="English title"]' # Inputs are pre-filled with fallback values (English)
+    expect(page).to have_css '#page_navigation_title[value="English navigation title"]'
+    expect(page).to have_css '#page_lead',    text: 'English lead'
+    expect(page).to have_css '#page_content', text: 'English content'
+
+    fill_in 'page_title',            with: 'Deutscher Titel'
+    fill_in 'page_navigation_title', with: 'Deutscher Navigations-Titel'
+    fill_in 'page_lead',             with: 'Deutscher Lead'
+    fill_in 'page_content',          with: 'Deutscher Inhalt'
+    fill_in 'page_notes',            with: 'Notizen werden nicht übersetzt!'
+
+    click_button 'Seite aktualisieren'
+
+    # Now it's nice German!
+    expect(page).to have_active_navigation_items 'Deutscher Navigations-Titel'
+    expect(page).to have_headline 'Deutscher Titel'
+
+    within dom_id_selector(@page) do
+      expect(page).to have_css '.lead',    text: 'Deutscher Lead'
+      expect(page).to have_css '.content', text: 'Deutscher Inhalt'
+      expect(page).to have_css '.notes',   text: 'Notizen werden nicht übersetzt!'
+    end
+
+    # And English is still English!
+    visit page_path(@page)
+
+    expect(page).to have_active_navigation_items 'English navigation title'
+    expect(page).to have_headline 'English title'
+
+    within dom_id_selector(@page) do
+      expect(page).to have_css '.lead',    text: 'English lead'
+      expect(page).to have_css '.content', text: 'English content'
+      expect(page).to have_css '.notes',   text: 'Notizen werden nicht übersetzt!' # Notes are the same in both English and German
+    end
+  end
 end
