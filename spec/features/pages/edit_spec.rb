@@ -50,7 +50,7 @@ describe 'Editing page' do
 
     fill_in 'page_title',            with: 'A new title'
     fill_in 'page_navigation_title', with: 'A new navigation title'
-    fill_in 'page_content',          with: "A new content with a ![existing image](@image-existing-image) and a ![new image](@image-new-image). Also an ![existing code](@code-existing-code) and a ![new code](@code-new-code). "
+    fill_in 'page_content',          with: "A new content with a ![existing image](@image-existing-image) and a ![new image](@image-new-image). Also an ![existing code](@code-existing-code) and a ![new code](@code-new-code)."
     fill_in 'page_notes',            with: 'A new note'
     select 'Cooler parent page', from: 'page_parent_id'
 
