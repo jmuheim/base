@@ -301,4 +301,8 @@ describe 'Editing user' do
       end
     end
   end
+
+  it 'translates a user' do
+    # The more thorough tests are implemented for pages#edit.
+  end
 end

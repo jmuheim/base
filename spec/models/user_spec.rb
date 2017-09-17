@@ -26,20 +26,31 @@ describe User do
       is_expected.to be_versioned
     end
 
-    it 'versions name' do
-      user = create :user, :donald
+    describe 'attributes' do
+      before { @user = create :user, :donald }
+      it 'versions name' do
+        expect {
+          @user.update_attributes! name: 'daisy'
+        }.to change { @user.versions.count }.by 1
+      end
 
-      expect {
-        user.update_attributes! name: 'daisy'
-      }.to change { user.versions.count }.by 1
+      it 'versions about' do
+        expect {
+          @user.update_attributes! about: 'I like make up'
+        }.to change { @user.versions.count }.by 1
+      end
     end
+  end
 
-    it 'versions about' do
-      user = create :user, :donald
+  describe 'translating' do
+    before { @user = create :user }
 
+    it 'translates about' do
       expect {
-        user.update_attributes! about: 'I like make up'
-      }.to change { user.versions.count }.by 1
+        Mobility.with_locale(:de) { @user.update_attributes! about: 'Deutsches Über' }
+        @user.reload
+      }.not_to change { @user.about }
+      expect(@user.about_de).to eq 'Deutsches Über'
     end
   end
 
