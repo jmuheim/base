@@ -233,4 +233,23 @@ RSpec.describe Page do
       expect(page.title_with_details).to eq "My title (##{page.id})"
     end
   end
+
+  describe '.human_attribute_name' do
+    describe 'not translated attributes' do
+      it 'behaves exactly the same as normal' do
+        expect(Page.human_attribute_name(:title)).to eq 'Title'
+        expect(Page.human_attribute_name(:notes)).to eq 'Notes'
+      end
+    end
+
+    describe 'translated attributes' do
+      it 'in the same language, it behaves exactly the same as normal' do
+        expect(Page.human_attribute_name(:title_en)).to eq 'Title'
+      end
+
+      it 'in another language, it behaves exactly the same as normal' do
+        expect(Page.human_attribute_name(:title_de)).to eq 'Title (de)'
+      end
+    end
+  end
 end

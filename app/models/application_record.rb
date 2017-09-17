@@ -27,17 +27,12 @@ class ApplicationRecord < ActiveRecord::Base
     if respond_to? :translated_attribute_names
       if match = attribute_key_name.match(/^(#{translated_attribute_names.join('|')})_(#{I18n.available_locales.join('|')})$/)
         human_attribute_name = super(match[1], options)
+        human_attribute_name += " (#{match[2]})" unless match[2] == I18n.locale.to_s
 
-        if match[2] == I18n.locale.to_s
-          human_attribute_name
-        else
-          human_attribute_name + " (#{match[2]})"
-        end
-      else
-        super(attribute_key_name, options)
+        return human_attribute_name
       end
-    else
-      super(attribute_key_name, options)
     end
+
+    super(attribute_key_name, options)
   end
 end
