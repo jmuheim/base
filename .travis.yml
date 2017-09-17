@@ -14,7 +14,9 @@ before_install:
 before_script:
   - cp config/secrets.travis.yml config/secrets.yml
 script:
-  - RAILS_ENV=test bundle exec rails db:setup db:test:prepare spec
+  - RAILS_ENV=test bundle exec rails db:setup
+  - RAILS_ENV=test bundle exec rails db:migrate
+  - bundle exec rails spec
 notifications:
   email:
     recipients:
