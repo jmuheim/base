@@ -172,6 +172,7 @@ describe 'Editing page' do
     } .to change { @page.content }.to('This is the new content, yeah!')
   end
 
+  # Don't copy&paste this spec to another translated model (as everything runs under the covers)! Only do model specs for other translated models!
   it 'translates a page' do
     @page = create :page, title:            'English title',
                           navigation_title: 'English navigation title',
