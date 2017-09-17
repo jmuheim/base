@@ -172,7 +172,7 @@ describe 'Editing page' do
     } .to change { @page.content }.to('This is the new content, yeah!')
   end
 
-  it 'translates a page', focus: true do
+  it 'translates a page' do
     @page = create :page, title:            'English title',
                           navigation_title: 'English navigation title',
                           lead:             'English lead',
