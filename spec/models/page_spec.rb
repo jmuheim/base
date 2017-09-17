@@ -95,44 +95,74 @@ RSpec.describe Page do
       is_expected.to be_versioned
     end
 
-    it 'versions title' do
-      page = create :page, creator: @creator
+    describe 'attributes' do
+      before { @page = create :page, creator: @creator }
 
+      it 'versions title' do
+        expect {
+          @page.update_attributes! title: 'New title'
+        }.to change { @page.versions.count }.by 1
+      end
+
+      it 'versions navigation_title' do
+        expect {
+          @page.update_attributes! navigation_title: 'New navigation_title'
+        }.to change { @page.versions.count }.by 1
+      end
+
+      it 'versions lead' do
+        expect {
+          @page.update_attributes! lead: 'New lead'
+        }.to change { @page.versions.count }.by 1
+      end
+
+      it 'versions content' do
+        expect {
+          @page.update_attributes! content: 'New content'
+        }.to change { @page.versions.count }.by 1
+      end
+
+      it 'versions notes' do
+        expect {
+          @page.update_attributes! notes: 'New notes'
+        }.to change { @page.versions.count }.by 1
+      end
+    end
+  end
+
+  describe 'translating' do
+    before { @page = create :page, creator: @creator }
+
+    it 'translates title' do
       expect {
-        page.update_attributes! title: 'New title'
-      }.to change { page.versions.count }.by 1
+        Mobility.with_locale(:de) { @page.update_attributes! title: 'Deutscher Titel' }
+        @page.reload
+      }.not_to change { @page.title }
+      expect(@page.title_de).to eq 'Deutscher Titel'
     end
 
-    it 'versions navigation_title' do
-      page = create :page, creator: @creator
-
+    it 'translates navigation_title' do
       expect {
-        page.update_attributes! navigation_title: 'New navigation_title'
-      }.to change { page.versions.count }.by 1
+        Mobility.with_locale(:de) { @page.update_attributes! navigation_title: 'Deutscher Navigations-Titel' }
+        @page.reload
+      }.not_to change { @page.navigation_title }
+      expect(@page.navigation_title_de).to eq 'Deutscher Navigations-Titel'
     end
 
-    it 'versions lead' do
-      page = create :page, creator: @creator
-
+    it 'translates lead' do
       expect {
-        page.update_attributes! lead: 'New lead'
-      }.to change { page.versions.count }.by 1
+        Mobility.with_locale(:de) { @page.update_attributes! lead: 'Deutscher Lead' }
+        @page.reload
+      }.not_to change { @page.lead }
+      expect(@page.lead_de).to eq 'Deutscher Lead'
     end
 
-    it 'versions content' do
-      page = create :page, creator: @creator
-
+    it 'translates content' do
       expect {
-        page.update_attributes! content: 'New content'
-      }.to change { page.versions.count }.by 1
-    end
-
-    it 'versions notes' do
-      page = create :page, creator: @creator
-
-      expect {
-        page.update_attributes! notes: 'New notes'
-      }.to change { page.versions.count }.by 1
+        Mobility.with_locale(:de) { @page.update_attributes! content: 'Deutscher Inhalt' }
+        @page.reload
+      }.not_to change { @page.content }
+      expect(@page.content_de).to eq 'Deutscher Inhalt'
     end
   end
 
@@ -201,6 +231,25 @@ RSpec.describe Page do
     it 'returns the title and ID' do
       page = create(:page, title: 'My title', creator: @creator)
       expect(page.title_with_details).to eq "My title (##{page.id})"
+    end
+  end
+
+  describe '.human_attribute_name' do
+    describe 'not translated attributes' do
+      it 'behaves exactly the same as normal' do
+        expect(Page.human_attribute_name(:title)).to eq 'Title'
+        expect(Page.human_attribute_name(:notes)).to eq 'Notes'
+      end
+    end
+
+    describe 'translated attributes' do
+      it 'in the same language, it behaves exactly the same as normal' do
+        expect(Page.human_attribute_name(:title_en)).to eq 'Title'
+      end
+
+      it 'in another language, it behaves exactly the same as normal' do
+        expect(Page.human_attribute_name(:title_de)).to eq 'Title (de)'
+      end
     end
   end
 end

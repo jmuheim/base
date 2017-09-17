@@ -1,7 +1,7 @@
 dist: trusty
 language: ruby
 rvm:
-  - 2.2.6
+  - 2.4.1
 bundler_args: --without development
 cache: bundler
 addons:
@@ -14,8 +14,9 @@ before_install:
 before_script:
   - cp config/secrets.travis.yml config/secrets.yml
 script:
-  - RAILS_ENV=test bundle exec rails db:setup
-  - bundle exec rails spec
+  - RAILS_ENV=test bundle exec rails db:create
+  - RAILS_ENV=test bundle exec rails db:migrate
+  -                bundle exec rails spec
 notifications:
   email:
     recipients:

@@ -6,6 +6,8 @@ gem 'puma', '~> 3.0' # Use Puma as the app server
 
 gem 'rails-i18n' # Locale data
 
+gem 'mobility', '~> 0.2.3'
+
 gem 'slim-rails' # Awesome template language that replaces ERB
 
 gem 'uglifier', '>= 1.3.0' # Use Uglifier as compressor for JavaScript assets
@@ -51,7 +53,7 @@ gem 'cocoon' # Dynamic nested forms made easy
 
 gem 'validates_timeliness' # Date and time validation plugin for ActiveModel and Rails
 
-gem 'strip_attributes' # Automatically strips all attributes of leading and trailing whitespace (or nilify if blank)
+gem 'strip_attributes', github: 'jmuheim/strip_attributes' # Automatically strips all attributes of leading and trailing whitespace (or nilify if blank)
 
 gem 'enumerize' # Enumerated attributes with I18n
 

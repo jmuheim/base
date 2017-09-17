@@ -90,7 +90,7 @@ describe 'Editing user' do
         expect(page).to have_css '.value_difference', text: 'No diff view available (please activate JavaScript)'
       end
 
-      within '#stale_attribute_user_about' do
+      within '#stale_attribute_user_about_en' do
         expect(page).to have_css '.value_before',     text: 'This is some barely interesting info. I like playing football and reading books. I don\'t work as a web developer anymore.'
         expect(page).to have_css '.value_after',      text: 'This is some very interesting info about me. I like playing football and reading books. I work as a web developer.'
         expect(page).to have_css '.value_difference', text: 'No diff view available (please activate JavaScript)'
