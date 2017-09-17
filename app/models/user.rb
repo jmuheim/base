@@ -1,5 +1,8 @@
 class User < ApplicationRecord
-  has_paper_trail only: [:name, :about]
+  extend Mobility
+  translates :about
+
+  has_paper_trail only: [:name, :about_de, :about_en]
   rolify
 
   # Include default devise modules. Others available are:
