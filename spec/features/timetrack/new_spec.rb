@@ -1,5 +1,5 @@
 require 'rails_helper'
- 
+
 describe 'Creating Timetrack' do
   before do
     login_as(create :admin)
@@ -15,7 +15,7 @@ describe 'Creating Timetrack' do
 
     fill_in 'timetrack_name',         with: ''
     fill_in 'timetrack_description',  with: 'New Description'
-    fill_in 'timetrack_work_time',    with: '2.5'
+    fill_in 'timetrack_work_time',    with: '1.5'
 
     click_button 'Create Timetrack'
 
