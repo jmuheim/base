@@ -3,6 +3,7 @@ require 'rails_helper'
 describe 'Showing project' do
   before do
     @project = create :project,
+                      :with_customer,
                       description: "# Here's some info about the project\n\nBla bla bla."
     login_as(create :admin)
   end
@@ -16,6 +17,7 @@ describe 'Showing project' do
     expect(page).to have_headline 'Project test name'
 
     within dom_id_selector(@project) do
+      expect(page).to have_css '.customer a', text: 'Customer test name'
       expect(page).to have_css '.created_at', text: '15 Jun 14:33'
       expect(page).to have_css '.updated_at', text: '15 Jun 14:33'
 
