@@ -3,5 +3,5 @@ class Timetrack < ApplicationRecord
 
   validates :name, presence: true
   validates :work_time, presence: true, numericality: { greater_than: 0 }
-  validates :bill_time, numericality: { greater_than: 0 }, allow_blank: true
+  validates :bill_time, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: :work_time }
 end
