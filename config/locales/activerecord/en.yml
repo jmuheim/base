@@ -45,6 +45,11 @@ en:
         description: Description
         created_at: Created at
         updated_at: Updated at
+      timetrack:
+        name: Name
+        description: Description
+        work_time: Work time
+        bill_time: Bill time
       user:
         about: About
         avatar: Profile picture
