@@ -6,12 +6,12 @@ tr id=dom_id(timetrack)
       pre = timetrack.description
 
   td.work_time
-    - if timetrack.work_time.present?
-      p = timetrack.work_time
+    = timetrack.work_time
+      = timetrack.work_time
 
   td.bill_time
-    - if timetrack.bill_time.present?
-      p = timetrack.bill_time
+    = timetrack.bill_time
+      = timetrack.bill_time
 
   td.actions
     == render 'shared/index/actions', resource: timetrack
