@@ -3,7 +3,8 @@ require 'rails_helper'
 describe 'Listing projects' do
   before do
     @project = create :project,
-                      description: "# Here's some info about the project Bla bla bla."
+                      :with_customer,
+                      description: "# Here's some info about the project\n\nBla bla bla."
     login_as(create :admin)
   end
 
@@ -18,6 +19,7 @@ describe 'Listing projects' do
     within dom_id_selector(@project) do
       expect(page).to have_css '.name a',      text: 'Project test name'
       expect(page).to have_css '.description', text: "# Here's some info about the project Bla bla bla."
+      expect(page).to have_css '.customer a',  text: 'Customer test name'
       expect(page).to have_link 'Edit'
       expect(page).to have_link 'Delete'
     end

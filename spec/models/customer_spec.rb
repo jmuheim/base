@@ -37,4 +37,6 @@ RSpec.describe Customer do
       }.to change { customer.versions.count }.by 1
     end
   end
+
+  # has_many :projects, dependent: :restrict_with_error
 end

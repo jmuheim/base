@@ -4,7 +4,8 @@ describe 'Showing customer' do
   before do
     @customer = create :customer,
                         address: 'Customer address',
-                        description: "# Here a title\n\nBla bla bla."
+                        description: "# Here a title\n\nBla bla bla.",
+                        projects: [create(:project)]
     login_as(create :admin)
   end
 
@@ -29,6 +30,14 @@ describe 'Showing customer' do
         expect(page).to have_css 'h2', text: 'Description'
         expect(page).to have_css 'h3', text: 'Here a title'
         expect(page).to have_content 'Bla bla bla'
+      end
+
+      within '.projects' do
+        expect(page).to have_css 'h2', text: 'Projects'
+
+        within 'ul' do
+          expect(page).to have_link 'Project test name'
+        end
       end
 
       within '.actions' do

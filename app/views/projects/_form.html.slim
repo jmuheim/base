@@ -6,6 +6,7 @@
       = t('shared.form.details')
 
     = panel.body do
+      = f.association :customer
       = f.input :name
       = f.input :description, as: :text_fullscreen
 

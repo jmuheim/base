@@ -3,17 +3,25 @@
 
   .row
     .col-md-8
-      .address
-        h2 = Customer.human_attribute_name :address
-        pre = @customer.address
+      - if @customer.address.present?
+        .address
+          h2 = Customer.human_attribute_name :address
+          pre = @customer.address
 
-  .row
-    .col-md-8
-      .markdown
-        .description
-          h2 = Customer.human_attribute_name :description
+      - if @customer.description.present?
+        .markdown
+          .description
+            h2 = Customer.human_attribute_name :description
 
-          = markdown indent_heading_level @customer.description, 2
+            = markdown indent_heading_level @customer.description, 2
+
+      - if  @customer.projects.present?
+        .projects
+          h2 = Customer.human_attribute_name :projects
+
+          ul
+            - @customer.projects.each do |project|
+              li = link_to project.name, project
 
     .col-md-4
       .additional_information

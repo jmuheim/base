@@ -4,6 +4,9 @@ describe 'Creating Project' do
   before do
     @project = create :project,
                       description: "# Here's some info about the project\n\nBla bla bla."
+
+    create :customer
+
     login_as(create :admin)
   end
 
@@ -15,8 +18,9 @@ describe 'Creating Project' do
     expect(page).to have_breadcrumbs 'Project Manager', 'Project', 'Create'
     expect(page).to have_headline 'Create Project'
 
-    fill_in 'project_name',         with: ''
-    fill_in 'project_description',  with: 'New Description'
+    select 'Customer test name', from: 'project_customer_id'
+    fill_in 'project_name',        with: ''
+    fill_in 'project_description', with: 'New Description'
 
     click_button 'Create Project'
 

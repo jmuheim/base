@@ -3,17 +3,22 @@
 
   .row
     .col-md-8
-      .markdown
-        .description
-          h2 = Project.human_attribute_name :description
+      - if @project.description.present?
+        .markdown
+          .description
+            h2 = Project.human_attribute_name :description
 
-          = markdown indent_heading_level @project.description, 2
+            = markdown indent_heading_level @project.description, 2
 
     .col-md-4
       .additional_information
         h2 = t 'shared.show.additional_information'
 
         dl.dl-horizontal
+          - if @project.customer.present?
+            dt.customer = Project.human_attribute_name :customer
+            dd.customer = link_to @project.customer.name, @project.customer
+
           dt.created_at = Project.human_attribute_name :created_at
           dd.created_at = l @project.created_at, format: :short
 
