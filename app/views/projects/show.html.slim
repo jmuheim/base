@@ -3,11 +3,12 @@
 
   .row
     .col-md-8
-      .markdown
-        .description
-          h2 = Project.human_attribute_name :description
+      - if @project.description.present?
+        .markdown
+          .description
+            h2 = Project.human_attribute_name :description
 
-          = markdown indent_heading_level @project.description, 2
+            = markdown indent_heading_level @project.description, 2
 
     .col-md-4
       .additional_information
