@@ -164,6 +164,26 @@ RSpec.describe Page do
       }.not_to change { @page.content }
       expect(@page.content_de).to eq 'Deutscher Inhalt'
     end
+
+    describe 'fallbacks' do
+      it 'falls back from german to english' do
+        @page.update_attributes! title_en: 'English title',
+                                 title_de: ''
+
+        Mobility.with_locale(:de) do
+          expect(@page.title).to eq 'English title'
+        end
+      end
+
+      it 'falls back from german to english' do
+        @page.update_attributes! title_en: '',
+                                 title_de: 'Deutscher Name'
+
+        Mobility.with_locale(:en) do
+          expect(@page.title).to eq 'Deutscher Name'
+        end
+      end
+    end
   end
 
   describe '#title_with_details' do
