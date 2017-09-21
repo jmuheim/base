@@ -3,7 +3,7 @@ require 'rails_helper'
 describe 'Listing timetracks' do
   before do
     @timetrack = create :timetrack
-    
+
     login_as(create :admin)
   end
 
