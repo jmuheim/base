@@ -9,6 +9,5 @@ tr id=dom_id(project)
     - if project.customer.present?
       = link_to project.customer.name, project.customer
 
-
   td.actions
     == render 'shared/index/actions', resource: project

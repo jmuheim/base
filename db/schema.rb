@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170905130221) do
+ActiveRecord::Schema.define(version: 20170921190426) do
 
   create_table "codes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "title",                                   null: false
@@ -65,13 +65,15 @@ ActiveRecord::Schema.define(version: 20170905130221) do
   end
 
   create_table "projects", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "name",                      null: false
-    t.text     "description", limit: 65535
+    t.string   "name",                       null: false
+    t.text     "description",  limit: 65535
     t.string   "customer"
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
     t.integer  "customer_id"
+    t.integer  "timetrack_id"
     t.index ["customer_id"], name: "index_projects_on_customer_id", using: :btree
+    t.index ["timetrack_id"], name: "index_projects_on_timetrack_id", using: :btree
   end
 
   create_table "roles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -85,12 +87,12 @@ ActiveRecord::Schema.define(version: 20170905130221) do
   end
 
   create_table "timetracks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "name",                                                              null: false
+    t.string   "name"
     t.text     "description", limit: 65535
-    t.decimal  "work_time",                 precision: 5, scale: 2,                 null: false
-    t.decimal  "bill_time",                 precision: 5, scale: 2, default: "0.0"
-    t.datetime "created_at",                                                        null: false
-    t.datetime "updated_at",                                                        null: false
+    t.decimal  "work_time",                 precision: 5, scale: 2
+    t.decimal  "bill_time",                 precision: 5, scale: 2
+    t.datetime "created_at",                                        null: false
+    t.datetime "updated_at",                                        null: false
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -156,4 +158,5 @@ ActiveRecord::Schema.define(version: 20170905130221) do
   add_foreign_key "images", "users", column: "creator_id", name: "index_images_on_creator_id"
   add_foreign_key "pages", "users", column: "creator_id", name: "index_pages_on_creator_id"
   add_foreign_key "projects", "customers"
+  add_foreign_key "projects", "timetracks"
 end
