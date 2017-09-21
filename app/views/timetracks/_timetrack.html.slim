@@ -13,5 +13,9 @@ tr id=dom_id(timetrack)
     = timetrack.bill_time
       = timetrack.bill_time
 
+  td.project
+    = timetrack.project
+      = link_to timetrack.project
+
   td.actions
     == render 'shared/index/actions', resource: timetrack

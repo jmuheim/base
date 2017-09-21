@@ -10,6 +10,14 @@
 
             = markdown indent_heading_level @project.description, 2
 
+      - if @project.timetracks.present?
+        .timetracks
+          h2 = Project.human_attribute_name :project
+
+          ul
+            - @project.timetracks.each do |timetrack|
+              li = link_to timetrack.name, timetrack
+
     .col-md-4
       .additional_information
         h2 = t 'shared.show.additional_information'
