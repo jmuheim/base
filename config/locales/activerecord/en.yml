@@ -37,17 +37,21 @@ en:
       project:
         name: Name
         description: Description
+        timetrack: Project timetracks
+        customer: Project customer
         created_at: Created at
         created_by: Updated at
       customer:
         customer: Name
         address: Address
         description: Description
+        projects: Project name
         created_at: Created at
         updated_at: Updated at
       timetrack:
         name: Name
         description: Description
+        project: Project name
         work_time: Work time
         bill_time: Bill time
       user:

@@ -32,17 +32,21 @@ de:
       project:
         name: Name
         description: Beschreibung
+        timetrack: Projektarbeiten
+        customer: Projektkunde
         created_at: Erstellt am
         created_by: Erstellt von
       customer:
         customer: Name
         address: Adresse
         description: Beschreibung
+        projects: Projektname
         created_at: Erstellt am
         updated_at: Aktualisiert am
       timetrack:
         name: Name
         description: Beschreibung
+        project: Projektname
         work_time: Arbeitszeit
         bill_time: Verrechnungszeit
       role:
