@@ -14,8 +14,8 @@ tr id=dom_id(timetrack)
       = timetrack.bill_time
 
   td.project
-    = timetrack.project
-      = link_to timetrack.project
+    = if timetrack.project.present?
+      = link_to timetrack.project.name, timetrack.project
 
   td.actions
     == render 'shared/index/actions', resource: timetrack

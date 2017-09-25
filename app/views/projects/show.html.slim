@@ -12,7 +12,7 @@
 
       - if @project.timetracks.present?
         .timetracks
-          h2 = Project.human_attribute_name :project
+          h2 = Project.human_attribute_name :timetrack
 
           ul
             - @project.timetracks.each do |timetrack|

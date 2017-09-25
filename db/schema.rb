@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 20170921212954) do
   end
 
   create_table "customers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "name"
+    t.string   "name",                      null: false
     t.text     "address",     limit: 65535
     t.text     "description", limit: 65535
     t.datetime "created_at",                null: false
@@ -65,15 +65,13 @@ ActiveRecord::Schema.define(version: 20170921212954) do
   end
 
   create_table "projects", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "name",                       null: false
-    t.text     "description",  limit: 65535
+    t.string   "name",                      null: false
+    t.text     "description", limit: 65535
     t.string   "customer"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
     t.integer  "customer_id"
-    t.integer  "timetrack_id"
     t.index ["customer_id"], name: "index_projects_on_customer_id", using: :btree
-    t.index ["timetrack_id"], name: "index_projects_on_timetrack_id", using: :btree
   end
 
   create_table "roles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -156,9 +154,9 @@ ActiveRecord::Schema.define(version: 20170921212954) do
     t.index ["transaction_id"], name: "index_versions_on_transaction_id", using: :btree
   end
 
+  add_foreign_key "codes", "pages"
   add_foreign_key "images", "users", column: "creator_id", name: "index_images_on_creator_id"
   add_foreign_key "pages", "users", column: "creator_id", name: "index_pages_on_creator_id"
   add_foreign_key "projects", "customers"
-  add_foreign_key "projects", "timetracks"
   add_foreign_key "timetracks", "projects"
 end

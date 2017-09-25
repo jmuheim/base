@@ -3,23 +3,22 @@
 
   .row
     .col-md-8
-      .markdown
-        .description
-          h2 = Timetrack.human_attribute_name :description
+      - if @timetrack.description.present?
+        .markdown
+          .description
+            h2 = Timetrack.human_attribute_name :description
 
-          = markdown indent_heading_level @timetrack.description, 2
-
+            = markdown indent_heading_level @timetrack.description, 2
   .row
-    .col-md-8
+    .col-md-4
       .work_time
         h2 = Timetrack.human_attribute_name :work_time
-        p = @timetrack.work_time
+        = @timetrack.work_time
 
-  .row
-    .col-md-8
+    .col-md-4
       .bill_time
         h2 = Timetrack.human_attribute_name :bill_time
-        p = @timetrack.bill_time
+        = @timetrack.bill_time
 
     .col-md-4
       .additional_information
