@@ -13,7 +13,7 @@ set :application_name, 'Project manager'
 set :domain, 'zugangfueralle01.nine.ch'
 set :deploy_to, '/home/www-data/reto.access4all.ch/rails'
 set :repository, 'git@github.com:retoinniger/project-manager'
-set :branch, ENV['branch'] || `git rev-parse --abbrev-ref HEAD`
+set :branch, ENV['branch'] || `git rev-parse --abbrev-ref HEAD`.strip
 set :user, 'www-data'
 set :forward_agent, true
 
