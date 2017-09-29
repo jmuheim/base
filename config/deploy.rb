@@ -13,7 +13,7 @@ set :application_name, 'Base'
 set :domain, 'sirius.uberspace.de'
 set :deploy_to, '/home/base/rails'
 set :repository, 'git@github.com:jmuheim/base.git'
-set :branch, ENV['branch'] || 'master'
+set :branch, ENV['branch'] || `git rev-parse --abbrev-ref HEAD`
 
 # Optional settings:
 set :user, 'base'          # Username in the server to SSH to.

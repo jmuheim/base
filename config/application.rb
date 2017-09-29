@@ -45,11 +45,12 @@ end
 
 ActionMailer::Base.delivery_method = :smtp
 ActionMailer::Base.smtp_settings = {
-  address:              'sirius.uberspace.de',
-  port:                 587,
-  domain:               'sirius.uberspace.de',
-  user_name:            'base-mailer',
-  password:             'l3tm3s3nd3m41lS!',
-  authentication:       'login',
-  enable_starttls_auto: true
+  address:              Rails.application.secrets.smtp_address,
+  port:                 Rails.application.secrets.smtp_port,
+  domain:               Rails.application.secrets.smtp_domain,
+  user_name:            Rails.application.secrets.smtp_user_name,
+  password:             Rails.application.secrets.smtp_password,
+  authentication:       Rails.application.secrets.smtp_authentication,
+  enable_starttls_auto: Rails.application.secrets.smtp_enable_starttls_auto,
+  ssl:                  Rails.application.secrets.smtp_ssl
 }
