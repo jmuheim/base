@@ -8,7 +8,7 @@ addons:
   apt_packages:
     - pandoc
   code_climate:
-    repo_token: 243e5ab59244b7a1d3fb97d56bfe9961307ad558cb4a7cbeec3c85104e9ee11b
+    repo_token: TODO # Can be found here: On codeclimate.com, go to "Test coverage"
 before_install:
   - export TZ=Europe/Zurich
 before_script:
@@ -20,6 +20,6 @@ script:
 notifications:
   email:
     recipients:
-      - reto.inniger@gmx.ch
+      - john.doe@example.com # TODO
     on_failure: change
     on_success: change

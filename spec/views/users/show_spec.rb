@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "users/show", type: :view do
+RSpec.describe "users/show" do
   it "Doesn't render empty avatar" do
     assign :user, create(:user, avatar: nil)
     render

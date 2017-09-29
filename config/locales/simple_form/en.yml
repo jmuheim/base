@@ -8,14 +8,14 @@ en:
         identifier: Consists of CodePen user and pen ID, separated by a hyphen (e.g. jmuheim-KmKOZO)
         title: Is loaded automatically from the pen during save
       page:
-        content: The main content of the page. Displayed below the lead and above the teasers of the page's sub pages.
-        lead: Describe the page's content in a few short sentences. Displayed on top of the page and in teasers.
-        navigation_title: Appears in the menu and breadcrumbs. Leave empty to use title.
-        notes: Only for internal usage (aren't publicly viewable)
-        title: Appears as main heading when displaying the page
+        content: The main content of the page. Displayed below the lead and above the teasers of the page's sub pages. Multi-langual.
+        lead: Describes the page's content in a few short sentences. Displayed on top of the page and in teasers. Multi-langual.
+        navigation_title: Appears in the menu and breadcrumbs. Leave empty to use title. Multi-langual.
+        notes: Only for internal usage (not publicly viewable).
+        title: Appears as main heading when displaying the page. Multi-langual.
       user:
-        about: Write something about you (biography, interests, hobbies...). You can use Pandoc Markdown to add basic formatting.
-        password_confirmation: Retype your password to avoid typing errors
+        about: Write something about you (biography, interests, hobbies...). You can use Pandoc Markdown to add basic formatting. Multi-langual.
+        password_confirmation: Retype your password to avoid typing errors.
     inputs:
       paste:
         click_to_paste_another_image: Click to paste another %{attribute} image
