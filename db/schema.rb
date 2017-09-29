@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170916180522) do
+ActiveRecord::Schema.define(version: 20170917080707) do
 
   create_table "codes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "title",                                   null: false
@@ -88,15 +88,6 @@ ActiveRecord::Schema.define(version: 20170916180522) do
     t.index ["name"], name: "index_roles_on_name", using: :btree
   end
 
-  create_table "timetracks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "name"
-    t.text     "description", limit: 65535
-    t.decimal  "work_time",                 precision: 5, scale: 2
-    t.decimal  "bill_time",                 precision: 5, scale: 2
-    t.datetime "created_at",                                        null: false
-    t.datetime "updated_at",                                        null: false
-  end
-
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name",                   limit: 100
     t.string   "email"
@@ -120,8 +111,9 @@ ActiveRecord::Schema.define(version: 20170916180522) do
     t.datetime "updated_at"
     t.string   "avatar"
     t.integer  "lock_version",                         default: 0
-    t.text     "about",                  limit: 65535
+    t.text     "about_en",               limit: 65535
     t.string   "curriculum_vitae"
+    t.text     "about_de",               limit: 65535
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["name"], name: "index_users_on_name", unique: true, using: :btree
