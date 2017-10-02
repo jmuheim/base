@@ -9,20 +9,17 @@ require 'mina/git'
 #   repository   - Git repo to clone from. (needed by mina/git)
 #   branch       - Branch name to deploy. (needed by mina/git)
 
-set :application_name, 'Base'
-set :domain, 'sirius.uberspace.de'
-set :deploy_to, '/home/base/rails'
-set :repository, 'git@github.com:jmuheim/base.git'
-set :branch, ENV['branch'] || 'master'
-
-# Optional settings:
-set :user, 'base'          # Username in the server to SSH to.
-#   set :port, '30000'           # SSH port number.
-set :forward_agent, true   # SSH forward_agent.
+set :application_name, 'Project manager'
+set :domain, 'zugangfueralle01.nine.ch'
+set :deploy_to, '/home/www-data/reto.access4all.ch/rails'
+set :repository, 'git@github.com:retoinniger/project-manager'
+set :branch, ENV['branch'] || `git rev-parse --abbrev-ref HEAD`.strip
+set :user, 'www-data'
+set :forward_agent, true
 
 # shared dirs and files will be symlinked into the app-folder by the 'deploy:link_shared_paths' step.
 set :shared_dirs, fetch(:shared_dirs, []).push('log', 'tmp', 'public/uploads')
-set :shared_files, fetch(:shared_files, []).push('config/database.yml', 'config/secrets.yml')
+set :shared_files, fetch(:shared_files, []).push('config/secrets.yml')
 
 # This task is the environment that is loaded for all remote run commands, such as
 # `mina deploy` or `mina rake`.

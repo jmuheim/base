@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "pages/show", type: :view do
+RSpec.describe "pages/show" do # Type braucht's glaubs nicht!
   before { @user = create :user, :donald }
 
   describe "Rendering notes" do
