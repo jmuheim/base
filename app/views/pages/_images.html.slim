@@ -1,5 +1,5 @@
 .images
-  = accordion :images, item_options: {title_tag: "h#{heading_level}", panel_class: 'panel-warning'} do |accordion|
+  = accordion :images, item_options: {title_tag: "h#{heading_level ||= 2}", panel_class: 'panel-warning'} do |accordion|
     = accordion.panel do |panel|
       = panel.title do
         = Image.model_name.human count: :other

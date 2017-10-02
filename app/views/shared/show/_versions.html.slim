@@ -1,5 +1,5 @@
 .versions
-  = accordion :versions, item_options: {title_tag: "h#{heading_level}", panel_class: 'panel-danger'} do |accordion|
+  = accordion :versions, item_options: {title_tag: "h#{heading_level ||= 2}", panel_class: 'panel-danger'} do |accordion|
     = accordion.panel do |panel|
       = panel.title do
         = PaperTrail::Version.model_name.human count: :other

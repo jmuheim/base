@@ -7,12 +7,12 @@ module PanelHelper
     attr_accessor :heading_options, :heading_content, :body_options, :body_content
 
     def heading(options = {}, &block)
-      self.heading_options = options
+      self.heading_options = options.reverse_merge! tag: 'h2'
       self.heading_content = view.capture(self, &block)
     end
 
     def body(options = {}, &block)
-      self.body_options = options
+      self.body_options = options.reverse_merge! tag: 'div'
       self.body_content = view.capture(self, &block)
     end
 

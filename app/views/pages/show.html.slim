@@ -48,9 +48,9 @@
 
         hr
 
-  == render 'images', images:   @page.images,   heading_level: 2 if can?(:crud, Image) && @page.images.any?
-  == render 'codes',  codes:    @page.codes,    heading_level: 2 if can?(:crud, Code)  && @page.codes.any?
+  == render 'images', images:   @page.images if can?(:crud, Image) && @page.images.any?
+  == render 'codes',  codes:    @page.codes  if can?(:crud, Code)  && @page.codes.any?
 
-  == render 'shared/show/versions', versions: @page.versions, heading_level: 2 if can?(:read, PaperTrail::Version) && @page.versions.any?
+  == render 'shared/show/versions', versions: @page.versions if can?(:read, PaperTrail::Version) && @page.versions.any?
 
   == render 'shared/show/actions',  resource: @page

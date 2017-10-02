@@ -1,5 +1,5 @@
 .created_pages
-  = accordion :created_pages, item_options: {title_tag: "h#{heading_level}", panel_class: 'panel-success'} do |accordion|
+  = accordion :created_pages, item_options: {title_tag: "h#{heading_level ||= 2}", panel_class: 'panel-success'} do |accordion|
     = accordion.panel do |panel|
       = panel.title do
         = User.human_attribute_name :created_pages
