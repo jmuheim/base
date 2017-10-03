@@ -3,6 +3,7 @@ require 'rails_helper'
 describe 'Showing timetrack' do
   before do
     @timetrack = create :timetrack,
+                        :with_project,
                         description: "# Here's some info about the timetrack\n\nBla bla bla."
     login_as(create :admin)
   end
@@ -38,6 +39,9 @@ describe 'Showing timetrack' do
         expect(page).to have_link 'Delete'
         expect(page).to have_link 'Create Timetrack'
         expect(page).to have_link 'List of Timetrack'
+      end
+      within '.dl-horizontal' do
+        expect(page).to have_link 'Project test name'
       end
     end
   end

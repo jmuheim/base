@@ -95,8 +95,6 @@ ActiveRecord::Schema.define(version: 20170921212954) do
     t.decimal  "bill_time",                 precision: 5, scale: 2, default: "0.0"
     t.datetime "created_at",                                                        null: false
     t.datetime "updated_at",                                                        null: false
-    t.integer  "project_id"
-    t.index ["project_id"], name: "index_timetracks_on_project_id", using: :btree
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -163,5 +161,4 @@ ActiveRecord::Schema.define(version: 20170921212954) do
   add_foreign_key "images", "users", column: "creator_id", name: "index_images_on_creator_id"
   add_foreign_key "pages", "users", column: "creator_id", name: "index_pages_on_creator_id"
   add_foreign_key "projects", "customers"
-  add_foreign_key "timetracks", "projects"
 end

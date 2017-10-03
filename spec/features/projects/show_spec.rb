@@ -38,11 +38,14 @@ describe 'Showing project' do
 
       within '.actions' do
         expect(page).to have_css 'h2', text: 'Actions'
-
         expect(page).to have_link 'Edit'
         expect(page).to have_link 'Delete'
         expect(page).to have_link 'Create Project'
         expect(page).to have_link 'List of Projects'
+      end
+
+      within '.dl-horizontal' do
+        expect(page).to have_link 'Customer test name'
       end
     end
   end

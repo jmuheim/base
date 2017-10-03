@@ -2,7 +2,8 @@ require 'rails_helper'
 
 describe 'Listing timetracks' do
   before do
-    @timetrack = create :timetrack
+    @timetrack = create :timetrack,
+                        :with_project
 
     login_as(create :admin)
   end
@@ -18,7 +19,7 @@ describe 'Listing timetracks' do
     within dom_id_selector(@timetrack) do
       expect(page).to have_css '.name a',           text: 'Timetrack test name'
       expect(page).to have_css '.description pre',  text: "Timetrack test description"
-      #expect(page).to have_css '.project a',        text: 'Project test name'
+      expect(page).to have_css '.project a',        text: 'Project test name'
       expect(page).to have_link 'Edit'
       expect(page).to have_link 'Delete'
     end
