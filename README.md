@@ -17,7 +17,8 @@ Setup:
 - `$ git clone git@retoinniger.com:retoinniger/project-manager.git`
 - `$ cd project-manager`
 - `$ bundle install`
-- `$ cp db/config_example.yml db/config.yml`, then open `db/config.yml` and edit config
+- `$ cp config/secrets.example.yml config/secrets.yml`
+- Open `config/secrets.yml` and edit it
 - `$ rails db:setup`
 - `$ rails db:test:prepare`
 
@@ -25,8 +26,9 @@ You can use [direnv](https://retoinniger.com/zimbatm/direnv) to automatically ad
 
 ## Requirements
 
-- [Pandoc](http://pandoc.org/) installed
-- [PhantomJS](http://phantomjs.org/) installed
+- [Pandoc](http://pandoc.org/) for advanced Markdown capabilities: `$ brew install pandoc`
+- [PhantomJS](http://phantomjs.org/) for automated JavaScript testing: `$ brew install phantomjs`
+- [ImageMagick](http://imagemagick.org/) for image manipulation: `$ brew install imagemagick`
 
 ## Developing
 

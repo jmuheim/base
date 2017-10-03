@@ -178,12 +178,39 @@ describe 'Showing page' do
       @page.update_attributes! title:   'And another title',
                                content: 'And some other content'
 
+      Mobility.with_locale(:de) do
+        @page.update_attributes! title:   'Und ein anderer Titel',
+                                 content: 'Und ein anderer Inhalt'
+      end
+
       visit page_path(@page)
 
       within '.versions' do
-        expect(page).to have_css 'h2', text: 'Versions (3)'
+        expect(page).to have_css 'h2', text: 'Versions (4)'
 
-        within '#version_4_title' do
+        within '#version_5_title_de' do
+          expect(page).to have_css '.count      .first_occurrence', text: 4
+          expect(page).to have_css '.event      .first_occurrence', text: 'Update'
+          expect(page).to have_css '.created_at .first_occurrence', text: '15 Jun 14:33'
+
+          expect(page).to have_css '.attribute',        text: 'Title (de)'
+          expect(find('.value_before').text).to eq ''
+          expect(page).to have_css '.value_after',      text: 'Und ein anderer Titel'
+          expect(page).to have_css '.value_difference', text: 'No diff view available (please activate JavaScript)'
+        end
+
+        within '#version_5_content_de' do
+          expect(page).to have_css '.count      .recurrent_occurrence', text: 4
+          expect(page).to have_css '.event      .recurrent_occurrence', text: 'Update'
+          expect(page).to have_css '.created_at .recurrent_occurrence', text: '15 Jun 14:33'
+
+          expect(page).to have_css '.attribute',        text: 'Content (de)'
+          expect(find('.value_before').text).to eq ''
+          expect(page).to have_css '.value_after',      text: 'Und ein anderer Inhalt'
+          expect(page).to have_css '.value_difference', text: 'No diff view available (please activate JavaScript)'
+        end
+
+        within '#version_4_title_en' do
           expect(page).to have_css '.count      .first_occurrence', text: 3
           expect(page).to have_css '.event      .first_occurrence', text: 'Update'
           expect(page).to have_css '.created_at .first_occurrence', text: '15 Jun 14:33'
@@ -194,7 +221,7 @@ describe 'Showing page' do
           expect(page).to have_css '.value_difference', text: 'No diff view available (please activate JavaScript)'
         end
 
-        within '#version_4_content' do
+        within '#version_4_content_en' do
           expect(page).to have_css '.count      .recurrent_occurrence', text: 3
           expect(page).to have_css '.event      .recurrent_occurrence', text: 'Update'
           expect(page).to have_css '.created_at .recurrent_occurrence', text: '15 Jun 14:33'
@@ -205,7 +232,7 @@ describe 'Showing page' do
           expect(page).to have_css '.value_difference', text: 'No diff view available (please activate JavaScript)'
         end
 
-        within '#version_3_title' do
+        within '#version_3_title_en' do
           expect(page).to have_css '.count      .first_occurrence', text: 2
           expect(page).to have_css '.event      .first_occurrence', text: 'Update'
           expect(page).to have_css '.created_at .first_occurrence', text: '15 Jun 14:33'
@@ -216,18 +243,18 @@ describe 'Showing page' do
           expect(page).to have_css '.value_difference', text: 'No diff view available (please activate JavaScript)'
         end
 
-        within '#version_3_lead' do
+        within '#version_3_lead_en' do
           expect(page).to have_css '.count      .recurrent_occurrence', text: 2
           expect(page).to have_css '.event      .recurrent_occurrence', text: 'Update'
           expect(page).to have_css '.created_at .recurrent_occurrence', text: '15 Jun 14:33'
 
           expect(page).to have_css '.attribute',        text: 'Lead'
-          expect(find('.value_before').text).to eq 'Page test lead'
+          expect(page).to have_css '.value_before',     text: 'Page test lead'
           expect(page).to have_css '.value_after',      text: 'And a new lead'
           expect(page).to have_css '.value_difference', text: 'No diff view available (please activate JavaScript)'
         end
 
-        within '#version_2_title' do
+        within '#version_2_title_en' do
           expect(page).to have_css '.count      .first_occurrence', text: 1
           expect(page).to have_css '.event      .first_occurrence', text: 'Create'
           expect(page).to have_css '.created_at .first_occurrence', text: '15 Jun 14:33'
@@ -238,7 +265,7 @@ describe 'Showing page' do
           expect(page).to have_css '.value_difference', text: 'No diff view available (please activate JavaScript)'
         end
 
-        within '#version_2_navigation_title' do
+        within '#version_2_navigation_title_en' do
           expect(page).to have_css '.count      .recurrent_occurrence', text: 1
           expect(page).to have_css '.event      .recurrent_occurrence', text: 'Create'
           expect(page).to have_css '.created_at .recurrent_occurrence', text: '15 Jun 14:33'
@@ -249,7 +276,7 @@ describe 'Showing page' do
           expect(page).to have_css '.value_difference', text: 'No diff view available (please activate JavaScript)'
         end
 
-        within '#version_2_content' do
+        within '#version_2_content_en' do
           expect(page).to have_css '.count      .recurrent_occurrence', text: 1
           expect(page).to have_css '.event      .recurrent_occurrence', text: 'Create'
           expect(page).to have_css '.created_at .recurrent_occurrence', text: '15 Jun 14:33'

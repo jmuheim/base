@@ -17,9 +17,9 @@
 .powenv
 coverage
 .rspec
+secrets.yml
 public/assets
 public/uploads
 db/config.yml
 .respec_failures
-database.yml
 missing_translations.yml

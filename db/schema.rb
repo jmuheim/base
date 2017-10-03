@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170905130221) do
+ActiveRecord::Schema.define(version: 20170917080707) do
 
   create_table "codes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "title",                                   null: false
@@ -49,18 +49,22 @@ ActiveRecord::Schema.define(version: 20170905130221) do
   end
 
   create_table "pages", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "title"
-    t.string   "navigation_title"
-    t.text     "content",          limit: 65535
-    t.text     "notes",            limit: 65535
-    t.boolean  "system",                         default: false
-    t.integer  "lock_version",                   default: 0,     null: false
-    t.datetime "created_at",                                     null: false
-    t.datetime "updated_at",                                     null: false
+    t.string   "title_en"
+    t.string   "navigation_title_en"
+    t.text     "content_en",          limit: 65535
+    t.text     "notes",               limit: 65535
+    t.boolean  "system",                            default: false
+    t.integer  "lock_version",                      default: 0,     null: false
+    t.datetime "created_at",                                        null: false
+    t.datetime "updated_at",                                        null: false
     t.integer  "parent_id"
-    t.integer  "position",                       default: 1,     null: false
-    t.text     "lead",             limit: 65535
-    t.integer  "creator_id",                                     null: false
+    t.integer  "position",                          default: 1,     null: false
+    t.text     "lead_en",             limit: 65535
+    t.integer  "creator_id",                                        null: false
+    t.string   "title_de"
+    t.string   "navigation_title_de"
+    t.text     "lead_de",             limit: 65535
+    t.text     "content_de",          limit: 65535
     t.index ["creator_id"], name: "index_pages_on_creator_id", using: :btree
   end
 
@@ -116,8 +120,9 @@ ActiveRecord::Schema.define(version: 20170905130221) do
     t.datetime "updated_at"
     t.string   "avatar"
     t.integer  "lock_version",                         default: 0
-    t.text     "about",                  limit: 65535
+    t.text     "about_en",               limit: 65535
     t.string   "curriculum_vitae"
+    t.text     "about_de",               limit: 65535
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["name"], name: "index_users_on_name", unique: true, using: :btree
