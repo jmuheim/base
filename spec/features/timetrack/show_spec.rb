@@ -33,6 +33,7 @@ describe 'Showing timetrack' do
       within '.bill_time' do
         expect(page).to have_css 'h2', text: 'Bill time'
       end
+      
       within '.actions' do
         expect(page).to have_css  'h2', text: 'Actions'
         expect(page).to have_link 'Edit'
@@ -40,6 +41,7 @@ describe 'Showing timetrack' do
         expect(page).to have_link 'Create Timetrack'
         expect(page).to have_link 'List of Timetrack'
       end
+
       within '.dl-horizontal' do
         expect(page).to have_link 'Project test name'
       end
