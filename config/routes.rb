@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     resources :pages
     resources :projects
     resources :customers
+    resources :timetracks
 
     [403, 404, 422, 500].each do |code|
       get code, to: 'errors#show', code: code

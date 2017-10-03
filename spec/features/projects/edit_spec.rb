@@ -14,7 +14,7 @@ describe 'Editing project' do
   it 'edit a project' do
     visit edit_project_path(@project)
 
-    fill_in 'project_name',         with: ''
+    fill_in 'project_name', with: ''
 
     click_button 'Update Project'
 

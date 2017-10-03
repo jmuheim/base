@@ -88,6 +88,15 @@ ActiveRecord::Schema.define(version: 20170917080707) do
     t.index ["name"], name: "index_roles_on_name", using: :btree
   end
 
+  create_table "timetracks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name",                                                              null: false
+    t.text     "description", limit: 65535
+    t.decimal  "work_time",                 precision: 5, scale: 2,                 null: false
+    t.decimal  "bill_time",                 precision: 5, scale: 2, default: "0.0"
+    t.datetime "created_at",                                                        null: false
+    t.datetime "updated_at",                                                        null: false
+  end
+
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name",                   limit: 100
     t.string   "email"

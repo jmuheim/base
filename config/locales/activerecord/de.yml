@@ -40,6 +40,11 @@ de:
         description: Beschreibung
         created_at: Erstellt am
         updated_at: Aktualisiert am
+      timetrack:
+        name: Name
+        description: Beschreibung
+        work_time: Arbeitszeit
+        bill_time: Verrechnungszeit
       role:
         created_at: Erstellt am
         name: Name
