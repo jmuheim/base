@@ -64,6 +64,14 @@ task :deploy do
   # run(:local){ say 'done' }
 end
 
+desc "Performs a backup."
+task backup: :environment do
+  comment 'Performing backup'
+
+  command %{source $HOME/.bash_profile; source $HOME/.bashrc;} # Why isn't this done automatically? See https://github.com/mina-deploy/mina/issues/513
+  command %{backup perform --trigger=project_manager}
+end
+
 # For help in making your deploy script, see the Mina documentation:
 #
 #  - https://github.com/mina-deploy/mina/tree/master/docs
