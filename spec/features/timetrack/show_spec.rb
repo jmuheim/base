@@ -3,8 +3,8 @@ require 'rails_helper'
 describe 'Showing timetrack' do
   before do
     @timetrack = create :timetrack,
-                        description: "# Here's some info about the timetrack\n\nBla bla bla.",
-                        bill_time: 3.1
+                        :with_project,
+                        description: "# Here's some info about the timetrack\n\nBla bla bla."
     login_as(create :admin)
   end
 
@@ -33,12 +33,17 @@ describe 'Showing timetrack' do
       within '.bill_time' do
         expect(page).to have_css 'h2', text: 'Bill time'
       end
+      
       within '.actions' do
         expect(page).to have_css  'h2', text: 'Actions'
         expect(page).to have_link 'Edit'
         expect(page).to have_link 'Delete'
         expect(page).to have_link 'Create Timetrack'
         expect(page).to have_link 'List of Timetrack'
+      end
+
+      within '.dl-horizontal' do
+        expect(page).to have_link 'Project test name'
       end
     end
   end

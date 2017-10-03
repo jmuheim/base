@@ -4,7 +4,8 @@ describe 'Showing project' do
   before do
     @project = create :project,
                       :with_customer,
-                      description: "# Here's some info about the project\n\nBla bla bla."
+                      description: "# Here's some info about the project\n\nBla bla bla.",
+                      timetracks: [create(:timetrack)]
     login_as(create :admin)
   end
 
@@ -27,13 +28,24 @@ describe 'Showing project' do
         expect(page).to have_content 'Bla bla bla.'
       end
 
+      within '.timetracks' do
+        expect(page).to have_css 'h2', text: 'Project timetracks'
+
+        within 'ul' do
+          expect(page).to have_link 'Timetrack test name'
+        end
+      end
+
       within '.actions' do
         expect(page).to have_css 'h2', text: 'Actions'
-
         expect(page).to have_link 'Edit'
         expect(page).to have_link 'Delete'
         expect(page).to have_link 'Create Project'
         expect(page).to have_link 'List of Projects'
+      end
+
+      within '.dl-horizontal' do
+        expect(page).to have_link 'Customer test name'
       end
     end
   end

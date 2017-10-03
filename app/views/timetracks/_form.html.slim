@@ -6,8 +6,9 @@
       = t('shared.form.details')
 
     = panel.body do
+      = f.association :project
       = f.input :name
-      = f.input :description
+      = f.input :description, as: :text_fullscreen
       = f.input :work_time
       = f.input :bill_time
 

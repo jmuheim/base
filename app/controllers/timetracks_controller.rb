@@ -24,7 +24,8 @@ class TimetracksController < ApplicationController
     params.require(:timetrack).permit(:name,
                                       :description,
                                       :work_time,
-                                      :bill_time)
+                                      :bill_time,
+                                      :project_id)
   end
 
   def add_breadcrumbs

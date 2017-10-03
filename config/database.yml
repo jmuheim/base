@@ -19,9 +19,3 @@ test:
   username: <%= Rails.application.secrets.database_username %>
   password: <%= Rails.application.secrets.database_password %>
   <<: *default
-
-production:
-  database: <%= Rails.application.secrets.database %>
-  username: <%= Rails.application.secrets.database_username %>
-  password: <%= Rails.application.secrets.database_password %>
-  <<: *default

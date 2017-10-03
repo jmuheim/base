@@ -33,7 +33,7 @@ describe 'Showing customer' do
       end
 
       within '.projects' do
-        expect(page).to have_css 'h2', text: 'Projects'
+        expect(page).to have_css 'h2', text: 'Project name'
 
         within 'ul' do
           expect(page).to have_link 'Project test name'
