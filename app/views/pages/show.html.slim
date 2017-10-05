@@ -15,9 +15,14 @@
 
       - if can? :crud, @page
         - unless @page.notes.blank?
-          .notes.markdown.alert.alert-warning
-            h2 = Page.human_attribute_name :notes
-            = markdown indent_heading_level @page.notes_with_references, 2
+          .notes
+            = accordion :notes, item_options: {title_tag: 'h2', panel_class: 'panel-warning'} do |accordion|
+              = accordion.panel do |panel|
+                = panel.title do
+                  = Page.human_attribute_name :notes
+
+                = panel.body do
+                  = markdown indent_heading_level @page.notes_with_references, 2, 2
 
         .additional_information
           h2 = t 'shared.show.additional_information'

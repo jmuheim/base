@@ -3,5 +3,5 @@
 
   == render 'details', user: @user
   == render 'created_pages', pages: @user.created_pages      if @user.created_pages.any?
-  == render 'shared/show/versions', versions: @user.versions if can?(:read, PaperTrail::Version) && @user.versions.size > 0
+  == render 'shared/show/versions', versions: @user.versions if can?(:read, PaperTrail::Version) && @user.versions.any?
   == render 'shared/show/actions', resource: @user

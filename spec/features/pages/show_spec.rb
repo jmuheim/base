@@ -44,7 +44,7 @@ describe 'Showing page' do
 
       within '.notes' do
         expect(page).to have_css 'h2', text: 'Notes'
-        expect(page).to have_css 'h3', text: 'Some notes title'
+        expect(page).to have_css 'h3.h2', text: 'Some notes title'
         expect(page).to have_content 'And some notes stuff'
         expect(page).to have_css "img[alt='Notes image'][src='#{@page.images.last.file.url}']"
         expect(page).to have_css "a[href='/en/pages/#{other_page.id}']", text: 'Some cool other page'
