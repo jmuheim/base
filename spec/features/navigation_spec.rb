@@ -80,16 +80,16 @@ describe 'Navigation' do
     end
   end
 
-  it 'offers the possibility to switch languages' do
+  it 'offers the possibility to switch locale' do
     visit root_path
 
-    expect(page).to have_css '.dropdown-toggle', text: 'Choose language' # Default language is english
+    expect(page).to have_css '.dropdown-toggle', text: 'Choose locale' # Default locale is english
     click_link 'Seite auf Deutsch anzeigen'
 
     expect(page).to have_css '.dropdown-toggle', text: 'Sprache wählen'
     click_link 'Show page in english'
 
-    expect(page).to have_css '.dropdown-toggle', text: 'Choose language'
+    expect(page).to have_css '.dropdown-toggle', text: 'Choose locale'
   end
 
   it 'shows the "Menu" button on small, medium, and large screens (and collapses it on extra small ones)', js: true do
@@ -117,9 +117,9 @@ describe 'Navigation' do
   it 'reports the status of dropdowns (expanded/collapsed) to non-visual agents', js: true do
     visit root_path
 
-    within '#language_chooser' do
+    within '#locale_chooser' do
       expect {
-        click_link 'Choose language'
+        click_link 'Choose locale'
       }.to change { find('.dropdown-toggle')['aria-expanded'].to_b }.from(false).to true
     end
   end

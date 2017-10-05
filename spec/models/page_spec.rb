@@ -263,11 +263,11 @@ RSpec.describe Page do
     end
 
     describe 'translated attributes' do
-      it 'in the same language, it behaves exactly the same as normal' do
+      it 'in the same locale, it behaves exactly the same as normal' do
         expect(Page.human_attribute_name(:title_en)).to eq 'Title'
       end
 
-      it 'in another language, it behaves exactly the same as normal' do
+      it 'in another locale, it behaves exactly the same as normal' do
         expect(Page.human_attribute_name(:title_de)).to eq 'Title (de)'
       end
     end

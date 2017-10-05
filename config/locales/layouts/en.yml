@@ -9,7 +9,7 @@ en:
       home_page: Jump to home page
     navigation:
       admin: Admin
-      choose_language: Choose language
+      choose_locale: Choose locale
       content_navigation: Content navigation
       current_group: current menu group
       current_item: current menu item

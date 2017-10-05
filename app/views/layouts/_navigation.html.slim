@@ -60,8 +60,8 @@ nav#navigation.container
             = navigation_mega t('.sign_in'), new_user_session_path do
               .row = render 'devise/sessions/form', resource: User.new, display: :small
 
-          li#language_chooser.dropdown
-            = link_to flag(current_locale_flag, t('.choose_language')), '#', class: 'dropdown-toggle', 'data-toggle': 'dropdown', 'aria-expanded': false
+          li#locale_chooser.dropdown
+            = link_to flag(current_locale_flag, t('.choose_locale')), '#', class: 'dropdown-toggle', 'data-toggle': 'dropdown', 'aria-expanded': false
 
             ul.dropdown-menu
               li lang="en"

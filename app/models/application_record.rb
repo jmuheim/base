@@ -19,7 +19,7 @@ class ApplicationRecord < ActiveRecord::Base
     end
   end
 
-  # For a translated attribute, if it's not the current language, its name in the current language is returned together with the language abbreviation in brackets. E.g. if the current language is english:
+  # For a translated attribute, if it's not the current locale, its name in the current locale is returned together with the locale abbreviation in brackets. E.g. if the current locale is english:
   #
   # - If attribute name is `content_de`, the returned value is "Content (de)"
   # - If attribute name is `content_en`, the returned value is "Content"

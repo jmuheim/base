@@ -42,8 +42,8 @@ module ApplicationHelper
     classes
   end
 
-  def active_class_for(language)
-    'active' if language == I18n.locale
+  def active_class_for(locale)
+    'active' if locale == I18n.locale
   end
 
   def devise_mapping

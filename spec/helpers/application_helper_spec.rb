@@ -116,14 +116,14 @@ describe ApplicationHelper do
     end
   end
 
-  describe '#active_class_for(language)' do
-    describe 'same language' do
+  describe '#active_class_for(locale)' do
+    describe 'same locale' do
       subject { active_class_for(:en) }
 
       it { should eq 'active' }
     end
 
-    describe 'other language' do
+    describe 'other locale' do
       subject { active_class_for(:de) }
 
       it { should be_nil }

@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe 'I18n' do
-  it 'uses english as default language' do
+  it 'uses english as default locale' do
     visit root_path
 
     expect(page).to have_content 'Welcome'
@@ -19,7 +19,7 @@ describe 'I18n' do
     expect(page).to have_content 'Willkommen'
   end
 
-  it 'sets the html language' do
+  it 'sets the html locale' do
     visit root_path
 
     expect(page).to have_css 'html[lang="en"]'
