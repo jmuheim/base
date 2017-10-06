@@ -105,4 +105,14 @@ describe 'Creating page' do
     expect(page).to have_css '.page_content.text_fullscreen_with_pastable_resources .fa.fa-expand', visible: false
     expect(page).to have_css '.page_notes.text_fullscreen_with_pastable_resources .fa.fa-expand',   visible: false
   end
+
+  # This must be tested because of the following reason: previously, database fields that were set to NOT NULL were validated using model validations (validates presence: true). Now with several translations, all translated fields must allow NULL, otherwise the app crashes.
+  it 'allows to create a page in German' do
+    visit new_page_path locale: :de # Default locale (English)
+
+    fill_in 'page_title', with: 'German title'
+    click_button 'Seite erstellen'
+
+    expect(page).to have_flash 'Seite wurde erfolgreich erstellt.'
+  end
 end

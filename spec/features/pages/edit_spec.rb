@@ -243,4 +243,22 @@ describe 'Editing page' do
       expect(page).to have_css '.notes',   text: 'Notizen werden nicht übersetzt!' # Notes are the same in both English and German
     end
   end
+
+  it 'allows to translate a page to German' do
+    @page = create :page, creator: @user, title: 'English title'
+
+    visit edit_page_path @page, locale: :de # Default locale (English)
+
+    expect(page).to have_css 'input#page_title[value="English title"]'
+    fill_in 'page_title', with: 'German title'
+
+    expect {
+      click_button 'Seite aktualisieren'
+      @page.reload
+    } .to  change { @page.title }.from('English title').to('German title')
+      .and change { @page.title_de }.from(nil).to('German title')
+    expect(@page.title_en).to eq 'English title'
+
+    expect(page).to have_flash 'Seite wurde erfolgreich bearbeitet.'
+  end
 end

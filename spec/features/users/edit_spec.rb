@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe 'Editing user' do
-  before { @user = create :user, :donald, about: 'This is some very interesting info about me. I like playing football and reading books. I work as a web developer.' }
+  before { @user = create :user, :donald, about: 'Info about me.' }
 
   context 'as a guest' do
     it 'does not grant permission to edit a user' do
@@ -92,7 +92,7 @@ describe 'Editing user' do
 
       within '#stale_attribute_user_about_en' do
         expect(page).to have_css '.value_before',     text: 'This is some barely interesting info. I like playing football and reading books. I don\'t work as a web developer anymore.'
-        expect(page).to have_css '.value_after',      text: 'This is some very interesting info about me. I like playing football and reading books. I work as a web developer.'
+        expect(page).to have_css '.value_after',      text: 'Info about me.'
         expect(page).to have_css '.value_difference', text: 'No diff view available (please activate JavaScript)'
       end
 
@@ -112,7 +112,7 @@ describe 'Editing user' do
         click_button 'Update User'
         @user.reload
       } .to  change { @user.name }.to('new-name')
-        .and change { @user.about }.to('This is some very interesting info about me. I like playing football and reading books. I work as a web developer.')
+        .and change { @user.about }.to('Info about me.')
         .and change { File.basename(@user.avatar.to_s) }.to('avatar.png')
         .and change { File.basename(@user.curriculum_vitae.to_s) }.to('other_document.txt')
     end
@@ -299,6 +299,22 @@ describe 'Editing user' do
 
         expect(page).to have_flash 'User was successfully updated.'
       end
+    end
+
+    it 'allows to translate a user to German' do
+      visit edit_user_path @user, locale: :de # Default locale (English)
+
+      expect(page).to have_css 'textarea#user_about', text: 'Info about me.'
+      fill_in 'user_about', with: 'Deutsches About.'
+
+      expect {
+        click_button 'Benutzer aktualisieren'
+        @user.reload
+      } .to  change { @user.about }.from('Info about me.').to('Deutsches About.')
+        .and change { @user.about_de }.from(nil).to('Deutsches About.')
+      expect(@user.about_en).to eq 'Info about me.'
+
+      expect(page).to have_flash 'Benutzer wurde erfolgreich bearbeitet.'
     end
   end
 end

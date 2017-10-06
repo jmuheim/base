@@ -243,4 +243,19 @@ describe 'Creating user' do
 
     # Toggling using esc can't be tested (afaik), see http://stackoverflow.com/questions/35177110/testing-javascript-using-rspec-capybara-how-to-improve-my-spec-for-testing-a-t
   end
+
+  # This must be tested because of the following reason: previously, database fields that were set to NOT NULL were validated using model validations (validates presence: true). Now with several translations, all translated fields must allow NULL, otherwise the app crashes.
+  it 'allows to create a user in German' do
+    visit new_user_path locale: :de # Default locale (English)
+
+    fill_in 'user_name',                  with: 'newname'
+    fill_in 'user_email',                 with: 'somemail@example.com'
+    fill_in 'user_about',                 with: 'German about'
+    fill_in 'user_password',              with: 'somegreatpassword'
+    fill_in 'user_password_confirmation', with: 'somegreatpassword'
+
+    click_button 'Benutzer erstellen'
+
+    expect(page).to have_flash 'Benutzer wurde erfolgreich erstellt.'
+  end
 end
