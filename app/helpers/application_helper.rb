@@ -27,13 +27,12 @@ module ApplicationHelper
     icon((bool ? :ok : :remove), yes_or_no(bool))
   end
 
+  def locale_flag(locale)
+    locale == :en ? :gb : locale
+  end
+
   def current_locale_flag
-    case I18n.locale
-    when :en
-      :gb
-    else
-      I18n.locale
-    end
+    locale_flag I18n.locale
   end
 
   def home_link_class

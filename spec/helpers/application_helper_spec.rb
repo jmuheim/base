@@ -136,6 +136,20 @@ describe ApplicationHelper do
     it { should have_content 'gb' }
   end
 
+  describe '#locale_flag' do
+    describe 'german' do
+      subject { locale_flag :de }
+
+      it { should have_content 'de' }
+    end
+
+    describe 'english' do
+      subject { locale_flag :en }
+
+      it { should have_content 'gb' }
+    end
+  end
+
   describe '#container_for' do
     before { @user = create :user }
 
