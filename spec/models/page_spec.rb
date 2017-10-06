@@ -98,28 +98,36 @@ RSpec.describe Page do
     describe 'attributes' do
       before { @page = create :page, creator: @creator }
 
-      it 'versions title' do
-        expect {
-          @page.update_attributes! title: 'New title'
-        }.to change { @page.versions.count }.by 1
+      it 'versions title (en/de)' do
+        [:en, :de].each do |locale|
+          expect {
+            @page.update_attributes! "title_#{locale}" => 'New title'
+          }.to change { @page.versions.count }.by 1
+        end
       end
 
-      it 'versions navigation_title' do
-        expect {
-          @page.update_attributes! navigation_title: 'New navigation_title'
-        }.to change { @page.versions.count }.by 1
+      it 'versions navigation_title (en/de)' do
+        [:en, :de].each do |locale|
+          expect {
+            @page.update_attributes! "navigation_title_#{locale}" => 'New navigation_title'
+          }.to change { @page.versions.count }.by 1
+        end
       end
 
-      it 'versions lead' do
-        expect {
-          @page.update_attributes! lead: 'New lead'
-        }.to change { @page.versions.count }.by 1
+      it 'versions lead (en/de)' do
+        [:en, :de].each do |locale|
+          expect {
+            @page.update_attributes! "lead_#{locale}" => 'New lead'
+          }.to change { @page.versions.count }.by 1
+        end
       end
 
-      it 'versions content' do
-        expect {
-          @page.update_attributes! content: 'New content'
-        }.to change { @page.versions.count }.by 1
+      it 'versions content (en/de)' do
+        [:en, :de].each do |locale|
+          expect {
+            @page.update_attributes! "content_#{locale}" => 'New content'
+          }.to change { @page.versions.count }.by 1
+        end
       end
 
       it 'versions notes' do

@@ -34,10 +34,12 @@ describe User do
         }.to change { @user.versions.count }.by 1
       end
 
-      it 'versions about' do
-        expect {
-          @user.update_attributes! about: 'I like make up'
-        }.to change { @user.versions.count }.by 1
+      it 'versions about (en/de)' do
+        [:en, :de].each do |locale|
+          expect {
+            @user.update_attributes! "about_#{locale}" => 'I like make up'
+          }.to change { @user.versions.count }.by 1
+        end
       end
     end
   end
