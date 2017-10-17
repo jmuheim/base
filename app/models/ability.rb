@@ -24,6 +24,10 @@ class Ability
         can [:read, :update], User do |user|
           user == current_user
         end
+
+        can :crud, Project
+        can :crud, Customer
+        can :crud, Timetrack
       end
 
       cannot :destroy, User do |user|
