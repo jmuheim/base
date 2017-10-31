@@ -3,10 +3,16 @@ table.timetrack.table.table-striped.table-hover
     tr
       th.name         = Timetrack.human_attribute_name :name
       th.description  = Timetrack.human_attribute_name :description
-      th.work_time    = Timetrack.human_attribute_name :work_time
-      th.bill_time    = Timetrack.human_attribute_name :bill_time
       th.project      = Timetrack.human_attribute_name :project
       th colspan="3"  = t 'actions.actions'
 
   tbody
     = render timetracks
+
+.row
+  .col-md-4
+    .worktime
+      h2 Total Worktime
+      span = Timetrack.sum(:work_time)
+      br
+      span = :bill_time.to_s.sum

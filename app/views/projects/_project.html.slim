@@ -9,5 +9,13 @@ tr id=dom_id(project)
     - if project.customer.present?
       = link_to project.customer.name, project.customer
 
+  td.total_worklTime
+    - if project.timetracks.present?
+      = project.group_timetracks.sum(:work_time)
+
+  td.total_billTime
+    - if project.timetracks.present?
+      = Timetrack.sum(:bill_time)
+
   td.actions
     == render 'shared/index/actions', resource: project

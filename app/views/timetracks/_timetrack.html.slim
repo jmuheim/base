@@ -5,12 +5,6 @@ tr id=dom_id(timetrack)
     - if timetrack.description.present?
       pre = timetrack.description
 
-  td.work_time
-    = timetrack.work_time
-
-  td.bill_time
-    = timetrack.bill_time
-
   td.project
     - if timetrack.project.present?
       = link_to timetrack.project.name, timetrack.project
