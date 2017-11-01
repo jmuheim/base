@@ -8,25 +8,27 @@ de:
         identifier: Besteht aus CodePen-Nutzer und Pen-ID, getrennt durch Bindestrich (z.B. jmuheim-KmKOZO)
         title: Wird während des Speicherns automatisch aus dem Pen übernommen
       page:
-        content: Der Hauptinhalt der Seite. Angezeigt unter dem the Lead und über den Teasern der Unterseiten der Seite. Mehrsprachig.
-        lead: Beschreibt den Inhalt der Seite in wenigen kurzen Sätzen. Angezeigt am Anfang der Seite und in Teasern. Mehrsprachig.
-        navigation_title: Erscheint in Menüs und Breadcrumb. Leer lassen um Titel zu verwenden. Mehrsprachig.
+        content: Der Hauptinhalt der Seite. Angezeigt unter dem the Lead und über den Teasern der Unterseiten der Seite.
+        lead: Beschreibt den Inhalt der Seite in wenigen kurzen Sätzen. Angezeigt am Anfang der Seite und in Teasern.
+        navigation_title: Erscheint in Menüs und Breadcrumb. Leer lassen um Titel zu verwenden.
         notes: Nur für den internen Gebrauch bestimmt (nicht öffentlich einsehbar).
-        title: Erscheint als Haupt-Überschrift beim Anzeigen der Seite. Mehrsprachig.
+        title: Erscheint als Haupt-Überschrift beim Anzeigen der Seite.
       user:
-        about: Schreib etwas über dich (Biographie, Interessen, Hobbies...). Du kannst Pandoc Markdown verwenden zum Formatieren. Mehrsprachig.
+        about: Schreib etwas über dich (Biographie, Interessen, Hobbies...). Du kannst Pandoc Markdown verwenden zum Formatieren.
         password_confirmation: Gib dein Passwort nochmal ein, um Tippfehler zu vermeiden.
     inputs:
+      better_text:
+        allows_pasting_of_resources: Erlaubt das Einfügen von Bildern und CodePen-Links als Ressourcen
+        code_text_prompt: Alternativtext eingeben (leer lassen, um Original-Titel zu verwenden)
+        image_alt_prompt: Alternativtext eingeben (leer lassen für dekoratives Bild)
+        image_identifier_prompt: Dateiname eingeben (leer lassen, um eine Zufallszahl zu verwenden)
+        multi_language: Mehrsprachig
       paste:
         click_to_paste_another_image: Klicken, um ein anderes %{attribute}-Bild einzufügen
         image_preview: Bildvorschau
         paste_here: Hier einfügen
       text_fullscreen:
         toggler_text: Vollansicht umschalten (Esc)
-      text_fullscreen_with_pastable_resources:
-        image_alt_prompt: Alternativtext eingeben (leer lassen für dekoratives Bild)
-        image_identifier_prompt: Dateiname eingeben (leer lassen, um eine Zufallszahl zu verwenden)
-        code_text_prompt: Alternativtext eingeben (leer lassen, um Original-Titel zu verwenden)
       upload:
         click_to_choose_a_file: Klicken um eine %{attribute} Datei zu wählen
         click_to_choose_another_file: Klicken, um eine andere %{attribute}-Datei zu wählen

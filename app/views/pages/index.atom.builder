@@ -12,7 +12,7 @@ atom_feed do |feed|
         author.uri(user_path(page.creator))
       end
 
-      entry.summary(markdown page.lead_with_references)
+      entry.summary(markdown(complete_internal_references(page, :lead)))
 
       entry.content(render(page), type: 'html')
     end

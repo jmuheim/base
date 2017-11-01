@@ -10,12 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170917080707) do
+ActiveRecord::Schema.define(version: 20171024112330) do
 
   create_table "codes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "title",                                   null: false
     t.string   "identifier",                              null: false
-    t.integer  "page_id"
+    t.integer  "codeable_id"
     t.text     "html",          limit: 65535
     t.text     "css",           limit: 65535
     t.text     "js",            limit: 65535
@@ -24,20 +24,24 @@ ActiveRecord::Schema.define(version: 20170917080707) do
     t.integer  "creator_id"
     t.datetime "created_at",                              null: false
     t.datetime "updated_at",                              null: false
+    t.string   "codeable_type",                           null: false
+    t.index ["codeable_id"], name: "index_codes_on_codeable_id", using: :btree
+    t.index ["codeable_type", "codeable_id"], name: "index_codes_on_codeable_type_and_codeable_id", using: :btree
     t.index ["creator_id"], name: "index_codes_on_creator_id", using: :btree
-    t.index ["page_id"], name: "index_codes_on_page_id", using: :btree
   end
 
   create_table "images", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "file"
-    t.integer  "page_id"
+    t.integer  "imageable_id"
     t.string   "identifier"
-    t.integer  "lock_version", default: 0
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
-    t.integer  "creator_id",               null: false
+    t.integer  "lock_version",   default: 0
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.integer  "creator_id",                 null: false
+    t.string   "imageable_type",             null: false
     t.index ["creator_id"], name: "index_images_on_creator_id", using: :btree
-    t.index ["page_id"], name: "index_images_on_page_id", using: :btree
+    t.index ["imageable_id"], name: "index_images_on_imageable_id", using: :btree
+    t.index ["imageable_type", "imageable_id"], name: "index_images_on_imageable_type_and_imageable_id", using: :btree
   end
 
   create_table "pages", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -130,7 +134,7 @@ ActiveRecord::Schema.define(version: 20170917080707) do
     t.index ["transaction_id"], name: "index_versions_on_transaction_id", using: :btree
   end
 
-  add_foreign_key "codes", "pages"
+  add_foreign_key "codes", "pages", column: "codeable_id"
   add_foreign_key "images", "users", column: "creator_id", name: "index_images_on_creator_id"
   add_foreign_key "pages", "users", column: "creator_id", name: "index_pages_on_creator_id"
 end

@@ -26,10 +26,10 @@ en:
       no_previous_page: No previous page
       previous_page: Previous page
     form:
-      info: Information about creating and editing pages, about insertig images, and codes
+      info: Information about organising pages as tree hierarchy
     page:
-      notice_title: Notice about Atom feed
       notice_content: Your feed reader has downloaded version %{version} of the current page, which was current at %{date}. Meanwhile there could be an updated version of the page available online. Visit the original page to see the most current version!
+      notice_title: Notice about Atom feed
       position_in_hierarchy: Position in page hierarchy
   shared:
     diff:
@@ -49,6 +49,9 @@ en:
       stale_info:
         instructions: At the time being, the form only contains your changes ("Value after"). Please merge the interim changes ("Value before") by the other user manually. Only save, when you are sure, that no changes are abandoned by error!
         stale_attributes: Attributes that have been changed
+    pastables:
+      info:
+        info: Information about pasting images and CodePen links as resources
     show:
       additional_information: Additional information
       version:

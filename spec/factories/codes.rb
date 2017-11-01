@@ -6,6 +6,6 @@ FactoryGirl.define do
     css           'Code test css'
     js            'Code test js'
     thumbnail_url 'Code test thumbnail url'
-    creator_id 0
+    codeable_type 'Page'
   end
 end

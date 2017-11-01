@@ -1,0 +1,2 @@
+== render 'images/images', images: images if can?(:crud, Image) && images.any?
+== render 'codes/codes',  codes:  codes  if can?(:crud, Code)  && codes.any?

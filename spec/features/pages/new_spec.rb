@@ -29,6 +29,29 @@ describe 'Creating page' do
     expect(page).to have_breadcrumbs 'Base', 'Pages', 'Create'
     expect(page).to have_headline 'Create Page'
 
+    within '.page_title .help-block.help-block-small' do
+      expect(page).to have_css '.fa.fa-globe'
+      expect(page).to have_text 'Multi-lingual'
+    end
+
+    within '.page_navigation_title .help-block.help-block-small' do
+      expect(page).to have_css '.fa.fa-globe'
+      expect(page).to have_text 'Multi-lingual'
+    end
+
+    within '.page_content .help-block.help-block-small' do
+      expect(page).to have_css '.fa.fa-globe'
+      expect(page).to have_text 'Multi-lingual'
+
+      expect(page).to have_css '.fa.fa-paste'
+      expect(page).to have_text 'Allows pasting of images and CodePen links as resources'
+    end
+
+    within '.page_notes .help-block.help-block-small' do
+      expect(page).to have_css '.fa.fa-paste'
+      expect(page).to have_text 'Allows pasting of images and CodePen links as resources'
+    end
+
     fill_in 'page_title',            with: 'new title'
     fill_in 'page_navigation_title', with: 'new navigation title'
     fill_in 'page_content',          with: 'A cool image: ![image](@image-referenced-image), and some code: [](@code-referenced-code)'
@@ -83,6 +106,10 @@ describe 'Creating page' do
 
     expect(page).to have_flash 'Page was successfully created.'
 
+    # The user is set as creator
+    page = Page.last
+    expect(page.creator).to eq @user
+
     # Only the referenced image is kept
     expect(Image.count).to eq 1
     expect(Image.last.identifier).to eq 'referenced-image'
@@ -98,12 +125,17 @@ describe 'Creating page' do
   end
 
   # See https://github.com/layerssss/paste.js/issues/39
-  it 'allows to paste images and codes as nested attributes directly into content and notes textareas', js: true do
+  it 'allows to paste ressources into textareas (and that the textareas can be fullscreenized)', js: true do
     visit new_page_path
 
     # Make sure that the ClipboardToNestedResourcePastabilizer loaded successfully. Some better tests would be good, but don't know how. See https://github.com/layerssss/paste.js/issues/39.
-    expect(page).to have_css '.page_content.text_fullscreen_with_pastable_resources .fa.fa-expand', visible: false
-    expect(page).to have_css '.page_notes.text_fullscreen_with_pastable_resources .fa.fa-expand',   visible: false
+    expect(page).to have_css 'textarea#page_content.pastable'
+    expect(page).to have_css 'textarea#page_notes.pastable'
+
+    # Make sure that the TextareaFullscreenizer loaded successfully. Some better tests would be good, but don't know how.
+    expect(page).to have_css '.page_lead    .fa.fa-expand', visible: false
+    expect(page).to have_css '.page_content .fa.fa-expand', visible: false
+    expect(page).to have_css '.page_notes   .fa.fa-expand', visible: false
   end
 
   # This must be tested because of the following reason: previously, database fields that were set to NOT NULL were validated using model validations (validates presence: true). Now with several translations, all translated fields must allow NULL, otherwise the app crashes.

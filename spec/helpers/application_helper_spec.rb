@@ -51,15 +51,15 @@ describe ApplicationHelper do
     end
   end
 
-  describe '#yes_or_no' do
-    describe '#yes_or_no(true)' do
-      subject { yes_or_no true }
+  describe '#yes_or_no_icon' do
+    describe '#yes_or_no_icon(true)' do
+      subject { yes_or_no_icon true }
 
       it { should have_content 'Yes' }
     end
 
-    describe '#yes_or_no(false)' do
-      subject { yes_or_no false }
+    describe '#yes_or_no_icon(false)' do
+      subject { yes_or_no_icon false }
 
       it { should have_content 'No' }
     end
@@ -184,6 +184,119 @@ describe ApplicationHelper do
       subject { active_if_controller?(:not_test) }
 
       it { should be_nil }
+    end
+  end
+
+  describe "#complete_internal_references" do
+    before { @creator = create :user }
+
+    context 'replacing page references' do
+      before { @page = create(:page, creator: @creator) }
+
+      it 'converts @references to page ids to full page paths (e.g. @page-123)' do
+        @page.update_attribute :content, "[](@page-#{@page.id})"
+        expect(complete_internal_references(@page, :content)).to eq "[Page test title](/en/pages/#{@page.id}){.page}"
+      end
+
+      it "doesn't take into account references that miss the @ (e.g. page-123)" do
+        @page.update_attribute :content, "[](page-#{@page.id})"
+        expect(complete_internal_references(@page, :content)).to eq @page.content
+      end
+
+      it "fails gracefully if page id doesn't exist" do
+        @page.update_attribute :content, "[Some alt](@page-123)"
+        expect(complete_internal_references(@page, :content)).to eq "[Some alt](@page-123)"
+      end
+
+      it 'replaces empty alt text with the page title' do
+        @page.update_attribute :content, "[](@page-#{@page.id})"
+        expect(complete_internal_references(@page, :content)).to eq "[Page test title](/en/pages/#{@page.id}){.page}"
+      end
+
+      context 'alt text different to page title' do
+        it 'adds the page title as title attribute' do
+          @page.update_attribute :content, "[some other title](@page-#{@page.id})"
+          expect(complete_internal_references(@page, :content)).to eq "[some other title](/en/pages/#{@page.id}){.page title=\"Page test title\"}"
+        end
+      end
+
+      context 'alt text equals page title' do
+        it "doesn't add title as title attribute" do
+          @page.update_attribute :content, "[Page test title](@page-#{@page.id})"
+          expect(complete_internal_references(@page, :content)).to eq "[Page test title](/en/pages/#{@page.id}){.page}"
+        end
+      end
+    end
+
+    context 'replacing image references' do
+      before { @page = create(:page, creator: @creator, images: [create(:image, creator: @creator)]) }
+
+      it 'converts @references to image identifiers to full image paths (e.g. @image-test-123)' do
+        @page.update_attribute :content, "![My image](@image-Image test identifier)"
+        expect(complete_internal_references(@page, :content)).to eq "![My image](/uploads/image/file/#{@page.images.first.id}/image.jpg){.image}"
+      end
+
+      it "doesn't take into account references that miss the @ (e.g. image-test-123)" do
+        @page.update_attribute :content, "[](image-Image test identifier)"
+        expect(complete_internal_references(@page, :content)).to eq "[](image-Image test identifier)"
+      end
+
+      it "fails gracefully if image identifier doesn't exist" do
+        @page.update_attribute :content, "[Some alt](@image-inexistant)"
+        expect(complete_internal_references(@page, :content)).to eq "[Some alt](@image-inexistant)"
+      end
+
+      it "only replaces identifiers of own images" do
+        other_page = create :page, title: 'Other page', creator: @creator, images: [create(:image, identifier: 'other-identifier', creator: @creator)]
+
+        @page.update_attribute :content, "![My image](@image-other-identifier)"
+        expect(complete_internal_references(@page, :content)).to eq "![My image](@image-other-identifier)"
+      end
+    end
+
+    context 'replacing code references' do
+      before { @page = create(:page, creator: @creator, codes: [create(:code, identifier: 'test-123', creator: @creator)]) }
+
+      it 'converts @references to code identifiers to full code paths (e.g. @code-test-123)' do
+        @page.update_attribute :content, "[My code](@code-test-123)"
+        expect(complete_internal_references(@page, :content)).to eq "[**My code**![](Code test thumbnail url)](https://codepen.io/test/pen/123){.code title=\"Code test title\"}"
+      end
+
+      it "doesn't take into account references that miss the @ (e.g. code-test-123)" do
+        @page.update_attribute :content, "[](code-test-123)"
+        expect(complete_internal_references(@page, :content)).to eq "[](code-test-123)"
+      end
+
+      it "fails gracefully if code identifier doesn't exist" do
+        @page.update_attribute :content, "[Some alt](@code-inexistant)"
+        expect(complete_internal_references(@page, :content)).to eq "[Some alt](@code-inexistant)"
+      end
+
+      it "only replaces identifiers of own codes" do
+        other_page = create :page, creator: @creator, title: 'Other page', codes: [create(:code, creator: @creator, identifier: 'other-identifier')]
+
+        @page.update_attribute :content, "[My code](@code-other-identifier)"
+        expect(complete_internal_references(@page, :content)).to eq "[My code](@code-other-identifier)"
+      end
+
+      it 'replaces empty text with the code title' do
+        @page.update_attribute :content, "[](@code-test-123)"
+        expect(complete_internal_references(@page, :content)).to eq "[**Code test title**![](Code test thumbnail url)](https://codepen.io/test/pen/123){.code}"
+      end
+
+      context 'text different to code title' do
+        it 'adds the code title as title attribute' do
+          @page.update_attribute :content, "[some other title](@code-test-123)"
+          expect(complete_internal_references(@page, :content)).to eq "[**some other title**![](Code test thumbnail url)](https://codepen.io/test/pen/123){.code title=\"Code test title\"}"
+        end
+      end
+
+      context 'text equals code title' do
+        it "doesn't add title as title attribute" do
+          @page.update_attribute :content, "[Code test title](@code-test-123)"
+          expect(complete_internal_references(@page, :content)).to eq "[**Code test title**![](Code test thumbnail url)](https://codepen.io/test/pen/123){.code}"
+        end
+      end
     end
   end
 end

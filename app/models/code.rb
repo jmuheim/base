@@ -1,12 +1,12 @@
 class Code < ApplicationRecord
   has_paper_trail only: [:identifier, :title, :html, :css, :js]
 
-  belongs_to :page
+  belongs_to :codeable, polymorphic: true
 
   belongs_to :creator, class_name: User, foreign_key: :creator_id
 
   validates :identifier, presence: true,
-                         uniqueness: {scope: :page_id},
+                         uniqueness: {scope: [:codeable_type, :codeable_id]},
                          format: /\A.+\-\w+\z/
 
   validates :creator_id, presence: true

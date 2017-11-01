@@ -48,6 +48,19 @@ input[type="radio"]:focus,
 input[type="checkbox"]:focus
   +box-shadow($input-border-focus 0 0 10px)
 
+textarea
+  font-family: monospace
+
 .textarea-fullscreenizer
   .textarea-fullscreenizer-toggler
     @extend .label
+
+.help-block-small
+  margin-bottom: 0
+  font-size: 12px
+
+  + .help-block
+    margin-top: 3px
+
+  .fa:not(:first-child)
+    margin-left: 10px

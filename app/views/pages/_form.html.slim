@@ -11,7 +11,8 @@
       = panel.body do
         == render 'page_hierarchy_info'
         == render 'referencing_pages_info'
-        == render 'pasting_resources_info'
+
+    == render 'shared/pastables/info', accordion: accordion, f: f
 
   = panel do |panel|
     = panel.heading do
@@ -27,12 +28,13 @@
 
       = f.input :title
       = f.input :navigation_title
-      = f.input :lead, as: :text_fullscreen
-      = f.input :content, as: :text_fullscreen_with_pastable_resources
-      = f.input :notes, as: :text_fullscreen_with_pastable_resources
+
+      / TODO: Remove :as option from all translated text areas when https://github.com/shioyama/mobility/issues/109 is fixed!
+      = f.input :lead,    as: :text
+      = f.input :content, as: :text
+      = f.input :notes,   as: :text
 
   .row
     .col-md-12
-      == render 'images/images', f: f
-      == render 'codes/codes', f: f
+      == render 'shared/pastables/form', f: f
       == render 'shared/form/actions', form: f, resource: @page
