@@ -1,6 +1,6 @@
 # Deployment
 
-We chose [Uberspace](http://www.uberspace.de) as our hosting provider and [InternetWorx](http://www.inwx.ch) as our domain registrar.
+This documents explains how to deploy a Rails app to [Uberspace](http://www.uberspace.de) as a hosting provider and [InternetWorx](http://www.inwx.ch) as a domain registrar.
 
 In the following document, replace `ACCOUNT` with your Uberspace account name (e.g. `base`), `SERVER` with the Uberspace server (e.g. `sirius`), `PROJECT` with your GitHub repository name (e.g. `base`), and `PORT` with an open port on the server! **When you worked through this document, remove this paragraph here, then commit the document.**
 
@@ -101,7 +101,8 @@ ActionMailer::Base.smtp_settings = {
 
 ## Add GitHub to known hosts <sup>(remote)</sup>
 
-Execute `ssh -T git@github.com` and confirm.
+- Add your SSH public key to GitHub: https://help.github.com/articles/adding-a-new-ssh-key-to-your-github-account/
+- Execute `ssh -T git@github.com` and confirm.
 
 ## Setup Mina <sup>(local)</sup>
 
@@ -182,126 +183,3 @@ Thunderbird:
 ## Additional information
 
 - If you ever have to inspect server logs, they're here: `/home/ACCOUNT/nginx/logs/error.log`
-
-## Backup using backup gem <sup>(remote)</sup>
-
-- `$ gem install backup`
-- `$ backup generate:model --trigger=ACCOUNT`
-
-Replace the content of `~/Backup/models/ACCOUNT.rb` with the following (don't forget to replace `your@email.here` with your email address):
-
-```
-# encoding: utf-8
-
-##
-# Backup Generated: ACCOUNT
-# Once configured, you can run the backup with the following command:
-#
-# $ backup perform -t ACCOUNT [-c <path_to_configuration_file>]
-#
-# For more information about Backup's components, see the documentation at:
-# http://backup.github.io/backup
-#
-Model.new(:ACCOUNT, 'Full backup of ACCOUNT (database and uploaded files), copied to FTP') do
-
-  ##
-  # MySQL [Database]
-  #
-  database MySQL do |db|
-    # To dump all databases, set `db.name = :all` (or leave blank)
-    db.name               = "ACCOUNT"
-    db.username           = "ACCOUNT"
-    db.password           = "lacoidTejeewricajDeb"
-    db.host               = "localhost"
-    db.port               = 3306
-    db.socket             = "/var/lib/mysql/mysql.sock"
-    # Note: when using `skip_tables` with the `db.name = :all` option,
-    # table names should be prefixed with a database name.
-    # e.g. ["db_name.table_to_skip", ...]
-    # db.skip_tables        = ["skip", "these", "tables"]
-    # db.only_tables        = ["only", "these", "tables"]
-    # db.additional_options = ["--quick", "--single-transaction"]
-  end
-
-  archive :uploads do |archive|
-    # Run the `tar` command using `sudo`
-    # archive.use_sudo
-    archive.add '~/rails/shared/public/uploads/'
-    archive.exclude '~/rails/shared/public/uploads/tmp/'
-  end
-
-  # store_with Dropbox do |db|
-  #   db.api_key     = "ijvrikaqtyhv48e"
-  #   db.api_secret  = "w2xingwdobq9uxk"
-  #   # Sets the path where the cached authorized session will be stored.
-  #   # Relative paths will be relative to ~/Backup, unless the --root-path
-  #   # is set on the command line or within your configuration file.
-  #   db.cache_path  = ".cache"
-  #   # :app_folder (default) or :dropbox
-  #   db.access_type = :app_folder
-  #   db.path        = ""
-  #   db.keep        = 25
-  # end
-
-  store_with FTP do |server|
-    server.username     = 'ACCOUNT-backup'
-    server.password     = '5OUwqL5496EuHWCGWDKy'
-    server.ip           = '80.74.144.35'
-    server.port         = 21
-    server.path         = '~/'
-    server.keep         = 10
-    server.passive_mode = true
-  end
-
-  store_with Local do |local|
-    local.path = '~/Backup/backups/'
-    local.keep = 5
-  end
-
-  ##
-  # Gzip [Compressor]
-  #
-  compress_with Gzip
-
-  ##
-  # Mail [Notifier]
-  #
-  # The default delivery method for Mail Notifiers is 'SMTP'.
-  # See the documentation for other delivery options.
-  #
-  notify_by Mail do |mail|
-    mail.on_success           = false
-    mail.on_warning           = true
-    mail.on_failure           = true
-
-    mail.from                 = "ACCOUNT@SERVER.uberspace.de"
-    mail.to                   = "your@email.here"
-    mail.address              = "SERVER.uberspace.de"
-    mail.port                 = 587
-    mail.domain               = "SERVER.uberspace.de"
-    mail.user_name            = "ACCOUNT-mailer"
-    mail.password             = "m41ls4r3funnY!"
-    mail.authentication       = "login"
-    mail.encryption           = :starttls
-  end
-end
-```
-
-### Automate daily backup
-
-- `$ gem install whenever`
-- `$ cd ~/Backup`
-- `$ mkdir config`
-- `$ wheneverize .`
-
-Add the following to `config/schedule.rb`:
-
-```
-every 1.day, :at => '11:30 pm' do
-  command "backup perform -t ACCOUNT"
-end
-```
-
-Now update crontab:
-
-- `$ whenever --update-crontab`
