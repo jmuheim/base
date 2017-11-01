@@ -83,6 +83,9 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw] # Timezone Data for T
 
 gem 'wannabe_bool' # Converts strings, integers, etc. intuitively to boolean values
 
+# Use specific version because of this bug: https://github.com/rails/rails/issues/21544
+gem 'mysql2', '>= 0.3.18' # Use MySQL as the database for Active Record
+
 group :doc do
   gem 'sdoc', require: false # bundle exec rake doc:rails generates the API under doc/api.
 end
@@ -173,8 +176,6 @@ group :test do
 end
 
 group :production do
-  # Use specific version because of this bug: https://github.com/rails/rails/issues/21544
-  gem 'mysql2', '>= 0.3.18' # Use MySQL as the database for Active Record
 end
 
 # Use ActiveModel has_secure_password
