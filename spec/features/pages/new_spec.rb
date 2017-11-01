@@ -29,6 +29,29 @@ describe 'Creating page' do
     expect(page).to have_breadcrumbs 'Base', 'Pages', 'Create'
     expect(page).to have_headline 'Create Page'
 
+    within '.page_title .help-block.help-block-small' do
+      expect(page).to have_css '.fa.fa-globe'
+      expect(page).to have_text 'Multi-lingual'
+    end
+
+    within '.page_navigation_title .help-block.help-block-small' do
+      expect(page).to have_css '.fa.fa-globe'
+      expect(page).to have_text 'Multi-lingual'
+    end
+
+    within '.page_content .help-block.help-block-small' do
+      expect(page).to have_css '.fa.fa-globe'
+      expect(page).to have_text 'Multi-lingual'
+
+      expect(page).to have_css '.fa.fa-paste'
+      expect(page).to have_text 'Allows pasting of images and CodePen links as resources'
+    end
+
+    within '.page_notes .help-block.help-block-small' do
+      expect(page).to have_css '.fa.fa-paste'
+      expect(page).to have_text 'Allows pasting of images and CodePen links as resources'
+    end
+
     fill_in 'page_title',            with: 'new title'
     fill_in 'page_navigation_title', with: 'new navigation title'
     fill_in 'page_content',          with: 'A cool image: ![image](@image-referenced-image), and some code: [](@code-referenced-code)'
