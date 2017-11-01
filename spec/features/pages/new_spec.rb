@@ -128,6 +128,8 @@ describe 'Creating page' do
   it 'allows to paste ressources into textareas (and that the textareas can be fullscreenized)', js: true do
     visit new_page_path
 
+    expect(page).to have_css '.pastables'
+
     # Make sure that the ClipboardToNestedResourcePastabilizer loaded successfully. Some better tests would be good, but don't know how. See https://github.com/layerssss/paste.js/issues/39.
     expect(page).to have_css 'textarea#page_content.pastable'
     expect(page).to have_css 'textarea#page_notes.pastable'

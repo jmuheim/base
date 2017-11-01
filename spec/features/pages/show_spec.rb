@@ -62,6 +62,8 @@ describe 'Showing page' do
         expect(page).to have_css 'p', text: 'Some sub page lead'
       end
 
+      expect(page).to have_css '.pastables'
+
       within '.actions' do
         expect(page).to have_css 'h2', text: 'Actions'
 
