@@ -41,6 +41,7 @@ describe 'Creating user' do
 
       # Make sure that the ClipboardToTextareaPastabilizer loaded successfully. Some better tests would be good, but don't know how. See https://github.com/layerssss/paste.js/issues/39.
       expect(page).to have_css '.user_avatar.paste .fa.fa-image', visible: false
+      expect(page).to have_css 'textarea#user_avatar.pastable'
     end
 
     it 'caches an uploaded avatar during validation errors' do
