@@ -35,6 +35,8 @@ describe 'Editing user' do
       expect(page).to have_breadcrumbs 'Base', 'Users', 'donald', 'Edit'
       expect(page).to have_headline 'Edit donald'
 
+      expect(page).to have_css 'h2', text: 'Account information'
+
       fill_in 'user_name',  with: 'gustav'
       fill_in 'user_email', with: 'new-gustav@example.com'
       fill_in 'user_about', with: 'Some info about me'

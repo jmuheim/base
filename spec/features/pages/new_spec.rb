@@ -29,6 +29,11 @@ describe 'Creating page' do
     expect(page).to have_breadcrumbs 'Base', 'Pages', 'Create'
     expect(page).to have_headline 'Create Page'
 
+    expect(page).to have_css 'h2', text: 'Information about organising pages as tree hierarchy'
+    expect(page).to have_css 'h2', text: 'Information about pasting images and CodePen links as resources'
+
+    expect(page).to have_css 'h2', text: 'Details'
+
     within '.page_title .help-block.help-block-small' do
       expect(page).to have_css '.fa.fa-globe'
       expect(page).to have_text 'Multi-lingual'
@@ -128,7 +133,10 @@ describe 'Creating page' do
   it 'allows to paste ressources into textareas (and that the textareas can be fullscreenized)', js: true do
     visit new_page_path
 
-    expect(page).to have_css '.pastables'
+    within '.pastables' do
+      expect(page).to have_css 'h2', text: 'Images'
+      expect(page).to have_css 'h2', text: 'Codes'
+    end
 
     # Make sure that the ClipboardToNestedResourcePastabilizer loaded successfully. Some better tests would be good, but don't know how. See https://github.com/layerssss/paste.js/issues/39.
     expect(page).to have_css 'textarea#page_content.pastable'

@@ -34,6 +34,11 @@ describe 'Editing page' do
     expect(page).to have_breadcrumbs 'Base', 'Cool parent page', 'Cool navigation title', 'Edit'
     expect(page).to have_headline 'Edit Page test title'
 
+    expect(page).to have_css 'h2', text: 'Information about organising pages as tree hierarchy'
+    expect(page).to have_css 'h2', text: 'Information about pasting images and CodePen links as resources'
+
+    expect(page).to have_css 'h2', text: 'Details'
+
     # Changing the parent disables the position select
     expect {
       select 'Cooler parent page', from: 'page_parent_id'
@@ -88,6 +93,11 @@ describe 'Editing page' do
     click_link 'Create Code'
     nested_field_id = get_latest_nested_field_id(:page_codes)
     fill_in "page_codes_attributes_#{nested_field_id}_identifier", with: 'abandoned-code'
+
+    within '.pastables' do
+      expect(page).to have_css 'h2', text: 'Images'
+      expect(page).to have_css 'h2', text: 'Codes'
+    end
 
     within '.actions' do
       expect(page).to have_css 'h2', text: 'Actions'

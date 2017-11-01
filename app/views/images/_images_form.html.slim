@@ -1,5 +1,5 @@
 = panel do |panel|
-  = panel.heading do
+  = panel.heading tag: "h#{heading_level ||= 2}" do
     = Image.model_name.human count: :other
 
   = panel.body do

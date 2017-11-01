@@ -11,9 +11,14 @@ describe 'Creating user' do
     expect(page).to have_breadcrumbs 'Base', 'Users', 'Create'
     expect(page).to have_headline 'Create User'
 
+    expect(page).to have_css 'h2', text: 'Account information'
+
     fill_in 'user_name',                  with: 'newname'
     fill_in 'user_email',                 with: 'somemail@example.com'
     fill_in 'user_about',                 with: 'Some info about me'
+
+    expect(page).to have_css 'h2', text: 'Password'
+
     fill_in 'user_password',              with: 'somegreatpassword'
     fill_in 'user_password_confirmation', with: 'somegreatpassword'
 
@@ -200,6 +205,7 @@ describe 'Creating user' do
 
     it 'shows the fullscreen toggler on focus' do
       visit new_user_path
+      scroll_by(0, 10000) # Otherwise the footer overlaps the element and results in a Capybara::Poltergeist::MouseEventFailed, see http://stackoverflow.com/questions/4424790/cucumber-capybara-scroll-to-bottom-of-page
 
       within '.user_about' do
         expect(page).not_to have_css '.textarea-fullscreenizer-focus'

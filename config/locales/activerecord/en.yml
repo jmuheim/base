@@ -4,14 +4,14 @@ en:
     attributes:
       code:
         created_at: Created at
-        created_by: Created by
+        creator: Created by
         identifier: Identifier
         title: Title
         updated_at: Updated at
         url: URL
       image:
         created_at: Created at
-        created_by: Created by
+        creator: Created by
         file: Datei
         identifier: Identifier
         updated_at: Updated at
@@ -19,7 +19,7 @@ en:
         children: Sub pages
         content: Content
         created_at: Created at
-        created_by: Created by
+        creator: Created by
         images: Images
         navigation_title: Navigation title
         notes: Notes

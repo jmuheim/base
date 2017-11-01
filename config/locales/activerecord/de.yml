@@ -4,14 +4,14 @@ de:
     attributes:
       code:
         created_at: Erstellt am
-        created_by: Erstellt von
+        creator: Erstellt von
         identifier: Kennung
         title: Titel
         updated_at: Aktualisiert am
         url: URL
       image:
         created_at: Erstellt am
-        created_by: Erstellt von
+        creator: Erstellt von
         file: Datei
         identifier: Kennung
         updated_at: Aktualisiert am
@@ -19,7 +19,7 @@ de:
         children: Unterseiten
         content: Inhalt
         created_at: Erstellt am
-        created_by: Erstellt von
+        creator: Erstellt von
         images: Bilder
         navigation_title: Navigations-Titel
         notes: Notizen

@@ -56,13 +56,22 @@ describe 'Showing page' do
         expect(page).to have_css "a[href='/en/pages/#{child_page.id}']", text: 'Next page: Really cool sub page'
       end
 
+      within '.additional_information' do
+        expect(page).to have_css '.creator', text: 'User test name'
+        expect(page).to have_css '.created_at', text: 'Mon, 15 Jun 2015 14:33:52 +0200'
+        expect(page).to have_css '.updated_at', text: 'Mon, 15 Jun 2015 14:33:52 +0200'
+      end
+
       within '.children' do
         expect(page).to have_css 'h2', text: 'Sub pages'
         expect(page).to have_css 'h3', text: 'A cool sub page'
         expect(page).to have_css 'p', text: 'Some sub page lead'
       end
 
-      expect(page).to have_css '.pastables'
+      within '.pastables' do
+        expect(page).to have_css 'h2', text: 'Images (1)'
+        # No codes available
+      end
 
       within '.actions' do
         expect(page).to have_css 'h2', text: 'Actions'
@@ -117,14 +126,14 @@ describe 'Showing page' do
       visit page_path(@page)
 
       within '.images' do
-        expect(page).to have_css 'h2', text: 'Images'
+        expect(page).to have_css 'h2', text: 'Images (1)'
 
         within '#image_1' do
           expect(page).to have_css ".image a[href='#{@page.images.last.file.url}'] img[alt='Thumb image'][src='#{@page.images.last.file.url(:thumb)}']"
           expect(page).to have_css '.identifier',   text: 'Image test identifier'
-          expect(page).to have_css '.created_by a', text: 'User test name'
-          expect(page).to have_css '.created_at',   text: '15 Jun 14:33'
-          expect(page).to have_css '.updated_at',   text: '15 Jun 14:33'
+          expect(page).to have_css '.creator a',    text: 'User test name'
+          expect(page).to have_css '.created_at',   text: 'Mon, 15 Jun 2015 14:33:52 +0200'
+          expect(page).to have_css '.updated_at',   text: 'Mon, 15 Jun 2015 14:33:52 +0200'
         end
       end
 
@@ -153,9 +162,9 @@ describe 'Showing page' do
           expect(page).to have_css '.identifier',   text: 'jmuheim-PipApO'
           expect(page).to have_css '.title',        text: 'Code test title'
           expect(page).to have_css '.url a',        text: 'https://codepen.io/jmuheim/pen/PipApO'
-          expect(page).to have_css '.created_by a', text: 'User test name'
-          expect(page).to have_css '.created_at',   text: '15 Jun 14:33'
-          expect(page).to have_css '.updated_at',   text: '15 Jun 14:33'
+          expect(page).to have_css '.creator a', text: 'User test name'
+          expect(page).to have_css '.created_at',   text: 'Mon, 15 Jun 2015 14:33:52 +0200'
+          expect(page).to have_css '.updated_at',   text: 'Mon, 15 Jun 2015 14:33:52 +0200'
         end
       end
 
@@ -193,7 +202,7 @@ describe 'Showing page' do
         within '#version_5_title_de' do
           expect(page).to have_css '.count      .first_occurrence', text: 4
           expect(page).to have_css '.event      .first_occurrence', text: 'Update'
-          expect(page).to have_css '.created_at .first_occurrence', text: '15 Jun 14:33'
+          expect(page).to have_css '.created_at .first_occurrence', text: 'Mon, 15 Jun 2015 14:33:52 +0200'
 
           expect(page).to have_css '.attribute',        text: 'Title (de)'
           expect(find('.value_before').text).to eq ''
@@ -204,7 +213,7 @@ describe 'Showing page' do
         within '#version_5_content_de' do
           expect(page).to have_css '.count      .recurrent_occurrence', text: 4
           expect(page).to have_css '.event      .recurrent_occurrence', text: 'Update'
-          expect(page).to have_css '.created_at .recurrent_occurrence', text: '15 Jun 14:33'
+          expect(page).to have_css '.created_at .recurrent_occurrence', text: 'Mon, 15 Jun 2015 14:33:52 +0200'
 
           expect(page).to have_css '.attribute',        text: 'Content (de)'
           expect(find('.value_before').text).to eq ''
@@ -215,7 +224,7 @@ describe 'Showing page' do
         within '#version_4_title_en' do
           expect(page).to have_css '.count      .first_occurrence', text: 3
           expect(page).to have_css '.event      .first_occurrence', text: 'Update'
-          expect(page).to have_css '.created_at .first_occurrence', text: '15 Jun 14:33'
+          expect(page).to have_css '.created_at .first_occurrence', text: 'Mon, 15 Jun 2015 14:33:52 +0200'
 
           expect(page).to have_css '.attribute',        text: 'Title'
           expect(page).to have_css '.value_before',     text: 'This is a new title'
@@ -226,7 +235,7 @@ describe 'Showing page' do
         within '#version_4_content_en' do
           expect(page).to have_css '.count      .recurrent_occurrence', text: 3
           expect(page).to have_css '.event      .recurrent_occurrence', text: 'Update'
-          expect(page).to have_css '.created_at .recurrent_occurrence', text: '15 Jun 14:33'
+          expect(page).to have_css '.created_at .recurrent_occurrence', text: 'Mon, 15 Jun 2015 14:33:52 +0200'
 
           expect(page).to have_css '.attribute',        text: 'Content'
           expect(page).to have_css '.value_before',     text: 'Page test content'
@@ -237,7 +246,7 @@ describe 'Showing page' do
         within '#version_3_title_en' do
           expect(page).to have_css '.count      .first_occurrence', text: 2
           expect(page).to have_css '.event      .first_occurrence', text: 'Update'
-          expect(page).to have_css '.created_at .first_occurrence', text: '15 Jun 14:33'
+          expect(page).to have_css '.created_at .first_occurrence', text: 'Mon, 15 Jun 2015 14:33:52 +0200'
 
           expect(page).to have_css '.attribute',        text: 'Title'
           expect(page).to have_css '.value_before',     text: 'Page test title'
@@ -248,7 +257,7 @@ describe 'Showing page' do
         within '#version_3_lead_en' do
           expect(page).to have_css '.count      .recurrent_occurrence', text: 2
           expect(page).to have_css '.event      .recurrent_occurrence', text: 'Update'
-          expect(page).to have_css '.created_at .recurrent_occurrence', text: '15 Jun 14:33'
+          expect(page).to have_css '.created_at .recurrent_occurrence', text: 'Mon, 15 Jun 2015 14:33:52 +0200'
 
           expect(page).to have_css '.attribute',        text: 'Lead'
           expect(page).to have_css '.value_before',     text: 'Page test lead'
@@ -256,10 +265,21 @@ describe 'Showing page' do
           expect(page).to have_css '.value_difference', text: 'No diff view available (please activate JavaScript)'
         end
 
-        within '#version_2_title_en' do
+        within '#version_2_notes' do
           expect(page).to have_css '.count      .first_occurrence', text: 1
           expect(page).to have_css '.event      .first_occurrence', text: 'Create'
-          expect(page).to have_css '.created_at .first_occurrence', text: '15 Jun 14:33'
+          expect(page).to have_css '.created_at .first_occurrence', text: 'Mon, 15 Jun 2015 14:33:52 +0200'
+
+          expect(page).to have_css '.attribute',        text: 'Notes'
+          expect(find('.value_before').text).to eq ''
+          expect(page).to have_css '.value_after',      text: 'Page test notes'
+          expect(page).to have_css '.value_difference', text: 'No diff view available (please activate JavaScript)'
+        end
+
+        within '#version_2_title_en' do
+          expect(page).to have_css '.count      .recurrent_occurrence', text: 1
+          expect(page).to have_css '.event      .recurrent_occurrence', text: 'Create'
+          expect(page).to have_css '.created_at .recurrent_occurrence', text: 'Mon, 15 Jun 2015 14:33:52 +0200'
 
           expect(page).to have_css '.attribute',        text: 'Title'
           expect(find('.value_before').text).to eq ''
@@ -270,7 +290,7 @@ describe 'Showing page' do
         within '#version_2_navigation_title_en' do
           expect(page).to have_css '.count      .recurrent_occurrence', text: 1
           expect(page).to have_css '.event      .recurrent_occurrence', text: 'Create'
-          expect(page).to have_css '.created_at .recurrent_occurrence', text: '15 Jun 14:33'
+          expect(page).to have_css '.created_at .recurrent_occurrence', text: 'Mon, 15 Jun 2015 14:33:52 +0200'
 
           expect(page).to have_css '.attribute',        text: 'Navigation title'
           expect(find('.value_before').text).to eq ''
@@ -281,22 +301,11 @@ describe 'Showing page' do
         within '#version_2_content_en' do
           expect(page).to have_css '.count      .recurrent_occurrence', text: 1
           expect(page).to have_css '.event      .recurrent_occurrence', text: 'Create'
-          expect(page).to have_css '.created_at .recurrent_occurrence', text: '15 Jun 14:33'
+          expect(page).to have_css '.created_at .recurrent_occurrence', text: 'Mon, 15 Jun 2015 14:33:52 +0200'
 
           expect(page).to have_css '.attribute',        text: 'Content'
           expect(find('.value_before').text).to eq ''
           expect(page).to have_css '.value_after',      text: 'Page test content'
-          expect(page).to have_css '.value_difference', text: 'No diff view available (please activate JavaScript)'
-        end
-
-        within '#version_2_notes' do
-          expect(page).to have_css '.count      .recurrent_occurrence', text: 1
-          expect(page).to have_css '.event      .recurrent_occurrence', text: 'Create'
-          expect(page).to have_css '.created_at .recurrent_occurrence', text: '15 Jun 14:33'
-
-          expect(page).to have_css '.attribute',        text: 'Notes'
-          expect(find('.value_before').text).to eq ''
-          expect(page).to have_css '.value_after',      text: 'Page test notes'
           expect(page).to have_css '.value_difference', text: 'No diff view available (please activate JavaScript)'
         end
       end
@@ -318,7 +327,7 @@ describe 'Showing page' do
         within '#version_2' do
           expect(page).to have_css '.count      .first_occurrence', text: 1
           expect(page).to have_css '.event      .first_occurrence', text: 'Create'
-          expect(page).to have_css '.created_at .first_occurrence', text: '15 Jun 14:33'
+          expect(page).to have_css '.created_at .first_occurrence', text: 'Mon, 15 Jun 2015 14:33:52 +0200'
 
           expect(page).to have_css '.no_changes', text: 'No changes in this version'
         end
