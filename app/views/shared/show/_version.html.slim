@@ -8,4 +8,4 @@ td.event
   = recurring_string?(t(".#{version.event}"), "version-#{version.id}-event")
 
 td.created_at
-  = recurring_string?(l(version.created_at, format: :short), "version-#{version.id}-created_at")
+  = recurring_string?(l(version.created_at), "version-#{version.id}-created_at")

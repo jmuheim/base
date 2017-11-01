@@ -51,8 +51,8 @@ describe 'Showing user' do
         within '#page_1' do
           expect(page).to have_css '.title a',          text: 'Page test title'
           expect(page).to have_css '.navigation_title', text: 'Page test navigation title'
-          expect(page).to have_css '.created_at',       text: '15 Jun 14:33'
-          expect(page).to have_css '.updated_at',       text: '15 Jun 14:33'
+          expect(page).to have_css '.created_at',       text: 'Mon, 15 Jun 2015 14:33:52 +0200'
+          expect(page).to have_css '.updated_at',       text: 'Mon, 15 Jun 2015 14:33:52 +0200'
         end
       end
 

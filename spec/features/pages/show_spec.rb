@@ -266,9 +266,9 @@ describe 'Showing page' do
         end
 
         within '#version_2_notes' do
-          expect(page).to have_css '.count      .first_occurrence', text: 1
-          expect(page).to have_css '.event      .first_occurrence', text: 'Create'
-          expect(page).to have_css '.created_at .first_occurrence', text: 'Mon, 15 Jun 2015 14:33:52 +0200'
+          expect(page).to have_css '.count      .recurrent_occurrence', text: 1
+          expect(page).to have_css '.event      .recurrent_occurrence', text: 'Create'
+          expect(page).to have_css '.created_at .recurrent_occurrence', text: 'Mon, 15 Jun 2015 14:33:52 +0200'
 
           expect(page).to have_css '.attribute',        text: 'Notes'
           expect(find('.value_before').text).to eq ''
@@ -277,9 +277,9 @@ describe 'Showing page' do
         end
 
         within '#version_2_title_en' do
-          expect(page).to have_css '.count      .recurrent_occurrence', text: 1
-          expect(page).to have_css '.event      .recurrent_occurrence', text: 'Create'
-          expect(page).to have_css '.created_at .recurrent_occurrence', text: 'Mon, 15 Jun 2015 14:33:52 +0200'
+          expect(page).to have_css '.count      .first_occurrence', text: 1
+          expect(page).to have_css '.event      .first_occurrence', text: 'Create'
+          expect(page).to have_css '.created_at .first_occurrence', text: 'Mon, 15 Jun 2015 14:33:52 +0200'
 
           expect(page).to have_css '.attribute',        text: 'Title'
           expect(find('.value_before').text).to eq ''
