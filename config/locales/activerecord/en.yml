@@ -3,10 +3,10 @@ en:
   activerecord:
     attributes:
       code:
-        title: Title
         created_at: Created at
         created_by: Created by
         identifier: Identifier
+        title: Title
         updated_at: Updated at
         url: URL
       image:

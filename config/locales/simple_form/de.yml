@@ -17,18 +17,18 @@ de:
         about: Schreib etwas über dich (Biographie, Interessen, Hobbies...). Du kannst Pandoc Markdown verwenden zum Formatieren. Mehrsprachig.
         password_confirmation: Gib dein Passwort nochmal ein, um Tippfehler zu vermeiden.
     inputs:
+      better_text:
+        allows_pasting_of_resources: Erlaubt das Einfügen von Bildern und CodePen-Links als Ressourcen
+        code_text_prompt: Alternativtext eingeben (leer lassen, um Original-Titel zu verwenden)
+        image_alt_prompt: Alternativtext eingeben (leer lassen für dekoratives Bild)
+        image_identifier_prompt: Dateiname eingeben (leer lassen, um eine Zufallszahl zu verwenden)
+        multi_language: Mehrsprachig
       paste:
         click_to_paste_another_image: Klicken, um ein anderes %{attribute}-Bild einzufügen
         image_preview: Bildvorschau
         paste_here: Hier einfügen
       text_fullscreen:
         toggler_text: Vollansicht umschalten (Esc)
-      better_text:
-        image_alt_prompt: Alternativtext eingeben (leer lassen für dekoratives Bild)
-        image_identifier_prompt: Dateiname eingeben (leer lassen, um eine Zufallszahl zu verwenden)
-        code_text_prompt: Alternativtext eingeben (leer lassen, um Original-Titel zu verwenden)
-        allows_pasting_of_resources: Erlaubt das Einfügen von Bildern und CodePen-Links als Ressourcen
-        multi_language: Mehrsprachig
       upload:
         click_to_choose_a_file: Klicken um eine %{attribute} Datei zu wählen
         click_to_choose_another_file: Klicken, um eine andere %{attribute}-Datei zu wählen

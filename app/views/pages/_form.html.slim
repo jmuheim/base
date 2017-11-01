@@ -11,7 +11,8 @@
       = panel.body do
         == render 'page_hierarchy_info'
         == render 'referencing_pages_info'
-        == render 'pasting_resources_info'
+
+    == render 'shared/pastables/info', accordion: accordion, f: f
 
   = panel do |panel|
     = panel.heading do
@@ -35,6 +36,5 @@
 
   .row
     .col-md-12
-      == render 'images/images', f: f
-      == render 'codes/codes', f: f
+      == render 'shared/pastables/form', f: f
       == render 'shared/form/actions', form: f, resource: @page

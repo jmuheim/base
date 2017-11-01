@@ -53,8 +53,7 @@
 
         hr
 
-  == render 'images', images:   @page.images if can?(:crud, Image) && @page.images.any?
-  == render 'codes',  codes:    @page.codes  if can?(:crud, Code)  && @page.codes.any?
+  == render 'shared/pastables/pastables', images: @page.images, codes: @page.codes
 
   == render 'shared/show/versions', versions: @page.versions if can?(:read, PaperTrail::Version) && @page.versions.any?
 

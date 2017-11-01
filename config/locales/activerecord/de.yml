@@ -3,10 +3,10 @@ de:
   activerecord:
     attributes:
       code:
-        title: Titel
         created_at: Erstellt am
         created_by: Erstellt von
         identifier: Kennung
+        title: Titel
         updated_at: Aktualisiert am
         url: URL
       image:
@@ -35,7 +35,7 @@ de:
         resource_type: Ressource
         updated_at: Aktualisiert am
       user:
-        about: "Über"
+        about: Über
         avatar: Profilbild
         confirmed_at: Bestätigt am
         created_at: Erstellt am
