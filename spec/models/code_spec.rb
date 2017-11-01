@@ -1,7 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe Code do
-  it { should belong_to(:page) }
+  before { @user = create :user }
+
+  # it { should belong_to(:page) }
   it { should validate_presence_of(:creator_id).with_message "can't be blank" }
   it { should validate_presence_of(:title).with_message "can't be blank" }
   it { should validate_presence_of(:thumbnail_url).with_message "can't be blank" }
@@ -15,15 +17,15 @@ RSpec.describe Code do
   describe 'uniqueness validations' do
     subject { build :code }
 
-    it { should validate_uniqueness_of(:identifier).scoped_to(:page_id) }
+    it { should validate_uniqueness_of(:identifier).scoped_to([:codeable_type, :codeable_id]) }
   end
 
   it 'has a valid factory' do
-    expect(create(:code)).to be_valid
+    expect(create(:code, creator: @user)).to be_valid
   end
 
   it 'provides optimistic locking' do
-    code = create :code
+    code = create :code, creator: @user
     stale_code = Code.find(code.id)
 
     code.update_attribute :identifier, 'new-identifier'
@@ -39,7 +41,7 @@ RSpec.describe Code do
     end
 
     it 'versions identifier' do
-      code = create :code
+      code = create :code, creator: @user
 
       expect {
         code.update_attributes! identifier: 'some-identifier'
@@ -47,7 +49,7 @@ RSpec.describe Code do
     end
 
     it 'versions title' do
-      code = create :code
+      code = create :code, creator: @user
 
       expect {
         code.update_attributes! title: 'daisy'
@@ -55,7 +57,7 @@ RSpec.describe Code do
     end
 
     it 'versions html' do
-      code = create :code
+      code = create :code, creator: @user
 
       expect {
         code.update_attributes! html: 'daisy'
@@ -63,7 +65,7 @@ RSpec.describe Code do
     end
 
     it 'versions css' do
-      code = create :code
+      code = create :code, creator: @user
 
       expect {
         code.update_attributes! css: 'daisy'
@@ -71,7 +73,7 @@ RSpec.describe Code do
     end
 
     it 'versions js' do
-      code = create :code
+      code = create :code, creator: @user
 
       expect {
         code.update_attributes! js: 'daisy'
@@ -81,13 +83,13 @@ RSpec.describe Code do
 
   describe '#pen_url' do
     it 'returns the URL to the pen view' do
-      expect(create(:code, identifier: 'name-with-hyphen-id').pen_url).to eq 'https://codepen.io/name-with-hyphen/pen/id'
+      expect(create(:code, identifier: 'name-with-hyphen-id', creator: @user).pen_url).to eq 'https://codepen.io/name-with-hyphen/pen/id'
     end
   end
 
   describe '#debug_url' do
     it 'returns the URL to the debug view' do
-      expect(create(:code, identifier: 'name-with-hyphen-id').debug_url).to eq 'https://codepen.io/name-with-hyphen/debug/id'
+      expect(create(:code, identifier: 'name-with-hyphen-id', creator: @user).debug_url).to eq 'https://codepen.io/name-with-hyphen/debug/id'
     end
   end
 end

@@ -48,6 +48,27 @@ input[type="radio"]:focus,
 input[type="checkbox"]:focus
   +box-shadow($input-border-focus 0 0 10px)
 
+// Add some more contrast so "WCAG SC 1.4.3 - Contrast (Minimum)" is fulfilled
+.btn-primary,
+.btn-success,
+.btn-info,
+.btn-warning,
+.btn-danger
+  +text-shadow(0px 0px 2px #000)
+
+textarea
+  font-family: monospace
+
 .textarea-fullscreenizer
   .textarea-fullscreenizer-toggler
     @extend .label
+
+.help-block-small
+  margin-bottom: 0
+  font-size: 12px
+
+  + .help-block
+    margin-top: 3px
+
+  .fa:not(:first-child)
+    margin-left: 10px

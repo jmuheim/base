@@ -4,7 +4,7 @@ RSpec.describe "pages/show" do # Type braucht's glaubs nicht!
   before { @user = create :user, :donald }
 
   describe "Rendering notes" do
-    before { assign :page, create(:page, creator: @user).decorate }
+    before { assign :page, create(:page, creator: @user) }
 
     it 'renders to admins' do
       allow(controller).to receive(:current_user).and_return(create :admin)
@@ -20,7 +20,7 @@ RSpec.describe "pages/show" do # Type braucht's glaubs nicht!
   end
 
   describe "Rendering images" do
-    before { assign :page, create(:page, images: [create(:image, creator: @user)], creator: @user).decorate }
+    before { assign :page, create(:page, images: [create(:image, creator: @user)], creator: @user) }
 
     it 'renders to admins' do
       allow(controller).to receive(:current_user).and_return(create :admin)
@@ -36,7 +36,7 @@ RSpec.describe "pages/show" do # Type braucht's glaubs nicht!
   end
 
   describe "Rendering codes" do
-    before { assign :page, create(:page, codes: [create(:code, creator: @user)], creator: @user).decorate }
+    before { assign :page, create(:page, codes: [create(:code, creator: @user)], creator: @user) }
 
     it 'renders to admins' do
       allow(controller).to receive(:current_user).and_return(create :admin)

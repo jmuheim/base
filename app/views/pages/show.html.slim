@@ -5,10 +5,10 @@
     .col-md-8
       .markdown
         .lead
-          = markdown indent_heading_level @page.lead_with_references, 1
+          = markdown indent_heading_level complete_internal_references(@page, :lead), 1
 
         .content
-          = markdown indent_heading_level @page.content_with_references, 1
+          = markdown indent_heading_level complete_internal_references(@page, :content), 1
 
     .col-md-4.browsing
       == render 'browsing', page: @page
@@ -22,20 +22,20 @@
                   = Page.human_attribute_name :notes
 
                 = panel.body do
-                  = markdown indent_heading_level @page.notes_with_references, 2, 2
+                  = markdown indent_heading_level complete_internal_references(@page, :notes), 2, 2
 
         .additional_information
           h2 = t 'shared.show.additional_information'
 
           dl.dl-horizontal
-            dt.created_by = Page.human_attribute_name :created_by
-            dd.created_by = link_to @page.creator.name, @page.creator
+            dt.creator = Page.human_attribute_name :creator
+            dd.creator = link_to @page.creator.name, @page.creator
 
             dt.created_at = Page.human_attribute_name :created_at
-            dd.created_at = l @page.created_at, format: :short
+            dd.created_at = l @page.created_at
 
             dt.updated_at = Page.human_attribute_name :updated_at
-            dd.updated_at = l @page.updated_at, format: :short
+            dd.updated_at = l @page.updated_at
 
   - if @page.children.any?
     .row.children

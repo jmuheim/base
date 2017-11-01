@@ -10,14 +10,6 @@ class PagesController < ApplicationController
   respond_to :html,
              :atom
 
-  def index
-    @pages = PageDecorator.decorate_collection(@pages)
-  end
-
-  def show
-    @page = @page.decorate
-  end
-
   def create
     @page.creator = current_user
     assign_creator_to_new_pastables
@@ -82,26 +74,5 @@ class PagesController < ApplicationController
   def provide_previous_and_next_page
     @previous_page = (index = @pages.index(@page)) == 0 ? nil : @pages[index - 1]
     @next_page     = @pages[@pages.index(@page) + 1]
-  end
-
-  def assign_creator_to_new_pastables
-    [:images, :codes].each do |pastables|
-      @page.send(pastables).select(&:new_record?).each { |pastable| pastable.creator = current_user }
-    end
-  end
-
-  # TODO: Only when the codepen was updated!
-  def assign_codepen_data_to_codes
-    @page.codes.each do |code|
-      # Some meta data is available through CodePen's JSON API
-      json = JSON.load(open("https://codepen.io/api/oembed?url=#{code.pen_url}&format=json"))
-      code.title         = json['title']
-      code.thumbnail_url = json['thumbnail_url']
-
-      # HTML, CSS, and JavaScript must be imported through the pen's URL with proper extension appended
-      [:html, :css, :js].each do |format|
-        code.send "#{format}=", open("#{code.pen_url}.#{format}").read
-      end
-    end
   end
 end

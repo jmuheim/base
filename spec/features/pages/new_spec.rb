@@ -83,6 +83,10 @@ describe 'Creating page' do
 
     expect(page).to have_flash 'Page was successfully created.'
 
+    # The user is set as creator
+    page = Page.last
+    expect(page.creator).to eq @user
+
     # Only the referenced image is kept
     expect(Image.count).to eq 1
     expect(Image.last.identifier).to eq 'referenced-image'
@@ -102,8 +106,8 @@ describe 'Creating page' do
     visit new_page_path
 
     # Make sure that the ClipboardToNestedResourcePastabilizer loaded successfully. Some better tests would be good, but don't know how. See https://github.com/layerssss/paste.js/issues/39.
-    expect(page).to have_css '.page_content.text_fullscreen_with_pastable_resources .fa.fa-expand', visible: false
-    expect(page).to have_css '.page_notes.text_fullscreen_with_pastable_resources .fa.fa-expand',   visible: false
+    expect(page).to have_css '.page_content .fa.fa-expand', visible: false
+    expect(page).to have_css '.page_notes .fa.fa-expand',   visible: false
   end
 
   # This must be tested because of the following reason: previously, database fields that were set to NOT NULL were validated using model validations (validates presence: true). Now with several translations, all translated fields must allow NULL, otherwise the app crashes.

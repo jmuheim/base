@@ -27,9 +27,11 @@
 
       = f.input :title
       = f.input :navigation_title
-      = f.input :lead, as: :text_fullscreen
-      = f.input :content, as: :text_fullscreen_with_pastable_resources
-      = f.input :notes, as: :text_fullscreen_with_pastable_resources
+
+      / TODO: Remove :as option from all translated text areas when https://github.com/shioyama/mobility/issues/109 is fixed!
+      = f.input :lead,    as: :text
+      = f.input :content, as: :text
+      = f.input :notes,   as: :text
 
   .row
     .col-md-12

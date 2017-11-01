@@ -7,7 +7,7 @@ ol
     li = link_to page.navigation_title_or_title, page
 
 h1 = Page.human_attribute_name(:content)
-= markdown indent_heading_level(page.content_with_references, 1)
+= markdown indent_heading_level(complete_internal_references(page, :content), 1)
 
 h1 = t('.notice_title')
-p = t('.notice_content', version: page.versions.count, date: l(Time.now, format: :long))
+p = t('.notice_content', version: page.versions.count, date: l(Time.now))
