@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'Editing account' do
   before do
-    @user = create :user, :donald
+    @user = create :user
     login_as(@user)
   end
 
@@ -11,11 +11,11 @@ describe 'Editing account' do
 
     expect(page).to have_title 'Edit account - Base'
     expect(page).to have_active_navigation_items 'User menu', 'Edit account'
-    expect(page).to have_breadcrumbs 'Base', 'donald', 'Edit account'
+    expect(page).to have_breadcrumbs 'Base', 'User test name', 'Edit account'
     expect(page).to have_headline 'Edit account'
 
     fill_in 'user_name',  with: 'gustav'
-    fill_in 'user_email', with: 'new-gustav@example.com'
+    fill_in 'user_email', with: 'new-user@example.com'
     fill_in 'user_about', with: 'Some info about me'
 
 
@@ -36,7 +36,7 @@ describe 'Editing account' do
       .and change { File.basename(@user.curriculum_vitae.to_s) }.to('other_document.txt')
       .and change { @user.about }.to('Some info about me')
       .and change { @user.encrypted_password }
-      .and change { @user.unconfirmed_email }.to('new-gustav@example.com')
+      .and change { @user.unconfirmed_email }.to('new-user@example.com')
 
     expect(page).to have_flash 'You updated your account successfully, but we need to verify your new email address. Please check your email and follow the confirm link to confirm your new email address.'
   end

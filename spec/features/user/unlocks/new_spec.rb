@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe 'Requesting new unlock' do
-  before { @user = create :user, :donald, confirmed_at: nil }
+  before { @user = create :user, confirmed_at: nil }
 
   it 'is possible to request a new unlock' do
     # First we need to lock the account

@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'Admin' do
   it 'allows access to the admin area (to an admin user)' do
-    @admin = create :admin
+    @admin = create :user, :admin
     sign_in_as @admin
 
     visit rails_admin_path

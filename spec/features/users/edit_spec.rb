@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe 'Editing user' do
-  before { @user = create :user, :donald, about: 'Info about me.' }
+  before { @user = create :user, about: 'Info about me.' }
 
   context 'as a guest' do
     it 'does not grant permission to edit a user' do
@@ -23,17 +23,17 @@ describe 'Editing user' do
 
   context 'signed in as admin' do
     before do
-      admin = create :admin, :scrooge
+      admin = create :user, :admin
       login_as(admin)
     end
 
     it 'grants permission to edit other user' do
       visit edit_user_path(@user)
 
-      expect(page).to have_title 'Edit donald - Base'
+      expect(page).to have_title 'Edit User test name - Base'
       expect(page).to have_active_navigation_items 'Users'
-      expect(page).to have_breadcrumbs 'Base', 'Users', 'donald', 'Edit'
-      expect(page).to have_headline 'Edit donald'
+      expect(page).to have_breadcrumbs 'Base', 'Users', 'User test name', 'Edit'
+      expect(page).to have_headline 'Edit User test name'
 
       expect(page).to have_css 'h2', text: 'Account information'
 

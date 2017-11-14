@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'Showing user' do
   before do
-    @user = create :admin, :scrooge
+    @user = create :user, :admin
     login_as(@user)
   end
 
@@ -56,7 +56,7 @@ describe 'Showing user' do
         end
       end
 
-      login_as(other_user = create(:user, :donald))
+      login_as(other_user = create(:user))
       visit user_path(other_user)
       expect(page).not_to have_css '.created_pages'
     end
@@ -72,7 +72,7 @@ describe 'Showing user' do
       expect(page).to have_css 'h2', text: 'Versions (1)'
     end
 
-    login_as(create :user, :donald)
+    login_as(create :user)
     visit user_path(@user)
     expect(page).not_to have_css '.versions'
   end

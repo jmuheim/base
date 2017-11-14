@@ -17,7 +17,7 @@ describe 'Signing in' do
   end
 
   context 'user is signed up' do
-    before { @user = create :user, :donald }
+    before { @user = create :user }
 
     it 'is possible to sign in using email' do
       visit new_user_session_path

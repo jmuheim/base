@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe 'Requesting new password' do
-  before { @user = create :user, :donald }
+  before { @user = create :user }
 
   it 'is possible to request a new password' do
     visit new_user_password_path
@@ -19,13 +19,13 @@ describe 'Requesting new password' do
     end
 
     within '#new_user' do
-      fill_in 'user_email', with: 'donald@example.com'
+      fill_in 'user_email', with: 'user@example.com'
       click_button 'Send me reset password instructions'
     end
 
     expect(page).to have_content 'You will receive an email with instructions on how to reset your password in a few minutes.'
 
-    visit_in_email('Change my password!', 'donald@example.com')
+    visit_in_email('Change my password!', 'user@example.com')
 
     within '#new_user' do
       fill_in 'user_password',              with: 'thenewpassword'

@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'Listing pages' do
   before do
-    @user = create :admin
+    @user = create :user, :admin
     login_as(@user)
   end
 

@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'Signing out' do
   before do
-    @user = create :user, :donald
+    @user = create :user
     login_as(@user)
   end
 

@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'Showing page' do
   before do
-    @user = create :admin
+    @user = create :user, :admin
     login_as(@user)
   end
 
@@ -137,7 +137,7 @@ describe 'Showing page' do
         end
       end
 
-      login_as(create :user, :donald)
+      login_as(create :user)
       visit page_path(@page)
       expect(page).not_to have_css '.images'
     end
@@ -168,7 +168,7 @@ describe 'Showing page' do
         end
       end
 
-      login_as(create :user, :donald)
+      login_as(create :user)
       visit page_path(@page)
       expect(page).not_to have_css '.images'
     end
@@ -310,7 +310,7 @@ describe 'Showing page' do
         end
       end
 
-      login_as(create :user, :donald)
+      login_as(create :user)
       visit page_path(@page)
       expect(page).not_to have_css '.versions'
     end
