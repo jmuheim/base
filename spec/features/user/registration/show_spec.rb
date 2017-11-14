@@ -26,7 +26,7 @@ describe 'Showing account' do
 
       within dom_id_selector(@user) do
         expect(page).to have_content 'User test name'
-        expect(page).to have_content 'test@email.com'
+        expect(page).to have_content 'user@example.com'
         expect(page).to have_css 'img[alt="User test name"]'
         expect(page).to have_link 'document.txt'
         expect(page).to have_link 'Edit'

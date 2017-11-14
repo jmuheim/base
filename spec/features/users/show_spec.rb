@@ -17,7 +17,7 @@ describe 'Showing user' do
     expect(page).to have_headline 'User test name'
 
     within dom_id_selector(other_user) do
-      expect(page).to have_css '.email',      text: 'test@email.com'
+      expect(page).to have_css '.email',      text: 'user@example.com'
       expect(page).to have_css '.created_at', text: 'Mon, 15 Jun 2015 14:33:52 +0200'
       expect(page).to have_css '.updated_at', text: 'Mon, 15 Jun 2015 14:33:52 +0200'
 
@@ -64,8 +64,6 @@ describe 'Showing user' do
 
   # The more thorough tests are implemented for pages#show. As we simply render the same partial here, we just make sure the container is there.
   it 'displays versions (if authorized)', versioning: true do
-    @user = create :user
-
     visit user_path(@user)
 
     within '.versions' do

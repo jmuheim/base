@@ -20,8 +20,8 @@ describe 'Listing users' do
     expect(page).to have_css 'h2', text: 'Results'
 
     within dom_id_selector(@user) do
-      expect(page).to have_css '.name a', text: 'donald'
-      expect(page).to have_css '.email',  text: 'donald@example.com'
+      expect(page).to have_css '.name a', text: 'User test name'
+      expect(page).to have_css '.email',  text: 'user@example.com'
 
       expect(page).to have_link 'Edit'
       expect(page).to have_link 'Delete'

@@ -13,7 +13,7 @@ RSpec.describe "pages/show" do # Type braucht's glaubs nicht!
     end
 
     it "doesn't render to normal users" do
-      allow(controller).to receive(:current_user).and_return(create :user)
+      allow(controller).to receive(:current_user).and_return(@user)
       render
       expect(rendered).not_to have_selector('.notes')
     end
@@ -29,7 +29,7 @@ RSpec.describe "pages/show" do # Type braucht's glaubs nicht!
     end
 
     it "doesn't render to normal users" do
-      allow(controller).to receive(:current_user).and_return(create :user)
+      allow(controller).to receive(:current_user).and_return(@user)
       render
       expect(rendered).not_to have_selector('.images')
     end
@@ -45,7 +45,7 @@ RSpec.describe "pages/show" do # Type braucht's glaubs nicht!
     end
 
     it "doesn't render to normal users" do
-      allow(controller).to receive(:current_user).and_return(create :user)
+      allow(controller).to receive(:current_user).and_return(@user)
       render
       expect(rendered).not_to have_selector('.codes')
     end

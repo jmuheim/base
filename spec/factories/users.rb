@@ -21,6 +21,9 @@ FactoryGirl.define do
     end
 
     trait :admin do
+      name 'User test admin-name'
+      email 'admin@example.com'
+
       after(:create) do |user|
         user.roles << create(:role, name: 'admin')
       end
