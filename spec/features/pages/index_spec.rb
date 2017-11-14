@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'Listing pages' do
   before do
-    @user = create :admin
+    @user = create :user, :admin
     login_as(@user)
   end
 
@@ -45,7 +45,7 @@ describe 'Listing pages' do
       expect(page).to have_css 'title', text: 'Parent page'
 
       within 'author' do
-        expect(page).to have_css 'name', text: 'User test name'
+        expect(page).to have_css 'name', text: 'User test admin-name'
         expect(page).to have_css 'uri',  text: '/en/users/1'
       end
 

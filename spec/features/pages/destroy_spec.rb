@@ -17,7 +17,7 @@ describe 'Deleting page' do
   end
 
   context 'signed in as admin' do
-    before { login_as(create :admin, :scrooge) }
+    before { login_as(create :user, :admin) }
 
     it 'grants permission to delete page' do
       expect {

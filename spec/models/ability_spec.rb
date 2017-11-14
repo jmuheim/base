@@ -76,7 +76,7 @@ describe Ability do
   end
 
   context 'when is an admin' do
-    before  { @admin = create(:admin) }
+    before  { @admin = create :user, :admin }
     subject { Ability.new(@admin) }
 
     it { should be_able_to(:access, :rails_admin) }

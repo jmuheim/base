@@ -17,7 +17,7 @@ describe 'Signing in' do
   end
 
   context 'user is signed up' do
-    before { @user = create :user, :donald }
+    before { @user = create :user }
 
     it 'is possible to sign in using email' do
       visit new_user_session_path
@@ -36,7 +36,7 @@ describe 'Signing in' do
       end
 
       within '#new_user' do
-        fill_in 'user_login',    with: 'donald'
+        fill_in 'user_login',    with: 'User test name'
         fill_in 'user_password', with: 's3cur3p@ssw0rd'
         click_button 'Sign in'
       end
@@ -49,7 +49,7 @@ describe 'Signing in' do
       visit new_user_session_path
 
       within '#new_user' do
-        fill_in 'user_login',    with: 'donald@example.com'
+        fill_in 'user_login',    with: 'user@example.com'
         fill_in 'user_password', with: 's3cur3p@ssw0rd'
         click_button 'Sign in'
       end

@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe 'Deleting user' do
-  before { @user = create :user, :donald }
+  before { @user = create :user }
 
   context 'signed in as user' do
     before { login_as(@user) }
@@ -15,7 +15,7 @@ describe 'Deleting user' do
 
   context 'signed in as admin' do
     before do
-      admin = create :admin, :scrooge
+      admin = create :user, :admin
       login_as(admin)
     end
 

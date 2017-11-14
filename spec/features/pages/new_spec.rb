@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'Creating page' do
   before do
-    @user = create :admin, :scrooge
+    @user = create :user, :admin
     login_as @user
   end
 

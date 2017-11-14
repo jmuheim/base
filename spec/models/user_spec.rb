@@ -27,7 +27,7 @@ describe User do
     end
 
     describe 'attributes' do
-      before { @user = create :user, :donald }
+      before { @user = create :user }
       it 'versions name' do
         expect {
           @user.update_attributes! name: 'daisy'

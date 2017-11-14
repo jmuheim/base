@@ -56,7 +56,7 @@ describe 'Navigation' do
 
     context 'as an admin' do
       it 'offers the expected links' do
-        sign_in_as create :admin, :scrooge
+        sign_in_as create :user, :admin
 
         visit root_path
 
@@ -137,7 +137,7 @@ describe 'Navigation' do
   end
 
   it 'reports the activity status of menu groups and items visually and aurally' do
-    sign_in_as create :admin, :scrooge
+    sign_in_as create :user, :admin
     visit root_path
 
     active_menu_group_css  = '.dropdown.active > a.dropdown-toggle'
@@ -173,7 +173,7 @@ describe 'Navigation' do
 
   # A menu group "Users" has a "List of Users" and a "Create User" item, but no "Edit User" item; for the latter, we still want the group to be marked up as active
   it "reports the activity status of menu groups (that don't have an active item) visually and semantically" do
-    user = create :admin, :scrooge
+    user = create :user, :admin
     login_as user
 
     visit root_path

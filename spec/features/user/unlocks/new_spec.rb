@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe 'Requesting new unlock' do
-  before { @user = create :user, :donald, confirmed_at: nil }
+  before { @user = create :user, confirmed_at: nil }
 
   it 'is possible to request a new unlock' do
     # First we need to lock the account
@@ -10,7 +10,7 @@ describe 'Requesting new unlock' do
     visit new_user_session_path
 
     within '#new_user' do
-      fill_in 'user_login',    with: 'donald'
+      fill_in 'user_login',    with: 'User test name'
       fill_in 'user_password', with: 'wrong-password'
       click_button 'Sign in'
     end
@@ -33,13 +33,13 @@ describe 'Requesting new unlock' do
     end
 
     within '#new_user' do
-      fill_in 'user_email', with: 'donald@example.com'
+      fill_in 'user_email', with: 'user@example.com'
       click_button 'Resend unlock instructions'
     end
 
     expect(page).to have_flash('You will receive an email with instructions for how to unlock your account in a few minutes.').of_type :notice
 
-    open_last_email_for('donald@example.com')
+    open_last_email_for('user@example.com')
     visit_in_email('Unlock my account!')
 
     expect(page).to have_flash('Your account has been unlocked successfully. Please sign in to continue.').of_type :notice

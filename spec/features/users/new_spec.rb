@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe 'Creating user' do
-  before { login_as create :admin, :scrooge }
+  before { login_as create :user, :admin }
 
   it 'creates a user' do
     visit new_user_path

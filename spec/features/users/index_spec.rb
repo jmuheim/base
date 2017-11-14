@@ -2,8 +2,8 @@ require 'rails_helper'
 
 describe 'Listing users' do
   before do
-    @user = create :user, :donald
-    @admin = create :admin
+    @user = create :user
+    @admin = create :user, :admin
 
     login_as(@admin)
   end
@@ -20,8 +20,8 @@ describe 'Listing users' do
     expect(page).to have_css 'h2', text: 'Results'
 
     within dom_id_selector(@user) do
-      expect(page).to have_css '.name a', text: 'donald'
-      expect(page).to have_css '.email',  text: 'donald@example.com'
+      expect(page).to have_css '.name a', text: 'User test name'
+      expect(page).to have_css '.email',  text: 'user@example.com'
 
       expect(page).to have_link 'Edit'
       expect(page).to have_link 'Delete'
@@ -59,7 +59,7 @@ describe 'Listing users' do
   end
 
   it 'marks recurrent occurences of identical roles' do
-    @another_admin = create :admin, name: 'another admin', email: 'another-admin@test.com'
+    @another_admin = create :user, :admin, name: 'another admin', email: 'another-admin@test.com'
     @another_user = create :user, name: 'another user', email: 'another-user@test.com'
 
     visit users_path
