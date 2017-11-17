@@ -48,7 +48,7 @@ class Ability
     can :read, Page
 
     can [:index, :read], User
-    can([:update, :destroy], User) { |user| user == current_user }
+    can(:update, User) { |user| user == current_user }
   end
 
   def define_abilities_for_editors(current_user, request_format)

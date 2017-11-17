@@ -79,7 +79,6 @@ describe Ability do
       it { should     be_able_to(:update, @user) }
 
       it { should_not be_able_to(:destroy, User.new) }
-      it { should     be_able_to(:destroy, @user) }
     end
 
     describe 'managing versions' do
