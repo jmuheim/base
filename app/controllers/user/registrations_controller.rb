@@ -7,7 +7,8 @@ class User::RegistrationsController < Devise::RegistrationsController
 
   def load_and_authorize_current_user
     @user = current_user
-    authorize!(params[:action].to_sym, @user)
+
+    authorize!(params[:action].to_sym, @user) if @user
   end
 
   def add_breadcrumbs

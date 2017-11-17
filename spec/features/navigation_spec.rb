@@ -43,7 +43,7 @@ describe 'Navigation' do
           end
 
           within '#meta_navigation' do
-            expect(page).not_to have_link 'List of Users'
+            expect(page).to     have_link 'List of Users'
             expect(page).not_to have_link 'Create User'
             expect(page).to     have_link 'Show account'
             expect(page).to     have_link 'Edit account'

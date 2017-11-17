@@ -48,22 +48,32 @@ class Ability
     can :read, Page
 
     can [:index, :read], User
-    can(:update, User) { |user| user == current_user }
+    can([:update, :destroy], User) { |user| user == current_user }
   end
 
   def define_abilities_for_editors(current_user, request_format)
+    can [:index, :read], Code
+    can [:index, :read], Image
+
     can :crud, Page
 
     can [:index, :read], User
-    can(:update, User) { |user| user == current_user }
+    can([:update, :destroy], User) { |user| user == current_user }
+
+    can [:index, :read], PaperTrail::Version
   end
 
   def define_abilities_for_admins(current_user, request_format)
     can :access, :rails_admin
 
+    can [:index, :read], Code
+    can [:index, :read], Image
+
     can :crud, Page
 
     can [:index, :create, :read, :update], User
     can(:destroy, User) { |user| user != current_user }
+
+    can [:index, :read], PaperTrail::Version
   end
 end
