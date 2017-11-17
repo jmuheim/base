@@ -77,4 +77,8 @@ class PagesController < ApplicationController
     @previous_page = (index = @pages.index(@page)) == 0 ? nil : @pages[index - 1]
     @next_page     = @pages[@pages.index(@page) + 1]
   end
+
+  def authenticate_user?
+    action_name != 'show'
+  end
 end

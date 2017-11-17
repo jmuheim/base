@@ -1,6 +1,8 @@
 ---
 de:
   enumerize:
-    model:
-      field:
-        value_1: REPLACE THIS WITH YOUR FIRST ENUM FIELD IN A FORM (WE NEED THIS DUMMY SO I18N-TASK DOESN'T MESS UP)
+    user:
+      role:
+        user: Benutzer
+        editor: Editor
+        admin: Administrator

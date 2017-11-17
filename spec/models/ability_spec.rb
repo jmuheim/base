@@ -19,18 +19,6 @@ describe Ability do
       it { should_not be_able_to(:destroy, Page.new) }
     end
 
-    describe 'managing roles' do
-      it { should_not be_able_to(:index, Role) }
-
-      it { should_not be_able_to(:create, Role) }
-
-      it { should_not be_able_to(:read, Role.new) }
-
-      it { should_not be_able_to(:update, Role.new) }
-
-      it { should_not be_able_to(:destroy, Role.new) }
-    end
-
     describe 'managing users' do
       it { should_not be_able_to(:index, User) }
 
@@ -60,30 +48,17 @@ describe Ability do
       it { should_not be_able_to(:destroy, Page.new) }
     end
 
-    describe 'managing roles' do
-      it { should_not be_able_to(:index, Role) }
-
-      it { should_not be_able_to(:create, Role) }
-
-      it { should_not be_able_to(:read, Role.new) }
-
-      it { should_not be_able_to(:update, Role.new) }
-
-      it { should_not be_able_to(:destroy, Role.new) }
-    end
-
     describe 'managing users' do
-      it { should_not be_able_to(:index, User) }
+      it { should     be_able_to(:index, User) }
 
       it { should_not be_able_to(:create, User) }
 
-      it { should_not be_able_to(:read, User.new) }
+      it { should     be_able_to(:read, User.new) }
 
       it { should_not be_able_to(:update, User.new) }
       it { should     be_able_to(:update, @user) }
 
       it { should_not be_able_to(:destroy, User.new) }
-      it { should_not be_able_to(:destroy, @user) }
     end
   end
 
@@ -92,42 +67,28 @@ describe Ability do
     subject { Ability.new(@editor) }
 
     describe 'managing pages' do
-      it { should     be_able_to(:index, Page) }
+      it { should be_able_to(:index, Page) }
 
-      it { should     be_able_to(:create, Page) }
+      it { should be_able_to(:create, Page) }
 
-      it { should     be_able_to(:read, Page.new) }
+      it { should be_able_to(:read, Page.new) }
 
-      it { should     be_able_to(:update, Page.new) }
+      it { should be_able_to(:update, Page.new) }
 
-      it { should_not be_able_to(:destroy, Page.new) }
-      it { should     be_able_to(:destroy, create(:page, creator: @editor)) }
-    end
-
-    describe 'managing roles' do
-      it { should_not be_able_to(:index, Role) }
-
-      it { should_not be_able_to(:create, Role) }
-
-      it { should_not be_able_to(:read, Role.new) }
-
-      it { should_not be_able_to(:update, Role.new) }
-
-      it { should_not be_able_to(:destroy, Role.new) }
+      it { should be_able_to(:destroy, Page.new) }
     end
 
     describe 'managing users' do
-      it { should_not be_able_to(:index, User) }
+      it { should     be_able_to(:index, User) }
 
       it { should_not be_able_to(:create, User) }
 
-      it { should_not be_able_to(:read, User.new) }
+      it { should     be_able_to(:read, User.new) }
 
       it { should_not be_able_to(:update, User.new) }
       it { should     be_able_to(:update, @editor) }
 
       it { should_not be_able_to(:destroy, User.new) }
-      it { should_not be_able_to(:destroy, @editor) }
     end
   end
 
@@ -146,30 +107,17 @@ describe Ability do
 
       it { should be_able_to(:update, Page.new) }
 
-      it { should     be_able_to(:destroy, Page.new) }
-      it { should_not be_able_to(:destroy, Page.new(system: true)) }
-    end
-
-    describe 'managing roles' do
-      it { should be_able_to(:index, Role) }
-
-      it { should be_able_to(:create, Role) }
-
-      it { should be_able_to(:read, Role.new) }
-
-      it { should be_able_to(:update, Role.new) }
-
-      it { should be_able_to(:destroy, Role.new) }
+      it { should be_able_to(:destroy, Page.new) }
     end
 
     describe 'managing users' do
-      it { should be_able_to(:index, User) }
+      it { should     be_able_to(:index, User) }
 
-      it { should be_able_to(:create, User) }
+      it { should     be_able_to(:create, User) }
 
-      it { should be_able_to(:read, User.new) }
+      it { should     be_able_to(:read, User.new) }
 
-      it { should be_able_to(:update, User.new) }
+      it { should     be_able_to(:update, User.new) }
 
       it { should     be_able_to(:destroy, User.new) }
       it { should_not be_able_to(:destroy, @admin) }

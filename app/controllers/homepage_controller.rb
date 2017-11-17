@@ -1,3 +1,11 @@
 class HomepageController < ApplicationController
-  skip_authorization_check
+  private
+
+  def check_authorization?
+    false
+  end
+
+  def authenticate_user?
+    false
+  end
 end

@@ -7,6 +7,7 @@ FactoryGirl.define do
     password              's3cur3p@ssw0rd'
     password_confirmation 's3cur3p@ssw0rd'
     confirmed_at          Time.now
+    role                  'user'
 
     after(:build) do |user|
       user.skip_confirmation_notification!
@@ -21,21 +22,15 @@ FactoryGirl.define do
     end
 
     trait :editor do
-      name   'User test editor-name'
-      email  'editor@example.com'
-
-      after(:create) do |user|
-        user.roles << create(:role, name: 'editor')
-      end
+      name  'User test editor-name'
+      email 'editor@example.com'
+      role  'editor'
     end
 
     trait :admin do
-      name 'User test admin-name'
+      name  'User test admin-name'
       email 'admin@example.com'
-
-      after(:create) do |user|
-        user.roles << create(:role, name: 'admin')
-      end
+      role  'admin'
     end
   end
 end

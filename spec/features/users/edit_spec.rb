@@ -7,7 +7,7 @@ describe 'Editing user' do
     it 'does not grant permission to edit a user' do
       visit edit_user_path(@user)
 
-      expect(page).to have_content 'You need to sign in or sign up before continuing.'
+      expect(page).to have_flash('You are not authorized to access this page.').of_type :alert
     end
   end
 

@@ -1,13 +1,13 @@
 class User::RegistrationsController < Devise::RegistrationsController
   # Would like to use `before_action :authenticate_user!`, but doesn't work. See http://stackoverflow.com/questions/42938450/devise-cancan-route-get-user-registration-path-isnt-available-how-to-create
-  before_action :load_current_user
-  load_and_authorize_resource class: 'User', only: :show
+  before_action :load_and_authorize_current_user
   before_action :add_breadcrumbs
 
   private
 
-  def load_current_user
+  def load_and_authorize_current_user
     @user = current_user
+    authorize!(params[:action].to_sym, @user)
   end
 
   def add_breadcrumbs

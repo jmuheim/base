@@ -9,7 +9,9 @@ class ApplicationController < ActionController::Base
   include OptimisticLockingHandler
   include PastabilityHandler
 
-  check_authorization unless: :devise_controller?
+  # Force authentication and authorization on every request!
+  before_action :authenticate_user!, if: :authenticate_user?
+  check_authorization if: :check_authorization?
 
   helper :image_gallery
 
@@ -95,5 +97,13 @@ class ApplicationController < ActionController::Base
 
   def current_ability
     @current_ability ||= Ability.new(current_user, request.format)
+  end
+
+  def check_authorization?
+    !devise_controller?
+  end
+
+  def authenticate_user?
+    !devise_controller?
   end
 end

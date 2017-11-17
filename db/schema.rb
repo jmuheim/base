@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171114100724) do
+ActiveRecord::Schema.define(version: 20171117134528) do
 
   create_table "codes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "title",                                   null: false
@@ -49,29 +49,18 @@ ActiveRecord::Schema.define(version: 20171114100724) do
     t.string   "navigation_title_en"
     t.text     "content_en",          limit: 65535
     t.text     "notes",               limit: 65535
-    t.boolean  "system",                            default: false
-    t.integer  "lock_version",                      default: 0,     null: false
-    t.datetime "created_at",                                        null: false
-    t.datetime "updated_at",                                        null: false
+    t.integer  "lock_version",                      default: 0, null: false
+    t.datetime "created_at",                                    null: false
+    t.datetime "updated_at",                                    null: false
     t.integer  "parent_id"
-    t.integer  "position",                          default: 1,     null: false
+    t.integer  "position",                          default: 1, null: false
     t.text     "lead_en",             limit: 65535
-    t.integer  "creator_id",                                        null: false
+    t.integer  "creator_id",                                    null: false
     t.string   "title_de"
     t.string   "navigation_title_de"
     t.text     "lead_de",             limit: 65535
     t.text     "content_de",          limit: 65535
     t.index ["creator_id"], name: "index_pages_on_creator_id", using: :btree
-  end
-
-  create_table "roles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "name"
-    t.string   "resource_type"
-    t.integer  "resource_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.index ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id", using: :btree
-    t.index ["name"], name: "index_roles_on_name", using: :btree
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -100,17 +89,12 @@ ActiveRecord::Schema.define(version: 20171114100724) do
     t.text     "about_en",               limit: 65535
     t.string   "curriculum_vitae"
     t.text     "about_de",               limit: 65535
+    t.string   "role"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["name"], name: "index_users_on_name", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree
-  end
-
-  create_table "users_roles", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer "user_id"
-    t.integer "role_id"
-    t.index ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id", using: :btree
   end
 
   create_table "version_associations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
