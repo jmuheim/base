@@ -9,6 +9,8 @@ class ApplicationController < ActionController::Base
   include OptimisticLockingHandler
   include PastabilityHandler
 
+  check_authorization unless: :devise_controller?
+
   helper :image_gallery
 
   helper_method :body_css_classes
@@ -89,5 +91,9 @@ class ApplicationController < ActionController::Base
 
   def provide_root_pages
     @root_pages = @pages.select { | page | page.level == 0 }
+  end
+
+  def current_ability
+    @current_ability ||= Ability.new(current_user, request.format)
   end
 end

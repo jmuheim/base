@@ -20,6 +20,15 @@ FactoryGirl.define do
       curriculum_vitae { File.open dummy_file_path('document.txt') }
     end
 
+    trait :editor do
+      name   'User test editor-name'
+      email  'editor@example.com'
+
+      after(:create) do |user|
+        user.roles << create(:role, name: 'editor')
+      end
+    end
+
     trait :admin do
       name 'User test admin-name'
       email 'admin@example.com'

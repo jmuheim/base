@@ -1,6 +1,8 @@
 class PagesController < ApplicationController
   # As the pages are all loaded for the navigation already, we don't have to load it on index again
   load_and_authorize_resource except: :index
+  authorize_resource only: :index
+
   provide_optimistic_locking
   provide_pastability
   before_action :add_breadcrumbs

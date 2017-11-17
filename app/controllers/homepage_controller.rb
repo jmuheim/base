@@ -1,2 +1,3 @@
 class HomepageController < ApplicationController
+  skip_authorization_check
 end

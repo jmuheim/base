@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'Editing page' do
   before do
-    @user = create :user, :admin
+    @user = create :user
     login_as @user
   end
 
