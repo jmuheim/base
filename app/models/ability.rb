@@ -7,19 +7,19 @@
 class Ability
   include CanCan::Ability
 
-  def initialize(current_user, request_format = nil)
+  def initialize(current_user)
     define_aliases!
 
     if current_user.nil? # Guest (not logged in)
-      define_abilities_for_guests current_user, request_format
+      define_abilities_for_guests current_user
     else
       case current_user.role.to_sym
       when :user
-        define_abilities_for_users current_user, request_format
+        define_abilities_for_users current_user
       when :editor
-        define_abilities_for_editors current_user, request_format
+        define_abilities_for_editors current_user
       when :admin
-        define_abilities_for_admins current_user, request_format
+        define_abilities_for_admins current_user
       else
         raise "Unknown user role #{current_user.role}!"
       end
@@ -36,22 +36,20 @@ class Ability
     alias_action :index, :create, :read, :update, :destroy, to: :crud
   end
 
-  def define_abilities_for_guests(current_user, request_format)
-    can :index, Page if request_format == :atom
+  def define_abilities_for_guests(current_user)
     can :read,  Page
 
     can :create, User
   end
 
-  def define_abilities_for_users(current_user, request_format)
-    can :index, Page if request_format == :atom
+  def define_abilities_for_users(current_user)
     can :read, Page
 
     can [:index, :read], User
     can(:update, User) { |user| user == current_user }
   end
 
-  def define_abilities_for_editors(current_user, request_format)
+  def define_abilities_for_editors(current_user)
     can [:index, :read], Code
     can [:index, :read], Image
 
@@ -63,7 +61,7 @@ class Ability
     can [:index, :read], PaperTrail::Version
   end
 
-  def define_abilities_for_admins(current_user, request_format)
+  def define_abilities_for_admins(current_user)
     can :access, :rails_admin
 
     can [:index, :read], Code

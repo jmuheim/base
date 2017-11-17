@@ -95,10 +95,6 @@ class ApplicationController < ActionController::Base
     @root_pages = @pages.select { | page | page.level == 0 }
   end
 
-  def current_ability
-    @current_ability ||= Ability.new(current_user, request.format)
-  end
-
   def check_authorization?
     !devise_controller?
   end

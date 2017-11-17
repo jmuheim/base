@@ -17,7 +17,6 @@ describe Ability do
 
     describe 'managing pages' do
       it { should_not be_able_to(:index, Page) }
-      it { should     be_able_to(:index, Page, :atom) }
 
       it { should_not be_able_to(:create, Page) }
 
@@ -59,7 +58,6 @@ describe Ability do
 
     describe 'managing pages' do
       it { should_not be_able_to(:index, Page) }
-      it { should     be_able_to(:index, Page, :atom) }
 
       it { should_not be_able_to(:create, Page) }
 
@@ -102,7 +100,6 @@ describe Ability do
 
     describe 'managing pages' do
       it { should be_able_to(:index, Page) }
-      it { should be_able_to(:index, Page, :atom) }
 
       it { should be_able_to(:create, Page) }
 
@@ -148,7 +145,6 @@ describe Ability do
 
     describe 'managing pages' do
       it { should be_able_to(:index, Page) }
-      it { should be_able_to(:index, Page, :atom) }
 
       it { should be_able_to(:create, Page) }
 
