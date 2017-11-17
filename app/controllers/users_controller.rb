@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :edit]
   load_and_authorize_resource
   before_action :add_breadcrumbs
   provide_optimistic_locking

@@ -41,8 +41,6 @@ gem 'devise-i18n' # Translations
 
 gem 'cancancan' # Authorization library which restricts what resources a given user is allowed to access
 
-gem 'rolify' # Manage roles of users
-
 gem 'responders' # A set of Rails responders
 
 gem 'simple_form' # Forms made easy for Rails

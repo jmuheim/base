@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'Showing page' do
   before do
-    @user = create :user, :admin
+    @user = create :user, :editor
     login_as(@user)
   end
 
@@ -57,7 +57,7 @@ describe 'Showing page' do
       end
 
       within '.additional_information' do
-        expect(page).to have_css '.creator', text: 'User test admin-name'
+        expect(page).to have_css '.creator', text: 'User test editor-name'
         expect(page).to have_css '.created_at', text: 'Mon, 15 Jun 2015 14:33:52 +0200'
         expect(page).to have_css '.updated_at', text: 'Mon, 15 Jun 2015 14:33:52 +0200'
       end
@@ -131,7 +131,7 @@ describe 'Showing page' do
         within '#image_1' do
           expect(page).to have_css ".image a[href='#{@page.images.last.file.url}'] img[alt='Thumb image'][src='#{@page.images.last.file.url(:thumb)}']"
           expect(page).to have_css '.identifier',   text: 'Image test identifier'
-          expect(page).to have_css '.creator a',    text: 'User test admin-name'
+          expect(page).to have_css '.creator a',    text: 'User test editor-name'
           expect(page).to have_css '.created_at',   text: 'Mon, 15 Jun 2015 14:33:52 +0200'
           expect(page).to have_css '.updated_at',   text: 'Mon, 15 Jun 2015 14:33:52 +0200'
         end
@@ -162,7 +162,7 @@ describe 'Showing page' do
           expect(page).to have_css '.identifier',   text: 'jmuheim-PipApO'
           expect(page).to have_css '.title',        text: 'Code test title'
           expect(page).to have_css '.url a',        text: 'https://codepen.io/jmuheim/pen/PipApO'
-          expect(page).to have_css '.creator a', text: 'User test admin-name'
+          expect(page).to have_css '.creator a', text: 'User test editor-name'
           expect(page).to have_css '.created_at',   text: 'Mon, 15 Jun 2015 14:33:52 +0200'
           expect(page).to have_css '.updated_at',   text: 'Mon, 15 Jun 2015 14:33:52 +0200'
         end

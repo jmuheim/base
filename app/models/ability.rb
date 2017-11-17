@@ -8,31 +8,70 @@ class Ability
   include CanCan::Ability
 
   def initialize(current_user)
-    alias_action :create, :read, :update, :destroy, to: :crud
+    define_aliases!
 
-    can :read, Page
-
-    if current_user.nil?
-      can :create, User
+    if current_user.nil? # Guest (not logged in)
+      define_abilities_for_guests current_user
     else
-      if current_user.has_role?(:admin)
-        can :access, :rails_admin
-        can :dashboard
-
-        can :crud, :all # TODO: Remove this! Explicitly set every single ability!
+      case current_user.role.to_sym
+      when :user
+        define_abilities_for_users current_user
+      when :editor
+        define_abilities_for_editors current_user
+      when :admin
+        define_abilities_for_admins current_user
       else
-        can [:read, :update], User do |user|
-          user == current_user
-        end
-      end
-
-      cannot :destroy, User do |user|
-        user == current_user
-      end
-
-      cannot :destroy, Page do |page|
-        page.system?
+        raise "Unknown user role #{current_user.role}!"
       end
     end
+  end
+
+  def define_aliases!
+    clear_aliased_actions # We want to differentiate between #read and #index actions!
+
+    alias_action :show, to: :read
+    alias_action :new,  to: :create
+    alias_action :edit, to: :update
+
+    alias_action :index, :create, :read, :update, :destroy, to: :crud
+  end
+
+  def define_abilities_for_guests(current_user)
+    can :read,  Page
+
+    can :create, User
+  end
+
+  def define_abilities_for_users(current_user)
+    can :read, Page
+
+    can [:index, :read], User
+    can(:update, User) { |user| user == current_user }
+  end
+
+  def define_abilities_for_editors(current_user)
+    can [:index, :read], Code
+    can [:index, :read], Image
+
+    can :crud, Page
+
+    can [:index, :read], User
+    can([:update, :destroy], User) { |user| user == current_user }
+
+    can [:index, :read], PaperTrail::Version
+  end
+
+  def define_abilities_for_admins(current_user)
+    can :access, :rails_admin
+
+    can [:index, :read], Code
+    can [:index, :read], Image
+
+    can :crud, Page
+
+    can [:index, :create, :read, :update], User
+    can(:destroy, User) { |user| user != current_user }
+
+    can [:index, :read], PaperTrail::Version
   end
 end

@@ -1,6 +1,7 @@
 class User < ApplicationRecord
+  extend Enumerize
+
   has_paper_trail only: [:name, :about_de, :about_en]
-  rolify
 
   extend Mobility
   translates :about
@@ -16,6 +17,8 @@ class User < ApplicationRecord
 
   has_many :created_pages,  foreign_key: :creator_id, class_name: Page
   has_many :created_images, foreign_key: :creator_id, class_name: Image
+
+  enumerize :role, in: [:user, :editor, :admin], default: :user
 
   attr_accessor :login
 

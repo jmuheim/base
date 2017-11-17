@@ -9,6 +9,10 @@ class ApplicationController < ActionController::Base
   include OptimisticLockingHandler
   include PastabilityHandler
 
+  # Force authentication and authorization on every request!
+  before_action :authenticate_user!, if: :authenticate_user?
+  check_authorization if: :check_authorization?
+
   helper :image_gallery
 
   helper_method :body_css_classes
@@ -89,5 +93,13 @@ class ApplicationController < ActionController::Base
 
   def provide_root_pages
     @root_pages = @pages.select { | page | page.level == 0 }
+  end
+
+  def check_authorization?
+    !devise_controller?
+  end
+
+  def authenticate_user?
+    !devise_controller?
   end
 end
