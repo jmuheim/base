@@ -18,6 +18,11 @@
     @extend .table-bordered
     @extend .table-striped
 
+
+  a
+    @include word-break(break-all)
+    @include hyphens(auto)
+
   .figure
     +float-right
     @extend .img-thumbnail
