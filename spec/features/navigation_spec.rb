@@ -18,6 +18,8 @@ describe 'Navigation' do
           end
 
           within '#meta_navigation' do
+            expect(page).not_to have_link 'List of Pages'
+            expect(page).not_to have_link 'Create Page'
             expect(page).not_to have_link 'List of Users'
             expect(page).not_to have_link 'Create User'
             expect(page).not_to have_link 'Show account'
@@ -43,6 +45,35 @@ describe 'Navigation' do
           end
 
           within '#meta_navigation' do
+            expect(page).not_to have_link 'List of Pages'
+            expect(page).not_to have_link 'Create Page'
+            expect(page).to     have_link 'List of Users'
+            expect(page).not_to have_link 'Create User'
+            expect(page).to     have_link 'Show account'
+            expect(page).to     have_link 'Edit account'
+            expect(page).to     have_link 'Log out'
+            expect(page).not_to have_link 'Admin'
+          end
+        end
+      end
+    end
+
+    context 'as an editor' do
+      it 'offers the expected links' do
+        sign_in_as create :user, :editor
+
+        visit root_path
+
+        within 'nav' do
+          expect(page).to have_link 'Base'
+
+          within '#content_navigation' do
+            expect(page).to have_link 'Page test navigation title'
+          end
+
+          within '#meta_navigation' do
+            expect(page).to     have_link 'List of Pages'
+            expect(page).to     have_link 'Create Page'
             expect(page).to     have_link 'List of Users'
             expect(page).not_to have_link 'Create User'
             expect(page).to     have_link 'Show account'
@@ -68,6 +99,8 @@ describe 'Navigation' do
           end
 
           within '#meta_navigation' do
+            expect(page).to have_link 'List of Pages'
+            expect(page).to have_link 'Create Page'
             expect(page).to have_link 'List of Users'
             expect(page).to have_link 'Create User'
             expect(page).to have_link 'Show account'

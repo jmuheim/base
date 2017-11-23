@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   extend Enumerize
 
-  has_paper_trail only: [:name, :about_de, :about_en]
+  has_paper_trail only: [:name, :about_de, :about_en, :role]
 
   extend Mobility
   translates :about

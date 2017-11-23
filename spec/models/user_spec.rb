@@ -41,6 +41,12 @@ describe User do
           }.to change { @user.versions.count }.by 1
         end
       end
+
+      it 'versions role' do
+        expect {
+          @user.update_attributes! role: 'admin'
+        }.to change { @user.versions.count }.by 1
+      end
     end
   end
 
