@@ -9,17 +9,12 @@
 #       fieldset
 #         legend Favorite hobby suggestions
 #
-#         .control
-#           input#favorite_hobby_hiking type="radio" name="hobby"
-#           label for="favorite_hobby_hiking" Hiking
+#         - [:hiking, :dancing, :gardening].each do |hobby|
+#           - id = "favorite_hobby_#{hobby}"
 #
-#         .control
-#           input#favorite_hobby_dancing type="radio" name="hobby"
-#           label for="favorite_hobby_dancing" Dancing
-#
-#         .control
-#           input#favorite_hobby_gardening type="radio" name="hobby"
-#           label for="favorite_hobby_gardening" Gardening
+#           .control
+#             input id=id type="radio" name="hobby"
+#             label for=id = hobby.capitalize
 #
 #       #favorite_hobby_filter_description.description Provides auto-suggestions when entering text
 #
@@ -80,6 +75,7 @@
 #
 #   addVisualStyles: ->
 #     @$suggestionsContainer.find('legend').addClass('visually-hidden')
+#     @$suggestions.addClass('visually-hidden')
 #
 #   attachEvents: ->
 #     @attachClickEventToFilter()
@@ -87,8 +83,7 @@
 #     @attachEnterEventToFilter()
 #     @attachTabEventToFilter()
 #     @attachUpDownEventToFilter()
-#     # @addChangeEventToFilter()
-#     # @addFocusEventToFilter()
+#     @addChangeEventToFilter()
 #
 #     @attachChangeEventToSuggestions()
 #     @attachClickEventToSuggestions()
@@ -137,7 +132,7 @@
 #         else
 #           @toggleSuggestionsVisibility()
 #
-#         e.preventDefault()
+#         e.preventDefault() # TODO: Test!
 #
 #   toggleSuggestionsVisibility: ->
 #     console.log '(toggle)'
@@ -180,27 +175,31 @@
 #       @$filter.focus()
 #
 #   addChangeEventToFilter: ->
-#     # @$filter.on 'change input propertychange paste', (e) =>
-#     #   @filterSuggestions(e.target.value)
-#     #   @toggleSuggestionsVisibility() unless @$suggestionsContainer.is(':visible')
-#
-#   addFocusEventToFilter: ->
-#     @$filter.focus =>
-#       console.log 'focus filter'
-#       @toggleSuggestionsVisibility()
+#     @$filter.on 'change input propertychange paste', (e) =>
+#       @filterSuggestions(@fuzzifyFilter(e.target.value))
+#       @toggleSuggestionsVisibility() unless @$suggestionsContainer.is(':visible')
 #
 #   filterSuggestions: (filter) ->
 #     @$suggestions.each ->
 #       $suggestion = $(@)
 #       $suggestionContainer = $suggestion.parent()
 #
-#       escapedFilter = filter.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&") # See https://stackoverflow.com/questions/3446170/escape-string-for-use-in-javascript-regex
-#       regex = new RegExp(escapedFilter, 'i')
+#       regex = new RegExp(filter, 'i')
 #
 #       if regex.test($suggestionContainer.text())
 #         $suggestionContainer.show()
 #       else
 #         $suggestionContainer.hide()
+#
+#   fuzzifyFilter: (filter) ->
+#     i = 0
+#     fuzzifiedFilter = ''
+#     while i < filter.length
+#       escapedCharacter = filter.charAt(i).replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&") # See https://stackoverflow.com/questions/3446170/escape-string-for-use-in-javascript-regex
+#       fuzzifiedFilter += "#{escapedCharacter}.*?"
+#       i++
+#
+#     fuzzifiedFilter
 #
 # $(document).ready ->
 #   $('[data-adg-autocomplete]').each ->
@@ -209,7 +208,7 @@
 require 'rails_helper'
 
 describe 'Autocomplete', js: true do
-  URL = 'https://s.codepen.io/accessibility-developer-guide/debug/VrqoXj/vWMRwnJGbLxr' # Needs to be a non-expired debug view! (The full view doesn't work because it's an iframe.)
+  URL = 'https://s.codepen.io/accessibility-developer-guide/debug/VrqoXj/yoMZEQRpbLLk' # Needs to be a non-expired debug view! (The full view doesn't work because it's an iframe.)
   NON_INTERCEPTED_ESC = 'Esc passed on.'
   NON_INTERCEPTED_ENTER = 'Enter passed on.'
 
@@ -222,12 +221,15 @@ describe 'Autocomplete', js: true do
   describe 'mouse interaction' do
     it 'shows suggestions when clicking into unfocused filter, and hides them when clicking into focused filter' do
       click_filter
-      expect_autocomplete_state suggestions_visible: true,
-                                filter_focused:      true
+      expect_autocomplete_state suggestions_expanded: true,
+                                filter_focused:       true,
+                                visible_suggestions:  [:favorite_hobby_hiking,
+                                                       :favorite_hobby_dancing,
+                                                       :favorite_hobby_gardening]
 
       click_filter
-      expect_autocomplete_state suggestions_visible: false,
-                                filter_focused:      true
+      expect_autocomplete_state suggestions_expanded: false,
+                                filter_focused:       true
     end
 
     it 'selects a suggestion when clicking on it, and hides suggestions' do
@@ -257,34 +259,46 @@ describe 'Autocomplete', js: true do
       context 'suggestions invisible' do
         it 'shows suggestions when suggestions invisible' do
           focus_filter_with_keyboard_and_press :up
-          expect_autocomplete_state suggestions_visible: true,
-                                    filter_focused:      true
+          expect_autocomplete_state suggestions_expanded: true,
+                                    filter_focused:       true,
+                                    visible_suggestions:  [:favorite_hobby_hiking,
+                                                           :favorite_hobby_dancing,
+                                                           :favorite_hobby_gardening]
         end
       end
 
       context 'suggestions visible' do
         it 'places selection on bottom when no selection' do
           click_filter_and_press :up
-          expect_autocomplete_state suggestions_visible: true,
-                                    filter_focused:      true,
-                                    filter_value:        'Gardening',
-                                    checked_suggestion:  :favorite_hobby_gardening
+          expect_autocomplete_state suggestions_expanded: true,
+                                    filter_focused:       true,
+                                    filter_value:         'Gardening',
+                                    checked_suggestion:   :favorite_hobby_gardening,
+                                    visible_suggestions:  [:favorite_hobby_hiking,
+                                                           :favorite_hobby_dancing,
+                                                           :favorite_hobby_gardening]
         end
 
         it 'moves selection up' do
           click_filter_and_press :up, :up
-          expect_autocomplete_state suggestions_visible: true,
-                                    filter_focused:      true,
-                                    filter_value:        'Dancing',
-                                    checked_suggestion:  :favorite_hobby_dancing
+          expect_autocomplete_state suggestions_expanded: true,
+                                    filter_focused:       true,
+                                    filter_value:         'Dancing',
+                                    checked_suggestion:   :favorite_hobby_dancing,
+                                    visible_suggestions:  [:favorite_hobby_hiking,
+                                                           :favorite_hobby_dancing,
+                                                           :favorite_hobby_gardening]
         end
 
         it 'wraps selection to bottom when selection on top' do
           click_filter_and_press :down, :up
-          expect_autocomplete_state suggestions_visible: true,
-                                    filter_focused:      true,
-                                    filter_value:        'Gardening',
-                                    checked_suggestion:  :favorite_hobby_gardening
+          expect_autocomplete_state suggestions_expanded: true,
+                                    filter_focused:       true,
+                                    filter_value:         'Gardening',
+                                    checked_suggestion:   :favorite_hobby_gardening,
+                                    visible_suggestions:  [:favorite_hobby_hiking,
+                                                           :favorite_hobby_dancing,
+                                                           :favorite_hobby_gardening]
         end
       end
     end
@@ -293,34 +307,46 @@ describe 'Autocomplete', js: true do
       context 'suggestions invisible' do
         it 'shows suggestions when suggestions invisible' do
           focus_filter_with_keyboard_and_press :down
-          expect_autocomplete_state suggestions_visible: true,
-                                    filter_focused:      true
+          expect_autocomplete_state suggestions_expanded: true,
+                                    filter_focused:       true,
+                                    visible_suggestions:  [:favorite_hobby_hiking,
+                                                           :favorite_hobby_dancing,
+                                                           :favorite_hobby_gardening]
         end
       end
 
       context 'suggestions visible' do
         it 'places selection on top when no selection' do
           click_filter_and_press :down
-          expect_autocomplete_state suggestions_visible: true,
-                                    filter_focused:      true,
-                                    filter_value:        'Hiking',
-                                    checked_suggestion:  :favorite_hobby_hiking
+          expect_autocomplete_state suggestions_expanded: true,
+                                    filter_focused:       true,
+                                    filter_value:         'Hiking',
+                                    checked_suggestion:   :favorite_hobby_hiking,
+                                    visible_suggestions:  [:favorite_hobby_hiking,
+                                                           :favorite_hobby_dancing,
+                                                           :favorite_hobby_gardening]
         end
 
         it 'moves selection down' do
           click_filter_and_press :down, :down
-          expect_autocomplete_state suggestions_visible: true,
-                                    filter_focused:      true,
-                                    filter_value:        'Dancing',
-                                    checked_suggestion:  :favorite_hobby_dancing
+          expect_autocomplete_state suggestions_expanded: true,
+                                    filter_focused:       true,
+                                    filter_value:         'Dancing',
+                                    checked_suggestion:   :favorite_hobby_dancing,
+                                    visible_suggestions:  [:favorite_hobby_hiking,
+                                                           :favorite_hobby_dancing,
+                                                           :favorite_hobby_gardening]
         end
 
         it 'wraps selection to top when selection on bottom' do
           click_filter_and_press :up, :down
-          expect_autocomplete_state suggestions_visible: true,
-                                    filter_focused:      true,
-                                    filter_value:        'Hiking',
-                                    checked_suggestion:  :favorite_hobby_hiking
+          expect_autocomplete_state suggestions_expanded: true,
+                                    filter_focused:       true,
+                                    filter_value:         'Hiking',
+                                    checked_suggestion:   :favorite_hobby_hiking,
+                                    visible_suggestions:  [:favorite_hobby_hiking,
+                                                           :favorite_hobby_dancing,
+                                                           :favorite_hobby_gardening]
         end
       end
     end
@@ -330,8 +356,8 @@ describe 'Autocomplete', js: true do
         it 'hides suggestions' do
           click_filter_and_press :escape
           expect(page).not_to have_content NON_INTERCEPTED_ESC
-          expect_autocomplete_state suggestions_visible: false,
-                                    filter_focused:      true
+          expect_autocomplete_state suggestions_expanded: false,
+                                    filter_focused:       true
         end
       end
 
@@ -346,11 +372,11 @@ describe 'Autocomplete', js: true do
 
     describe 'enter' do
       context 'suggestions visible' do
-        it 'hides suggestions when' do
+        it 'hides suggestions' do
           click_filter_and_press :enter
           expect(page).not_to have_content NON_INTERCEPTED_ENTER
-          expect_autocomplete_state suggestions_visible: false,
-                                    filter_focused:      true
+          expect_autocomplete_state suggestions_expanded: false,
+                                    filter_focused:       true
         end
       end
 
@@ -359,6 +385,38 @@ describe 'Autocomplete', js: true do
           expect {
             focus_filter_with_keyboard_and_press :enter
           }.to change { page.has_content? NON_INTERCEPTED_ENTER }.to true
+        end
+      end
+    end
+
+    describe 'filtering' do
+      context 'suggestions invisible' do
+        it 'displays suggestions' do
+          focus_filter_with_keyboard_and_press 'x'
+          expect_autocomplete_state suggestions_expanded: true,
+                                    filter_focused:       true,
+                                    filter_value:         'X', # TODO: Why is it capitalised?!
+                                    visible_suggestions:  []
+        end
+      end
+
+      context 'suggestions visible' do
+        it 'filters suggestions' do
+          focus_filter_with_keyboard_and_press 'd'
+          expect_autocomplete_state suggestions_expanded: true,
+                                    filter_focused:       true,
+                                    filter_value:         'D',
+                                    visible_suggestions:  [:favorite_hobby_dancing,
+                                                           :favorite_hobby_gardening]
+        end
+
+        it 'filters suggestions in a fuzzy way' do
+          focus_filter_with_keyboard_and_press 'dig'
+          expect_autocomplete_state suggestions_expanded: true,
+                                    filter_focused:       true,
+                                    filter_value:         'DIG',
+                                    visible_suggestions:  [:favorite_hobby_dancing,
+                                                           :favorite_hobby_gardening]
         end
       end
     end
@@ -393,19 +451,25 @@ describe 'Autocomplete', js: true do
   end
 
   def expect_autocomplete_state(options = {})
-    options.reverse_merge! suggestions_visible: false,
-                           filter_value: '',
-                           filter_focused: false,
-                           checked_suggestion: nil
+    options.reverse_merge! suggestions_expanded:  false,
+                           filter_value:          '',
+                           filter_focused:        false,
+                           checked_suggestion:    nil,
+                           visible_suggestions:   []
+
+    invisible_suggestions = [:favorite_hobby_hiking,
+                             :favorite_hobby_dancing,
+                             :favorite_hobby_gardening] - options[:visible_suggestions]
 
     within '[data-adg-autocomplete]' do
       expect(page).to have_css 'input#favorite_hobby_filter[type="text"]'
       expect(page).to have_css 'input#favorite_hobby_filter[autocomplete="off"]'
       expect(page).to have_css 'input#favorite_hobby_filter[aria-describedby="favorite_hobby_filter_description"]'
-      expect(page).to have_css "input#favorite_hobby_filter[aria-expanded='#{options[:suggestions_visible]}']"
+      expect(page).to have_css "input#favorite_hobby_filter[aria-expanded='#{options[:suggestions_expanded]}']"
 
-      within 'fieldset', visible: options[:suggestions_visible] do
-        expect(page).to have_css 'legend[class="visually-hidden"]', visible: options[:suggestions_visible]
+      within 'fieldset', visible: options[:suggestions_expanded] do
+        expect(page).to have_css 'legend[class="visually-hidden"]', visible: options[:suggestions_expanded]
+        expect(page).not_to have_css 'input[type="radio"]:not(.visually-hidden)'
       end
 
       expect(find('input#favorite_hobby_filter').value).to eq options[:filter_value]
@@ -425,6 +489,18 @@ describe 'Autocomplete', js: true do
         end
       elsif checked_elements.count > 0
         fail "No suggestion expected to be checked, but #{checked_elements.first} is!"
+      end
+
+      (options[:visible_suggestions] + invisible_suggestions).each do |suggestion|
+        fail "Unknown suggestion #{suggestion}!" unless page.has_css? "input##{suggestion}[type='radio']", visible: false
+      end
+
+      options[:visible_suggestions].each do |suggestion|
+        fail "Suggestion #{suggestion} expected to be visible, but isn't!" unless page.has_css? "input##{suggestion}[type='radio']"
+      end
+
+      invisible_suggestions.each do |suggestion|
+        fail "Suggestion #{suggestion} expected to be invisible, but isn't!" if page.has_css? "input##{suggestion}[type='radio']"
       end
     end
   end
