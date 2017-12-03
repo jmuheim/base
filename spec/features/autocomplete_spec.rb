@@ -326,32 +326,40 @@ describe 'Autocomplete', js: true do
     end
 
     describe 'esc' do
-      it 'hides suggestions when suggestions visible' do
-        click_filter_and_press :escape
-        expect(page).not_to have_content NON_INTERCEPTED_ESC
-        expect_autocomplete_state suggestions_visible: false,
-                                  filter_focused:      true
+      context 'suggestions invisible' do
+        it 'hides suggestions' do
+          click_filter_and_press :escape
+          expect(page).not_to have_content NON_INTERCEPTED_ESC
+          expect_autocomplete_state suggestions_visible: false,
+                                    filter_focused:      true
+        end
       end
 
-      it "doesn't do anything when suggestions invisible" do
-        expect {
-          click_filter_and_press :escape, :escape
-        }.to change { page.has_content? NON_INTERCEPTED_ESC }.to true
+      context 'suggestions invisible' do
+        it "doesn't do anything" do
+          expect {
+            click_filter_and_press :escape, :escape
+          }.to change { page.has_content? NON_INTERCEPTED_ESC }.to true
+        end
       end
     end
 
     describe 'enter' do
-      it 'hides suggestions when suggestions visible' do
-        click_filter_and_press :enter
-        expect(page).not_to have_content NON_INTERCEPTED_ENTER
-        expect_autocomplete_state suggestions_visible: false,
-                                  filter_focused:      true
+      context 'suggestions visible' do
+        it 'hides suggestions when' do
+          click_filter_and_press :enter
+          expect(page).not_to have_content NON_INTERCEPTED_ENTER
+          expect_autocomplete_state suggestions_visible: false,
+                                    filter_focused:      true
+        end
       end
 
-      it 'submits form when suggestions invisible' do
-        expect {
-          focus_filter_with_keyboard_and_press :enter
-        }.to change { page.has_content? NON_INTERCEPTED_ENTER }.to true
+      context 'suggestions invisible' do
+        it 'submits form' do
+          expect {
+            focus_filter_with_keyboard_and_press :enter
+          }.to change { page.has_content? NON_INTERCEPTED_ENTER }.to true
+        end
       end
     end
   end
