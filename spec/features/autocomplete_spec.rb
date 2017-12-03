@@ -6,25 +6,25 @@
 #       label for="favorite_hobby_filter" Favorite hobby
 #       input#favorite_hobby_filter type="text" aria-expanded="false" autocomplete="off" aria-describedby="favorite_hobby_filter_description"
 #
-#     fieldset
-#       legend Favorite hobby suggestions
+#       fieldset
+#         legend Favorite hobby suggestions
 #
-#       .control
-#         input#favorite_hobby_hiking type="radio" name="hobby"
-#         label for="favorite_hobby_hiking" Hiking
+#         .control
+#           input#favorite_hobby_hiking type="radio" name="hobby"
+#           label for="favorite_hobby_hiking" Hiking
 #
-#       .control
-#         input#favorite_hobby_dancing type="radio" name="hobby"
-#         label for="favorite_hobby_dancing" Dancing
+#         .control
+#           input#favorite_hobby_dancing type="radio" name="hobby"
+#           label for="favorite_hobby_dancing" Dancing
 #
-#       .control
-#         input#favorite_hobby_gardening type="radio" name="hobby"
-#         label for="favorite_hobby_gardening" Gardening
+#         .control
+#           input#favorite_hobby_gardening type="radio" name="hobby"
+#           label for="favorite_hobby_gardening" Gardening
 #
-#     #favorite_hobby_filter_description.description Provides auto-suggestions when entering text
+#       #favorite_hobby_filter_description.description Provides auto-suggestions when entering text
 #
 # button#after href="#" Focusable element after
-
+#
 # .visually-hidden
 #   position: absolute
 #   width: 1px
@@ -50,7 +50,7 @@
 #   display: none
 #   position: absolute
 #   background-color: #fff
-#   margin: -7px 0 0 120px
+#   margin: -1px 0 0 120px
 #   padding: 0
 #   border: 1px solid
 #
@@ -65,7 +65,7 @@
 #     cursor: pointer
 #     color: #fff
 #     background-color: #000
-
+#
 # class AdgAutocomplete
 #   constructor: (el) ->
 #     console.log '---start---'
@@ -79,15 +79,14 @@
 #     @attachEvents()
 #
 #   addVisualStyles: ->
-#     # @$suggestions.addClass('visually-hidden')
-#     # @$suggestionsContainer.find('legend').addClass('visually-hidden')
+#     @$suggestionsContainer.find('legend').addClass('visually-hidden')
 #
 #   attachEvents: ->
 #     @attachClickEventToFilter()
 #     @attachEscEventToFilter()
 #     @attachEnterEventToFilter()
 #     @attachTabEventToFilter()
-#     # @attachUpDownEventToFilter()
+#     @attachUpDownEventToFilter()
 #     # @addChangeEventToFilter()
 #     # @addFocusEventToFilter()
 #
@@ -127,17 +126,18 @@
 #           @toggleSuggestionsVisibility()
 #
 #   attachUpDownEventToFilter: ->
-#     # @$filter.keydown (e) =>
-#     #   if e.which == 38 || e.which == 40
-#     #     if @$suggestionsContainer.is(':visible')
-#     #       if e.which == 38
-#     #         @moveSelection('up')
-#     #       else
-#     #         @moveSelection('down')
-#     #     else
-#     #       @toggleSuggestionsVisibility()
-#     #
-#     #     e.preventDefault()
+#     @$filter.keydown (e) =>
+#       if e.which == 38 || e.which == 40
+#         console.log e.which
+#         if @$suggestionsContainer.is(':visible')
+#           if e.which == 38
+#             @moveSelection('up')
+#           else
+#             @moveSelection('down')
+#         else
+#           @toggleSuggestionsVisibility()
+#
+#         e.preventDefault()
 #
 #   toggleSuggestionsVisibility: ->
 #     console.log '(toggle)'
@@ -145,24 +145,24 @@
 #     @$filter.attr('aria-expanded', (@$filter.attr('aria-expanded') == 'false' ? 'true' : 'false'))
 #
 #   moveSelection: (direction) ->
-#     # $visibleSuggestions = @$suggestions.filter(':visible')
-#     #
-#     # maxIndex = $visibleSuggestions.length - 1
-#     # currentIndex = $visibleSuggestions.index($visibleSuggestions.parent().find(':checked')) # TODO: is parent() good here?!
-#     #
-#     # upcomingIndex = if direction == 'up'
-#     #                   if currentIndex == 0
-#     #                     maxIndex
-#     #                   else
-#     #                     currentIndex - 1
-#     #                 else
-#     #                   if currentIndex == maxIndex
-#     #                     0
-#     #                   else
-#     #                     currentIndex + 1
-#     #
-#     # $upcomingSuggestion = $($visibleSuggestions[upcomingIndex])
-#     # $upcomingSuggestion.prop('checked', true).trigger('change')
+#     $visibleSuggestions = @$suggestions.filter(':visible')
+#
+#     maxIndex = $visibleSuggestions.length - 1
+#     currentIndex = $visibleSuggestions.index($visibleSuggestions.parent().find(':checked')) # TODO: is parent() good here?!
+#
+#     upcomingIndex = if direction == 'up'
+#                       if currentIndex <= 0
+#                         maxIndex
+#                       else
+#                         currentIndex - 1
+#                     else
+#                       if currentIndex == maxIndex
+#                         0
+#                       else
+#                         currentIndex + 1
+#
+#     $upcomingSuggestion = $($visibleSuggestions[upcomingIndex])
+#     $upcomingSuggestion.prop('checked', true).trigger('change')
 #
 #   attachChangeEventToSuggestions: ->
 #     @$suggestions.change (e) =>
@@ -209,7 +209,7 @@
 require 'rails_helper'
 
 describe 'Autocomplete', js: true do
-  URL = 'https://s.codepen.io/accessibility-developer-guide/debug/VrqoXj/PNrvYLnKPJPM'
+  URL = 'https://s.codepen.io/accessibility-developer-guide/debug/VrqoXj/vWMRwnJGbLxr' # Needs to be a non-expired debug view! (The full view doesn't work because it's an iframe.)
   NON_INTERCEPTED_ESC = 'Esc passed on.'
   NON_INTERCEPTED_ENTER = 'Enter passed on.'
 
@@ -240,15 +240,89 @@ describe 'Autocomplete', js: true do
   end
 
   describe 'keyboard interaction' do
-    it "doesn't show suggestions when focusing the filter" do
-      focus_filter_with_keyboard
-      expect_autocomplete_state filter_focused: true
+    describe 'focusing' do
+      it "doesn't show suggestions when focusing the filter" do
+        focus_filter_with_keyboard
+        expect_autocomplete_state filter_focused: true
+      end
+
+      it 'hides suggestions when unfocusing filter' do
+        focus_filter_with_keyboard_and_press :tab
+        expect_autocomplete_state
+        expect(focused_element_id).to eq 'after'
+      end
     end
 
-    it 'hides suggestions when unfocusing filter' do
-      click_filter_and_press :tab
-      expect_autocomplete_state
-      expect(focused_element_id).to eq 'after'
+    describe 'up' do
+      context 'suggestions invisible' do
+        it 'shows suggestions when suggestions invisible' do
+          focus_filter_with_keyboard_and_press :up
+          expect_autocomplete_state suggestions_visible: true,
+                                    filter_focused:      true
+        end
+      end
+
+      context 'suggestions visible' do
+        it 'places selection on bottom when no selection' do
+          click_filter_and_press :up
+          expect_autocomplete_state suggestions_visible: true,
+                                    filter_focused:      true,
+                                    filter_value:        'Gardening',
+                                    checked_suggestion:  :favorite_hobby_gardening
+        end
+
+        it 'moves selection up' do
+          click_filter_and_press :up, :up
+          expect_autocomplete_state suggestions_visible: true,
+                                    filter_focused:      true,
+                                    filter_value:        'Dancing',
+                                    checked_suggestion:  :favorite_hobby_dancing
+        end
+
+        it 'wraps selection to bottom when selection on top' do
+          click_filter_and_press :down, :up
+          expect_autocomplete_state suggestions_visible: true,
+                                    filter_focused:      true,
+                                    filter_value:        'Gardening',
+                                    checked_suggestion:  :favorite_hobby_gardening
+        end
+      end
+    end
+
+    describe 'down' do
+      context 'suggestions invisible' do
+        it 'shows suggestions when suggestions invisible' do
+          focus_filter_with_keyboard_and_press :down
+          expect_autocomplete_state suggestions_visible: true,
+                                    filter_focused:      true
+        end
+      end
+
+      context 'suggestions visible' do
+        it 'places selection on top when no selection' do
+          click_filter_and_press :down
+          expect_autocomplete_state suggestions_visible: true,
+                                    filter_focused:      true,
+                                    filter_value:        'Hiking',
+                                    checked_suggestion:  :favorite_hobby_hiking
+        end
+
+        it 'moves selection down' do
+          click_filter_and_press :down, :down
+          expect_autocomplete_state suggestions_visible: true,
+                                    filter_focused:      true,
+                                    filter_value:        'Dancing',
+                                    checked_suggestion:  :favorite_hobby_dancing
+        end
+
+        it 'wraps selection to top when selection on bottom' do
+          click_filter_and_press :up, :down
+          expect_autocomplete_state suggestions_visible: true,
+                                    filter_focused:      true,
+                                    filter_value:        'Hiking',
+                                    checked_suggestion:  :favorite_hobby_hiking
+        end
+      end
     end
 
     describe 'esc' do
@@ -276,7 +350,7 @@ describe 'Autocomplete', js: true do
 
       it 'submits form when suggestions invisible' do
         expect {
-          click_filter_and_press :enter, :enter
+          focus_filter_with_keyboard_and_press :enter
         }.to change { page.has_content? NON_INTERCEPTED_ENTER }.to true
       end
     end
@@ -306,6 +380,10 @@ describe 'Autocomplete', js: true do
     find('button#before').send_keys :tab
   end
 
+  def focus_filter_with_keyboard_and_press(*keys)
+    click_filter_and_press [:escape] + keys # Notice: send_keys always clicks on the element first! I'm working around this by simply pressing esc to mimic the initial state as if it were focused by keyboard only. See https://stackoverflow.com/questions/47623217.
+  end
+
   def expect_autocomplete_state(options = {})
     options.reverse_merge! suggestions_visible: false,
                            filter_value: '',
@@ -317,7 +395,10 @@ describe 'Autocomplete', js: true do
       expect(page).to have_css 'input#favorite_hobby_filter[autocomplete="off"]'
       expect(page).to have_css 'input#favorite_hobby_filter[aria-describedby="favorite_hobby_filter_description"]'
       expect(page).to have_css "input#favorite_hobby_filter[aria-expanded='#{options[:suggestions_visible]}']"
-      expect(page).to have_css 'fieldset', visible: options[:suggestions_visible]
+
+      within 'fieldset', visible: options[:suggestions_visible] do
+        expect(page).to have_css 'legend[class="visually-hidden"]', visible: options[:suggestions_visible]
+      end
 
       expect(find('input#favorite_hobby_filter').value).to eq options[:filter_value]
 
@@ -331,7 +412,7 @@ describe 'Autocomplete', js: true do
       if options[:checked_suggestion]
         if checked_elements.count == 0
           fail "Suggestion #{options[:checked_suggestion]} expected to be checked, but no suggestion is!"
-        elsif checked_elements.first[:id] != options[:checked_suggestion]
+        elsif checked_elements.first[:id].to_s != options[:checked_suggestion].to_s
           fail "Suggestion #{options[:checked_suggestion]} expected to be checked, but #{checked_elements.first[:id]} is!"
         end
       elsif checked_elements.count > 0
