@@ -31,7 +31,7 @@
 #   margin: 6px 0
 #
 # input[type="text"]
-#   width: 120px
+#   width: 140px
 #
 # label
 #   display: inline-block
@@ -49,11 +49,17 @@
 #   padding: 0
 #   border: 1px solid
 #
+#   #alerts
+#     p
+#       margin: 0
+#
 #   .control
 #     margin: 0
 #
 #   label
-#     width: 124px
+#     min-width: 144px
+#     width: 100%
+#     display: block
 #
 #   label:hover,
 #   input[type="radio"]:checked + label
@@ -69,6 +75,12 @@
 #     @$filter = @$el.find('input[type="text"]')
 #     @$suggestionsContainer = @$el.find('fieldset')
 #     @$suggestions = @$suggestionsContainer.find('input[type="radio"]')
+#
+#     @$el.find('legend').after("<div id='alerts'></div>")
+#     @$alerts = $('#alerts')
+#     @$filter.attr('aria-describedby', [@$filter.attr('aria-describedby'), 'alerts'].join(' ').trim())
+#
+#     @announceSuggestionsCount(@$suggestions.length)
 #
 #     @addVisualStyles()
 #     @attachEvents()
@@ -175,21 +187,38 @@
 #       @$filter.focus()
 #
 #   addChangeEventToFilter: ->
-#     @$filter.on 'change input propertychange paste', (e) =>
-#       @filterSuggestions(@fuzzifyFilter(e.target.value))
+#     @$filter.on 'input propertychange paste', (e) =>
+#       @filterSuggestions(e.target.value)
 #       @toggleSuggestionsVisibility() unless @$suggestionsContainer.is(':visible')
 #
 #   filterSuggestions: (filter) ->
+#     fuzzyFilter = @fuzzifyFilter(filter)
+#     visibleCount = 0
+#
 #     @$suggestions.each ->
 #       $suggestion = $(@)
 #       $suggestionContainer = $suggestion.parent()
 #
-#       regex = new RegExp(filter, 'i')
-#
+#       regex = new RegExp(fuzzyFilter, 'i')
 #       if regex.test($suggestionContainer.text())
+#         visibleCount++
 #         $suggestionContainer.show()
 #       else
 #         $suggestionContainer.hide()
+#
+#     @announceSuggestionsCount(visibleCount)
+#
+#   # TODO: Alert seems to be most robust in all relevant browsers, but isn't polite. Maybe we'll find a better mechanism to serve browsers individually?
+#   announceSuggestionsCount: (count) ->
+#     @$alerts.find('p').remove() # Remove previous alerts (I'm not sure whether this is the best solution, maybe hiding them would be more robust?)
+#
+#     filter = @$filter.val()
+#     if filter == ''
+#       message = "#{count} suggestions in total"
+#     else
+#       message = "#{count} suggestions for <kbd>#{filter}</kbd>"
+#
+#     @$alerts.append("<p role='alert'><em>#{message}</em></p>")
 #
 #   fuzzifyFilter: (filter) ->
 #     i = 0
@@ -208,7 +237,7 @@
 require 'rails_helper'
 
 describe 'Autocomplete', js: true do
-  URL = 'https://s.codepen.io/accessibility-developer-guide/debug/VrqoXj/yoMZEQRpbLLk' # Needs to be a non-expired debug view! (The full view doesn't work because it's an iframe.)
+  URL = 'https://s.codepen.io/accessibility-developer-guide/debug/VrqoXj/PNAvYLnypyqr' # Needs to be a non-expired debug view! (The full view doesn't work because it's an iframe.)
   NON_INTERCEPTED_ESC = 'Esc passed on.'
   NON_INTERCEPTED_ENTER = 'Enter passed on.'
 
@@ -396,7 +425,8 @@ describe 'Autocomplete', js: true do
           expect_autocomplete_state suggestions_expanded: true,
                                     filter_focused:       true,
                                     filter_value:         'X', # TODO: Why is it capitalised?!
-                                    visible_suggestions:  []
+                                    visible_suggestions:  [],
+                                    suggestions_count:    '0 suggestions for X'
         end
       end
 
@@ -407,7 +437,8 @@ describe 'Autocomplete', js: true do
                                     filter_focused:       true,
                                     filter_value:         'D',
                                     visible_suggestions:  [:favorite_hobby_dancing,
-                                                           :favorite_hobby_gardening]
+                                                           :favorite_hobby_gardening],
+                                    suggestions_count:    '2 suggestions for D'
         end
 
         it 'filters suggestions in a fuzzy way' do
@@ -416,7 +447,8 @@ describe 'Autocomplete', js: true do
                                     filter_focused:       true,
                                     filter_value:         'DIG',
                                     visible_suggestions:  [:favorite_hobby_dancing,
-                                                           :favorite_hobby_gardening]
+                                                           :favorite_hobby_gardening],
+                                    suggestions_count:    '2 suggestions for DIG'
         end
       end
     end
@@ -455,20 +487,23 @@ describe 'Autocomplete', js: true do
                            filter_value:          '',
                            filter_focused:        false,
                            checked_suggestion:    nil,
-                           visible_suggestions:   []
+                           visible_suggestions:   [],
+                           suggestions_count:     '3 suggestions in total'
 
     invisible_suggestions = [:favorite_hobby_hiking,
                              :favorite_hobby_dancing,
                              :favorite_hobby_gardening] - options[:visible_suggestions]
 
+    visible = options[:suggestions_expanded] ? true : :hidden
+
     within '[data-adg-autocomplete]' do
       expect(page).to have_css 'input#favorite_hobby_filter[type="text"]'
       expect(page).to have_css 'input#favorite_hobby_filter[autocomplete="off"]'
-      expect(page).to have_css 'input#favorite_hobby_filter[aria-describedby="favorite_hobby_filter_description"]'
+      expect(page).to have_css 'input#favorite_hobby_filter[aria-describedby="favorite_hobby_filter_description alerts"]'
       expect(page).to have_css "input#favorite_hobby_filter[aria-expanded='#{options[:suggestions_expanded]}']"
 
-      within 'fieldset', visible: options[:suggestions_expanded] do
-        expect(page).to have_css 'legend[class="visually-hidden"]', visible: options[:suggestions_expanded]
+      within 'fieldset', visible: visible do
+        expect(page).to have_css 'legend[class="visually-hidden"]', visible: visible
         expect(page).not_to have_css 'input[type="radio"]:not(.visually-hidden)'
       end
 
@@ -480,7 +515,7 @@ describe 'Autocomplete', js: true do
         fail "The focused element shouldn't be favorite_hobby_filter, but it is!"
       end
 
-      checked_elements = page.all('input[type="radio"]:checked', visible: false)
+      checked_elements = page.all('input[type="radio"]:checked', visible: visible)
       if options[:checked_suggestion]
         if checked_elements.count == 0
           fail "Suggestion #{options[:checked_suggestion]} expected to be checked, but no suggestion is!"
@@ -502,6 +537,9 @@ describe 'Autocomplete', js: true do
       invisible_suggestions.each do |suggestion|
         fail "Suggestion #{suggestion} expected to be invisible, but isn't!" if page.has_css? "input##{suggestion}[type='radio']"
       end
+
+      fail "Only one alert at a time must be present, but there are #{length}!" if (length = all('#alerts > *', visible: visible).length) != 1
+      expect(page).to have_css '#alerts p[role="alert"]', text: options[:suggestions_count], visible: visible
     end
   end
 end
