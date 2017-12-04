@@ -53,6 +53,13 @@
 #     p
 #       margin: 0
 #
+#       kbd
+#         &::before
+#           content: '«'
+#
+#         &::after
+#           content: '»'
+#
 #   .control
 #     margin: 0
 #
@@ -80,7 +87,7 @@
 #     @$alerts = $('#alerts')
 #     @$filter.attr('aria-describedby', [@$filter.attr('aria-describedby'), 'alerts'].join(' ').trim())
 #
-#     @announceSuggestionsCount(@$suggestions.length)
+#     @announceSuggestionsCount()
 #
 #     @addVisualStyles()
 #     @attachEvents()
@@ -110,7 +117,9 @@
 #       if e.which == 27
 #         console.log 'esc'
 #         if @$suggestionsContainer.is(':visible')
+#           @applyCheckedSuggestionToFilter()
 #           @toggleSuggestionsVisibility()
+#           @filterSuggestions()
 #           e.preventDefault()
 #         else # Needed for automatic testing only
 #           $('body').append('<p>Esc passed on.</p>')
@@ -120,7 +129,9 @@
 #       if e.which == 13
 #         console.log 'enter'
 #         if @$suggestionsContainer.is(':visible')
+#           @applyCheckedSuggestionToFilter()
 #           @toggleSuggestionsVisibility()
+#           @filterSuggestions()
 #           e.preventDefault()
 #         else # Needed for automatic testing only
 #           $('body').append('<p>Enter passed on.</p>')
@@ -130,7 +141,9 @@
 #       if e.which == 9
 #         console.log 'tab'
 #         if @$suggestionsContainer.is(':visible')
+#           @applyCheckedSuggestionToFilter()
 #           @toggleSuggestionsVisibility()
+#           @filterSuggestions()
 #
 #   attachUpDownEventToFilter: ->
 #     @$filter.keydown (e) =>
@@ -178,20 +191,20 @@
 #
 #   applyCheckedSuggestionToFilter: ->
 #     console.log '(apply suggestion to filter)'
-#     @$filter.val($.trim(@$suggestions.filter(':checked').parent().text()))
+#     @$filter.val($.trim(@$suggestions.filter(':checked').parent().text())).focus().select()
 #
 #   attachClickEventToSuggestions: ->
 #     @$suggestions.click (e) =>
 #       console.log 'click suggestion'
 #       @toggleSuggestionsVisibility()
-#       @$filter.focus()
 #
 #   addChangeEventToFilter: ->
 #     @$filter.on 'input propertychange paste', (e) =>
+#       console.log '(filter changed)'
 #       @filterSuggestions(e.target.value)
 #       @toggleSuggestionsVisibility() unless @$suggestionsContainer.is(':visible')
 #
-#   filterSuggestions: (filter) ->
+#   filterSuggestions: (filter = '') ->
 #     fuzzyFilter = @fuzzifyFilter(filter)
 #     visibleCount = 0
 #
@@ -206,13 +219,12 @@
 #       else
 #         $suggestionContainer.hide()
 #
-#     @announceSuggestionsCount(visibleCount)
+#     @announceSuggestionsCount(visibleCount, filter)
 #
 #   # TODO: Alert seems to be most robust in all relevant browsers, but isn't polite. Maybe we'll find a better mechanism to serve browsers individually?
-#   announceSuggestionsCount: (count) ->
+#   announceSuggestionsCount: (count = @$suggestions.length, filter = @$filter.val()) ->
 #     @$alerts.find('p').remove() # Remove previous alerts (I'm not sure whether this is the best solution, maybe hiding them would be more robust?)
 #
-#     filter = @$filter.val()
 #     if filter == ''
 #       message = "#{count} suggestions in total"
 #     else
@@ -237,7 +249,7 @@
 require 'rails_helper'
 
 describe 'Autocomplete', js: true do
-  URL = 'https://s.codepen.io/accessibility-developer-guide/debug/VrqoXj/PNAvYLnypyqr' # Needs to be a non-expired debug view! (The full view doesn't work because it's an iframe.)
+  URL = 'https://s.codepen.io/accessibility-developer-guide/debug/VrqoXj/bZAQWyxGBbPM' # Needs to be a non-expired debug view! (The full view doesn't work because it's an iframe.)
   NON_INTERCEPTED_ESC = 'Esc passed on.'
   NON_INTERCEPTED_ENTER = 'Enter passed on.'
 
@@ -271,16 +283,48 @@ describe 'Autocomplete', js: true do
   end
 
   describe 'keyboard interaction' do
-    describe 'focusing' do
-      it "doesn't show suggestions when focusing the filter" do
+    describe 'tab in' do
+      it "doesn't show suggestions" do
         focus_filter_with_keyboard
         expect_autocomplete_state filter_focused: true
       end
+    end
 
-      it 'hides suggestions when unfocusing filter' do
-        focus_filter_with_keyboard_and_press :tab
-        expect_autocomplete_state
-        expect(focused_element_id).to eq 'after'
+    describe 'tab out' do
+      context 'suggestions invisible' do
+        it 'leaves the filter' do
+          focus_filter_with_keyboard_and_press :tab
+          expect_autocomplete_state
+          expect(focused_element_id).to eq 'after'
+        end
+      end
+
+      context 'suggestions visible' do
+        it 'hides suggestions and leaves filter' do
+          focus_filter_with_keyboard_and_press :down, :tab
+          expect_autocomplete_state
+          expect(focused_element_id).to eq 'after'
+        end
+
+        context 'selection made' do
+          context 'filter applies to selection' do
+            it 'keeps the selection and leaves filter' do
+              focus_filter_with_keyboard_and_press :down, :down, 'hi', :tab
+              expect_autocomplete_state filter_value:       'Hiking',
+                                        checked_suggestion: :favorite_hobby_hiking
+              expect(focused_element_id).to eq 'after'
+            end
+          end
+
+          context "filter doesn't apply to selection" do
+            it 'keeps the selection and leaves filter' do
+              focus_filter_with_keyboard_and_press :down, :down, 'da', :tab
+              expect_autocomplete_state filter_value:       'Hiking',
+                                        checked_suggestion: :favorite_hobby_hiking
+              expect(focused_element_id).to eq 'after'
+            end
+          end
+        end
       end
     end
 
@@ -381,12 +425,21 @@ describe 'Autocomplete', js: true do
     end
 
     describe 'esc' do
-      context 'suggestions invisible' do
+      context 'suggestions visible' do
         it 'hides suggestions' do
           click_filter_and_press :escape
           expect(page).not_to have_content NON_INTERCEPTED_ESC
           expect_autocomplete_state suggestions_expanded: false,
                                     filter_focused:       true
+        end
+
+        context 'selection made, filter changed' do
+          it 'keeps the selection' do
+            click_filter_and_press :down, 'hi', :escape
+            expect_autocomplete_state filter_focused:     true,
+                                      filter_value:       'Hiking',
+                                      checked_suggestion: :favorite_hobby_hiking
+          end
         end
       end
 
@@ -406,6 +459,15 @@ describe 'Autocomplete', js: true do
           expect(page).not_to have_content NON_INTERCEPTED_ENTER
           expect_autocomplete_state suggestions_expanded: false,
                                     filter_focused:       true
+        end
+
+        context 'selection made, filter changed' do
+          it 'keeps the selection' do
+            click_filter_and_press :down, 'hi', :enter
+            expect_autocomplete_state filter_focused:     true,
+                                      filter_value:       'Hiking',
+                                      checked_suggestion: :favorite_hobby_hiking
+          end
         end
       end
 
