@@ -121,6 +121,11 @@
 #           @toggleSuggestionsVisibility()
 #           @filterSuggestions()
 #           e.preventDefault()
+#         else if @$suggestions.is(':checked')
+#           @$suggestions.prop('checked', false)
+#           @applyCheckedSuggestionToFilter()
+#           @filterSuggestions()
+#           e.preventDefault()
 #         else # Needed for automatic testing only
 #           $('body').append('<p>Esc passed on.</p>')
 #
@@ -249,7 +254,7 @@
 require 'rails_helper'
 
 describe 'Autocomplete', js: true do
-  URL = 'https://s.codepen.io/accessibility-developer-guide/debug/VrqoXj/bZAQWyxGBbPM' # Needs to be a non-expired debug view! (The full view doesn't work because it's an iframe.)
+  URL = 'https://s.codepen.io/accessibility-developer-guide/debug/VrqoXj/bYMdyGKOQLqr' # Needs to be a non-expired debug view! (The full view doesn't work because it's an iframe.)
   NON_INTERCEPTED_ESC = 'Esc passed on.'
   NON_INTERCEPTED_ENTER = 'Enter passed on.'
 
@@ -429,13 +434,13 @@ describe 'Autocomplete', js: true do
         it 'hides suggestions' do
           click_filter_and_press :escape
           expect(page).not_to have_content NON_INTERCEPTED_ESC
-          expect_autocomplete_state suggestions_expanded: false,
-                                    filter_focused:       true
+          expect_autocomplete_state filter_focused: true
         end
 
-        context 'selection made, filter changed' do
+        context 'selection made' do
           it 'keeps the selection' do
-            click_filter_and_press :down, 'hi', :escape
+            click_filter_and_press :down, :escape
+            expect(page).not_to have_content NON_INTERCEPTED_ESC
             expect_autocomplete_state filter_focused:     true,
                                       filter_value:       'Hiking',
                                       checked_suggestion: :favorite_hobby_hiking
@@ -444,10 +449,18 @@ describe 'Autocomplete', js: true do
       end
 
       context 'suggestions invisible' do
-        it "doesn't do anything" do
+        it 'passes the event on' do
           expect {
-            click_filter_and_press :escape, :escape
+            click_filter_and_press :enter, :escape
           }.to change { page.has_content? NON_INTERCEPTED_ESC }.to true
+          expect_autocomplete_state filter_focused: true
+        end
+
+        context 'selection made' do
+          it 'resets the selection' do
+            click_filter_and_press :down, :down, :enter, :escape
+            expect_autocomplete_state filter_focused: true
+          end
         end
       end
     end
