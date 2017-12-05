@@ -2,8 +2,10 @@ require 'rails_helper'
 
 describe 'Accessibility' do
   describe 'required form fields' do
-    it 'displays a visually hidden text "(required)" at the end of the label' do
+    it 'displays a visually hidden text "(required)" at the end of the label', focus: true, js: true do
       visit new_user_registration_path
+
+      binding.pry # After exiting, the process hangs. When running without `js: true`, it works.
 
       expect(page).to have_css 'label[for="user_name"]', text: 'Name (required)'
       expect(page).to have_css 'label[for="user_name"] .sr-only', text: '(required)'
