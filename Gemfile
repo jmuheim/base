@@ -1,12 +1,12 @@
 source 'https://rubygems.org'
 
-gem 'rails', '~> 5.0.1'
+gem 'rails', '~> 5.1'
 
 gem 'puma', '~> 3.0' # Use Puma as the app server
 
 gem 'rails-i18n' # Locale data
 
-gem 'mobility', '~> 0.2.3'
+gem 'mobility', github: 'shioyama/mobility', branch: 'master'
 
 gem 'slim-rails' # Awesome template language that replaces ERB
 
@@ -51,7 +51,7 @@ gem 'cocoon' # Dynamic nested forms made easy
 
 gem 'validates_timeliness' # Date and time validation plugin for ActiveModel and Rails
 
-gem 'strip_attributes', github: 'jmuheim/strip_attributes' # Automatically strips all attributes of leading and trailing whitespace (or nilify if blank)
+gem 'strip_attributes'
 
 gem 'enumerize' # Enumerated attributes with I18n
 
@@ -94,7 +94,7 @@ group :development, :test do
   gem 'sqlite3' # Use SQLite as the database for Active Record
 
   # Data generation
-  gem 'factory_girl_rails' # Test data generator
+  gem 'factory_bot_rails' # Test data generator
   gem 'ffaker'             # Easily generate fake data
 
   # Use Pry and its extensions to debug

@@ -20,4 +20,4 @@ RSpec.configure do |config|
   config.include DummyFileHelper
 end
 
-FactoryGirl::SyntaxRunner.send(:include, DummyFileHelper)
+FactoryBot::SyntaxRunner.send(:include, DummyFileHelper)

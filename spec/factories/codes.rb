@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :code do
     identifier    'jmuheim-PipApO'
     title         'Code test title'

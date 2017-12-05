@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :user do
     # Ffaker calls need to be in block?! See https://github.com/EmmanuelOga/ffaker/issues/121
     name                  'User test name'
