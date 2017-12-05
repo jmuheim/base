@@ -7,4 +7,6 @@ Mobility.configure do |config|
 
   config.default_options[:fallbacks] = {de: :en,
                                         en: :de}
+
+  config.default_options[:attribute_methods] = true
 end
