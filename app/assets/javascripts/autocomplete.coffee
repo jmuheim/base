@@ -20,8 +20,6 @@ class App.AdgAutocomplete
     
     for key, val of options
       defaults[key] = val
-      
-    console.log defaults
     
     @$filter = @$el.find('input[type="text"]')
     @$suggestionsContainer = @$el.find(defaults['suggestionsContainer'])

@@ -254,7 +254,7 @@
 require 'rails_helper'
 
 describe 'Autocomplete', js: true do
-  URL = 'https://s.codepen.io/accessibility-developer-guide/debug/aVMqdb/gareYJKyVXNr' # Needs to be a non-expired debug view! (The full view doesn't work because it's an iframe.)
+  URL = 'https://s.codepen.io/accessibility-developer-guide/debug/aVMqdb/ZorBajVnZBVM' # Needs to be a non-expired debug view! (The full view doesn't work because it's an iframe.)
   NON_INTERCEPTED_ESC = 'Esc passed on.'
   NON_INTERCEPTED_ENTER = 'Enter passed on.'
 
@@ -577,9 +577,10 @@ describe 'Autocomplete', js: true do
       expect(page).to have_css 'input#favorite_hobby_filter[aria-describedby="favorite_hobby_filter_description alerts"]'
       expect(page).to have_css "input#favorite_hobby_filter[aria-expanded='#{options[:suggestions_expanded]}']"
 
-      within 'fieldset', visible: visible do
+      within 'fieldset[data-adg-autocomplete-suggestions]', visible: visible do
         expect(page).to have_css 'legend[class="visually-hidden"]', visible: visible
         expect(page).not_to have_css 'input[type="radio"]:not(.visually-hidden)'
+        expect(page).to have_css 'input[type="radio"][data-adg-autocomplete-suggestion]', visible: false
       end
 
       expect(find('input#favorite_hobby_filter').value).to eq options[:filter_value]
@@ -614,7 +615,7 @@ describe 'Autocomplete', js: true do
       end
 
       fail "Only one alert at a time must be present, but there are #{length}!" if (length = all('#alerts > *', visible: visible).length) != 1
-      expect(page).to have_css '#alerts p[role="alert"]', text: options[:suggestions_count], visible: visible
+      expect(page).to have_css '#alerts[data-adg-autocomplete-alerts] p[role="alert"]', text: options[:suggestions_count], visible: visible
     end
   end
 end
