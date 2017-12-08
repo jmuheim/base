@@ -5,6 +5,7 @@
   = panel.body do
     = f.input :name
     = f.input :email, as: :email, required: true
+    = f.input :role, as: :autocomplete, wrapper_html: {data: {'adg-autocomplete': true}}
     = f.input :avatar, as: :paste
     = f.input :about, as: :text
     = f.input :curriculum_vitae, as: :upload

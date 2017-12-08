@@ -64,3 +64,30 @@ textarea
 
   .fa:not(:first-child)
     margin-left: 10px
+    
+[data-adg-autocomplete]
+  fieldset
+    display: none
+    position: absolute
+    z-index: 1
+    background-color: #fff
+    border: 1px solid
+    
+    #alerts
+      padding: 0 15px
+    
+      p
+        margin: 0
+    
+    label
+      padding: 0 15px
+    
+    .col-sm-9
+      width: 100%
+      padding: 0
+    
+    label:hover,
+    input[type="radio"]:checked + label
+      cursor: pointer
+      color: #fff
+      background-color: #000

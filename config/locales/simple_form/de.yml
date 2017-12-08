@@ -17,6 +17,9 @@ de:
         about: Schreib etwas über dich (Biographie, Interessen, Hobbies...). Du kannst Pandoc Markdown verwenden zum Formatieren.
         password_confirmation: Gib dein Passwort nochmal ein, um Tippfehler zu vermeiden.
     inputs:
+      autocomplete:
+        help: Bietet Vorschläge an
+        suggestions_for: Vorschläge für %{attribute}
       better_text:
         allows_pasting_of_resources: Erlaubt das Einfügen von Bildern und CodePen-Links als Ressourcen
         code_text_prompt: Alternativtext eingeben (leer lassen, um Original-Titel zu verwenden)

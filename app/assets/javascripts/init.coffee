@@ -12,6 +12,11 @@ class App.Init
     @makeTextareasFullscreenizable @$el
     @disableDependingSelect @$el
     @generateDiffs @$el
+    @autocomplete @$el
+
+  autocomplete: ($el) ->	
+    $el.find('[data-adg-autocomplete]').each ->
+      new App.AdgAutocomplete @, hiddenCssClass: 'sr-only'
 
   makeJumpLinksVisibleOnFocus: ($el) ->
     $el.find('#jump_links a').each ->
