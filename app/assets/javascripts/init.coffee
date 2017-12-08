@@ -16,7 +16,7 @@ class App.Init
 
   autocomplete: ($el) ->	
     $el.find('[data-adg-autocomplete]').each ->
-      new App.AdgAutocomplete @, hiddenCssClass: 'sr-only'
+      new Adg.Autocomplete @, hiddenCssClass: 'sr-only'
 
   makeJumpLinksVisibleOnFocus: ($el) ->
     $el.find('#jump_links a').each ->

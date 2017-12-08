@@ -1,3 +1,41 @@
+@Adg = {}
+
+class Adg.Base
+  config =
+    configDebugMessage: false
+    hiddenCssClass:     'visually-hidden'
+
+  # Constructor. Should not be overridden; use @init() instead.
+  #
+  # - Arg1: The DOM element on which the script should be applied (will be saved as @$el)
+  # - Arg2: An optional hash of options which will be merged into the global default options
+  constructor: (el, options = {}) ->
+    @$el = $(el)
+
+    for key, val of config
+      @[key] = val
+
+    for key, val of options
+      @[key] = val
+
+    @init()
+
+  # Dummy, must be overridden in inheriting classes.
+  init: ->
+    throw 'Classes extending App must implement method init()!'
+
+  # Prints the given message to the console if config['debug'] is true.
+  debugMessage: (message) ->
+    console.log "Adg debug: #{message}" if @configDebugMessage
+
+  # Executes the given selector on @$el and returns the element. Makes sure exactly one element exists.
+  findOne: (selector) ->
+    result = @$el.find(selector)
+    switch result.length
+      when 0 then throw "No object found for #{selector}! Result: #{result}."
+      when 1 then $(result.first())
+      else throw "More than one object found for #{selector}! Result: #{result}."
+
 # Tested in JAWS+IE/FF, NVDA+FF
 #
 # Known issues:
@@ -7,36 +45,47 @@
 #     - Possible solution 2: wait a moment before adding the alert?
 # - VoiceOver/iOS announces radio buttons as disabled?!
 # - iOS doesn't select all text when suggestion was chosen
-class App.AdgAutocomplete
-  defaults =
-    hiddenCssClass: 'visually-hidden'
+class Adg.Autocomplete extends Adg.Base
+  config =
     suggestionsContainer: 'fieldset'
     suggestionsContainerLabel: 'legend'
     alertsContainerId: 'alerts'
   
-  constructor: (el, options = {}) ->
-    console.log '---start---'
-    @$el = $(el)
+  init: ->
+    for key, val of config
+      @[key] = val
     
-    for key, val of options
-      defaults[key] = val
-    
-    @$filter = @$el.find('input[type="text"]')
-    @$suggestionsContainer = @$el.find(defaults['suggestionsContainer'])
-    @$suggestions = @$suggestionsContainer.find('input[type="radio"]')
-    
-    @$el.find(defaults['suggestionsContainerLabel']).after("<div id='#{defaults['alertsContainerId']}'></div>")
-    @$alerts = $("##{defaults['alertsContainerId']}")
-    @$filter.attr('aria-describedby', [@$filter.attr('aria-describedby'), defaults['alertsContainerId']].join(' ').trim())
+    @debugMessage 'start'
+
+    @initFilter()
+    @initSuggestions()
+    @initAlerts()
     
     @announceSuggestionsCount()
 
     @addVisualStyles()
     @attachEvents()
     
+  initFilter: ->
+    @$filter = @findOne('input[type="text"]')
+    @$filter.attr('data-adg-autocomplete-filter', '')
+    
+  initSuggestions: ->
+    @$suggestionsContainer = @findOne(@suggestionsContainer)
+    @$suggestionsContainer.attr('data-adg-autocomplete-suggestions', '')
+    
+    @$suggestions = @$suggestionsContainer.find('input[type="radio"]')
+    @$suggestions.attr('data-adg-autocomplete-suggestion', '')
+    
+  initAlerts: ->
+    @findOne(@suggestionsContainerLabel).after("<div id='#{@alertsContainerId}'></div>")
+    @$alerts = $("##{@alertsContainerId}")
+    @$filter.attr('aria-describedby', [@$filter.attr('aria-describedby'), @alertsContainerId].join(' ').trim())
+    @$alerts.attr('data-adg-autocomplete-alerts', '')
+    
   addVisualStyles: ->
-    @$suggestionsContainer.find(defaults['suggestionsContainerLabel']).addClass(defaults['hiddenCssClass'])
-    @$suggestions.addClass(defaults['hiddenCssClass'])
+    @$suggestionsContainer.find(@suggestionsContainerLabel).addClass(@hiddenCssClass)
+    @$suggestions.addClass(@hiddenCssClass)
   
   attachEvents: ->
     @attachClickEventToFilter()
@@ -53,18 +102,18 @@ class App.AdgAutocomplete
   attachFocusoutEventToFilter: ->
     @$filter.focusout =>
       # TODO: Hide unless clicked into suggestions!
-      # console.log 'focus out'
+      # @debugMessage 'focus out'
       # @toggleSuggestionsVisibility()
     
   attachClickEventToFilter: ->
     @$filter.click =>
-      console.log 'click filter'
+      @debugMessage 'click filter'
       @toggleSuggestionsVisibility()
       
   attachEscEventToFilter: ->
     @$filter.keydown (e) =>
       if e.which == 27
-        console.log 'esc'
+        @debugMessage 'esc'
         if @$suggestionsContainer.is(':visible')
           @applyCheckedSuggestionToFilter()
           @toggleSuggestionsVisibility()
@@ -81,7 +130,7 @@ class App.AdgAutocomplete
   attachEnterEventToFilter: ->
     @$filter.keydown (e) =>
       if e.which == 13
-        console.log 'enter'
+        @debugMessage 'enter'
         if @$suggestionsContainer.is(':visible')
           @applyCheckedSuggestionToFilter()
           @toggleSuggestionsVisibility()
@@ -93,7 +142,7 @@ class App.AdgAutocomplete
   attachTabEventToFilter: ->
     @$filter.keydown (e) =>
       if e.which == 9
-        console.log 'tab'
+        @debugMessage 'tab'
         if @$suggestionsContainer.is(':visible')
           @applyCheckedSuggestionToFilter()
           @toggleSuggestionsVisibility()
@@ -102,7 +151,6 @@ class App.AdgAutocomplete
   attachUpDownEventToFilter: ->
     @$filter.keydown (e) =>
       if e.which == 38 || e.which == 40
-        console.log e.which
         if @$suggestionsContainer.is(':visible')
           if e.which == 38
             @moveSelection('up')
@@ -114,7 +162,7 @@ class App.AdgAutocomplete
         e.preventDefault() # TODO: Test!
       
   toggleSuggestionsVisibility: ->
-    console.log '(toggle)'
+    @debugMessage '(toggle)'
     @$suggestionsContainer.toggle()
     @$filter.attr('aria-expanded', (@$filter.attr('aria-expanded') == 'false' ? 'true' : 'false'))
     
@@ -140,21 +188,21 @@ class App.AdgAutocomplete
     
   attachChangeEventToSuggestions: ->
     @$suggestions.change (e) =>
-      console.log 'suggestion change'
+      @debugMessage 'suggestion change'
       @applyCheckedSuggestionToFilter()
       
   applyCheckedSuggestionToFilter: ->
-    console.log '(apply suggestion to filter)'
+    @debugMessage '(apply suggestion to filter)'
     @$filter.val($.trim(@$suggestions.filter(':checked').parent().text())).focus().select()
       
   attachClickEventToSuggestions: ->
     @$suggestions.click (e) =>
-      console.log 'click suggestion'
+      @debugMessage 'click suggestion'
       @toggleSuggestionsVisibility()
       
   addChangeEventToFilter: ->
     @$filter.on 'input propertychange paste', (e) =>
-      console.log '(filter changed)'
+      @debugMessage '(filter changed)'
       @filterSuggestions(e.target.value)
       @toggleSuggestionsVisibility() unless @$suggestionsContainer.is(':visible')
       
