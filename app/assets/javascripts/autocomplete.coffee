@@ -2,22 +2,21 @@
 
 class Adg.Base
   config =
-    configDebugMessage: false
-    hiddenCssClass:     'visually-hidden'
-
+    debugMessage:   false
+    hiddenCssClass: 'visually-hidden'
+  
   # Constructor. Should not be overridden; use @init() instead.
   #
   # - Arg1: The DOM element on which the script should be applied (will be saved as @$el)
-  # - Arg2: An optional hash of options which will be merged into the global default options
+  # - Arg2: An optional hash of options which will be merged into the global default config
   constructor: (el, options = {}) ->
+    @config = config
+
     @$el = $(el)
 
-    for key, val of config
-      @[key] = val
-
     for key, val of options
-      @[key] = val
-
+      @config[key] = val
+    
     @init()
 
   # Dummy, must be overridden in inheriting classes.
@@ -26,7 +25,7 @@ class Adg.Base
 
   # Prints the given message to the console if config['debug'] is true.
   debugMessage: (message) ->
-    console.log "Adg debug: #{message}" if @configDebugMessage
+    console.log "Adg debug: #{message}" if @config.debugMessage
 
   # Executes the given selector on @$el and returns the element. Makes sure exactly one element exists.
   findOne: (selector) ->
@@ -45,6 +44,8 @@ class Adg.Base
 #     - Possible solution 2: wait a moment before adding the alert?
 # - VoiceOver/iOS announces radio buttons as disabled?!
 # - iOS doesn't select all text when suggestion was chosen
+#
+# In general: alerts seem to be most robust in all relevant browsers, but aren't polite. Maybe we'll find a better mechanism to serve browsers individually?
 class Adg.Autocomplete extends Adg.Base
   config =
     suggestionsContainer: 'fieldset'
@@ -52,8 +53,9 @@ class Adg.Autocomplete extends Adg.Base
     alertsContainerId: 'alerts'
   
   init: ->
+    # Merge config into existing one (not nice, see https://stackoverflow.com/questions/47721699/)
     for key, val of config
-      @[key] = val
+      @config[key] = val
     
     @debugMessage 'start'
 
@@ -63,7 +65,6 @@ class Adg.Autocomplete extends Adg.Base
     
     @announceSuggestionsCount()
 
-    @addVisualStyles()
     @attachEvents()
     
   initFilter: ->
@@ -71,46 +72,40 @@ class Adg.Autocomplete extends Adg.Base
     @$filter.attr('data-adg-autocomplete-filter', '')
     
   initSuggestions: ->
-    @$suggestionsContainer = @findOne(@suggestionsContainer)
+    @$suggestionsContainer = @findOne(@config.suggestionsContainer)
     @$suggestionsContainer.attr('data-adg-autocomplete-suggestions', '')
+    
+    @$suggestionsContainerLabel = @findOne(@config.suggestionsContainerLabel)
+    @$suggestionsContainerLabel.addClass(@config.hiddenCssClass)
     
     @$suggestions = @$suggestionsContainer.find('input[type="radio"]')
     @$suggestions.attr('data-adg-autocomplete-suggestion', '')
+    @$suggestions.addClass(@config.hiddenCssClass)
     
   initAlerts: ->
-    @findOne(@suggestionsContainerLabel).after("<div id='#{@alertsContainerId}'></div>")
-    @$alerts = $("##{@alertsContainerId}")
-    @$filter.attr('aria-describedby', [@$filter.attr('aria-describedby'), @alertsContainerId].join(' ').trim())
+    @$suggestionsContainerLabel.after("<div id='#{@config.alertsContainerId}'></div>")
+    @$alerts = $("##{@config.alertsContainerId}")
+    @$filter.attr('aria-describedby', [@$filter.attr('aria-describedby'), @config.alertsContainerId].join(' ').trim())
     @$alerts.attr('data-adg-autocomplete-alerts', '')
-    
-  addVisualStyles: ->
-    @$suggestionsContainer.find(@suggestionsContainerLabel).addClass(@hiddenCssClass)
-    @$suggestions.addClass(@hiddenCssClass)
   
   attachEvents: ->
     @attachClickEventToFilter()
-    @attachEscEventToFilter()
-    @attachEnterEventToFilter()
-    @attachFocusoutEventToFilter()
-    @attachTabEventToFilter()
-    @attachUpDownEventToFilter()
-    @addChangeEventToFilter()
+    @attachChangeEventToFilter()
+    
+    @attachEscapeKeyToFilter()
+    @attachEnterKeyToFilter()
+    @attachTabKeyToFilter()
+    @attachUpDownKeysToFilter()
     
     @attachChangeEventToSuggestions()
     @attachClickEventToSuggestions()
-    
-  attachFocusoutEventToFilter: ->
-    @$filter.focusout =>
-      # TODO: Hide unless clicked into suggestions!
-      # @debugMessage 'focus out'
-      # @toggleSuggestionsVisibility()
     
   attachClickEventToFilter: ->
     @$filter.click =>
       @debugMessage 'click filter'
       @toggleSuggestionsVisibility()
       
-  attachEscEventToFilter: ->
+  attachEscapeKeyToFilter: ->
     @$filter.keydown (e) =>
       if e.which == 27
         @debugMessage 'esc'
@@ -127,7 +122,7 @@ class Adg.Autocomplete extends Adg.Base
         else # Needed for automatic testing only
           $('body').append('<p>Esc passed on.</p>')
       
-  attachEnterEventToFilter: ->
+  attachEnterKeyToFilter: ->
     @$filter.keydown (e) =>
       if e.which == 13
         @debugMessage 'enter'
@@ -139,7 +134,7 @@ class Adg.Autocomplete extends Adg.Base
         else # Needed for automatic testing only
           $('body').append('<p>Enter passed on.</p>')
       
-  attachTabEventToFilter: ->
+  attachTabKeyToFilter: ->
     @$filter.keydown (e) =>
       if e.which == 9
         @debugMessage 'tab'
@@ -148,7 +143,7 @@ class Adg.Autocomplete extends Adg.Base
           @toggleSuggestionsVisibility()
           @filterSuggestions()
       
-  attachUpDownEventToFilter: ->
+  attachUpDownKeysToFilter: ->
     @$filter.keydown (e) =>
       if e.which == 38 || e.which == 40
         if @$suggestionsContainer.is(':visible')
@@ -200,7 +195,7 @@ class Adg.Autocomplete extends Adg.Base
       @debugMessage 'click suggestion'
       @toggleSuggestionsVisibility()
       
-  addChangeEventToFilter: ->
+  attachChangeEventToFilter: ->
     @$filter.on 'input propertychange paste', (e) =>
       @debugMessage '(filter changed)'
       @filterSuggestions(e.target.value)
@@ -223,7 +218,6 @@ class Adg.Autocomplete extends Adg.Base
         
     @announceSuggestionsCount(visibleCount, filter)
     
-  # TODO: Alert seems to be most robust in all relevant browsers, but isn't polite. Maybe we'll find a better mechanism to serve browsers individually?
   announceSuggestionsCount: (count = @$suggestions.length, filter = @$filter.val()) ->
     @$alerts.find('p').remove() # Remove previous alerts (I'm not sure whether this is the best solution, maybe hiding them would be more robust?)
     
