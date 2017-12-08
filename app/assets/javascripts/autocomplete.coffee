@@ -34,6 +34,9 @@ class Adg.Base
       when 0 then throw "No object found for #{selector}! Result: #{result}."
       when 1 then $(result.first())
       else throw "More than one object found for #{selector}! Result: #{result}."
+        
+  addAdgDataAttribute: ($target, name, value = '') ->
+    $target.attr("data-adg-#{@constructor.name.toLowerCase()}-#{name}", value)
 
 # Tested in JAWS+IE/FF, NVDA+FF
 #
@@ -69,24 +72,24 @@ class Adg.Autocomplete extends Adg.Base
     
   initFilter: ->
     @$filter = @findOne('input[type="text"]')
-    @$filter.attr('data-adg-autocomplete-filter', '')
+    @addAdgDataAttribute(@$filter, 'filter')
     
   initSuggestions: ->
     @$suggestionsContainer = @findOne(@config.suggestionsContainer)
-    @$suggestionsContainer.attr('data-adg-autocomplete-suggestions', '')
+    @addAdgDataAttribute(@$suggestionsContainer, 'suggestions')
     
     @$suggestionsContainerLabel = @findOne(@config.suggestionsContainerLabel)
     @$suggestionsContainerLabel.addClass(@config.hiddenCssClass)
     
     @$suggestions = @$suggestionsContainer.find('input[type="radio"]')
-    @$suggestions.attr('data-adg-autocomplete-suggestion', '')
+    @addAdgDataAttribute(@$suggestions, 'suggestion')
     @$suggestions.addClass(@config.hiddenCssClass)
     
   initAlerts: ->
     @$suggestionsContainerLabel.after("<div id='#{@config.alertsContainerId}'></div>")
     @$alerts = $("##{@config.alertsContainerId}")
     @$filter.attr('aria-describedby', [@$filter.attr('aria-describedby'), @config.alertsContainerId].join(' ').trim())
-    @$alerts.attr('data-adg-autocomplete-alerts', '')
+    @addAdgDataAttribute(@$alerts, 'alerts')
   
   attachEvents: ->
     @attachClickEventToFilter()
@@ -103,21 +106,20 @@ class Adg.Autocomplete extends Adg.Base
   attachClickEventToFilter: ->
     @$filter.click =>
       @debugMessage 'click filter'
-      @toggleSuggestionsVisibility()
+      if @$suggestionsContainer.is(':visible')
+        @hideSuggestions()
+      else
+        @showSuggestions()
       
   attachEscapeKeyToFilter: ->
     @$filter.keydown (e) =>
       if e.which == 27
-        @debugMessage 'esc'
         if @$suggestionsContainer.is(':visible')
-          @applyCheckedSuggestionToFilter()
-          @toggleSuggestionsVisibility()
-          @filterSuggestions()
+          @applyCheckedSuggestionToFilterAndResetSuggestions()
           e.preventDefault()
         else if @$suggestions.is(':checked')
           @$suggestions.prop('checked', false)
-          @applyCheckedSuggestionToFilter()
-          @filterSuggestions()
+          @applyCheckedSuggestionToFilterAndResetSuggestions()
           e.preventDefault()
         else # Needed for automatic testing only
           $('body').append('<p>Esc passed on.</p>')
@@ -127,9 +129,7 @@ class Adg.Autocomplete extends Adg.Base
       if e.which == 13
         @debugMessage 'enter'
         if @$suggestionsContainer.is(':visible')
-          @applyCheckedSuggestionToFilter()
-          @toggleSuggestionsVisibility()
-          @filterSuggestions()
+          @applyCheckedSuggestionToFilterAndResetSuggestions()
           e.preventDefault()
         else # Needed for automatic testing only
           $('body').append('<p>Enter passed on.</p>')
@@ -139,9 +139,7 @@ class Adg.Autocomplete extends Adg.Base
       if e.which == 9
         @debugMessage 'tab'
         if @$suggestionsContainer.is(':visible')
-          @applyCheckedSuggestionToFilter()
-          @toggleSuggestionsVisibility()
-          @filterSuggestions()
+          @applyCheckedSuggestionToFilterAndResetSuggestions()
       
   attachUpDownKeysToFilter: ->
     @$filter.keydown (e) =>
@@ -152,14 +150,19 @@ class Adg.Autocomplete extends Adg.Base
           else
             @moveSelection('down')
         else
-          @toggleSuggestionsVisibility()
+          @showSuggestions()
        
         e.preventDefault() # TODO: Test!
-      
-  toggleSuggestionsVisibility: ->
-    @debugMessage '(toggle)'
-    @$suggestionsContainer.toggle()
-    @$filter.attr('aria-expanded', (@$filter.attr('aria-expanded') == 'false' ? 'true' : 'false'))
+    
+  showSuggestions: ->
+    @debugMessage '(show suggestions)'
+    @$suggestionsContainer.show()
+    @$filter.attr('aria-expanded', 'true')
+    
+  hideSuggestions: ->
+    @debugMessage '(hide suggestions)'
+    @$suggestionsContainer.hide()
+    @$filter.attr('aria-expanded', 'false')
     
   moveSelection: (direction) ->
     $visibleSuggestions = @$suggestions.filter(':visible')
@@ -185,6 +188,11 @@ class Adg.Autocomplete extends Adg.Base
     @$suggestions.change (e) =>
       @debugMessage 'suggestion change'
       @applyCheckedSuggestionToFilter()
+
+  applyCheckedSuggestionToFilterAndResetSuggestions: ->
+    @applyCheckedSuggestionToFilter()
+    @hideSuggestions()
+    @filterSuggestions()
       
   applyCheckedSuggestionToFilter: ->
     @debugMessage '(apply suggestion to filter)'
@@ -193,13 +201,13 @@ class Adg.Autocomplete extends Adg.Base
   attachClickEventToSuggestions: ->
     @$suggestions.click (e) =>
       @debugMessage 'click suggestion'
-      @toggleSuggestionsVisibility()
+      @hideSuggestions()
       
   attachChangeEventToFilter: ->
     @$filter.on 'input propertychange paste', (e) =>
       @debugMessage '(filter changed)'
       @filterSuggestions(e.target.value)
-      @toggleSuggestionsVisibility() unless @$suggestionsContainer.is(':visible')
+      @showSuggestions()
       
   filterSuggestions: (filter = '') ->
     fuzzyFilter = @fuzzifyFilter(filter)
