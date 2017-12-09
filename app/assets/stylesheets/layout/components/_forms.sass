@@ -65,48 +65,38 @@ textarea
   .fa:not(:first-child)
     margin-left: 10px
     
-/*[data-adg-autocomplete]
+[data-adg-autocomplete]
   .relative-wrapper
     position: relative
 
-  [data-adg-autocomplete-suggestions]
-    border-color: rgba(0, 0, 0, 0.15)
-    border-radius: 4px
-    +box-shadow(0 6px 12px rgba(0, 0, 0, 0.175))
-    background-clip: padding-box
+[data-adg-autocomplete-suggestions]
+  border-color: rgba(0, 0, 0, 0.15)
+  border-radius: 4px
+  +box-shadow(0 6px 12px rgba(0, 0, 0, 0.175))
+  background-clip: padding-box
+  width: 100%
+  margin: 2px 0 0 !important
+  font-size: 14px
+  color: #262626
+
+  .col-sm-9
     width: 100%
-    margin: 2px 0 0
-    font-size: 14px
-    color: #262626
+    padding: 0
 
-    [data-adg-autocomplete-alerts]
-      padding: 3px 20px
+[data-adg-autocomplete-suggestion]
+  padding: 3px 20px 2px 20px
+  margin-bottom: 1px // Otherwise outline border disappears on hover?!
 
-      p
-        margin: 0
+  &:hover
+    outline: 0
 
-      kbd
-        &::before
-          content: '«'
+[data-adg-autocomplete-suggestion]:hover,
+[data-adg-autocomplete-suggestion-selected]
+  background-color: #f5f5f5
+  
+[data-adg-autocomplete-suggestion-selected]
+  +box-shadow(#66afe9 0 0 5px)
+  outline-color: #66afe9
 
-        &::after
-          content: '»'
-
-    label
-      padding: 3px 20px 2px 20px
-      display: block
-      margin-bottom: 1px // Otherwise outline border disappears on hover?!
-
-      &:hover
-        background-color: #f5f5f5
-        cursor: pointer
-
-    .col-sm-9
-      width: 100%
-      padding: 0
-
-    [data-adg-autocomplete-selected]
-      +box-shadow(#66afe9 0 0 5px)
-      outline: 1px solid #66afe9
-      background-color: #f5f5f5*/
-    
+[data-adg-autocomplete-alerts]
+  padding: 3px 20px

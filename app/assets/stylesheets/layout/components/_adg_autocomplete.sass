@@ -1,0 +1,25 @@
+[data-adg-autocomplete-suggestions]
+  position: absolute
+  z-index: 1
+  background-color: #fff
+  border: 1px solid
+  padding: 5px 0
+
+[data-adg-autocomplete-suggestion]
+  display: block
+    
+[data-adg-autocomplete-suggestion]:hover,
+[data-adg-autocomplete-suggestion-selected]
+  cursor: pointer
+  outline: 1px solid
+    
+[data-adg-autocomplete-alerts]
+  p
+    margin: 0
+
+  kbd
+    &::before
+      content: '«'
+
+    &::after
+      content: '»'
