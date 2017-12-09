@@ -115,6 +115,8 @@ class Adg.Autocomplete extends Adg.Base
   initFilter: ->
     @$filter = @findOne('input[type="text"]')
     @addAdgDataAttribute(@$filter, 'filter')
+    @$filter.attr('autocomplete', 'off')
+    @$filter.attr('aria-expanded', 'false')
     
   initSuggestions: ->
     @$suggestionsContainer = @findOne(@config.suggestionsContainer)
