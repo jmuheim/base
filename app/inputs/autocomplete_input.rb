@@ -18,6 +18,8 @@ class AutocompleteInput < StringInput
   end
   
   def autocomplete_collection
-    @builder.input(attribute_name, as: :radio_buttons, label: t('simple_form.inputs.autocomplete.suggestions_for', attribute: label_translation))
+    template.content_tag :div, class: 'relative-wrapper' do
+      @builder.input(attribute_name, as: :radio_buttons, label: t('simple_form.inputs.autocomplete.suggestions_for', attribute: label_translation))
+    end
   end
 end

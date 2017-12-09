@@ -1,9 +1,11 @@
 @Adg = {}
 
 class Adg.Base
+  uniqueIdCount = 1
+  
   config =
     debugMessage:   false
-    hiddenCssClass: 'visually-hidden'
+    hiddenCssClass: 'adg-visually-hidden'
   
   # Constructor. Should not be overridden; use @init() instead.
   #
@@ -21,7 +23,7 @@ class Adg.Base
 
   # Dummy, must be overridden in inheriting classes.
   init: ->
-    throw 'Classes extending App must implement method init()!'
+    @throwMessageAndPrintObjectsToConsole 'Classes extending App must implement method init()!'
 
   # Prints the given message to the console if config['debug'] is true.
   debugMessage: (message) ->
@@ -31,12 +33,52 @@ class Adg.Base
   findOne: (selector) ->
     result = @$el.find(selector)
     switch result.length
-      when 0 then throw "No object found for #{selector}! Result: #{result}."
+      when 0 then @throwMessageAndPrintObjectsToConsole "No object found for #{selector}!", result: result
       when 1 then $(result.first())
-      else throw "More than one object found for #{selector}! Result: #{result}."
+      else @throwMessageAndPrintObjectsToConsole "More than one object found for #{selector}!", result: result
+        
+  name: ->
+    "adg-#{@constructor.name.toLowerCase()}"
         
   addAdgDataAttribute: ($target, name, value = '') ->
-    $target.attr("data-adg-#{@constructor.name.toLowerCase()}-#{name}", value)
+    $target.attr(@adgDataAttributeName(name), value)
+        
+  removeAdgDataAttribute: ($target, name) ->
+    $target.removeAttr(@adgDataAttributeName(name))
+    
+  adgDataAttributeName: (name) ->
+    "data-#{@name()}-#{name}"
+    
+  uniqueId: (name) ->
+    [@name(), name, uniqueIdCount++].join '-'
+    
+  labelOfInput: ($inputs) ->
+    $inputs.map (i, input) =>
+      $input = $(input)
+      
+      id = $input.attr('id')
+      $label = @findOne("label[for='#{id}']")[0]
+
+      if $label.length == 0
+        $label = $input.closest('label')
+        @throwMessageAndPrintObjectsToConsole "No corresponding input found for input!", input: $input if $label.length == 0
+
+      $label
+
+  show: ($el) ->
+    $el.removeAttr('hidden')
+    $el.show()
+
+    # TODO Would be cool to renounce CSS and solely use the hidden attribute. But jQuery's :visible doesn't seem to work with it!?
+    # @throwMessageAndPrintObjectsToConsole("Element is still hidden, although hidden attribute was removed! Make sure there's no CSS like display:none or visibility:hidden left on it!", element: $el) if $el.is(':hidden')
+
+  hide: ($el) ->
+    $el.attr('hidden', '')
+    $el.hide()
+    
+  throwMessageAndPrintObjectsToConsole: (message, elements = {}) ->
+    console.log elements
+    throw message
 
 # Tested in JAWS+IE/FF, NVDA+FF
 #
@@ -66,7 +108,7 @@ class Adg.Autocomplete extends Adg.Base
     @initSuggestions()
     @initAlerts()
     
-    @announceSuggestionsCount()
+    @announceSuggestionsCount('')
 
     @attachEvents()
     
@@ -82,14 +124,14 @@ class Adg.Autocomplete extends Adg.Base
     @$suggestionsContainerLabel.addClass(@config.hiddenCssClass)
     
     @$suggestions = @$suggestionsContainer.find('input[type="radio"]')
-    @addAdgDataAttribute(@$suggestions, 'suggestion')
+    @addAdgDataAttribute(@labelOfInput(@$suggestions), 'suggestion')
     @$suggestions.addClass(@config.hiddenCssClass)
     
   initAlerts: ->
-    @$suggestionsContainerLabel.after("<div id='#{@config.alertsContainerId}'></div>")
-    @$alerts = $("##{@config.alertsContainerId}")
-    @$filter.attr('aria-describedby', [@$filter.attr('aria-describedby'), @config.alertsContainerId].join(' ').trim())
-    @addAdgDataAttribute(@$alerts, 'alerts')
+    @$alertsContainer = $("<div id='#{@uniqueId(@config.alertsContainerId)}'></div>")
+    @$suggestionsContainerLabel.after(@$alertsContainer)
+    @$filter.attr('aria-describedby', [@$filter.attr('aria-describedby'), @$alertsContainer.attr('id')].join(' ').trim())
+    @addAdgDataAttribute(@$alertsContainer, 'alerts')
   
   attachEvents: ->
     @attachClickEventToFilter()
@@ -156,12 +198,12 @@ class Adg.Autocomplete extends Adg.Base
     
   showSuggestions: ->
     @debugMessage '(show suggestions)'
-    @$suggestionsContainer.show()
+    @show(@$suggestionsContainer)
     @$filter.attr('aria-expanded', 'true')
     
   hideSuggestions: ->
     @debugMessage '(hide suggestions)'
-    @$suggestionsContainer.hide()
+    @hide(@$suggestionsContainer)
     @$filter.attr('aria-expanded', 'false')
     
   moveSelection: (direction) ->
@@ -180,7 +222,7 @@ class Adg.Autocomplete extends Adg.Base
                         0
                       else
                         currentIndex + 1
-    
+
     $upcomingSuggestion = $($visibleSuggestions[upcomingIndex])
     $upcomingSuggestion.prop('checked', true).trigger('change')
     
@@ -196,7 +238,20 @@ class Adg.Autocomplete extends Adg.Base
       
   applyCheckedSuggestionToFilter: ->
     @debugMessage '(apply suggestion to filter)'
-    @$filter.val($.trim(@$suggestions.filter(':checked').parent().text())).focus().select()
+    
+    $previouslyCheckedSuggestionLabel = $("[#{@adgDataAttributeName('suggestion-selected')}]")
+    if $previouslyCheckedSuggestionLabel.length == 1
+      @removeAdgDataAttribute($previouslyCheckedSuggestionLabel, 'suggestion-selected')
+   
+    $checkedSuggestion = @$suggestions.filter(':checked')
+    if $checkedSuggestion.length == 1
+      $checkedSuggestionLabel = @labelOfInput($checkedSuggestion)
+      @$filter.val($.trim($checkedSuggestionLabel.text()))
+      @addAdgDataAttribute($checkedSuggestionLabel, 'suggestion-selected')
+    else
+      @$filter.val('')
+      
+    @$filter.focus().select()
       
   attachClickEventToSuggestions: ->
     @$suggestions.click (e) =>
@@ -213,28 +268,28 @@ class Adg.Autocomplete extends Adg.Base
     fuzzyFilter = @fuzzifyFilter(filter)
     visibleCount = 0
     
-    @$suggestions.each ->
-      $suggestion = $(@)
+    @$suggestions.each (i, el) =>
+      $suggestion = $(el)
       $suggestionContainer = $suggestion.parent()
 
       regex = new RegExp(fuzzyFilter, 'i')
       if regex.test($suggestionContainer.text())
         visibleCount++
-        $suggestionContainer.show()
+        @show($suggestionContainer)
       else
-        $suggestionContainer.hide()
+        @hide($suggestionContainer)
         
-    @announceSuggestionsCount(visibleCount, filter)
+    @announceSuggestionsCount(filter, visibleCount)
     
-  announceSuggestionsCount: (count = @$suggestions.length, filter = @$filter.val()) ->
-    @$alerts.find('p').remove() # Remove previous alerts (I'm not sure whether this is the best solution, maybe hiding them would be more robust?)
+  announceSuggestionsCount: (filter = @$filter.val(), count = @$suggestions.length) ->
+    @$alertsContainer.find('p').remove() # Remove previous alerts (I'm not sure whether this is the best solution, maybe hiding them would be more robust?)
     
     if filter == ''
       message = "#{count} suggestions in total"
     else
       message = "#{count} suggestions for <kbd>#{filter}</kbd>"
       
-    @$alerts.append("<p role='alert'><em>#{message}</em></p>")
+    @$alertsContainer.append("<p role='alert'><em>#{message}</em></p>")
         
   fuzzifyFilter: (filter) ->
     i = 0

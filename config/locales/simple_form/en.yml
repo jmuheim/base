@@ -18,7 +18,7 @@ en:
         password_confirmation: Retype your password to avoid typing errors.
     inputs:
       autocomplete:
-        help: Provides suggestions
+        help: Provides suggestions (enter filter text, resp. use up/down arrow keys or space bar)
         suggestions_for: Suggestions for %{attribute}
       better_text:
         allows_pasting_of_resources: Allows pasting of images and CodePen links as resources
