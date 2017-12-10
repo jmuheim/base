@@ -1,9 +1,12 @@
 require 'rails_helper'
 
 describe 'Autocomplete', js: true do
-  URL = 'https://s.codepen.io/accessibility-developer-guide/debug/aVMqdb/bZrQWyxZNVyk' # Needs to be a non-expired debug view! (The full view doesn't work because it's an iframe.)
   NON_INTERCEPTED_ESC = 'Esc passed on.'
   NON_INTERCEPTED_ENTER = 'Enter passed on.'
+  
+  around(:each) do |example|
+    Capybara.using_wait_time 0 { example.run } # No AJAX involved
+  end
 
   before do
     @admin = create :user, :admin
@@ -326,7 +329,7 @@ describe 'Autocomplete', js: true do
                          :page_parent_id_2,
                          :page_parent_id_3] - options[:visible_options]
 
-    visible = options[:options_expanded] ? true : :hidden
+    visible = false
 
     # TODO: Aufteilen in gut benamste Funktionen!
     within '[data-adg-autocomplete]' do
@@ -351,7 +354,7 @@ describe 'Autocomplete', js: true do
       end
       
       # TODO: checked und selected vereinheitlichen!
-      
+
       checked_option_labels = page.all('[data-adg-autocomplete-option-selected]', visible: visible)
       if options[:checked_option]
         if checked_option_labels.count == 0
@@ -383,12 +386,13 @@ describe 'Autocomplete', js: true do
       options[:visible_options].each do |option|
         fail "Option #{option} expected to be visible, but isn't!" unless page.has_css? "input##{option}[type='radio']"
       end
-
+     
       invisible_options.each do |option|
         fail "Option #{option} expected to be invisible, but isn't!" if page.has_css? "input##{option}[type='radio']"
       end
 
-      fail "Only one alert at a time must be present, but there are #{length}!" if (length = all('#adg-autocomplete-alerts-1 > *', visible: visible).length) != 1
+      alerts_count = all('#adg-autocomplete-alerts-1 > *', visible: visible).length
+      fail "Only one alert at a time must be present, but there are #{length}!" if alerts_count != 1
       expect(page).to have_css '#adg-autocomplete-alerts-1[data-adg-autocomplete-alerts] p[role="alert"]', text: options[:options_count], visible: visible
     end
   end

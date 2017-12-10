@@ -4,7 +4,7 @@ class Adg.Base
   uniqueIdCount = 1
   
   config =
-    debugMessage:   false
+    debug:          false
     hiddenCssClass: 'adg-visually-hidden'
   
   # Constructor. Should not be overridden; use @init() instead.
@@ -23,10 +23,6 @@ class Adg.Base
   # Dummy, must be overridden in inheriting classes.
   init: ->
     @throwMessageAndPrintObjectsToConsole 'Classes extending App must implement method init()!'
-
-  # Prints the given message to the console if config['debug'] is true.
-  debugMessage: (message) ->
-    console.log "Adg debug: #{message}" if @config.debugMessage
 
   # Executes the given selector on @$el and returns the element. Makes sure exactly one element exists.
   findOne: (selector) ->
@@ -117,8 +113,6 @@ class Adg.Autocomplete extends Adg.Base
     if jsonOptions
       for key, val of jsonOptions
         @config[key] = val
-    
-    @debugMessage 'start'
 
     @initFilter()
     @initOptions()
@@ -166,7 +160,6 @@ class Adg.Autocomplete extends Adg.Base
     
   attachClickEventToFilter: ->
     @$filter.click =>
-      @debugMessage 'click filter'
       if @$optionsContainer.is(':visible')
         @hideOptions()
       else
@@ -183,22 +176,20 @@ class Adg.Autocomplete extends Adg.Base
           @applyCheckedOptionToFilterAndResetOptions()
           e.preventDefault()
         else # Needed for automatic testing only
-          $('body').append('<p>Esc passed on.</p>')
+          $('body').append('<p>Esc passed on.</p>') if @config.debug
       
   attachEnterKeyToFilter: ->
     @$filter.keydown (e) =>
       if e.which == 13
-        @debugMessage 'enter'
         if @$optionsContainer.is(':visible')
           @applyCheckedOptionToFilterAndResetOptions()
           e.preventDefault()
         else # Needed for automatic testing only
-          $('body').append('<p>Enter passed on.</p>')
+          $('body').append('<p>Enter passed on.</p>') if @config.debug
       
   attachTabKeyToFilter: ->
     @$filter.keydown (e) =>
       if e.which == 9
-        @debugMessage 'tab'
         if @$optionsContainer.is(':visible')
           @applyCheckedOptionToFilterAndResetOptions()
       
@@ -216,12 +207,10 @@ class Adg.Autocomplete extends Adg.Base
         e.preventDefault() # TODO: Test!
     
   showOptions: ->
-    @debugMessage '(show options)'
     @show(@$optionsContainer)
     @$filter.attr('aria-expanded', 'true')
     
   hideOptions: ->
-    @debugMessage '(hide options)'
     @hide(@$optionsContainer)
     @$filter.attr('aria-expanded', 'false')
     
@@ -247,7 +236,6 @@ class Adg.Autocomplete extends Adg.Base
     
   attachChangeEventToOptions: ->
     @$options.change (e) =>
-      @debugMessage 'option change'
       @applyCheckedOptionToFilter()
       @$filter.focus().select()
 
@@ -257,8 +245,6 @@ class Adg.Autocomplete extends Adg.Base
     @filterOptions()
       
   applyCheckedOptionToFilter: ->
-    @debugMessage '(apply option to filter)'
-    
     $previouslyCheckedOptionLabel = $("[#{@adgDataAttributeName('option-selected')}]")
     if $previouslyCheckedOptionLabel.length == 1
       @removeAdgDataAttribute($previouslyCheckedOptionLabel, 'option-selected')
@@ -273,12 +259,10 @@ class Adg.Autocomplete extends Adg.Base
       
   attachClickEventToOptions: ->
     @$options.click (e) =>
-      @debugMessage 'click option'
       @hideOptions()
       
   attachChangeEventToFilter: ->
     @$filter.on 'input propertychange paste', (e) =>
-      @debugMessage '(filter changed)'
       @filterOptions(e.target.value)
       @showOptions()
       
