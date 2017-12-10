@@ -3,7 +3,7 @@ class Code < ApplicationRecord
 
   belongs_to :codeable, polymorphic: true
 
-  belongs_to :creator, class_name: User, foreign_key: :creator_id
+  belongs_to :creator, class_name: 'User', foreign_key: :creator_id
 
   validates :identifier, presence: true,
                          uniqueness: {scope: [:codeable_type, :codeable_id]},

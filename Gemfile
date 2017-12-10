@@ -1,12 +1,12 @@
 source 'https://rubygems.org'
 
-gem 'rails', '~> 5.0.1'
+gem 'rails', '~> 5.1'
 
 gem 'puma', '~> 3.0' # Use Puma as the app server
 
 gem 'rails-i18n' # Locale data
 
-gem 'mobility', '~> 0.2.3'
+gem 'mobility' # Pluggable Ruby translation framework
 
 gem 'slim-rails' # Awesome template language that replaces ERB
 
@@ -94,7 +94,7 @@ group :development, :test do
   gem 'sqlite3' # Use SQLite as the database for Active Record
 
   # Data generation
-  gem 'factory_girl_rails' # Test data generator
+  gem 'factory_bot_rails' # Test data generator
   gem 'ffaker'             # Easily generate fake data
 
   # Use Pry and its extensions to debug
@@ -159,7 +159,7 @@ group :test do
   gem 'database_cleaner' # Resets test database after each test
 
   # Capybara - Headless, JavaScript-executing browser for Selenium
-  gem 'poltergeist'          # PhantomJS driver for Capybara
+  gem 'poltergeist', github: 'mtsmfm/poltergeist' # PhantomJS driver for Capybara
   gem 'launchy'              # Use `save_and_open_page` in request tests to automatically open a browser
   gem 'selenium-webdriver'   # Selenium webdriver (needed to use Chrome driver)
 

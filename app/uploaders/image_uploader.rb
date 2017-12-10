@@ -9,8 +9,8 @@ class ImageUploader < AbstractUploader
     %w(jpg jpeg gif png)
   end
 
+  # This is provided because it's not easily possible to add a border around docx exported images (see https://github.com/jgm/pandoc/issues/3043).
   version :print do
-    process resize_to_limit: [800, 600]
     process border: ['black']
   end
 end

@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :page do
     title            'Page test title'
     navigation_title 'Page test navigation title'
