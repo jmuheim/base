@@ -19,7 +19,7 @@
       = t('shared.form.details')
 
     = panel.body do
-      = f.input :parent, as: :autocomplete, collection: @parent_collection, label_method: :title_with_details, wrapper_html: {data: {'adg-autocomplete': true}}
+      = f.input :parent, as: :autocomplete, collection: @parent_collection, label_method: :title_with_details
 
       - if f.object.new_record?
         = f.input :position, collection: [], disabled: true

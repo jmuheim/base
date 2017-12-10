@@ -12,10 +12,9 @@ class Adg.Base
   # - Arg1: The DOM element on which the script should be applied (will be saved as @$el)
   # - Arg2: An optional hash of options which will be merged into the global default config
   constructor: (el, options = {}) ->
-    @config = config
-
     @$el = $(el)
 
+    @config = config
     for key, val of options
       @config[key] = val
     
@@ -46,8 +45,10 @@ class Adg.Base
   removeAdgDataAttribute: ($target, name) ->
     $target.removeAttr(@adgDataAttributeName(name))
     
-  adgDataAttributeName: (name) ->
-    "data-#{@name()}-#{name}"
+  adgDataAttributeName: (name = null) ->
+    result = "data-#{@name()}"
+    result += "-#{name}" if name
+    result
     
   uniqueId: (name) ->
     [@name(), name, uniqueIdCount++].join '-'
@@ -79,36 +80,52 @@ class Adg.Base
   throwMessageAndPrintObjectsToConsole: (message, elements = {}) ->
     console.log elements
     throw message
+    
+  text: (text, options = {}) ->
+    text = @config["#{text}Text"]
+    
+    for key, value of options
+      text = text.replace "[#{key}]", value
+      
+    text
 
 # Tested in JAWS+IE/FF, NVDA+FF
 #
 # Known issues:
 # - JAWS leaves the input when using up/down without entering something (I guess this is due to screen layout and can be considered intended)
-# - Alert not perceivable upon opening suggestions using up/down
-#     - Possible solution 1: always show suggestions count when filter focused?
+# - Alert not perceivable upon opening options using up/down
+#     - Possible solution 1: always show options count when filter focused?
 #     - Possible solution 2: wait a moment before adding the alert?
 # - VoiceOver/iOS announces radio buttons as disabled?!
-# - iOS doesn't select all text when suggestion was chosen
+# - iOS doesn't select all text when option was chosen
 #
 # In general: alerts seem to be most robust in all relevant browsers, but aren't polite. Maybe we'll find a better mechanism to serve browsers individually?
 class Adg.Autocomplete extends Adg.Base
   config =
-    suggestionsContainer: 'fieldset'
-    suggestionsContainerLabel: 'legend'
-    alertsContainerId: 'alerts'
+    optionsContainer:      'fieldset'
+    optionsContainerLabel: 'legend'
+    alertsContainerId:     'alerts'
+    numberInTotalText:     '[number] options in total'
+    numberFilteredText:    '[number] of [total] options for [filter]'
   
   init: ->
     # Merge config into existing one (not nice, see https://stackoverflow.com/questions/47721699/)
     for key, val of config
       @config[key] = val
+      
+    jsonOptions = @$el.attr(@adgDataAttributeName())
+    if jsonOptions
+      for key, val of jsonOptions
+        @config[key] = val
     
     @debugMessage 'start'
 
     @initFilter()
-    @initSuggestions()
+    @initOptions()
     @initAlerts()
     
-    @announceSuggestionsCount('')
+    @applyCheckedOptionToFilter()
+    @announceOptionsNumber('')
 
     @attachEvents()
     
@@ -118,20 +135,20 @@ class Adg.Autocomplete extends Adg.Base
     @$filter.attr('autocomplete', 'off')
     @$filter.attr('aria-expanded', 'false')
     
-  initSuggestions: ->
-    @$suggestionsContainer = @findOne(@config.suggestionsContainer)
-    @addAdgDataAttribute(@$suggestionsContainer, 'suggestions')
+  initOptions: ->
+    @$optionsContainer = @findOne(@config.optionsContainer)
+    @addAdgDataAttribute(@$optionsContainer, 'options')
     
-    @$suggestionsContainerLabel = @findOne(@config.suggestionsContainerLabel)
-    @$suggestionsContainerLabel.addClass(@config.hiddenCssClass)
+    @$optionsContainerLabel = @findOne(@config.optionsContainerLabel)
+    @$optionsContainerLabel.addClass(@config.hiddenCssClass)
     
-    @$suggestions = @$suggestionsContainer.find('input[type="radio"]')
-    @addAdgDataAttribute(@labelOfInput(@$suggestions), 'suggestion')
-    @$suggestions.addClass(@config.hiddenCssClass)
+    @$options = @$optionsContainer.find('input[type="radio"]')
+    @addAdgDataAttribute(@labelOfInput(@$options), 'option')
+    @$options.addClass(@config.hiddenCssClass)
     
   initAlerts: ->
     @$alertsContainer = $("<div id='#{@uniqueId(@config.alertsContainerId)}'></div>")
-    @$suggestionsContainerLabel.after(@$alertsContainer)
+    @$optionsContainerLabel.after(@$alertsContainer)
     @$filter.attr('aria-describedby', [@$filter.attr('aria-describedby'), @$alertsContainer.attr('id')].join(' ').trim())
     @addAdgDataAttribute(@$alertsContainer, 'alerts')
   
@@ -144,26 +161,26 @@ class Adg.Autocomplete extends Adg.Base
     @attachTabKeyToFilter()
     @attachUpDownKeysToFilter()
     
-    @attachChangeEventToSuggestions()
-    @attachClickEventToSuggestions()
+    @attachChangeEventToOptions()
+    @attachClickEventToOptions()
     
   attachClickEventToFilter: ->
     @$filter.click =>
       @debugMessage 'click filter'
-      if @$suggestionsContainer.is(':visible')
-        @hideSuggestions()
+      if @$optionsContainer.is(':visible')
+        @hideOptions()
       else
-        @showSuggestions()
+        @showOptions()
       
   attachEscapeKeyToFilter: ->
     @$filter.keydown (e) =>
       if e.which == 27
-        if @$suggestionsContainer.is(':visible')
-          @applyCheckedSuggestionToFilterAndResetSuggestions()
+        if @$optionsContainer.is(':visible')
+          @applyCheckedOptionToFilterAndResetOptions()
           e.preventDefault()
-        else if @$suggestions.is(':checked')
-          @$suggestions.prop('checked', false)
-          @applyCheckedSuggestionToFilterAndResetSuggestions()
+        else if @$options.is(':checked')
+          @$options.prop('checked', false)
+          @applyCheckedOptionToFilterAndResetOptions()
           e.preventDefault()
         else # Needed for automatic testing only
           $('body').append('<p>Esc passed on.</p>')
@@ -172,8 +189,8 @@ class Adg.Autocomplete extends Adg.Base
     @$filter.keydown (e) =>
       if e.which == 13
         @debugMessage 'enter'
-        if @$suggestionsContainer.is(':visible')
-          @applyCheckedSuggestionToFilterAndResetSuggestions()
+        if @$optionsContainer.is(':visible')
+          @applyCheckedOptionToFilterAndResetOptions()
           e.preventDefault()
         else # Needed for automatic testing only
           $('body').append('<p>Enter passed on.</p>')
@@ -182,37 +199,37 @@ class Adg.Autocomplete extends Adg.Base
     @$filter.keydown (e) =>
       if e.which == 9
         @debugMessage 'tab'
-        if @$suggestionsContainer.is(':visible')
-          @applyCheckedSuggestionToFilterAndResetSuggestions()
+        if @$optionsContainer.is(':visible')
+          @applyCheckedOptionToFilterAndResetOptions()
       
   attachUpDownKeysToFilter: ->
     @$filter.keydown (e) =>
       if e.which == 38 || e.which == 40
-        if @$suggestionsContainer.is(':visible')
+        if @$optionsContainer.is(':visible')
           if e.which == 38
             @moveSelection('up')
           else
             @moveSelection('down')
         else
-          @showSuggestions()
+          @showOptions()
        
         e.preventDefault() # TODO: Test!
     
-  showSuggestions: ->
-    @debugMessage '(show suggestions)'
-    @show(@$suggestionsContainer)
+  showOptions: ->
+    @debugMessage '(show options)'
+    @show(@$optionsContainer)
     @$filter.attr('aria-expanded', 'true')
     
-  hideSuggestions: ->
-    @debugMessage '(hide suggestions)'
-    @hide(@$suggestionsContainer)
+  hideOptions: ->
+    @debugMessage '(hide options)'
+    @hide(@$optionsContainer)
     @$filter.attr('aria-expanded', 'false')
     
   moveSelection: (direction) ->
-    $visibleSuggestions = @$suggestions.filter(':visible')
+    $visibleOptions = @$options.filter(':visible')
     
-    maxIndex = $visibleSuggestions.length - 1
-    currentIndex = $visibleSuggestions.index($visibleSuggestions.parent().find(':checked')) # TODO: is parent() good here?!
+    maxIndex = $visibleOptions.length - 1
+    currentIndex = $visibleOptions.index($visibleOptions.parent().find(':checked')) # TODO: is parent() good here?!
     
     upcomingIndex = if direction == 'up'
                       if currentIndex <= 0
@@ -225,73 +242,72 @@ class Adg.Autocomplete extends Adg.Base
                       else
                         currentIndex + 1
 
-    $upcomingSuggestion = $($visibleSuggestions[upcomingIndex])
-    $upcomingSuggestion.prop('checked', true).trigger('change')
+    $upcomingOption = $($visibleOptions[upcomingIndex])
+    $upcomingOption.prop('checked', true).trigger('change')
     
-  attachChangeEventToSuggestions: ->
-    @$suggestions.change (e) =>
-      @debugMessage 'suggestion change'
-      @applyCheckedSuggestionToFilter()
+  attachChangeEventToOptions: ->
+    @$options.change (e) =>
+      @debugMessage 'option change'
+      @applyCheckedOptionToFilter()
+      @$filter.focus().select()
 
-  applyCheckedSuggestionToFilterAndResetSuggestions: ->
-    @applyCheckedSuggestionToFilter()
-    @hideSuggestions()
-    @filterSuggestions()
+  applyCheckedOptionToFilterAndResetOptions: ->
+    @applyCheckedOptionToFilter()
+    @hideOptions()
+    @filterOptions()
       
-  applyCheckedSuggestionToFilter: ->
-    @debugMessage '(apply suggestion to filter)'
+  applyCheckedOptionToFilter: ->
+    @debugMessage '(apply option to filter)'
     
-    $previouslyCheckedSuggestionLabel = $("[#{@adgDataAttributeName('suggestion-selected')}]")
-    if $previouslyCheckedSuggestionLabel.length == 1
-      @removeAdgDataAttribute($previouslyCheckedSuggestionLabel, 'suggestion-selected')
+    $previouslyCheckedOptionLabel = $("[#{@adgDataAttributeName('option-selected')}]")
+    if $previouslyCheckedOptionLabel.length == 1
+      @removeAdgDataAttribute($previouslyCheckedOptionLabel, 'option-selected')
    
-    $checkedSuggestion = @$suggestions.filter(':checked')
-    if $checkedSuggestion.length == 1
-      $checkedSuggestionLabel = @labelOfInput($checkedSuggestion)
-      @$filter.val($.trim($checkedSuggestionLabel.text()))
-      @addAdgDataAttribute($checkedSuggestionLabel, 'suggestion-selected')
+    $checkedOption = @$options.filter(':checked')
+    if $checkedOption.length == 1
+      $checkedOptionLabel = @labelOfInput($checkedOption)
+      @$filter.val($.trim($checkedOptionLabel.text()))
+      @addAdgDataAttribute($checkedOptionLabel, 'option-selected')
     else
       @$filter.val('')
       
-    @$filter.focus().select()
-      
-  attachClickEventToSuggestions: ->
-    @$suggestions.click (e) =>
-      @debugMessage 'click suggestion'
-      @hideSuggestions()
+  attachClickEventToOptions: ->
+    @$options.click (e) =>
+      @debugMessage 'click option'
+      @hideOptions()
       
   attachChangeEventToFilter: ->
     @$filter.on 'input propertychange paste', (e) =>
       @debugMessage '(filter changed)'
-      @filterSuggestions(e.target.value)
-      @showSuggestions()
+      @filterOptions(e.target.value)
+      @showOptions()
       
-  filterSuggestions: (filter = '') ->
+  filterOptions: (filter = '') ->
     fuzzyFilter = @fuzzifyFilter(filter)
-    visibleCount = 0
+    visibleNumber = 0
     
-    @$suggestions.each (i, el) =>
-      $suggestion = $(el)
-      $suggestionContainer = $suggestion.parent()
+    @$options.each (i, el) =>
+      $option = $(el)
+      $optionContainer = $option.parent()
 
       regex = new RegExp(fuzzyFilter, 'i')
-      if regex.test($suggestionContainer.text())
-        visibleCount++
-        @show($suggestionContainer)
+      if regex.test($optionContainer.text())
+        visibleNumber++
+        @show($optionContainer)
       else
-        @hide($suggestionContainer)
+        @hide($optionContainer)
         
-    @announceSuggestionsCount(filter, visibleCount)
+    @announceOptionsNumber(filter, visibleNumber)
     
-  announceSuggestionsCount: (filter = @$filter.val(), count = @$suggestions.length) ->
+  announceOptionsNumber: (filter = @$filter.val(), number = @$options.length) ->
     @$alertsContainer.find('p').remove() # Remove previous alerts (I'm not sure whether this is the best solution, maybe hiding them would be more robust?)
     
-    if filter == ''
-      message = "#{count} suggestions in total"
-    else
-      message = "#{count} suggestions for <kbd>#{filter}</kbd>"
+    message = if filter == ''
+                @text('numberInTotal', number: number)
+              else
+                @text('numberFiltered', number: number, total: @$options.length, filter: "<kbd>#{filter}</kbd>")
       
-    @$alertsContainer.append("<p role='alert'><em>#{message}</em></p>")
+    @$alertsContainer.append("<p role='alert'>#{message}</p>")
         
   fuzzifyFilter: (filter) ->
     i = 0

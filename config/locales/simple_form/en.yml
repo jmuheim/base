@@ -19,7 +19,9 @@ en:
     inputs:
       autocomplete:
         help: Provides suggestions (enter filter text, resp. use up/down arrow keys or space bar)
-        suggestions_for: Suggestions for %{attribute}
+        number_filtered: '[number] of [total] options for [filter]'
+        number_in_total: '[number] options in total'
+        options_for: Suggestions for %{attribute}
       better_text:
         allows_pasting_of_resources: Allows pasting of images and CodePen links as resources
         code_text_prompt: Enter alternative text (leave empty to use original title)
