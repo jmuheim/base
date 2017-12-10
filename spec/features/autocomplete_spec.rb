@@ -1,11 +1,20 @@
 require 'rails_helper'
 
 describe 'Autocomplete', js: true do
-  URL = 'https://s.codepen.io/accessibility-developer-guide/debug/aVMqdb/dXMqBbKJWmpr' # Needs to be a non-expired debug view! (The full view doesn't work because it's an iframe.)
+  URL = 'https://s.codepen.io/accessibility-developer-guide/debug/aVMqdb/bZrQWyxZNVyk' # Needs to be a non-expired debug view! (The full view doesn't work because it's an iframe.)
   NON_INTERCEPTED_ESC = 'Esc passed on.'
   NON_INTERCEPTED_ENTER = 'Enter passed on.'
 
-  before { visit_autocomplete }
+  before do
+    @admin = create :user, :admin
+    sign_in_as @admin
+    
+    create :page, creator: @admin, title: 'Hiking'
+    create :page, creator: @admin, title: 'Dancing'
+    create :page, creator: @admin, title: 'Gardening'
+
+    visit new_page_path
+  end
 
   it 'displays initially as expected (unfocused)' do
     # TODO: Spec with already checked value!
@@ -16,22 +25,22 @@ describe 'Autocomplete', js: true do
     it 'shows options when clicking into unfocused filter, and hides them when clicking into focused filter' do
       click_filter
       expect_autocomplete_state options_expanded: true,
-                                filter_focused:       true,
-                                visible_options:  [:favorite_hobby_hiking,
-                                                   :favorite_hobby_dancing,
-                                                   :favorite_hobby_gardening]
+                                filter_focused:   true,
+                                visible_options:  [:page_parent_id_1,
+                                                   :page_parent_id_2,
+                                                   :page_parent_id_3]
 
       click_filter
       expect_autocomplete_state options_expanded: false,
-                                filter_focused:       true
+                                filter_focused:   true
     end
 
     it 'selects a option when clicking on it, and hides options' do
       click_filter
-      click_option_label 'Dancing'
-      expect_autocomplete_state filter_value:       'Dancing',
-                                filter_focused:     true,
-                                checked_option: 'favorite_hobby_dancing'
+      click_option_label 'Dancing (#2)'
+      expect_autocomplete_state filter_value:   'Dancing (#2)',
+                                filter_focused: true,
+                                checked_option: 'page_parent_id_2'
     end
   end
 
@@ -48,7 +57,7 @@ describe 'Autocomplete', js: true do
         it 'leaves the filter' do
           focus_filter_with_keyboard_and_press :tab
           expect_autocomplete_state
-          expect(focused_element_id).to eq 'after'
+          expect(focused_element_id).not_to eq 'page_parent_id_filter'
         end
       end
 
@@ -56,25 +65,25 @@ describe 'Autocomplete', js: true do
         it 'hides options and leaves filter' do
           focus_filter_with_keyboard_and_press :down, :tab
           expect_autocomplete_state
-          expect(focused_element_id).to eq 'after'
+          expect(focused_element_id).not_to eq 'page_parent_id_filter'
         end
 
         context 'selection made' do
           context 'filter applies to selection' do
             it 'keeps the selection and leaves filter' do
               focus_filter_with_keyboard_and_press :down, :down, 'hi', :tab
-              expect_autocomplete_state filter_value:   'Hiking',
-                                        checked_option: :favorite_hobby_hiking
-              expect(focused_element_id).to eq 'after'
+              expect_autocomplete_state filter_value:   'Hiking (#1)',
+                                        checked_option: :page_parent_id_1
+              expect(focused_element_id).not_to eq 'page_parent_id_filter'
             end
           end
 
           context "filter doesn't apply to selection" do
             it 'keeps the selection and leaves filter' do
               focus_filter_with_keyboard_and_press :down, :down, 'da', :tab
-              expect_autocomplete_state filter_value:   'Hiking',
-                                        checked_option: :favorite_hobby_hiking
-              expect(focused_element_id).to eq 'after'
+              expect_autocomplete_state filter_value:   'Hiking (#1)',
+                                        checked_option: :page_parent_id_1
+              expect(focused_element_id).not_to eq 'page_parent_id_filter'
             end
           end
         end
@@ -87,9 +96,9 @@ describe 'Autocomplete', js: true do
           focus_filter_with_keyboard_and_press :up
           expect_autocomplete_state options_expanded: true,
                                     filter_focused:   true,
-                                    visible_options:  [:favorite_hobby_hiking,
-                                                       :favorite_hobby_dancing,
-                                                       :favorite_hobby_gardening]
+                                    visible_options:  [:page_parent_id_1,
+                                                       :page_parent_id_2,
+                                                       :page_parent_id_3]
         end
       end
 
@@ -98,33 +107,33 @@ describe 'Autocomplete', js: true do
           click_filter_and_press :up
           expect_autocomplete_state options_expanded: true,
                                     filter_focused:       true,
-                                    filter_value:     'Gardening',
-                                    checked_option:   :favorite_hobby_gardening,
-                                    visible_options:  [:favorite_hobby_hiking,
-                                                       :favorite_hobby_dancing,
-                                                       :favorite_hobby_gardening]
+                                    filter_value:     'Gardening (#3)',
+                                    checked_option:   :page_parent_id_3,
+                                    visible_options:  [:page_parent_id_1,
+                                                       :page_parent_id_2,
+                                                       :page_parent_id_3]
         end
 
         it 'moves selection up' do
           click_filter_and_press :up, :up
           expect_autocomplete_state options_expanded: true,
                                     filter_focused:   true,
-                                    filter_value:     'Dancing',
-                                    checked_option:   :favorite_hobby_dancing,
-                                    visible_options:  [:favorite_hobby_hiking,
-                                                       :favorite_hobby_dancing,
-                                                       :favorite_hobby_gardening]
+                                    filter_value:     'Dancing (#2)',
+                                    checked_option:   :page_parent_id_2,
+                                    visible_options:  [:page_parent_id_1,
+                                                       :page_parent_id_2,
+                                                       :page_parent_id_3]
         end
 
         it 'wraps selection to bottom when selection on top' do
           click_filter_and_press :down, :up
           expect_autocomplete_state options_expanded: true,
                                     filter_focused:   true,
-                                    filter_value:     'Gardening',
-                                    checked_option:   :favorite_hobby_gardening,
-                                    visible_options:  [:favorite_hobby_hiking,
-                                                       :favorite_hobby_dancing,
-                                                       :favorite_hobby_gardening]
+                                    filter_value:     'Gardening (#3)',
+                                    checked_option:   :page_parent_id_3,
+                                    visible_options:  [:page_parent_id_1,
+                                                       :page_parent_id_2,
+                                                       :page_parent_id_3]
         end
       end
     end
@@ -135,9 +144,9 @@ describe 'Autocomplete', js: true do
           focus_filter_with_keyboard_and_press :down
           expect_autocomplete_state options_expanded: true,
                                     filter_focused:   true,
-                                    visible_options:  [:favorite_hobby_hiking,
-                                                       :favorite_hobby_dancing,
-                                                       :favorite_hobby_gardening]
+                                    visible_options:  [:page_parent_id_1,
+                                                       :page_parent_id_2,
+                                                       :page_parent_id_3]
         end
       end
 
@@ -146,33 +155,33 @@ describe 'Autocomplete', js: true do
           click_filter_and_press :down
           expect_autocomplete_state options_expanded: true,
                                     filter_focused:   true,
-                                    filter_value:     'Hiking',
-                                    checked_option:   :favorite_hobby_hiking,
-                                    visible_options:  [:favorite_hobby_hiking,
-                                                       :favorite_hobby_dancing,
-                                                       :favorite_hobby_gardening]
+                                    filter_value:     'Hiking (#1)',
+                                    checked_option:   :page_parent_id_1,
+                                    visible_options:  [:page_parent_id_1,
+                                                       :page_parent_id_2,
+                                                       :page_parent_id_3]
         end
 
         it 'moves selection down' do
           click_filter_and_press :down, :down
           expect_autocomplete_state options_expanded: true,
                                     filter_focused:   true,
-                                    filter_value:     'Dancing',
-                                    checked_option:   :favorite_hobby_dancing,
-                                    visible_options:  [:favorite_hobby_hiking,
-                                                       :favorite_hobby_dancing,
-                                                       :favorite_hobby_gardening]
+                                    filter_value:     'Dancing (#2)',
+                                    checked_option:   :page_parent_id_2,
+                                    visible_options:  [:page_parent_id_1,
+                                                       :page_parent_id_2,
+                                                       :page_parent_id_3]
         end
 
         it 'wraps selection to top when selection on bottom' do
           click_filter_and_press :up, :down
           expect_autocomplete_state options_expanded: true,
                                     filter_focused:   true,
-                                    filter_value:     'Hiking',
-                                    checked_option:   :favorite_hobby_hiking,
-                                    visible_options:  [:favorite_hobby_hiking,
-                                                       :favorite_hobby_dancing,
-                                                       :favorite_hobby_gardening]
+                                    filter_value:     'Hiking (#1)',
+                                    checked_option:   :page_parent_id_1,
+                                    visible_options:  [:page_parent_id_1,
+                                                       :page_parent_id_2,
+                                                       :page_parent_id_3]
         end
       end
     end
@@ -190,8 +199,8 @@ describe 'Autocomplete', js: true do
             click_filter_and_press :down, :escape
             expect(page).not_to have_content NON_INTERCEPTED_ESC
             expect_autocomplete_state filter_focused: true,
-                                      filter_value:   'Hiking',
-                                      checked_option: :favorite_hobby_hiking
+                                      filter_value:   'Hiking (#1)',
+                                      checked_option: :page_parent_id_1
           end
         end
       end
@@ -226,8 +235,8 @@ describe 'Autocomplete', js: true do
           it 'keeps the selection' do
             click_filter_and_press :down, 'hi', :enter
             expect_autocomplete_state filter_focused: true,
-                                      filter_value:   'Hiking',
-                                      checked_option: :favorite_hobby_hiking
+                                      filter_value:   'Hiking (#1)',
+                                      checked_option: :page_parent_id_1
           end
         end
       end
@@ -259,8 +268,8 @@ describe 'Autocomplete', js: true do
           expect_autocomplete_state options_expanded: true,
                                     filter_focused:   true,
                                     filter_value:     'D',
-                                    visible_options:  [:favorite_hobby_dancing,
-                                                       :favorite_hobby_gardening],
+                                    visible_options:  [:page_parent_id_2,
+                                                       :page_parent_id_3],
                                     options_count:    '2 of 3 options for D'
         end
 
@@ -269,8 +278,8 @@ describe 'Autocomplete', js: true do
           expect_autocomplete_state options_expanded: true,
                                     filter_focused:   true,
                                     filter_value:     'DIG',
-                                    visible_options:  [:favorite_hobby_dancing,
-                                                       :favorite_hobby_gardening],
+                                    visible_options:  [:page_parent_id_2,
+                                                       :page_parent_id_3],
                                     options_count:    '2 of 3 options for DIG'
         end
       end
@@ -282,7 +291,7 @@ describe 'Autocomplete', js: true do
   end
 
   def filter_input
-    find('input#favorite_hobby_filter')
+    find('input#page_parent_id_filter')
   end
 
   def click_filter_and_press(*keys)
@@ -298,7 +307,7 @@ describe 'Autocomplete', js: true do
   end
 
   def focus_filter_with_keyboard
-    find('button#before').send_keys :tab
+    find('input#page_title').send_keys [:shift, :tab] # A bit clumsy, but makes sure the element is focused without triggering a click event, see https://stackoverflow.com/questions/47623217/
   end
 
   def focus_filter_with_keyboard_and_press(*keys)
@@ -306,39 +315,39 @@ describe 'Autocomplete', js: true do
   end
 
   def expect_autocomplete_state(options = {})
-    options.reverse_merge! options_expanded:  false,
-                           filter_value:          '',
-                           filter_focused:        false,
-                           checked_option:    nil,
-                           visible_options:   [],
-                           options_count:     '3 options in total'
+    options.reverse_merge! options_expanded: false,
+                           filter_value:     '',
+                           filter_focused:   false,
+                           checked_option:   nil,
+                           visible_options:  [],
+                           options_count:    '3 options in total'
 
-    invisible_options = [:favorite_hobby_hiking,
-                             :favorite_hobby_dancing,
-                             :favorite_hobby_gardening] - options[:visible_options]
+    invisible_options = [:page_parent_id_1,
+                         :page_parent_id_2,
+                         :page_parent_id_3] - options[:visible_options]
 
     visible = options[:options_expanded] ? true : :hidden
 
     # TODO: Aufteilen in gut benamste Funktionen!
     within '[data-adg-autocomplete]' do
-      expect(page).to have_css 'input#favorite_hobby_filter[type="text"]'
-      expect(page).to have_css 'input#favorite_hobby_filter[autocomplete="off"]'
-      expect(page).to have_css 'input#favorite_hobby_filter[aria-describedby="favorite_hobby_filter_description adg-autocomplete-alerts-1"]'
-      expect(page).to have_css "input#favorite_hobby_filter[aria-expanded='#{options[:options_expanded]}']"
+      expect(page).to have_css 'input#page_parent_id_filter[type="text"]'
+      expect(page).to have_css 'input#page_parent_id_filter[autocomplete="off"]'
+      expect(page).to have_css 'input#page_parent_id_filter[aria-describedby="page_parent_id_filter_help adg-autocomplete-alerts-1"]'
+      expect(page).to have_css "input#page_parent_id_filter[aria-expanded='#{options[:options_expanded]}']"
 
       within 'fieldset[data-adg-autocomplete-options]', visible: visible do
-        expect(page).to have_css 'legend[class="adg-visually-hidden"]', visible: visible
-        expect(page).not_to have_css 'input[type="radio"]:not(.adg-visually-hidden)'
+        expect(page).to have_css 'legend.sr-only', visible: visible
+        expect(page).not_to have_css 'input[type="radio"]:not(.sr-only)'
         expect(page).to have_css 'input[type="radio"]', visible: false
         expect(page).to have_css 'label[data-adg-autocomplete-option]', visible: false
       end
 
-      expect(find('input#favorite_hobby_filter').value).to eq options[:filter_value]
+      expect(find('input#page_parent_id_filter').value).to eq options[:filter_value]
 
-      if options[:filter_focused] && focused_element_id != 'favorite_hobby_filter'
-        fail "The focused element should be favorite_hobby_filter, but it's #{focused_element_id.presence || '(none)'}!"
-      elsif !options[:filter_focused] && focused_element_id == 'favorite_hobby_filter'
-        fail "The focused element shouldn't be favorite_hobby_filter, but it is!"
+      if options[:filter_focused] && focused_element_id != 'page_parent_id_filter'
+        fail "The focused element should be page_parent_id_filter, but it's #{focused_element_id.presence || '(none)'}!"
+      elsif !options[:filter_focused] && focused_element_id == 'page_parent_id_filter'
+        fail "The focused element shouldn't be page_parent_id_filter, but it is!"
       end
       
       # TODO: checked und selected vereinheitlichen!

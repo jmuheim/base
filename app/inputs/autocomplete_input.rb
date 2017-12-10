@@ -25,7 +25,8 @@ class AutocompleteInput < StringInput
               ''
             end
     
-    super(wrapper_options.merge(value: value)) + template.content_tag(:span, nil, class: [:fa, :arrow]) + autocomplete_collection + help_block
+    filter_id = 'page_parent_id_filter' # TODO: Ausprogrammieren!
+    super(wrapper_options.merge(value: value, name: nil, id: filter_id)) + template.content_tag(:span, nil, class: [:fa, :arrow]) + autocomplete_collection + help_block
   end
   
   def autocomplete_collection
