@@ -33,7 +33,8 @@ class Adg.Base
       else @throwMessageAndPrintObjectsToConsole "More than one object found for #{selector}!", result: result
 
   name: ->
-    "adg-#{@constructor.name.toLowerCase()}"
+    # "adg-#{@constructor.name.toLowerCase()}"
+    "adg-autocomplete"
 
   addAdgDataAttribute: ($target, name, value = '') ->
     $target.attr(@adgDataAttributeName(name), value)
