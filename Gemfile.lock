@@ -6,8 +6,8 @@ GIT
       activemodel (>= 3.0, < 6.0)
 
 GIT
-  remote: git://github.com/mtsmfm/poltergeist.git
-  revision: f30290628e4e0c2be476ab46d2a5f3e0810f8c1a
+  remote: git://github.com/teampoltergeist/poltergeist.git
+  revision: 733b084a32d5c424dd9b4f4a9c2225cf6e1b5d76
   specs:
     poltergeist (1.16.0)
       capybara (~> 2.1)
