@@ -3,6 +3,6 @@ en:
   enumerize:
     user:
       role:
-        user: User
-        editor: Editor
         admin: Administrator
+        editor: Editor
+        user: User

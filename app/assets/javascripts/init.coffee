@@ -12,6 +12,11 @@ class App.Init
     @makeTextareasFullscreenizable @$el
     @disableDependingSelect @$el
     @generateDiffs @$el
+    @autocomplete @$el
+
+  autocomplete: ($el) ->	
+    $el.find('[data-adg-autocomplete]').each ->
+      new Adg.Autocomplete @, hiddenCssClass: 'sr-only', debug: $('body').hasClass('test')
 
   makeJumpLinksVisibleOnFocus: ($el) ->
     $el.find('#jump_links a').each ->
@@ -56,7 +61,7 @@ class App.Init
       new App.TextareaFullscreenizer @
 
   disableDependingSelect: ($el) ->
-    $el.find('[data-depends-id][data-depends-value]').each ->
+    $el.find('[data-depends-name][data-depends-value]').each ->
       new App.DependingSelectDisabler @, $el
 
   generateDiffs: ($el) ->

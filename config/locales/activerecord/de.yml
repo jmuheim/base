@@ -29,11 +29,6 @@ de:
       paper_trail/version:
         created_at: Erstellt am
         whodunnit: Verantwortlicher
-      role:
-        created_at: Erstellt am
-        name: Name
-        resource_type: Ressource
-        updated_at: Aktualisiert am
       user:
         about: Über
         avatar: Profilbild
@@ -53,7 +48,7 @@ de:
         password: Passwort
         password_confirmation: Passwortbestätigung
         remember_me: Eingeloggt bleiben
-        roles: Rollen
+        role: Rolle
         updated_at: Aktualisiert am
     models:
       code:

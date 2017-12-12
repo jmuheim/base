@@ -29,11 +29,6 @@ en:
       paper_trail/version:
         created_at: Created at
         whodunnit: Whodunnit
-      role:
-        created_at: Created at
-        name: Name
-        resource_type: Resource
-        updated_at: Updated at
       user:
         about: About
         avatar: Profile picture
@@ -53,7 +48,7 @@ en:
         password: Password
         password_confirmation: Password confirmation
         remember_me: Remember me
-        roles: Roles
+        role: Role
         updated_at: Updated at
     models:
       code:

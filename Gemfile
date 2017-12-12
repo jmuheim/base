@@ -159,7 +159,7 @@ group :test do
   gem 'database_cleaner' # Resets test database after each test
 
   # Capybara - Headless, JavaScript-executing browser for Selenium
-  gem 'poltergeist', github: 'mtsmfm/poltergeist' # PhantomJS driver for Capybara
+  gem 'poltergeist', github: 'teampoltergeist/poltergeist' # PhantomJS driver for Capybara, see https://github.com/teampoltergeist/poltergeist/pull/913
   gem 'launchy'              # Use `save_and_open_page` in request tests to automatically open a browser
   gem 'selenium-webdriver'   # Selenium webdriver (needed to use Chrome driver)
 

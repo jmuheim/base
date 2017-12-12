@@ -78,7 +78,9 @@ class ApplicationController < ActionController::Base
 
   # TODO: Move to helpers (http://stackoverflow.com/questions/29397658) and add spec!
   def body_css_classes
-    [controller_name, action_name]
+    result = [controller_name, action_name]
+    result << Rails.env unless Rails.env.production?
+    result
   end
 
   # This is needed on every page to display the navigation. Always use this variable instead of executing `Page.collection_tree` again, to prevent heavy and redundant DB queries!
