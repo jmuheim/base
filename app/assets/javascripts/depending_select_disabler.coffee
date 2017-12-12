@@ -1,14 +1,14 @@
 class App.DependingSelectDisabler
   constructor: (input, context) ->
-    @$input        = $(input)
-    @$context      = $(context)
+    @$input   = $(input)
+    @$context = $(context)
 
-    @$inputOptions       = $(@$input.find('option'))
+    @$inputOptions        = $(@$input.find('option'))
     @$inputSelectedOption = $(@$input.find(':selected'))
 
-    @enabledValue     = @$input.attr('data-depends-value')
-    @dependingInputId = @$input.attr('data-depends-id')
-    @dependingInput   = @$context.find("##{@dependingInputId}")
+    @enabledValue       = @$input.attr('data-depends-value')
+    @dependingInputName = @$input.attr('data-depends-name')
+    @dependingInput     = @$context.find("input[name='#{@dependingInputName}']")
 
     @addChangeListener()
 

@@ -3,7 +3,7 @@ require 'rails_helper'
 describe 'Autocomplete', js: true do
   NON_INTERCEPTED_ESC = 'Esc passed on.'
   NON_INTERCEPTED_ENTER = 'Enter passed on.'
-  
+
   around(:each) do |example|
     Capybara.using_wait_time 0 { example.run } # No AJAX involved
   end
@@ -11,7 +11,7 @@ describe 'Autocomplete', js: true do
   before do
     @admin = create :user, :admin
     sign_in_as @admin
-    
+
     create :page, creator: @admin, title: 'Hiking'
     create :page, creator: @admin, title: 'Dancing'
     create :page, creator: @admin, title: 'Gardening'
@@ -352,7 +352,7 @@ describe 'Autocomplete', js: true do
       elsif !options[:filter_focused] && focused_element_id == 'page_parent_id_filter'
         fail "The focused element shouldn't be page_parent_id_filter, but it is!"
       end
-      
+
       # TODO: checked und selected vereinheitlichen!
 
       checked_option_labels = page.all('[data-adg-autocomplete-option-selected]', visible: visible)
@@ -386,7 +386,7 @@ describe 'Autocomplete', js: true do
       options[:visible_options].each do |option|
         fail "Option #{option} expected to be visible, but isn't!" unless page.has_css? "input##{option}[type='radio']"
       end
-     
+
       invisible_options.each do |option|
         fail "Option #{option} expected to be invisible, but isn't!" if page.has_css? "input##{option}[type='radio']"
       end

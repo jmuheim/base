@@ -41,23 +41,26 @@ describe 'Editing page' do
 
     # Changing the parent disables the position select
     expect {
-      select 'Cooler parent page', from: 'page_parent_id'
+      fill_in 'page_parent_id_filter', with: 'Cooler'
+      find('label[for="page_parent_id_2"]').click # I don't know why choose(...) doesn't work, it fires Capybara::Poltergeist::MouseEventFailed! Maybe because it's visually hidden?
     }.to change {
       page.has_css? '#page_position[disabled]'
     }.from(false).to true
 
     # Changing the parent back to the original value re-enables the position select
     expect {
-      select 'Cool parent page', from: 'page_parent_id'
+      fill_in 'page_parent_id_filter', with: 'Cool'
+      find('label[for="page_parent_id_1"]').click
     }.to change {
       page.has_css? '#page_position[disabled]'
     }.from(true).to false
 
+    fill_in 'page_parent_id_filter', with: 'Cooler'
+    find('label[for="page_parent_id_2"]').click
     fill_in 'page_title',            with: 'A new title'
     fill_in 'page_navigation_title', with: 'A new navigation title'
     fill_in 'page_content',          with: "A new content with a ![existing image](@image-existing-image) and a ![new image](@image-new-image). Also an ![existing code](@code-existing-code) and a ![new code](@code-new-code). "
     fill_in 'page_notes',            with: 'A new note'
-    select 'Cooler parent page', from: 'page_parent_id'
 
     find('#page_images_attributes_0_file', visible: false).set base64_other_image[:data]
     fill_in 'page_images_attributes_0_identifier', with: 'existing-image'
@@ -145,13 +148,13 @@ describe 'Editing page' do
     parent_page_sibling_child = create :page, creator: @user, title: 'Parent page sibling child'
 
     visit edit_page_path(@page)
-
-    expect(all("select#page_parent_id option").map(&:text)).to eq [ '',
-                                                                    "Parent page (##{parent_page.id})",
-                                                                    "Page sibling (##{page_sibling.id})",
-                                                                    "Parent page sibling (##{parent_page_sibling.id})",
-                                                                    "Parent page sibling child (##{parent_page_sibling_child.id})"
-                                                                  ]
+    expect(all(".page_parent .radio label", visible: false).map { |label| label[:for] }).to eq [
+        # TODO: Empty option!
+        "page_parent_id_#{parent_page.id}",
+        "page_parent_id_#{page_sibling.id}",
+        "page_parent_id_#{parent_page_sibling.id}",
+        "page_parent_id_#{parent_page_sibling_child.id}"
+      ]
 
     expect(all("select#page_position option").map(&:text)).to eq [ "Page (##{@page.id})",
                                                                    "Page sibling (##{page_sibling.id})"

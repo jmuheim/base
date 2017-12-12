@@ -61,7 +61,7 @@ class App.Init
       new App.TextareaFullscreenizer @
 
   disableDependingSelect: ($el) ->
-    $el.find('[data-depends-id][data-depends-value]').each ->
+    $el.find('[data-depends-name][data-depends-value]').each ->
       new App.DependingSelectDisabler @, $el
 
   generateDiffs: ($el) ->

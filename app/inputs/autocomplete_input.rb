@@ -19,17 +19,14 @@ class AutocompleteInput < StringInput
     end
 
     associated_object = object.send(attribute_name)
-    value = if associated_object.present?
-              associated_object.send(options[:label_method])
-            else
-              ''
-            end
+    value = nil
     
     filter_id = 'page_parent_id_filter' # TODO: Ausprogrammieren!
     super(wrapper_options.merge(value: value, name: nil, id: filter_id)) + template.content_tag(:span, nil, class: [:fa, :arrow]) + autocomplete_collection + help_block
   end
   
   def autocomplete_collection
+    # TODO: include_blank option! At the time being, only with esc key it is possible to reset to no option!
     template.content_tag :div, class: 'relative-wrapper' do
       @builder.association(attribute_name, as: :radio_buttons, label: t('simple_form.inputs.autocomplete.options_for', attribute: label_translation), collection: collection, label_method: options[:label_method], wrapper_html: {hidden: true})
     end

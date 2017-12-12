@@ -64,7 +64,8 @@ describe 'Creating page' do
 
     # Setting a position isn't possible when creating a page
     expect {
-      select 'Cool parent page', from: 'page_parent_id'
+      fill_in 'page_parent_id_filter', with: 'Cool'
+      find('label[for="page_parent_id_1"]').click
     }.not_to change {
       page.has_css? '#page_position[disabled]'
     }.from(true)
