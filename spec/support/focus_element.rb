@@ -1,9 +1,11 @@
 module FocusElement
   def focus_element(selector)
+    fail "Selector #{selector} doesn't exist" unless page.has_css? selector
     page.execute_script("$('#{selector}').focus()")
   end
 
   def unfocus_element(selector)
+    fail "Selector #{selector} doesn't exist" unless page.has_css? selector
     page.execute_script("$('#{selector}').blur()")
   end
 

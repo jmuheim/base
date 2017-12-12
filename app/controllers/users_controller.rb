@@ -27,18 +27,22 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name,
-                                 :email,
-                                 :avatar,
-                                 :avatar_cache,
-                                 :remove_avatar,
-                                 :curriculum_vitae,
-                                 :curriculum_vitae_cache,
-                                 :remove_curriculum_vitae,
-                                 :about,
-                                 :password,
-                                 :password_confirmation,
-                                 :lock_version)
+    permitted_keys = [:name,
+                      :email,
+                      :avatar,
+                      :avatar_cache,
+                      :remove_avatar,
+                      :curriculum_vitae,
+                      :curriculum_vitae_cache,
+                      :remove_curriculum_vitae,
+                      :about,
+                      :password,
+                      :password_confirmation,
+                      :lock_version]
+
+    permitted_keys << :role if can?(:edit_role, @user)
+
+    params.require(:user).permit(permitted_keys)
   end
 
   def add_breadcrumbs

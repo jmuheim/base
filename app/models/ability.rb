@@ -64,6 +64,11 @@ class Ability
   def define_abilities_for_admins(current_user)
     can :access, :rails_admin
 
+    can :edit_role, User do |user|
+      user != current_user
+    end
+
+
     can [:index, :read], Code
     can [:index, :read], Image
 

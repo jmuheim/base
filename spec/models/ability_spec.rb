@@ -37,6 +37,9 @@ describe Ability do
       it { should_not be_able_to(:update, User.new) }
 
       it { should_not be_able_to(:destroy, User.new) }
+
+      it { should_not be_able_to(:edit_role, User.new) }
+      it { should_not be_able_to(:edit_role, @user) }
     end
 
     describe 'managing versions' do
@@ -79,6 +82,9 @@ describe Ability do
       it { should     be_able_to(:update, @user) }
 
       it { should_not be_able_to(:destroy, User.new) }
+
+      it { should_not be_able_to(:edit_role, User.new) }
+      it { should_not be_able_to(:edit_role, @user) }
     end
 
     describe 'managing versions' do
@@ -122,6 +128,9 @@ describe Ability do
 
       it { should_not be_able_to(:destroy, User.new) }
       it { should     be_able_to(:destroy, @user) }
+
+      it { should_not be_able_to(:edit_role, User.new) }
+      it { should_not be_able_to(:edit_role, @user) }
     end
 
     describe 'managing versions' do
@@ -166,6 +175,9 @@ describe Ability do
 
       it { should     be_able_to(:destroy, User.new) }
       it { should_not be_able_to(:destroy, @user) }
+
+      it { should_not be_able_to(:edit_role, @user) }
+      it { should     be_able_to(:edit_role, User.new) }
     end
 
     describe 'managing versions' do

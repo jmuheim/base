@@ -14,6 +14,23 @@ describe 'Editing user' do
   context 'signed in as user' do
     before { login_as(@user) }
 
+    it "doesn't allow to change role (even if hacker tries it)", js: true do
+      visit edit_user_path(@user)
+
+      expect {
+        remove_html_attribute('#user_role', 'disabled') # A hacker could manually enable the option!
+      }.to change { page.has_css?('#user_role[disabled]') }.to false
+
+      select 'Administrator', from: 'user_role'
+
+      expect {
+        click_button 'Update User'
+        @user.reload
+      } .not_to change { @user.role }
+
+      expect(page).to have_flash 'User was successfully updated.'
+    end
+
     it 'grants permission to edit own user' do
       visit edit_user_path(@user)
 
@@ -40,6 +57,7 @@ describe 'Editing user' do
       fill_in 'user_name',  with: 'gustav'
       fill_in 'user_email', with: 'new-gustav@example.com'
       fill_in 'user_about', with: 'Some info about me'
+      select  'Editor', from: 'user_role'
 
       fill_in 'user_avatar', with: base64_other_image[:data]
       attach_file 'user_curriculum_vitae', dummy_file_path('other_document.txt')
@@ -59,6 +77,7 @@ describe 'Editing user' do
         .and change { File.basename(@user.curriculum_vitae.to_s) }.to('other_document.txt')
         .and change { @user.about }.to('Some info about me')
         .and change { @user.unconfirmed_email }.to('new-gustav@example.com')
+        .and change { @user.role }.to ('editor')
 
       expect(page).to have_flash 'User was successfully updated.'
     end

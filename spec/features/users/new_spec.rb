@@ -13,9 +13,10 @@ describe 'Creating user' do
 
     expect(page).to have_css 'h2', text: 'Account information'
 
-    fill_in 'user_name',                  with: 'newname'
-    fill_in 'user_email',                 with: 'somemail@example.com'
-    fill_in 'user_about',                 with: 'Some info about me'
+    fill_in 'user_name',  with: 'newname'
+    fill_in 'user_email', with: 'somemail@example.com'
+    fill_in 'user_about', with: 'Some info about me'
+    select  'Editor',     from: 'user_role'
 
     expect(page).to have_css 'h2', text: 'Password'
 
