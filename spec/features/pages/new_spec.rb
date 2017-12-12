@@ -64,8 +64,8 @@ describe 'Creating page' do
 
     # Setting a position isn't possible when creating a page
     expect {
-      fill_in 'page_parent_id_filter', with: 'Cool'
-      find('label[for="page_parent_id_1"]').click
+      fill_in 'page_parent_id_filter', with: 'Cool' # Open autocomplete and filter
+      find('label', text: 'Cool parent page (#1)').click # Capybara's choose() doesn't work because the input is visually hidden
     }.not_to change {
       page.has_css? '#page_position[disabled]'
     }.from(true)

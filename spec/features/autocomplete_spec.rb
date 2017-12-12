@@ -289,10 +289,6 @@ describe 'Autocomplete', js: true do
     end
   end
 
-  def visit_autocomplete
-    visit URL
-  end
-
   def filter_input
     find('input#page_parent_id_filter')
   end

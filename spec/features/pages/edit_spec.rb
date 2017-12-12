@@ -41,16 +41,16 @@ describe 'Editing page' do
 
     # Changing the parent disables the position select
     expect {
-      fill_in 'page_parent_id_filter', with: 'Cooler'
-      find('label[for="page_parent_id_2"]').click # I don't know why choose(...) doesn't work, it fires Capybara::Poltergeist::MouseEventFailed! Maybe because it's visually hidden?
+      fill_in 'page_parent_id_filter', with: 'Cooler' # Open autocomplete and filter
+      find('label', text: 'Cooler parent page (#2)').click # Capybara's choose() doesn't work because the input is visually hidden
     }.to change {
       page.has_css? '#page_position[disabled]'
     }.from(false).to true
 
     # Changing the parent back to the original value re-enables the position select
     expect {
-      fill_in 'page_parent_id_filter', with: 'Cool'
-      find('label[for="page_parent_id_1"]').click
+      fill_in 'page_parent_id_filter', with: 'Cool' # Open autocomplete and filter
+      find('label', text: 'Cool parent page (#1)').click # Capybara's choose() doesn't work because the input is visually hidden
     }.to change {
       page.has_css? '#page_position[disabled]'
     }.from(true).to false
