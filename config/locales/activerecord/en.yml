@@ -23,6 +23,7 @@ en:
         images: Images
         navigation_title: Navigation title
         notes: Notes
+        parent: Parent
         title: Title
         updated_at: Updated at
         updated_by: Updated by
