@@ -20,7 +20,7 @@ describe 'Autocomplete', js: true do
   end
 
   it 'displays initially as expected (unfocused)' do
-    # TODO: Spec with already checked value!
+    # TODO: Spec with already checked value! (At the time being spec'd in pages/edit_spec!)
     expect_autocomplete_state # All options default to initial state
   end
 
