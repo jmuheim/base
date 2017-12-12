@@ -18,7 +18,7 @@ de:
         password_confirmation: Gib dein Passwort nochmal ein, um Tippfehler zu vermeiden.
     inputs:
       autocomplete:
-        help: Bietet Vorschläge an (Filter-Text eingeben bzw. Pfeiltaste hoch/runter oder Leertaste)
+        help: Bietet Vorschläge an (Filter-Text eingeben oder Pfeiltaste hoch/runter)
         number_filtered: '[number] von [total] Optionen für [filter]'
         number_in_total: '[number] Optionen total'
         options_for: Vorschläge für %{attribute}

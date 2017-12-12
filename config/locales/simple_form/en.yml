@@ -18,7 +18,7 @@ en:
         password_confirmation: Retype your password to avoid typing errors.
     inputs:
       autocomplete:
-        help: Provides suggestions (enter filter text, resp. use up/down arrow keys or space bar)
+        help: Provides suggestions (enter filter text, or use up/down arrow keys)
         number_filtered: '[number] of [total] options for [filter]'
         number_in_total: '[number] options in total'
         options_for: Suggestions for %{attribute}
