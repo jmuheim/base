@@ -64,20 +64,23 @@ textarea
 
   .fa:not(:first-child)
     margin-left: 10px
-    
+
 [data-adg-autocomplete]
   .relative-wrapper
     position: relative
-    
+
   .fa.arrow
     position: absolute
     right: 24px
     top: 10px
     pointer-events: none
     color: #73737D
-    
+
     &:before
       content: "\f0ca"
+
+[data-adg-autocomplete-filter]
+  padding-right: 28px
 
 [data-adg-autocomplete-options]
   border-color: rgba(0, 0, 0, 0.15)
@@ -95,7 +98,7 @@ textarea
 
 [data-adg-autocomplete-option]
   padding: 3px 20px 2px 20px
-  
+
   &:hover
     background-color: #f5f5f5
     outline-width: 0
@@ -106,7 +109,7 @@ textarea
   background-color: #f5f5f5
   position: relative
   z-index: 1000 // Otherwise when hovering part of the outline may be overlapped by background color
-    
+
   &:hover
     outline: 1px solid #66afe9
 

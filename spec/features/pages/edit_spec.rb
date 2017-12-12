@@ -41,16 +41,14 @@ describe 'Editing page' do
 
     # Changing the parent disables the position select
     expect {
-      fill_in 'page_parent_id_filter', with: 'Cooler' # Open autocomplete and filter
-      find('label', text: 'Cooler parent page (#2)').click # Capybara's choose() doesn't work because the input is visually hidden
+      select_from_autocomplete('Cooler parent page (#2)', 'page_parent_id')
     }.to change {
       page.has_css? '#page_position[disabled]'
     }.from(false).to true
 
     # Changing the parent back to the original value re-enables the position select
     expect {
-      fill_in 'page_parent_id_filter', with: 'Cool' # Open autocomplete and filter
-      find('label', text: 'Cool parent page (#1)').click # Capybara's choose() doesn't work because the input is visually hidden
+      select_from_autocomplete('Cool parent page (#1)', 'page_parent_id')
     }.to change {
       page.has_css? '#page_position[disabled]'
     }.from(true).to false
@@ -148,7 +146,7 @@ describe 'Editing page' do
     parent_page_sibling_child = create :page, creator: @user, title: 'Parent page sibling child'
 
     visit edit_page_path(@page)
-    expect(all(".page_parent .radio label", visible: false).map { |label| label[:for] }).to eq [
+    expect(all('input[type="radio"][name="page[parent_id]"]', visible: false).map { |input| input[:id] }).to eq [
         # TODO: Empty option!
         "page_parent_id_#{parent_page.id}",
         "page_parent_id_#{page_sibling.id}",
