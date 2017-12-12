@@ -19,7 +19,7 @@
 #= require_self
 #
 # --- Add custom requires under here! ---
-#= require adg
+#= require adg_base
 #= require adg_autocomplete
 #= require example_script
 #= require clipboard_to_nested_resource_pastabilizer
