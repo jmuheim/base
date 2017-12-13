@@ -11,6 +11,7 @@ addons:
     repo_token: TODO # Can be found here: On codeclimate.com, go to "Test coverage"
 before_install:
   - export TZ=Europe/Zurich
+  - mysql -e 'CREATE DATABASE <app_name>_test' # TODO: Insert app name!
 before_script:
   - cp config/secrets.travis.yml config/secrets.yml
 script:

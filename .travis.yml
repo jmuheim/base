@@ -11,13 +11,13 @@ addons:
     repo_token: 243e5ab59244b7a1d3fb97d56bfe9961307ad558cb4a7cbeec3c85104e9ee11b
 before_install:
   - export TZ=Europe/Zurich
-  - mysql -e 'CREATE DATABASE base_test;'
+  - mysql -e 'CREATE DATABASE base_test'
 before_script:
   - cp config/secrets.travis.yml config/secrets.yml
 script:
   - RAILS_ENV=test bundle exec rails db:create
   - RAILS_ENV=test bundle exec rails db:migrate
-  - bundle exec rails spec
+  -                bundle exec rails spec
 notifications:
   email:
     recipients:
