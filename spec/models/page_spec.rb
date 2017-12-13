@@ -1,10 +1,19 @@
 require 'rails_helper'
 
 RSpec.describe Page do
-  before { @creator = create :user }
+  before { @user = create :user }
 
   it { should validate_presence_of(:title).with_message "can't be blank" }
   it { should validate_presence_of(:creator_id).with_message "can't be blank" }
+
+  # Uniqueness specs are a bit nasty, see http://stackoverflow.com/questions/27046691/cant-get-uniqueness-validation-test-pass-with-shoulda-matcher
+  describe 'uniqueness validations' do
+    subject { build :page, creator: @user }
+
+    pending 'Does mobility gem break the validate_uniqueness_of matcher?' do
+      should validate_uniqueness_of(:title).scoped_to :parent_id
+    end
+  end
 
   it { should have_many(:images).dependent :destroy }
 
@@ -12,7 +21,7 @@ RSpec.describe Page do
     it { should accept_nested_attributes_for(:images) }
 
     it 'rejects empty images' do
-      page = create :page, creator: @creator
+      page = create :page, creator: @user
 
       expect {
         page.update_attributes! images_attributes: []
@@ -20,7 +29,7 @@ RSpec.describe Page do
     end
 
     it 'ignores lock_version' do
-      page = create :page, creator: @creator
+      page = create :page, creator: @user
 
       expect {
         page.update_attributes! images_attributes: [{lock_version: 123}]
@@ -28,7 +37,7 @@ RSpec.describe Page do
     end
 
     it 'ignores _destroy' do
-      page = create :page, creator: @creator
+      page = create :page, creator: @user
 
       expect {
         page.update_attributes! images_attributes: [{_destroy: 1}]
@@ -36,12 +45,12 @@ RSpec.describe Page do
     end
 
     it 'creates a new image' do
-      page = create :page, creator: @creator
+      page = create :page, creator: @user
 
       expect {
         page.update_attributes! images_attributes: [{identifier: 'my-great-identifier',
                                                      file: File.open(dummy_file_path('image.jpg')),
-                                                     creator: @creator
+                                                     creator: @user
                                                    }]
       }.to change { Image.count }.by 1
 
@@ -51,7 +60,7 @@ RSpec.describe Page do
     end
 
     it 'updates an existing image' do
-      page = create :page, creator: @creator, images: [create(:image, creator: @creator)]
+      page = create :page, creator: @user, images: [create(:image, creator: @user)]
       image = page.images.first
 
       expect {
@@ -64,7 +73,7 @@ RSpec.describe Page do
     end
 
     it 'removes an existing image' do
-      page = create :page, creator: @creator, images: [create(:image, creator: @creator)]
+      page = create :page, creator: @user, images: [create(:image, creator: @user)]
       image = page.images.first
 
       expect {
@@ -76,11 +85,11 @@ RSpec.describe Page do
   end
 
   it 'has a valid factory' do
-    expect(create(:page, creator: @creator)).to be_valid
+    expect(create(:page, creator: @user)).to be_valid
   end
 
   it 'provides optimistic locking' do
-    page = create :page, creator: @creator
+    page = create :page, creator: @user
     stale_page = Page.find(page.id)
 
     page.update_attribute :title, 'new-title'
@@ -96,7 +105,7 @@ RSpec.describe Page do
     end
 
     describe 'attributes' do
-      before { @page = create :page, creator: @creator }
+      before { @page = create :page, creator: @user }
 
       it 'versions title (en/de)' do
         [:en, :de].each do |locale|
@@ -139,7 +148,7 @@ RSpec.describe Page do
   end
 
   describe 'translating' do
-    before { @page = create :page, creator: @creator }
+    before { @page = create :page, creator: @user }
 
     it 'translates title' do
       expect {
@@ -196,23 +205,23 @@ RSpec.describe Page do
 
   describe '#title_with_details' do
     it 'returns the name with the id' do
-      page = create(:page, creator: @creator)
+      page = create(:page, creator: @user)
       expect(page.title_with_details).to eq "Page test title (##{page.id})"
     end
   end
 
   describe 'acts as tree' do
     it 'acts as tree' do
-      page = create :page, creator: @creator
-      page.children = [create(:page, title: 'child 1', creator: @creator), create(:page, title: 'child 2', creator: @creator)]
+      page = create :page, creator: @user
+      page.children = [create(:page, title: 'child 1', creator: @user), create(:page, title: 'child 2', creator: @user)]
 
       expect(page.children.count).to be 2
     end
 
     it 'sorts by position' do
-      root = create :page, creator: @creator
-      child_1 = create :page, title: 'child 1', creator: @creator
-      child_2 = create :page, title: 'child 2', creator: @creator
+      root = create :page, creator: @user
+      child_1 = create :page, title: 'child 1', creator: @user
+      child_2 = create :page, title: 'child 2', creator: @user
 
       root.children = [child_2, child_1]
 
@@ -223,17 +232,17 @@ RSpec.describe Page do
 
   describe 'acts as list' do
     it 'acts as list' do
-      page_1 = create :page, title: 'criterion 1', creator: @creator
-      page_2 = create :page, title: 'criterion 2', creator: @creator
+      page_1 = create :page, title: 'criterion 1', creator: @user
+      page_2 = create :page, title: 'criterion 2', creator: @user
 
       expect(page_1.position).to be 1
       expect(page_2.position).to be 2
     end
 
     it 'scopes by parent_id' do
-      root = create :page, creator: @creator
-      child_1 = create :page, title: 'child 1', creator: @creator
-      child_2 = create :page, title: 'child 2', creator: @creator
+      root = create :page, creator: @user
+      child_1 = create :page, title: 'child 1', creator: @user
+      child_2 = create :page, title: 'child 2', creator: @user
 
       root.children = [child_1, child_2]
 
@@ -245,19 +254,19 @@ RSpec.describe Page do
 
   describe '#navigation_title_or_title' do
     it 'returns navigation_title if present' do
-      page = create(:page, navigation_title: 'My navigation title', title: 'My title', creator: @creator)
+      page = create(:page, navigation_title: 'My navigation title', title: 'My title', creator: @user)
       expect(page.navigation_title_or_title).to eq 'My navigation title'
     end
 
     it 'returns title if navigation_title not present' do
-      page = create(:page, navigation_title: nil, title: 'My title', creator: @creator)
+      page = create(:page, navigation_title: nil, title: 'My title', creator: @user)
       expect(page.navigation_title_or_title).to eq 'My title'
     end
   end
 
   describe '#title_with_details' do
     it 'returns the title and ID' do
-      page = create(:page, title: 'My title', creator: @creator)
+      page = create(:page, title: 'My title', creator: @user)
       expect(page.title_with_details).to eq "My title (##{page.id})"
     end
   end
