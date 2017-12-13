@@ -16,7 +16,7 @@ before_script:
 script:
   - RAILS_ENV=test bundle exec rails db:create
   - RAILS_ENV=test bundle exec rails db:migrate
-  -                bundle exec rails spec
+  - bundle exec rails spec
 notifications:
   email:
     recipients:
