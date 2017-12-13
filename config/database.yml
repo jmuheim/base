@@ -16,7 +16,7 @@ development:
 
 test:
   <<: *default
-  database: <%= Rails.application.class.parent_name.underscore %>_test
+  database: base_test
   username: <%= Rails.application.secrets.database_username %>
   password: <%= Rails.application.secrets.database_password %>
 
