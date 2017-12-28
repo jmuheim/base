@@ -3,9 +3,15 @@ admin = User.create! do |user|
          user.email        = 'admin@example.com'
          user.password     = 'adminadmin'
          user.confirmed_at = Time.now
+         user.role         = 'admin'
        end
 
-admin.add_role :admin
+editor = User.create! do |user|
+          user.name         = 'editor'
+          user.email        = 'editor@example.com'
+          user.password     = 'editoreditor'
+          user.confirmed_at = Time.now
+        end
 
 user = User.create! do |user|
          user.name         = 'user'
