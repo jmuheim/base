@@ -18,23 +18,30 @@ This is a basic Rails project with everything configured the way I want. To fork
   - <code>$ rvm use .</code> (activates the RVM gemset)
   - <code>$ bundle</code> (installs the gems) (if bundler isn't installed already, first execute <code>$ gem install bundler</code>)
 - Replace all occurrences of <code>Base::Application</code> with <code>PROJECT::Application</code> (e.g. <code>PrettyCalc::Application</code>), every occurrence of <code>module Base</code> with <code>module PROJECT</code> (e.g. <code>module PrettyCalc</code>), and every occurrence of <code>Base::</code> with <code>PROJECT::</code> (e.g. <code>PrettyCalc::</code>)
-- Change the values of <code>secret_key_base</code> in <code>config/secrets.yml</code> (run <code>$ rails secret</code> to create a new secret key for both <code>development</code> and <code>test</code> environment)
+- `$ cp config/secrets.example.yml config/secrets.yml`, then edit `secrets.yml` contents appropriately
 - Configure [Travis CI](https://travis-ci.org/) and [CodeClimate](https://codeclimate.com/) (optional - if you don't like it, simply remove <code>travis.yml</code> file instead):
   - [Integrate Travis CI with your GitHub account](https://docs.travis-ci.com/user/getting-started/)
   - [Integrate CodeClimate with your GitHub account](https://docs.codeclimate.com/v1.0/docs)
-  - `$ cp config/.travis.example.yml config/.travis.yml`
-  - Open `config/.travis.yml` and edit it
+  - `$ cp .travis.example.yml .travis.yml`, then edit `.travis.yml` contents appropriately
 - Change the value of <code>session_store</code> in <code>config/initializers/session_store.rb</code> to <code>_PROJECT_session</code> (while <code>PROJECT</code> is your project's downcased and underscored name)
 - Change the value of <code>config.mailer_sender</code> in <code>config/initializers/devise.rb</code> to some useful email address (e.g. <code>info@PROJECT.com</code>)
 - We want to use ports different to the default ports, so they don't clash with other Rails apps:
   - Change the Rack Livereload port in <code>Guardfile</code> and <code>config/development.rb</code> to e.g. <code>35730</code>
   - Change the value of <code>port</code> in <code>config/puma.rb</code> and the value of <code>config.action_mailer.default_url_options</code> in <code>config/development.rb</code> to e.g. <code>3050</code>
     - Note: in your browser, you will have to connect to your app using this port, e.g. <code>localhost:3050</code>!
-    - TODO: Capybara.asset_host auch setzen!
 - Create an <code>.rspec</code> file with your specific RSpec config, e.g. <code>--color</code>
 - Execute the following:
   - <code>$ rails db:setup</code> (sets up the database with seed data))
   - <code>$ rails db:test:prepare</code> (prepare test database)
+
+= Install needed software
+
+- Pandoc
+  - `$ brew install pandoc`
+- MiniMagick
+  - `$ brew install imagemagick`
+- PhantomJS
+  - `$ brew install phantomjs`
 
 = Activate external services
 
