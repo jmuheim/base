@@ -8,6 +8,8 @@ FactoryBot.define do
     password_confirmation 's3cur3p@ssw0rd'
     confirmed_at          Time.now
     role                  'user'
+    humanizer_question_id '16'
+    humanizer_answer      '5'
 
     after(:build) do |user|
       user.skip_confirmation_notification!

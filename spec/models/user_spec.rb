@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe User do
-  it { should validate_presence_of(:name).with_message "can't be blank" }
+  it { should validate_presence_of(:name) }
   it { should validate_uniqueness_of(:name).case_insensitive }
   it { is_expected.to strip_attribute(:name) }
   it { is_expected.to strip_attribute(:about) }

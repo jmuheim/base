@@ -129,6 +129,8 @@ GEM
       sprockets (< 4.0)
     concurrent-ruby (1.0.5)
     crass (1.0.3)
+    css_parser (1.6.0)
+      addressable
     database_cleaner (1.6.2)
     devise (4.3.0)
       bcrypt (~> 3.0)
@@ -211,6 +213,7 @@ GEM
     highline (1.7.10)
     htmlentities (4.3.4)
     http_parser.rb (0.6.0)
+    humanizer (2.6.4)
     i18n (0.9.1)
       concurrent-ruby (~> 1.0)
     i18n-tasks (0.9.19)
@@ -293,6 +296,13 @@ GEM
     polyamorous (1.3.1)
       activerecord (>= 3.0)
     powerpack (0.1.1)
+    premailer (1.11.1)
+      addressable
+      css_parser (>= 1.6.0)
+      htmlentities (>= 4.0.0)
+    premailer-rails (1.10.1)
+      actionmailer (>= 3, < 6)
+      premailer (~> 1.7, >= 1.7.9)
     pry (0.11.3)
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
@@ -467,6 +477,11 @@ GEM
     uglifier (4.0.2)
       execjs (>= 0.3.0, < 3)
     unicode-display_width (1.3.0)
+    validate_url (1.0.2)
+      activemodel (>= 3.0.0)
+      addressable
+    validates_email_format_of (1.6.3)
+      i18n
     validates_timeliness (4.0.2)
       timeliness (~> 0.3.7)
     wannabe_bool (0.7.0)
@@ -521,6 +536,7 @@ DEPENDENCIES
   guard-migrate
   guard-rspec
   guard-shell
+  humanizer
   i18n-tasks
   i18n_yaml_sorter
   jbuilder (~> 2.5)
@@ -535,6 +551,7 @@ DEPENDENCIES
   pandoc-ruby
   paper_trail (>= 4.0.0.rc)
   poltergeist!
+  premailer-rails
   pry-byebug
   pry-rails
   puma (~> 3.0)
@@ -568,10 +585,12 @@ DEPENDENCIES
   terminal-notifier-guard
   tzinfo-data
   uglifier (>= 1.3.0)
+  validate_url
+  validates_email_format_of
   validates_timeliness
   wannabe_bool
   web-console (>= 3.3.0)
   xray-rails
 
 BUNDLED WITH
-   1.16.0
+   1.16.1

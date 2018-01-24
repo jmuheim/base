@@ -1,10 +1,13 @@
 class User < ApplicationRecord
   extend Enumerize
+  include Humanizer
 
   has_paper_trail only: [:name, :about_de, :about_en, :role]
 
   extend Mobility
   translates :about
+
+  require_human_on :create
 
   # Include default devise modules. Others available are:
   # :timeoutable and :omniauthable

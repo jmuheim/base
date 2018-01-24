@@ -9,14 +9,22 @@ describe 'Signing up' do
     expect(page).to have_breadcrumbs 'Base', 'Sign up'
     expect(page).to have_headline 'Sign up'
 
-    attach_file 'user_curriculum_vitae', dummy_file_path('document.txt')
-    fill_in 'user_avatar', with: base64_image[:data]
+    expect(page).to have_css 'legend h2', text: 'Account information'
 
-    fill_in 'user_name',                  with: 'newuser'
-    fill_in 'user_email',                 with: 'newuser@example.com'
+    fill_in 'user_name', with: 'newuser'
+    expect(page).not_to have_css '#user_role'
+    fill_in 'user_email', with: 'newuser@example.com'
+    fill_in 'user_avatar', with: base64_image[:data]
     fill_in 'user_about',                 with: 'Some info about me'
+    attach_file 'user_curriculum_vitae', dummy_file_path('document.txt')
+
+    expect(page).to have_css 'legend h2', text: 'Choose a password'
+
     fill_in 'user_password',              with: 'somegreatpassword'
     fill_in 'user_password_confirmation', with: 'somegreatpassword'
+
+    expect(page).to have_css 'legend h2', text: 'Security question (CAPTCHA)'
+    fill_in 'user_humanizer_answer', with: '5'
 
     within '.frequently_occuring_sign_in_problems' do
       expect(page).to have_css 'h2', text: 'Frequently occurring sign in problems'
@@ -53,6 +61,7 @@ describe 'Signing up' do
       fill_in 'user_email',                 with: 'newuser@example.com'
       fill_in 'user_password',              with: 'somegreatpassword'
       fill_in 'user_password_confirmation', with: 'somegreatpassword'
+      fill_in 'user_humanizer_answer',      with: '5'
 
       click_button 'Sign up'
 
@@ -80,6 +89,7 @@ describe 'Signing up' do
       fill_in 'user_email',                 with: 'newuser@example.com'
       fill_in 'user_password',              with: 'somegreatpassword'
       fill_in 'user_password_confirmation', with: 'somegreatpassword'
+      fill_in 'user_humanizer_answer',      with: '5'
 
       click_button 'Sign up'
 
@@ -105,6 +115,7 @@ describe 'Signing up' do
       fill_in 'user_email',                 with: 'newuser@example.com'
       fill_in 'user_password',              with: 'somegreatpassword'
       fill_in 'user_password_confirmation', with: 'somegreatpassword'
+      fill_in 'user_humanizer_answer',      with: '5'
 
       click_button 'Sign up'
 
@@ -129,6 +140,7 @@ describe 'Signing up' do
       fill_in 'user_email',                 with: 'newuser@example.com'
       fill_in 'user_password',              with: 'somegreatpassword'
       fill_in 'user_password_confirmation', with: 'somegreatpassword'
+      fill_in 'user_humanizer_answer',      with: '5'
 
       click_button 'Sign up'
 
@@ -154,6 +166,7 @@ describe 'Signing up' do
       fill_in 'user_email',                 with: 'newuser@example.com'
       fill_in 'user_password',              with: 'somegreatpassword'
       fill_in 'user_password_confirmation', with: 'somegreatpassword'
+      fill_in 'user_humanizer_answer',      with: '5'
 
       click_button 'Sign up'
 
@@ -179,11 +192,28 @@ describe 'Signing up' do
       fill_in 'user_email',                 with: 'newuser@example.com'
       fill_in 'user_password',              with: 'somegreatpassword'
       fill_in 'user_password_confirmation', with: 'somegreatpassword'
+      fill_in 'user_humanizer_answer',      with: '5'
 
       click_button 'Sign up'
 
       expect(page).to have_flash 'Welcome! You have signed up successfully.'
       expect(User.last.curriculum_vitae.to_s).to eq ''
     end
+  end
+
+  it 'prevents from signing up on wrong CAPTCHA' do
+    visit new_user_registration_path
+
+    fill_in 'user_humanizer_answer', with: '123'
+    click_button 'Sign up'
+
+    within '.user_humanizer_answer.has-error' do
+      expect(page).to have_content "You're not a human"
+    end
+
+    fill_in 'user_humanizer_answer', with: '5'
+    click_button 'Sign up'
+
+    expect(page).not_to have_css '.user_humanizer_answer.has-error'
   end
 end

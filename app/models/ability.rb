@@ -68,7 +68,6 @@ class Ability
       user != current_user
     end
 
-
     can [:index, :read], Code
     can [:index, :read], Image
 

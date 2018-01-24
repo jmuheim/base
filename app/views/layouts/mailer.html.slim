@@ -1,0 +1,22 @@
+doctype html
+html lang=I18n.locale
+  head
+    title = message.subject
+
+    meta content="text/html; charset=UTF-8" http-equiv="Content-Type"
+  body
+    == yield
+
+    hr
+
+    p
+      cite
+        strong> = t('org.name')
+        | - #{t('app.slogan')}
+
+    address
+      strong> Email:
+      = mail_to Rails.application.secrets.mailer_from
+      br
+      strong> Web:
+      = link_to root_url, root_url

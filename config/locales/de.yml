@@ -45,6 +45,8 @@ de:
         value_before: Wert nachher
         value_difference: Wert Unterschied
     form:
+      captcha:
+        heading: Sicherheits-Abfrage (CAPTCHA)
       details: Details
       stale_info:
         instructions: Das Formular beinhaltet momentan nur deine Änderungen ("Wert vorher"). Bitte führe die zwischenzeitlich von einem anderen Benutzer getätigten Änderungen ("Wert nachher") manuell zu den deinen hinzu. Speichere erst, wenn du sicher bist, dass dadurch keine Änderungen ungewollt verloren gehen!

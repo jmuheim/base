@@ -1,0 +1,12 @@
+- if f.object.new_record?
+  = panel do |panel|
+    = panel.heading do
+      = t '.heading'
+
+    = panel.body do
+      = f.input :humanizer_answer, label: f.object.humanizer_question
+
+      - if Rails.env.test? # So we know in tests which answer is needed
+        = f.hidden_field :humanizer_question_id, value: 16
+      - else
+        = f.hidden_field :humanizer_question_id

@@ -15,6 +15,7 @@ en:
         title: Appears as main heading when displaying the page.
       user:
         about: Write something about you (biography, interests, hobbies...). You can use Pandoc Markdown to add basic formatting.
+        humanizer_answer: 'By answering this question you make yourself identifiable as a human being; this is a protection from automated computer queries (spam). More information here: <a href="https://en.wikipedia.org/wiki/CAPTCHA">CAPTCHA (Wikipedia)</a>'
         password_confirmation: Retype your password to avoid typing errors.
     inputs:
       autocomplete:

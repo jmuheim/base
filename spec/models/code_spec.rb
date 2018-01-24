@@ -4,10 +4,10 @@ RSpec.describe Code do
   before { @user = create :user }
 
   # it { should belong_to(:page) }
-  it { should validate_presence_of(:creator_id).with_message "can't be blank" }
-  it { should validate_presence_of(:title).with_message "can't be blank" }
-  it { should validate_presence_of(:thumbnail_url).with_message "can't be blank" }
-  it { should validate_presence_of(:identifier).with_message "can't be blank" }
+  it { should validate_presence_of(:creator_id) }
+  it { should validate_presence_of(:title) }
+  it { should validate_presence_of(:thumbnail_url) }
+  it { should validate_presence_of(:identifier) }
   it { should allow_value('pen-id').for(:identifier) }
   it { should allow_value('p3N-1D').for(:identifier) }
   it { should allow_value('pen-with-hyphen-1D').for(:identifier) }

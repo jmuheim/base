@@ -21,4 +21,6 @@
           = f.input :password, required: true
           = f.input :password_confirmation, required: true
 
+      == render 'shared/form/captcha', f: f
+
       = f.button :submit, headline, class: 'btn-success'

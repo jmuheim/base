@@ -61,7 +61,9 @@ nav#navigation.container
               .row = render 'devise/sessions/form', resource: User.new, display: :small
 
           li#locale_chooser.dropdown
-            = link_to flag(current_locale_flag, t('.choose_locale')), '#', class: 'dropdown-toggle', 'data-toggle': 'dropdown', 'aria-expanded': false
+            = link_to '#', class: 'dropdown-toggle', 'data-toggle': 'dropdown', 'aria-expanded': false do
+              = flag(current_locale_flag, t('.choose_locale'))
+              b.caret
 
             ul.dropdown-menu
               li lang="en"

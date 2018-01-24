@@ -40,7 +40,9 @@ class ApplicationController < ActionController::Base
                                                         :avatar, :avatar_cache, :remove_avatar,
                                                         :curriculum_vitae,
                                                         :curriculum_vitae_cache,
-                                                        :remove_curriculum_vitae
+                                                        :remove_curriculum_vitae,
+                                                        :humanizer_question_id,
+                                                        :humanizer_answer
                                                       ]
 
     devise_parameter_sanitizer.permit :sign_in, keys: [ :name, :email, :password,

@@ -10,6 +10,11 @@ class UsersController < ApplicationController
   end
 
   def create
+    # Make captcha mechanism pass automatically (only needed for new registrations, not when creating a user manually).
+    # This is ugly, see https://github.com/kiskolabs/humanizer/issues/50.
+    @user.humanizer_question_id = '16'
+    @user.humanizer_answer      = '5'
+
     @user.save
     respond_with @user
   end
