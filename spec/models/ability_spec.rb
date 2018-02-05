@@ -142,8 +142,6 @@ describe Ability do
     before  { @user = create :user, :admin }
     subject { Ability.new(@user) }
 
-    it { should be_able_to(:access, :rails_admin) }
-
     describe 'managing codes' do
       it { should be_able_to(:index, Code) }
     end
