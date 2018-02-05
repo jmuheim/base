@@ -7,8 +7,9 @@ class User < ApplicationRecord
   extend Mobility
   translates :about
 
-  require_human_on :create
-
+  attr_accessor :bypass_humanizer
+  require_human_on :create, unless: :bypass_humanizer
+  
   # Include default devise modules. Others available are:
   # :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
