@@ -41,14 +41,31 @@ Change the default URL options' `:host` in `config/environments/production.rb` t
 Edit `~/nginx/conf/nginx.conf` like so:
 
 ```
-server {
+daemon off;
+worker_processes  1;
+events {
+ worker_connections  1024;
+}
+
+http {
+  set_real_ip_from  127.0.0.1;
+  set_real_ip_from  ::1;
+  real_ip_header    X-Forwarded-For;
+  include         mime.types;
+  passenger_root /home/ACCOUNT/.gem/ruby/2.4.0/gems/passenger-5.2.0;
+  default_type  application/octet-stream;
+  server {
+    passenger_ruby /package/host/localhost/ruby-2.4.3/bin/ruby;
     listen            PORT; # Choose an open port (see instructions below)!
     server_name       ACCOUNT.SERVER.uberspace.de;
-    root              /home/ACCOUNT/rails/current/public;
+    root              /home/ACCOUMNT/rails/current/public;
     passenger_enabled on;
-
+    
     # Be sure to remove or comment the `location / { ... }` block!
+  }
 }
+
+
 ```
 
 - To check whether a port is open, execute `netstat -tulpen | grep :PORT`: empty output means the port is open, otherwise the blocking process is displayed.
