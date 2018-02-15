@@ -39,7 +39,6 @@ gem 'premailer-rails' # CSS styled emails without the hassle
 
 # jQuery
 gem 'jquery-rails'
-gem 'jquery-ui-rails' # jQuery UI components
 
 gem 'jbuilder', '~> 2.5' # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 

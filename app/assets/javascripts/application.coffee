@@ -3,10 +3,6 @@
 # Add more scripts to the block between `require_self` and `require init`!
 #
 #= require jquery
-#= require jquery_ujs
-#= require jquery-ui
-#
-#= require jquery-ui-bootstrap-bridge
 #
 #= require bootstrap
 #= require cocoon
