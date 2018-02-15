@@ -40,7 +40,7 @@ This is a basic Rails project with everything configured the way I want. To fork
   - Homebrew doesn't offer Pandoc `< 2.0` anymore, but we can sneak it into the current formula like so:
     - `$ cd "$(brew --repo homebrew/core)"`
     - In `Formula/pandoc.rb`, replace the contents of `url` with `https://hackage.haskell.org/package/pandoc-1.19.2.4/pandoc-1.19.2.4.tar.gz` and the contents of `sha256` with `bbe08c1f7fcfea98b899f9956c04159d493a26f65d3350aa6579aa5b93203556`
-  - Not you can install Pandoc: `$ brew install pandoc`
+  - Now you can install Pandoc: `$ brew install pandoc`
 - MiniMagick
   - `$ brew install imagemagick`
 - PhantomJS
