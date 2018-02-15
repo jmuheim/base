@@ -4,6 +4,7 @@ https://getbootstrap.com/docs/4.0/extend/icons/
 
 generell:
 
+- .sr-only-focusable
 - .dl-horizontal entfernt!
 - renamed .img-rounded to .rounded
   - .img-fluid für responsive bilder?
