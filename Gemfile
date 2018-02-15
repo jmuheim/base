@@ -12,16 +12,14 @@ gem 'slim-rails' # Awesome template language that replaces ERB
 
 gem 'uglifier', '>= 1.3.0' # Use Uglifier as compressor for JavaScript assets
 
-gem 'coffee-rails', '~> 4.2' # Use CoffeeScript for .js.coffee assets and views
+gem 'coffee-rails', '~> 4.2' # CoffeeScript adapter for the Rails asset pipeline
 
-gem 'sass-rails', '~> 5.0' # Use Sass for stylesheets
-
-gem 'compass-rails' # Compass framework
+gem 'sass-rails' # Use Sass for stylesheets
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
-gem 'bootstrap-sass' # Sleek, intuitive, and powerful front-end framework
+gem 'bootstrap', '~> 4.0.0' # Bootstrap 4 Ruby Gem for Rails / Sprockets and Compass
 
 gem 'font-awesome-rails' # The iconic font and CSS toolkit
 
