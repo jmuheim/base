@@ -8,7 +8,6 @@ de:
       content: Zum Inhalt springen
       home_page: Zur Startseite springen
     navigation:
-      admin: Admin
       choose_locale: Sprache wählen
       content_navigation: Inhaltsnavigation
       current_group: aktuelle Menügruppe

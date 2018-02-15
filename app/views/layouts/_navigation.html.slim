@@ -45,13 +45,6 @@ nav#navigation.container
                   = icon('sign-out', type: :fa)
                   =< t('.log_out')
 
-              - if can? :access, :rails_admin
-                li.divider role="presentation"
-
-                li = link_to rails_admin_path(locale: :en) do
-                  = icon(:gears, type: :fa)
-                  =< t('.admin')
-
           - else
             = navigation_item new_user_registration_path do
               span.visible-sm-inline-block = icon 'user-plus', type: :fa

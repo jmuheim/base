@@ -63,8 +63,6 @@ gem 'strip_attributes', github: 'jmuheim/strip_attributes' # Automatically strip
 
 gem 'enumerize' # Enumerated attributes with I18n
 
-gem 'rails_admin' # Rails Admin: engine that provides an easy-to-use interface for managing data
-
 gem 'paper_trail', '>= 4.0.0.rc' # Track changes to your models' data. Good for auditing or versioning.
 
 # Classier solution for file uploads for Rails
