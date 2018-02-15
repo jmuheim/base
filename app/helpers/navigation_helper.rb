@@ -27,10 +27,10 @@ module NavigationHelper
     end
 
     has_breadcrumb = has_breadcrumb?(target)
-    content_tag :li, class: "dropdown #{:active if has_breadcrumb}" do
-      link = link_to '#', class: 'dropdown-toggle', 'data-toggle': 'dropdown', 'aria-expanded': false do
+    content_tag :li, class: "nav-item dropdown #{:active if has_breadcrumb}" do
+      link = link_to '#', class: 'nav-link dropdown-toggle', 'data-toggle': 'dropdown', 'aria-haspopup': true, 'aria-expanded': false do
                group_title += content_tag(:span, " (#{t('layouts.navigation.current_group')})", class: 'sr-only') if has_breadcrumb
-               group_title + content_tag(:b, nil, class: :caret)
+               group_title
              end
 
       dropdown = content_tag :ul, class: 'dropdown-menu' do
@@ -51,7 +51,7 @@ module NavigationHelper
   #
   # The options hash accepts the following keys:
   #
-  # - `:active` sets the forces active state (used internally by `navigation_group`)
+  # - `:active` forces active state (used internally by `navigation_group`)
   #
   # The item's state is automatically set to active, if ther helper method `has_breadcrumb?` returns `true` for the given `target` URL.
   def navigation_item(*args, &block)
@@ -71,8 +71,9 @@ module NavigationHelper
     options[:active] = has_breadcrumb?(target) if options[:active].nil?
     title += content_tag(:span, " (#{t('layouts.navigation.current_item')})", class: 'sr-only') if options[:active]
 
-    content_tag :li, class: "#{:active if options[:active]}" do
-      link_to title, target
+    # BT4: Needs .dropdown-item if nested!
+    content_tag :li, class: "nav-item #{:active if options[:active]}" do
+      link_to title, target, class: 'nav-link'
     end
   end
 

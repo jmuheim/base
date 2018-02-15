@@ -1,73 +1,65 @@
-nav#navigation.container
-  .navbar.yamm.navbar-inverse.navbar-fixed-top
-    h2#navigation_title.sr-only = t '.navigation'
+nav#navigation
+  // BT4: Hier drunter hatte es noch ein .yamm!
+  nav.navbar.navbar-expand-md.navbar-dark.fixed-top.bg-dark
+    a.navbar-brand href="#"
+      = t('.home')
+      =< sr_only t('.go_to_home_page')
 
-    .container
-      .navbar-header
-        // Place brand before the "Toggle navigation" button to have an intuitive focus order (on the Bootstrap examples page it's after the button which seems unintuitive)
-        = link_to root_path, class: home_link_class, id: 'logo' do
-          = t('.home')
-          span.sr-only =< t('.go_to_home_page')
+    button.navbar-toggler.collapsed type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false"
+      span.navbar-toggler-icon
+      = t '.toggle_navigation'
 
-        button#toggle_navigation.navbar-toggle.collapsed aria-controls="bs-navbar" aria-expanded="false" data-target="#navbar" data-toggle="collapse" type="button"
-          span.menu-text = t '.toggle_navigation'
-          span.menu-icon
-            span.icon-bar
-            span.icon-bar
-            span.icon-bar
+    #navbar.navbar-collapse.collapse
+      h3.sr-only = t '.content_navigation'
 
-      #navbar.navbar-collapse.collapse aria-expanded="false"
-        h3.sr-only = t '.content_navigation'
-
-        ul#content_navigation.nav.navbar-nav
-          - @root_pages.each do |page|
-            - if (children = page.children).any?
-              = navigation_group page.navigation_title_or_title, page_path(page) do
-                - page.children.each do |child|
-                  = navigation_item child.navigation_title_or_title, page_path(child)
-            - else
-              = navigation_item page.navigation_title_or_title, page_path(page)
-
-        h3.sr-only = t '.meta_navigation'
-
-        ul#meta_navigation.nav.navbar-nav.navbar-right
-          == render 'layouts/resource_navigation_group', resource_class: Page if can? :index, Page
-          == render 'layouts/resource_navigation_group', resource_class: User if can? :index, User
-
-          - if user_signed_in?
-            = navigation_group user_avatar(t('.user_menu')), user_registration_path, "#{icon :user, type: :fa} #{t '.show_account'}" do
-              = navigation_item edit_user_registration_path do
-                = icon :edit, type: :fa
-                =< t '.edit_account'
-
-              li
-                = link_to destroy_user_session_path, method: :delete do
-                  = icon('sign-out', type: :fa)
-                  =< t('.log_out')
-
+      ul#content_navigation.navbar-nav.mr-auto
+        - @root_pages.each do |page|
+          - if (children = page.children).any?
+            = navigation_group page.navigation_title_or_title, page_path(page) do
+              - page.children.each do |child|
+                = navigation_item child.navigation_title_or_title, page_path(child)
           - else
-            = navigation_item new_user_registration_path do
-              span.visible-sm-inline-block = icon 'user-plus', type: :fa
-              span.hidden-sm = t '.sign_up'
+            = navigation_item page.navigation_title_or_title, page_path(page)
 
-            = navigation_mega t('.sign_in'), new_user_session_path do
-              .row = render 'devise/sessions/form', resource: User.new, display: :small
+      h3.sr-only = t '.meta_navigation'
 
-          li#locale_chooser.dropdown
-            = link_to '#', class: 'dropdown-toggle', 'data-toggle': 'dropdown', 'aria-expanded': false do
-              = flag(current_locale_flag, t('.choose_locale'))
-              b.caret
+      ul#meta_navigation.navbar-nav.navbar-right
+        == render 'layouts/resource_navigation_group', resource_class: Page if can? :index, Page
+        == render 'layouts/resource_navigation_group', resource_class: User if can? :index, User
 
-            ul.dropdown-menu
-              li lang="en"
-                = link_to locale: 'en' do
-                  => flag(:gb)
-                  | Show page in english
+        - if user_signed_in?
+          = navigation_group user_avatar(t('.user_menu')), user_registration_path, "#{icon :user, type: :fa} #{t '.show_account'}" do
+            = navigation_item edit_user_registration_path do
+              = icon :edit, type: :fa
+              =< t '.edit_account'
 
-              li lang="de"
-                = link_to locale: 'de' do
-                  => flag(:de)
-                  | Seite auf Deutsch anzeigen
+            li
+              = link_to destroy_user_session_path, method: :delete do
+                = icon('sign-out', type: :fa)
+                =< t('.log_out')
+
+        - else
+          = navigation_item new_user_registration_path do
+            span.visible-sm-inline-block = icon 'user-plus', type: :fa
+            span.hidden-sm = t '.sign_up'
+
+          = navigation_mega t('.sign_in'), new_user_session_path do
+            .row = render 'devise/sessions/form', resource: User.new, display: :small
+
+        li#locale_chooser.nav-item.dropdown
+          = link_to '#', class: 'nav-link dropdown-toggle', 'data-toggle': 'dropdown', 'aria-expanded': false do
+            = flag(current_locale_flag, t('.choose_locale'))
+
+          ul.dropdown-menu.dropdown-menu-right
+            li
+              = link_to url_for(locale: 'en'), class: 'dropdown-item' do
+                => flag(:gb)
+                | Show page in english
+
+            li
+              = link_to url_for(locale: 'de'), class: 'dropdown-item' do
+                => flag(:de)
+                | Seite auf Deutsch anzeigen
 
   #breadcrumbs.breadcrumb
     h3 #{t '.you_are_here'}:
