@@ -8,8 +8,8 @@
 #
 #= require jquery-ui-bootstrap-bridge
 #
-#= require bootstrap-sprockets
 #= require popper
+#= require bootstrap-sprockets
 #= require cocoon
 #= require diff_match_patch
 #= require jasny-bootstrap
