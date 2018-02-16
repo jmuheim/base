@@ -24,17 +24,17 @@ html lang=I18n.locale
           .col-md-12
             == yield
 
-      footer#footer
+      footer#footer.pt-4.my-md-5.pt-md-5.border-top
         h1.sr-only = t '.footer'
 
         .row
-          .col-xs-8.slogan.atom
+          .col-sm-8.slogan.atom
             p
               => link_to(t('app.name'), 'https://github.com/jmuheim/base/') + ':'
-              span.hidden-xs = t 'app.slogan'
+              = t 'app.slogan'
 
               =< link_to pages_path(format: :atom) do
                 = icon :rss, 'Atom Feed', type: :fa
 
-          .col-xs-4.copyright
+          .col-sm-4.copyright
             p &copy; 2015 #{link_to t('org.name'), 'http://www.muheimwebdesign.ch/'}
