@@ -1,3 +1,9 @@
+bootstrap 4 accessibility:
+
+- accordions nun keine tabs mehr
+
+accordion und panel helpers: konsolidieren? umbenennen? cards? fieldset?
+
 unify template:
 
 - schlechte fokus styles
@@ -5,15 +11,15 @@ unify template:
 
 the project template:
 
-Focus styles often nearly invisible, which makes keyboard-only interaction very hard. At least there are often nice hover styles for mouse interaction, so could they easily be bound to focus events?
+- Focus styles often nearly invisible, which makes keyboard-only interaction very hard. At least there are often nice hover styles for mouse interaction, so could they easily be bound to focus events?
 
-The multi level dropdowns aren't keyboard operable: it's impossible to reach an item on the 3rd navigation level! Whenever I hit enter to open a sub-sub-menu (or hit an arrow key), the whole menu simply collapses.
+- The multi level dropdowns aren't keyboard operable: it's impossible to reach an item on the 3rd navigation level! Whenever I hit enter to open a sub-sub-menu (or hit an arrow key), the whole menu simply collapses.
 
-A lot of interactive widgets like sliders or lightboxes are not usable using keyboard.
+- A lot of interactive widgets like sliders or lightboxes are not usable using keyboard.
 
 icons:
 
-https://getbootstrap.com/docs/4.0/extend/icons/
+- https://getbootstrap.com/docs/4.0/extend/icons/
 
 generell:
 
