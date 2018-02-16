@@ -14,11 +14,11 @@
 
     == render 'shared/pastables/info', accordion: accordion, f: f
 
-  = panel do |card|
+  = panel do |panel|
     = panel.heading do
       = t('shared.form.details')
 
-    = card.body do
+    = panel.body do
       = f.input :parent, as: :autocomplete, collection: @parent_collection, label_method: :title_with_details
 
       - if f.object.new_record?

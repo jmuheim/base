@@ -13,11 +13,11 @@
 
       == render 'users/detail_inputs', f: f
 
-      = panel do |card|
+      = panel do |panel|
         = panel.heading do
           = t('.choose_password')
 
-        = card.body do
+        = panel.body do
           = f.input :password, required: true
           = f.input :password_confirmation, required: true
 

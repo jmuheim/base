@@ -1,8 +1,8 @@
-= panel do |card|
+= panel do |panel|
   = panel.heading do
     = t('.account_information')
 
-  = card.body do
+  = panel.body do
     = f.input :name
     = f.input :role, disabled: cannot?(:edit_role, f.object) if signed_in?
     = f.input :email, as: :email, required: true

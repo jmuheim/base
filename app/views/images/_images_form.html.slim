@@ -1,8 +1,8 @@
-= panel do |card|
+= panel do |panel|
   = panel.heading tag: "h#{heading_level ||= 2}" do
     = Image.model_name.human count: :other
 
-  = card.body do
+  = panel.body do
     #images
       = f.simple_fields_for :images do |image|
         = render 'images/image_fields', f: image
