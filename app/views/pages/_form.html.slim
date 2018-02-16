@@ -4,21 +4,21 @@
   == render 'shared/form/stale_info', f: f
 
   = accordion :info, item_options: {title_tag: 'h2', panel_class: 'panel-info'} do |accordion|
-    = accordion.panel do |panel|
-      = panel.title do
+    = accordion.card do |card|
+      = card.title do
         = t '.info'
 
-      = panel.body do
+      = card.body do
         == render 'page_hierarchy_info'
         == render 'referencing_pages_info'
 
     == render 'shared/pastables/info', accordion: accordion, f: f
 
-  = panel do |panel|
+  = panel do |card|
     = panel.heading do
       = t('shared.form.details')
 
-    = panel.body do
+    = card.body do
       = f.input :parent, as: :autocomplete, collection: @parent_collection, label_method: :title_with_details
 
       - if f.object.new_record?

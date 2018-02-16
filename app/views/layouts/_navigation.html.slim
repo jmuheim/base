@@ -1,7 +1,9 @@
 nav#navigation
   // BT4: Hier drunter hatte es noch ein .yamm!
-  nav.navbar.navbar-expand-md.navbar-dark.fixed-top.bg-dark
+  nav.navbar.navbar-expand-md.navbar-dark.bg-dark
     .container
+      h2#navigation_title.sr-only = t '.navigation'
+
       a.navbar-brand href=root_path
         = t('.home')
         =< sr_only t('.go_to_home_page')
@@ -62,9 +64,10 @@ nav#navigation
                   => flag(:de)
                   | Seite auf Deutsch anzeigen
 
-  #breadcrumbs
-    h3 #{t '.you_are_here'}:
+  .container
+    #breadcrumbs
+      h3 #{t '.you_are_here'}:
 
-    ol.breadcrumb
-      li.breadcrumb-item = link_to t('app.acronym'), root_path
-      = render_breadcrumbs
+      ol.breadcrumb
+        li.breadcrumb-item = link_to t('app.acronym'), root_path
+        = render_breadcrumbs

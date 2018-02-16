@@ -17,11 +17,11 @@
         - unless @page.notes.blank?
           .notes
             = accordion :notes, item_options: {title_tag: 'h2', panel_class: 'panel-warning'} do |accordion|
-              = accordion.panel do |panel|
-                = panel.title do
+              = accordion.card do |card|
+                = card.title do
                   = Page.human_attribute_name :notes
 
-                = panel.body do
+                = card.body do
                   = markdown indent_heading_level complete_internal_references(@page, :notes), 2, 2
 
         .additional_information

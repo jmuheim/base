@@ -1,0 +1,8 @@
+.card class=card_class
+  .card-header id=id
+    *{tag: title_tag} class="mb-0 h5"
+      button.btn.btn-link data-toggle="collapse" data-target="##{id}_collapse" aria-expanded="false" aria-controls="#{id}_collapse" = title
+
+  .collapse.collapse id="#{id}_collapse" aria-labelledby=id data-parent=parent_id
+    .card-body
+      = body

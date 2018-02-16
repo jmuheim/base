@@ -2,11 +2,11 @@
 
 - if f.object.stale_info.any?
   .stale_info
-    = panel :warning do |panel|
+    = panel :warning do |card|
       = panel.heading do
         = t '.stale_attributes'
 
-      = panel.body do
+      = card.body do
         table.table.table-striped.table-hover.diff
           thead
             tr

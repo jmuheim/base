@@ -1,9 +1,9 @@
 - if f.object.new_record?
-  = panel do |panel|
+  = panel do |card|
     = panel.heading do
       = t '.heading'
 
-    = panel.body do
+    = card.body do
       = f.input :humanizer_answer, label: f.object.humanizer_question
 
       - if Rails.env.test? # So we know in tests which answer is needed

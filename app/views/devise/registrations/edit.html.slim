@@ -13,19 +13,19 @@
       = t('.currently_awaiting_confirmation_for')
       = resource.unconfirmed_email
 
-  = panel do |panel|
+  = panel do |card|
     = panel.heading do
       = t('.new_password')
 
-    = panel.body do
+    = card.body do
       = f.input :password, autocomplete: 'off'
       = f.input :password_confirmation
 
-  = panel do |panel|
+  = panel do |card|
     = panel.heading do
       = t('.current_password')
 
-    = panel.body do
+    = card.body do
       = f.input :current_password, required: true
 
   = f.button :submit, t('buttons.save'), class: 'btn-success'

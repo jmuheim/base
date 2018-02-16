@@ -5,11 +5,11 @@
   == render 'detail_inputs', f: f
 
   - if user.new_record?
-    = panel do |panel|
+    = panel do |card|
       = panel.heading do
         = t('.password')
 
-      = panel.body do
+      = card.body do
         = f.input :password, autocomplete: 'off', required: true
         = f.input :password_confirmation, required: true
 
