@@ -41,13 +41,30 @@ Change the default URL options' `:host` in `config/environments/production.rb` t
 Edit `~/nginx/conf/nginx.conf` like so:
 
 ```
-server {
+daemon off;
+worker_processes 1;
+
+events {
+  worker_connections 1024;
+}
+
+http {
+  set_real_ip_from  127.0.0.1;
+  set_real_ip_from  ::1;
+  real_ip_header    X-Forwarded-For;
+  include           mime.types;
+  passenger_root    PASSENGER_ROOT_PATH; # passenger-config --root
+  default_type      application/octet-stream;
+
+  server {
+    passenger_ruby    RUBY_PATH; # which ruby
     listen            PORT; # Choose an open port (see instructions below)!
     server_name       ACCOUNT.SERVER.uberspace.de;
     root              /home/ACCOUNT/rails/current/public;
     passenger_enabled on;
 
     # Be sure to remove or comment the `location / { ... }` block!
+  }
 }
 ```
 
