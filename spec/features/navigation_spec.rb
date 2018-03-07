@@ -106,7 +106,6 @@ describe 'Navigation' do
             expect(page).to have_link 'Show account'
             expect(page).to have_link 'Edit account'
             expect(page).to have_link 'Log out'
-            expect(page).to have_link 'Admin'
           end
         end
       end

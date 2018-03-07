@@ -39,7 +39,6 @@ gem 'premailer-rails' # CSS styled emails without the hassle
 
 # jQuery
 gem 'jquery-rails'
-gem 'jquery-ui-rails' # jQuery UI components
 
 gem 'jbuilder', '~> 2.5' # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 
@@ -62,8 +61,6 @@ gem 'validates_timeliness' # Date and time validation plugin for ActiveModel and
 gem 'strip_attributes', github: 'jmuheim/strip_attributes' # Automatically strips all attributes of leading and trailing whitespace (or nilify if blank)
 
 gem 'enumerize' # Enumerated attributes with I18n
-
-gem 'rails_admin' # Rails Admin: engine that provides an easy-to-use interface for managing data
 
 gem 'paper_trail', '>= 4.0.0.rc' # Track changes to your models' data. Good for auditing or versioning.
 
