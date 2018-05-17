@@ -26,7 +26,7 @@ module AccordionHelper
                                          container_tag: accordion_options[:container_tag]
     end
 
-    def card(&block)
+    def card(&block) # TODO: Card or item?!
       self.card_counter += 1
       Item.new("#{id}_card_#{card_counter}", id, options[:item_options] || {}, view, block).render
     end

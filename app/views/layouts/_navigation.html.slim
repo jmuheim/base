@@ -15,8 +15,15 @@ nav#navigation
       #navbar.navbar-collapse.collapse
         h3.sr-only = t '.content_navigation'
 
-        = navbar do
-          | Puh
+        = navbar :content do |navbar|
+          - @root_pages.each do |page|
+            - if (children = page.children).any?
+              / = navbar.dropdown page.navigation_title_or_title, page_path(page) do
+              /   - page.children.each do |child|
+              /     = navigation_item child.navigation_title_or_title, page_path(child)
+            - else
+              = navbar.item page_path(page) do
+                page.navigation_title_or_title
 
         / ul#content_navigation.navbar-nav.mr-auto
         /   - @root_pages.each do |page|
