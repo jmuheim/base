@@ -1,19 +1,14 @@
 // BT4: Hier drunter hatte es noch ein .yamm!
-.navbar class=klass
+.navbar id=id class=klass
   .container
     h2#navigation_title.sr-only = title
 
-    a.navbar-brand href=root_path
-      = t('.home')
-      =< sr_only t('.go_to_home_page')
+    - if home
+      a.navbar-brand href=root_path = home
 
-    button.navbar-toggler.collapsed type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false"
+    button.navbar-toggler.collapsed type="button" data-toggle="collapse" data-target="##{collapse_target}" aria-controls=collapse_target aria-expanded="false"
       span.navbar-toggler-icon
-      = t '.toggle_navigation'
+      = toggle
 
-    #navbar.navbar-collapse.collapse
-      h3.sr-only = t '.content_navigation'
-
-
-      ul.navbar-nav.mr-auto id=id
-        = content
+    .navbar-collapse.collapse id=collapse_target
+      = content

@@ -1,41 +1,30 @@
 nav#navigation
-  = navbar :navigation, title: t('.navigation') do |navbar|
-    = navbar.item('http://www.test.example') do |item|
-      | This is a simple item
+  = navbar :navigation, title: t('.navigation'), toggle: t('.toggle_navigation') do |navbar|
+    - navbar.home do
+      = t '.home'
+      =< sr_only t '.go_to_home_page'
 
-      / = navbar.dropdown do |dropdown|
-      /   = dropdown.item do |item|
+    = navbar.nav :content, title: t('.content_navigation') do |nav|
+      / = nav.item 'http://www.test.example' do
+      /   | This is a simple item
+      /
+      / = nav.dropdown 'Please drop me down' do |dropdown|
+      /   = dropdown.item 'http://www.google.com' do
       /     | This is a dropdown item
-      /
-      /   = dropdown.dropdown do |dropdown|
-      /     = dropdown.item do |item|
-      /       | This is a sub-dropdown item
-      /
-      / = navbar.mega do |mega|
-      /   = navbar.item do |item| # Not mega.item!
-      /     | This is a mega item
 
-      / = navbar :content do |navbar|
-      /   - @root_pages.each do |page|
-      /     - if (children = page.children).any?
-      /       / = navbar.dropdown page.navigation_title_or_title, page_path(page) do
-      /       /   - page.children.each do |child|
-      /       /     = navigation_item child.navigation_title_or_title, page_path(child)
-      /     - else
-      /       = navbar.item page_path(page) do
-      /         page.navigation_title_or_title
+      - @root_pages.each do |page|
+        - if (children = page.children).any?
+          = nav.dropdown page.navigation_title_or_title do |dropdown|
+            = dropdown.item page_path(page) do
+              | Overview
+            li.dropdown-divider role="presentation"
+            - page.children.each do |child|
+              = dropdown.item page_path(child) do
+                = child.navigation_title_or_title
+        - else
+          = nav.item page_path(page) do
+            = page.navigation_title_or_title
 
-      / ul#content_navigation.navbar-nav.mr-auto
-      /   - @root_pages.each do |page|
-      /     - if (children = page.children).any?
-      /       = navigation_group page.navigation_title_or_title, page_path(page) do
-      /         - page.children.each do |child|
-      /           = navigation_item child.navigation_title_or_title, page_path(child)
-      /     - else
-      /       = navigation_item page.navigation_title_or_title, page_path(page)
-      /
-      / h3.sr-only = t '.meta_navigation'
-      /
       / ul#meta_navigation.navbar-nav.navbar-right
       /   == render 'layouts/resource_navigation_group', resource_class: Page if can? :index, Page
       /   == render 'layouts/resource_navigation_group', resource_class: User if can? :index, User
