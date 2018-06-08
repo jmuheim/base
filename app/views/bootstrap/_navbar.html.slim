@@ -6,11 +6,7 @@
     - if home
       a.navbar-brand href=root_path class=active_class
         = home
-
-        - if active_class
-          = sr_only t 'layouts.navigation.current_page'
-        - else
-          = sr_only t 'layouts.navigation.go_to_home_page'
+        =< sr_only t "layouts.navigation.#{active_class ? :current_page : :go_to_home_page}"
 
     button.navbar-toggler.collapsed type="button" data-toggle="collapse" data-target="##{collapse_target}" aria-controls=collapse_target aria-expanded="false"
       span.navbar-toggler-icon
