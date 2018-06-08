@@ -12,16 +12,16 @@ html lang=I18n.locale
     = auto_discovery_link_tag(:atom, pages_path(format: :atom), title: Page.model_name.human(count: :other))
 
   body class=body_css_classes
+    == render 'layouts/jump_links'
+
     header
       h1.sr-only = t '.header'
-
-      == render 'layouts/jump_links'
       == render 'layouts/navigation'
 
     main#main.container
-        .row
-          .col-md-12
-            == yield
+      .row
+        .col-md-12
+          == yield
 
     footer#footer.pt-4.my-md-5.pt-md-5.border-top
       .container

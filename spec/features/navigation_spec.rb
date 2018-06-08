@@ -173,9 +173,9 @@ describe 'Navigation' do
     visit root_path
 
     active_menu_group_css  = '.dropdown.active > a.dropdown-toggle'
-    active_menu_group_text = 'Users (current menu group)'
+    active_menu_group_text = 'Users (current parent)'
     active_menu_item_css   = '.dropdown.active > ul.dropdown-menu > li.active > a'
-    active_menu_item_text  = 'List of Users (current menu item)'
+    active_menu_item_text  = 'List of Users (current page)'
 
     within 'nav' do
       expect(page).not_to have_css  active_menu_group_css
@@ -211,7 +211,7 @@ describe 'Navigation' do
     visit root_path
 
     active_menu_group_css  = '.dropdown.active > a.dropdown-toggle'
-    active_menu_group_text = 'Users (current menu group)'
+    active_menu_group_text = 'Users (current parent)'
 
     within 'nav' do
       expect(page).not_to have_css  active_menu_group_css
@@ -233,33 +233,33 @@ describe 'Navigation' do
     visit root_path
 
     expect(page).to     have_css '.dropdown:not(.active) > a', text: 'Parent page'
-    expect(page).not_to have_link 'Parent page (current menu group)'
+    expect(page).not_to have_link 'Parent page (current parent)'
 
     expect(page).to     have_css '.dropdown:not(.active) > ul > li a:not(.active)', text: 'Overview'
-    expect(page).not_to have_link 'Overview (current menu item)'
+    expect(page).not_to have_link 'Overview (current page)'
 
     expect(page).to     have_css '.dropdown:not(.active) > ul > li a:not(.active)', text: 'Cool page'
-    expect(page).not_to have_link 'Cool page (current menu item)'
+    expect(page).not_to have_link 'Cool page (current page)'
 
     # Now, when visiting the menu group, it should be reported as active, and the overview menu item, too.
     visit page_path(parent_page)
 
-    expect(page).to     have_css '.dropdown.active > a', text: 'Parent page (current menu group)'
+    expect(page).to     have_css '.dropdown.active > a', text: 'Parent page (current parent)'
 
-    expect(page).to     have_css '.dropdown.active > ul > li.active a', text: 'Overview (current menu item)'
+    expect(page).to     have_css '.dropdown.active > ul > li.active a', text: 'Overview (current page)'
 
     expect(page).to     have_css '.dropdown.active > ul > li:not(.active)', text: 'Cool page'
-    expect(page).not_to have_link 'Cool page (current menu item)'
+    expect(page).not_to have_link 'Cool page (current page)'
 
     # Now, when visiting the menu item, the menu group should be reported as active, and the menu item (but not the overview menu item anymore)
     visit page_path(@page)
 
-    expect(page).to     have_css '.dropdown.active > a', text: 'Parent page (current menu group)'
+    expect(page).to     have_css '.dropdown.active > a', text: 'Parent page (current parent)'
 
     expect(page).to     have_css '.dropdown.active > ul > li:not(.active)', text: 'Overview'
-    expect(page).not_to have_link 'Overview (current menu item)'
+    expect(page).not_to have_link 'Overview (current page)'
 
-    expect(page).to     have_css '.dropdown.active > ul > li.active a', text: 'Cool page (current menu item)'
+    expect(page).to     have_css '.dropdown.active > ul > li.active a', text: 'Cool page (current page)'
   end
 
   context 'jump links' do

@@ -10,8 +10,8 @@ de:
     navigation:
       choose_locale: Sprache wählen
       content_navigation: Inhaltsnavigation
-      current_group: aktuelle Menügruppe
-      current_item: aktueller Menüpunkt
+      current_parent: aktuelle Menügruppe
+      current_page: aktueller Menüpunkt
       edit_account: Konto bearbeiten
       go_to_home_page: "(zur Startseite)"
       home: Base

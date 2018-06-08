@@ -1,13 +1,12 @@
-nav#navigation
+nav
   = navbar :navigation, title: t('.navigation'), toggle: t('.toggle_navigation') do |navbar|
     - navbar.home do
       = t '.home'
-      =< sr_only t '.go_to_home_page'
 
     = navbar.nav :content_navigation, title: t('.content_navigation') do |nav|
       - @root_pages.each do |page|
         - if (children = page.children).any?
-          = nav.dropdown page.navigation_title_or_title do |dropdown|
+          = nav.dropdown page.navigation_title_or_title, page_path(page) do |dropdown|
             = dropdown.item page_path(page) do
               | Overview
             li.dropdown-divider role="presentation"
@@ -18,12 +17,12 @@ nav#navigation
           = nav.item page_path(page) do
             = page.navigation_title_or_title
 
-    = navbar.nav :meta_navigation, title: t('.meta_navigation') do |nav|
+    = navbar.nav :meta_navigation, title: t('.meta_navigation'), class: 'asdf' do |nav|
       == render 'layouts/resource_navigation_group', nav: nav, resource_class: Page if can? :index, Page
       == render 'layouts/resource_navigation_group', nav: nav, resource_class: User if can? :index, User
 
       - if user_signed_in?
-        = nav.dropdown user_avatar t '.user_menu' do |dropdown|
+        = nav.dropdown user_avatar(t('.user_menu')), user_registration_path do |dropdown|
           = dropdown.item user_registration_path do
             = icon :user, type: :fa
             =< t '.show_account'
@@ -60,10 +59,9 @@ nav#navigation
                 => flag(:de)
                 | Seite auf Deutsch anzeigen
 
-  .container
-    #breadcrumbs
-      h3 #{t '.you_are_here'}:
+  #breadcrumbs.container
+    h3 #{t '.you_are_here'}:
 
-      ol.breadcrumb
-        li.breadcrumb-item = link_to t('app.acronym'), root_path
-        = render_breadcrumbs
+    ol.breadcrumb
+      li.breadcrumb-item = link_to t('app.acronym'), root_path
+      = render_breadcrumbs

@@ -1,6 +1,9 @@
 li.nav-item.dropdown
-  a.nav-item.nav-link.dropdown-toggle href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+  a.nav-item.nav-link.dropdown-toggle href=target data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class=active_class
     = title
+
+    - if active_class
+      = sr_only t 'layouts.navigation.current_parent'
 
   ul.dropdown-menu
     = content

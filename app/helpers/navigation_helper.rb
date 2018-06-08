@@ -29,7 +29,7 @@ module NavigationHelper
     has_breadcrumb = has_breadcrumb?(target)
     content_tag :li, class: "nav-item dropdown #{:active if has_breadcrumb}" do
       link = link_to '#', class: 'nav-link dropdown-toggle', 'data-toggle': 'dropdown', 'aria-haspopup': true, 'aria-expanded': false do
-               group_title += content_tag(:span, " (#{t('layouts.navigation.current_group')})", class: 'sr-only') if has_breadcrumb
+               group_title += content_tag(:span, " (#{t('layouts.navigation.current_parent')})", class: 'sr-only') if has_breadcrumb
                group_title
              end
 
@@ -69,7 +69,7 @@ module NavigationHelper
 
     title = title.html_safe
     options[:active] = has_breadcrumb?(target) if options[:active].nil?
-    title += content_tag(:span, " (#{t('layouts.navigation.current_item')})", class: 'sr-only') if options[:active]
+    title += content_tag(:span, " (#{t('layouts.navigation.current_page')})", class: 'sr-only') if options[:active]
 
     # BT4: Needs .dropdown-item if nested!
     content_tag :li, class: "nav-item #{:active if options[:active]}" do
@@ -91,7 +91,7 @@ module NavigationHelper
       active = current_page?(target)
 
       link = link_to '#', class: 'dropdown-toggle', 'data-toggle': 'dropdown', 'aria-expanded': false do
-               group_title += content_tag(:span, " (#{t('layouts.navigation.current_group')})", class: 'sr-only') if active
+               group_title += content_tag(:span, " (#{t('layouts.navigation.current_parent')})", class: 'sr-only') if active
                group_title + content_tag(:b, nil, class: :caret)
              end
 

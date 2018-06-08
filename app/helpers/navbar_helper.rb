@@ -6,13 +6,11 @@ module NavbarHelper
 end
 
 class Lego < Struct.new(:view, :options, :block)
-  delegate :link_to, to: :view
-
   def initialize(view, options, block)
     self.view = view
     self.options = options
 
-    self.options[:id] = name
+    self.options[:id] ||= name.gsub '/', '_'
     options.merge! defaults
 
     super
@@ -43,18 +41,21 @@ class Lego < Struct.new(:view, :options, :block)
       legos[lego] = nil
     end
 
-    legos.each_pair do |method, params|
-      params = [params].flatten
+    legos.each_pair do |lego, params|
+      params = [params].flatten.compact
 
-      define_method method do |*args, &block|
-        options = args.extract_options!
+      namespace = name.classify.constantize
+      klass = namespace.const_set(lego.to_s.classify, Class.new(self))
 
-        raise "Param mismatch! Expected param names: #{params.join}; given params: #{args.join}." if args.size != params.size
+      define_method lego do |*args, &block|
+        options   = args.extract_options!
+
+        raise "Param mismatch! Expected param names: #{params.join ', '}; given params: #{args.join ', '}." if args.size != params.size
         params.each_with_index do |param, i|
           options[param] = args[i]
         end
 
-        name.classify.constantize.const_get(method.to_s.classify).new(view, options, block).render
+        klass.new(view, options, block).render
       end
     end
   end
@@ -66,7 +67,8 @@ class Navbar < Lego
   def defaults
     { home: nil,
       klass: ['navbar-dark', 'bg-dark', 'navbar-expand-md'],
-      collapse_target: "#{options[:id]}_collapse"
+      collapse_target: "#{options[:id]}_collapse",
+      active_class: view.current_page?(view.root_path) ? 'active' : nil
     }
   end
 
@@ -74,21 +76,31 @@ class Navbar < Lego
     options[:home] = view.capture(self, &block)
   end
 
-  class Nav < Lego
+  class Nav
     provides mega: :title,
              item: :target,
-             dropdown: :title
+             dropdown: [:title, :target]
 
-    class Mega < Lego
+    class Item
+      def defaults
+        { active_class: view.has_breadcrumb?(options[:target]) ? 'active' : nil
+        }
+      end
     end
 
-    class Item < Lego
-    end
-
-    class Dropdown < Lego
+    class Dropdown
       provides item: :target
 
-      class Item < Lego
+      def defaults
+        { active_class: view.has_breadcrumb?(options[:target]) ? 'active' : nil
+        }
+      end
+
+      class Item
+        def defaults
+          { active_class: view.current_page?(options[:target]) ? 'active' : nil
+          }
+        end
       end
     end
   end

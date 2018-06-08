@@ -1,3 +1,6 @@
 li
-  a.dropdown-item href=target
+  a.dropdown-item href=target class=active_class
     = content
+
+    - if active_class
+      = sr_only t 'layouts.navigation.current_page'
