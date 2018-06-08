@@ -4,14 +4,7 @@ nav#navigation
       = t '.home'
       =< sr_only t '.go_to_home_page'
 
-    = navbar.nav :content, title: t('.content_navigation') do |nav|
-      / = nav.item 'http://www.test.example' do
-      /   | This is a simple item
-      /
-      / = nav.dropdown 'Please drop me down' do |dropdown|
-      /   = dropdown.item 'http://www.google.com' do
-      /     | This is a dropdown item
-
+    = navbar.nav :content_navigation, title: t('.content_navigation') do |nav|
       - @root_pages.each do |page|
         - if (children = page.children).any?
           = nav.dropdown page.navigation_title_or_title do |dropdown|
@@ -25,7 +18,7 @@ nav#navigation
           = nav.item page_path(page) do
             = page.navigation_title_or_title
 
-    = navbar.nav :meta, title: t('.meta_navigation') do |nav|
+    = navbar.nav :meta_navigation, title: t('.meta_navigation') do |nav|
       == render 'layouts/resource_navigation_group', nav: nav, resource_class: Page if can? :index, Page
       == render 'layouts/resource_navigation_group', nav: nav, resource_class: User if can? :index, User
 
@@ -34,6 +27,7 @@ nav#navigation
           = dropdown.item user_registration_path do
             = icon :user, type: :fa
             =< t '.show_account'
+
           = dropdown.item edit_user_registration_path do
             = icon :edit, type: :fa
             =< t '.edit_account'
@@ -48,10 +42,8 @@ nav#navigation
           span.visible-sm-inline-block = icon 'user-plus', type: :fa
           span.hidden-sm = t '.sign_up'
 
-        = nav.dropdown t '.sign_in' do
-          = nav.item new_user_session_path do
-            .row
-              = render 'devise/sessions/form', resource: User.new, display: :small
+        = nav.mega t '.sign_in' do
+          = render 'devise/sessions/form', resource: User.new, display: :small
 
         li#locale_chooser.nav-item.dropdown
           = link_to '#', class: 'nav-link dropdown-toggle', 'data-toggle': 'dropdown', 'aria-expanded': false do

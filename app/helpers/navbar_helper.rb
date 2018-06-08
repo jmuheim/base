@@ -1,17 +1,18 @@
 module NavbarHelper
   def navbar(id, options = {}, &block)
-    Navbar.new(id, self, options, block).render
+    options[:id] = id
+    Navbar.new(self, options, block).render
   end
 end
 
-class Lego < Struct.new(:id, :view, :options, :block)
+class Lego < Struct.new(:view, :options, :block)
   delegate :link_to, to: :view
 
-  def initialize(id = nil, view, options, block)
-    self.id = "#{id}_#{name}"
+  def initialize(view, options, block)
     self.view = view
     self.options = options
 
+    self.options[:id] = name
     options.merge! defaults
 
     super
@@ -21,22 +22,51 @@ class Lego < Struct.new(:id, :view, :options, :block)
     self.class.name.underscore
   end
 
+  def path
+    "bootstrap/#{name}"
+  end
+
   def render
-    view.render "bootstrap/#{name}", { id:      id,
-                                       content: view.capture(self, &block) # TODO: Would be nicer to use yield in view!
-                                     }.merge(options)
+    view.render path, { content: view.capture(self, &block) # TODO: Would be nicer to use yield in view!
+                      }.merge(options)
   end
 
   def defaults
     {}
   end
+
+  def self.provides(*args)
+    options = args.extract_options!
+    legos = options
+
+    args.each do |lego|
+      legos[lego] = nil
+    end
+
+    legos.each_pair do |method, params|
+      params = [params].flatten
+
+      define_method method do |*args, &block|
+        options = args.extract_options!
+
+        raise "Param mismatch! Expected param names: #{params.join}; given params: #{args.join}." if args.size != params.size
+        params.each_with_index do |param, i|
+          options[param] = args[i]
+        end
+
+        name.classify.constantize.const_get(method.to_s.classify).new(view, options, block).render
+      end
+    end
+  end
 end
 
 class Navbar < Lego
+  provides nav: :id
+
   def defaults
     { home: nil,
       klass: ['navbar-dark', 'bg-dark', 'navbar-expand-md'],
-      collapse_target: "#{id}_collapse"
+      collapse_target: "#{options[:id]}_collapse"
     }
   end
 
@@ -44,50 +74,21 @@ class Navbar < Lego
     options[:home] = view.capture(self, &block)
   end
 
-  def nav(id, options = {}, &block)
-    Nav.new(id, view, options, block).render
-  end
-
   class Nav < Lego
-    def item(target, options = {}, &block)
-      options[:target] = target
+    provides mega: :title,
+             item: :target,
+             dropdown: :title
 
-      Item.new(view, options, block).render
-    end
-
-    def dropdown(title, options = {}, &block)
-      options[:title] = title
-
-      Dropdown.new(title, view, options, block).render
+    class Mega < Lego
     end
 
     class Item < Lego
-      attr_accessor :target
-
-      def defaults
-        { target: options[:target] }
-      end
     end
 
     class Dropdown < Lego
-      attr_accessor :title
+      provides item: :target
 
-      def defaults
-        { title: options[:title] }
-      end
-
-      def item(target, options = {}, &block)
-        options[:target] = target
-
-        Item.new(view, options, block).render
-      end
-
-      class Item < Lego # Duplicate? Smelly?
-        attr_accessor :target
-
-        def defaults
-          { target: options[:target] }
-        end
+      class Item < Lego
       end
     end
   end
