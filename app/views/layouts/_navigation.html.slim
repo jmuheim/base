@@ -1,78 +1,78 @@
 nav#navigation
-  // BT4: Hier drunter hatte es noch ein .yamm!
-  nav.navbar.navbar-expand-md.navbar-dark.bg-dark
-    .container
-      h2#navigation_title.sr-only = t '.navigation'
+  = navbar :navigation, title: t('.navigation') do |navbar|
+    = navbar.item('http://www.test.example') do |item|
+      | This is a simple item
 
-      a.navbar-brand href=root_path
-        = t('.home')
-        =< sr_only t('.go_to_home_page')
+      / = navbar.dropdown do |dropdown|
+      /   = dropdown.item do |item|
+      /     | This is a dropdown item
+      /
+      /   = dropdown.dropdown do |dropdown|
+      /     = dropdown.item do |item|
+      /       | This is a sub-dropdown item
+      /
+      / = navbar.mega do |mega|
+      /   = navbar.item do |item| # Not mega.item!
+      /     | This is a mega item
 
-      button.navbar-toggler.collapsed type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false"
-        span.navbar-toggler-icon
-        = t '.toggle_navigation'
+      / = navbar :content do |navbar|
+      /   - @root_pages.each do |page|
+      /     - if (children = page.children).any?
+      /       / = navbar.dropdown page.navigation_title_or_title, page_path(page) do
+      /       /   - page.children.each do |child|
+      /       /     = navigation_item child.navigation_title_or_title, page_path(child)
+      /     - else
+      /       = navbar.item page_path(page) do
+      /         page.navigation_title_or_title
 
-      #navbar.navbar-collapse.collapse
-        h3.sr-only = t '.content_navigation'
-
-        = navbar :content do |navbar|
-          - @root_pages.each do |page|
-            - if (children = page.children).any?
-              / = navbar.dropdown page.navigation_title_or_title, page_path(page) do
-              /   - page.children.each do |child|
-              /     = navigation_item child.navigation_title_or_title, page_path(child)
-            - else
-              = navbar.item page_path(page) do
-                page.navigation_title_or_title
-
-        / ul#content_navigation.navbar-nav.mr-auto
-        /   - @root_pages.each do |page|
-        /     - if (children = page.children).any?
-        /       = navigation_group page.navigation_title_or_title, page_path(page) do
-        /         - page.children.each do |child|
-        /           = navigation_item child.navigation_title_or_title, page_path(child)
-        /     - else
-        /       = navigation_item page.navigation_title_or_title, page_path(page)
-        /
-        / h3.sr-only = t '.meta_navigation'
-        /
-        / ul#meta_navigation.navbar-nav.navbar-right
-        /   == render 'layouts/resource_navigation_group', resource_class: Page if can? :index, Page
-        /   == render 'layouts/resource_navigation_group', resource_class: User if can? :index, User
-        /
-        /   - if user_signed_in?
-        /     = navigation_group user_avatar(t('.user_menu')), user_registration_path, "#{icon :user, type: :fa} #{t '.show_account'}" do
-        /       = navigation_item edit_user_registration_path do
-        /         = icon :edit, type: :fa
-        /         =< t '.edit_account'
-        /
-        /       li
-        /         = link_to destroy_user_session_path, method: :delete do
-        /           = icon('sign-out', type: :fa)
-        /           =< t('.log_out')
-        /
-        /   - else
-        /     = navigation_item new_user_registration_path do
-        /       span.visible-sm-inline-block = icon 'user-plus', type: :fa
-        /       span.hidden-sm = t '.sign_up'
-        /
-        /     = navigation_mega t('.sign_in'), new_user_session_path do
-        /       .row = render 'devise/sessions/form', resource: User.new, display: :small
-        /
-        /   li#locale_chooser.nav-item.dropdown
-        /     = link_to '#', class: 'nav-link dropdown-toggle', 'data-toggle': 'dropdown', 'aria-expanded': false do
-        /       = flag(current_locale_flag, t('.choose_locale'))
-        /
-        /     ul.dropdown-menu.dropdown-menu-right
-        /       li
-        /         = link_to url_for(locale: 'en'), class: 'dropdown-item' do
-        /           => flag(:gb)
-        /           | Show page in english
-        /
-        /       li
-        /         = link_to url_for(locale: 'de'), class: 'dropdown-item' do
-        /           => flag(:de)
-        /           | Seite auf Deutsch anzeigen
+      / ul#content_navigation.navbar-nav.mr-auto
+      /   - @root_pages.each do |page|
+      /     - if (children = page.children).any?
+      /       = navigation_group page.navigation_title_or_title, page_path(page) do
+      /         - page.children.each do |child|
+      /           = navigation_item child.navigation_title_or_title, page_path(child)
+      /     - else
+      /       = navigation_item page.navigation_title_or_title, page_path(page)
+      /
+      / h3.sr-only = t '.meta_navigation'
+      /
+      / ul#meta_navigation.navbar-nav.navbar-right
+      /   == render 'layouts/resource_navigation_group', resource_class: Page if can? :index, Page
+      /   == render 'layouts/resource_navigation_group', resource_class: User if can? :index, User
+      /
+      /   - if user_signed_in?
+      /     = navigation_group user_avatar(t('.user_menu')), user_registration_path, "#{icon :user, type: :fa} #{t '.show_account'}" do
+      /       = navigation_item edit_user_registration_path do
+      /         = icon :edit, type: :fa
+      /         =< t '.edit_account'
+      /
+      /       li
+      /         = link_to destroy_user_session_path, method: :delete do
+      /           = icon('sign-out', type: :fa)
+      /           =< t('.log_out')
+      /
+      /   - else
+      /     = navigation_item new_user_registration_path do
+      /       span.visible-sm-inline-block = icon 'user-plus', type: :fa
+      /       span.hidden-sm = t '.sign_up'
+      /
+      /     = navigation_mega t('.sign_in'), new_user_session_path do
+      /       .row = render 'devise/sessions/form', resource: User.new, display: :small
+      /
+      /   li#locale_chooser.nav-item.dropdown
+      /     = link_to '#', class: 'nav-link dropdown-toggle', 'data-toggle': 'dropdown', 'aria-expanded': false do
+      /       = flag(current_locale_flag, t('.choose_locale'))
+      /
+      /     ul.dropdown-menu.dropdown-menu-right
+      /       li
+      /         = link_to url_for(locale: 'en'), class: 'dropdown-item' do
+      /           => flag(:gb)
+      /           | Show page in english
+      /
+      /       li
+      /         = link_to url_for(locale: 'de'), class: 'dropdown-item' do
+      /           => flag(:de)
+      /           | Seite auf Deutsch anzeigen
 
   .container
     #breadcrumbs

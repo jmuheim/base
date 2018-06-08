@@ -9,3 +9,12 @@ h2.sr-only = t '.title'
 
     = card.body do
       | And some great news here...
+
+  = accordion.card do |card|
+    = card.title do
+      time datetime="2018-6-8" 8th June 2018
+      => icon 'newspaper-o', type: :fa
+      | Bootstrap 4! Yay!
+
+    = card.body do
+      | Woah, how cool is that?!

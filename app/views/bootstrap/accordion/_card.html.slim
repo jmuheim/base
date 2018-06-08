@@ -4,6 +4,6 @@
       button.btn.btn-link data-toggle="collapse" data-target="##{id}_collapse" aria-expanded="false" aria-controls="#{id}_collapse" type="button"
         = title
 
-  .collapse id="#{id}_collapse" aria-labelledby=id data-parent=parent_id
+  .collapse id="#{id}_collapse" aria-labelledby=id data-parent="##{parent_id}"
     .card-body
       = body

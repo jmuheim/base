@@ -1,2 +1,19 @@
-ul.navbar-nav.mr-auto id=id
-  = items
+// BT4: Hier drunter hatte es noch ein .yamm!
+.navbar class=klass
+  .container
+    h2#navigation_title.sr-only = title
+
+    a.navbar-brand href=root_path
+      = t('.home')
+      =< sr_only t('.go_to_home_page')
+
+    button.navbar-toggler.collapsed type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false"
+      span.navbar-toggler-icon
+      = t '.toggle_navigation'
+
+    #navbar.navbar-collapse.collapse
+      h3.sr-only = t '.content_navigation'
+
+
+      ul.navbar-nav.mr-auto id=id
+        = content
