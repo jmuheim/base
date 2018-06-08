@@ -11,7 +11,7 @@ class Lego < Struct.new(:view, :options, :block)
     self.options = options
 
     self.options[:id] ||= name.gsub '/', '_'
-    options.merge! defaults
+    options.reverse_merge! defaults
 
     super
   end
@@ -68,7 +68,7 @@ class Navbar < Lego
     { home: nil,
       klass: ['navbar-dark', 'bg-dark', 'navbar-expand-md'],
       collapse_target: "#{options[:id]}_collapse",
-      active_class: view.current_page?(view.root_path) ? 'active' : nil
+      active_class: view.current_page?(view.root_path) ? 'active' : nil,
     }
   end
 
@@ -81,6 +81,11 @@ class Navbar < Lego
              item: :target,
              dropdown: [:title, :target]
 
+    def defaults
+      { klass: 'nil'
+      }
+    end
+
     class Item
       def defaults
         { active_class: view.has_breadcrumb?(options[:target]) ? 'active' : nil
@@ -92,7 +97,8 @@ class Navbar < Lego
       provides item: :target
 
       def defaults
-        { active_class: view.has_breadcrumb?(options[:target]) ? 'active' : nil
+        { active_class: view.has_breadcrumb?(options[:target]) ? 'active' : nil,
+          klass: nil
         }
       end
 

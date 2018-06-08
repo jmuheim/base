@@ -13,8 +13,6 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!, if: :authenticate_user?
   check_authorization if: :check_authorization?
 
-  helper :image_gallery
-
   helper_method :body_css_classes
 
   self.responder = ApplicationResponder

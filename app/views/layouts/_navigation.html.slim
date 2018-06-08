@@ -17,12 +17,12 @@ nav
           = nav.item page_path(page) do
             = page.navigation_title_or_title
 
-    = navbar.nav :meta_navigation, title: t('.meta_navigation'), class: 'asdf' do |nav|
+    = navbar.nav :meta_navigation, title: t('.meta_navigation'), klass: 'ml-md-auto' do |nav|
       == render 'layouts/resource_navigation_group', nav: nav, resource_class: Page if can? :index, Page
       == render 'layouts/resource_navigation_group', nav: nav, resource_class: User if can? :index, User
 
       - if user_signed_in?
-        = nav.dropdown user_avatar(t('.user_menu')), user_registration_path do |dropdown|
+        = nav.dropdown user_avatar(t('.user_menu')), user_registration_path, klass: 'dropdown-menu-right' do |dropdown|
           = dropdown.item user_registration_path do
             = icon :user, type: :fa
             =< t '.show_account'
