@@ -25,43 +25,48 @@ nav#navigation
           = nav.item page_path(page) do
             = page.navigation_title_or_title
 
-      / ul#meta_navigation.navbar-nav.navbar-right
-      /   == render 'layouts/resource_navigation_group', resource_class: Page if can? :index, Page
-      /   == render 'layouts/resource_navigation_group', resource_class: User if can? :index, User
-      /
-      /   - if user_signed_in?
-      /     = navigation_group user_avatar(t('.user_menu')), user_registration_path, "#{icon :user, type: :fa} #{t '.show_account'}" do
-      /       = navigation_item edit_user_registration_path do
-      /         = icon :edit, type: :fa
-      /         =< t '.edit_account'
-      /
-      /       li
-      /         = link_to destroy_user_session_path, method: :delete do
-      /           = icon('sign-out', type: :fa)
-      /           =< t('.log_out')
-      /
-      /   - else
-      /     = navigation_item new_user_registration_path do
-      /       span.visible-sm-inline-block = icon 'user-plus', type: :fa
-      /       span.hidden-sm = t '.sign_up'
-      /
-      /     = navigation_mega t('.sign_in'), new_user_session_path do
-      /       .row = render 'devise/sessions/form', resource: User.new, display: :small
-      /
-      /   li#locale_chooser.nav-item.dropdown
-      /     = link_to '#', class: 'nav-link dropdown-toggle', 'data-toggle': 'dropdown', 'aria-expanded': false do
-      /       = flag(current_locale_flag, t('.choose_locale'))
-      /
-      /     ul.dropdown-menu.dropdown-menu-right
-      /       li
-      /         = link_to url_for(locale: 'en'), class: 'dropdown-item' do
-      /           => flag(:gb)
-      /           | Show page in english
-      /
-      /       li
-      /         = link_to url_for(locale: 'de'), class: 'dropdown-item' do
-      /           => flag(:de)
-      /           | Seite auf Deutsch anzeigen
+    = navbar.nav :meta, title: t('.meta_navigation') do |nav|
+      == render 'layouts/resource_navigation_group', nav: nav, resource_class: Page if can? :index, Page
+      == render 'layouts/resource_navigation_group', nav: nav, resource_class: User if can? :index, User
+
+      - if user_signed_in?
+        = nav.dropdown user_avatar t '.user_menu' do |dropdown|
+          = dropdown.item user_registration_path do
+            = icon :user, type: :fa
+            =< t '.show_account'
+          = dropdown.item edit_user_registration_path do
+            = icon :edit, type: :fa
+            =< t '.edit_account'
+
+          li
+            = link_to destroy_user_session_path, method: :delete, class: 'dropdown-item' do
+              = icon 'sign-out', type: :fa
+              = t '.log_out'
+
+      - else
+        = nav.item new_user_registration_path do
+          span.visible-sm-inline-block = icon 'user-plus', type: :fa
+          span.hidden-sm = t '.sign_up'
+
+        = nav.dropdown t '.sign_in' do
+          = nav.item new_user_session_path do
+            .row
+              = render 'devise/sessions/form', resource: User.new, display: :small
+
+        li#locale_chooser.nav-item.dropdown
+          = link_to '#', class: 'nav-link dropdown-toggle', 'data-toggle': 'dropdown', 'aria-expanded': false do
+            = flag(current_locale_flag, t('.choose_locale'))
+
+          ul.dropdown-menu.dropdown-menu-right
+            li
+              = link_to url_for(locale: 'en'), class: 'dropdown-item' do
+                => flag(:gb)
+                | Show page in english
+
+            li
+              = link_to url_for(locale: 'de'), class: 'dropdown-item' do
+                => flag(:de)
+                | Seite auf Deutsch anzeigen
 
   .container
     #breadcrumbs
