@@ -39,6 +39,7 @@ class ActiveRecord::Base
 
     resource.changes.map do |attribute, change|
       unless ['updated_at', 'lock_version'].include? attribute
+        binding.pry
         StaleInfo.new resource:             resource,
                       attribute:            attribute,
                       human_attribute_name: "#{resource.class.human_attribute_name(attribute)}#{model_name_suffix}",

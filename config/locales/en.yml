@@ -15,6 +15,9 @@ en:
     statistics:
       number_of_resource: Number of %{resource}
       title: Statistics
+  images:
+    image:
+      thumb: Preview
   org:
     name: MuheimWebdesign
   pages:

@@ -117,6 +117,7 @@ describe 'Editing user' do
         expect(page).to have_css '.value_difference', text: 'No diff view available (please activate JavaScript)'
       end
 
+      binding.pry
       within '#stale_attribute_user_avatar' do
         expect(page).to have_css '.value_before img[alt="Image before"]'
         expect(page).to have_css '.value_after img[alt="Image after"]'

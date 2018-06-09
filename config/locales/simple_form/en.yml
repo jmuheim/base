@@ -20,8 +20,8 @@ en:
     inputs:
       autocomplete:
         help: Suggests options (enter filter text, or use up/down arrow keys)
-        number_filtered: '[number] of [total] options for [filter]'
-        number_in_total: '[number] options in total'
+        number_filtered: "[number] of [total] options for [filter]"
+        number_in_total: "[number] options in total"
         options_for: Suggestions for %{attribute}
       better_text:
         allows_pasting_of_resources: Allows pasting of images and CodePen links as resources
