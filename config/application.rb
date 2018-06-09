@@ -40,6 +40,9 @@ module Base
 
     # Always raise error on unpermitted parameters
     # config.action_controller.action_on_unpermitted_parameters = :raise
+
+    # Automatically convert boolean values to integer using sqlite3
+    config.active_record.sqlite3.represent_boolean_as_integer = true if Rails.version >= '5.1.0' && config.active_record.sqlite3.present?
   end
 end
 
