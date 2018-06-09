@@ -77,7 +77,7 @@ class Navbar < Lego
   end
 
   class Nav
-    provides mega: :title,
+    provides mega: [:title, :target],
              item: :target,
              dropdown: [:title, :target]
 
@@ -87,6 +87,13 @@ class Navbar < Lego
     end
 
     class Item
+      def defaults
+        { active_class: view.has_breadcrumb?(options[:target]) ? 'active' : nil
+        }
+      end
+    end
+
+    class Mega
       def defaults
         { active_class: view.has_breadcrumb?(options[:target]) ? 'active' : nil
         }

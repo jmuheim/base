@@ -41,7 +41,7 @@ nav
           span.visible-sm-inline-block = icon 'user-plus', type: :fa
           span.hidden-sm = t '.sign_up'
 
-        = nav.mega t '.sign_in' do
+        = nav.mega t('.sign_in'), new_user_session_path do
           = render 'devise/sessions/form', resource: User.new, display: :small
 
         li#locale_chooser.nav-item.dropdown
