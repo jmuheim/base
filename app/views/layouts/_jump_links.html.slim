@@ -1,5 +1,7 @@
-.navbar-inverse
+// BT4: Optimise?!
+nav.navbar-inverse
   ul#jump_links.nav.navbar-nav
+    li = link_to t('.content'), '#headline_title', accesskey: 1, class: 'sr-only', id: 'jump_to_content'
+
     - unless current_page?(root_path)
       li = link_to t('.home_page'), root_path, accesskey: 0, class: 'sr-only', id: 'jump_to_home_page'
-    li = link_to t('.content'), '#headline_title', accesskey: 1, class: 'sr-only', id: 'jump_to_content'

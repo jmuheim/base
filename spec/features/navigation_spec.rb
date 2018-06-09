@@ -10,7 +10,7 @@ describe 'Navigation' do
       it 'offers the expected links' do
         visit root_path
 
-        within 'nav' do
+        within 'header nav' do
           expect(page).to have_link 'Base'
 
           within '#content_navigation' do
@@ -37,7 +37,7 @@ describe 'Navigation' do
 
         visit root_path
 
-        within 'nav' do
+        within 'header nav' do
           expect(page).to have_link 'Base'
 
           within '#content_navigation' do
@@ -64,7 +64,7 @@ describe 'Navigation' do
 
         visit root_path
 
-        within 'nav' do
+        within 'header nav' do
           expect(page).to have_link 'Base'
 
           within '#content_navigation' do
@@ -91,7 +91,7 @@ describe 'Navigation' do
 
         visit root_path
 
-        within 'nav' do
+        within 'header nav' do
           expect(page).to have_link 'Base'
 
           within '#content_navigation' do
@@ -127,7 +127,7 @@ describe 'Navigation' do
   it 'shows the "Menu" button on small, medium, and large screens (and collapses it on extra small ones)', js: true do
     visit root_path
 
-    within 'nav' do
+    within 'header nav' do
       screen_width :xs do
         expect(page).to have_button 'Menu'
       end
@@ -146,7 +146,7 @@ describe 'Navigation' do
     end
   end
 
-  it 'reports the status of dropdowns (expanded/collapsed) to non-visual agents', js: true do
+  it 'reports the status of dropdowns (expanded/collapsed) to non-visual agents', focus: true, js: true do
     visit root_path
 
     within '#locale_chooser' do
@@ -159,7 +159,7 @@ describe 'Navigation' do
   it 'reports the responsiveness status (expanded/collapsed) to non-visual agents', js: true do
     visit root_path
 
-    within 'nav' do
+    within 'header nav' do
       screen_width :xs do
         expect {
           click_button 'Menu'
@@ -172,12 +172,12 @@ describe 'Navigation' do
     sign_in_as create :user, :admin
     visit root_path
 
-    active_menu_group_css  = '.dropdown.active > a.dropdown-toggle'
-    active_menu_group_text = 'Users (current menu group)'
-    active_menu_item_css   = '.dropdown.active > ul.dropdown-menu > li.active > a'
-    active_menu_item_text  = 'List of Users (current menu item)'
+    active_menu_group_css  = '.dropdown > a.dropdown-toggle.active'
+    active_menu_group_text = 'Users (current parent)'
+    active_menu_item_css   = '.dropdown > a.active + ul.dropdown-menu > li > a.active'
+    active_menu_item_text  = 'List of Users (current page)'
 
-    within 'nav' do
+    within 'header nav' do
       expect(page).not_to have_css  active_menu_group_css
       expect(page).not_to have_text active_menu_group_text
 
@@ -187,7 +187,7 @@ describe 'Navigation' do
 
     click_link 'List of Users'
 
-    within 'nav' do
+    within 'header nav' do
       expect(page).to have_css active_menu_group_css, text: active_menu_group_text
       expect(page).to have_css active_menu_item_css,  text: active_menu_item_text
     end
@@ -211,16 +211,16 @@ describe 'Navigation' do
     visit root_path
 
     active_menu_group_css  = '.dropdown.active > a.dropdown-toggle'
-    active_menu_group_text = 'Users (current menu group)'
+    active_menu_group_text = 'Users (current parent)'
 
-    within 'nav' do
+    within 'header nav' do
       expect(page).not_to have_css  active_menu_group_css
       expect(page).not_to have_text active_menu_group_text
     end
 
     visit edit_user_path(user)
 
-    within 'nav' do
+    within 'header nav' do
       expect(page).to have_css active_menu_group_css, text: active_menu_group_text
     end
   end
@@ -232,34 +232,34 @@ describe 'Navigation' do
     # First, none of the pages should be reported as active
     visit root_path
 
-    expect(page).to     have_css '.dropdown:not(.active) > a', text: 'Parent page'
-    expect(page).not_to have_link 'Parent page (current menu group)'
+    expect(page).to     have_css '.dropdown > a:not(.active)', text: 'Parent page'
+    expect(page).not_to have_link 'Parent page (current parent)'
 
-    expect(page).to     have_css '.dropdown:not(.active) > ul > li a:not(.active)', text: 'Overview'
-    expect(page).not_to have_link 'Overview (current menu item)'
+    expect(page).to     have_css '.dropdown > a:not(.active) + ul > li a:not(.active)', text: 'Overview'
+    expect(page).not_to have_link 'Overview (current page)'
 
-    expect(page).to     have_css '.dropdown:not(.active) > ul > li a:not(.active)', text: 'Cool page'
-    expect(page).not_to have_link 'Cool page (current menu item)'
+    expect(page).to     have_css '.dropdown > a:not(.active) + ul > li a:not(.active)', text: 'Cool page'
+    expect(page).not_to have_link 'Cool page (current page)'
 
     # Now, when visiting the menu group, it should be reported as active, and the overview menu item, too.
     visit page_path(parent_page)
 
-    expect(page).to     have_css '.dropdown.active > a', text: 'Parent page (current menu group)'
+    expect(page).to     have_css '.dropdown > a.active', text: 'Parent page (current parent)'
 
-    expect(page).to     have_css '.dropdown.active > ul > li.active a', text: 'Overview (current menu item)'
+    expect(page).to     have_css '.dropdown > a.active + ul > li > a.active', text: 'Overview (current page)'
 
-    expect(page).to     have_css '.dropdown.active > ul > li:not(.active)', text: 'Cool page'
-    expect(page).not_to have_link 'Cool page (current menu item)'
+    expect(page).to     have_css '.dropdown > a.active + ul > li > a:not(.active)', text: 'Cool page'
+    expect(page).not_to have_link 'Cool page (current page)'
 
     # Now, when visiting the menu item, the menu group should be reported as active, and the menu item (but not the overview menu item anymore)
     visit page_path(@page)
 
-    expect(page).to     have_css '.dropdown.active > a', text: 'Parent page (current menu group)'
+    expect(page).to     have_css '.dropdown > a.active', text: 'Parent page (current parent)'
 
-    expect(page).to     have_css '.dropdown.active > ul > li:not(.active)', text: 'Overview'
-    expect(page).not_to have_link 'Overview (current menu item)'
+    expect(page).to     have_css '.dropdown > a.active + ul > li > a:not(.active)', text: 'Overview'
+    expect(page).not_to have_link 'Overview (current page)'
 
-    expect(page).to     have_css '.dropdown.active > ul > li.active a', text: 'Cool page (current menu item)'
+    expect(page).to     have_css '.dropdown > a.active + ul > li > a.active', text: 'Cool page (current page)'
   end
 
   context 'jump links' do

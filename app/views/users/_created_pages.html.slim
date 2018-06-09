@@ -1,11 +1,11 @@
 .created_pages
   = accordion :created_pages, item_options: {title_tag: "h#{heading_level ||= 2}", panel_class: 'panel-success'} do |accordion|
-    = accordion.panel do |panel|
-      = panel.title do
+    = accordion.card do |card|
+      = card.title do
         = User.human_attribute_name :created_pages
         =< "(#{pages.size})"
 
-      = panel.body do
+      = card.body do
         table.table.table-striped.table-hover
           thead
             tr

@@ -1,11 +1,20 @@
 h2.sr-only = t '.title'
 
 = accordion :news do |accordion|
-  = accordion.panel do |panel|
-    = panel.title do
+  = accordion.card do |card|
+    = card.title do
       time datetime="2015-4-26" 26th April 2015
       => icon 'newspaper-o', type: :fa
       | Some great tagline
 
-    = panel.body do
+    = card.body do
       | And some great news here...
+
+  = accordion.card do |card|
+    = card.title do
+      time datetime="2018-6-8" 8th June 2018
+      => icon 'newspaper-o', type: :fa
+      | Bootstrap 4! Yay!
+
+    = card.body do
+      | Woah, how cool is that?!

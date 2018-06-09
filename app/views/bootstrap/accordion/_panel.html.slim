@@ -1,8 +1,0 @@
-.panel class=panel_class
-  .panel-heading id=id role="tab"
-    *{tag: title_tag} class="panel-title"
-      a.collapsed href="##{id}_collapse" data-toggle="collapse" data-parent="##{parent_id}" aria-expanded="false" aria-controls="#{id}_collapse" = title
-
-  .panel-collapse.collapse id="#{id}_collapse" role="tabpanel" aria-labelledby=id
-    .panel-body
-      = body

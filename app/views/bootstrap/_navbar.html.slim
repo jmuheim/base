@@ -1,0 +1,16 @@
+// BT4: Hier drunter hatte es noch ein .yamm!
+.navbar id=id class=klass
+  .container
+    h2#navigation_title.sr-only = title
+
+    - if home
+      a.navbar-brand href=root_path class=active_class
+        = home
+        =< sr_only t "layouts.navigation.#{active_class ? :current_page : :go_to_home_page}"
+
+    button.navbar-toggler.collapsed type="button" data-toggle="collapse" data-target="##{collapse_target}" aria-controls=collapse_target aria-expanded="false"
+      span.navbar-toggler-icon
+      = toggle
+
+    .navbar-collapse.collapse id=collapse_target
+      = content

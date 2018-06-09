@@ -2,6 +2,7 @@
 en:
   actions:
     actions: Actions
+    apply_filter: Apply filter
     destroy: Delete
     destroy_resource: Delete %{resource}
     destroy_resource_confirmation_question: 'Really destroy %{resource} #%{id}?'

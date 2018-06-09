@@ -1,77 +1,67 @@
-nav#navigation.container
-  .navbar.yamm.navbar-inverse.navbar-fixed-top
-    h2#navigation_title.sr-only = t '.navigation'
+nav
+  = navbar :navigation, title: t('.navigation'), toggle: t('.toggle_navigation') do |navbar|
+    - navbar.home do
+      = t '.home'
 
-    .container
-      .navbar-header
-        // Place brand before the "Toggle navigation" button to have an intuitive focus order (on the Bootstrap examples page it's after the button which seems unintuitive)
-        = link_to root_path, class: home_link_class, id: 'logo' do
-          = t('.home')
-          span.sr-only =< t('.go_to_home_page')
+    = navbar.nav :content_navigation, title: t('.content_navigation') do |nav|
+      - @root_pages.each do |page|
+        - if (children = page.children).any?
+          = nav.dropdown page.navigation_title_or_title, page_path(page) do |dropdown|
+            = dropdown.item page_path(page) do
+              | Overview
+            li.dropdown-divider role="presentation"
+            - page.children.each do |child|
+              = dropdown.item page_path(child) do
+                = child.navigation_title_or_title
+        - else
+          = nav.item page_path(page) do
+            = page.navigation_title_or_title
 
-        button#toggle_navigation.navbar-toggle.collapsed aria-controls="bs-navbar" aria-expanded="false" data-target="#navbar" data-toggle="collapse" type="button"
-          span.menu-text = t '.toggle_navigation'
-          span.menu-icon
-            span.icon-bar
-            span.icon-bar
-            span.icon-bar
+    = navbar.nav :meta_navigation, title: t('.meta_navigation'), klass: 'ml-md-auto' do |nav|
+      == render 'layouts/resource_navigation_group', nav: nav, resource_class: Page if can? :index, Page
+      == render 'layouts/resource_navigation_group', nav: nav, resource_class: User if can? :index, User
 
-      #navbar.navbar-collapse.collapse aria-expanded="false"
-        h3.sr-only = t '.content_navigation'
+      - if user_signed_in?
+        = nav.dropdown user_avatar(t('.user_menu')), user_registration_path, klass: 'dropdown-menu-right' do |dropdown|
+          = dropdown.item user_registration_path do
+            = icon :user, type: :fa
+            =< t '.show_account'
 
-        ul#content_navigation.nav.navbar-nav
-          - @root_pages.each do |page|
-            - if (children = page.children).any?
-              = navigation_group page.navigation_title_or_title, page_path(page) do
-                - page.children.each do |child|
-                  = navigation_item child.navigation_title_or_title, page_path(child)
-            - else
-              = navigation_item page.navigation_title_or_title, page_path(page)
+          = dropdown.item edit_user_registration_path do
+            = icon :edit, type: :fa
+            =< t '.edit_account'
 
-        h3.sr-only = t '.meta_navigation'
+          li
+            = link_to destroy_user_session_path, method: :delete, class: 'dropdown-item' do
+              = icon 'sign-out', type: :fa
+              = t '.log_out'
 
-        ul#meta_navigation.nav.navbar-nav.navbar-right
-          == render 'layouts/resource_navigation_group', resource_class: Page if can? :index, Page
-          == render 'layouts/resource_navigation_group', resource_class: User if can? :index, User
+      - else
+        = nav.item new_user_registration_path do
+          span.visible-sm-inline-block = icon 'user-plus', type: :fa
+          span.hidden-sm = t '.sign_up'
 
-          - if user_signed_in?
-            = navigation_group user_avatar(t('.user_menu')), user_registration_path, "#{icon :user, type: :fa} #{t '.show_account'}" do
-              = navigation_item edit_user_registration_path do
-                = icon :edit, type: :fa
-                =< t '.edit_account'
+        = nav.mega t('.sign_in'), new_user_session_path do
+          = render 'devise/sessions/form', resource: User.new, display: :small
 
-              li
-                = link_to destroy_user_session_path, method: :delete do
-                  = icon('sign-out', type: :fa)
-                  =< t('.log_out')
+        li#locale_chooser.nav-item.dropdown
+          = link_to '#', class: 'nav-link dropdown-toggle', 'data-toggle': 'dropdown', 'aria-expanded': false do
+            = flag(current_locale_flag, t('.choose_locale'))
 
-          - else
-            = navigation_item new_user_registration_path do
-              span.visible-sm-inline-block = icon 'user-plus', type: :fa
-              span.hidden-sm = t '.sign_up'
+          ul.dropdown-menu.dropdown-menu-right
+            li
+              = link_to url_for(locale: 'en'), class: 'dropdown-item' do
+                => flag(:gb)
+                | Show page in english
 
-            = navigation_mega t('.sign_in'), new_user_session_path do
-              .row = render 'devise/sessions/form', resource: User.new, display: :small
+            li
+              = link_to url_for(locale: 'de'), class: 'dropdown-item' do
+                => flag(:de)
+                | Seite auf Deutsch anzeigen
 
-          li#locale_chooser.dropdown
-            = link_to '#', class: 'dropdown-toggle', 'data-toggle': 'dropdown', 'aria-expanded': false do
-              = flag(current_locale_flag, t('.choose_locale'))
-              b.caret
-
-            ul.dropdown-menu
-              li lang="en"
-                = link_to locale: 'en' do
-                  => flag(:gb)
-                  | Show page in english
-
-              li lang="de"
-                = link_to locale: 'de' do
-                  => flag(:de)
-                  | Seite auf Deutsch anzeigen
-
-  #breadcrumbs.breadcrumb
+  #breadcrumbs.container
     h3 #{t '.you_are_here'}:
 
     ol.breadcrumb
-      li = link_to t('app.acronym'), root_path
+      li.breadcrumb-item = link_to t('app.acronym'), root_path
       = render_breadcrumbs

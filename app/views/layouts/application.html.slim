@@ -12,9 +12,9 @@ html lang=I18n.locale
     = auto_discovery_link_tag(:atom, pages_path(format: :atom), title: Page.model_name.human(count: :other))
 
   body class=body_css_classes
-    header
-      == render 'layouts/jump_links'
+    == render 'layouts/jump_links'
 
+    header
       h1.sr-only = t '.header'
       == render 'layouts/navigation'
 
@@ -23,17 +23,18 @@ html lang=I18n.locale
         .col-md-12
           == yield
 
-    footer#footer
-      h1.sr-only = t '.footer'
+    footer#footer.pt-4.my-md-5.pt-md-5.border-top
       .container
+        h1.sr-only = t '.footer'
+
         .row
-          .col-xs-8.slogan.atom
+          .col-sm-8.slogan.atom
             p
               => link_to(t('app.name'), 'https://github.com/jmuheim/base/') + ':'
-              span.hidden-xs = t 'app.slogan'
+              = t 'app.slogan'
 
               =< link_to pages_path(format: :atom) do
                 = icon :rss, 'Atom Feed', type: :fa
 
-          .col-xs-4.copyright
+          .col-sm-4.copyright
             p &copy; 2015 #{link_to t('org.name'), 'http://www.muheimwebdesign.ch/'}

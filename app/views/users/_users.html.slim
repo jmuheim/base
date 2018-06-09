@@ -1,10 +1,10 @@
 = accordion :filter, item_options: {title_tag: 'h2', panel_class: 'panel-warning'} do |accordion|
-  = accordion.panel do |panel|
-    = panel.title do
+  = accordion.card do |card|
+    = card.title do
       => icon :filter, type: :fa
       = t 'actions.filter'
 
-    = panel.body do
+    = card.body do
       - if params[:q]
         = link_to request.path
           => icon :close, type: :fa
@@ -16,7 +16,7 @@
         / TODO: Fields aren't translated automatically, see https://github.com/activerecord-hackery/ransack/issues/631
         / TODO: Why is this required by default?
         = f.input :name_cont, required: false, label: "#{User.human_attribute_name :name} #{t('ransack.predicates.cont')}"
-        = f.button :submit, t('actions.filter'), class: 'btn-warning'
+        = f.button :submit, t('actions.apply_filter'), class: 'btn-warning'
 
 h2.sr-only = t 'actions.results'
 

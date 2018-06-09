@@ -1,11 +1,11 @@
 .images
   = accordion :images, item_options: {title_tag: "h#{heading_level ||= 2}", panel_class: 'panel-warning'} do |accordion|
-    = accordion.panel do |panel|
-      = panel.title do
+    = accordion.card do |card|
+      = card.title do
         = Image.model_name.human count: :other
         =< "(#{images.size})"
 
-      = panel.body do
+      = card.body do
         table.table.table-striped.table-hover.diff
           thead
             tr

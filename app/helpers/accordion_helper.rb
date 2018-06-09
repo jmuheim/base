@@ -5,7 +5,7 @@ module AccordionHelper
 
   class Accordion < Struct.new(:id, :options, :view, :callback)
     delegate :link_to, to: :view
-    attr_accessor :accordion_options, :panel_counter, :options
+    attr_accessor :accordion_options, :card_counter, :options
 
     def initialize(id, options, view, callback)
       self.options = options
@@ -15,7 +15,7 @@ module AccordionHelper
       }
 
       self.id            = "#{id}_accordion"
-      self.panel_counter = 0
+      self.card_counter = 0
 
       super
     end
@@ -26,9 +26,9 @@ module AccordionHelper
                                          container_tag: accordion_options[:container_tag]
     end
 
-    def panel(&block)
-      self.panel_counter += 1
-      Item.new("#{id}_panel_#{panel_counter}", id, options[:item_options] || {}, view, block).render
+    def card(&block) # TODO: Card or item?!
+      self.card_counter += 1
+      Item.new("#{id}_card_#{card_counter}", id, options[:item_options] || {}, view, block).render
     end
 
     class Item < Struct.new(:id, :parent_id, :options, :view, :callback)
@@ -37,7 +37,7 @@ module AccordionHelper
       def initialize(id, parent_id, options, view, block)
         self.item_options = {
           title_tag:   options[:title_tag]   || 'h3',
-          panel_class: options[:panel_class] || 'panel-default'
+          card_class: options[:card_class] || nil # e.g. bg-light
         }
 
         self.id        = id
@@ -55,12 +55,12 @@ module AccordionHelper
 
       def render
         view.capture(self, &callback)
-        view.render 'bootstrap/accordion/panel', id:          id,
+        view.render 'bootstrap/accordion/card', id:          id,
                                                  parent_id:   parent_id,
                                                  title:       title_content,
                                                  body:        body_content,
                                                  title_tag:   item_options[:title_tag],
-                                                 panel_class: item_options[:panel_class]
+                                                 card_class: item_options[:card_class]
       end
     end
   end
