@@ -474,6 +474,7 @@ DEPENDENCIES
   better_errors
   bootstrap-sass
   cancancan
+  capybara
   capybara-selenium
   carrierwave
   carrierwave-base64 (>= 2.5)

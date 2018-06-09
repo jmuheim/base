@@ -96,6 +96,8 @@ group :development, :test do
   gem 'rspec'
   gem 'rspec-rails' # RSpec for Rails
 
+  gem 'capybara' # Capybara helps you test web applications by simulating how a real user would interact with your app.
+
   gem 'sqlite3' # Use SQLite as the database for Active Record
 
   # Data generation
