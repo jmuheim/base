@@ -143,7 +143,6 @@ group :development do
 
   gem 'capybara-selenium' # Acceptance test framework for web applications
 
-  # gem 'rails-footnotes' # Every Rails page has footnotes that gives information about your application
   gem 'rack-mini-profiler' # Profiler for your development and production Ruby rack apps
 
   gem 'mina', require: false # Really fast deployer and server automation tool
