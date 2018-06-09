@@ -10,7 +10,6 @@ require 'rspec/rails'
 require 'email_spec'
 require 'email_spec/rspec'
 require 'cancan/matchers'
-require 'poltergeist_warnings_suppressor'
 require 'paper_trail/frameworks/rspec'
 require 'capybara/rspec'
 
