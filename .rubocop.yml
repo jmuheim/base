@@ -1,0 +1,10 @@
+AllCops:
+  Exclude:
+    - db/schema.rb
+FrozenStringLiteralComment:
+  Enabled: false
+LineLength:
+  Enabled: true
+  Max: 160
+Rails:
+  Enabled: true
