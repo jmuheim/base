@@ -45,7 +45,7 @@ describe 'Listing users' do
     expect(page).to have_css dom_id_selector(@user_3)
 
     fill_in 'q_name_cont', with: 'anne'
-    click_button 'Filter'
+    click_button 'Apply filter'
 
     expect(page).to     have_css dom_id_selector(@user_1)
     expect(page).to     have_css dom_id_selector(@user_2)
