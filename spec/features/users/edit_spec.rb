@@ -117,7 +117,6 @@ describe 'Editing user' do
         expect(page).to have_css '.value_difference', text: 'No diff view available (please activate JavaScript)'
       end
 
-      binding.pry
       within '#stale_attribute_user_avatar' do
         expect(page).to have_css '.value_before img[alt="Image before"]'
         expect(page).to have_css '.value_after img[alt="Image after"]'
@@ -156,7 +155,7 @@ describe 'Editing user' do
 
       expect(page).to have_flash('User meanwhile has been changed. The conflicting field is: About.').of_type :alert
 
-      expect(page.html).to include '<pre data-diff-result=""><ins style="background:#e6ffe6;">Yeah this looks different now!¶<br>¶<br></ins><span>This is some </span><del style="background:#ffe6e6;">barel</del><ins style="background:#e6ffe6;">ver</ins><span>y interesting info.¶<br>¶<br>I like playing </span><ins style="background:#e6ffe6;">american </ins><span>football and </span><del style="background:#ffe6e6;">reading books.¶<br>¶<br>I don\'t work as a web developer anymore</del><ins style="background:#e6ffe6;">watching movies</ins><span>.</span></pre>'
+      expect(page.html).to include '<pre data-diff-result=""><ins style="background:#e6ffe6;">Yeah this looks different now!¶<br />¶<br /></ins><span>This is some </span><del style="background:#ffe6e6;">barel</del><ins style="background:#e6ffe6;">ver</ins><span>y interesting info.¶<br />¶<br />I like playing </span><ins style="background:#e6ffe6;">american </ins><span>football and </span><del style="background:#ffe6e6;">reading books.¶<br />¶<br />I don\'t work as a web developer anymore</del><ins style="background:#e6ffe6;">watching movies</ins><span>.</span></pre>'
     end
 
     describe 'avatar upload' do

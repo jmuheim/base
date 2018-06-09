@@ -39,14 +39,24 @@ class ActiveRecord::Base
 
     resource.changes.map do |attribute, change|
       unless ['updated_at', 'lock_version'].include? attribute
-        binding.pry
+        value_before = nil
+        value_after = nil
+        case resource.send(attribute)
+        when ImageUploader, DocumentUploader
+          value_before = resource.class.find(resource.id).send(attribute)
+          value_after  = resource.send(attribute)
+        else
+          value_before = change[0]
+          value_after  = change[1]
+        end
+
         StaleInfo.new resource:             resource,
                       attribute:            attribute,
                       human_attribute_name: "#{resource.class.human_attribute_name(attribute)}#{model_name_suffix}",
                       input_id:             "#{prefix}_#{attribute}",
                       type:                 resource.class.columns_hash[attribute].type,
-                      value_before:         change[0],
-                      value_after:          change[1]
+                      value_before:         value_before,
+                      value_after:          value_after
       end
     end.compact
   end
