@@ -7,23 +7,12 @@ ENV["RAILS_ENV"] ||= 'test'
 require 'spec_helper'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
-require 'capybara/poltergeist'
 require 'email_spec'
 require 'email_spec/rspec'
 require 'cancan/matchers'
 require 'poltergeist_warnings_suppressor'
 require 'paper_trail/frameworks/rspec'
 require 'capybara/rspec'
-require 'capybara-screenshot/rspec'
-
-# For capybara-screenshot, so when running a development server, the screenshots look better
-Capybara.asset_host = "http://#{Rails.application.secrets.default_url_host}"
-Capybara::Screenshot.register_filename_prefix_formatter(:rspec) do |example|
-  "screenshot_#{example.description.gsub(/\W/, '-').gsub(/^.*\/spec\//, '')}"
-end
-Capybara::Screenshot.append_timestamp = false
-Capybara::Screenshot.prune_strategy = :keep_last_run
-Capybara::Screenshot::RSpec.add_link_to_screenshot_for_failed_examples = false
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are

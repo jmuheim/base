@@ -141,9 +141,10 @@ group :development do
 
   gem 'rubocop', require: false # A robust Ruby code analyzer, based on the community Ruby style guide
 
-  gem 'capybara', '>=2.2.0.beta' # Acceptance test framework for web applications
+  gem 'capybara-selenium' # Acceptance test framework for web applications
 
-  gem 'rails-footnotes' # Every Rails page has footnotes that gives information about your application
+  # gem 'rails-footnotes' # Every Rails page has footnotes that gives information about your application
+  gem 'rack-mini-profiler' # Profiler for your development and production Ruby rack apps
 
   gem 'mina', require: false # Really fast deployer and server automation tool
 
@@ -163,12 +164,7 @@ group :test do
 
   gem 'database_cleaner' # Resets test database after each test
 
-  # Capybara - Headless, JavaScript-executing browser for Selenium
-  gem 'poltergeist', github: 'teampoltergeist/poltergeist' # PhantomJS driver for Capybara, see https://github.com/teampoltergeist/poltergeist/pull/913
-  gem 'launchy'              # Use `save_and_open_page` in request tests to automatically open a browser
   gem 'selenium-webdriver'   # Selenium webdriver (needed to use Chrome driver)
-
-  gem 'capybara-screenshot' # Automatically save screen shots when a scenario fails
 
   gem 'i18n-tasks' # Manage translation and localization with static analysis
 

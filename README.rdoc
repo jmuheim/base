@@ -44,7 +44,7 @@ This is a basic Rails project with everything configured the way I want. To fork
 - MiniMagick
   - `$ brew install imagemagick`
 - PhantomJS
-  - `$ brew install phantomjs`
+  - `$ brew install chromedriver`
 
 = Activate external services
 
