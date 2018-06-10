@@ -9,6 +9,7 @@ addons:
     - pandoc
   code_climate:
     repo_token: 243e5ab59244b7a1d3fb97d56bfe9961307ad558cb4a7cbeec3c85104e9ee11b
+  chrome: stable
 before_install:
   - export TZ=Europe/Zurich
   - mysql -e 'CREATE DATABASE base_test'
