@@ -59,7 +59,7 @@ describe 'Editing page' do
     fill_in 'page_navigation_title', with: 'A new navigation title'
     fill_in 'page_content',          with: "A new content with a ![existing image](@image-existing-image) and a ![new image](@image-new-image). Also an ![existing code](@code-existing-code) and a ![new code](@code-new-code). "
     fill_in 'page_notes',            with: 'A new note'
-    # As capybara does not finde thethe element having "display: none" in headless chrome we simulate it as js code
+    # As capybara does not findthe element having "display: none" in headless chrome we simulate it as js code
     page.execute_script("jQuery('#page_images_attributes_0_file').val('#{base64_other_image[:data]}')")
     fill_in 'page_images_attributes_0_identifier', with: 'existing-image'
 
