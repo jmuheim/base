@@ -129,7 +129,7 @@ describe 'Showing page' do
         expect(page).to have_css 'h2', text: 'Images (1)'
 
         within '#image_1' do
-          expect(page).to have_css ".image a[href='#{@page.images.last.file.url}'] img[alt='Thumb image'][src='#{@page.images.last.file.url(:thumb)}']"
+          expect(page).to have_css ".image a[href='#{@page.images.last.file.url}'] img[alt='Preview'][src='#{@page.images.last.file.url(:thumb)}']"
           expect(page).to have_css '.identifier',   text: 'Image test identifier'
           expect(page).to have_css '.creator a',    text: 'User test editor-name'
           expect(page).to have_css '.created_at',   text: 'Mon, 15 Jun 2015 14:33:52 +0200'

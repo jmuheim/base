@@ -239,11 +239,11 @@ describe 'Creating user' do
         find('#user_about').hover
         expect(page).not_to have_css '.textarea-fullscreenizer-fullscreen'
 
-        find('.textarea-fullscreenizer-toggler').trigger('click')
+        click_non_focusable_element('.user_about .textarea-fullscreenizer-toggler')
         expect(page).to have_css '.textarea-fullscreenizer-fullscreen'
         expect(focused_element_id).to eq 'user_about'
 
-        find('.textarea-fullscreenizer-toggler').trigger('click')
+        click_non_focusable_element('.user_about .textarea-fullscreenizer-toggler')
         expect(page).not_to have_css '.textarea-fullscreenizer-fullscreen'
         expect(focused_element_id).to eq 'user_about'
       end

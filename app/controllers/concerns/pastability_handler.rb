@@ -13,6 +13,7 @@ module PastabilityHandler
       :file,
       :file_cache,
       :identifier,
+      :lock_version,
       :_destroy
     ]
   end
