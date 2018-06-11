@@ -98,8 +98,6 @@ group :development, :test do
 
   gem 'capybara' # Capybara helps you test web applications by simulating how a real user would interact with your app.
 
-  gem 'sqlite3' # Use SQLite as the database for Active Record
-
   # Data generation
   gem 'factory_bot_rails' # Test data generator
   gem 'ffaker'             # Easily generate fake data
