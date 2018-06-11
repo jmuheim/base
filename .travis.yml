@@ -4,6 +4,7 @@ rvm:
   - 2.4.1
 bundler_args: --without development
 cache: bundler
+sudo: required
 addons:
   apt_packages:
     - pandoc
