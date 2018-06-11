@@ -163,7 +163,9 @@ group :test do
 
   gem 'database_cleaner' # Resets test database after each test
 
-  gem 'selenium-webdriver'   # Selenium webdriver (needed to use Chrome driver)
+  gem 'selenium-webdriver' # Selenium webdriver (needed to use Chrome driver)
+
+  gem 'chromedriver-helper' # Easy installation and use of chromedriver, the Chromium project's selenium webdriver adapter.
 
   gem 'i18n-tasks' # Manage translation and localization with static analysis
 
