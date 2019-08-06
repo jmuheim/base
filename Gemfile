@@ -99,7 +99,7 @@ group :development, :test do
   gem 'sqlite3' # Use SQLite as the database for Active Record
 
   # Data generation
-  gem 'factory_bot_rails' # Test data generator
+  gem 'factory_bot_rails', '4.8.2' # Test data generator
   gem 'ffaker'             # Easily generate fake data
 
   # Use Pry and its extensions to debug
@@ -143,7 +143,7 @@ group :development do
 
   gem 'capybara', '>=2.2.0.beta' # Acceptance test framework for web applications
 
-  gem 'rails-footnotes' # Every Rails page has footnotes that gives information about your application
+  gem 'rails-footnotes', github: 'I-de-ya/rails-footnotes' # Every Rails page has footnotes that gives information about your application
 
   gem 'mina', require: false # Really fast deployer and server automation tool
 
