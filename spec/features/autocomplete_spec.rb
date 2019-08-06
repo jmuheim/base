@@ -259,9 +259,9 @@ describe 'Autocomplete', js: true do
           focus_filter_with_keyboard_and_press 'x'
           expect_autocomplete_state options_expanded: true,
                                     filter_focused:   true,
-                                    filter_value:     'X', # TODO: Why is it capitalised?!
+                                    filter_value:     'x',
                                     visible_options:  [],
-                                    options_count:    '0 of 3 options for X'
+                                    options_count:    '0 of 3 options for x'
         end
       end
 
@@ -270,20 +270,20 @@ describe 'Autocomplete', js: true do
           focus_filter_with_keyboard_and_press 'd'
           expect_autocomplete_state options_expanded: true,
                                     filter_focused:   true,
-                                    filter_value:     'D',
+                                    filter_value:     'd',
                                     visible_options:  [:page_parent_id_2,
                                                        :page_parent_id_3],
-                                    options_count:    '2 of 3 options for D'
+                                    options_count:    '2 of 3 options for d'
         end
 
         it 'filters options in a fuzzy way' do
           focus_filter_with_keyboard_and_press 'dig'
           expect_autocomplete_state options_expanded: true,
                                     filter_focused:   true,
-                                    filter_value:     'DIG',
+                                    filter_value:     'dig',
                                     visible_options:  [:page_parent_id_2,
                                                        :page_parent_id_3],
-                                    options_count:    '2 of 3 options for DIG'
+                                    options_count:    '2 of 3 options for dig'
         end
       end
     end
