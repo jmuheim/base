@@ -18,7 +18,7 @@
           tbody
             - versions.reverse.each_with_index do |version, i|
               - if version.changeset.any?
-                - version.changeset.each do |attribute, change|
+                - version.changeset.sort.to_h.each do |attribute, change| # We sort it by key (see https://stackoverflow.com/questions/4339553/sort-hash-by-key-return-hash-in-ruby), so we don't rely on the order of the columns in the DB (which could be fragile).
                   tr data-diff="true" id="version_#{version.id}_#{attribute}"
                     == render 'shared/show/version', version: version, count: versions.size - i
                     == render 'shared/diff/data', attribute: Page.human_attribute_name(attribute), before: change[0], after: change[1]
