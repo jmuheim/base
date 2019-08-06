@@ -40,7 +40,7 @@ class UploadInput < SimpleForm::Inputs::FileInput
       template.content_tag :a, href: '#', class: ['fileinput-new', 'thumbnail'], data: {trigger: 'fileinput'} do
         if file_available?
           if ['jpg', 'jpeg', 'gif', 'png'].include? object.send(attribute_name).file.extension
-            template.image_tag(object.send(attribute_name), alt: I18n.t('simple_form.inputs.upload.file_preview'))
+            template.content_tag(:img, I18n.t('simple_form.inputs.upload.file_preview'), src: object.send(attribute_name))
           else
             template.icon(icon_for(object.send(attribute_name).file.extension), type: :fa) + ' ' + object.send(attribute_name).file.filename
           end
