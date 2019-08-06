@@ -11,7 +11,7 @@ module ImageGalleryHelper
 
   def zoomable_image(image, options = {})
     content_tag :a, href: image.url, class: 'fancybox', rel: options.delete(:gallery_name) do
-      image_tag image.url(:thumb), options
+      image_tag image.url(:thumb), options.reverse_merge(alt: t('shared.show.images.thumb'))
     end
   end
 end

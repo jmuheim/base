@@ -61,6 +61,8 @@ de:
         update: Aktualisieren
       versions:
         no_changes: Keine Änderungen in dieser Version
+      images:
+        thumb: 'Vorschaubild'
   'true': Ja
   users:
     detail_inputs:

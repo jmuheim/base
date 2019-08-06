@@ -61,6 +61,8 @@ en:
         update: Update
       versions:
         no_changes: No changes in this version
+      images:
+        thumb: 'Thumb image'
   'true': 'Yes'
   users:
     detail_inputs:
