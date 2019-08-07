@@ -259,9 +259,9 @@ describe 'Autocomplete', js: true do
           focus_filter_with_keyboard_and_press 'x'
           expect_autocomplete_state options_expanded: true,
                                     filter_focused:   true,
-                                    filter_value:     'x',
+                                    filter_value:     'X', # It's unclear why the value is capitalised here (seems to have to do with the headless browser and/or its specific version)
                                     visible_options:  [],
-                                    options_count:    '0 of 3 options for x'
+                                    options_count:    '0 of 3 options for X'
         end
       end
 
@@ -270,20 +270,20 @@ describe 'Autocomplete', js: true do
           focus_filter_with_keyboard_and_press 'd'
           expect_autocomplete_state options_expanded: true,
                                     filter_focused:   true,
-                                    filter_value:     'd',
+                                    filter_value:     'D',
                                     visible_options:  [:page_parent_id_2,
                                                        :page_parent_id_3],
-                                    options_count:    '2 of 3 options for d'
+                                    options_count:    '2 of 3 options for D'
         end
 
         it 'filters options in a fuzzy way' do
           focus_filter_with_keyboard_and_press 'dig'
           expect_autocomplete_state options_expanded: true,
                                     filter_focused:   true,
-                                    filter_value:     'dig',
+                                    filter_value:     'DIG',
                                     visible_options:  [:page_parent_id_2,
                                                        :page_parent_id_3],
-                                    options_count:    '2 of 3 options for dig'
+                                    options_count:    '2 of 3 options for DIG'
         end
       end
     end

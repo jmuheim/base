@@ -1,8 +1,8 @@
 source 'https://rubygems.org'
 
-gem 'rails', '~> 5.1'
+gem 'rails', '~> 5.2'
 
-gem 'puma', '~> 3.0' # Use Puma as the app server
+gem 'puma' # Use Puma as the app server
 
 gem 'rails-i18n' # Locale data
 
@@ -10,16 +10,13 @@ gem 'mobility' # Pluggable Ruby translation framework
 
 gem 'slim-rails' # Awesome template language that replaces ERB
 
-gem 'uglifier', '>= 1.3.0' # Use Uglifier as compressor for JavaScript assets
+gem 'uglifier' # Use Uglifier as compressor for JavaScript assets
 
-gem 'coffee-rails', '~> 4.2' # Use CoffeeScript for .js.coffee assets and views
+gem 'coffee-rails' # Use CoffeeScript for .js.coffee assets and views
 
-gem 'sass-rails', '~> 5.0' # Use Sass for stylesheets
+gem 'sass-rails' # Use Sass for stylesheets
 
 gem 'compass-rails' # Compass framework
-
-# See https://github.com/sstephenson/execjs#readme for more supported runtimes
-# gem 'therubyracer', platforms: :ruby
 
 gem 'bootstrap-sass' # Sleek, intuitive, and powerful front-end framework
 
@@ -39,8 +36,6 @@ gem 'premailer-rails' # CSS styled emails without the hassle
 
 # jQuery
 gem 'jquery-rails'
-
-gem 'jbuilder', '~> 2.5' # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 
 # Flexible authentication solution
 gem 'devise'
@@ -62,11 +57,11 @@ gem 'strip_attributes', github: 'jmuheim/strip_attributes' # Automatically strip
 
 gem 'enumerize' # Enumerated attributes with I18n
 
-gem 'paper_trail', '>= 4.0.0.rc' # Track changes to your models' data. Good for auditing or versioning.
+gem 'paper_trail' # Track changes to your models' data. Good for auditing or versioning.
 
 # Classier solution for file uploads for Rails
 gem 'carrierwave'
-gem 'carrierwave-base64', '>= 2.5' # Upload files encoded as base64 to carrierwave
+gem 'carrierwave-base64' # Upload files encoded as base64 to carrierwave
 
 gem 'mini_magick' # Mini replacement for RMagick
 
@@ -84,8 +79,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw] # Timezone Data for T
 
 gem 'wannabe_bool' # Converts strings, integers, etc. intuitively to boolean values
 
-# Use specific version because of this bug: https://github.com/rails/rails/issues/21544
-gem 'mysql2', '>= 0.3.18' # Use MySQL as the database for Active Record
+gem 'mysql2' # Use MySQL as the database for Active Record
 
 group :doc do
   gem 'sdoc', require: false # bundle exec rake doc:rails generates the API under doc/api.
@@ -96,10 +90,8 @@ group :development, :test do
   gem 'rspec'
   gem 'rspec-rails' # RSpec for Rails
 
-  gem 'sqlite3' # Use SQLite as the database for Active Record
-
   # Data generation
-  gem 'factory_bot_rails', '4.8.2' # Test data generator
+  gem 'factory_bot_rails', '4.8.2' # Test data generator (use specific version because of this: https://github.com/thoughtbot/factory_bot_rails/issues/247)
   gem 'ffaker'             # Easily generate fake data
 
   # Use Pry and its extensions to debug
@@ -109,9 +101,9 @@ group :development, :test do
 end
 
 group :development do
-  gem 'web-console', '>= 3.3.0' # Access an IRB console by using <%= console %> anywhere in the code
+  gem 'web-console' # Access an IRB console by using <%= console %> anywhere in the code
 
-  gem 'listen', '~> 3.0.5' # Listens to file modifications and notifies you about the changes
+  gem 'listen' # Listens to file modifications and notifies you about the changes
 
   # Better Errors: Replaces the standard Rails error page with a more useful one
   gem 'better_errors'
@@ -121,7 +113,7 @@ group :development do
 
   # Rails application preloader
   gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'spring-watcher-listen'
   gem 'spring-commands-rspec' # Commands for RSpec
 
   # Guard: automatically run commands when files are changed
@@ -141,7 +133,7 @@ group :development do
 
   gem 'rubocop', require: false # A robust Ruby code analyzer, based on the community Ruby style guide
 
-  gem 'capybara', '>=2.2.0.beta' # Acceptance test framework for web applications
+  gem 'capybara' # Acceptance test framework for web applications
 
   gem 'rails-footnotes', github: 'I-de-ya/rails-footnotes' # Every Rails page has footnotes that gives information about your application
 
@@ -155,7 +147,7 @@ group :test do
 
   gem 'respec', require: false # Allows to rerun failed specs (first do `respec` to run all, then `respec f` or `respec 123` to run failed)
 
-  gem 'fuubar', '>= 2.0.0rc1' # The instafailing RSpec progress bar formatter
+  gem 'fuubar' # The instafailing RSpec progress bar formatter
 
   gem 'email_spec' # Collection of RSpec matchers for testing email
 
@@ -164,7 +156,7 @@ group :test do
   gem 'database_cleaner' # Resets test database after each test
 
   # Capybara - Headless, JavaScript-executing browser for Selenium
-  gem 'poltergeist', github: 'teampoltergeist/poltergeist' # PhantomJS driver for Capybara, see https://github.com/teampoltergeist/poltergeist/pull/913
+  gem 'poltergeist' # PhantomJS driver for Capybara
   gem 'launchy'              # Use `save_and_open_page` in request tests to automatically open a browser
   gem 'selenium-webdriver'   # Selenium webdriver (needed to use Chrome driver)
 
@@ -173,7 +165,7 @@ group :test do
   gem 'i18n-tasks' # Manage translation and localization with static analysis
 
   gem 'simplecov'
-  gem 'codeclimate-test-reporter', '~> 1.0.0'
+  gem 'codeclimate-test-reporter'
 end
 
 group :production do
