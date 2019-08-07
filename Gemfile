@@ -90,8 +90,7 @@ group :development, :test do
   gem 'rspec'
   gem 'rspec-rails' # RSpec for Rails
 
-  # Test data generator
-  gem 'factory_bot_rails', '~> 4' # Use specific version because of this: https://github.com/thoughtbot/factory_bot_rails/issues/247
+  gem 'factory_bot_rails' # Test data generator
 
   # Use Pry and its extensions to debug
   gem 'pry-rails' # Rails >= 3 pry initializer
