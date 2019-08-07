@@ -90,9 +90,8 @@ group :development, :test do
   gem 'rspec'
   gem 'rspec-rails' # RSpec for Rails
 
-  # Data generation
-  gem 'factory_bot_rails', '4.8.2' # Test data generator (use specific version because of this: https://github.com/thoughtbot/factory_bot_rails/issues/247)
-  gem 'ffaker'             # Easily generate fake data
+  # Test data generator
+  gem 'factory_bot_rails', '~> 4' # Use specific version because of this: https://github.com/thoughtbot/factory_bot_rails/issues/247
 
   # Use Pry and its extensions to debug
   gem 'pry-rails' # Rails >= 3 pry initializer

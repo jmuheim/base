@@ -158,14 +158,13 @@ GEM
     erubi (1.8.0)
     eventmachine (1.2.7)
     execjs (2.7.0)
-    factory_bot (4.8.2)
+    factory_bot (4.11.1)
       activesupport (>= 3.0.0)
-    factory_bot_rails (4.8.2)
-      factory_bot (~> 4.8.2)
+    factory_bot_rails (4.11.1)
+      factory_bot (~> 4.11.1)
       railties (>= 3.0.0)
     fancybox2-rails (0.2.7)
       railties (>= 3.1.0)
-    ffaker (2.11.0)
     ffi (1.11.1)
     font-awesome-rails (4.7.0.5)
       railties (>= 3.2, < 6.1)
@@ -492,9 +491,8 @@ DEPENDENCIES
   devise-i18n
   email_spec
   enumerize
-  factory_bot_rails (= 4.8.2)
+  factory_bot_rails (~> 4)
   fancybox2-rails
-  ffaker
   font-awesome-rails
   fuubar
   gaffe
