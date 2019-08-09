@@ -1,13 +1,16 @@
 dl.dl-horizontal
   dt = User.human_attribute_name :email
   dd.email = user.email
+  dt = User.human_attribute_name :role
+  dd.role = user.role_text
   dt = User.human_attribute_name :created_at
   dd.created_at = l user.created_at
   dt = User.human_attribute_name :updated_at
   dd.updated_at = l user.updated_at
 
-  dt = Project.human_attribute_name :disabled
-  dd.disabled = yes_or_no project.disabled?
+  - unless current_page? user_registration_path
+    dt = User.human_attribute_name :disabled
+    dd.disabled = yes_or_no user.disabled?
 
   - if user.avatar?
     dt = User.human_attribute_name :avatar

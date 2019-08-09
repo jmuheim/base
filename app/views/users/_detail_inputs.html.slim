@@ -5,8 +5,8 @@
   = panel.body do
     = f.input :name
     = f.input :role, disabled: cannot?(:edit_role, f.object) if signed_in?
-    = f.input :disabled
     = f.input :email, as: :email, required: true
     = f.input :avatar, as: :paste
     = f.input :about, as: :text
     = f.input :curriculum_vitae, as: :upload
+    = f.input :disabled, disabled: cannot?(:edit_disabled, f.object) if signed_in?
