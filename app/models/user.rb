@@ -40,4 +40,8 @@ class User < ApplicationRecord
       where(conditions.to_hash).first
     end
   end
+
+  def active_for_authentication?
+    super && !disabled
+  end
 end

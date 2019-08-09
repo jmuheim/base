@@ -35,7 +35,7 @@ nav#navigation.container
             == render 'layouts/resource_navigation_group', resource_class: Page
 
           - if can? :index, User
-            == render 'layouts/resource_navigation_group', resource_class: User, index_params: {q: {disabled_true: true}}
+            == render 'layouts/resource_navigation_group', resource_class: User, index_params: {q: {disabled_true: false}}
 
           - if user_signed_in?
             = navigation_group user_avatar(t('.user_menu')), user_registration_path, "#{icon :user, type: :fa} #{t '.show_account'}" do
