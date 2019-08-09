@@ -17,7 +17,8 @@ describe 'Editing account' do
     fill_in 'user_name',  with: 'gustav'
     fill_in 'user_email', with: 'new-user@example.com'
     fill_in 'user_about', with: 'Some info about me'
-
+    expect(page).to have_css '#user_role[disabled]'
+    expect(page).to have_css '#user_disabled[disabled]'
 
     attach_file 'user_curriculum_vitae', dummy_file_path('other_document.txt')
     fill_in 'user_avatar', with: base64_other_image[:data]

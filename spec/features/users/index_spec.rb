@@ -20,8 +20,9 @@ describe 'Listing users' do
     expect(page).to have_css 'h2', text: 'Results'
 
     within dom_id_selector(@user) do
-      expect(page).to have_css '.name a', text: 'User test name'
-      expect(page).to have_css '.email',  text: 'user@example.com'
+      expect(page).to have_css '.name a',   text: 'User test name'
+      expect(page).to have_css '.email',    text: 'user@example.com'
+      expect(page).to have_css '.disabled', text: 'No'
 
       expect(page).to have_link 'Edit'
       expect(page).to have_link 'Delete'
@@ -34,7 +35,7 @@ describe 'Listing users' do
   end
 
   it 'allows to filter users' do
-    @user_1 = create :user, name: 'anne', email: 'anne@example.com'
+    @user_1 = create :user, name: 'anne', email: 'anne@example.com', disabled: true
     @user_2 = create :user, name: 'marianne', email: 'marianne@example.com'
     @user_3 = create :user, name: 'eva', email: 'eva@example.com'
 
@@ -45,10 +46,11 @@ describe 'Listing users' do
     expect(page).to have_css dom_id_selector(@user_3)
 
     fill_in 'q_name_cont', with: 'anne'
+    select 'Yes', from: 'q_disabled_true'
     click_button 'Filter'
 
     expect(page).to     have_css dom_id_selector(@user_1)
-    expect(page).to     have_css dom_id_selector(@user_2)
+    expect(page).not_to have_css dom_id_selector(@user_2)
     expect(page).not_to have_css dom_id_selector(@user_3)
 
     click_link 'Remove filter'

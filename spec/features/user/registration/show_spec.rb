@@ -28,6 +28,7 @@ describe 'Showing account' do
         expect(page).to have_content 'User test name'
         expect(page).to have_content 'user@example.com'
         expect(page).to have_css 'img[alt="User test name"]'
+        expect(page).not_to have_css '.disabled'
         expect(page).to have_link 'document.txt'
         expect(page).to have_link 'Edit'
       end

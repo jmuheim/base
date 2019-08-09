@@ -5,7 +5,7 @@
       = t 'actions.filter'
 
       - if q.conditions.any?
-        =< '(aktiv)'
+        =< t 'actions.filter_active'
 
         = link_to request.path, class: 'icon', title: t('actions.remove_filter'), data: {placement: :left}
           => icon :close, type: :fa
