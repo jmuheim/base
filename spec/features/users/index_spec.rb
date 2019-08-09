@@ -57,4 +57,21 @@ describe 'Listing users' do
     expect(page).to have_css dom_id_selector(@user_2)
     expect(page).to have_css dom_id_selector(@user_3)
   end
+
+  it 'applies the disabled=false filter when navigating through the menu' do
+    @user_1 = create :user, name: 'anne', email: 'anne@example.com'
+    @user_2 = create :user, name: 'marianne', email: 'marianne@example.com', disabled: true
+
+    visit root_path
+
+    within '#meta_navigation' do
+      click_link 'List of Users'
+    end
+
+    expect(page).to     have_css dom_id_selector(@user_1)
+    expect(page).not_to have_css dom_id_selector(@user_2)
+
+    expect(page).to have_link 'Remove filter'
+    expect(page).to have_select('q_disabled_true', selected: 'No')
+  end
 end
