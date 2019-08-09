@@ -40,6 +40,9 @@ describe Ability do
 
       it { should_not be_able_to(:edit_role, User.new) }
       it { should_not be_able_to(:edit_role, @user) }
+
+      it { should_not be_able_to(:edit_disabled, User.new) }
+      it { should_not be_able_to(:edit_disabled, @user) }
     end
 
     describe 'managing versions' do
@@ -85,6 +88,9 @@ describe Ability do
 
       it { should_not be_able_to(:edit_role, User.new) }
       it { should_not be_able_to(:edit_role, @user) }
+
+      it { should_not be_able_to(:edit_disabled, User.new) }
+      it { should_not be_able_to(:edit_disabled, @user) }
     end
 
     describe 'managing versions' do
@@ -131,6 +137,9 @@ describe Ability do
 
       it { should_not be_able_to(:edit_role, User.new) }
       it { should_not be_able_to(:edit_role, @user) }
+
+      it { should_not be_able_to(:edit_disabled, User.new) }
+      it { should_not be_able_to(:edit_disabled, @user) }
     end
 
     describe 'managing versions' do
@@ -176,6 +185,9 @@ describe Ability do
 
       it { should_not be_able_to(:edit_role, @user) }
       it { should     be_able_to(:edit_role, User.new) }
+
+      it { should     be_able_to(:edit_disabled, User.new) }
+      it { should_not be_able_to(:edit_disabled, @user) }
     end
 
     describe 'managing versions' do

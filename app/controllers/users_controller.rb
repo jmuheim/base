@@ -46,6 +46,7 @@ class UsersController < ApplicationController
                       :lock_version]
 
     permitted_keys << :role if can?(:edit_role, @user)
+    permitted_keys << :disabled if can?(:edit_disabled, @user)
 
     params.require(:user).permit(permitted_keys)
   end

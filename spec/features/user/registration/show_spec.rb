@@ -32,5 +32,14 @@ describe 'Showing account' do
         expect(page).to have_link 'Edit'
       end
     end
+
+    it 'logs out a disabled user automatically' do
+      @user.disabled = true
+      @user.save!
+
+      visit user_registration_path
+
+      expect(page).to have_flash('Your account is not activated yet (or has been disabled).').of_type :alert
+    end
   end
 end

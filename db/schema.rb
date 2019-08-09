@@ -61,7 +61,6 @@ ActiveRecord::Schema.define(version: 2019_08_09_102506) do
     t.text "lead_de"
     t.text "content_de"
     t.index ["creator_id"], name: "index_pages_on_creator_id"
-    t.index ["parent_id"], name: "pages_parent_id_fk"
   end
 
   create_table "users", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -90,8 +89,7 @@ ActiveRecord::Schema.define(version: 2019_08_09_102506) do
     t.text "about_en"
     t.string "curriculum_vitae"
     t.text "about_de"
-    t.string "role", default: "user"
-    t.date "birthdate"
+    t.string "role"
     t.boolean "disabled", default: false
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
@@ -114,10 +112,6 @@ ActiveRecord::Schema.define(version: 2019_08_09_102506) do
   end
 
   add_foreign_key "codes", "pages", column: "codeable_id"
-  add_foreign_key "codes", "users", column: "creator_id", name: "codes_creator_id_fk"
-  add_foreign_key "images", "users", column: "creator_id", name: "images_creator_id_fk"
   add_foreign_key "images", "users", column: "creator_id", name: "index_images_on_creator_id"
-  add_foreign_key "pages", "pages", column: "parent_id", name: "pages_parent_id_fk"
   add_foreign_key "pages", "users", column: "creator_id", name: "index_pages_on_creator_id"
-  add_foreign_key "pages", "users", column: "creator_id", name: "pages_creator_id_fk"
 end

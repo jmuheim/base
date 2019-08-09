@@ -66,7 +66,7 @@ class Ability
       user != current_user
     end
 
-    can :edit_activated, User do |user|
+    can :edit_disabled, User do |user|
       user != current_user
     end
 
