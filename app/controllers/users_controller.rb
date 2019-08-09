@@ -52,7 +52,7 @@ class UsersController < ApplicationController
   end
 
   def add_breadcrumbs
-    add_breadcrumb User.model_name.human(count: :other), users_path(params: {q: {disabled_true: false}})
+    add_breadcrumb User.model_name.human(count: :other), users_path(params: user_index_params)
 
     add_breadcrumb @user.name,        user_path(@user)      if [:show, :edit, :update].include? action_name.to_sym
     add_breadcrumb t('actions.new'),  new_user_path         if [:new,  :create].include?        action_name.to_sym

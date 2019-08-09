@@ -15,6 +15,8 @@ class ApplicationController < ActionController::Base
 
   helper :image_gallery
 
+  helper_method :user_index_params
+
   helper_method :body_css_classes
 
   self.responder = ApplicationResponder
@@ -103,5 +105,9 @@ class ApplicationController < ActionController::Base
 
   def authenticate_user?
     !devise_controller?
+  end
+
+  def user_index_params
+    {q: {disabled_true: false}}
   end
 end
