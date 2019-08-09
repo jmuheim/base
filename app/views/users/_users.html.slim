@@ -4,12 +4,13 @@
       => icon :filter, type: :fa
       = t 'actions.filter'
 
-    = panel.body do
-      - if params[:q]
-        = link_to request.path
-          => icon :close, type: :fa
-          = t 'actions.remove_filter'
+      - if q.conditions.any?
+        =< '(aktiv)'
 
+        = link_to request.path, class: 'icon', title: t('actions.remove_filter'), data: {placement: :left}
+          => icon :close, type: :fa
+
+    = panel.body do
       = search_form_for q, html:    {class: 'form-horizontal'},
                            wrapper: :horizontal_form do |f|
 

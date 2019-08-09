@@ -6,6 +6,9 @@ dl.dl-horizontal
   dt = User.human_attribute_name :updated_at
   dd.updated_at = l user.updated_at
 
+  dt = Project.human_attribute_name :activated
+  dd.activated = yes_or_no project.activated?
+
   - if user.avatar?
     dt = User.human_attribute_name :avatar
     dd.avatar = zoomable_image user.avatar, alt: user.name
