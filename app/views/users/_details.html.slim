@@ -6,8 +6,8 @@ dl.dl-horizontal
   dt = User.human_attribute_name :updated_at
   dd.updated_at = l user.updated_at
 
-  dt = Project.human_attribute_name :activated
-  dd.activated = yes_or_no project.activated?
+  dt = Project.human_attribute_name :disabled
+  dd.disabled = yes_or_no project.disabled?
 
   - if user.avatar?
     dt = User.human_attribute_name :avatar

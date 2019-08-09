@@ -10,9 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171213153814) do
+ActiveRecord::Schema.define(version: 2019_08_09_102506) do
 
-  create_table "codes", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "codes", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title", null: false
     t.string "identifier", null: false
     t.integer "codeable_id"
@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 20171213153814) do
     t.index ["creator_id"], name: "index_codes_on_creator_id"
   end
 
-  create_table "images", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "images", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "file"
     t.integer "imageable_id"
     t.string "identifier"
@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(version: 20171213153814) do
     t.index ["imageable_type", "imageable_id"], name: "index_images_on_imageable_type_and_imageable_id"
   end
 
-  create_table "pages", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "pages", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title_en"
     t.string "navigation_title_en"
     t.text "content_en"
@@ -61,9 +61,10 @@ ActiveRecord::Schema.define(version: 20171213153814) do
     t.text "lead_de"
     t.text "content_de"
     t.index ["creator_id"], name: "index_pages_on_creator_id"
+    t.index ["parent_id"], name: "pages_parent_id_fk"
   end
 
-  create_table "users", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "users", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", limit: 100
     t.string "email"
     t.string "encrypted_password"
@@ -89,7 +90,9 @@ ActiveRecord::Schema.define(version: 20171213153814) do
     t.text "about_en"
     t.string "curriculum_vitae"
     t.text "about_de"
-    t.string "role"
+    t.string "role", default: "user"
+    t.date "birthdate"
+    t.boolean "disabled", default: false
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["name"], name: "index_users_on_name", unique: true
@@ -97,7 +100,7 @@ ActiveRecord::Schema.define(version: 20171213153814) do
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   end
 
-  create_table "versions", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "versions", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "item_type", null: false
     t.integer "item_id", null: false
     t.string "event", null: false
@@ -111,6 +114,10 @@ ActiveRecord::Schema.define(version: 20171213153814) do
   end
 
   add_foreign_key "codes", "pages", column: "codeable_id"
+  add_foreign_key "codes", "users", column: "creator_id", name: "codes_creator_id_fk"
+  add_foreign_key "images", "users", column: "creator_id", name: "images_creator_id_fk"
   add_foreign_key "images", "users", column: "creator_id", name: "index_images_on_creator_id"
+  add_foreign_key "pages", "pages", column: "parent_id", name: "pages_parent_id_fk"
   add_foreign_key "pages", "users", column: "creator_id", name: "index_pages_on_creator_id"
+  add_foreign_key "pages", "users", column: "creator_id", name: "pages_creator_id_fk"
 end

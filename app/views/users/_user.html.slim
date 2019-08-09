@@ -1,6 +1,7 @@
 tr id=dom_id(user)
-  th.name  = link_to user.name, user
-  td.email = user.email
+  th.name      = link_to user.name, user
+  td.email     = user.email
+  td.disabled = yes_or_no_icon user.disabled?
 
   td.actions
     == render 'shared/index/actions', resource: user

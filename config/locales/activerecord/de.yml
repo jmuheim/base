@@ -39,6 +39,7 @@ de:
         current_sign_in_at: Eingeloggt seit
         current_sign_in_ip: Momentane IP
         curriculum_vitae: Lebenslauf
+        disabled: Deaktiviert?
         email: Email
         failed_attempts: Fehlgeschlagene Versuche
         last_sign_in_at: Letztes Login am
