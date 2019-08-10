@@ -13,6 +13,7 @@ describe 'Signing up' do
 
     fill_in 'user_name', with: 'newuser'
     expect(page).not_to have_css '#user_role'
+    expect(page).not_to have_css '#user_disabled'
     fill_in 'user_email', with: 'newuser@example.com'
     fill_in 'user_avatar', with: base64_image[:data]
     fill_in 'user_about',                 with: 'Some info about me'

@@ -46,12 +46,13 @@ class UsersController < ApplicationController
                       :lock_version]
 
     permitted_keys << :role if can?(:edit_role, @user)
+    permitted_keys << :disabled if can?(:edit_disabled, @user)
 
     params.require(:user).permit(permitted_keys)
   end
 
   def add_breadcrumbs
-    add_breadcrumb User.model_name.human(count: :other), users_path
+    add_breadcrumb User.model_name.human(count: :other), users_path(params: user_index_params)
 
     add_breadcrumb @user.name,        user_path(@user)      if [:show, :edit, :update].include? action_name.to_sym
     add_breadcrumb t('actions.new'),  new_user_path         if [:new,  :create].include?        action_name.to_sym

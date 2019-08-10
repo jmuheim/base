@@ -9,6 +9,7 @@ en:
     edit_resource: Edit %{resource}
     edit_resource_with_id: 'Edit %{resource} #%{id}'
     filter: Filter
+    filter_active: active
     new: Create
     new_resource: Create %{resource}
     remove_filter: Remove filter

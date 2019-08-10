@@ -5,4 +5,6 @@
   == render partial: 'users/details', locals: {user: @user}
 
   .btn-group
-    = link_to t('actions.edit'), edit_user_registration_path, class: 'btn btn-default btn-sm'
+    = link_to edit_user_registration_path, class: 'btn btn-primary'
+      = icon(:pencil, type: :fa)
+      =< t('actions.edit')

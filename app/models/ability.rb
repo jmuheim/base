@@ -66,6 +66,10 @@ class Ability
       user != current_user
     end
 
+    can :edit_disabled, User do |user|
+      user != current_user
+    end
+
     can [:index, :read], Code
     can [:index, :read], Image
 

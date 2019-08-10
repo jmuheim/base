@@ -11,7 +11,7 @@ describe 'Signing in' do
         click_button 'Sign in'
       end
 
-      expect(page).to have_content 'Invalid login or password.'
+      expect(page).to have_flash('Invalid login or password.').of_type :alert
       expect(page).not_to have_link 'Log out'
     end
   end
@@ -41,7 +41,7 @@ describe 'Signing in' do
         click_button 'Sign in'
       end
 
-      expect(page).to have_content 'Signed in successfully.'
+      expect(page).to have_flash('Signed in successfully.').of_type :notice
       expect(page).to have_link 'Log out'
     end
 
@@ -54,7 +54,7 @@ describe 'Signing in' do
         click_button 'Sign in'
       end
 
-      expect(page).to have_content 'Signed in successfully.'
+      expect(page).to have_flash('Notice: Signed in successfully.').of_type :notice
       expect(page).to have_link 'Log out'
     end
 
@@ -67,7 +67,7 @@ describe 'Signing in' do
         click_button 'Sign in'
       end
 
-      expect(page).to have_content 'Invalid login or password.'
+      expect(page).to have_flash('Invalid login or password.').of_type :alert
       expect(page).not_to have_link 'Log out'
     end
 
@@ -80,7 +80,23 @@ describe 'Signing in' do
         click_button 'Sign in'
       end
 
-      expect(page).to have_content 'Invalid login or password.'
+      expect(page).to have_flash('Invalid login or password.').of_type :alert
+      expect(page).not_to have_link 'Log out'
+    end
+
+    it 'is not possible to sign in when user is disabled' do
+      @user.disabled = true
+      @user.save!
+
+      visit new_user_session_path
+
+      within '#new_user' do
+        fill_in 'user_login',    with: 'User test name'
+        fill_in 'user_password', with: 's3cur3p@ssw0rd'
+        click_button 'Sign in'
+      end
+
+      expect(page).to have_flash('Your account is not activated yet (or has been disabled).').of_type :alert
       expect(page).not_to have_link 'Log out'
     end
   end

@@ -31,8 +31,11 @@ nav#navigation.container
         h3.sr-only = t '.meta_navigation'
 
         ul#meta_navigation.nav.navbar-nav.navbar-right
-          == render 'layouts/resource_navigation_group', resource_class: Page if can? :index, Page
-          == render 'layouts/resource_navigation_group', resource_class: User if can? :index, User
+          - if can? :index, Page
+            == render 'layouts/resource_navigation_group', resource_class: Page
+
+          - if can? :index, User
+            == render 'layouts/resource_navigation_group', resource_class: User, index_params: user_index_params
 
           - if user_signed_in?
             = navigation_group user_avatar(t('.user_menu')), user_registration_path, "#{icon :user, type: :fa} #{t '.show_account'}" do

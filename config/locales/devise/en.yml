@@ -7,6 +7,7 @@ en:
     failure:
       invalid: Invalid login or password.
       not_found_in_database: Invalid login or password.
+      inactive: Your account is not activated yet (or has been disabled).
     mailer:
       confirmation_instructions:
         confirm_my_account: Confirm my account!

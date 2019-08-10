@@ -28,9 +28,19 @@ describe 'Showing account' do
         expect(page).to have_content 'User test name'
         expect(page).to have_content 'user@example.com'
         expect(page).to have_css 'img[alt="User test name"]'
+        expect(page).not_to have_css '.disabled'
         expect(page).to have_link 'document.txt'
         expect(page).to have_link 'Edit'
       end
+    end
+
+    it 'logs out a disabled user automatically' do
+      @user.disabled = true
+      @user.save!
+
+      visit user_registration_path
+
+      expect(page).to have_flash('Your account is not activated yet (or has been disabled).').of_type :alert
     end
   end
 end

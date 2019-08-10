@@ -17,6 +17,7 @@ describe 'Creating user' do
     fill_in 'user_email', with: 'somemail@example.com'
     fill_in 'user_about', with: 'Some info about me'
     select  'Editor',     from: 'user_role'
+    check 'user_disabled'
 
     expect(page).to have_css 'h2', text: 'Password'
 

@@ -8,7 +8,8 @@ de:
     edit: Bearbeiten
     edit_resource: "%{resource} bearbeiten"
     edit_resource_with_id: "%{resource} #%{id} bearbeiten"
-    filter: Filtern
+    filter: Filter
+    filter_active: aktiv
     new: Erstellen
     new_resource: "%{resource} erstellen"
     remove_filter: Filter entfernen

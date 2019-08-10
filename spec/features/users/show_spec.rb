@@ -18,6 +18,8 @@ describe 'Showing user' do
 
     within dom_id_selector(other_user) do
       expect(page).to have_css '.email',      text: 'user@example.com'
+      expect(page).to have_css '.role',       text: 'User'
+      expect(page).to have_css '.disabled',   text: 'No'
       expect(page).to have_css '.created_at', text: 'Mon, 15 Jun 2015 14:33:52 +0200'
       expect(page).to have_css '.updated_at', text: 'Mon, 15 Jun 2015 14:33:52 +0200'
 
