@@ -23,7 +23,7 @@ module BreadcrumbsHandler
 
   # private
 
-  def has_breadcrumb?(target)
-    @breadcrumbs.map { |breadcrumb| breadcrumb[:target] == target }.any?
+  def has_breadcrumb?(target_path)
+    @breadcrumbs.map { |breadcrumb| URI.parse(breadcrumb[:target]).path == target_path }.any?
   end
 end

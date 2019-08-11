@@ -49,6 +49,8 @@ describe 'Listing users' do
     select 'Yes', from: 'q_disabled_true'
     click_button 'Filter'
 
+    expect(page).to have_text 'Filter (active)'
+
     expect(page).to     have_css dom_id_selector(@user_1)
     expect(page).not_to have_css dom_id_selector(@user_2)
     expect(page).not_to have_css dom_id_selector(@user_3)

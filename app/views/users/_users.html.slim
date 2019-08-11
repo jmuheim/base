@@ -5,10 +5,11 @@
       = t 'actions.filter'
 
       - if q.conditions.any?
-        =< t 'actions.filter_active'
+        =< "(#{t 'actions.filter_active'})"
 
-        = link_to request.path, class: 'icon', title: t('actions.remove_filter'), data: {placement: :left}
+        = link_to request.path, class: 'icon'
           => icon :close, type: :fa
+          = sr_only t('actions.remove_filter')
 
     = panel.body do
       = search_form_for q, html:    {class: 'form-horizontal'},

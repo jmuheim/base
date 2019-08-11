@@ -260,6 +260,21 @@ describe 'Navigation' do
     expect(page).not_to have_link 'Overview (current menu item)'
 
     expect(page).to     have_css '.dropdown.active > ul > li.active a', text: 'Cool page (current menu item)'
+
+    # GET params are not taken into account: /users?x=y is the same as /users.
+    # This makes sure that even when a Ransack query is active, the "List of X" item in the menu is still active.
+    sign_in_as create :user, :admin
+    visit root_path
+
+    click_link 'List of Users'
+
+    expect(page).to have_css '.dropdown.active > a', text: 'Users (current menu group)'
+    expect(page).to have_css '.dropdown.active > ul > li.active > a', text: 'List of Users (current menu item)'
+
+    click_link 'Remove filter'
+
+    expect(page).to have_css '.dropdown.active > a', text: 'Users (current menu group)'
+    expect(page).to have_css '.dropdown.active > ul > li.active > a', text: 'List of Users (current menu item)'
   end
 
   context 'jump links' do

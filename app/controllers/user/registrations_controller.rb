@@ -11,8 +11,8 @@ class User::RegistrationsController < Devise::RegistrationsController
   end
 
   def add_breadcrumbs
-    add_breadcrumb current_user.name,                    user_registration_path     if [:show, :edit, :update].include? action_name.to_sym
-    add_breadcrumb t('devise.registrations.new.title'),  new_user_registration_path if [:new,  :create].include?        action_name.to_sym
-    add_breadcrumb t('devise.registrations.edit.title'), new_user_registration_path if [:edit, :update].include?        action_name.to_sym
+    add_breadcrumb current_user.name,                    user_registration_path      if [:show, :edit, :update].include? action_name.to_sym
+    add_breadcrumb t('devise.registrations.new.title'),  new_user_registration_path  if [:new,  :create].include?        action_name.to_sym
+    add_breadcrumb t('devise.registrations.edit.title'), edit_user_registration_path if [:edit, :update].include?        action_name.to_sym
   end
 end

@@ -26,7 +26,7 @@ module NavigationHelper
       divider  = content_tag :li, nil, class: 'divider', role: 'decoration'
     end
 
-    has_breadcrumb = has_breadcrumb?(target)
+    has_breadcrumb = has_breadcrumb?(target_path(target))
     content_tag :li, class: "dropdown #{:active if has_breadcrumb}" do
       link = link_to '#', class: 'dropdown-toggle', 'data-toggle': 'dropdown', 'aria-expanded': false do
                group_title += content_tag(:span, " (#{t('layouts.navigation.current_group')})", class: 'sr-only') if has_breadcrumb
@@ -34,7 +34,7 @@ module NavigationHelper
              end
 
       dropdown = content_tag :ul, class: 'dropdown-menu' do
-                   overview = navigation_item item_title, target, active: current_page?(target)
+                   overview = navigation_item item_title, target, active: current_page?(target_path(target))
                    overview + divider + capture(self, &block)
                  end
 
@@ -68,7 +68,7 @@ module NavigationHelper
     end
 
     title = title.html_safe
-    options[:active] = has_breadcrumb?(target) if options[:active].nil?
+    options[:active] = has_breadcrumb?(target_path(target)) if options[:active].nil?
     title += content_tag(:span, " (#{t('layouts.navigation.current_item')})", class: 'sr-only') if options[:active]
 
     content_tag :li, class: "#{:active if options[:active]}" do
@@ -100,5 +100,9 @@ module NavigationHelper
 
       link + dropdown
     end
+  end
+
+  def target_path(target)
+    URI.parse(target).path
   end
 end
