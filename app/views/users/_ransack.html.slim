@@ -1,0 +1,26 @@
+= accordion :filter, item_options: {title_tag: 'h2', panel_class: 'panel-warning'} do |accordion|
+  = accordion.panel do |panel|
+    = panel.title do
+      => icon :filter, type: :fa
+      = t 'actions.filter'
+
+      - if q.conditions.any?
+        =< "(#{t 'actions.filter_active'})"
+
+        = link_to request.path, class: 'icon'
+          => icon :close, type: :fa
+          = sr_only t('actions.remove_filter')
+
+    = panel.body do
+      = search_form_for q, html:    {class: 'form-horizontal'},
+                           wrapper: :horizontal_form do |f|
+
+        / TODO: Fields aren't translated automatically, see https://github.com/activerecord-hackery/ransack/issues/631
+        / TODO: Why is this required by default?
+        = f.input :name_cont, required: false, label: "#{User.human_attribute_name :name} #{t('ransack.predicates.cont')}"
+
+        = f.input :disabled_true, collection: [[t('true'), true], [t('false'), false]], required: false, label: resource_class.human_attribute_name(:disabled)
+
+        = f.button :submit, t('actions.filter'), class: 'btn-warning'
+
+h2.sr-only = t 'actions.results'
