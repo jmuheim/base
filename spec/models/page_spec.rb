@@ -11,14 +11,37 @@ RSpec.describe Page do
   end
 
   describe 'validations' do
-    subject { build :page, creator: @user }
-
     it { should validate_presence_of :title }
     it { should validate_presence_of :creator_id }
 
-    # See http://stackoverflow.com/questions/27046691
-    pending 'Does mobility gem break the validate_uniqueness_of matcher?' do
-      should validate_uniqueness_of(:title).scoped_to :parent_id
+    # Can't use validate_uniqueness_of matcher because of Mobility, see https://github.com/shioyama/mobility/issues/141
+    it 'validates language-specific uniqueness of title (scoped to parent_id)' do
+      page = create :page, title:    'English title',
+                           title_de: 'Deutscher Titel',
+                           creator:  @user
+
+      new_page = build :page, creator: @user
+
+      # Try to set same title (should be rejected)
+      new_page.title = page.title
+      new_page.valid?
+      expect(new_page.errors[:title]).to include 'has already been taken'
+
+      # Try to set different title (should be accepted)
+      new_page.title = 'New english title'
+      new_page.valid?
+      expect(new_page.errors[:title]).to be_empty
+
+      # Try to set same title as in German (should be accepted)
+      new_page.title = page.title_de
+      new_page.valid?
+      expect(new_page.errors[:title]).to be_empty
+
+      # Try to set same title, but with different parent_id (should be accepted)
+      new_page.title = page.title
+      new_page.parent = page
+      new_page.valid?
+      expect(new_page.errors[:title]).to be_empty
     end
   end
 
