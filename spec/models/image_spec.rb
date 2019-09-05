@@ -3,18 +3,17 @@ require 'rails_helper'
 RSpec.describe Image do
   before { @user = create :user }
 
-  # it { should belong_to(:page) }
-  it { should validate_presence_of(:creator_id) }
-
-  # Uniqueness specs are a bit nasty, see http://stackoverflow.com/questions/27046691/cant-get-uniqueness-validation-test-pass-with-shoulda-matcher
-  describe 'uniqueness validations' do
-    subject { build :image, creator: @user }
-
-    it { should validate_uniqueness_of(:identifier).scoped_to([:imageable_type, :imageable_id]) }
+  describe 'associations' do
+    it { should belong_to :imageable }
+    it { should belong_to :creator }
   end
 
-  it 'has a valid factory' do
-    expect(create(:image, creator: @user)).to be_valid
+  describe 'validations' do
+    subject { build :image, creator: @user }
+
+    it { should validate_presence_of :creator_id }
+    it { should validate_presence_of :identifier }
+    it { should validate_uniqueness_of(:identifier).scoped_to [:imageable_type, :imageable_id] }
   end
 
   it 'provides optimistic locking' do
@@ -29,10 +28,6 @@ RSpec.describe Image do
   end
 
   describe 'versioning', versioning: true do
-    it 'is versioned' do
-      is_expected.to be_versioned
-    end
-
     it 'versions identifier' do
       image = create :image, creator: @user
 

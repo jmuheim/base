@@ -58,6 +58,7 @@ de:
       additional_information: Weitere Informationen
       version:
         create: Erstellen
+        destroy: Löschen
         update: Aktualisieren
       versions:
         no_changes: Keine Änderungen in dieser Version

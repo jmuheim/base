@@ -58,6 +58,7 @@ en:
       additional_information: Additional information
       version:
         create: Create
+        destroy: Destroy
         update: Update
       versions:
         no_changes: No changes in this version

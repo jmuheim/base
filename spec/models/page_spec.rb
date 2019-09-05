@@ -3,19 +3,24 @@ require 'rails_helper'
 RSpec.describe Page do
   before { @user = create :user }
 
-  it { should validate_presence_of(:title) }
-  it { should validate_presence_of(:creator_id) }
+  describe 'associations' do
+    it { should have_many(:children).dependent :restrict_with_error }
+    it { should have_many(:codes).dependent :destroy }
+    it { should have_many(:images).dependent :destroy }
+    it { should belong_to :creator }
+  end
 
-  # Uniqueness specs are a bit nasty, see http://stackoverflow.com/questions/27046691/cant-get-uniqueness-validation-test-pass-with-shoulda-matcher
-  describe 'uniqueness validations' do
+  describe 'validations' do
     subject { build :page, creator: @user }
 
+    it { should validate_presence_of :title }
+    it { should validate_presence_of :creator_id }
+
+    # See http://stackoverflow.com/questions/27046691
     pending 'Does mobility gem break the validate_uniqueness_of matcher?' do
       should validate_uniqueness_of(:title).scoped_to :parent_id
     end
   end
-
-  it { should have_many(:images).dependent :destroy }
 
   describe 'nested images attributes' do
     it { should accept_nested_attributes_for(:images) }
@@ -84,10 +89,6 @@ RSpec.describe Page do
     end
   end
 
-  it 'has a valid factory' do
-    expect(create(:page, creator: @user)).to be_valid
-  end
-
   it 'provides optimistic locking' do
     page = create :page, creator: @user
     stale_page = Page.find(page.id)
@@ -100,10 +101,6 @@ RSpec.describe Page do
   end
 
   describe 'versioning', versioning: true do
-    it 'is versioned' do
-      is_expected.to be_versioned
-    end
-
     describe 'attributes' do
       before { @page = create :page, creator: @user }
 

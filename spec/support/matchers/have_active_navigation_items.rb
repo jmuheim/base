@@ -7,8 +7,12 @@ module Base
       end
 
       def matches?(controller)
+        active_list_items = []
+
         @items.each_with_index do |item, index|
-          unless controller.has_css? "#navigation li.active a", text: item, visible: false
+          active_list_items << "li.active"
+
+          unless controller.has_css? "#navigation #{active_list_items.join ' > ul > '} a", text: item, visible: false
             @failure_item = item
             return false
           end

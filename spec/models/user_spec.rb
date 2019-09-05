@@ -1,13 +1,17 @@
 require 'rails_helper'
 
 describe User do
-  it { should validate_presence_of(:name) }
-  it { should validate_uniqueness_of(:name).case_insensitive }
-  it { is_expected.to strip_attribute(:name) }
-  it { is_expected.to strip_attribute(:about) }
+  describe 'associations' do
+    it { should have_many(:created_codes).dependent :restrict_with_error }
+    it { should have_many(:created_images).dependent :restrict_with_error }
+    it { should have_many(:created_pages).dependent :restrict_with_error }
+  end
 
-  it 'has a valid factory' do
-    expect(create(:user)).to be_valid
+  describe 'validations' do
+    it { should validate_presence_of :name }
+    it { should validate_uniqueness_of(:name).case_insensitive }
+    it { is_expected.to strip_attribute :name }
+    it { is_expected.to strip_attribute :about }
   end
 
   it 'provides optimistic locking' do
@@ -22,10 +26,6 @@ describe User do
   end
 
   describe 'versioning', versioning: true do
-    it 'is versioned' do
-      is_expected.to be_versioned
-    end
-
     describe 'attributes' do
       before { @user = create :user }
       it 'versions name' do
