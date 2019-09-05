@@ -71,6 +71,5 @@ de:
     errors:
       messages:
         restrict_dependent_destroy:
-          has_one: konnte %{model} nicht löschen, da ein abhängiger %{record}-Datensatz
-            existiert
+          has_one: konnte %{model} nicht löschen, da ein abhängiger %{record}-Datensatz existiert
           has_many: konnte %{model} nicht löschen, da abhängige %{record} existieren

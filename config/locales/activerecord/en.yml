@@ -52,11 +52,6 @@ en:
         remember_me: Remember me
         role: Role
         updated_at: Updated at
-    errors:
-      messages:
-        restrict_dependent_destroy:
-          has_one: Could not delete %{model} because a dependent %{record} exists
-          has_many: Could not delete %{model} because dependent %{record} exist
     models:
       code:
         one: Code
@@ -73,3 +68,8 @@ en:
       user:
         one: User
         other: Users
+    errors:
+      messages:
+        restrict_dependent_destroy:
+          has_one: Could not delete %{model} because a dependent %{record} exists
+          has_many: Could not delete %{model} because dependent %{record} exist
