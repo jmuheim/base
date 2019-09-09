@@ -16,7 +16,7 @@ gem 'coffee-rails' # Use CoffeeScript for .js.coffee assets and views
 
 gem 'sass-rails' # Use Sass for stylesheets
 
-gem 'compass-rails' # Compass framework
+gem 'compass-rails', '~> 3.1' # Compass framework
 
 gem 'bootstrap-sass' # Sleek, intuitive, and powerful front-end framework
 
@@ -60,7 +60,7 @@ gem 'enumerize' # Enumerated attributes with I18n
 gem 'paper_trail' # Track changes to your models' data. Good for auditing or versioning.
 
 # Classier solution for file uploads for Rails
-gem 'carrierwave'
+gem 'carrierwave', '< 2'
 gem 'carrierwave-base64' # Upload files encoded as base64 to carrierwave
 
 gem 'mini_magick' # Mini replacement for RMagick

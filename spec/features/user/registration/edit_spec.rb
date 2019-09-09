@@ -39,7 +39,7 @@ describe 'Editing account' do
       .and change { @user.encrypted_password }
       .and change { @user.unconfirmed_email }.to('new-user@example.com')
 
-    expect(page).to have_flash 'You updated your account successfully, but we need to verify your new email address. Please check your email and follow the confirm link to confirm your new email address.'
+    expect(page).to have_flash 'You updated your account successfully, but we need to verify your new email address. Please check your email and follow the confirmation link to confirm your new email address.'
   end
 
   it "doesn't change the password if left empty" do
