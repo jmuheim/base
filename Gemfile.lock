@@ -545,7 +545,6 @@ DEPENDENCIES
   spring-watcher-listen
   strip_attributes!
   terminal-notifier-guard
-  tzinfo-data
   uglifier
   validate_url
   validates_email_format_of

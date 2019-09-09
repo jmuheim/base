@@ -75,8 +75,6 @@ gem 'ransack' # Object-based searching
 
 gem 'actionview-encoded_mail_to' # Rails mail_to helper with obfuscation
 
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw] # Timezone Data for TZInfo (needed when run on Microsoft Windows, see https://github.com/tzinfo/tzinfo/wiki/Resolving-TZInfo::DataSourceNotFound-Errors)
-
 gem 'wannabe_bool' # Converts strings, integers, etc. intuitively to boolean values
 
 gem 'mysql2' # Use MySQL as the database for Active Record
