@@ -26,7 +26,7 @@ describe 'Creating user' do
 
     expect(page).to have_css '#user_name[maxlength="100"]'
 
-    find('#user_curriculum_vitae', visible: false).set base64_image[:data]
+    fill_in 'user_avatar', with: base64_image[:data]
     attach_file 'user_curriculum_vitae', dummy_file_path('document.txt')
 
     within '.actions' do
@@ -39,6 +39,16 @@ describe 'Creating user' do
     click_button 'Create User'
 
     expect(page).to have_flash 'User was successfully created.'
+    expect(User.count).to eq 2
+
+    user = User.last
+    expect(user.name).to eq 'newname'
+    expect(user.email).to eq 'somemail@example.com'
+    expect(user.about).to eq 'Some info about me'
+    expect(user.role).to eq 'editor'
+    expect(user.disabled).to be_truthy
+    expect(File.basename(user.avatar.to_s)).to eq 'avatar.png'
+    expect(File.basename(user.curriculum_vitae.to_s)).to eq 'document.txt'
   end
 
   describe 'avatar upload' do

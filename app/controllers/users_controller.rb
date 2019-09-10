@@ -20,7 +20,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user.update(user_params)
+    @user.update user_params
     respond_with @user
   end
 
@@ -45,8 +45,9 @@ class UsersController < ApplicationController
                       :password_confirmation,
                       :lock_version]
 
-    permitted_keys << :role if can?(:edit_role, @user)
-    permitted_keys << :disabled if can?(:edit_disabled, @user)
+    auth_object = @user || User.new # See https://stackoverflow.com/questions/57873176/
+    permitted_keys << :role     if can? :edit_role,     auth_object
+    permitted_keys << :disabled if can? :edit_disabled, auth_object
 
     params.require(:user).permit(permitted_keys)
   end

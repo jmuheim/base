@@ -59,6 +59,7 @@ describe 'Creating page' do
 
     fill_in 'page_title',            with: 'new title'
     fill_in 'page_navigation_title', with: 'new navigation title'
+    fill_in 'page_lead',             with: 'new lead'
     fill_in 'page_content',          with: 'A cool image: ![image](@image-referenced-image), and some code: [](@code-referenced-code)'
     fill_in 'page_notes',            with: 'new notes'
 
@@ -110,9 +111,15 @@ describe 'Creating page' do
     click_button 'Create Page'
 
     expect(page).to have_flash 'Page was successfully created.'
+    expect(Page.count).to eq 2
 
-    # The user is set as creator
     page = Page.last
+    expect(page.parent).to eq parent_page
+    expect(page.title).to eq 'new title'
+    expect(page.navigation_title).to eq 'new navigation title'
+    expect(page.lead).to eq 'new lead'
+    expect(page.content).to eq 'A cool image: ![image](@image-referenced-image), and some code: [](@code-referenced-code)'
+    expect(page.notes).to eq 'new notes'
     expect(page.creator).to eq @user
 
     # Only the referenced image is kept
