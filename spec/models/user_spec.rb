@@ -61,29 +61,4 @@ describe User do
       expect(@user.about_de).to eq 'Deutsches Über'
     end
   end
-
-  # TODO: Why do we have these specs double?
-  describe 'creating a user' do
-    it 'validates presence of name' do
-      @user = build :user, name: nil
-      expect(@user).to have(1).error_on(:name)
-    end
-
-    it 'validates uniqueness of name' do
-      create :user, name: 'josh'
-      @user = build :user, name: 'josh'
-
-      expect(@user).to have(1).error_on(:name)
-    end
-
-    it 'validates presence of email' do
-      @user = build :user, email: nil
-      expect(@user).to have(1).error_on(:email)
-    end
-
-    it 'validates presence of password' do
-      @user = build :user, password: nil
-      expect(@user).to have(1).error_on(:password)
-    end
-  end
 end

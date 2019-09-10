@@ -85,7 +85,7 @@ class ApplicationController < ActionController::Base
     result
   end
 
-  # This is needed on every page to display the navigation. Always use this variable instead of executing `Page.collection_tree` again, to prevent heavy and redundant DB queries!
+  # This is needed on every page to display the navigation. Always use this variable instead of executing `Page.tree` again, to prevent heavy and redundant DB queries!
   def provide_pages
     @pages = []
     Page.walk_tree do |page, level|
