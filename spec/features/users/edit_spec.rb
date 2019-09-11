@@ -14,40 +14,6 @@ describe 'Editing user' do
   context 'signed in as user' do
     before { login_as(@user) }
 
-    it "doesn't allow to change role (even if hacker tries it)", js: true do
-      visit edit_user_path(@user)
-
-      expect {
-        remove_html_attribute('#user_role', 'disabled') # A hacker could manually enable the option!
-      }.to change { page.has_css?('#user_role[disabled]') }.to false
-
-      select 'Administrator', from: 'user_role'
-
-      expect {
-        click_button 'Update User'
-        @user.reload
-      } .not_to change { @user.role }
-
-      expect(page).to have_flash 'User was successfully updated.'
-    end
-
-    it "doesn't allow to change disabled status (even if hacker tries it)", js: true do
-      visit edit_user_path(@user)
-
-      expect {
-        remove_html_attribute('#user_disabled', 'disabled') # A hacker could manually enable the option!
-      }.to change { page.has_css?('#user_disabled[disabled]') }.to false
-
-      check 'user_disabled'
-
-      expect {
-        click_button 'Update User'
-        @user.reload
-      } .not_to change { @user.disabled? }
-
-      expect(page).to have_flash 'User was successfully updated.'
-    end
-
     it 'grants permission to edit own user' do
       visit edit_user_path(@user)
 
