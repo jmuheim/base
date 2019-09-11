@@ -10,7 +10,7 @@ describe 'Autocomplete', js: true do
 
   before do
     @admin = create :user, :admin
-    sign_in_as @admin
+    login_as @admin
 
     create :page, creator: @admin, title: 'Hiking'
     create :page, creator: @admin, title: 'Dancing'

@@ -33,7 +33,7 @@ describe 'Navigation' do
 
     context 'as a user' do
       it 'offers the expected links' do
-        sign_in_as @user
+        login_as @user
 
         visit root_path
 
@@ -60,7 +60,7 @@ describe 'Navigation' do
 
     context 'as an editor' do
       it 'offers the expected links' do
-        sign_in_as create :user, :editor
+        login_as create :user, :editor
 
         visit root_path
 
@@ -87,7 +87,7 @@ describe 'Navigation' do
 
     context 'as an admin' do
       it 'offers the expected links' do
-        sign_in_as create :user, :admin
+        login_as create :user, :admin
 
         visit root_path
 
@@ -169,7 +169,7 @@ describe 'Navigation' do
   end
 
   it 'reports the activity status of menu groups and items visually and aurally' do
-    sign_in_as create :user, :admin
+    login_as create :user, :admin
     visit root_path
 
     active_menu_group_css  = '.dropdown.active > a.dropdown-toggle'
@@ -263,7 +263,7 @@ describe 'Navigation' do
 
     # GET params are not taken into account: /users?x=y is the same as /users.
     # This makes sure that even when a Ransack query is active, the "List of X" item in the menu is still active.
-    sign_in_as create :user, :admin
+    login_as create :user, :admin
     visit root_path
 
     click_link 'List of Users'
