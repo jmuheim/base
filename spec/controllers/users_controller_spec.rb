@@ -8,7 +8,8 @@ describe UsersController do
         login_as @user
       end
 
-      it { should_not permit(:role).for(:update, params: {id: @user.id, user: {role: 'x'}}).on :user }
+      it { should_not permit(:role).for(:create, params: {              user: {what: :ever}}).on :user }
+      it { should_not permit(:role).for(:update, params: {id: @user.id, user: {what: :ever}}).on :user }
     end
 
     context 'logged in as admin' do
@@ -17,8 +18,11 @@ describe UsersController do
         login_as @admin
       end
 
-      it { should_not permit(:role).for(:update, params: {id: @admin.id,        user: {role: 'x'}}).on :user }
-      it { should     permit(:role).for(:update, params: {id: create(:user).id, user: {role: 'x'}}).on :user }
+      it { should     permit(:role).for(:create, params: {               user: {what: :ever}}).on :user }
+      it { should_not permit(:role).for(:update, params: {id: @admin.id, user: {what: :ever}}).on :user }
+
+      it { should permit(:role).for(:create, params: {                      user: {what: :ever}}).on :user }
+      it { should permit(:role).for(:update, params: {id: create(:user).id, user: {what: :ever}}).on :user }
     end
   end
 
@@ -29,7 +33,8 @@ describe UsersController do
         login_as @user
       end
 
-      it { should_not permit(:disabled).for(:update, params: {id: @user.id, user: {disabled: 'x'}}).on :user }
+      it { should_not permit(:disabled).for(:create, params: {              user: {what: :ever}}).on :user }
+      it { should_not permit(:disabled).for(:update, params: {id: @user.id, user: {what: :ever}}).on :user }
     end
 
     context 'logged in as admin' do
@@ -38,8 +43,11 @@ describe UsersController do
         login_as @admin
       end
 
-      it { should_not permit(:disabled).for(:update, params: {id: @admin.id,        user: {disabled: 'x'}}).on :user }
-      it { should     permit(:disabled).for(:update, params: {id: create(:user).id, user: {disabled: 'x'}}).on :user }
+      it { should     permit(:disabled).for(:create, params: {               user: {what: :ever}}).on :user }
+      it { should_not permit(:disabled).for(:update, params: {id: @admin.id, user: {what: :ever}}).on :user }
+
+      it { should permit(:disabled).for(:create, params: {                      user: {what: :ever}}).on :user }
+      it { should permit(:disabled).for(:update, params: {id: create(:user).id, user: {what: :ever}}).on :user }
     end
   end
 end

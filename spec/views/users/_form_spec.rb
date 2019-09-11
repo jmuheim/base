@@ -1,10 +1,10 @@
 require 'rails_helper'
 
-RSpec.describe "users/edit" do
+RSpec.describe "users/_form" do
   describe 'role select' do
     context 'not logged in' do
       it 'is not shown' do
-        assign :user, User.new
+        assign_locals user: User.new
         render
         expect(rendered).not_to have_selector('select#user_role')
       end
@@ -17,7 +17,7 @@ RSpec.describe "users/edit" do
       end
 
       it 'is shown as disabled' do
-        assign :user, @user
+        assign_locals user: @user
         render
         expect(rendered).to have_selector('select#user_role[disabled]')
       end
@@ -30,13 +30,13 @@ RSpec.describe "users/edit" do
       end
 
       it 'is shown as disabled (for own user)' do
-        assign :user, @admin
+        assign_locals user: @admin
         render
         expect(rendered).to have_selector('select#user_role[disabled]')
       end
 
       it 'is shown as enabled (for other user)' do
-        assign :user, create(:user)
+        assign_locals user: create(:user)
         render
         expect(rendered).to have_selector('select#user_role:not([disabled])')
       end
@@ -46,7 +46,7 @@ RSpec.describe "users/edit" do
   describe 'disabled checkbox' do
     context 'not logged in' do
       it 'is not shown' do
-        assign :user, User.new
+        assign_locals user: User.new
         render
         expect(rendered).not_to have_selector('input#user_disabled')
       end
@@ -59,7 +59,7 @@ RSpec.describe "users/edit" do
       end
 
       it 'is shown as disabled' do
-        assign :user, @user
+        assign_locals user: @user
         render
         expect(rendered).to have_selector('input#user_disabled[disabled]')
       end
@@ -72,13 +72,13 @@ RSpec.describe "users/edit" do
       end
 
       it 'is shown as disabled (for own user)' do
-        assign :user, @admin
+        assign_locals user: @admin
         render
         expect(rendered).to have_selector('input#user_disabled[disabled]')
       end
 
       it 'is shown as enabled (for other user)' do
-        assign :user, create(:user)
+        assign_locals user: create(:user)
         render
         expect(rendered).to have_selector('input#user_disabled:not([disabled])')
       end

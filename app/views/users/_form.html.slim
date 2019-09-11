@@ -13,4 +13,4 @@
         = f.input :password, autocomplete: 'off', required: true
         = f.input :password_confirmation, required: true
 
-  == render 'shared/form/actions', form: f, resource: @user
+  == render 'shared/form/actions', form: f, resource: f.object
