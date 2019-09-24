@@ -73,7 +73,7 @@ describe 'Editing user' do
 
       # Change something in the database...
       expect {
-        @user.update_attributes! name:   'interim-name',
+        @user.update! name:   'interim-name',
                                  about:  "This is some barely interesting info.\n\nI like playing football and reading books.\n\nI don't work as a web developer anymore.",
                                  avatar: File.open(dummy_file_path('image.jpg')),
                                  curriculum_vitae: File.open(dummy_file_path('document.txt'))
@@ -129,7 +129,7 @@ describe 'Editing user' do
 
       # Change something in the database...
       expect {
-        @user.update_attributes! about:  "This is some barely interesting info.\n\nI like playing football and reading books.\n\nI don't work as a web developer anymore."
+        @user.update! about:  "This is some barely interesting info.\n\nI like playing football and reading books.\n\nI don't work as a web developer anymore."
       }.to change { @user.lock_version }.by 1
 
       fill_in 'user_about', with: "Yeah this looks different now!\n\nThis is some very interesting info.\n\nI like playing american football and watching movies."
@@ -213,7 +213,7 @@ describe 'Editing user' do
       end
 
       it 'allows to remove an uploaded avatar' do
-        @user.update_attributes! avatar: File.open(dummy_file_path('image.jpg'))
+        @user.update! avatar: File.open(dummy_file_path('image.jpg'))
 
         visit edit_user_path @user
         check 'user_remove_avatar'
@@ -295,7 +295,7 @@ describe 'Editing user' do
       end
 
       it 'allows to remove an uploaded curriculum_vitae' do
-        @user.update_attributes! curriculum_vitae: File.open(dummy_file_path('document.txt'))
+        @user.update! curriculum_vitae: File.open(dummy_file_path('document.txt'))
 
         visit edit_user_path @user
         check 'user_remove_curriculum_vitae'

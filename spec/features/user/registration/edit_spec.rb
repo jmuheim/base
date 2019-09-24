@@ -119,7 +119,7 @@ describe 'Editing account' do
     end
 
     it 'allows to remove an uploaded avatar' do
-      @user.update_attributes! avatar: File.open(dummy_file_path('image.jpg'))
+      @user.update! avatar: File.open(dummy_file_path('image.jpg'))
 
       visit edit_user_registration_path
 
@@ -201,7 +201,7 @@ describe 'Editing account' do
     end
 
     it 'allows to remove an uploaded curriculum_vitae' do
-      @user.update_attributes! curriculum_vitae: File.open(dummy_file_path('document.txt'))
+      @user.update! curriculum_vitae: File.open(dummy_file_path('document.txt'))
 
       visit edit_user_registration_path
       check 'user_remove_curriculum_vitae'

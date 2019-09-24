@@ -165,7 +165,7 @@ describe 'Editing page' do
 
     # Change something in the database...
     expect {
-      @page.update_attributes content: 'This is the old content'
+      @page.update! content: 'This is the old content'
     }.to change { @page.lock_version }.by 1
 
     fill_in 'page_content', with: 'This is the new content, yeah!'
