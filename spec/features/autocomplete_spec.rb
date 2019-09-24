@@ -5,7 +5,10 @@ describe 'Autocomplete', js: true do
   NON_INTERCEPTED_ENTER = 'Enter passed on.'
 
   around(:each) do |example|
-    Capybara.using_wait_time 0 { example.run } # No AJAX involved
+    # No AJAX involved
+    Capybara.using_wait_time 0 do
+      example.run
+    end
   end
 
   before do

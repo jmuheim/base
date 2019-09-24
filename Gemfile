@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '~> 5.2'
+gem 'rails', '~> 6.0'
 
 gem 'puma' # Use Puma as the app server
 
@@ -60,7 +60,7 @@ gem 'enumerize' # Enumerated attributes with I18n
 gem 'paper_trail' # Track changes to your models' data. Good for auditing or versioning.
 
 # Classier solution for file uploads for Rails
-gem 'carrierwave', '< 2'
+gem 'carrierwave'
 gem 'carrierwave-base64' # Upload files encoded as base64 to carrierwave
 
 gem 'mini_magick' # Mini replacement for RMagick
