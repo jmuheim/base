@@ -39,7 +39,8 @@ module Base
     config.action_dispatch.rescue_responses.merge! 'CanCan::AccessDenied' => :forbidden
 
     # Always raise error on unpermitted parameters
-    # config.action_controller.action_on_unpermitted_parameters = :raise
+    config.action_controller.action_on_unpermitted_parameters = :raise
+    config.action_controller.always_permitted_parameters = %w( controller action locale utf8 authenticity_token commit )
   end
 end
 
