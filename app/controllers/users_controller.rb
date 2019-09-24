@@ -49,7 +49,7 @@ class UsersController < ApplicationController
     permitted_keys << :role     if can? :edit_role,     auth_object
     permitted_keys << :disabled if can? :edit_disabled, auth_object
 
-    params.require(:user).permit(permitted_keys)
+    params.require(:user).permit permitted_keys
   end
 
   def add_breadcrumbs

@@ -6,7 +6,7 @@ class Image < ApplicationRecord
 
   mount_base64_uploader :file, ImageUploader
 
-  belongs_to :creator, class_name: 'User', foreign_key: :creator_id
+  belongs_to :creator, class_name: 'User'
 
   validates :identifier, presence: true,
                          uniqueness: {scope: [:imageable_type, :imageable_id]}

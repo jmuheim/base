@@ -21,7 +21,7 @@ class AutocompleteInput < StringInput
     associated_object = object.send(attribute_name)
     value = nil
 
-    filter_id = "#{object.class.to_s.underscore}_#{label_target}_id_filter"
+    filter_id = "#{object.model_name.to_s.underscore}_#{label_target}_id_filter"
     super(wrapper_options.merge(value: value, name: nil, id: filter_id)) + template.content_tag(:span, nil, class: [:fa, :arrow]) + autocomplete_collection + help_block
   end
 

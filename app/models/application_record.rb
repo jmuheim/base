@@ -2,7 +2,7 @@ class ApplicationRecord < ActiveRecord::Base
   self.abstract_class = true
 
   def resource_class
-    self.class.to_s.underscore
+    self.model_name.to_s.underscore
   end
 
   def self.accepts_pastables_for(*textareas)

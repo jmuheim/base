@@ -36,16 +36,17 @@ class PagesController < ApplicationController
   private
 
   def page_params
-    params.require(:page).permit(:title,
-                                 :navigation_title,
-                                 :lead,
-                                 :content,
-                                 :notes,
-                                 :parent_id,
-                                 :position,
-                                 :lock_version,
-                                 images_attributes: images_attributes,
-                                 codes_attributes: codes_attributes)
+    params.require(:page)
+          .permit(:title,
+                  :navigation_title,
+                  :lead,
+                  :content,
+                  :notes,
+                  :parent_id,
+                  :position,
+                  :lock_version,
+                  images_attributes: images_attributes,
+                  codes_attributes: codes_attributes)
   end
 
   def add_breadcrumbs

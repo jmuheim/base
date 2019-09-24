@@ -19,7 +19,7 @@ class Page < ApplicationRecord
   acts_as_tree order: :position, dependent: :restrict_with_error
   acts_as_list scope: [:parent_id]
 
-  belongs_to :creator, class_name: 'User', foreign_key: :creator_id
+  belongs_to :creator, class_name: 'User'
 
   validates :title, presence: true,
                     uniqueness: {scope: :parent_id}
