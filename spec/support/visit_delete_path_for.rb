@@ -1,7 +1,7 @@
 module FeatureSpecVisitDeletePathHelper
   def visit_delete_path_for(resources, resource_path = nil)
     resources = [resources] unless resources.is_a?(Array)
-    resource_path ||= "#{resources.map { |resource| resource.class.to_s.underscore }.join('_')}_path"
+    resource_path ||= "#{resources.map { |resource| resource.model_name.to_s.underscore }.join('_')}_path"
 
     # Send delete request using capybara, see http://makandracards.com/makandra/18023-trigger-a-delete-request-with-capybara
     case page.driver
