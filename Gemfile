@@ -97,6 +97,8 @@ group :development, :test do
 end
 
 group :development do
+  gem 'rb-readline' # See https://twitter.com/ndrx42/status/783288843906801664
+
   gem 'web-console' # Access an IRB console by using <%= console %> anywhere in the code
 
   gem 'listen' # Listens to file modifications and notifies you about the changes
