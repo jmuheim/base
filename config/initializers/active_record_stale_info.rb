@@ -1,6 +1,6 @@
 class ActiveRecord::Base
-  class StaleInfo < Struct.new(:resource, :attribute, :human_attribute_name, :input_id, :type, :value_before, :value_after)
-    attr_accessor :resource, :attribute, :human_attribute_name, :input_id, :type, :value_before, :value_after
+  class StaleInfo < Struct.new(:resource, :attribute, :human_attribute_name, :input_id, :value_before, :value_after)
+    attr_accessor :resource, :attribute, :human_attribute_name, :input_id, :value_before, :value_after
 
     def initialize(options)
       options.each do |key, value|
@@ -43,9 +43,10 @@ class ActiveRecord::Base
                       attribute:            attribute,
                       human_attribute_name: "#{resource.class.human_attribute_name(attribute)}#{model_name_suffix}",
                       input_id:             "#{prefix}_#{attribute}",
-                      type:                 resource.class.columns_hash[attribute].type,
-                      value_before:         change[0],
-                      value_after:          change[1]
+
+                      # Instead of change[0] and change[1], see https://stackoverflow.com/questions/57378870
+                      value_before: resource.class.find(resource.id).send(attribute),
+                      value_after:  resource.send(attribute)
       end
     end.compact
   end
