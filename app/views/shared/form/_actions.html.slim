@@ -20,4 +20,4 @@
                       id: resource.id) }
 
   - if can? :index, resource
-    =< link_to icon(:bars, type: :fa) + ' ' + t('actions.resources_list', resources: resource.model_name.human(count: :other)), {action: 'index'}, class: 'btn btn-default'
+    =< link_to icon(:bars, type: :fa) + ' ' + t('actions.resources_list', resources: resource.model_name.human(count: :other)), {action: 'index', params: try("#{resource.class.model_name.to_s.underscore}_index_params") || {}}, class: 'btn btn-default'
