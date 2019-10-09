@@ -53,7 +53,7 @@ gem 'cocoon' # Dynamic nested forms made easy
 
 gem 'validates_timeliness' # Date and time validation plugin for ActiveModel and Rails
 
-gem 'strip_attributes', github: 'jmuheim/strip_attributes' # Automatically strips all attributes of leading and trailing whitespace (or nilify if blank)
+gem 'strip_attributes', git: 'https://github.com/jmuheim/strip_attributes.git' # Automatically strips all attributes of leading and trailing whitespace (or nilify if blank)
 
 gem 'enumerize' # Enumerated attributes with I18n
 
@@ -131,7 +131,7 @@ group :development do
 
   gem 'capybara' # Acceptance test framework for web applications
 
-  gem 'rails-footnotes', github: 'I-de-ya/rails-footnotes' # Every Rails page has footnotes that gives information about your application
+  gem 'rails-footnotes', git: 'https://github.com/I-de-ya/rails-footnotes.git' # Every Rails page has footnotes that gives information about your application
 
   gem 'mina', require: false # Really fast deployer and server automation tool
 
