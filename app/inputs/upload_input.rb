@@ -42,10 +42,10 @@ class UploadInput < SimpleForm::Inputs::FileInput
           if ['jpg', 'jpeg', 'gif', 'png'].include? object.send(attribute_name).file.extension
             template.content_tag(:img, I18n.t('simple_form.inputs.upload.file_preview'), src: object.send(attribute_name))
           else
-            template.icon(icon_for(object.send(attribute_name).file.extension), type: :fa) + ' ' + object.send(attribute_name).file.filename
+            template.icon(icon_for(object.send(attribute_name).file.extension)) + ' ' + object.send(attribute_name).file.filename
           end
         else
-          template.icon(:upload, type: :fa)
+          template.icon(:upload)
         end + content_tag(:span, I18n.t('simple_form.inputs.upload.click_to_choose_a_file', attribute: label_text), class: 'sr-only')
       end
     end
@@ -83,7 +83,7 @@ class UploadInput < SimpleForm::Inputs::FileInput
 
   def btn_remove
     template.content_tag :a, href: '#', class: ['btn', 'btn-default', 'fileinput-exists'], data: {dismiss: 'fileinput', placement: 'right'}, title: I18n.t('simple_form.inputs.upload.reset_selection', attribute: label_text) do
-      template.icon 'remove-circle'
+      template.icon 'times-circle'
     end
   end
 end

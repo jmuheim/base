@@ -3,8 +3,7 @@ module ApplicationHelper
     options = args.extract_options!
     content = args[0]
 
-    type = options.delete(:type) || :glyphicon
-    content_tag :span, class: [type, "#{type}-#{name}"] do
+    content_tag :span, class: ['fa', "fa-#{name}"] do
       sr_only content if content
     end
   end
@@ -14,7 +13,7 @@ module ApplicationHelper
   end
 
   def flag(name, content = nil)
-    content_tag :span, class: ['glyphicon', "bfh-flag-#{name.upcase}"] do
+    content_tag :span, class: ['fa', "bfh-flag-#{name.upcase}"] do
       sr_only content if content
     end
   end

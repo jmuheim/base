@@ -3,5 +3,5 @@
 
   - if can? :create, resource
     = link_to [:new, belongs_to ||= nil, resource.to_s.underscore], class: 'btn btn-success' do
-      = icon(:plus, type: :fa)
+      = icon(:plus)
       =< t('actions.new_resource', resource: resource.model_name.human)

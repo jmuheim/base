@@ -28,13 +28,13 @@ module CarouselHelper
 
   def carousel_control_left(id)
     content_tag :a, class: ['left', 'carousel-control'], data: {slide: 'prev'}, href: "##{id}", role: 'button' do
-      content_tag :span, nil, class: ['glyphicon', 'glyphicon-chevron-left']
+      content_tag :span, nil, class: ['fa', 'fa-chevron-left']
     end
   end
 
   def carousel_control_right(id)
     content_tag :a, class: ['right', 'carousel-control'], data: {slide: 'next'}, href: "##{id}", role: 'button' do
-      content_tag :span, nil, class: ['glyphicon', 'glyphicon-chevron-right']
+      content_tag :span, nil, class: ['fa', 'fa-chevron-right']
     end
   end
 end

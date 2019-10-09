@@ -38,19 +38,19 @@ nav#navigation.container
             == render 'layouts/resource_navigation_group', resource_class: User, index_params: user_index_params
 
           - if user_signed_in?
-            = navigation_group user_avatar(t('.user_menu')), user_registration_path, "#{icon :user, type: :fa} #{t '.show_account'}" do
+            = navigation_group user_avatar(t('.user_menu')), user_registration_path, "#{icon :user} #{t '.show_account'}" do
               = navigation_item edit_user_registration_path do
-                = icon :edit, type: :fa
+                = icon :edit
                 =< t '.edit_account'
 
               li
                 = link_to destroy_user_session_path, method: :delete do
-                  = icon('sign-out', type: :fa)
+                  = icon('sign-out')
                   =< t('.log_out')
 
           - else
             = navigation_item new_user_registration_path do
-              span.visible-sm-inline-block = icon 'user-plus', type: :fa
+              span.visible-sm-inline-block = icon 'user-plus'
               span.hidden-sm = t '.sign_up'
 
             = navigation_mega t('.sign_in'), new_user_session_path do

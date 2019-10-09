@@ -2,7 +2,7 @@
 .btn-group
   - if can?(:update, resource)
     = link_to [:edit, belongs_to ||= nil, resource], class: 'btn btn-sm btn-primary'
-      = icon(:pencil, t('actions.edit_resource', resource: resource.model_name.human), type: :fa)
+      = icon(:pencil, t('actions.edit_resource', resource: resource.model_name.human))
 
   - if can?(:destroy, resource)
     = link_to [belongs_to, resource], method: :delete,
@@ -10,4 +10,4 @@
         data: { confirm:  t('actions.destroy_resource_confirmation_question',
                 resource: resource.model_name.human,
                 id:       resource.id) } do
-      = icon(:remove, t('actions.destroy_resource', resource: resource.model_name.human), type: :fa)
+      = icon(:remove, t('actions.destroy_resource', resource: resource.model_name.human))

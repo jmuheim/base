@@ -1,14 +1,14 @@
 = accordion :filter, item_options: {title_tag: 'h2', panel_class: 'panel-warning'} do |accordion|
   = accordion.panel do |panel|
     = panel.title do
-      => icon :filter, type: :fa
+      => icon :filter
       = t 'actions.filter'
 
       - if q.conditions.any?
         =< "(#{t 'actions.filter_active'})"
 
         = link_to request.path, class: 'icon'
-          => icon :close, type: :fa
+          => icon :close
           = sr_only t('actions.remove_filter')
 
     = panel.body do

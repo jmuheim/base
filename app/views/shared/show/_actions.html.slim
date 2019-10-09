@@ -4,22 +4,22 @@
   .btn-group
     - if can? :edit, resource
       = link_to [:edit, belongs_to ||= nil, resource], class: 'btn btn-primary' do
-        = icon(:pencil, type: :fa)
+        = icon(:pencil)
         =< t('actions.edit')
 
     - if can? :destroy, resource
       = link_to [belongs_to, resource], method: :delete,
                 data:  {confirm: t('actions.destroy_resource_confirmation_question', resource: resource.model_name.human, id: resource.id)},
                 class: 'btn btn-danger'
-        = icon(:trash, type: :fa)
+        = icon(:trash)
         =< t('actions.destroy')
 
   | &nbsp;
   .btn-group
     - if can? :create, resource.class
       = link_to [:new, belongs_to ||= nil, resource.resource_class], class: 'btn btn-success' do
-        = icon(:plus, type: :fa)
+        = icon(:plus)
         =< t('actions.new_resource', resource: resource.model_name.human)
     = link_to [belongs_to, resource.model_name.to_s.tableize], class: 'btn btn-default' do
-      = icon(:bars, type: :fa)
+      = icon(:bars)
       =< t('actions.resources_list', resources: resource.model_name.human(count: :other))
