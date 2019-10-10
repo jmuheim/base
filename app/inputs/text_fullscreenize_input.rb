@@ -1,4 +1,4 @@
-class TextInput < SimpleForm::Inputs::TextInput
+class TextFullscreenizeInput < SimpleForm::Inputs::TextInput
   def input(wrapper_options)
     help_blocks = []
 

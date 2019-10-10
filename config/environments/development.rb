@@ -52,7 +52,7 @@ Rails.application.configure do
                                                                                      live_reload_port: 35729
 
   # TODO: This should be retrieved from DefaultOptions, see http://stackoverflow.com/questions/3842818#comment46921326_23489706
-  config.action_mailer.default_url_options = {host: Rails.application.secrets.default_url_host}
+  config.action_mailer.default_url_options = {host: "#{Rails.application.secrets.default_url_host}:#{Rails.application.secrets.app_port}"}
 
   # Suppress logger output for asset requests.
   config.assets.quiet = true
