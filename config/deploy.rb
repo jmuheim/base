@@ -3,14 +3,14 @@ require 'mina/bundler'
 require 'mina/git'
 require 'mina/puma'
 
-set :app_name,      'base'                            # Short, slug-like application name, e.g. `mcp` or `my-cool-project`
-set :domain,        'sirius.uberspace.de'             # Domain to SSH to, e.g. `sirius.uberspace.de`
-set :deploy_to,     '/home/base/rails'                # E.g. `/home/mcp/rails`
-set :repository,    'git@github.com:jmuheim/base.git' # E.g. `git@github.com:jmuheim/mcp.git`
-set :user,          'base'                            # SSH user, e.g. `mcp`
-set :puma_port,     3001 # Should be the same as `app_port` in your secrets
+set :app_name,   'base'                            # Short, slug-like application name, e.g. `mcp` or `my-cool-project`
+set :domain,     'sirius.uberspace.de'             # Domain to SSH to, e.g. `sirius.uberspace.de`
+set :deploy_to,  '/home/base/rails'                # E.g. `/home/mcp/rails`
+set :repository, 'git@github.com:jmuheim/base.git' # E.g. `git@github.com:jmuheim/mcp.git`
+set :user,       'base'                            # SSH user, e.g. `mcp`
+set :puma_port,  3001                              # Should be the same as `app_port` in your secrets
 
-set :branch,        ENV['branch'] || `git rev-parse --abbrev-ref HEAD`.strip
+set :branch, ENV['branch'] || `git rev-parse --abbrev-ref HEAD`.strip
 set :forward_agent, true
 
 # Shared dirs and files will be symlinked into the app-folder by the 'deploy:link_shared_paths' step.
