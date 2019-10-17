@@ -251,7 +251,7 @@ GEM
     mina (1.2.3)
       open4 (~> 1.3.4)
       rake
-    mina-ng-puma (1.4.0)
+    mina-puma (1.1.0)
       mina (~> 1.2.0)
       puma (>= 2.13)
     mini_magick (4.9.5)
@@ -514,7 +514,7 @@ DEPENDENCIES
   launchy
   listen
   mina
-  mina-ng-puma
+  mina-puma
   mini_magick
   mobility
   mysql2

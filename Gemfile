@@ -135,7 +135,7 @@ group :development do
 
   # Really fast deployer and server automation tool
   gem 'mina', require: false
-  gem 'mina-ng-puma', require: false
+  gem 'mina-puma', require: false
 
   gem 'i18n_yaml_sorter' # A I18n YAML deep sorter that will keep your locales organized
 end
