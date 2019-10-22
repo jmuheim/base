@@ -9,87 +9,67 @@ In the following document, replace `ACCOUNT` with your Uberspace account name (e
 ## Register new account
 
 - Go to the [register](https://uberspace.de/register) page and create a new Uberspace account.
-- Then add your public SSH key on the [Logins](https://uberspace.de/dashboard/authentication) page (**notice:** [Mina](http://nadarei.co/mina/) seems to have [problems with password authentication](http://stackoverflow.com/questions/22606771)!).
+- Then add your public SSH key on the [Logins](https://uberspace.de/dashboard/authentication) page.
     - To view your public SSH key, do `$ cat ~/.ssh/id_rsa.pub`.
 - You can see the chosen Uberspace server's name in the [Datasheet](https://uberspace.de/dashboard/datasheet).
 - Now you can connect to your account: `$ ssh ACCOUNT@SERVER.uberspace.de`.
     - Confirm the question `Are you sure you want to continue connecting?` with a heartly `yes`.
 
-## Nginx as service
-
-Nginx will receive web requests from the outside and pass them to the Rails app. A service (or daemon) is a program that starts automatically and is kept in the background. In case it quits or crashes, it is restarted by `supervisord`.
-
-To setup Nginx as a service, on Uberspace, create `~/etc/services.d/nginx.ini` with following content:
-
-```
-[program:nginx]
-command=/home/audit/nginx/sbin/nginx
-autostart=yes
-autorestart=yes
-```
-
-Then, on Uberspace:
-
-- Ask supervisord to look for new .ini files: `$ supervisorctl reread`.
-- Start your daemon: `$ supervisorctl update`.
-
-## Mailer email account
-
-To send Mails using SMTP, we need a mailer email account.
-
-- On Uberspace, execute `$ uberspace mail user add mailer`.
-- (Remember the password for later use!)
-
 ## Add GitHub to known hosts
 
 - Add your SSH public key to GitHub: https://help.github.com/articles/adding-a-new-ssh-key-to-your-github-account/
+    - Like above, to view your public SSH key, do `$ cat ~/.ssh/id_rsa.pub`.
 - On your local console, execute `ssh -T git@github.com` and confirm.
     - You should see something like `Hi user! You've successfully authenticated, but GitHub does not provide shell access.`.
-
-## Setup Mina
-
-- Edit [`config/deploy.rb`](config/deploy.rb) and set `:app_name`, `:domain`, `:deploy_to`, `:repository`, `:user`, and `:puma_port`.
-- Save the file, commit and push.
-- On your local console, execute `$ mina setup`.
-    - This will deploy the current branch; to deploy another branch, use `$ branch=my-branch mina setup`.
-    - If something goes wrong, use the `--verbose` and `--trace` switch for debugging.
 
 ## Mailer email account
 
 To send Mails using SMTP, we need a mailer email account.
 
 - On Uberspace, execute `$ uberspace mail user add mailer`.
-- (Remember the password for later use!)
+- Remember the password for later use!
 
 ## Secrets.yml
 
-Create `/home/ACCOUNT/rails/shared/config/secrets.yml` and set up a `deployment` config according to `config/secrets.example.yml` (just remove `development` and `test` configs).
+Create `/home/ACCOUNT/rails/shared/config/secrets.yml` and set up a `deployment` config according to `config/secrets.example.yml` (remove `development` and `test` configs).
 
 The database info can be found in the file `~/.my.cnf`.
 
+## Setting up Capistrano
+
+- Edit `config/deploy.rb` and set:
+    - `:application` to something like `'Base'`.
+    - `:repo_url` to something like `'git@github.com:jmuheim/base.git'`.
+    - `:deploy_to` to something like `'/home/ACCOUNT/rails'`.
+    - `:puma_bind` to something like `'tcp://0.0.0.0:PORT'` (use the same port as `app_port` in `secrets.yml`, e.g. `3001`).
+- Edit `config/deploy/production.rb` and add a line like `server "ACCOUNT.uberspace.de", user: "ACCOUNT", roles: %w{web app db}`
+- Save the files, commit and push.
+
 ## First deployment
 
-It's time for the first deployment:
+On your local console, execute `$ cap production deploy`.
 
-- Be sure you have pushed the current branch to GitHub.
-- Comment out the following two lines in `config/deploy.rb` by adding a `#` in front, and save the file:
-    - `invoke :'rails:db_schema_load'` becomes `# invoke :'rails:db_schema_load'`.
-    - `command %{#{fetch(:rails)} db:seed}` becomes `# command %{#{fetch(:rails)} db:seed}`.
-- On your local console, execute `$ mina deploy`.
-    - This could take some minutes (installing and compiling gems).
-    - If something goes wrong, use the `--verbose` and `--trace` switch for debugging (e.g. `$ mina deploy --verbose`).
-- After successful first deployment, comment out the two lines above again (revert to original state), and save the file.
+This could take some minutes (installing and compiling gems).
 
 ## Configure web backend
 
 The Rails app is now running in the background and accepts request on the specified port. To make this port accessible to the outside world, we need to route incoming requests to it.
 
-- On Uberspace, execute `$ uberspace web backend set / --http --port PORT` (replace `PORT` with the value of `app_port` in `secrets.yml`, e.g. `3001`).
+- On Uberspace, execute `$ uberspace web backend set / --http --port PORT` (use the same port as `app_port` in `secrets.yml`, e.g. `3001`).
+    - To verify that the server actually is running on the specified port, execute `$ ps aux | grep puma`.
 - Now go to [http://ACCOUNT.uber.space](http://ACCOUNT.uber.space) and enjoy your site!
 
 You may now want to update the link to the live project in `README.md`. :-)
 
-## Add domain
+## Further deployments
+
+Simply push all your changes, then run `$ cap production deploy` again.
+
+## Additional info about Uberspace
+
+Setup of deployment ends here. The following is a collection of additional useful information regarding Uberspace.
+
+### Add domain
 
 For website use, on Uberspace, execute:
 
@@ -100,7 +80,7 @@ For mail use, on Uberspace, execute:
 
 - `$ uberspace mail domain add example.com` adds domain `example.com`
 
-### DNS
+#### DNS
 
 Add the following records to the DNS for the domain (at your domain registrar's control panel, in our case [InternetWorx](http://www.inwx.ch)):
 
@@ -112,7 +92,7 @@ Add the following records to the DNS for the domain (at your domain registrar's 
 - Email (MX):
   - `SERVER.uberspace.de` with priority `5`
 
-## Create email account(s)<sup>(remote)</sup>
+### Create email account(s)<sup>(remote)</sup>
 
 Create account `user` in namespace `example`:
 
@@ -120,7 +100,7 @@ Create account `user` in namespace `example`:
 
 Mail sent to `user@example.com` will be received by this account.
 
-## Configure mail client <sup>local</sup>
+### Configure mail client <sup>local</sup>
 
 OSX Mail:
 
@@ -130,7 +110,3 @@ OSX Mail:
 Thunderbird:
 
 - Just add the account in the account settings using user name and password - Thunberbird will automatically detect the correct settings!
-
-## Additional information
-
-- If you ever have to inspect server logs, they're here: `/home/ACCOUNT/nginx/logs/error.log`
