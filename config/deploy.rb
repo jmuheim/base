@@ -1,69 +1,54 @@
-require 'mina/rails'
-require 'mina/bundler'
-require 'mina/git'
-require 'mina/puma'
+# config valid for current version and patch releases of Capistrano
+lock "~> 3.11.2"
 
-set :app_name,   'base'                            # Short, slug-like application name, e.g. `mcp` or `my-cool-project`
-set :domain,     'sirius.uberspace.de'             # Domain to SSH to, e.g. `sirius.uberspace.de`
-set :deploy_to,  '/home/base/rails'                # E.g. `/home/mcp/rails`
-set :repository, 'git@github.com:jmuheim/base.git' # E.g. `git@github.com:jmuheim/mcp.git`
-set :user,       'base'                            # SSH user, e.g. `mcp`
-set :puma_port,  3001                              # Should be the same as `app_port` in your secrets
+set :application, "my_app_name"
+set :repo_url, "git@example.com:me/my_repo.git"
 
-set :branch, ENV['branch'] || `git rev-parse --abbrev-ref HEAD`.strip
-set :forward_agent, true
+# Default branch is :master
+# ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
-# Shared dirs and files will be symlinked into the app-folder by the 'deploy:link_shared_paths' step.
-# Some plugins already add folders to shared_dirs like `mina/rails` adds `public/assets`, `vendor/bundle` and many more
-# run `mina -d` to see all folders and files already included in `shared_dirs` and `shared_files`
-set :shared_dirs, fetch(:shared_dirs, []).push('public/uploads', 'tmp/sockets', 'tmp/pids')
-set :shared_files, fetch(:shared_files, []).push('config/secrets.yml')
+# Check out repository once, then pull on each deploy (instead of checking out each time)
+set :deploy_via, :remote_cache
 
-# This task is the environment that is loaded for all remote run commands, such as
-# `mina deploy` or `mina rake`.
-task :remote_environment do
-end
+# Default deploy_to directory is /var/www/my_app_name
+# set :deploy_to, "/var/www/my_app_name"
 
-# Put any custom commands you need to run at setup
-# All paths in `shared_dirs` and `shared_paths` will be created on their own.
-task :setup do
-  comment "Be sure to create #{fetch(:shared_path)}/config/secrets.yml!"
+# Default value for :format is :airbrussh.
+# set :format, :airbrussh
 
-  command %{gem install bundler}
-end
+# You can configure the Airbrussh format using :format_options.
+# These are the defaults.
+# set :format_options, command_output: true, log_file: "log/capistrano.log", color: :auto, truncate: :auto
 
-desc "Deploys the current version to the server."
-task :deploy do
-  # uncomment this line to make sure you pushed your local branch to the remote origin
-  invoke :'git:ensure_pushed'
+# Default value for :pty is false
+# set :pty, true
 
-  deploy do
-    comment "Deploying #{fetch(:app_name)} to #{fetch(:domain)}:#{fetch(:deploy_to)}"
+# Default value for :linked_files is []
+append :linked_files, "config/secrets.yml"
 
-    # Put things that will set up an empty directory into a fully set-up
-    # instance of your project.
-    invoke :'git:clone'
-    invoke :'deploy:link_shared_paths'
-    invoke :'bundle:install'
+# Default value for linked_dirs is []
+append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", 'vendor/bundle', '.bundle', "public/system", 'public/uploads'
 
-    # This loads the DB schema, runs migrations, and executes the seeds.
-    # https://stackoverflow.com/questions/58372477
-    # invoke :'rails:db_schema_load'      # Uncomment temporarily for first deployment!
-    invoke :'rails:db_migrate'
-    # command %{#{fetch(:rails)} db:seed} # Uncomment temporarily for first deployment!
+# Default value for default_env is {}
+# set :default_env, { path: "/opt/ruby/bin:$PATH" }
 
-    invoke :'rails:assets_precompile'
-    invoke :'deploy:cleanup'
+# Default value for local_user is ENV['USER']
+# set :local_user, -> { `git config user.name`.chomp }
 
-    on :launch do
-      invoke :'puma:hard_restart'
+# Default value for keep_releases is 5
+# set :keep_releases, 5
 
-      # in_path(fetch(:current_path)) do
-      #   Do more stuff...
-      # end
-    end
-  end
+# Uncomment the following to require manually verifying the host key before first deploy.
+# set :ssh_options, verify_host_key: :secure
 
-  # you can use `run :local` to run tasks on local machine before of after the deploy scripts
-  # run(:local){ say 'done' }
-end
+# Puma configurations
+set :puma_threads, [4, 16]
+set :puma_workers, 0
+set :puma_bind, 'tcp://0.0.0.0:3001'
+set :puma_state, "#{shared_path}/tmp/pids/puma.state"
+set :puma_pid, "#{shared_path}/tmp/pids/puma.pid"
+set :puma_access_log, "#{release_path}/log/puma.error.log"
+set :puma_error_log, "#{release_path}/log/puma.access.log"
+set :puma_preload_app, true
+set :puma_worker_timeout, nil
+set :puma_init_active_record, true
