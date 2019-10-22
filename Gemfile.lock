@@ -93,9 +93,6 @@ GEM
     capistrano-rails (1.4.0)
       capistrano (~> 3.1)
       capistrano-bundler (~> 1.1)
-    capistrano-rvm (0.1.2)
-      capistrano (~> 3.0)
-      sshkit (~> 1.2)
     capistrano3-puma (4.0.0)
       capistrano (~> 3.7)
       capistrano-bundler
@@ -503,7 +500,6 @@ DEPENDENCIES
   cancancan
   capistrano (~> 3.10)
   capistrano-rails (~> 1.4)
-  capistrano-rvm
   capistrano3-puma
   capybara
   capybara-screenshot
