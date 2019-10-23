@@ -5,7 +5,7 @@ set :application, "my_app_name"
 set :repo_url, "git@example.com:me/my_repo.git"
 
 # Default branch is :master
-# ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
+set :branch, `git rev-parse --abbrev-ref HEAD`.chomp # Simply use the current branch!
 
 # Check out repository once, then pull on each deploy (instead of checking out each time)
 set :deploy_via, :remote_cache

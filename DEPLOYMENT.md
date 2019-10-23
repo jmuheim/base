@@ -43,13 +43,13 @@ The database info can be found in the file `~/.my.cnf`.
     - `:deploy_to` to something like `'/home/ACCOUNT/rails'`.
     - `:puma_bind` to something like `'tcp://0.0.0.0:PORT'` (use the same port as `app_port` in `secrets.yml`, e.g. `3001`).
 - Edit `config/deploy/production.rb` and add a line like `server "ACCOUNT.uberspace.de", user: "ACCOUNT", roles: %w{web app db}`
-- Save the files, commit and push.
+- Save the files, commit and push the branch.
 
 ## First deployment
 
-On your local console, execute `$ cap production deploy`.
+The first deployment is a special one, as it needs to load the database schema (it is called a "cold" deploy). Any subsequent deployments won't do this; instead they will trigger the database migrations.
 
-This could take some minutes (installing and compiling gems).
+On your local console, execute `$ cap production deploy_cold`. This could take some minutes (installing and compiling gems).
 
 ## Configure web backend
 
@@ -61,9 +61,19 @@ The Rails app is now running in the background and accepts request on the specif
 
 You may now want to update the link to the live project in `README.md`. :-)
 
+## Populate database
+
+### Option 1: Seed data
+
+To populate the database with initial records (seeds), execute `$ cap production db_seed`. See `db/seeds.rb` for more details about the seed data.
+
+### Option 2: Import data
+
+To use existing data (maybe from another running instance, or from your development instance), feel free to simply export the database tables in question and import them into the database.
+
 ## Further deployments
 
-Simply push all your changes, then run `$ cap production deploy` again.
+For any further deployment, simply push all your changes, then run `$ cap production deploy`.
 
 ## Additional info about Uberspace
 
