@@ -35,5 +35,13 @@ RSpec.describe Image do
         image.update_attributes! identifier: 'daisy'
       }.to change { image.versions.count }.by 1
     end
+
+    it 'versions file' do
+      image = create :image, creator: @user
+
+      expect {
+        image.update_attributes! file: File.open(dummy_file_path('other_image.jpg'))
+      }.to change { image.versions.count }.by 1
+    end
   end
 end
