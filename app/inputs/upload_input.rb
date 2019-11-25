@@ -70,7 +70,7 @@ class UploadInput < SimpleForm::Inputs::FileInput
     if file_available?
       field_name = "remove_#{attribute_name}"
       template.content_tag :div, class: ['checkbox', 'remove_file'] do
-        @builder.check_box(field_name) + @builder.label(field_name, label: I18n.t('simple_form.inputs.upload.remove_file', attribute: label_text))
+        @builder.check_box(field_name) + @builder.label(field_name, label: I18n.t('simple_form.inputs.upload.remove_file'))
       end
     end
   end

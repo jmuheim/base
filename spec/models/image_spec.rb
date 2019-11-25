@@ -14,6 +14,13 @@ RSpec.describe Image do
     it { should validate_presence_of :creator_id }
     it { should validate_presence_of :identifier }
     it { should validate_uniqueness_of(:identifier).scoped_to [:imageable_type, :imageable_id] }
+
+    # Standard matcher doesn't work for upload fields
+    it 'validates presence of file' do
+      image = build :image, file: nil, creator: @user
+      image.valid?
+      expect(image.errors[:file]).to include "can't be blank"
+    end
   end
 
   it 'provides optimistic locking' do

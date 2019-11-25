@@ -12,4 +12,6 @@ class Image < ApplicationRecord
                          uniqueness: {scope: [:imageable_type, :imageable_id]}
 
   validates :creator_id, presence: true
+
+  validates :file, presence: true
 end
