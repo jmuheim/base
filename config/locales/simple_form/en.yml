@@ -40,7 +40,7 @@ en:
         click_to_choose_a_file: Click to choose a file for %{attribute}
         click_to_choose_another_file: Click to choose another %{attribute} file
         file_preview: File preview
-        remove_file: Remove existing file
+        remove_file: Remove existing %{attribute} file
         reset_selection: Reset %{attribute} file selection
     'no': 'No'
     required:

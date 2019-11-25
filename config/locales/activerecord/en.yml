@@ -12,7 +12,7 @@ en:
       image:
         created_at: Created at
         creator: Created by
-        file: Datei
+        file: File
         identifier: Identifier
         updated_at: Updated at
       page:
