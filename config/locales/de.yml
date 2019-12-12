@@ -41,8 +41,8 @@ de:
         no_diff_available: Keine Unterschieds-Anzeige verfügbar (bitte JavaScript aktivieren)
       head:
         attribute: Attribut
-        value_after: Wert vorher
-        value_before: Wert nachher
+        value_after: Wert nachher
+        value_before: Wert vorher
         value_difference: Wert Unterschied
     form:
       captcha:
