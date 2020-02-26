@@ -23,7 +23,7 @@ module ApplicationHelper
   end
 
   def yes_or_no_icon(bool)
-    icon((bool ? :ok : :remove), yes_or_no(bool))
+    icon((bool ? :check : :remove), yes_or_no(bool))
   end
 
   def locale_flag(locale)
