@@ -56,14 +56,14 @@ de:
         info: Informationen zum Einfügen von Bildern und CodePen-Links als Ressourcen
     show:
       additional_information: Weitere Informationen
+      images:
+        thumb: Vorschaubild
       version:
         create: Erstellen
         destroy: Löschen
         update: Aktualisieren
       versions:
         no_changes: Keine Änderungen in dieser Version
-      images:
-        thumb: 'Vorschaubild'
   'true': Ja
   users:
     detail_inputs:
