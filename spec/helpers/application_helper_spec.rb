@@ -69,7 +69,7 @@ describe ApplicationHelper do
     describe '#yes_or_no_icon(true)' do
       subject { yes_or_no_icon true }
 
-      it { should have_css 'span.fa.fa-ok' }
+      it { should have_css 'span.fa.fa-check' }
       it { should have_content 'Yes' }
     end
 
