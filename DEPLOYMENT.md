@@ -71,6 +71,21 @@ To populate the database with initial records (seeds), execute `$ cap production
 
 To use existing data (maybe from another running instance, or from your development instance), feel free to simply export the database tables in question and import them into the database.
 
+cd ~/Backup/backups/audit/<backup>/
+
+tar -xvf audit.tar
+gunzip audit/databases/MySQL.sql.gz
+
+cat ~/staging-audit.access4all.ch/shared/config/secrets.yml => PW
+mysql -u nmd_staging_audit -p nmd_staging_audit < audit/databases/MySQL.sql
+
+tar -xvf audit/archives/uploads.tar.gz
+rm -rf ~/staging-audit.access4all.ch/shared/public/uploads
+mv home/www-data/audit.access4all.ch/shared/public/uploads ~/staging-audit.access4all.ch/shared/public/
+
+rm -rf audit
+rm -rf home
+
 ## Further deployments
 
 For any further deployment, simply push all your changes, then run `$ cap production deploy`.
