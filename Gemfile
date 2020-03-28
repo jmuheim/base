@@ -79,6 +79,10 @@ gem 'wannabe_bool' # Converts strings, integers, etc. intuitively to boolean val
 
 gem 'mysql2' # Use MySQL as the database for Active Record
 
+# Optimize images using multiple utilities
+gem 'image_optim'
+gem 'image_optim_pack' # Precompiled binaries for image_optim
+
 group :doc do
   gem 'sdoc', require: false # bundle exec rake doc:rails generates the API under doc/api.
 end
