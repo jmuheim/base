@@ -21,9 +21,13 @@ class ImageUploader < AbstractUploader
     return if Rails.env.test? # Optimising consumes quite some time, so let's disable it for tests
 
     if version_name.nil?
-      image_optim = ImageOptim.new allow_lossy: true,
-                                   pngout: false, # Need to suppress this, otherwise we get errors (see https://github.com/toy/image_optim_pack/issues/19)
-                                   svgo: false # Dito
+      image_optim = ImageOptim.new pngout: false,
+                                   svgo: false,
+                                   pngcrush: false,
+                                   optipng: false,
+                                   pngquant: {allow_lossy: true},
+                                   advpng: false
+
       image_optim.optimize_images!(Dir["#{File.dirname(file.file)}/*.png"])
     end
   end
