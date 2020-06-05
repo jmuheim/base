@@ -116,9 +116,6 @@ GEM
       carrierwave (>= 0.8.0)
       mime-types (~> 3.0)
       mimemagic (~> 0.3.2)
-    carrierwave-imageoptim (0.1.5)
-      carrierwave (>= 0.10, < 1.3)
-      image_optim (~> 0.22)
     childprocess (3.0.0)
     chunky_png (1.3.11)
     cliver (0.3.2)
@@ -492,7 +489,7 @@ GEM
       railties (>= 5.0)
     websocket-driver (0.7.1)
       websocket-extensions (>= 0.1.0)
-    websocket-extensions (0.1.4)
+    websocket-extensions (0.1.5)
     xpath (3.2.0)
       nokogiri (~> 1.8)
     xray-rails (0.3.2)
@@ -516,7 +513,6 @@ DEPENDENCIES
   capybara-screenshot
   carrierwave (< 2)
   carrierwave-base64
-  carrierwave-imageoptim
   cocoon
   coffee-rails
   compass-rails (~> 3.1)
