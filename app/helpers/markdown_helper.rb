@@ -3,7 +3,38 @@ module MarkdownHelper
   # TODO: Would be great to use the Tilt default mechanism instead!
   def markdown(string)
     string ||= '' # If nil is supplied, Pandoc waits for input and nothing is returned
-    PandocRuby.convert(string, to: :html4).strip.html_safe
+    html = PandocRuby.convert(string).strip
+    
+    nokogiri = Nokogiri::HTML::DocumentFragment.parse(html)
+
+    nokogiri = clone_alt_into_img_and_hide_figcaption_from_sr(nokogiri)
+    nokogiri = add_empty_alt_to_decorative_img(nokogiri)
+
+    nokogiri.to_html.html_safe
+  end
+
+  # Pandoc removes the content of an image's alt attribute, as the text is also available inside figcaption (to avoid screen reader redundancies). This is terrible though, as this renders the image itself invisible to screen readers. So we clone the alternative text back into the alt attribute again, and place an aria-hidden on figcaption.
+  #
+  # See https://github.com/jgm/pandoc/issues/6491
+  def clone_alt_into_img_and_hide_figcaption_from_sr(nokogiri)
+    nokogiri.css('figure').map do |figure|
+      img        = figure.at_css('img')
+      figcaption = figure.at_css('figcaption')
+
+      img['alt'] = figcaption.text
+      figcaption['aria-hidden'] = true
+    end
+
+    nokogiri
+  end
+
+  # Pandoc doesn't add an empty alt-attribute if the alternative text is left empty. Because screen readers announce the file name in this situation, we add an empty alt-attribute here.
+  def add_empty_alt_to_decorative_img(nokogiri)
+    nokogiri.css('img:not([alt])').map do |img|
+      img['alt'] = ''
+    end
+
+    nokogiri
   end
 
   def indent_heading_level(markdown, heading_level, visual_heading_level = nil)
@@ -24,10 +55,5 @@ module MarkdownHelper
 
       line
     end.join "\n"
-  end
-
-  def pandoc_version
-    matches = `pandoc -v`.match /\bpandoc (\d+\.\d+)\b/
-    matches[1]
   end
 end

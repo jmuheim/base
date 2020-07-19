@@ -6,7 +6,6 @@ class App.Init
     @makeFormsAccessible @$el
     @makeTextareasPastable @$el
     @makeTextareasPastableToNestedResource @$el
-    @optimizeMarkdownGeneratedHtml @$el
     @initTooltips @$el
     @initFancybox @$el
     @makeTextareasFullscreenizable @$el
@@ -52,9 +51,6 @@ class App.Init
   makeTextareasPastableToNestedResource: ($el) ->
     $el.find('textarea[data-pastable-resources="true"]').each ->
       new App.ClipboardToNestedResourcePastabilizer @
-
-  optimizeMarkdownGeneratedHtml: ($el) ->
-    new App.MarkdownHtmlOptimizer $el
 
   makeTextareasFullscreenizable: ($el) ->
     $el.find('textarea[data-textarea-fullscreenizer="true"]').each ->
