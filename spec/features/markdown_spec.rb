@@ -34,7 +34,7 @@ describe 'Markdown' do
     expect(page).to have_css 'img[src="decorative-image"][alt=""]'
   end
 
-  it 'hides anchors from code blocks', focus: true, js: true do
+  it 'hides anchors from code blocks', js: true do
     @page = create :page, creator: create(:user), content: "```html\n<p>\nHello!\n</p>\n```"
     visit page_path @page
 
