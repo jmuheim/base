@@ -2,7 +2,7 @@
 
 # It's a little workaround, see https://github.com/xwmx/pandoc-ruby/issues/40
 PANDOC_PATH = if Rails.env.production?
-                'pandoc'
+                'pandoc' # Change if needed!
               else
                 'pandoc'
               end
