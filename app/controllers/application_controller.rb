@@ -118,7 +118,7 @@ class ApplicationController < ActionController::Base
   end
 
   def pandoc_version
-    matches = `pandoc -v`.match /\bpandoc ((\.?\d+)+)\b/
+    matches = `#{PANDOC_PATH} -v`.match /\bpandoc (\d*.\d*)\b/
     pandoc_version = matches[1].to_f
   end
 
