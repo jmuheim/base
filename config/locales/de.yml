@@ -64,6 +64,7 @@ de:
         update: Aktualisieren
       versions:
         no_changes: Keine Änderungen in dieser Version
+    pandoc_version: Pandoc Version muss mindestens %{min_version} sein! Aktuelle Version ist jedoch %{current_version}.
   'true': Ja
   users:
     detail_inputs:
