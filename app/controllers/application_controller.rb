@@ -3,7 +3,7 @@ require 'application_responder'
 class ApplicationController < ActionController::Base
   http_basic_authenticate_with name: 'admin', password: Rails.application.secrets.http_auth_password if Rails.env.production?
   
-  PANDOC_MIN_VERSION = 2.9
+  PANDOC_MIN_VERSION = '2.9'
 
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
@@ -119,11 +119,11 @@ class ApplicationController < ActionController::Base
 
   def pandoc_version
     matches = `#{PANDOC_PATH} -v`.match /\bpandoc (\d*.\d*)\b/
-    pandoc_version = matches[1].to_f
+    pandoc_version = matches[1]
   end
 
   def ensure_pandoc_version
-    if pandoc_version < PANDOC_MIN_VERSION
+    if Gem::Version.new(pandoc_version) < Gem::Version.new(PANDOC_MIN_VERSION)
       flash.now[:alert] = t 'shared.pandoc_version', min_version: PANDOC_MIN_VERSION, current_version: pandoc_version
     end
   end
