@@ -17,7 +17,7 @@ require 'capybara/rspec'
 require 'capybara-screenshot/rspec'
 
 # For capybara-screenshot, so when running a development server, the screenshots look better
-Capybara.asset_host = "http://#{Rails.application.secrets.default_url_host}" # TODO warum geht das nicht?
+Capybara.asset_host = "http://#{Rails.application.secrets.default_url_host}:#{Rails.application.secrets.app_port}" # TODO warum geht das nicht?
 Capybara::Screenshot.register_filename_prefix_formatter(:rspec) do |example|
   "#{example.description.gsub(/\W/, '-').gsub(/^.*\/spec\//, '')}"
 end

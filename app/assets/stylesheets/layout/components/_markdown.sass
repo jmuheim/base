@@ -1,4 +1,7 @@
 .markdown
+  @include word-break(break-all)
+  @include hyphens(auto)
+
   h2 + .figure ~ h2,
   h3 + .figure ~ h3,
   h4 + .figure ~ h4,
@@ -18,15 +21,13 @@
     @extend .table-bordered
     @extend .table-striped
 
-
-  a
-    @include word-break(break-all)
-    @include hyphens(auto)
-
   .figure
     @extend .img-thumbnail
     margin-bottom: 10px
     background-color: #f5f5f5
+
+    img
+      max-width: 100%
 
     .caption
       margin-top: 4px
@@ -40,3 +41,7 @@
 
   .clear
     clear: both
+
+  /* Hide anchors inside source code to prevent invisible tab stops, see https://stackoverflow.com/questions/62656815/ */
+  pre > code.sourceCode a
+    display: none

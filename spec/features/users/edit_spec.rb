@@ -68,7 +68,6 @@ describe 'Editing user' do
     end
 
     it "prevents from overwriting other users' changes accidently (caused by race conditions)" do
-      pending 'See https://stackoverflow.com/questions/57378870'
       visit edit_user_path(@user)
 
       # Change something in the database...

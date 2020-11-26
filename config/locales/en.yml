@@ -56,14 +56,15 @@ en:
         info: Information about pasting images and CodePen links as resources
     show:
       additional_information: Additional information
+      images:
+        thumb: Thumb image
       version:
         create: Create
         destroy: Destroy
         update: Update
       versions:
         no_changes: No changes in this version
-      images:
-        thumb: 'Thumb image'
+    pandoc_version: Pandoc version must be at least %{min_version}! But current version is %{current_version}.
   'true': 'Yes'
   users:
     detail_inputs:

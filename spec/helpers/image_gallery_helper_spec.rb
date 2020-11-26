@@ -14,8 +14,8 @@ describe ImageGalleryHelper do
   describe '#zoomable_image' do
     let(:image) do
       image = double
-      expect(image).to receive(:url) { 'original-url' }
-      expect(image).to receive(:url).with(:thumb) { 'thumb-url' }
+      expect(image).to receive(:url) { 'original-url.jpg' }
+      expect(image).to receive(:url).with(:thumb) { 'thumb-url.jpg' }
       image
     end
 
@@ -23,11 +23,11 @@ describe ImageGalleryHelper do
       subject { zoomable_image image, class: 'some_class', alt: 'This is a great image' }
 
       it { should     have_css 'a.fancybox img' }
-      it { should     have_css 'a[href="original-url"]' }
+      it { should     have_css 'a[href="original-url.jpg"]' }
       it { should_not have_css 'a[rel]' }
       it { should     have_css 'img.some_class' }
       it { should     have_css 'img[alt="This is a great image"]' }
-      it { should     have_css 'img[src="/images/thumb-url"]' }
+      it { should     have_css 'img[src="/images/thumb-url.jpg"]' }
     end
 
     context 'called inside image_gallery' do

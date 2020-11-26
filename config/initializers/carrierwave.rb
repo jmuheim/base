@@ -1,8 +1,8 @@
-# Inspired by https://gist.github.com/artemave/c20e7450af866f5e7735
 require 'mini_magick'
 
 module CarrierWave
   module MiniMagick
+    # Inspired by https://gist.github.com/artemave/c20e7450af866f5e7735
     def border(color)
       manipulate! do |img|
         img.format 'png'
@@ -22,6 +22,15 @@ module CarrierWave
         img.composite(overlay, 'png') do |i|
           i.compose 'Over'
         end
+      end
+    end
+
+    # https://github.com/carrierwaveuploader/carrierwave/wiki/How-to%3A-Specify-the-image-quality
+    def quality(percentage)
+      manipulate! do |img|
+        img.quality(percentage.to_s)
+        img = yield(img) if block_given?
+        img
       end
     end
   end

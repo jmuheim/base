@@ -7,6 +7,6 @@
     = f.input :role, disabled: cannot?(:edit_role, f.object) if signed_in?
     = f.input :email, as: :email, required: true
     = f.input :avatar, as: :paste
-    = f.input :about, as: :text
+    = f.input :about, as: :text_fullscreenize
     = f.input :curriculum_vitae, as: :upload
     = f.input :disabled, disabled: cannot?(:edit_disabled, f.object) if signed_in?

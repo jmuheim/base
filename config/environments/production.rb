@@ -23,15 +23,15 @@ Rails.application.configure do
   # For large-scale production use, consider using a caching reverse proxy like nginx, varnish or squid.
   # config.action_dispatch.rack_cache = true
 
-  # Disable Rails's static asset server (Apache or nginx will already do this).
-  config.public_file_server.enabled = false
+  # Enable Rails's static asset server (configuring Apache or nginx is too cumbersome).
+  config.public_file_server.enabled = true
 
   # Compress JavaScripts and CSS.
   config.assets.js_compressor = :uglifier
   # config.assets.css_compressor = :sass
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
-  config.assets.compile = true # Couldn't get Bootstrap Glyphicons to work without setting this to true, see https://github.com/twbs/bootstrap-sass/issues/395#issuecomment-28737219
+  config.assets.compile = false
 
   # Generate digests for assets URLs.
   config.assets.digest = true
@@ -96,7 +96,10 @@ Rails.application.configure do
     config.logger = ActiveSupport::TaggedLogging.new(logger)
   end
 
-  config.action_mailer.default_url_options = {host: Rails.application.secrets.default_url_host}
+  config.action_mailer.default_url_options = {
+    host: Rails.application.secrets.default_url_host,
+    locale: I18n.locale
+  }
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false

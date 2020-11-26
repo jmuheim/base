@@ -5,9 +5,9 @@ de:
       new:
         title: Bestätigungsinstruktionen erneut zusenden
     failure:
+      inactive: Ihr Konto ist noch nicht aktiv (oder wurde deaktiviert).
       invalid: Ungültige Anmeldedaten.
       not_found_in_database: Ungültige Anmeldedaten.
-      inactive: Ihr Konto ist noch nicht aktiv (oder wurde deaktiviert).
     mailer:
       confirmation_instructions:
         confirm_my_account: Mein Benutzerkonto bestätigen!

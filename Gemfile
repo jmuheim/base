@@ -53,7 +53,7 @@ gem 'cocoon' # Dynamic nested forms made easy
 
 gem 'validates_timeliness' # Date and time validation plugin for ActiveModel and Rails
 
-gem 'strip_attributes', github: 'jmuheim/strip_attributes' # Automatically strips all attributes of leading and trailing whitespace (or nilify if blank)
+gem 'strip_attributes', git: 'https://github.com/jmuheim/strip_attributes.git' # Automatically strips all attributes of leading and trailing whitespace (or nilify if blank)
 
 gem 'enumerize' # Enumerated attributes with I18n
 
@@ -78,6 +78,10 @@ gem 'actionview-encoded_mail_to' # Rails mail_to helper with obfuscation
 gem 'wannabe_bool' # Converts strings, integers, etc. intuitively to boolean values
 
 gem 'mysql2' # Use MySQL as the database for Active Record
+
+# Optimize images using multiple utilities
+gem 'image_optim'
+gem 'image_optim_pack' # Precompiled binaries for image_optim
 
 group :doc do
   gem 'sdoc', require: false # bundle exec rake doc:rails generates the API under doc/api.
@@ -131,9 +135,12 @@ group :development do
 
   gem 'capybara' # Acceptance test framework for web applications
 
-  gem 'rails-footnotes', github: 'I-de-ya/rails-footnotes' # Every Rails page has footnotes that gives information about your application
+  gem 'rails-footnotes', git: 'https://github.com/I-de-ya/rails-footnotes.git' # Every Rails page has footnotes that gives information about your application
 
-  gem 'mina', require: false # Really fast deployer and server automation tool
+  # Remote multi-server automation tool
+  gem 'capistrano', '~>3.10', require: false
+  gem 'capistrano-rails', '~>1.4', require: false
+  gem 'capistrano3-puma', require: false
 
   gem 'i18n_yaml_sorter' # A I18n YAML deep sorter that will keep your locales organized
 end
@@ -161,7 +168,6 @@ group :test do
   gem 'i18n-tasks' # Manage translation and localization with static analysis
 
   gem 'simplecov'
-  gem 'codeclimate-test-reporter'
 end
 
 group :production do

@@ -5,7 +5,7 @@ class UploadInput < SimpleForm::Inputs::FileInput
   end
 
   def input_preview
-    template.content_tag :div, title: I18n.t('simple_form.inputs.upload.click_to_choose_another_file', attribute: label_text), data: {placement: 'right'} do # We need another div around the whole thing, otherwise Bootstrap tooltip doesn't seem to work! See http://stackoverflow.com/questions/24497353/bootstrap-tooltip-isnt-shown-on-a-specific-element-but-it-seems-to-be-applied
+    template.content_tag :div, title: I18n.t('simple_form.inputs.upload.click_to_choose_another_file', attribute: raw_label_text), data: {placement: 'right'} do # We need another div around the whole thing, otherwise Bootstrap tooltip doesn't seem to work! See http://stackoverflow.com/questions/24497353/bootstrap-tooltip-isnt-shown-on-a-specific-element-but-it-seems-to-be-applied
       template.content_tag :div, nil, class: ['fileinput-preview', 'fileinput-exists', 'thumbnail'], data: {trigger: 'fileinput'}
     end
   end
@@ -36,17 +36,17 @@ class UploadInput < SimpleForm::Inputs::FileInput
   end
 
   def real_input_new
-    template.content_tag :div, title: I18n.t('simple_form.inputs.upload.click_to_choose_a_file', attribute: label_text), data: {placement: 'right'} do # We need another div around the whole thing, otherwise Bootstrap tooltip doesn't seem to work! See http://stackoverflow.com/questions/24497353/bootstrap-tooltip-isnt-shown-on-a-specific-element-but-it-seems-to-be-applied
+    template.content_tag :div, title: I18n.t('simple_form.inputs.upload.click_to_choose_a_file', attribute: raw_label_text), data: {placement: 'right'} do # We need another div around the whole thing, otherwise Bootstrap tooltip doesn't seem to work! See http://stackoverflow.com/questions/24497353/bootstrap-tooltip-isnt-shown-on-a-specific-element-but-it-seems-to-be-applied
       template.content_tag :a, href: '#', class: ['fileinput-new', 'thumbnail'], data: {trigger: 'fileinput'} do
         if file_available?
           if ['jpg', 'jpeg', 'gif', 'png'].include? object.send(attribute_name).file.extension
             template.content_tag(:img, I18n.t('simple_form.inputs.upload.file_preview'), src: object.send(attribute_name))
           else
-            template.icon(icon_for(object.send(attribute_name).file.extension), type: :fa) + ' ' + object.send(attribute_name).file.filename
+            template.icon(icon_for(object.send(attribute_name).file.extension)) + ' ' + object.send(attribute_name).file.filename
           end
         else
-          template.icon(:upload, type: :fa)
-        end + content_tag(:span, I18n.t('simple_form.inputs.upload.click_to_choose_a_file', attribute: label_text), class: 'sr-only')
+          template.icon(:upload)
+        end + content_tag(:span, I18n.t('simple_form.inputs.upload.click_to_choose_a_file', attribute: raw_label_text), class: 'sr-only')
       end
     end
   end
@@ -70,7 +70,7 @@ class UploadInput < SimpleForm::Inputs::FileInput
     if file_available?
       field_name = "remove_#{attribute_name}"
       template.content_tag :div, class: ['checkbox', 'remove_file'] do
-        @builder.check_box(field_name) + @builder.label(field_name, label: I18n.t('simple_form.inputs.upload.remove_file', attribute: label_text))
+        @builder.check_box(field_name) + @builder.label(field_name, label: I18n.t('simple_form.inputs.upload.remove_file', attribute: raw_label_text))
       end
     end
   end
@@ -82,8 +82,8 @@ class UploadInput < SimpleForm::Inputs::FileInput
   end
 
   def btn_remove
-    template.content_tag :a, href: '#', class: ['btn', 'btn-default', 'fileinput-exists'], data: {dismiss: 'fileinput', placement: 'right'}, title: I18n.t('simple_form.inputs.upload.reset_selection', attribute: label_text) do
-      template.icon 'remove-circle'
+    template.content_tag :a, href: '#', class: ['btn', 'btn-default', 'fileinput-exists'], data: {dismiss: 'fileinput', placement: 'right'}, title: I18n.t('simple_form.inputs.upload.reset_selection', attribute: raw_label_text) do
+      template.icon 'times-circle'
     end
   end
 end

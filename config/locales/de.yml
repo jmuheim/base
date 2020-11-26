@@ -41,8 +41,8 @@ de:
         no_diff_available: Keine Unterschieds-Anzeige verfügbar (bitte JavaScript aktivieren)
       head:
         attribute: Attribut
-        value_after: Wert vorher
-        value_before: Wert nachher
+        value_after: Wert nachher
+        value_before: Wert vorher
         value_difference: Wert Unterschied
     form:
       captcha:
@@ -56,14 +56,15 @@ de:
         info: Informationen zum Einfügen von Bildern und CodePen-Links als Ressourcen
     show:
       additional_information: Weitere Informationen
+      images:
+        thumb: Vorschaubild
       version:
         create: Erstellen
         destroy: Löschen
         update: Aktualisieren
       versions:
         no_changes: Keine Änderungen in dieser Version
-      images:
-        thumb: 'Vorschaubild'
+    pandoc_version: Pandoc Version muss mindestens %{min_version} sein! Aktuelle Version ist jedoch %{current_version}.
   'true': Ja
   users:
     detail_inputs:

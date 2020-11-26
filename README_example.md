@@ -45,18 +45,12 @@ You can use [direnv](https://github.com/zimbatm/direnv) to automatically add `bi
 
 Make sure that:
 
-- All CRUD functionality is covered (as far as possible) by [inherited_resources](https://github.com/josevalim/inherited_resources)
 - All authorization is done through [cancancan](https://github.com/CanCanCommunity/cancancan)
 - The [ability.rb](./app/models/ability.rb) file is thoroughly tested
 - Every action has a correlating feature spec file (nest them in folders similar to the nested routes' structure)
 - Every navigation item has a correlating spec in [navigation_spec.rb](./spec/features/navigation_spec.rb)
 - Run `$ i18n-tasks normalize`
 - Run `$ rake` and make sure, no specs are pending/failing
-- Run `$ smusher app/assets/images` ...
-
-### Add external assets (libraries)
-
-At the time being, [Bower](http://bower.io/) integration strategies for Rails are prone to problems. We stick to the traditional gems and hope, that some time soon, there's an official Bower integration strategy.
 
 ### I18n
 
@@ -68,7 +62,7 @@ The [i18n-tasks](https://github.com/glebm/i18n-tasks) gem makes handling transla
 
 ## Testing
 
-- Use `@chrome` or `@selenium` flag to visually run feature tests in Chrome or Firefox.
+- Use `driver: :chrome` to visually run feature tests in Chrome.
 
 ## Deployment
 
@@ -78,18 +72,6 @@ To learn more about setting up deployment on a server, see [Deployment](./DEPLOY
 
 ### Deploying
 
-**Before deploying**, run `$ rake HEADHUNTER=true` to make sure all HTML and CSS is in good shape!
-
-**Before deploying**, run `$ i18-tasks add-missing` and translate the added I18n keys!
-
-Be sure you have committed and pushed all wanted changes, then execute `$ mina deploy`! Use the `--verbose` and `--trace` switch for debugging if something goes wrong.
+Be sure you have committed and pushed all wanted changes, then execute `$ cap production deploy`.
 
 That's all, folks!
-
-## Backlog
-
-You can find the backlog here: [`BACKLOG.md`](./BACKLOG.md).
-
-## Services
-
-You can find informations about external services in use here: [`SERVICES.md`](./SERVICES.md).

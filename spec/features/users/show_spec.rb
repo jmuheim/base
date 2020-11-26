@@ -7,7 +7,7 @@ describe 'Showing user' do
   end
 
   it 'displays a user' do
-    other_user = create :user, :with_avatar, about: "# Here's some info about me\n\nBla bla bla."
+    other_user = create :user, :with_avatar, about: "# Here is some info about me\n\nBla bla bla."
 
     visit user_path(other_user)
 
@@ -25,7 +25,7 @@ describe 'Showing user' do
 
       within '.about' do
         expect(page).to have_css 'h2', text: 'About'
-        expect(page).to have_css 'h3', text: "Here's some info about me"
+        expect(page).to have_css 'h3', text: "Here is some info about me"
         expect(page).to have_content 'Bla bla bla.'
       end
 

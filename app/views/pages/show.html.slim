@@ -13,7 +13,7 @@
     .col-md-4.browsing
       == render 'browsing', page: @page
 
-      - if can? :crud, @page
+      - if can? :crudi, @page
         - unless @page.notes.blank?
           .notes
             = accordion :notes, item_options: {title_tag: 'h2', panel_class: 'panel-warning'} do |accordion|

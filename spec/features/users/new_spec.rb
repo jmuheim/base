@@ -36,6 +36,9 @@ describe 'Creating user' do
       expect(page).to have_link 'List of Users'
     end
 
+    # Make sure that shared actions also assign default index filter
+    expect(find('.actions a', text: 'List of Users')[:href]).to eq find('#meta_navigation a', text: 'List of Users')[:href]
+
     click_button 'Create User'
 
     expect(page).to have_flash 'User was successfully created.'

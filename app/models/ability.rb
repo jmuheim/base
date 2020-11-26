@@ -33,7 +33,7 @@ class Ability
     alias_action :new,  to: :create
     alias_action :edit, to: :update
 
-    alias_action :index, :create, :read, :update, :destroy, to: :crud
+    alias_action :index, :create, :read, :update, :destroy, to: :crudi
   end
 
   def define_abilities_for_guests(current_user)
@@ -53,7 +53,7 @@ class Ability
     can [:index, :read], Code
     can [:index, :read], Image
 
-    can :crud, Page
+    can :crudi, Page
 
     can [:index, :read], User
     can([:update, :destroy], User) { |user| user == current_user }
@@ -73,7 +73,7 @@ class Ability
     can [:index, :read], Code
     can [:index, :read], Image
 
-    can :crud, Page
+    can :crudi, Page
 
     can [:index, :create, :read, :update], User
     can(:destroy, User) { |user| user != current_user }

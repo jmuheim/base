@@ -5,7 +5,7 @@ describe ApplicationHelper do
     describe '#icon(name)' do
       subject { icon 'not-ok' }
 
-      it { should have_css 'span.glyphicon.glyphicon-not-ok' }
+      it { should have_css 'span.fa.fa-not-ok' }
       it { should have_css 'span:empty' }
     end
 
@@ -15,14 +15,14 @@ describe ApplicationHelper do
       it { should have_content 'This is the content' }
     end
 
-    describe '#icon(name, type: :fa)' do
-      subject { icon 'not-ok', type: :fa }
+    describe '#icon(name)' do
+      subject { icon 'not-ok' }
       it { should have_css 'span.fa.fa-not-ok' }
       it { should have_css 'span:empty' }
     end
 
-    describe '#icon(name, content, type: :fa)' do
-      subject { icon('not-ok', 'This is the content', type: :fa) }
+    describe '#icon(name, content)' do
+      subject { icon('not-ok', 'This is the content') }
       it { should have_css 'span.fa.fa-not-ok' }
     end
   end
@@ -31,7 +31,7 @@ describe ApplicationHelper do
     describe '#flag(name)' do
       subject { flag 'ch' }
 
-      it { should have_css 'span.glyphicon.bfh-flag-CH' }
+      it { should have_css 'span.fa.bfh-flag-CH' }
       it { should have_css 'span:empty' }
     end
 
@@ -69,14 +69,14 @@ describe ApplicationHelper do
     describe '#yes_or_no_icon(true)' do
       subject { yes_or_no_icon true }
 
-      it { should have_css 'span.glyphicon.glyphicon-ok' }
+      it { should have_css 'span.fa.fa-check' }
       it { should have_content 'Yes' }
     end
 
     describe '#yes_or_no_icon(false)' do
       subject { yes_or_no_icon false }
 
-      it { should have_css 'span.glyphicon.glyphicon-remove' }
+      it { should have_css 'span.fa.fa-remove' }
       it { should have_content 'No' }
     end
   end
@@ -93,7 +93,7 @@ describe ApplicationHelper do
     describe '#yes_or_no_icon(false)' do
       subject { yes_or_no_icon false }
 
-      it { should have_css 'span.glyphicon.glyphicon-remove' }
+      it { should have_css 'span.fa.fa-remove' }
       it { should have_content 'No' }
     end
   end
