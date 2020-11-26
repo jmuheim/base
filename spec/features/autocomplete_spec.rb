@@ -1,5 +1,6 @@
 require 'rails_helper'
 
+# All JS-enabled specs are failing, see https://github.com/teampoltergeist/poltergeist/issues/936
 describe 'Autocomplete', js: true do
   NON_INTERCEPTED_ESC = 'Esc passed on.'
   NON_INTERCEPTED_ENTER = 'Enter passed on.'
