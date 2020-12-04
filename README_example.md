@@ -27,7 +27,6 @@ You can use [direnv](https://github.com/zimbatm/direnv) to automatically add `bi
 ## Requirements
 
 - [Pandoc](http://pandoc.org/) for advanced Markdown capabilities: `$ brew install pandoc`
-- [PhantomJS](http://phantomjs.org/) for automated JavaScript testing: `$ brew install phantomjs`
 - [ImageMagick](http://imagemagick.org/) for image manipulation: `$ brew install imagemagick`
 
 ## Developing
