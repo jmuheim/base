@@ -160,8 +160,7 @@ group :test do
 
   # Capybara - Headless, JavaScript-executing browser for Selenium
   gem 'selenium-webdriver'  # Selenium webdriver (needed to use Chrome driver)
-  gem 'launchy'             # Use `save_and_open_page` in request tests to automatically open a browser
-
+  gem 'webdrivers', '~> 4.0', require: false # Run Selenium tests more easily with automatic installation and updates for all supported webdrivers.
   gem 'capybara-screenshot' # Automatically save screen shots when a scenario fails
 
   gem 'i18n-tasks' # Manage translation and localization with static analysis
