@@ -1,0 +1,27 @@
+.row
+  .col-md-8
+    dl.dl-horizontal
+      dt = AppConfig.human_attribute_name :organisation_name
+      dd.organisation_name = app_config.organisation_name
+
+      dt = AppConfig.human_attribute_name :organisation_abbreviation
+      dd.organisation_abbreviation = app_config.organisation_abbreviation
+
+      dt = AppConfig.human_attribute_name :organisation_url
+      dd.organisation_url = link_to app_config.organisation_url, app_config.organisation_url
+
+    - unless app_config.projects_default_description.blank?
+      .projects_default_description
+        h2 = AppConfig.human_attribute_name :projects_default_description
+        pre = app_config.projects_default_description
+
+  .col-md-4
+    h2 = t 'shared.show.additional_information'
+
+    .additional_information
+      dl
+        dt = AppConfig.human_attribute_name :created_at
+        dd.created_at = l app_config.created_at
+
+        dt = AppConfig.human_attribute_name :updated_at
+        dd.updated_at = l app_config.updated_at

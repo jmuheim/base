@@ -2,6 +2,11 @@
 de:
   activerecord:
     attributes:
+      app_config:
+        organisation_name: Organisations-Name
+        organisation_abbreviation: Organisations-Kürzel
+        organisation_url: Organisations-URL
+        projects_default_description: Standard-Beschreibung für Projekte
       code:
         created_at: Erstellt am
         creator: Erstellt von
@@ -58,6 +63,8 @@ de:
           has_many: konnte %{model} nicht löschen, da abhängige %{record} existieren
           has_one: konnte %{model} nicht löschen, da ein abhängiger %{record}-Datensatz existiert
     models:
+      app_config:
+        one: Applikations-Konfiguration
       code:
         one: Code
         other: Codes

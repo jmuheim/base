@@ -29,11 +29,11 @@ html lang=I18n.locale
         .row
           .col-xs-8.slogan.atom
             p
-              => link_to(t('app.name'), 'https://github.com/jmuheim/base/') + ':'
-              span.hidden-xs = t 'app.slogan'
+              => link_to(AppConfig.instance.app_name, 'https://github.com/Access4all/a4aa2/') + ':'
+              span.hidden-xs = AppConfig.instance.app_slogan
 
               =< link_to pages_path(format: :atom) do
                 = icon :rss, 'Atom Feed'
 
           .col-xs-4.copyright
-            p &copy; 2015 #{link_to t('org.name'), 'http://www.muheimwebdesign.ch/'}
+            p &copy; 2017 #{link_to AppConfig.instance.organisation_name, AppConfig.instance.organisation_url}
