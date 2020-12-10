@@ -7,6 +7,10 @@ describe Ability do
   context 'when is a guest' do
     subject { Ability.new nil }
 
+    describe 'managing app configs' do
+      it { should_not be_able_to(:read, AppConfig) }
+    end
+
     describe 'managing codes' do
       it { should_not be_able_to(:index, Code) }
     end
@@ -53,6 +57,10 @@ describe Ability do
   context 'when is a user' do
     before  { @user = create(:user) }
     subject { Ability.new(@user) }
+
+    describe 'managing app configs' do
+      it { should_not be_able_to(:read, AppConfig) }
+    end
 
     describe 'managing codes' do
       it { should_not be_able_to(:index, Code) }
@@ -102,6 +110,10 @@ describe Ability do
     before  { @user = create(:user, :editor) }
     subject { Ability.new(@user) }
 
+    describe 'managing app configs' do
+      it { should_not be_able_to(:read, AppConfig) }
+    end
+
     describe 'managing codes' do
       it { should be_able_to(:index, Code) }
     end
@@ -150,6 +162,13 @@ describe Ability do
   context 'when is an admin' do
     before  { @user = create :user, :admin }
     subject { Ability.new(@user) }
+
+    describe 'managing app configs' do
+      it { should_not be_able_to(:create,  AppConfig) }
+      it { should     be_able_to(:read,    AppConfig) }
+      it { should     be_able_to(:update,  AppConfig) }
+      it { should_not be_able_to(:destroy, AppConfig) }
+    end
 
     describe 'managing codes' do
       it { should be_able_to(:index, Code) }
