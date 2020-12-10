@@ -60,19 +60,21 @@ describe 'Editing app config' do
     } .to change { @app_config.organisation_name }.to('This is the new organisation name, yeah!')
   end
 
-  it 'allows to translate a page to German' do
-    @app_config.update_attributes organisation_abbreviation_de: nil
+  it 'allows to translate an app config to German' do
+    @app_config.update_attributes organisation_abbreviation_en: 'English abbreviation',
+                                  organisation_abbreviation_de: nil
+
     visit edit_app_config_path @app_config, locale: :de # Default locale (English)
 
-    expect(page).to have_css 'input#app_config_organisation_abbreviation[value="TRANSLATION MISSING"]'
-    fill_in 'app_config_organisation_abbreviation', with: 'ZFA'
+    expect(page).to have_css 'input#app_config_organisation_abbreviation[value="English abbreviation"]'
+    fill_in 'app_config_organisation_abbreviation', with: 'German Abbreviation'
 
     expect {
       click_button 'Applikations-Konfiguration aktualisieren'
       @app_config.reload
-    } .to  change { @app_config.organisation_abbreviation }.from('TRANSLATION MISSING').to('ZFA')
-      .and change { @app_config.organisation_abbreviation_de }.from(nil).to('ZFA')
-    expect(@app_config.organisation_abbreviation_en).to eq 'JM'
+    } .to  change { @app_config.organisation_abbreviation }.from('English abbreviation').to('German Abbreviation')
+      .and change { @app_config.organisation_abbreviation_de }.from(nil).to('German Abbreviation')
+    expect(@app_config.organisation_abbreviation_en).to eq 'English abbreviation'
 
     expect(page).to have_flash 'Applikations-Konfiguration wurde erfolgreich bearbeitet.'
   end
