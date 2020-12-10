@@ -62,7 +62,7 @@ describe 'Editing app config' do
 
   it 'allows to translate an app config to German' do
     @app_config.update_attributes organisation_abbreviation_en: 'English abbreviation',
-                                  organisation_abbreviation_de: nil
+                                  organisation_abbreviation_de: ''
 
     visit edit_app_config_path @app_config, locale: :de # Default locale (English)
 

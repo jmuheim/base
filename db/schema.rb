@@ -14,14 +14,14 @@ ActiveRecord::Schema.define(version: 2020_12_10_093351) do
 
   create_table "app_configs", id: :integer, default: 1, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "app_abbreviation", null: false
-    t.string "app_name", null: false
-    t.string "app_slogan_de", null: false
-    t.string "app_slogan_en", null: false
-    t.string "organisation_name_de", null: false
-    t.string "organisation_name_en", null: false
-    t.string "organisation_abbreviation_de", null: false
-    t.string "organisation_abbreviation_en", null: false
-    t.string "organisation_url", null: false
+    t.string "app_name"
+    t.string "app_slogan_de"
+    t.string "app_slogan_en"
+    t.string "organisation_name_de"
+    t.string "organisation_name_en"
+    t.string "organisation_abbreviation_de"
+    t.string "organisation_abbreviation_en"
+    t.string "organisation_url"
     t.integer "lock_version", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
