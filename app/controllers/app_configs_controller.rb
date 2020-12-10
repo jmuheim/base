@@ -23,7 +23,6 @@ class AppConfigsController < ApplicationController
           .permit(:organisation_name,
                   :organisation_abbreviation,
                   :organisation_url,
-                  :projects_default_description,
                   :lock_version)
   end
 

@@ -11,9 +11,9 @@ describe 'Editing app config' do
   it 'grants permission to edit a page' do
     visit edit_app_config_path(@app_config)
 
-    expect(page).to have_title 'Edit Application configuration - A4AA 2.0'
+    expect(page).to have_title 'Edit Application configuration - Base'
     expect(page).to have_active_navigation_items 'Application configuration'
-    expect(page).to have_breadcrumbs 'A4AA 2.0', 'Application configuration', 'Edit'
+    expect(page).to have_breadcrumbs 'Base', 'Application configuration', 'Edit'
     expect(page).to have_headline 'Edit Application configuration'
 
     expect(page).to have_css 'h2', text: 'Details'
@@ -21,7 +21,6 @@ describe 'Editing app config' do
     fill_in 'app_config_organisation_name', with: 'Much cooler name'
     fill_in 'app_config_organisation_abbreviation', with: 'Much cooler abbreviation'
     fill_in 'app_config_organisation_url', with: 'Much cooler URL'
-    fill_in 'app_config_projects_default_description', with: 'Much cooler default description for projects'
 
     within '.actions' do
       expect(page).to have_css 'h2', text: 'Actions'
@@ -36,7 +35,6 @@ describe 'Editing app config' do
     } .to  change { @app_config.organisation_name }.to('Much cooler name')
       .and change { @app_config.organisation_abbreviation }.to('Much cooler abbreviation')
       .and change { @app_config.organisation_url }.to('Much cooler URL')
-      .and change { @app_config.projects_default_description }.to('Much cooler default description for projects')
   end
 
   it "prevents from overwriting other users' changes accidently (caused by race conditions)" do
@@ -74,7 +72,7 @@ describe 'Editing app config' do
       @app_config.reload
     } .to  change { @app_config.organisation_abbreviation }.from('TRANSLATION MISSING').to('ZFA')
       .and change { @app_config.organisation_abbreviation_de }.from(nil).to('ZFA')
-    expect(@app_config.organisation_abbreviation_en).to eq 'A4A'
+    expect(@app_config.organisation_abbreviation_en).to eq 'JM'
 
     expect(page).to have_flash 'Applikations-Konfiguration wurde erfolgreich bearbeitet.'
   end

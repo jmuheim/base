@@ -6,7 +6,6 @@ en:
         organisation_name: Organisation name
         organisation_abbreviation: Organisation abbreviation
         organisation_url: Organisation URL
-        projects_default_description: Default description for projects
       code:
         created_at: Created at
         creator: Created by

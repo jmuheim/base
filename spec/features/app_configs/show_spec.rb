@@ -9,26 +9,18 @@ describe 'Showing app config' do
   end
 
   it 'displays an app config' do
-    @app_config.projects_default_description = 'App config test projects default description'
-    @app_config.save!
-
     visit root_path
     click_link 'Application configuration'
 
-    expect(page).to have_title 'Application configuration - A4AA 2.0'
+    expect(page).to have_title 'Application configuration - Base'
     expect(page).to have_active_navigation_items 'Application configuration'
-    expect(page).to have_breadcrumbs 'A4AA 2.0', 'Application configuration'
+    expect(page).to have_breadcrumbs 'Base', 'Application configuration'
     expect(page).to have_headline 'Application configuration'
 
     within dom_id_selector(@app_config) do
-      expect(page).to have_css '.organisation_name', text: '«Access for all»'
-      expect(page).to have_css '.organisation_abbreviation', text: 'A4A'
-      expect(page).to have_css '.organisation_url', text: 'http://www.access-for-all.ch/'
-
-      within '.projects_default_description' do
-        expect(page).to have_css 'h2', text: 'Default description for projects'
-        expect(page).to have_css 'pre', text: 'App config test projects default description'
-      end
+      expect(page).to have_css '.organisation_name', text: 'Josua Muheim'
+      expect(page).to have_css '.organisation_abbreviation', text: 'JM'
+      expect(page).to have_css '.organisation_url', text: 'https://github.com/jmuheim/base'
 
       within '.additional_information' do
         expect(page).to have_css '.created_at', text: 'Mon, 15 Jun 2015 14:33:52 +0200'

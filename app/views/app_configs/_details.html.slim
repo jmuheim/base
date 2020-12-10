@@ -10,11 +10,6 @@
       dt = AppConfig.human_attribute_name :organisation_url
       dd.organisation_url = link_to app_config.organisation_url, app_config.organisation_url
 
-    - unless app_config.projects_default_description.blank?
-      .projects_default_description
-        h2 = AppConfig.human_attribute_name :projects_default_description
-        pre = app_config.projects_default_description
-
   .col-md-4
     h2 = t 'shared.show.additional_information'
 

@@ -10,7 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_05_115412) do
+ActiveRecord::Schema.define(version: 2020_12_10_093351) do
+
+  create_table "app_configs", id: :integer, default: 1, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "app_abbreviation", default: "Base"
+    t.string "app_name", default: "Base Project"
+    t.string "app_slogan_de", default: "Vorkonfiguriertes grundlegendes zugängliches Rails Projekt. Fork erstellen!"
+    t.string "app_slogan_en", default: "Pre-configured basic accessible Rails project. Fork me!"
+    t.string "organisation_name_de", default: "Josua Muheim"
+    t.string "organisation_name_en", default: "Josua Muheim"
+    t.string "organisation_abbreviation_de", default: "JM"
+    t.string "organisation_abbreviation_en", default: "JM"
+    t.string "organisation_url", default: "https://github.com/jmuheim/base"
+    t.integer "lock_version", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["id"], name: "index_app_configs_on_id", unique: true
+  end
 
   create_table "codes", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title", null: false

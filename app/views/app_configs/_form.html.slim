@@ -1,5 +1,7 @@
-= simple_form_for setting, html:    {class: 'form-horizontal'},
+= simple_form_for app_config, html:    {class: 'form-horizontal'},
                         wrapper: :horizontal_form do |f|
+
+  == render 'shared/form/stale_info', f: f
 
   = panel do |panel|
     = panel.heading do
@@ -9,20 +11,6 @@
       = f.input :organisation_name
       = f.input :organisation_abbreviation
       = f.input :organisation_url
-
-  = panel do |panel|
-    = panel.heading do
-      = Project.model_name.human(count: :other)
-
-    = panel.body do
-      = f.input :projects_default_description, as: :text_fullscreenize
-
-  = panel do |panel|
-    = panel.heading do
-      = Report.model_name.human(count: :other)
-
-    = panel.body do
-      /= f.input :reference_docx, as: :upload
   .row
     .col-md-12
       == render 'shared/form/actions', form: f, resource: f.object

@@ -7,13 +7,11 @@ class AppConfig < ApplicationRecord
                           :organisation_name_en,
                           :organisation_abbreviation_de,
                           :organisation_abbreviation_en,
-                          :organisation_url,
-                          :projects_default_description_de,
-                          :projects_default_description_en,
+                          :organisation_url
                         ]
 
   extend Mobility
-  translates :app_slogan, :organisation_name, :organisation_abbreviation, :projects_default_description
+  translates :app_slogan, :organisation_name, :organisation_abbreviation
 
   # See https://stackoverflow.com/questions/399447/how-to-implement-a-singleton-model
   def self.instance

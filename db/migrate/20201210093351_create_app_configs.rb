@@ -13,6 +13,8 @@ class CreateAppConfigs < ActiveRecord::Migration[5.2]
       t.string :organisation_abbreviation_en, default: 'JM'
       t.string :organisation_url, default: 'https://github.com/jmuheim/base'
 
+      t.integer :lock_version, default: 0, null: false
+
       t.timestamps
     end
   end
