@@ -1,9 +1,5 @@
 ---
 de:
-  app:
-    acronym: Base
-    name: Base Project
-    slogan: Vorkonfiguriertes grundlegendes zugängliches Rails Projekt. Fork erstellen!
   buttons:
     save: Speichern
   'false': Nein
@@ -15,8 +11,6 @@ de:
     statistics:
       number_of_resource: Anzahl %{resource}
       title: Statistiken
-  org:
-    name: MuheimWebdesign
   pages:
     browsing:
       browsing: Blättern

@@ -62,6 +62,8 @@ class Ability
   end
 
   def define_abilities_for_admins(current_user)
+    can [:read, :edit, :update], AppConfig
+
     can :edit_role, User do |user|
       user != current_user
     end

@@ -2,6 +2,10 @@
 en:
   activerecord:
     attributes:
+      app_config:
+        organisation_name: Organisation name
+        organisation_abbreviation: Organisation abbreviation
+        organisation_url: Organisation URL
       code:
         created_at: Created at
         creator: Created by
@@ -58,6 +62,8 @@ en:
           has_many: Could not delete %{model} because dependent %{record} exist
           has_one: Could not delete %{model} because a dependent %{record} exists
     models:
+      app_config:
+        one: Application configuration
       code:
         one: Code
         other: Codes

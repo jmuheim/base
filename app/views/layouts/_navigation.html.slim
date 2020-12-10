@@ -6,7 +6,7 @@ nav#navigation.container
       .navbar-header
         // Place brand before the "Toggle navigation" button to have an intuitive focus order (on the Bootstrap examples page it's after the button which seems unintuitive)
         = link_to root_path, class: home_link_class, id: 'logo' do
-          = t('.home')
+          = AppConfig.instance.app_abbreviation
           span.sr-only =< t('.go_to_home_page')
 
         button#toggle_navigation.navbar-toggle.collapsed aria-controls="bs-navbar" aria-expanded="false" data-target="#navbar" data-toggle="collapse" type="button"
@@ -36,6 +36,9 @@ nav#navigation.container
 
           - if can? :index, User
             == render 'layouts/resource_navigation_group', resource_class: User, index_params: user_index_params
+
+          - if can? :read, AppConfig
+            = navigation_item icon(:cogs, AppConfig.model_name.human), app_config_path(AppConfig.instance)
 
           - if user_signed_in?
             = navigation_group user_avatar(t('.user_menu')), user_registration_path, "#{icon :user} #{t '.show_account'}" do
@@ -76,5 +79,5 @@ nav#navigation.container
     h3 #{t '.you_are_here'}:
 
     ol.breadcrumb
-      li = link_to t('app.acronym'), root_path
+      li = link_to AppConfig.instance.app_abbreviation, root_path
       = render_breadcrumbs

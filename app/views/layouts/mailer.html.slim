@@ -11,8 +11,8 @@ html lang=I18n.locale
 
     p
       cite
-        strong> = t('org.name')
-        | - #{t('app.slogan')}
+        strong> = AppConfig.instance.organisation_name
+        | - #{AppConfig.instance.app_slogan}
 
     address
       strong> Email:

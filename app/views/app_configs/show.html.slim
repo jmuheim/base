@@ -1,0 +1,8 @@
+= container_for @app_config do
+  = headline_with_flash AppConfig.model_name.human
+
+  == render 'details', app_config: @app_config
+
+  == render 'shared/show/versions', versions: @app_config.versions if can?(:index, PaperTrail::Version) && @app_config.versions.any?
+
+  == render 'shared/show/actions', resource: @app_config

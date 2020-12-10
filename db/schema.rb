@@ -10,7 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_05_115412) do
+ActiveRecord::Schema.define(version: 2020_12_10_093351) do
+
+  create_table "app_configs", id: :integer, default: 1, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "app_abbreviation", null: false
+    t.string "app_name", null: false
+    t.string "app_slogan_de", null: false
+    t.string "app_slogan_en", null: false
+    t.string "organisation_name_de", null: false
+    t.string "organisation_name_en", null: false
+    t.string "organisation_abbreviation_de", null: false
+    t.string "organisation_abbreviation_en", null: false
+    t.string "organisation_url", null: false
+    t.integer "lock_version", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["id"], name: "index_app_configs_on_id", unique: true
+  end
 
   create_table "codes", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title", null: false
