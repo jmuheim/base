@@ -38,7 +38,7 @@ RSpec.describe Code do
       code = create :code, creator: @user
 
       expect {
-        code.update_attributes! identifier: 'some-identifier'
+        code.update! identifier: 'some-identifier'
       }.to change { code.versions.count }.by 1
     end
 
@@ -46,7 +46,7 @@ RSpec.describe Code do
       code = create :code, creator: @user
 
       expect {
-        code.update_attributes! title: 'daisy'
+        code.update! title: 'daisy'
       }.to change { code.versions.count }.by 1
     end
 
@@ -54,7 +54,7 @@ RSpec.describe Code do
       code = create :code, creator: @user
 
       expect {
-        code.update_attributes! html: 'daisy'
+        code.update! html: 'daisy'
       }.to change { code.versions.count }.by 1
     end
 
@@ -62,7 +62,7 @@ RSpec.describe Code do
       code = create :code, creator: @user
 
       expect {
-        code.update_attributes! css: 'daisy'
+        code.update! css: 'daisy'
       }.to change { code.versions.count }.by 1
     end
 
@@ -70,7 +70,7 @@ RSpec.describe Code do
       code = create :code, creator: @user
 
       expect {
-        code.update_attributes! js: 'daisy'
+        code.update! js: 'daisy'
       }.to change { code.versions.count }.by 1
     end
   end

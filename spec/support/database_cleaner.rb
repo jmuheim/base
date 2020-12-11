@@ -4,6 +4,7 @@
 RSpec.configure do |config|
   config.around(:each) do |example|
     DatabaseCleaner.strategy = :truncation
+
     DatabaseCleaner.cleaning do
       example.run
     end

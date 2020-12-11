@@ -39,7 +39,7 @@ RSpec.describe Image do
       image = create :image, creator: @user
 
       expect {
-        image.update_attributes! identifier: 'daisy'
+        image.update! identifier: 'daisy'
       }.to change { image.versions.count }.by 1
     end
 
@@ -47,7 +47,7 @@ RSpec.describe Image do
       image = create :image, creator: @user
 
       expect {
-        image.update_attributes! file: File.open(dummy_file_path('other_image.jpg'))
+        image.update! file: File.open(dummy_file_path('other_image.jpg'))
       }.to change { image.versions.count }.by 1
     end
   end

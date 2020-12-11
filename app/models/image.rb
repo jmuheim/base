@@ -9,7 +9,9 @@ class Image < ApplicationRecord
   belongs_to :creator, class_name: 'User'
 
   validates :identifier, presence: true,
-                         uniqueness: {scope: [:imageable_type, :imageable_id]}
+                         uniqueness: { scope: [:imageable_type, :imageable_id],
+                                       case_sensitive: true
+                                     }
 
   validates :creator_id, presence: true
 

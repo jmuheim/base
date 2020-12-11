@@ -6,7 +6,9 @@ class Code < ApplicationRecord
   belongs_to :creator, class_name: 'User'
 
   validates :identifier, presence: true,
-                         uniqueness: {scope: [:codeable_type, :codeable_id]},
+                         uniqueness: { scope: [:codeable_type, :codeable_id],
+                                       case_sensitive: true
+                                     },
                          format: /\A.+\-\w+\z/
 
   validates :creator_id, presence: true

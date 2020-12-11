@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '~> 5.2'
+gem 'rails', '~> 6.0'
 
 gem 'puma' # Use Puma as the app server
 
@@ -60,7 +60,7 @@ gem 'enumerize' # Enumerated attributes with I18n
 gem 'paper_trail' # Track changes to your models' data. Good for auditing or versioning.
 
 # Classier solution for file uploads for Rails
-gem 'carrierwave', '< 2'
+gem 'carrierwave'
 gem 'carrierwave-base64' # Upload files encoded as base64 to carrierwave
 
 gem 'mini_magick' # Mini replacement for RMagick
@@ -159,10 +159,8 @@ group :test do
   gem 'database_cleaner' # Resets test database after each test
 
   # Capybara - Headless, JavaScript-executing browser for Selenium
-  gem 'poltergeist' # PhantomJS driver for Capybara
-  gem 'launchy'              # Use `save_and_open_page` in request tests to automatically open a browser
-  gem 'selenium-webdriver'   # Selenium webdriver (needed to use Chrome driver)
-
+  gem 'selenium-webdriver'  # Selenium webdriver (needed to use Chrome driver)
+  gem 'webdrivers', '~> 4.0', require: false # Run Selenium tests more easily with automatic installation and updates for all supported webdrivers.
   gem 'capybara-screenshot' # Automatically save screen shots when a scenario fails
 
   gem 'i18n-tasks' # Manage translation and localization with static analysis

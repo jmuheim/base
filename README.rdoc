@@ -34,8 +34,6 @@ This is a basic Rails project with everything configured the way I want. To fork
   - Now you can install Pandoc: `$ brew install pandoc`
 - MiniMagick
   - `$ brew install imagemagick`
-- PhantomJS
-  - `$ brew install phantomjs`
 
 = Run specs
 

@@ -52,7 +52,7 @@ RSpec.describe Page do
       page = create :page, creator: @user
 
       expect {
-        page.update_attributes! images_attributes: []
+        page.update! images_attributes: []
       }.not_to change { Image.count }
     end
 
@@ -60,7 +60,7 @@ RSpec.describe Page do
       page = create :page, creator: @user
 
       expect {
-        page.update_attributes! images_attributes: [{lock_version: 123}]
+        page.update! images_attributes: [{lock_version: 123}]
       }.not_to change { Image.count }
     end
 
@@ -68,7 +68,7 @@ RSpec.describe Page do
       page = create :page, creator: @user
 
       expect {
-        page.update_attributes! images_attributes: [{_destroy: 1}]
+        page.update! images_attributes: [{_destroy: 1}]
       }.not_to change { Image.count }
     end
 
@@ -76,7 +76,7 @@ RSpec.describe Page do
       page = create :page, creator: @user
 
       expect {
-        page.update_attributes! images_attributes: [{identifier: 'my-great-identifier',
+        page.update! images_attributes: [{identifier: 'my-great-identifier',
                                                      file: File.open(dummy_file_path('image.jpg')),
                                                      creator: @user
                                                    }]
@@ -92,7 +92,7 @@ RSpec.describe Page do
       image = page.images.first
 
       expect {
-        page.update_attributes! images_attributes: [{id: image.id,
+        page.update! images_attributes: [{id: image.id,
                                                      identifier: 'some-new-identifier',
                                                      file: File.open(dummy_file_path('other_image.jpg'))
                                                    }]
@@ -105,7 +105,7 @@ RSpec.describe Page do
       image = page.images.first
 
       expect {
-        page.update_attributes! images_attributes: [{id: image.id,
+        page.update! images_attributes: [{id: image.id,
                                                      _destroy: 1,
                                                    }]
       }.to change { Image.count }.by -1
@@ -130,7 +130,7 @@ RSpec.describe Page do
       it 'versions title (en/de)' do
         [:en, :de].each do |locale|
           expect {
-            @page.update_attributes! "title_#{locale}" => 'New title'
+            @page.update! "title_#{locale}" => 'New title'
           }.to change { @page.versions.count }.by 1
         end
       end
@@ -138,7 +138,7 @@ RSpec.describe Page do
       it 'versions navigation_title (en/de)' do
         [:en, :de].each do |locale|
           expect {
-            @page.update_attributes! "navigation_title_#{locale}" => 'New navigation_title'
+            @page.update! "navigation_title_#{locale}" => 'New navigation_title'
           }.to change { @page.versions.count }.by 1
         end
       end
@@ -146,7 +146,7 @@ RSpec.describe Page do
       it 'versions lead (en/de)' do
         [:en, :de].each do |locale|
           expect {
-            @page.update_attributes! "lead_#{locale}" => 'New lead'
+            @page.update! "lead_#{locale}" => 'New lead'
           }.to change { @page.versions.count }.by 1
         end
       end
@@ -154,14 +154,14 @@ RSpec.describe Page do
       it 'versions content (en/de)' do
         [:en, :de].each do |locale|
           expect {
-            @page.update_attributes! "content_#{locale}" => 'New content'
+            @page.update! "content_#{locale}" => 'New content'
           }.to change { @page.versions.count }.by 1
         end
       end
 
       it 'versions notes' do
         expect {
-          @page.update_attributes! notes: 'New notes'
+          @page.update! notes: 'New notes'
         }.to change { @page.versions.count }.by 1
       end
     end
@@ -172,7 +172,7 @@ RSpec.describe Page do
 
     it 'translates title' do
       expect {
-        Mobility.with_locale(:de) { @page.update_attributes! title: 'Deutscher Titel' }
+        Mobility.with_locale(:de) { @page.update! title: 'Deutscher Titel' }
         @page.reload
       }.not_to change { @page.title }
       expect(@page.title_de).to eq 'Deutscher Titel'
@@ -180,7 +180,7 @@ RSpec.describe Page do
 
     it 'translates navigation_title' do
       expect {
-        Mobility.with_locale(:de) { @page.update_attributes! navigation_title: 'Deutscher Navigations-Titel' }
+        Mobility.with_locale(:de) { @page.update! navigation_title: 'Deutscher Navigations-Titel' }
         @page.reload
       }.not_to change { @page.navigation_title }
       expect(@page.navigation_title_de).to eq 'Deutscher Navigations-Titel'
@@ -188,7 +188,7 @@ RSpec.describe Page do
 
     it 'translates lead' do
       expect {
-        Mobility.with_locale(:de) { @page.update_attributes! lead: 'Deutscher Lead' }
+        Mobility.with_locale(:de) { @page.update! lead: 'Deutscher Lead' }
         @page.reload
       }.not_to change { @page.lead }
       expect(@page.lead_de).to eq 'Deutscher Lead'
@@ -196,7 +196,7 @@ RSpec.describe Page do
 
     it 'translates content' do
       expect {
-        Mobility.with_locale(:de) { @page.update_attributes! content: 'Deutscher Inhalt' }
+        Mobility.with_locale(:de) { @page.update! content: 'Deutscher Inhalt' }
         @page.reload
       }.not_to change { @page.content }
       expect(@page.content_de).to eq 'Deutscher Inhalt'
@@ -204,7 +204,7 @@ RSpec.describe Page do
 
     describe 'fallbacks' do
       it 'falls back from german to english' do
-        @page.update_attributes! title_en: 'English title',
+        @page.update! title_en: 'English title',
                                  title_de: ''
 
         Mobility.with_locale(:de) do
@@ -213,7 +213,7 @@ RSpec.describe Page do
       end
 
       it 'falls back from german to english' do
-        @page.update_attributes! title_en: '',
+        @page.update! title_en: '',
                                  title_de: 'Deutscher Name'
 
         Mobility.with_locale(:en) do

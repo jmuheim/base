@@ -184,13 +184,13 @@ describe 'Showing page' do
 
     it 'displays versions if available (if authorized)', versioning: true do
       @page = create :page, creator: @user
-      @page.update_attributes! title: 'This is a new title',
+      @page.update! title: 'This is a new title',
                                lead:  'And a new lead'
-      @page.update_attributes! title:   'And another title',
+      @page.update! title:   'And another title',
                                content: 'And some other content'
 
       Mobility.with_locale(:de) do
-        @page.update_attributes! title:   'Und ein anderer Titel',
+        @page.update! title:   'Und ein anderer Titel',
                                  content: 'Und ein anderer Inhalt'
       end
 

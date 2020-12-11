@@ -5,7 +5,10 @@ describe 'Autocomplete', js: true do
   NON_INTERCEPTED_ENTER = 'Enter passed on.'
 
   around(:each) do |example|
-    Capybara.using_wait_time 0 { example.run } # No AJAX involved
+    # No AJAX involved
+    Capybara.using_wait_time 0 do
+      example.run
+    end
   end
 
   before do
@@ -248,7 +251,7 @@ describe 'Autocomplete', js: true do
         it 'submits form' do
           expect {
             focus_filter_with_keyboard_and_press :enter
-          }.to change { page.has_content? NON_INTERCEPTED_ENTER }.to true
+          }.to change { page.current_path }.from(new_page_path).to(pages_path) # We used to check for NON_INTERCEPTED_ENTER here using Poltergeist, but since migrating to Selenium it doesn't seem to work like that anymore, but we can now check for a changed path
         end
       end
     end
@@ -259,9 +262,9 @@ describe 'Autocomplete', js: true do
           focus_filter_with_keyboard_and_press 'x'
           expect_autocomplete_state options_expanded: true,
                                     filter_focused:   true,
-                                    filter_value:     'X', # It's unclear why the value is capitalised here (seems to have to do with the headless browser and/or its specific version)
+                                    filter_value:     'x',
                                     visible_options:  [],
-                                    options_count:    '0 of 3 options for X'
+                                    options_count:    '0 of 3 options for x'
         end
       end
 
@@ -270,20 +273,20 @@ describe 'Autocomplete', js: true do
           focus_filter_with_keyboard_and_press 'd'
           expect_autocomplete_state options_expanded: true,
                                     filter_focused:   true,
-                                    filter_value:     'D',
+                                    filter_value:     'd',
                                     visible_options:  [:page_parent_id_2,
                                                        :page_parent_id_3],
-                                    options_count:    '2 of 3 options for D'
+                                    options_count:    '2 of 3 options for d'
         end
 
         it 'filters options in a fuzzy way' do
           focus_filter_with_keyboard_and_press 'dig'
           expect_autocomplete_state options_expanded: true,
                                     filter_focused:   true,
-                                    filter_value:     'DIG',
+                                    filter_value:     'dig',
                                     visible_options:  [:page_parent_id_2,
                                                        :page_parent_id_3],
-                                    options_count:    '2 of 3 options for DIG'
+                                    options_count:    '2 of 3 options for dig'
         end
       end
     end
@@ -294,7 +297,7 @@ describe 'Autocomplete', js: true do
   end
 
   def click_filter_and_press(*keys)
-    filter_input.send_keys keys
+    filter_input.click.send_keys keys.flatten
   end
 
   def click_filter
