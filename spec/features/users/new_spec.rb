@@ -227,6 +227,7 @@ describe 'Creating user' do
         expect(page).not_to have_css '.textarea-fullscreenizer-toggler', text: 'Toggle fullscreen (Esc)'
 
         focus_element('#user_about')
+        save_screenshot # See https://stackoverflow.com/questions/65252772/capybara-selenium-chrome-test-passes-only-when-calling-save-screenshot
         expect(page).to have_css '.textarea-fullscreenizer-focus'
         expect(page).to have_css '.textarea-fullscreenizer-toggler', text: 'Toggle fullscreen (Esc)'
 
@@ -253,11 +254,11 @@ describe 'Creating user' do
         find('#user_about').hover
         expect(page).not_to have_css '.textarea-fullscreenizer-fullscreen'
 
-        find('.textarea-fullscreenizer-toggler').trigger('click')
+        find('.textarea-fullscreenizer-toggler').click
         expect(page).to have_css '.textarea-fullscreenizer-fullscreen'
         expect(focused_element_id).to eq 'user_about'
 
-        find('.textarea-fullscreenizer-toggler').trigger('click')
+        find('.textarea-fullscreenizer-toggler').click
         expect(page).not_to have_css '.textarea-fullscreenizer-fullscreen'
         expect(focused_element_id).to eq 'user_about'
       end
