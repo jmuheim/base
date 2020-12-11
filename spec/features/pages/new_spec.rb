@@ -65,7 +65,7 @@ describe 'Creating page' do
 
     # Setting a position isn't possible when creating a page
     expect {
-      select_from_autocomplete('Cool parent page (#1)', 'page_parent_id')
+      select_from_autocomplete('Cool parent page (#1)', 'page_parent_id', true)
     }.not_to change {
       page.has_css? '#page_position[disabled]'
     }.from(true)

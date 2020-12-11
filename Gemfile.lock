@@ -573,7 +573,7 @@ DEPENDENCIES
   pry-rails
   puma
   rack-livereload
-  rails (~> 6.0)
+  rails (< 6.1)
   rails-footnotes!
   rails-i18n
   ransack

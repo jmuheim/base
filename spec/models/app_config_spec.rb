@@ -26,14 +26,14 @@ RSpec.describe AppConfig do
 
       it 'versions app_name' do
         expect {
-          @app_config.update_attributes! app_name: 'New app_name'
+          @app_config.update! app_name: 'New app_name'
         }.to change { @app_config.versions.count }.by 1
       end
 
       it 'versions app_slogan (en/de)' do
         [:en, :de].each do |locale|
           expect {
-            @app_config.update_attributes! "app_slogan_#{locale}" => 'New app_slogan'
+            @app_config.update! "app_slogan_#{locale}" => 'New app_slogan'
           }.to change { @app_config.versions.count }.by 1
         end
       end
@@ -41,7 +41,7 @@ RSpec.describe AppConfig do
       it 'versions organisation_name (en/de)' do
         [:en, :de].each do |locale|
           expect {
-            @app_config.update_attributes! "organisation_name_#{locale}" => 'New organisation_name'
+            @app_config.update! "organisation_name_#{locale}" => 'New organisation_name'
           }.to change { @app_config.versions.count }.by 1
         end
       end
@@ -49,14 +49,14 @@ RSpec.describe AppConfig do
       it 'versions organisation_abbreviation (en/de)' do
         [:en, :de].each do |locale|
           expect {
-            @app_config.update_attributes! "organisation_abbreviation_#{locale}" => 'New organisation_abbreviation'
+            @app_config.update! "organisation_abbreviation_#{locale}" => 'New organisation_abbreviation'
           }.to change { @app_config.versions.count }.by 1
         end
       end
 
       it 'versions organisation_url' do
         expect {
-          @app_config.update_attributes! organisation_url: 'New organisation_url'
+          @app_config.update! organisation_url: 'New organisation_url'
         }.to change { @app_config.versions.count }.by 1
       end
     end
@@ -67,7 +67,7 @@ RSpec.describe AppConfig do
 
     it 'translates app_slogan' do
       expect {
-        Mobility.with_locale(:de) { @app_config.update_attributes! app_slogan: 'Deutscher app_slogan' }
+        Mobility.with_locale(:de) { @app_config.update! app_slogan: 'Deutscher app_slogan' }
         @app_config.reload
       }.not_to change { @app_config.app_slogan }
       expect(@app_config.app_slogan_de).to eq 'Deutscher app_slogan'
@@ -75,7 +75,7 @@ RSpec.describe AppConfig do
 
     it 'translates organisation_name' do
       expect {
-        Mobility.with_locale(:de) { @app_config.update_attributes! organisation_name: 'Deutscher organisation_name' }
+        Mobility.with_locale(:de) { @app_config.update! organisation_name: 'Deutscher organisation_name' }
         @app_config.reload
       }.not_to change { @app_config.organisation_name }
       expect(@app_config.organisation_name_de).to eq 'Deutscher organisation_name'
@@ -83,7 +83,7 @@ RSpec.describe AppConfig do
 
     it 'translates organisation_abbreviation' do
       expect {
-        Mobility.with_locale(:de) { @app_config.update_attributes! organisation_abbreviation: 'Deutscher organisation_abbreviation' }
+        Mobility.with_locale(:de) { @app_config.update! organisation_abbreviation: 'Deutscher organisation_abbreviation' }
         @app_config.reload
       }.not_to change { @app_config.organisation_abbreviation }
       expect(@app_config.organisation_abbreviation_de).to eq 'Deutscher organisation_abbreviation'

@@ -42,7 +42,7 @@ describe 'Editing app config' do
 
     # Change something in the database...
     expect {
-      @app_config.update_attributes organisation_name: 'This is the old organisation name'
+      @app_config.update organisation_name: 'This is the old organisation name'
     }.to change { @app_config.lock_version }.by 1
 
     fill_in 'app_config_organisation_name', with: 'This is the new organisation name, yeah!'
@@ -61,7 +61,7 @@ describe 'Editing app config' do
   end
 
   it 'allows to translate an app config to German' do
-    @app_config.update_attributes organisation_abbreviation_en: 'English abbreviation',
+    @app_config.update organisation_abbreviation_en: 'English abbreviation',
                                   organisation_abbreviation_de: ''
 
     visit edit_app_config_path @app_config, locale: :de # Default locale (English)

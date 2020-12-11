@@ -42,7 +42,7 @@ describe 'Editing page' do
     # Changing the parent disables the position select
     save_screenshot # See https://stackoverflow.com/questions/65252772/capybara-selenium-chrome-test-passes-only-when-calling-save-screenshot
     expect {
-      select_from_autocomplete('Cooler parent page (#2)', 'page_parent_id')
+      select_from_autocomplete('Cooler parent page (#2)', 'page_parent_id', true)
     }.to change {
       page.has_css? '#page_position[disabled]'
     }.from(false).to true
