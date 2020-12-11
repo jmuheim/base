@@ -165,7 +165,7 @@ describe 'Editing user' do
         expect(File.basename(@user.reload.avatar.to_s)).to eq 'avatar.png'
       end
 
-      pending 'replaces a cached uploaded avatar with a new one after validation errors' do
+      pending 'replaces a cached uploaded avatar with a new one after validation errors', js: true do
         visit edit_user_path @user
 
         # Upload a file
@@ -177,7 +177,7 @@ describe 'Editing user' do
         expect(page).to have_flash('User could not be updated.').of_type :alert
 
         # Upload another file
-        click_button 'Image preview'
+        click_link 'Image preview'
         fill_in 'user_avatar', with: base64_other_image[:data]
 
         # Make validations pass
