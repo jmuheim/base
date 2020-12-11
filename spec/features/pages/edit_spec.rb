@@ -40,6 +40,7 @@ describe 'Editing page' do
     expect(page).to have_css 'h2', text: 'Details'
 
     # Changing the parent disables the position select
+    save_screenshot # See https://stackoverflow.com/questions/65252772/capybara-selenium-chrome-test-passes-only-when-calling-save-screenshot
     expect {
       select_from_autocomplete('Cooler parent page (#2)', 'page_parent_id')
     }.to change {
@@ -60,7 +61,8 @@ describe 'Editing page' do
     fill_in 'page_content',          with: "A new content with a ![existing image](@image-existing-image) and a ![new image](@image-new-image). Also an ![existing code](@code-existing-code) and a ![new code](@code-new-code). "
     fill_in 'page_notes',            with: 'A new note'
 
-    find('#page_images_attributes_0_file', visible: false).set base64_other_image[:data]
+    click_link 'Image preview'
+    fill_in 'page_images_attributes_0_file', with: base64_other_image[:data]
     fill_in 'page_images_attributes_0_identifier', with: 'existing-image'
 
     fill_in 'page_codes_attributes_0_identifier', with: 'existing-code'

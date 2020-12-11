@@ -72,7 +72,7 @@ describe 'Editing account' do
       expect(File.basename(@user.reload.avatar.to_s)).to eq 'avatar.png'
     end
 
-    it 'replaces a cached uploaded avatar with a new one after validation errors', js: true do
+    pending 'replaces a cached uploaded avatar with a new one after validation errors', js: true do
       visit edit_user_registration_path
 
       # Upload a file
