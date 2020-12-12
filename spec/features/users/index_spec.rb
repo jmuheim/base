@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'Listing users' do
   before do
-    @user = create :user
+    @user = create :user, :with_avatar
     @admin = create :user, :admin
 
     login_as(@admin)
