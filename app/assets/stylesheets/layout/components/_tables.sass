@@ -19,3 +19,26 @@
 
   pre
     white-space: pre-line
+
+  button[aria-sort]
+    border: 0
+    background: transparent
+    font-weight: bold
+    padding: 8px
+    margin: -8px
+    display: block
+    width: 100%
+    text-align: left
+
+    &::after
+      font-family: $font-family-base
+      content: "⇅"
+      display: inline-block
+      width: 14px
+      text-align: center
+
+    &[aria-sort="descending"]::after
+      content: "↑"
+
+    &[aria-sort="ascending"]::after
+      content: "↓"

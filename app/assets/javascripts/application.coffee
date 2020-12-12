@@ -24,6 +24,7 @@
 #= require depending_select_disabler
 #= require diff_generator
 #= require form_accessibilizer
+#= require table_sorter
 #= require textarea_fullscreenizer
 #= require visibility_on_focus_handler
 # --- Add custom requires above here! ---

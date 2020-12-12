@@ -1,6 +1,11 @@
 tr id=dom_id(user)
   th.name      = link_to user.name, user
-  td.email     = user.email
+
+  - tag = {tag: :td, class: :email}
+  - tag['data-sort'] = user.name if Rails.env.test? # For testing table sorting after data-sort attribute
+  *tag = user.email
+
+  td.avatar    = zoomable_image user.avatar, alt: user.name if user.avatar?
   td.role      = user.role_text
   td.disabled  = yes_or_no_icon user.disabled?
 

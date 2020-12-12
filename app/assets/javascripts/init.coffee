@@ -12,6 +12,7 @@ class App.Init
     @disableDependingSelect @$el
     @generateDiffs @$el
     @autocomplete @$el
+    @sortTables @$el
 
   autocomplete: ($el) ->	
     $el.find('[data-adg-autocomplete]').each ->
@@ -24,6 +25,10 @@ class App.Init
   makeFormsAccessible: ($el) ->
     $el.find('form.simple_form').each ->
       new App.FormAccessibilizer @
+
+  sortTables: ($el) ->
+    $('table').each ->
+      new App.TableSorter @
 
   makeTextareasPastable: ($el) ->
     $el.find('[data-paste]').each ->

@@ -22,6 +22,7 @@ describe 'Listing users' do
     within dom_id_selector(@user) do
       expect(page).to have_css '.name a',   text: 'User test name'
       expect(page).to have_css '.email',    text: 'user@example.com'
+      expect(page).to have_css '.avatar img[alt="User test name"]'
       expect(page).to have_css '.role',     text: 'User'
       expect(page).to have_css '.disabled', text: 'No'
 

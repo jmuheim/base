@@ -5,6 +5,7 @@ class UsersController < ApplicationController
   respond_to :html
 
   def index
+    @users.order!(:name)
     @q = @users.ransack(params[:q])
     @users = @q.result(distinct: true)
   end
