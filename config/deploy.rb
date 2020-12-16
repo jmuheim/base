@@ -52,3 +52,17 @@ set :puma_error_log, "#{release_path}/log/puma.access.log"
 set :puma_preload_app, true
 set :puma_worker_timeout, nil
 set :puma_init_active_record, true
+
+# Fix issue that restart doesn't work after deployment.
+# See https://github.com/seuros/capistrano-puma/issues/237#issuecomment-714212752
+namespace :puma do
+  Rake::Task[:restart].clear_actions
+
+  desc "Overwritten puma:restart task"
+  task :restart do
+    puts "Overwriting puma:restart to ensure that puma is running. Effectively, we are just starting Puma."
+    puts "A solution to this should be found."
+    invoke "puma:stop"
+    invoke "puma:start"
+  end
+end
