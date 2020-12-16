@@ -3,7 +3,7 @@ module MarkdownHelper
   # TODO: Would be great to use the Tilt default mechanism instead!
   def markdown(string)
     string ||= '' # If nil is supplied, Pandoc waits for input and nothing is returned
-    html = PandocRuby.convert(string).strip
+    html = PandocRuby.convert(string, PANDOC_OPTIONS).strip
     
     nokogiri = Nokogiri::HTML::DocumentFragment.parse(html)
 
