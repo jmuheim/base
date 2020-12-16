@@ -9,4 +9,6 @@ PANDOC_PATH = if Rails.env.production?
 
 PandocRuby.pandoc_path = PANDOC_PATH
 
+# Maybe there is a more elegant option?
+# See https://stackoverflow.com/questions/65319978/pandocruby-set-default-options-so-they-will-be-used-whenever-i-call-convert
 PANDOC_OPTIONS = {f: 'markdown-raw_html'}

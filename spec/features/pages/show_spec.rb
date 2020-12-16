@@ -6,6 +6,13 @@ describe 'Showing page' do
     login_as(@user)
   end
 
+  it 'treats raw HTML as text' do
+    expect(PandocRuby).to receive(:convert).with(an_instance_of(String), hash_including(f: 'markdown-raw_html'))
+
+    @page = create :page, content: 'Some content with <em>raw, not interpreted HTML</em>', creator: @user
+    visit page_path(@page)
+  end
+
   it 'displays a page' do
     other_page = create :page, creator: @user, title: 'Some cool other page'
     parent_page = create(:page, creator: @user, title: 'Cool parent page', navigation_title: nil)
@@ -13,7 +20,7 @@ describe 'Showing page' do
     @page = create :page, navigation_title: 'Page test navigation title',
                           images: [create(:image, creator: @user)],
                           lead:   "# Some lead title\n\nAnd some lead stuff. [some alt](@page-#{other_page.id})",
-                          content: "# Some content title\n\nAnd some content stuff.\n\n![Content image](@image-Image test identifier) with a [](@page-#{other_page.id}) and [some alt](@page-#{other_page.id})",
+                          content: "# Some content title\n\nSome content with <em>raw, not interpreted HTML</em>.\n\n![Content image](@image-Image test identifier) with a [](@page-#{other_page.id}) and [some alt](@page-#{other_page.id})",
                           notes:   "# Some notes title\n\nAnd some notes stuff.\n\n![Notes image](@image-Image test identifier) with a [](@page-#{other_page.id}) and [some alt](@page-#{other_page.id})",
                           parent:  parent_page,
                           children: [child_page],
@@ -36,7 +43,7 @@ describe 'Showing page' do
 
       within '.content' do
         expect(page).to have_css 'h2', text: 'Some content title'
-        expect(page).to have_content 'And some content stuff'
+        expect(page).to have_content 'Some content with <em>raw, not interpreted HTML</em>'
         expect(page).to have_css "img[alt='Content image'][src='#{@page.images.last.file.url}']"
         expect(page).to have_css "a[href='/en/pages/#{other_page.id}']", text: 'Some cool other page'
         expect(page).to have_css "a[href='/en/pages/#{other_page.id}'][title='Some cool other page']", text: 'some alt'
