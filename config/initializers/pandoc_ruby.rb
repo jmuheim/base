@@ -8,3 +8,5 @@ PANDOC_PATH = if Rails.env.production?
               end
 
 PandocRuby.pandoc_path = PANDOC_PATH
+
+PANDOC_OPTIONS = {f: 'markdown-raw_html'}
