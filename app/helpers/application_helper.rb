@@ -148,4 +148,10 @@ module ApplicationHelper
       content.gsub "[#{placeholder.first}]", placeholder.last.to_s
     end
   end
+
+  def pastables_info_dialog_button
+    dialog_button 'pastables_info', class: 'btn-xs btn-primary' do
+      t('shared.pastables.info.title_short').html_safe + ' ' + icon(:question)
+    end
+  end
 end

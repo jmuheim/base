@@ -1,6 +1,6 @@
-= accordion.panel do |panel|
-  = panel.title do
-    = t '.info'
+= dialog 'pastables_info', heading_level: heading_level do |dialog|
+  = dialog.header do
+    = t '.title'
 
-  = panel.body do
+  = dialog.body do
     == render 'shared/pastables/pasting_resources_info'

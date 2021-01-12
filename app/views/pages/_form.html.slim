@@ -1,18 +1,24 @@
+== render 'shared/pastables/info', heading_level: heading_level
+
+= dialog 'pages_info', heading_level: heading_level do |dialog|
+  = dialog.header do
+    = t '.info'
+
+  = dialog.body do
+    == render 'page_hierarchy_info'
+    == render 'referencing_pages_info'
+
+#info_dialog_buttons.btn-group
+  = dialog_button 'pages_info', class: 'btn-xs' do
+    => Page.model_name.human count: :other
+    = icon :question
+
+  = pastables_info_dialog_button
+
 = simple_form_for page, html:    {class: 'form-horizontal'},
                         wrapper: :horizontal_form do |f|
 
   == render 'shared/form/stale_info', f: f
-
-  = accordion :info, item_options: {title_tag: 'h2', panel_class: 'panel-info'} do |accordion|
-    = accordion.panel do |panel|
-      = panel.title do
-        = t '.info'
-
-      = panel.body do
-        == render 'page_hierarchy_info'
-        == render 'referencing_pages_info'
-
-    == render 'shared/pastables/info', accordion: accordion, f: f
 
   = panel do |panel|
     = panel.heading do
