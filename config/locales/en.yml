@@ -20,12 +20,15 @@ en:
       no_previous_page: No previous page
       previous_page: Previous page
     form:
-      info: Information about organising pages as tree hierarchy
+      info: Organising pages as tree hierarchy
     page:
       notice_content: Your feed reader has downloaded version %{version} of the current page, which was current at %{date}. Meanwhile there could be an updated version of the page available online. Visit the original page to see the most current version!
       notice_title: Notice about Atom feed
       position_in_hierarchy: Position in page hierarchy
   shared:
+    dialog:
+      name: Dialog
+      close: Close dialog
     diff:
       before_or_after:
         image_after: Image after
@@ -47,7 +50,8 @@ en:
         stale_attributes: Attributes that have been changed
     pastables:
       info:
-        info: Information about pasting images and CodePen links as resources
+        title_short: Pastables
+        title: Pasting images and CodePen links as resources
     show:
       additional_information: Additional information
       images:

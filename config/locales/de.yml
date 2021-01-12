@@ -20,12 +20,15 @@ de:
       no_previous_page: Keine vorherige Seite
       previous_page: Vorherige Seite
     form:
-      info: Informationen zur Organisation der Seiten als Baum-Struktur
+      info: Organisation der Seiten als Baum-Struktur
     page:
       notice_content: Dein Feed Reader hat Version %{version} der aktuellen Seite heruntergeladen, welche am %{date} aktuell war. Mittlerweile könnte eine neue Version der Seite online vorhanden sein. Besuche die Original-Seite, um die aktuellste Version zu sehen!
       notice_title: Hinweis zum Atom Feed
       position_in_hierarchy: Position in der Seiten-Hierarchie
   shared:
+    dialog:
+      name: Dialog
+      close: Dialog schliessen
     diff:
       before_or_after:
         image_after: Bild nachher
@@ -47,7 +50,8 @@ de:
         stale_attributes: Attribute, welche verändert worden sind
     pastables:
       info:
-        info: Informationen zum Einfügen von Bildern und CodePen-Links als Ressourcen
+        title_short: Pastables
+        title: Einfügen von Bildern und CodePen-Links als Ressourcen
     show:
       additional_information: Weitere Informationen
       images:

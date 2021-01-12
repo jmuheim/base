@@ -1,0 +1,16 @@
+.modal.fade id=id aria-labelledby="#{id}-label" role="dialog" tabindex="-1" 
+  .modal-dialog.modal-lg role="document" 
+    .modal-content
+      .modal-header
+        button.close data-dismiss="modal" type="button" 
+          span aria-hidden="true" &times;
+          = sr_only t('shared.dialog.close')
+        *{tag: header_tag} class="modal-title h3" id="#{id}-label"
+          = header_content
+
+      .modal-body
+        = body_content
+
+      .modal-footer
+        button.btn.btn-primary data-dismiss="modal" type="button"
+          => t('shared.dialog.close')

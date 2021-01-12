@@ -29,8 +29,8 @@ describe 'Creating page' do
     expect(page).to have_breadcrumbs 'Base', 'Pages', 'Create'
     expect(page).to have_headline 'Create Page'
 
-    expect(page).to have_css 'h2', text: 'Information about organising pages as tree hierarchy'
-    expect(page).to have_css 'h2', text: 'Information about pasting images and CodePen links as resources'
+    expect(page).to have_css 'h2', text: 'Organising pages as tree hierarchy', visible: false
+    expect(page).to have_css 'h2', text: 'Pasting images and CodePen links as resources', visible: false
 
     expect(page).to have_css 'h2', text: 'Details'
 
@@ -163,5 +163,24 @@ describe 'Creating page' do
     click_button 'Seite erstellen'
 
     expect(page).to have_flash 'Seite wurde erfolgreich erstellt.'
+  end
+
+  it 'offers dialogs with information about pages and pastables', js: true do
+    visit new_page_path
+
+    expect(page).to have_css 'button#toggle_pages_info', text: "Dialog:\nPages"
+
+    expect {
+      click_button 'Dialog: Pages'
+    }.to change { page.has_css?('#pages_info[role="dialog"]') }.to(true)
+    .and change { page.has_text? 'Organising pages as tree hierarchy' }.to true
+    expect(focused_element_id).to eq 'pages_info'
+
+    within '#pages_info' do
+      click_button 'Close dialog'
+    end
+
+    expect(page).to have_css 'button#toggle_pastables_info', text: "Dialog:\nPastables"
+    expect(page).to have_css('#pastables_info[role="dialog"]', visible: false)
   end
 end

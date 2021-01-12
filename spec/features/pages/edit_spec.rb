@@ -34,8 +34,8 @@ describe 'Editing page' do
     expect(page).to have_breadcrumbs 'Base', 'Cool parent page', 'Cool navigation title', 'Edit'
     expect(page).to have_headline 'Edit Page test title'
 
-    expect(page).to have_css 'h2', text: 'Information about organising pages as tree hierarchy'
-    expect(page).to have_css 'h2', text: 'Information about pasting images and CodePen links as resources'
+    expect(page).to have_css 'h2', text: 'Organising pages as tree hierarchy', visible: false
+    expect(page).to have_css 'h2', text: 'Pasting images and CodePen links as resources', visible: false
 
     expect(page).to have_css 'h2', text: 'Details'
 

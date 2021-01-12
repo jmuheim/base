@@ -8,8 +8,10 @@ module Autocomplete
       find("##{input_id}").send_keys :escape
     end
 
-    fill_in input_id, with: label # Open autocomplete and filter
-    find('label', text: label, visible: js).click # Capybara's click() doesn't work because the input is visually hidden! And we have to use visible = false because when JS is off, the elements wouldn't be found.
+    unless label.blank?
+      fill_in input_id, with: label # Open autocomplete and filter
+      find('label', text: label, visible: js).click # Capybara's click() doesn't work because the input is visually hidden! And we have to use visible = false because when JS is off, the elements wouldn't be found.
+    end
   end
 end
 
