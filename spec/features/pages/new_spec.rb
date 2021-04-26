@@ -174,6 +174,8 @@ describe 'Creating page' do
       click_button 'Dialog: Pages'
     }.to change { page.has_css?('#pages_info[role="dialog"]') }.to(true)
     .and change { page.has_text? 'Organising pages as tree hierarchy' }.to true
+
+    sleep 1 # Timing issue: needed after upgrade from Chromedriver 87 to 90.
     expect(focused_element_id).to eq 'pages_info'
 
     within '#pages_info' do
